@@ -1,6 +1,6 @@
 # 📜 Emmyfall
 
-Emmyfall is a ![Deno](https://deno.land) script that generates EmmyLua (and sumneko-lua) annotations for the ![Starfall](https://github.com/thegrb93/StarfallEx) API.
+Emmyfall is a [Deno](https://deno.land) script that generates EmmyLua (and sumneko-lua) annotations for the [Starfall](https://github.com/thegrb93/StarfallEx) API.
 
 # 🛠 Supported API
 

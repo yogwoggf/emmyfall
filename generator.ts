@@ -1,8 +1,12 @@
 import { log, Severity } from "./logging.ts";
-import { Docs, Field, Func, Library, SFObject } from "./types.d.ts";
+import { Docs, Field, Func, Library, Overrides, SFObject } from "./types.d.ts";
 
 const DOCS_URL =
 	"https://raw.githubusercontent.com/thegrb93/StarfallEx/gh-pages/sf_doc.json";
+const OVERRIDES = <Overrides>(
+	JSON.parse(await Deno.readTextFile("overrides.json"))
+);
+
 class Document {
 	body = "---@meta\n-- Generated with emmyfall\n";
 	tab_level = 0;
@@ -186,7 +190,7 @@ class Document {
 			const paramNames = [];
 
 			for (const param of params) {
-				let name = param.name;
+				let { name, type } = param;
 
 				if (name == "end") {
 					name = "_end";
@@ -195,12 +199,23 @@ class Document {
 					// of the starfall API. There's also only 2 occurrences of it.
 				}
 
+				type = type || "any"; // If it's an untyped parameter, then fallback to any.
+				const libraryOverrides =
+					OVERRIDES[this.current_table.substring(1)];
+				if (libraryOverrides) {
+					// Check for per-function overrides
+					const functionOverrides = libraryOverrides[func.name];
+					if (functionOverrides) {
+						// Check for per-parameter overrides
+						const paramOverride = functionOverrides[name];
+						if (paramOverride) {
+							type = paramOverride;
+						}
+					}
+				}
+
 				// Some functions are untyped.
-				this.add_text(
-					`---@param ${name} ${param.type || "any"} ${
-						param.description
-					}`
-				);
+				this.add_text(`---@param ${name} ${type} ${param.description}`);
 				paramNames.push(name);
 			}
 
@@ -233,6 +248,18 @@ export async function generate(): Promise<string> {
 	const document = new Document();
 	log("Received starfall docs..");
 	log(`Using version: ${docs.Version}`);
+
+	// We need to add hooks as a sumneko-lua ---@alias
+
+	document.add_text("---@alias hooks");
+	for (const idx in docs.Hooks) {
+		const hook = docs.Hooks[idx];
+
+		log(`Adding '${hook.name}`);
+		document.add_text(
+			`---| '"${hook.name}"' # ${hook.description.split("\n").join(" ")}`
+		);
+	}
 
 	for (const idx in docs.Libraries) {
 		const lib = docs.Libraries[idx];

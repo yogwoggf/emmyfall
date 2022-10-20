@@ -43,9 +43,20 @@ export interface SFObject {
 
 	methods: Func[];
 }
+
+export interface Hook {
+	name: string;
+	description: string;
+}
+
 export interface Docs {
 	Libraries: Record<string, Library>;
 	Types: Record<string, SFObject>;
+	Hooks: Record<string, Hook>;
 
 	Version: string;
 }
+
+// This is for supporting JSON overrides, currently you can only
+// override the type of a generated function.
+export type Overrides = Record<string, Record<string, Record<string, string>>>;

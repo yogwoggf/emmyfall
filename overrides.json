@@ -1,0 +1,24 @@
+{
+	"hook": {
+		"add": {
+			"hookname": "hooks",
+			"_comment": "This override is used to give hook.add typings for the hook name."
+		}
+	},
+
+	"bass": {
+		"loadFile": {
+			"callback": "fun(bass: Bass, errorNum: number, errorName: string)"
+		},
+
+		"loadURL": {
+			"callback": "fun(bass: Bass, errorNum: number, errorName: string)"
+		}
+	},
+
+	"NextBot": {
+		"addContactCallback": {
+			"callback": "fun(ent: Entity)"
+		}
+	}
+}

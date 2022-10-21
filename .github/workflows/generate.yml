@@ -1,8 +1,5 @@
 name: Generate Annotations
-on:
-  push:
-    branches:
-      - master
+on: [push, fork, workflow_dispatch]
 
 jobs:
 

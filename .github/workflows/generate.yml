@@ -1,0 +1,22 @@
+name: Generate Annotations
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Deno
+        uses: maximousblk/setup-deno@v2 # Installs latest version
+
+      - run: deno run --allow-write --allow-read --allow-net main.ts
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: emmylua
+          path: ./output/emmyfall.lua

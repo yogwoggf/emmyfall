@@ -1,0 +1,31 @@
+name: Build Documentation
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  push:
+    branches:
+      - main
+
+jobs:
+  run-action:
+    name: Run action
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: vx.x.x
+
+      - name: Generate
+        run: deno run --allow-write --allow-read --allow-net main.ts
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ github.token }}
+          publish_branch: generator-output
+          publish_dir: ./output
+          enable_jekyll: true
+        if: steps.docgen.outcome == 'success'

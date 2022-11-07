@@ -20,6 +20,7 @@ jobs:
           deno-version: vx.x.x
 
       - name: Generate
+        id: generate
         run: deno run --allow-write --allow-read --allow-net main.ts
 
       - name: Deploy
@@ -29,4 +30,4 @@ jobs:
           publish_branch: generator-output
           publish_dir: ./output
           enable_jekyll: true
-        if: steps.docgen.outcome == 'success'
+        if: steps.generate.outcome == 'success'

@@ -6,6 +6,11 @@ Emmyfall is a [Deno](https://deno.land) script that generates EmmyLua (and sumne
 
 Currently Emmyfall generates annotations for all classes and libraries. Hooks are skipped for now. Callbacks are also not typed.
 
+# 🧩 Extension
+
+Emmyfall has a Visual Studio Code [extension](https://marketplace.visualstudio.com/items?itemName=Zubbbz.starfall) developed by [Zubbbz](https://github.com/Zubbbz/starfall-vscode).
+Using it will automatically give your Starfall projects the typings by using automated generations from this repository.
+
 # 💻 Usage
 
 You need to install Deno prior to building the annotations yourself.

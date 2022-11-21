@@ -309,36 +309,36 @@ _G.team = {}
 --- http
 ---  Http library. Requests content from urls.
 _G.http = {}
-	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L173
+	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L174
 	---@param url string The url to convert
 	---@return string undefined The converted url
 	function _G.http.urlGoogleDriveToRaw(url) end
-	--- canRequest - shared - libs_sh/http.lua#L35
+	--- canRequest - shared - libs_sh/http.lua#L36
 	function _G.http.canRequest() end
-	--- post - shared - libs_sh/http.lua#L67
+	--- post - shared - libs_sh/http.lua#L68
 	---@param url string Http target url
 	---@param payload table? Optional POST payload to be sent, can be both table and string. When table is used, the request body is encoded as application/x-www-form-urlencoded
 	---@param callbackSuccess function? Optional function to be called on request success, taking the arguments body (string), length (number), headers (table) and code (number)
 	---@param callbackFail function? Optional function to be called on request fail, taking the failing reason as an argument
 	---@param headers table? Optional POST headers to be sent
 	function _G.http.post(url, payload, callbackSuccess, callbackFail, headers) end
-	--- base64Decode - shared - libs_sh/http.lua#L142
+	--- base64Decode - shared - libs_sh/http.lua#L143
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.base64Decode(data) end
-	--- base64Encode - shared - libs_sh/http.lua#L132
+	--- base64Encode - shared - libs_sh/http.lua#L133
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.base64Encode(data) end
-	--- urlEncode - shared - libs_sh/http.lua#L149
+	--- urlEncode - shared - libs_sh/http.lua#L150
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.urlEncode(data) end
-	--- urlDecode - shared - libs_sh/http.lua#L160
+	--- urlDecode - shared - libs_sh/http.lua#L161
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.urlDecode(data) end
-	--- get - shared - libs_sh/http.lua#L40
+	--- get - shared - libs_sh/http.lua#L41
 	---@param url string Http target url
 	---@param callbackSuccess function The function to be called on request success, taking the arguments body (string), length (number), headers (table) and code (number)
 	---@param callbackFail function? The function to be called on request fail, taking the failing reason as an argument

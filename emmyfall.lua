@@ -165,21 +165,21 @@ _G.bass = {}
 --- hook
 ---  Deals with hooks
 _G.hook = {}
-	--- run - shared - libs_sh/hook.lua#L579
+	--- run - shared - libs_sh/hook.lua#L584
 	---@param hookname string The hook name
 	---@param arguments ... Arguments to pass to the hook
 	---@return ... undefined returns Return result(s) of the hook ran
 	function _G.hook.run(hookname, arguments) end
-	--- add - shared - libs_sh/hook.lua#L559
+	--- add - shared - libs_sh/hook.lua#L564
 	---@param hookname hooks Name of the event
 	---@param name string Unique identifier
 	---@param func function Function to run
 	function _G.hook.add(hookname, name, func) end
-	--- remove - shared - libs_sh/hook.lua#L648
+	--- remove - shared - libs_sh/hook.lua#L653
 	---@param hookname string The hook name
 	---@param name string The unique name for this hook
 	function _G.hook.remove(hookname, name) end
-	--- runRemote - shared - libs_sh/hook.lua#L611
+	--- runRemote - shared - libs_sh/hook.lua#L616
 	---@param recipient Entity? Starfall entity to call the hook on. Nil to run on every starfall entity
 	---@param payload ... Parameters that will be passed when calling hook functions
 	---@return table undefined A list of the resultset of each called hook

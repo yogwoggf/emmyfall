@@ -1401,6 +1401,8 @@ _G.prop = {}
 --- 
 ---  boolean save_on_entity = false
 --- 
+---  table steamids = {}
+--- 
 ---  
 --- 
 ---  > gmod_wire_fx_emitter

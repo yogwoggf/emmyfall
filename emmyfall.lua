@@ -1537,19 +1537,19 @@ _G.particleEffect = {}
 --- hologram
 ---  Library for creating and manipulating physics-less models AKA "Holograms".
 _G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L510
+	--- removeAll - shared - libs_sh/hologram.lua#L512
 	function _G.hologram.removeAll() end
-	--- canSpawn - shared - libs_sh/hologram.lua#L192
+	--- canSpawn - shared - libs_sh/hologram.lua#L194
 	---@return boolean undefined True if user can spawn holograms, False if not.
 	function _G.hologram.canSpawn() end
-	--- create - shared - libs_sh/hologram.lua#L128
+	--- create - shared - libs_sh/hologram.lua#L130
 	---@param pos Vector The position to create the hologram
 	---@param ang Angle The angle to create the hologram
 	---@param model string The model to give the hologram
 	---@param scale Vector? (Optional) The scale to give the hologram
 	---@return Hologram undefined The hologram object
 	function _G.hologram.create(pos, ang, model, scale) end
-	--- hologramsLeft - shared - libs_sh/hologram.lua#L199
+	--- hologramsLeft - shared - libs_sh/hologram.lua#L201
 	---@return number undefined Number of holograms able to be spawned
 	function _G.hologram.hologramsLeft() end
 --- mesh
@@ -7355,68 +7355,68 @@ _G.Sound = {}
 ---  Hologram type
 ---@class Hologram
 _G.Hologram = {}
-	--- setAngVel - server - libs_sh/hologram.lua#L220
+	--- setAngVel - server - libs_sh/hologram.lua#L222
 	---@param angvel Angle *Vector* angular velocity.
 	function _G.Hologram:setAngVel(angvel) end
-	--- setAnimation - shared - libs_sh/hologram.lua#L449
+	--- setAnimation - shared - libs_sh/hologram.lua#L451
 	---@param animation number|string Animation number or string name.
 	---@param frame number? Optional int (Default 0) The starting frame number. Does nothing if nil
 	---@param rate number? Optional float (Default 1) Frame speed. Does nothing if nil
 	function _G.Hologram:setAnimation(animation, frame, rate) end
-	--- setVel - server - libs_sh/hologram.lua#L207
+	--- setVel - server - libs_sh/hologram.lua#L209
 	---@param vel Vector New velocity
 	function _G.Hologram:setVel(vel) end
-	--- setScale - shared - libs_sh/hologram.lua#L382
+	--- setScale - shared - libs_sh/hologram.lua#L384
 	---@param scale Vector Vector new scale
 	function _G.Hologram:setScale(scale) end
-	--- getScale - shared - libs_sh/hologram.lua#L408
+	--- getScale - shared - libs_sh/hologram.lua#L410
 	---@return Vector undefined Vector scale
 	function _G.Hologram:getScale() end
-	--- setSize - shared - libs_sh/hologram.lua#L394
+	--- setSize - shared - libs_sh/hologram.lua#L396
 	---@param size Vector Vector new size in game units
 	function _G.Hologram:setSize(size) end
-	--- setFilterMag - client - libs_sh/hologram.lua#L280
+	--- setFilterMag - client - libs_sh/hologram.lua#L282
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMag(val) end
-	--- addEffects - shared - libs_sh/hologram.lua#L478
+	--- addEffects - shared - libs_sh/hologram.lua#L480
 	---@param effect number The effects to add. See EF Enums
 	function _G.Hologram:addEffects(effect) end
-	--- setRenderMatrix - client - libs_sh/hologram.lua#L312
+	--- setRenderMatrix - client - libs_sh/hologram.lua#L314
 	---@param mat VMatrix Starfall matrix to use
 	function _G.Hologram:setRenderMatrix(mat) end
-	--- setPos - shared - libs_sh/hologram.lua#L244
+	--- setPos - shared - libs_sh/hologram.lua#L246
 	---@param vec Vector New position
 	function _G.Hologram:setPos(vec) end
-	--- setAngles - shared - libs_sh/hologram.lua#L262
+	--- setAngles - shared - libs_sh/hologram.lua#L264
 	---@param ang Angle New angles
 	function _G.Hologram:setAngles(ang) end
-	--- setMoveType - server - libs_sh/hologram.lua#L231
+	--- setMoveType - server - libs_sh/hologram.lua#L233
 	---@param Movetype number to set, either MOVETYPE.NOCLIP (default) or MOVETYPE.NONE
 	function _G.Hologram:setMoveType(Movetype) end
-	--- setModel - shared - libs_sh/hologram.lua#L435
+	--- setModel - shared - libs_sh/hologram.lua#L437
 	---@param model string string model path
 	function _G.Hologram:setModel(model) end
-	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L428
+	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L430
 	---@return boolean undefined Whether engine lighting is suppressed
 	function _G.Hologram:getSuppressEngineLighting() end
-	--- removeEffects - shared - libs_sh/hologram.lua#L490
+	--- removeEffects - shared - libs_sh/hologram.lua#L492
 	---@param effect number The effects to remove. See EF Enums
 	function _G.Hologram:removeEffects(effect) end
-	--- remove - shared - libs_sh/hologram.lua#L502
+	--- remove - shared - libs_sh/hologram.lua#L504
 	function _G.Hologram:remove() end
-	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L415
+	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L417
 	---@param suppress boolean Boolean to represent if shading should be set or not.
 	function _G.Hologram:suppressEngineLighting(suppress) end
-	--- setClip - shared - libs_sh/hologram.lua#L346
+	--- setClip - shared - libs_sh/hologram.lua#L348
 	---@param index number Whatever number you want the clip to be
 	---@param enabled boolean Whether the clip is enabled
 	---@param origin Vector The center of the clip plane in world coordinates, or local to entity if it is specified
 	---@param normal Vector The the direction of the clip plane in world coordinates, or local to entity if it is specified
 	---@param entity Entity? (Optional) The entity to make coordinates local to, otherwise the world is used
 	function _G.Hologram:setClip(index, enabled, origin, normal, entity) end
-	--- draw - client - libs_sh/hologram.lua#L335
+	--- draw - client - libs_sh/hologram.lua#L337
 	function _G.Hologram:draw() end
-	--- setFilterMin - client - libs_sh/hologram.lua#L296
+	--- setFilterMin - client - libs_sh/hologram.lua#L298
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMin(val) end
 ---  Light type
@@ -8554,7 +8554,7 @@ _G.Entity = {}
 	--- isVehicle - shared - libs_sh/entities.lua#L830
 	---@return boolean undefined True if vehicle, false if not
 	function _G.Entity:isVehicle() end
-	--- toHologram - shared - libs_sh/hologram.lua#L118
+	--- toHologram - shared - libs_sh/hologram.lua#L120
 	---@return Hologram undefined Hologram instance
 	function _G.Entity:toHologram() end
 	--- setColor - shared - libs_sh/entities.lua#L382

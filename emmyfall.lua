@@ -7332,26 +7332,29 @@ _G.Sound = {}
 	---@param pitch number Pitch to set to, between 0 and 255.
 	---@param fade number? Time in seconds to transition to this new pitch. Default 0
 	function _G.Sound:setPitch(pitch, fade) end
-	--- setDSP - shared - libs_sh/sound.lua#L196
+	--- setDSP - shared - libs_sh/sound.lua#L202
 	---@param dsp number (0 - 133) DSP values. List can be found here https://developer.valvesoftware.com/wiki/Dsp_presets
 	function _G.Sound:setDSP(dsp) end
 	--- setSoundLevel - shared - libs_sh/sound.lua#L189
-	---@param level number dB level, see <a href='https://developer.valvesoftware.com/wiki/Soundscripts#SoundLevel'>Valve Dev Wiki</a>, for information on the value to use.
+	---@param level number dB level, for information on the value to use see https://developer.valvesoftware.com/wiki/Soundscripts#SoundLevel
 	function _G.Sound:setSoundLevel(level) end
 	--- isPlaying - shared - libs_sh/sound.lua#L183
 	---@return boolean undefined Whether the sound is playing or not
 	function _G.Sound:isPlaying() end
+	--- getSoundLevel - shared - libs_sh/sound.lua#L196
+	---@return number undefined Level in dB
+	function _G.Sound:getSoundLevel() end
+	--- getDSP - shared - libs_sh/sound.lua#L209
+	---@return number undefined dsp (0 - 133) DSP value.
+	function _G.Sound:getDSP() end
+	--- play - shared - libs_sh/sound.lua#L118
+	function _G.Sound:play() end
+	--- destroy - shared - libs_sh/sound.lua#L134
+	function _G.Sound:destroy() end
 	--- setVolume - shared - libs_sh/sound.lua#L149
 	---@param vol number Volume to set to, between 0 and 1.
 	---@param fade number? Time in seconds to transition to this new volume. Default 0
 	function _G.Sound:setVolume(vol, fade) end
-	--- play - shared - libs_sh/sound.lua#L118
-	function _G.Sound:play() end
-	--- getDSP - shared - libs_sh/sound.lua#L203
-	---@return number undefined dsp (0 - 133) DSP value.
-	function _G.Sound:getDSP() end
-	--- destroy - shared - libs_sh/sound.lua#L134
-	function _G.Sound:destroy() end
 ---  Hologram type
 ---@class Hologram
 _G.Hologram = {}

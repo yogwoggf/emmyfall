@@ -7345,7 +7345,7 @@ _G.Sound = {}
 	---@return number undefined Level in dB
 	function _G.Sound:getSoundLevel() end
 	--- getDSP - shared - libs_sh/sound.lua#L209
-	---@return number undefined dsp (0 - 133) DSP value.
+	---@return number undefined (0 - 133) DSP value.
 	function _G.Sound:getDSP() end
 	--- play - shared - libs_sh/sound.lua#L118
 	function _G.Sound:play() end

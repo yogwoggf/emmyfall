@@ -1555,90 +1555,96 @@ _G.hologram = {}
 --- mesh
 ---  Mesh library.
 _G.mesh = {}
-	--- createEmpty - client - libs_sh/mesh.lua#L839
-	---@return Mesh undefined Mesh object
-	function _G.mesh.createEmpty() end
-	--- parseObj - shared - libs_sh/mesh.lua#L675
+	--- generate - client - libs_sh/mesh.lua#L1003
+	---@param mesh_obj Mesh? Optional Mesh object, mesh to build. (default: nil)
+	---@param prim_type number Int, primitive type, see MATERIAL
+	---@param prim_count number Int, the amount of primitives
+	---@param func function The function provided that will generate the mesh vertices
+	function _G.mesh.generate(mesh_obj, prim_type, prim_count, func) end
+	--- parseObj - shared - libs_sh/mesh.lua#L705
 	---@param obj string The obj data
 	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
 	---@param triangulate boolean? Whether to triangulate the faces
 	---@return table undefined Table of Mesh tables. The keys correspond to the objs object names, and the values are tables of vertices that can be passed to mesh.createFromTable
 	---@return table undefined Table of Mesh data. {positions = positionData, normals = normalData, texturecoords = texturecoordData, faces = faceData}
 	function _G.mesh.parseObj(obj, threaded, triangulate) end
-	--- writeNormal - client - libs_sh/mesh.lua#L986
+	--- writeNormal - client - libs_sh/mesh.lua#L1061
 	---@param normal Vector Normal
 	function _G.mesh.writeNormal(normal) end
-	--- writeUV - client - libs_sh/mesh.lua#L1000
+	--- writeUV - client - libs_sh/mesh.lua#L1075
 	---@param stage number Stage of the texture coordinate
 	---@param u number U coordinate
 	---@param v number V coordinate
 	function _G.mesh.writeUV(stage, u, v) end
-	--- getModelMeshes - client - libs_sh/mesh.lua#L866
+	--- getModelMeshes - client - libs_sh/mesh.lua#L941
 	---@param model string The full path to a model to get the visual meshes of.
 	---@param lod number? The lod of the model to use. Default 0.
 	---@param bodygroupMask number? The bodygroupMask of the model to use. Default 0.
 	---@return table undefined A table of tables with the following format:  string material - The material of the specific mesh table triangles - A table of MeshVertex structures ready to be fed into IMesh:BuildFromTriangles table verticies - A table of MeshVertex structures representing all the vertexes of the mesh. This table is used internally to generate the "triangles" table. Each MeshVertex structure returned also has an extra table of tables field called "weights" with the following data:  number boneID - The bone this vertex is attached to number weight - How "strong" this vertex is attached to the bone. A vertex can be attached to multiple bones at once.
 	---@return table undefined A table of tables with bone id keys with the following format:  number parent - The parent bone id Matrix matrix - pretransformed bone matrix
 	function _G.mesh.getModelMeshes(model, lod, bodygroupMask) end
-	--- trianglesLeft - client - libs_sh/mesh.lua#L902
+	--- trianglesLeft - client - libs_sh/mesh.lua#L977
 	---@return number undefined Number of triangles that can be created
 	function _G.mesh.trianglesLeft() end
-	--- writeColor - client - libs_sh/mesh.lua#L976
+	--- writeColor - client - libs_sh/mesh.lua#L1051
 	---@param r number Number, red value
 	---@param g number Number, green value
 	---@param b number Number, blue value
 	---@param a number Number, alpha value
 	function _G.mesh.writeColor(r, g, b, a) end
-	--- writePosition - client - libs_sh/mesh.lua#L993
+	--- writePosition - client - libs_sh/mesh.lua#L1068
 	---@param position Vector Position
 	function _G.mesh.writePosition(position) end
-	--- trianglesLeftRender - client - libs_sh/mesh.lua#L909
+	--- trianglesLeftRender - client - libs_sh/mesh.lua#L984
 	---@return number undefined Number of triangles that can be rendered
 	function _G.mesh.trianglesLeftRender() end
-	--- createFromObj - client - libs_sh/mesh.lua#L810
+	--- createFromObj - client - libs_sh/mesh.lua#L885
 	---@param obj string The obj file data
 	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
 	---@param triangulate boolean? Whether to triangulate faces. (Consumes more CPU)
 	---@return table undefined Table of Mesh objects. The keys correspond to the objs object names
 	function _G.mesh.createFromObj(obj, threaded, triangulate) end
-	--- generateNormals - shared - libs_sh/mesh.lua#L689
+	--- generateNormals - shared - libs_sh/mesh.lua#L719
 	---@param vertices table The table of vertices
 	---@param inverted boolean? Optional bool, invert the normal
 	---@param smooth_limit number? Optional number, smooths the normal based on the limit in radians
 	function _G.mesh.generateNormals(vertices, inverted, smooth_limit) end
-	--- advanceVertex - client - libs_sh/mesh.lua#L1039
+	--- advanceVertex - client - libs_sh/mesh.lua#L1114
 	function _G.mesh.advanceVertex() end
-	--- writeQuadEasy - client - libs_sh/mesh.lua#L1029
+	--- writeQuadEasy - client - libs_sh/mesh.lua#L1104
 	---@param position Vector 
 	---@param normal Vector 
 	---@param w number 
 	---@param h number 
 	function _G.mesh.writeQuadEasy(position, normal, w, h) end
-	--- generateTangents - shared - libs_sh/mesh.lua#L715
-	---@param vertices table The table of vertices
-	function _G.mesh.generateTangents(vertices) end
-	--- writeQuad - client - libs_sh/mesh.lua#L1019
+	--- writeQuad - client - libs_sh/mesh.lua#L1094
 	---@param v1 Vector Vertex1 position
 	---@param v2 Vector Vertex2 position
 	---@param v3 Vector Vertex3 position
 	---@param v4 Vector Vertex4 position
 	function _G.mesh.writeQuad(v1, v2, v3, v4) end
-	--- generateUV - shared - libs_sh/mesh.lua#L703
+	--- generateTangents - shared - libs_sh/mesh.lua#L745
+	---@param vertices table The table of vertices
+	function _G.mesh.generateTangents(vertices) end
+	--- generateUV - shared - libs_sh/mesh.lua#L733
 	---@param vertices table The table of vertices
 	---@param scale number The scale of the uvs
 	function _G.mesh.generateUV(vertices, scale) end
-	--- createFromTable - client - libs_sh/mesh.lua#L769
+	--- createEmpty - client - libs_sh/mesh.lua#L914
+	---@return Mesh undefined Mesh object
+	function _G.mesh.createEmpty() end
+	--- createFromTable - client - libs_sh/mesh.lua#L844
 	---@param vertices table Table containing vertex data. http://wiki.facepunch.com/gmod/Structures/MeshVertex
 	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit. The thread will yield with number of vertices remaining to be processed. After 0 is yielded, the final expensive phase starts.
 	---@return Mesh undefined Mesh object
 	function _G.mesh.createFromTable(vertices, threaded) end
-	--- generate - client - libs_sh/mesh.lua#L928
-	---@param mesh_obj Mesh? Optional Mesh object, mesh to build. (default: nil)
-	---@param prim_type number Int, primitive type, see MATERIAL
-	---@param prim_count number Int, the amount of primitives
-	---@param func function The function provided that will generate the mesh vertices
-	function _G.mesh.generate(mesh_obj, prim_type, prim_count, func) end
-	--- writeUserData - client - libs_sh/mesh.lua#L1009
+	--- findConvexHull - shared - libs_sh/mesh.lua#L755
+	---@param vertices table The table of vertices (vectors) or vertex data (http://wiki.facepunch.com/gmod/Structures/MeshVertex)
+	---@param threaded boolean? Optional bool, use threading object that can be used to run algorithm over time to prevent hitting quota limit
+	---@return table undefined The mesh table which can be passed to mesh.createFromTable
+	---@return table undefined The table of vertices which can be passed to prop.createCustom
+	function _G.mesh.findConvexHull(vertices, threaded) end
+	--- writeUserData - client - libs_sh/mesh.lua#L1084
 	---@param x number x
 	---@param y number y
 	---@param z number z
@@ -9191,9 +9197,9 @@ _G.ParticleEffect = {}
 ---  Mesh type
 ---@class Mesh
 _G.Mesh = {}
-	--- destroy - client - libs_sh/mesh.lua#L1056
+	--- destroy - client - libs_sh/mesh.lua#L1131
 	function _G.Mesh:destroy() end
-	--- draw - client - libs_sh/mesh.lua#L1045
+	--- draw - client - libs_sh/mesh.lua#L1120
 	function _G.Mesh:draw() end
 ---  File type
 ---@class File

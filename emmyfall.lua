@@ -2903,10 +2903,10 @@ _G.mesh = {}
 	---@return table undefined Table of Mesh tables. The keys correspond to the objs object names, and the values are tables of vertices that can be passed to mesh.createFromTable
 	---@return table undefined Table of Mesh data. {positions = positionData, normals = normalData, texturecoords = texturecoordData, faces = faceData}
 	function _G.mesh.parseObj(obj, threaded, triangulate) end
-	--- writeNormal - client - libs_sh/mesh.lua#L1061
+	--- writeNormal - client - libs_sh/mesh.lua#L1063
 	---@param normal Vector Normal
 	function _G.mesh.writeNormal(normal) end
-	--- writeUV - client - libs_sh/mesh.lua#L1075
+	--- writeUV - client - libs_sh/mesh.lua#L1077
 	---@param stage number Stage of the texture coordinate
 	---@param u number U coordinate
 	---@param v number V coordinate
@@ -2921,13 +2921,13 @@ _G.mesh = {}
 	--- trianglesLeft - client - libs_sh/mesh.lua#L977
 	---@return number undefined Number of triangles that can be created
 	function _G.mesh.trianglesLeft() end
-	--- writeColor - client - libs_sh/mesh.lua#L1051
+	--- writeColor - client - libs_sh/mesh.lua#L1053
 	---@param r number Number, red value
 	---@param g number Number, green value
 	---@param b number Number, blue value
 	---@param a number Number, alpha value
 	function _G.mesh.writeColor(r, g, b, a) end
-	--- writePosition - client - libs_sh/mesh.lua#L1068
+	--- writePosition - client - libs_sh/mesh.lua#L1070
 	---@param position Vector Position
 	function _G.mesh.writePosition(position) end
 	--- trianglesLeftRender - client - libs_sh/mesh.lua#L984
@@ -2944,15 +2944,15 @@ _G.mesh = {}
 	---@param inverted boolean? Optional bool, invert the normal
 	---@param smooth_limit number? Optional number, smooths the normal based on the limit in radians
 	function _G.mesh.generateNormals(vertices, inverted, smooth_limit) end
-	--- advanceVertex - client - libs_sh/mesh.lua#L1114
+	--- advanceVertex - client - libs_sh/mesh.lua#L1116
 	function _G.mesh.advanceVertex() end
-	--- writeQuadEasy - client - libs_sh/mesh.lua#L1104
+	--- writeQuadEasy - client - libs_sh/mesh.lua#L1106
 	---@param position Vector 
 	---@param normal Vector 
 	---@param w number 
 	---@param h number 
 	function _G.mesh.writeQuadEasy(position, normal, w, h) end
-	--- writeQuad - client - libs_sh/mesh.lua#L1094
+	--- writeQuad - client - libs_sh/mesh.lua#L1096
 	---@param v1 Vector Vertex1 position
 	---@param v2 Vector Vertex2 position
 	---@param v3 Vector Vertex3 position
@@ -2979,7 +2979,7 @@ _G.mesh = {}
 	---@return table undefined The mesh table which can be passed to mesh.createFromTable
 	---@return table undefined The table of vertices which can be passed to prop.createCustom
 	function _G.mesh.findConvexHull(vertices, threaded) end
-	--- writeUserData - client - libs_sh/mesh.lua#L1084
+	--- writeUserData - client - libs_sh/mesh.lua#L1086
 	---@param x number x
 	---@param y number y
 	---@param z number z
@@ -9062,9 +9062,9 @@ _G.Constraint = {}
 ---  Mesh type
 ---@class Mesh
 _G.Mesh = {}
-	--- destroy - client - libs_sh/mesh.lua#L1131
+	--- destroy - client - libs_sh/mesh.lua#L1133
 	function _G.Mesh:destroy() end
-	--- draw - client - libs_sh/mesh.lua#L1120
+	--- draw - client - libs_sh/mesh.lua#L1122
 	function _G.Mesh:draw() end
 --- 
 ---  The `Material` type is used to control shaders in rendering.

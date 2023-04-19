@@ -318,36 +318,43 @@ _G.wire.ports = {
 --- http
 ---  Http library. Requests content from urls.
 _G.http = {}
-	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L174
+	--- base64Decode - shared - libs_sh/http.lua#L150
+	---@param data string The data to convert
+	---@return string undefined The converted data
+	function _G.http.base64Decode(data) end
+	--- getMaximumRequests - shared - libs_sh/http.lua#L44
+	---@return number undefined Maximum amount of concurrent active HTTP get/post requests 
+	function _G.http.getMaximumRequests() end
+	--- urlDecode - shared - libs_sh/http.lua#L168
+	---@param data string The data to convert
+	---@return string undefined The converted data
+	function _G.http.urlDecode(data) end
+	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L181
 	---@param url string The url to convert
 	---@return string undefined The converted url
 	function _G.http.urlGoogleDriveToRaw(url) end
-	--- canRequest - shared - libs_sh/http.lua#L36
-	function _G.http.canRequest() end
-	--- post - shared - libs_sh/http.lua#L68
+	--- getActiveRequests - shared - libs_sh/http.lua#L38
+	---@return number undefined The current amount of active HTTP get/post requests
+	function _G.http.getActiveRequests() end
+	--- post - shared - libs_sh/http.lua#L76
 	---@param url string Http target url
 	---@param payload table? Optional POST payload to be sent, can be both table and string. When table is used, the request body is encoded as application/x-www-form-urlencoded
 	---@param callbackSuccess function? Optional function to be called on request success, taking the arguments body (string), length (number), headers (table) and code (number)
 	---@param callbackFail function? Optional function to be called on request fail, taking the failing reason as an argument
 	---@param headers table? Optional POST headers to be sent
 	function _G.http.post(url, payload, callbackSuccess, callbackFail, headers) end
-	--- base64Decode - shared - libs_sh/http.lua#L143
-	---@param data string The data to convert
-	---@return string undefined The converted data
-	function _G.http.base64Decode(data) end
-	--- base64Encode - shared - libs_sh/http.lua#L133
-	---@param data string The data to convert
-	---@return string undefined The converted data
-	function _G.http.base64Encode(data) end
-	--- urlEncode - shared - libs_sh/http.lua#L150
+	--- urlEncode - shared - libs_sh/http.lua#L157
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.urlEncode(data) end
-	--- urlDecode - shared - libs_sh/http.lua#L161
+	--- base64Encode - shared - libs_sh/http.lua#L140
 	---@param data string The data to convert
 	---@return string undefined The converted data
-	function _G.http.urlDecode(data) end
-	--- get - shared - libs_sh/http.lua#L41
+	function _G.http.base64Encode(data) end
+	--- canRequest - shared - libs_sh/http.lua#L32
+	---@return boolean undefined If an HTTP get/post request can be made
+	function _G.http.canRequest() end
+	--- get - shared - libs_sh/http.lua#L50
 	---@param url string Http target url
 	---@param callbackSuccess function The function to be called on request success, taking the arguments body (string), length (number), headers (table) and code (number)
 	---@param callbackFail function? The function to be called on request fail, taking the failing reason as an argument

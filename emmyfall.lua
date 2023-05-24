@@ -8619,7 +8619,7 @@ _G.Entity = {}
 	---@return table undefined Table of SurfaceInfos if the entity has a brush model, or no value otherwise.
 	function _G.Entity:getBrushSurfaces() end
 	--- getPhysicsObjectCount - shared - libs_sh/entities.lua#L709
-	---@return PhysObj undefined The number of physics objects on the entity
+	---@return number undefined The number of physics objects on the entity
 	function _G.Entity:getPhysicsObjectCount() end
 	--- getColor - shared - libs_sh/entities.lua#L737
 	---@return Color undefined Color
@@ -8903,7 +8903,7 @@ _G.Entity = {}
 	---@return string undefined String material
 	function _G.Entity:getMaterial() end
 	--- getChipAuthor - shared - libs_sh/entities.lua#L869
-	---@return Entity undefined The author of the starfall chip.
+	---@return string undefined The author of the starfall chip.
 	function _G.Entity:getChipAuthor() end
 	--- applyForceCenter - server - libs_sv/entities.lua#L204
 	---@param vec Vector The force vector

@@ -2830,15 +2830,15 @@ _G.game = {}
 	--- getTickInterval - shared - libs_sh/game.lua#L68
 	---@return number undefined Interval
 	function _G.game.getTickInterval() end
-	--- steamIDTo64 - shared - libs_sh/game.lua#L111
+	--- steamIDTo64 - shared - libs_sh/game.lua#L118
 	---@param id string The STEAM_0 style id
 	---@return string undefined 64bit Steam ID
 	function _G.game.steamIDTo64(id) end
-	--- serverFrameTime - client - libs_sh/game.lua#L156
+	--- serverFrameTime - client - libs_sh/game.lua#L163
 	---@return number undefined Server frametime
 	---@return number undefined Server frametime standard deviation
 	function _G.game.serverFrameTime() end
-	--- blastDamage - server - libs_sh/game.lua#L120
+	--- blastDamage - server - libs_sh/game.lua#L127
 	---@param damageOrigin Vector The center of the explosion
 	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
 	---@param damage number The amount of damage to be applied
@@ -2846,10 +2846,14 @@ _G.game = {}
 	--- getHostname - shared - libs_sh/game.lua#L25
 	---@return string undefined The hostname of the server
 	function _G.game.getHostname() end
-	--- getPlayerModels - shared - libs_sh/game.lua#L93
+	--- getPlayerModels - shared - libs_sh/game.lua#L100
 	---@return table undefined List of valid playermodels
 	function _G.game.getPlayerModels() end
-	--- steamIDFrom64 - shared - libs_sh/game.lua#L104
+	--- getAmmoMax - shared - libs_sh/game.lua#L87
+	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
+	---@return number undefined The maximum amount of reserve ammo a player can hold of this ammo type
+	function _G.game.getAmmoMax(id) end
+	--- steamIDFrom64 - shared - libs_sh/game.lua#L111
 	---@param id string The 64 bit Steam ID
 	---@return string undefined STEAM_0 style Steam ID
 	function _G.game.steamIDFrom64(id) end
@@ -2862,18 +2866,18 @@ _G.game = {}
 	--- getTimeScale - shared - libs_sh/game.lua#L62
 	---@return number undefined Time scale
 	function _G.game.getTimeScale() end
-	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L148
+	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L155
 	---@param position Vector The position to check the skybox visibility from
 	---@return boolean undefined Whether the skybox is visible from the position
 	function _G.game.isSkyboxVisibleFromPoint(position) end
 	--- getTickCount - shared - libs_sh/game.lua#L74
 	---@return number undefined Ticks
 	function _G.game.getTickCount() end
-	--- getSunInfo - client - libs_sh/game.lua#L139
+	--- getSunInfo - client - libs_sh/game.lua#L146
 	---@return Vector undefined The direction of the sun
 	---@return number undefined How obstructed the sun is 0 to 1.
 	function _G.game.getSunInfo() end
-	--- getWorld - shared - libs_sh/game.lua#L87
+	--- getWorld - shared - libs_sh/game.lua#L94
 	---@return Entity undefined Worldspawn
 	function _G.game.getWorld() end
 	--- getMap - shared - libs_sh/game.lua#L19
@@ -2889,7 +2893,7 @@ _G.game = {}
 	---@param str string String identifier of the game, eg. 'cstrike'
 	---@return boolean undefined True if the game is mounted
 	function _G.game.isMounted(str) end
-	--- hasFocus - client - libs_sh/game.lua#L132
+	--- hasFocus - client - libs_sh/game.lua#L139
 	---@return boolean undefined True if the game is focused
 	function _G.game.hasFocus() end
 --- mesh

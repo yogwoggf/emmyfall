@@ -4847,7 +4847,7 @@ _G.render.Vertex = {
 	---@param x number X coordinate
 	---@param y number Y coordinate
 	---@param text string Text to draw
-	---@param alignment number Text alignment
+	---@param alignment number Horizontal text alignment. Default TEXT_ALIGN.LEFT
 	function _G.render.drawText(x, y, text, alignment) end
 	--- drawRoundedBox - client - libs_cl/render.lua#L1191
 	---@param r number The corner radius
@@ -4867,8 +4867,8 @@ _G.render.Vertex = {
 	---@param x number X coordinate
 	---@param y number Y coordinate
 	---@param text string Text to draw
-	---@param xalign number? Text x alignment
-	---@param yalign number? Text y alignment
+	---@param xalign number? Horizontal text alignment. Default TEXT_ALIGN.LEFT
+	---@param yalign number? Vertical text alignment. Default TEXT_ALIGN.TOP
 	---@return number undefined Width of the drawn text. Same as calling render.getTextSize
 	---@return number undefined Height of the drawn text. Same as calling render.getTextSize
 	function _G.render.drawSimpleText(x, y, text, xalign, yalign) end

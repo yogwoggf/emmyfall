@@ -433,7 +433,7 @@ _G.file = {}
 --- constraint
 ---  Library for creating and manipulating constraints.
 _G.constraint = {}
-	--- rope - server - libs_sv/constraint.lua#L344
+	--- rope - server - libs_sv/constraint.lua#L328
 	---@param index number Index of the rope constraint
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
@@ -450,13 +450,13 @@ _G.constraint = {}
 	---@param color Color? The color of the rope. Default white
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.rope(index, e1, e2, bone1, bone2, v1, v2, length, addlength, force_lim, width, materialName, rigid, color) end
-	--- setElasticLength - server - libs_sv/constraint.lua#L497
+	--- setElasticLength - server - libs_sv/constraint.lua#L481
 	---@param index number Index of the elastic constraint
 	---@param e Entity Entity that has the constraint
 	---@param length number New length of the constraint
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.setElasticLength(index, e, length) end
-	--- slider - server - libs_sv/constraint.lua#L402
+	--- slider - server - libs_sv/constraint.lua#L386
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -466,10 +466,10 @@ _G.constraint = {}
 	---@param width number? Width of the slider. Default 0
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.slider(e1, e2, bone1, bone2, v1, v2, width) end
-	--- setConstraintClean - server - libs_sv/constraint.lua#L595
+	--- setConstraintClean - server - libs_sv/constraint.lua#L579
 	---@param on boolean Whether the constraints should be cleaned or not
 	function _G.constraint.setConstraintClean(on) end
-	--- ballsocketadv - server - libs_sv/constraint.lua#L241
+	--- ballsocketadv - server - libs_sv/constraint.lua#L225
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -485,25 +485,29 @@ _G.constraint = {}
 	---@param nocollide boolean? Bool whether or not to nocollide the two entities. Default false
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.ballsocketadv(e1, e2, bone1, bone2, v1, v2, force_lim, torque_lim, minv, maxv, frictionv, rotateonly, nocollide) end
-	--- breakType - server - libs_sv/constraint.lua#L573
+	--- breakType - server - libs_sv/constraint.lua#L557
 	---@param e Entity Entity to be affected
 	---@param typename string Name of the constraint type, ie. Weld, Elastic, NoCollide, etc.
 	function _G.constraint.breakType(e, typename) end
-	--- breakAll - server - libs_sv/constraint.lua#L563
-	---@param e Entity Entity to remove the constraints from
-	function _G.constraint.breakAll(e) end
-	--- nocollide - server - libs_sv/constraint.lua#L439
+	--- keepupright - server - libs_sv/constraint.lua#L453
+	---@param e Entity The entity
+	---@param ang Angle The upright angle
+	---@param bone number Number bone of the entity. Default 0
+	---@param lim number The strength of the constraint. Default 5000
+	---@return Constraint undefined The constraint entity
+	function _G.constraint.keepupright(e, ang, bone, lim) end
+	--- nocollide - server - libs_sv/constraint.lua#L423
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
 	---@param bone2 number? Number bone of the second entity. Default 0
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.nocollide(e1, e2, bone1, bone2) end
-	--- getTable - server - libs_sv/constraint.lua#L588
+	--- getTable - server - libs_sv/constraint.lua#L572
 	---@param ent Entity The entity
 	---@return table undefined Table of tables containing constraint information
 	function _G.constraint.getTable(ent) end
-	--- ballsocket - server - libs_sv/constraint.lua#L202
+	--- ballsocket - server - libs_sv/constraint.lua#L186
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -514,22 +518,21 @@ _G.constraint = {}
 	---@param nocollide boolean? Bool whether or not to nocollide the two entities. Default false
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.ballsocket(e1, e2, bone1, bone2, pos, force_lim, torque_lim, nocollide) end
-	--- setElasticConstant - server - libs_sv/constraint.lua#L541
-	---@param index number Index of the elastic constraint
-	---@param e Entity Entity that has the elastic
-	---@param constant number New constant value of the elastic
-	---@return Constraint undefined The constraint entity
-	function _G.constraint.setElasticConstant(index, e, constant) end
-	--- constraintsLeft - server - libs_sv/constraint.lua#L601
+	--- removeAll - server - libs_sv/constraint.lua#L77
+	function _G.constraint.removeAll() end
+	--- constraintsLeft - server - libs_sv/constraint.lua#L585
 	---@return number undefined Number of constraints able to be spawned
 	function _G.constraint.constraintsLeft() end
-	--- setElasticDamping - server - libs_sv/constraint.lua#L519
+	--- setElasticDamping - server - libs_sv/constraint.lua#L503
 	---@param index number Index of the elastic constraint
 	---@param e Entity Entity that has the elastic
 	---@param damping number New Damping value of the elastic
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.setElasticDamping(index, e, damping) end
-	--- axis - server - libs_sv/constraint.lua#L156
+	--- breakAll - server - libs_sv/constraint.lua#L547
+	---@param e Entity Entity to remove the constraints from
+	function _G.constraint.breakAll(e) end
+	--- axis - server - libs_sv/constraint.lua#L140
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -543,14 +546,7 @@ _G.constraint = {}
 	---@param laxis Vector? Optional second position of the constraint, same as v2 but local to e1
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.axis(e1, e2, bone1, bone2, v1, v2, force_lim, torque_lim, friction, nocollide, laxis) end
-	--- keepupright - server - libs_sv/constraint.lua#L469
-	---@param e Entity The entity
-	---@param ang Angle The upright angle
-	---@param bone number Number bone of the entity. Default 0
-	---@param lim number The strength of the constraint. Default 5000
-	---@return Constraint undefined The constraint entity
-	function _G.constraint.keepupright(e, ang, bone, lim) end
-	--- weld - server - libs_sv/constraint.lua#L122
+	--- weld - server - libs_sv/constraint.lua#L106
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -559,7 +555,13 @@ _G.constraint = {}
 	---@param nocollide boolean? Bool whether or not to nocollide the two entities. Default false
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.weld(e1, e2, bone1, bone2, force_lim, nocollide) end
-	--- elastic - server - libs_sv/constraint.lua#L290
+	--- setElasticConstant - server - libs_sv/constraint.lua#L525
+	---@param index number Index of the elastic constraint
+	---@param e Entity Entity that has the elastic
+	---@param constant number New constant value of the elastic
+	---@return Constraint undefined The constraint entity
+	function _G.constraint.setElasticConstant(index, e, constant) end
+	--- elastic - server - libs_sv/constraint.lua#L274
 	---@param index number Index of the elastic constraint
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
@@ -974,73 +976,73 @@ _G.navmesh.NAV_TRAVERSE_TYPE = {
 	--- 8
 	["GO_ELEVATOR_DOWN"] = nil,
 }
-	--- clearWalkableSeeds - server - libs_sv/navmesh.lua#L127
+	--- clearWalkableSeeds - server - libs_sv/navmesh.lua#L108
 	function _G.navmesh.clearWalkableSeeds() end
-	--- find - server - libs_sv/navmesh.lua#L194
+	--- find - server - libs_sv/navmesh.lua#L175
 	---@param pos Vector The position to search around
 	---@param radius number Radius to search within (max 100000)
 	---@param stepdown number Maximum fall distance allowed (max 50000)
 	---@param stepup number Maximum jump height allowed (max 50000)
 	---@return table undefined A table of immutable `NavArea`s
 	function _G.navmesh.find(pos, radius, stepdown, stepup) end
-	--- setMarkedArea - server - libs_sv/navmesh.lua#L146
+	--- setMarkedArea - server - libs_sv/navmesh.lua#L127
 	---@param area NavArea The CNavArea to set as the marked area.
 	function _G.navmesh.setMarkedArea(area) end
-	--- isLoaded - server - libs_sv/navmesh.lua#L91
+	--- isLoaded - server - libs_sv/navmesh.lua#L72
 	---@return boolean undefined Whether a navmesh has been loaded when loading the map.
 	function _G.navmesh.isLoaded() end
-	--- save - server - libs_sv/navmesh.lua#L111
+	--- save - server - libs_sv/navmesh.lua#L92
 	function _G.navmesh.save() end
-	--- getNavAreaCount - server - libs_sv/navmesh.lua#L216
+	--- getNavAreaCount - server - libs_sv/navmesh.lua#L197
 	---@return number undefined The highest ID of all nav areas on the map.
 	function _G.navmesh.getNavAreaCount() end
-	--- reset - server - libs_sv/navmesh.lua#L104
+	--- reset - server - libs_sv/navmesh.lua#L85
 	function _G.navmesh.reset() end
-	--- getGetEditCursorPosition - server - libs_sv/navmesh.lua#L252
+	--- getGetEditCursorPosition - server - libs_sv/navmesh.lua#L233
 	---@return Vector undefined The position of the edit cursor.
 	function _G.navmesh.getGetEditCursorPosition() end
-	--- getNearestNavArea - server - libs_sv/navmesh.lua#L240
+	--- getNearestNavArea - server - libs_sv/navmesh.lua#L221
 	---@param pos Vector The position to look from
 	---@param maxDist number Maximum distance from the given position that the function will look for a CNavArea (Default 10000)
 	---@param checkLOS boolean If this is set to true then the function will internally do a trace from the starting position to each potential CNavArea with a MASK_NPCSOLID_BRUSHONLY. If the trace fails then the CNavArea is ignored. If this is set to false then the function will find the closest CNavArea through anything, including the world. (Default false)
 	---@param checkGround boolean If checkGround is true then this function will internally call navmesh.getNavArea to check if there is a CNavArea directly below the position, and return it if so, before checking anywhere else. (Default true)
 	---@return NavArea undefined The closest NavArea found with the given parameters, or a NULL NavArea if one was not found.
 	function _G.navmesh.getNearestNavArea(pos, maxDist, checkLOS, checkGround) end
-	--- getPlayerSpawnName - server - libs_sv/navmesh.lua#L140
+	--- getPlayerSpawnName - server - libs_sv/navmesh.lua#L121
 	---@return string undefined The classname of the spawn point entity. By default returns "info_player_start"
 	function _G.navmesh.getPlayerSpawnName() end
-	--- getMarkedArea - server - libs_sv/navmesh.lua#L134
+	--- getMarkedArea - server - libs_sv/navmesh.lua#L115
 	---@return NavArea undefined The currently marked NavArea.
 	function _G.navmesh.getMarkedArea() end
-	--- isGenerating - server - libs_sv/navmesh.lua#L85
+	--- isGenerating - server - libs_sv/navmesh.lua#L66
 	---@return boolean undefined Whether we're generating a nav mesh or not.
 	function _G.navmesh.isGenerating() end
-	--- getNavAreaByID - server - libs_sv/navmesh.lua#L223
+	--- getNavAreaByID - server - libs_sv/navmesh.lua#L204
 	---@param id number ID of the NavArea to get. Starts with 1.
 	---@return NavArea undefined The NavArea with given ID.
 	function _G.navmesh.getNavAreaByID(id) end
-	--- load - server - libs_sv/navmesh.lua#L97
+	--- load - server - libs_sv/navmesh.lua#L78
 	function _G.navmesh.load() end
-	--- beginGeneration - server - libs_sv/navmesh.lua#L79
+	--- beginGeneration - server - libs_sv/navmesh.lua#L60
 	function _G.navmesh.beginGeneration() end
-	--- getNavArea - server - libs_sv/navmesh.lua#L231
+	--- getNavArea - server - libs_sv/navmesh.lua#L212
 	---@param pos Vector The position to search for.
 	---@param limit number The elevation limit at which the NavArea will be searched.
 	---@return NavArea undefined The NavArea.
 	function _G.navmesh.getNavArea(pos, limit) end
-	--- addWalkableSeed - server - libs_sv/navmesh.lua#L118
+	--- addWalkableSeed - server - libs_sv/navmesh.lua#L99
 	---@param pos Vector The terrain position.
 	---@param normal Vector The terrain normal.
 	function _G.navmesh.addWalkableSeed(pos, normal) end
-	--- setPlayerSpawnName - server - libs_sv/navmesh.lua#L154
+	--- setPlayerSpawnName - server - libs_sv/navmesh.lua#L135
 	---@param spawnPointClass string The classname of what the player uses to spawn, automatically adds it to the walkable positions during map generation.
 	function _G.navmesh.setPlayerSpawnName(spawnPointClass) end
-	--- createNavArea - server - libs_sv/navmesh.lua#L162
+	--- createNavArea - server - libs_sv/navmesh.lua#L143
 	---@param corner Vector The first corner of the new NavArea
 	---@param opposite_corner Vector The opposite (diagonally) corner of the new NavArea
 	---@return NavArea? undefined The new NavArea or nil if we failed for some reason
 	function _G.navmesh.createNavArea(corner, opposite_corner) end
-	--- getAllNavAreas - server - libs_sv/navmesh.lua#L182
+	--- getAllNavAreas - server - libs_sv/navmesh.lua#L163
 	---@return table undefined A table of all the `NavArea`s on the current map
 	function _G.navmesh.getAllNavAreas() end
 --- von
@@ -1058,14 +1060,16 @@ _G.von = {}
 --- nextbot
 ---  Library for spawning NextBots.
 _G.nextbot = {}
-	--- create - server - libs_sv/nextbot.lua#L90
+	--- canSpawn - server - libs_sv/nextbot.lua#L115
+	---@return boolean undefined True if user can spawn nextbots, False if not.
+	function _G.nextbot.canSpawn() end
+	--- create - server - libs_sv/nextbot.lua#L80
 	---@param spawnpos Vector The position the nextbot will be spawned at.
 	---@param model string The model the nextbot will use.
 	---@return NextBot undefined The nextbot.
 	function _G.nextbot.create(spawnpos, model) end
-	--- canSpawn - server - libs_sv/nextbot.lua#L118
-	---@return boolean undefined True if user can spawn nextbots, False if not.
-	function _G.nextbot.canSpawn() end
+	--- remove - server - libs_sv/nextbot.lua#L108
+	function _G.nextbot.remove() end
 --- particleEffect
 ---  ParticleEffect library.
 _G.particleEffect = {}
@@ -3168,19 +3172,19 @@ _G.net = {}
 --- hologram
 ---  Library for creating and manipulating physics-less models AKA "Holograms".
 _G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L512
+	--- removeAll - shared - libs_sh/hologram.lua#L477
 	function _G.hologram.removeAll() end
-	--- canSpawn - shared - libs_sh/hologram.lua#L194
+	--- canSpawn - shared - libs_sh/hologram.lua#L156
 	---@return boolean undefined True if user can spawn holograms, False if not.
 	function _G.hologram.canSpawn() end
-	--- create - shared - libs_sh/hologram.lua#L130
+	--- create - shared - libs_sh/hologram.lua#L96
 	---@param pos Vector The position to create the hologram
 	---@param ang Angle The angle to create the hologram
 	---@param model string The model to give the hologram
 	---@param scale Vector? (Optional) The scale to give the hologram
 	---@return Hologram undefined The hologram object
 	function _G.hologram.create(pos, ang, model, scale) end
-	--- hologramsLeft - shared - libs_sh/hologram.lua#L201
+	--- hologramsLeft - shared - libs_sh/hologram.lua#L163
 	---@return number undefined Number of holograms able to be spawned
 	function _G.hologram.hologramsLeft() end
 --- prop
@@ -4620,13 +4624,13 @@ _G.prop = {}
 --- 
 ---  
 _G.prop.SENT_Data_Structures = {
-}	--- spawnRate - server - libs_sv/prop.lua#L698
+}	--- spawnRate - server - libs_sv/prop.lua#L680
 	---@return number undefined Number of props per second the user can spawn
 	function _G.prop.spawnRate() end
-	--- setPropUndo - server - libs_sv/prop.lua#L711
+	--- setPropUndo - server - libs_sv/prop.lua#L693
 	---@param on boolean Whether the props should be undo-able
 	function _G.prop.setPropUndo(on) end
-	--- createSent - server - libs_sv/prop.lua#L415
+	--- createSent - server - libs_sv/prop.lua#L397
 	---@param pos Vector Position of created sent
 	---@param ang Angle Angle of created sent
 	---@param class string Class of created sent
@@ -4634,14 +4638,14 @@ _G.prop.SENT_Data_Structures = {
 	---@param data table? Optional table, additional entity data to be supplied to certain SENTs. See prop.SENT_Data_Structures table in Docs for list of SENTs
 	---@return Entity undefined The sent object
 	function _G.prop.createSent(pos, ang, class, frozen, data) end
-	--- create - server - libs_sv/prop.lua#L62
+	--- create - server - libs_sv/prop.lua#L44
 	---@param pos Vector Initial entity position
 	---@param ang Angle Initial entity angles
 	---@param model string Model path
 	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@return Entity undefined The prop object
 	function _G.prop.create(pos, ang, model, frozen) end
-	--- createComponent - server - libs_sv/prop.lua#L263
+	--- createComponent - server - libs_sv/prop.lua#L245
 	---@param pos Vector Position of created component
 	---@param ang Angle Angle of created component
 	---@param class string Class of created component
@@ -4649,34 +4653,34 @@ _G.prop.SENT_Data_Structures = {
 	---@param frozen boolean True to spawn frozen
 	---@return Entity undefined Component entity
 	function _G.prop.createComponent(pos, ang, class, model, frozen) end
-	--- createSeat - server - libs_sv/prop.lua#L357
+	--- createSeat - server - libs_sv/prop.lua#L339
 	---@param pos Vector Position of created seat
 	---@param ang Angle Angle of created seat
 	---@param model string Model of created seat
 	---@param frozen boolean True to spawn frozen
 	---@return Entity undefined The seat object
 	function _G.prop.createSeat(pos, ang, model, frozen) end
-	--- propsLeft - server - libs_sv/prop.lua#L690
+	--- propsLeft - server - libs_sv/prop.lua#L672
 	---@return number undefined Number of props able to be spawned
 	function _G.prop.propsLeft() end
-	--- createCustom - server - libs_sv/prop.lua#L166
+	--- createCustom - server - libs_sv/prop.lua#L148
 	---@param pos Vector The position to spawn the prop
 	---@param ang Angle The angles to spawn the prop
 	---@param vertices table The table of tables of vertices that make up the physics mesh {{v1,v2,...},{v1,v2,...},...}
 	---@param frozen boolean Whether the prop starts frozen
 	---@return Entity undefined The prop object
 	function _G.prop.createCustom(pos, ang, vertices, frozen) end
-	--- setPropClean - server - libs_sv/prop.lua#L705
+	--- setPropClean - server - libs_sv/prop.lua#L687
 	---@param on boolean Whether the props should be cleaned or not
 	function _G.prop.setPropClean(on) end
-	--- canSpawn - server - libs_sv/prop.lua#L682
+	--- canSpawn - server - libs_sv/prop.lua#L664
 	---@return boolean undefined True if user can spawn props, False if not.
 	function _G.prop.canSpawn() end
-	--- getSpawnableSents - server - libs_sv/prop.lua#L326
+	--- getSpawnableSents - server - libs_sv/prop.lua#L308
 	---@param categorized boolean? True to get an categorized list
 	---@return table undefined The table
 	function _G.prop.getSpawnableSents(categorized) end
-	--- createRagdoll - server - libs_sv/prop.lua#L117
+	--- createRagdoll - server - libs_sv/prop.lua#L99
 	---@param model string Model path
 	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@return Entity undefined The ragdoll entity
@@ -6431,386 +6435,398 @@ _G.socket = {}
 ---  NavArea type, returned by navmesh library functions
 ---@class NavArea
 _G.NavArea = {}
-	--- getCenter - server - libs_sv/navmesh.lua#L409
+	--- getCenter - server - libs_sv/navmesh.lua#L390
 	---@return Vector undefined The center vector.
 	function _G.NavArea:getCenter() end
-	--- getSizeX - server - libs_sv/navmesh.lua#L537
+	--- getSizeX - server - libs_sv/navmesh.lua#L518
 	---@return number undefined Width
 	function _G.NavArea:getSizeX() end
-	--- getAdjacentAreas - server - libs_sv/navmesh.lua#L356
+	--- getAdjacentAreas - server - libs_sv/navmesh.lua#L337
 	---@return table undefined A table of all CNavArea that have a ( one and two way ) connection from this CNavArea.
 	function _G.NavArea:getAdjacentAreas() end
-	--- isConnectedAtSide - server - libs_sv/navmesh.lua#L314
+	--- isConnectedAtSide - server - libs_sv/navmesh.lua#L295
 	---@param other NavArea The other NavArea to check for connection to.
 	---@param navDirType number The direction, in which to look for the connection. See NAV_DIR enums
 	---@return boolean undefined 
 	function _G.NavArea:isConnectedAtSide(other, navDirType) end
-	--- setParent - server - libs_sv/navmesh.lua#L711
+	--- setParent - server - libs_sv/navmesh.lua#L689
 	---@param parent NavArea The new parent to set
 	---@param how number How we get from parent to us using NAV_TRAVERSE_TYPE
 	function _G.NavArea:setParent(parent, how) end
-	--- hasAttributes - server - libs_sv/navmesh.lua#L566
+	--- hasAttributes - server - libs_sv/navmesh.lua#L547
 	---@param attributes number Attribute mask to check for, see NAV_MESH enums
 	---@return boolean undefined True if the CNavArea matches the given mask. False otherwise.
 	function _G.NavArea:hasAttributes(attributes) end
-	--- getParentHow - server - libs_sv/navmesh.lua#L507
+	--- getParentHow - server - libs_sv/navmesh.lua#L488
 	---@return number undefined 
 	function _G.NavArea:getParentHow() end
-	--- getCorner - server - libs_sv/navmesh.lua#L424
+	--- getCorner - server - libs_sv/navmesh.lua#L405
 	---@param cornerId number The target corner to get the position of, takes NAV_CORNER.
 	---@return Vector undefined The vector position of the corner.
 	function _G.NavArea:getCorner(cornerId) end
-	--- computeGroundHeightChange - server - libs_sv/navmesh.lua#L340
+	--- computeGroundHeightChange - server - libs_sv/navmesh.lua#L321
 	---@param other NavArea The nav area to test against.
 	---@return number undefined 
 	function _G.NavArea:computeGroundHeightChange(other) end
-	--- clearSearchLists - server - libs_sv/navmesh.lua#L773
+	--- clearSearchLists - server - libs_sv/navmesh.lua#L751
 	function _G.NavArea:clearSearchLists() end
-	--- isOpen - server - libs_sv/navmesh.lua#L258
+	--- isOpen - server - libs_sv/navmesh.lua#L239
 	---@return boolean undefined Whether this area is in the Open List.
 	function _G.NavArea:isOpen() end
-	--- addToOpenList - server - libs_sv/navmesh.lua#L766
+	--- addToOpenList - server - libs_sv/navmesh.lua#L744
 	function _G.NavArea:addToOpenList() end
-	--- addToClosedList - server - libs_sv/navmesh.lua#L761
+	--- addToClosedList - server - libs_sv/navmesh.lua#L739
 	function _G.NavArea:addToClosedList() end
-	--- getClosestPointOnArea - server - libs_sv/navmesh.lua#L416
+	--- getClosestPointOnArea - server - libs_sv/navmesh.lua#L397
 	---@param pos Vector The given position, can be outside of the NavArea bounds.
 	---@return Vector undefined The closest point on the NavArea.
 	function _G.NavArea:getClosestPointOnArea(pos) end
-	--- addHidingSpot - server - libs_sv/navmesh.lua#L746
+	--- addHidingSpot - server - libs_sv/navmesh.lua#L724
 	---@param pos Vector The position of the hiding spot on the nav area
 	---@param flags number Flags describing what kind of hiding spot this is.
 	function _G.NavArea:addHidingSpot(pos, flags) end
-	--- disconnect - server - libs_sv/navmesh.lua#L739
+	--- disconnect - server - libs_sv/navmesh.lua#L717
 	---@param other NavArea The other NavArea to disconnect from.
 	function _G.NavArea:disconnect(other) end
-	--- updateOnOpenList - server - libs_sv/navmesh.lua#L734
+	--- updateOnOpenList - server - libs_sv/navmesh.lua#L712
 	function _G.NavArea:updateOnOpenList() end
-	--- getAttributes - server - libs_sv/navmesh.lua#L402
+	--- getAttributes - server - libs_sv/navmesh.lua#L383
 	---@return number undefined Attribute mask for this CNavArea, see NAV_MESH for the specific flags.
 	function _G.NavArea:getAttributes() end
-	--- setTotalCost - server - libs_sv/navmesh.lua#L727
+	--- setTotalCost - server - libs_sv/navmesh.lua#L705
 	---@param cost number The total cost of the path to set. (>= 0)
 	function _G.NavArea:setTotalCost(cost) end
-	--- computeDirection - server - libs_sv/navmesh.lua#L332
+	--- computeDirection - server - libs_sv/navmesh.lua#L313
 	---@param pos Vector The position to compute direction towards.
 	---@return number undefined The direction the vector is in relation to this NavArea. See NAV_DIR enums
 	function _G.NavArea:computeDirection(pos) end
-	--- getRandomPoint - server - libs_sv/navmesh.lua#L530
+	--- getRandomPoint - server - libs_sv/navmesh.lua#L511
 	---@return Vector undefined The random point on the nav area.
 	function _G.NavArea:getRandomPoint() end
-	--- placeOnGround - server - libs_sv/navmesh.lua#L655
+	--- placeOnGround - server - libs_sv/navmesh.lua#L636
 	---@param corner number The corner(s) to drop, uses NAV_CORNER enums
 	function _G.NavArea:placeOnGround(corner) end
-	--- connectTo - server - libs_sv/navmesh.lua#L778
+	--- connectTo - server - libs_sv/navmesh.lua#L756
 	---@param other NavArea The CNavArea this area leads to.
 	function _G.NavArea:connectTo(other) end
-	--- setPlace - server - libs_sv/navmesh.lua#L719
+	--- setPlace - server - libs_sv/navmesh.lua#L697
 	---@param place string? Place to set. Leave as nil to remove place from NavArea
 	---@return boolean undefined True if operation succeeded, false otherwise.
 	function _G.NavArea:setPlace(place) end
-	--- setCorner - server - libs_sv/navmesh.lua#L696
+	--- setCorner - server - libs_sv/navmesh.lua#L674
 	---@param corner number The corner to set, uses NAV_CORNER enums
 	---@param pos Vector The new position to set.
 	function _G.NavArea:setCorner(corner, pos) end
-	--- getIncomingConnections - server - libs_sv/navmesh.lua#L471
+	--- getIncomingConnections - server - libs_sv/navmesh.lua#L452
 	---@return table undefined Table of all CNavAreas with one-way connection to this CNavArea.
 	function _G.NavArea:getIncomingConnections() end
-	--- isOpenListEmpty - server - libs_sv/navmesh.lua#L267
+	--- isOpenListEmpty - server - libs_sv/navmesh.lua#L248
 	---@return boolean undefined Whether the Open List is empty or not.
 	function _G.NavArea:isOpenListEmpty() end
-	--- getParent - server - libs_sv/navmesh.lua#L500
+	--- getParent - server - libs_sv/navmesh.lua#L481
 	---@return NavArea undefined The parent NavArea
 	function _G.NavArea:getParent() end
-	--- getIncomingConnectionsAtSide - server - libs_sv/navmesh.lua#L484
+	--- getIncomingConnectionsAtSide - server - libs_sv/navmesh.lua#L465
 	---@param navDir number The direction, from which to look for CNavAreas, see NAV_DIR enums.
 	---@return table undefined Table of all CNavAreas with one-way connection to this CNavArea from given direction.
 	function _G.NavArea:getIncomingConnectionsAtSide(navDir) end
-	--- isValid - server - libs_sv/navmesh.lua#L276
+	--- isValid - server - libs_sv/navmesh.lua#L257
 	---@return boolean undefined Whether this NavArea is valid or not
 	function _G.NavArea:isValid() end
-	--- isConnected - server - libs_sv/navmesh.lua#L305
+	--- isConnected - server - libs_sv/navmesh.lua#L286
 	---@param other NavArea The other NavArea to check for connection to.
 	---@return boolean undefined Whether this NavArea has an outgoing ( one or two way ) connection to given NavArea.
 	function _G.NavArea:isConnected(other) end
-	--- isFlat - server - libs_sv/navmesh.lua#L298
+	--- isFlat - server - libs_sv/navmesh.lua#L279
 	---@return boolean undefined Whether this NavArea is mostly flat.
 	function _G.NavArea:isFlat() end
-	--- setCostSoFar - server - libs_sv/navmesh.lua#L704
+	--- setCostSoFar - server - libs_sv/navmesh.lua#L682
 	---@param cost number The cost so far
 	function _G.NavArea:setCostSoFar(cost) end
-	--- removeFromClosedList - server - libs_sv/navmesh.lua#L684
+	--- removeFromClosedList - server - libs_sv/navmesh.lua#L662
 	function _G.NavArea:removeFromClosedList() end
-	--- remove - server - libs_sv/navmesh.lua#L673
+	--- remove - server - libs_sv/navmesh.lua#L652
 	function _G.NavArea:remove() end
-	--- isCompletelyVisible - server - libs_sv/navmesh.lua#L594
+	--- isCompletelyVisible - server - libs_sv/navmesh.lua#L575
 	---@param area NavArea The area to test visibility with.
 	---@return boolean undefined Whether this CNavArea can see the given CNavArea.
 	function _G.NavArea:isCompletelyVisible(area) end
-	--- getExtentInfo - server - libs_sv/navmesh.lua#L452
+	--- getExtentInfo - server - libs_sv/navmesh.lua#L433
 	---@return table undefined Struct containing the above keys
 	function _G.NavArea:getExtentInfo() end
-	--- popOpenList - server - libs_sv/navmesh.lua#L663
+	--- popOpenList - server - libs_sv/navmesh.lua#L643
 	---@return NavArea undefined The CNavArea from the Open List with the lowest cost to traverse to from the starting node.
 	function _G.NavArea:popOpenList() end
-	--- isVisible - server - libs_sv/navmesh.lua#L645
+	--- isVisible - server - libs_sv/navmesh.lua#L626
 	---@param pos Vector The position to check.
 	---@return boolean undefined Whether we can be seen or not.
 	---@return Vector undefined If we can be seen, this is returned with either the center or one of the corners of the Nav Area.
 	function _G.NavArea:isVisible(pos) end
-	--- getID - server - libs_sv/navmesh.lua#L464
+	--- getID - server - libs_sv/navmesh.lua#L445
 	---@return number undefined The unique ID.
 	function _G.NavArea:getID() end
-	--- isBlocked - server - libs_sv/navmesh.lua#L575
+	--- isBlocked - server - libs_sv/navmesh.lua#L556
 	---@param teamID number? The team ID to test, -2 = any team. Only 2 actual teams are available, 0 and 1. (Default -2)
 	---@param ignoreNavBlockers boolean? Whether to ignore func_nav_blocker entities. (Default false)
 	---@return boolean undefined Whether the area is blocked or not
 	function _G.NavArea:isBlocked(teamID, ignoreNavBlockers) end
-	--- isUnderwater - server - libs_sv/navmesh.lua#L283
+	--- isUnderwater - server - libs_sv/navmesh.lua#L264
 	---@return boolean undefined Whether we're underwater or not.
 	function _G.NavArea:isUnderwater() end
-	--- isOverlappingArea - server - libs_sv/navmesh.lua#L613
+	--- isOverlappingArea - server - libs_sv/navmesh.lua#L594
 	---@param area NavArea The area to test.
 	---@return boolean undefined True if the given CNavArea overlaps this CNavArea at any point.
 	function _G.NavArea:isOverlappingArea(area) end
-	--- getExposedSpots - server - libs_sv/navmesh.lua#L440
+	--- getExposedSpots - server - libs_sv/navmesh.lua#L421
 	---@return table undefined A table of Vectors
 	function _G.NavArea:getExposedSpots() end
-	--- isPotentiallyVisible - server - libs_sv/navmesh.lua#L630
+	--- isPotentiallyVisible - server - libs_sv/navmesh.lua#L611
 	---@param area NavArea The area to test.
 	---@return boolean undefined Whether the given area is visible from this area
 	function _G.NavArea:isPotentiallyVisible(area) end
-	--- setAttributes - server - libs_sv/navmesh.lua#L689
+	--- setAttributes - server - libs_sv/navmesh.lua#L667
 	---@param attributes number The attribute bitflag. See NAV_MESH enums
 	function _G.NavArea:setAttributes(attributes) end
-	--- getRandomAdjacentAreaAtSide - server - libs_sv/navmesh.lua#L521
+	--- getRandomAdjacentAreaAtSide - server - libs_sv/navmesh.lua#L502
 	---@param navDir number The direction, from which to look for CNavAreas, see NAV_DIR enums.
 	---@return NavArea undefined The random CNavArea that has an outgoing ( one or two way ) connection from this CNavArea in given direction, if any.
 	function _G.NavArea:getRandomAdjacentAreaAtSide(navDir) end
-	--- isRoughlySquare - server - libs_sv/navmesh.lua#L638
+	--- isRoughlySquare - server - libs_sv/navmesh.lua#L619
 	---@return boolean undefined If we're a square or not.
 	function _G.NavArea:isRoughlySquare() end
-	--- contains - server - libs_sv/navmesh.lua#L290
+	--- contains - server - libs_sv/navmesh.lua#L271
 	---@param v Vector The position to check
 	---@return boolean undefined If the vector is inside the area
 	function _G.NavArea:contains(v) end
-	--- getZ - server - libs_sv/navmesh.lua#L558
+	--- getZ - server - libs_sv/navmesh.lua#L539
 	---@param The Vector position to get the elevation from, the z value from this position is ignored and only the X and Y values are used to this task.
 	---@return number undefined Elevation
 	function _G.NavArea:getZ(The) end
-	--- isCoplanar - server - libs_sv/navmesh.lua#L324
+	--- isCoplanar - server - libs_sv/navmesh.lua#L305
 	---@param other NavArea The other NavArea to check against
 	---@return boolean undefined Whether we're coplanar or not.
 	function _G.NavArea:isCoplanar(other) end
-	--- getAdjacentCount - server - libs_sv/navmesh.lua#L384
+	--- getAdjacentCount - server - libs_sv/navmesh.lua#L365
 	---@return number undefined The amount of CNavAreas that have a connection ( one and two way ) from this CNavArea.
 	function _G.NavArea:getAdjacentCount() end
-	--- computeAdjacentConnectionHeightChange - server - libs_sv/navmesh.lua#L348
+	--- computeAdjacentConnectionHeightChange - server - libs_sv/navmesh.lua#L329
 	---@param other NavArea The nav area to test against.
 	---@return number undefined The height change
 	function _G.NavArea:computeAdjacentConnectionHeightChange(other) end
-	--- isOverlapping - server - libs_sv/navmesh.lua#L602
+	--- isOverlapping - server - libs_sv/navmesh.lua#L583
 	---@param pos Vector The position to test.
 	---@param tolerance number? The tolerance of the overlapping, set to 0 for no tolerance. (Default 0)
 	---@return number undefined Whether the given position overlaps the NavArea or not.
 	function _G.NavArea:isOverlapping(pos, tolerance) end
-	--- isPartiallyVisible - server - libs_sv/navmesh.lua#L621
+	--- isPartiallyVisible - server - libs_sv/navmesh.lua#L602
 	---@param pos Vector The position to test.
 	---@param ignoreEnt Entity? If set, the given entity will be ignored when doing LOS tests (Default NULL)
 	---@return boolean undefined Whether the given position is visible from this area
 	function _G.NavArea:isPartiallyVisible(pos, ignoreEnt) end
-	--- getAdjacentAreasAtSide - server - libs_sv/navmesh.lua#L369
+	--- getAdjacentAreasAtSide - server - libs_sv/navmesh.lua#L350
 	---@param navDir number The direction, in which to look for CNavAreas, see NAV_DIR enums
 	---@return table undefined A table of all CNavArea that have a ( one and two way ) connection from this CNavArea in given direction.
 	function _G.NavArea:getAdjacentAreasAtSide(navDir) end
-	--- getAdjacentCountAtSide - server - libs_sv/navmesh.lua#L392
+	--- getAdjacentCountAtSide - server - libs_sv/navmesh.lua#L373
 	---@param The number direction, in which to look for CNavAreas, see NAV_DIR enums.
 	---@return number undefined The amount of CNavAreas that have a connection ( one or two way ) from this CNavArea in given direction.
 	function _G.NavArea:getAdjacentCountAtSide(The) end
-	--- isClosed - server - libs_sv/navmesh.lua#L587
+	--- isClosed - server - libs_sv/navmesh.lua#L568
 	---@return boolean undefined Whether this node is in the Closed List.
 	function _G.NavArea:isClosed() end
-	--- getTotalCost - server - libs_sv/navmesh.lua#L551
+	--- getTotalCost - server - libs_sv/navmesh.lua#L532
 	---@return number undefined The total cost
 	function _G.NavArea:getTotalCost() end
-	--- getPlace - server - libs_sv/navmesh.lua#L514
+	--- getPlace - server - libs_sv/navmesh.lua#L495
 	---@return string undefined The place of the nav area, or no value if it doesn't have a place set.
 	function _G.NavArea:getPlace() end
-	--- getSizeY - server - libs_sv/navmesh.lua#L544
+	--- getSizeY - server - libs_sv/navmesh.lua#L525
 	---@return number undefined Height
 	function _G.NavArea:getSizeY() end
-	--- getCostSoFar - server - libs_sv/navmesh.lua#L433
+	--- getCostSoFar - server - libs_sv/navmesh.lua#L414
 	---@return number undefined The cost so far.
 	function _G.NavArea:getCostSoFar() end
 ---  NextBot type
 ---@class NextBot
 _G.NextBot = {}
-	--- removeInjuredCallback - server - libs_sv/nextbot.lua#L269
-	---@param callbackid string The unique ID of the callback to remove.
-	function _G.NextBot:removeInjuredCallback(callbackid) end
-	--- setIdleAct - server - libs_sv/nextbot.lua#L192
+	--- removeApproachPos - server - libs_sv/nextbot.lua#L132
+	function _G.NextBot:removeApproachPos() end
+	--- setIdleAct - server - libs_sv/nextbot.lua#L207
 	---@param runact number The activity the nextbot will use.
 	function _G.NextBot:setIdleAct(runact) end
-	--- setVelocity - server - libs_sv/nextbot.lua#L210
+	--- setVelocity - server - libs_sv/nextbot.lua#L227
 	---@param newvel Vector Velocity.
 	function _G.NextBot:setVelocity(newvel) end
-	--- setJumpGapsAllowed - server - libs_sv/nextbot.lua#L588
+	--- setJumpGapsAllowed - server - libs_sv/nextbot.lua#L628
 	---@param jumpgapsallowed boolean Whether this bot should be allowed to jump gaps.
 	function _G.NextBot:setJumpGapsAllowed(jumpgapsallowed) end
-	--- getRunAct - server - libs_sv/nextbot.lua#L184
+	--- getRunAct - server - libs_sv/nextbot.lua#L199
 	---@return number undefined The run activity.
 	function _G.NextBot:getRunAct() end
-	--- setStepHeight - server - libs_sv/nextbot.lua#L507
+	--- setStepHeight - server - libs_sv/nextbot.lua#L547
 	---@param stepheight number Height (default is 18)
 	function _G.NextBot:setStepHeight(stepheight) end
-	--- setMoveSpeed - server - libs_sv/nextbot.lua#L399
+	--- setMoveSpeed - server - libs_sv/nextbot.lua#L438
 	---@param newmovespeed number NB's new move speed. Default is 200.
 	function _G.NextBot:setMoveSpeed(newmovespeed) end
-	--- getMaxYawRate - server - libs_sv/nextbot.lua#L453
+	--- getMaxYawRate - server - libs_sv/nextbot.lua#L493
 	---@param The number NextBot's max yaw rate.
 	function _G.NextBot:getMaxYawRate(The) end
-	--- getDeathDropHeight - server - libs_sv/nextbot.lua#L499
+	--- getDeathDropHeight - server - libs_sv/nextbot.lua#L539
 	---@return number undefined Height nextbot is afraid of.
 	function _G.NextBot:getDeathDropHeight() end
-	--- playSequence - server - libs_sv/nextbot.lua#L155
+	--- playSequence - server - libs_sv/nextbot.lua#L168
 	---@param seqtoplay string The name of the sequence to play.
 	function _G.NextBot:playSequence(seqtoplay) end
-	--- removeDeathCallback - server - libs_sv/nextbot.lua#L247
+	--- removeDeathCallback - server - libs_sv/nextbot.lua#L286
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeDeathCallback(callbackid) end
-	--- setGravity - server - libs_sv/nextbot.lua#L479
+	--- setGravity - server - libs_sv/nextbot.lua#L519
 	---@param newgravity number NB's new gravity. Default is 1000
 	function _G.NextBot:setGravity(newgravity) end
-	--- addLeaveGroundCallback - server - libs_sv/nextbot.lua#L301
+	--- addLeaveGroundCallback - server - libs_sv/nextbot.lua#L340
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB leaves the ground. The arguments are: (The entity the NB "jumped" from.)
 	function _G.NextBot:addLeaveGroundCallback(callbackid, callback) end
-	--- addInjuredCallback - server - libs_sv/nextbot.lua#L257
+	--- addInjuredCallback - server - libs_sv/nextbot.lua#L296
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB gets injured. The arguments are: (Damage, Attacker, Inflictor, Damage Pos, Damage Force, Damage Type)
 	function _G.NextBot:addInjuredCallback(callbackid, callback) end
-	--- removeNavChangeCallback - server - libs_sv/nextbot.lua#L357
+	--- removeNavChangeCallback - server - libs_sv/nextbot.lua#L396
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeNavChangeCallback(callbackid) end
-	--- addDeathCallback - server - libs_sv/nextbot.lua#L235
+	--- addDeathCallback - server - libs_sv/nextbot.lua#L274
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB dies. The arguments are: (Damage, Attacker, Inflictor, Damage Pos, Damage Force, Damage Type)
 	function _G.NextBot:addDeathCallback(callbackid, callback) end
-	--- getVelocity - server - libs_sv/nextbot.lua#L219
-	---@return Vector undefined NB's velocity.
-	function _G.NextBot:getVelocity() end
-	--- isAreaTraversable - server - libs_sv/nextbot.lua#L541
-	---@param NavArea NavArea to check.
-	---@return boolean undefined Whether this nextbot can traverse given NavArea.
-	function _G.NextBot:isAreaTraversable(NavArea) end
-	--- getGravity - server - libs_sv/nextbot.lua#L471
-	---@return number undefined The nextbot's current gravity value.
-	function _G.NextBot:getGravity() end
-	--- setClimbAllowed - server - libs_sv/nextbot.lua#L570
-	---@param climballowed boolean Whether this bot should be allowed to climb.
-	function _G.NextBot:setClimbAllowed(climballowed) end
-	--- setAvoidAllowed - server - libs_sv/nextbot.lua#L552
-	---@param avoidallowed boolean Whether this bot should be allowed to try to avoid obstacles.
-	function _G.NextBot:setAvoidAllowed(avoidallowed) end
-	--- addLandCallback - server - libs_sv/nextbot.lua#L279
+	--- addReachCallback - server - libs_sv/nextbot.lua#L252
 	---@param callbackid string The unique ID this callback will use.
-	---@param callback function The function to run when the NB lands on the ground. The arguments are: (The entity the NB landed on.)
-	function _G.NextBot:addLandCallback(callbackid, callback) end
-	--- setJumpHeight - server - libs_sv/nextbot.lua#L606
-	---@param jumpheight number Height (default is 58)
-	function _G.NextBot:setJumpHeight(jumpheight) end
-	--- ragdollOnDeath - server - libs_sv/nextbot.lua#L389
-	---@param ragdollondeath boolean Whether the nextbot should ragdoll on death.
-	function _G.NextBot:ragdollOnDeath(ragdollondeath) end
-	--- jumpAcrossGap - server - libs_sv/nextbot.lua#L624
+	---@param callback function The function to run when the NB reaches its destination.
+	function _G.NextBot:addReachCallback(callbackid, callback) end
+	--- jumpAcrossGap - server - libs_sv/nextbot.lua#L664
 	---@param landGoal Vector The goal the nextbot should aim for.
 	---@param landForward Vector Presumably the direction vector the entity should be aiming in when landing.
 	function _G.NextBot:jumpAcrossGap(landGoal, landForward) end
-	--- getJumpHeight - server - libs_sv/nextbot.lua#L616
-	---@return number undefined Jump height
-	function _G.NextBot:getJumpHeight() end
-	--- getJumpGapsAllowed - server - libs_sv/nextbot.lua#L598
+	--- isAreaTraversable - server - libs_sv/nextbot.lua#L581
+	---@param NavArea NavArea to check.
+	---@return boolean undefined Whether this nextbot can traverse given NavArea.
+	function _G.NextBot:isAreaTraversable(NavArea) end
+	--- isOnGround - server - libs_sv/nextbot.lua#L573
+	---@return boolean undefined Whether the nextbot is on ground or not.
+	function _G.NextBot:isOnGround() end
+	--- getGravity - server - libs_sv/nextbot.lua#L511
+	---@return number undefined The nextbot's current gravity value.
+	function _G.NextBot:getGravity() end
+	--- getJumpGapsAllowed - server - libs_sv/nextbot.lua#L638
 	---@return boolean undefined Whether this bot is allowed to jump gaps.
 	function _G.NextBot:getJumpGapsAllowed() end
-	--- addIgniteCallback - server - libs_sv/nextbot.lua#L323
+	--- setClimbAllowed - server - libs_sv/nextbot.lua#L610
+	---@param climballowed boolean Whether this bot should be allowed to climb.
+	function _G.NextBot:setClimbAllowed(climballowed) end
+	--- setAvoidAllowed - server - libs_sv/nextbot.lua#L592
+	---@param avoidallowed boolean Whether this bot should be allowed to try to avoid obstacles.
+	function _G.NextBot:setAvoidAllowed(avoidallowed) end
+	--- addLandCallback - server - libs_sv/nextbot.lua#L318
+	---@param callbackid string The unique ID this callback will use.
+	---@param callback function The function to run when the NB lands on the ground. The arguments are: (The entity the NB landed on.)
+	function _G.NextBot:addLandCallback(callbackid, callback) end
+	--- setJumpHeight - server - libs_sv/nextbot.lua#L646
+	---@param jumpheight number Height (default is 58)
+	function _G.NextBot:setJumpHeight(jumpheight) end
+	--- getClimbAllowed - server - libs_sv/nextbot.lua#L620
+	---@return boolean undefined Whether this bot is allowed to climb.
+	function _G.NextBot:getClimbAllowed() end
+	--- removeReachCallback - server - libs_sv/nextbot.lua#L264
+	---@param callbackid string The unique ID of the callback to remove.
+	function _G.NextBot:removeReachCallback(callbackid) end
+	--- getAvoidAllowed - server - libs_sv/nextbot.lua#L602
+	---@return boolean undefined Whether this bot is allowed to try to avoid obstacles.
+	function _G.NextBot:getAvoidAllowed() end
+	--- getJumpHeight - server - libs_sv/nextbot.lua#L656
+	---@return number undefined Jump height
+	function _G.NextBot:getJumpHeight() end
+	--- getGroundMotionVector - server - libs_sv/nextbot.lua#L565
+	---@return Vector undefined A vector representing the X and Y movement.
+	function _G.NextBot:getGroundMotionVector() end
+	--- addIgniteCallback - server - libs_sv/nextbot.lua#L362
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB gets ignited.
 	function _G.NextBot:addIgniteCallback(callbackid, callback) end
-	--- getClimbAllowed - server - libs_sv/nextbot.lua#L580
-	---@return boolean undefined Whether this bot is allowed to climb.
-	function _G.NextBot:getClimbAllowed() end
-	--- getAvoidAllowed - server - libs_sv/nextbot.lua#L562
-	---@return boolean undefined Whether this bot is allowed to try to avoid obstacles.
-	function _G.NextBot:getAvoidAllowed() end
-	--- isOnGround - server - libs_sv/nextbot.lua#L533
-	---@return boolean undefined Whether the nextbot is on ground or not.
-	function _G.NextBot:isOnGround() end
-	--- setDeceleration - server - libs_sv/nextbot.lua#L435
-	---@param newaccel number NB's new deceleration. Default is 400
-	function _G.NextBot:setDeceleration(newaccel) end
-	--- getGroundMotionVector - server - libs_sv/nextbot.lua#L525
-	---@return Vector undefined A vector representing the X and Y movement.
-	function _G.NextBot:getGroundMotionVector() end
-	--- getMoveSpeed - server - libs_sv/nextbot.lua#L409
-	---@return number undefined NB's move speed.
-	function _G.NextBot:getMoveSpeed() end
-	--- removeLandCallback - server - libs_sv/nextbot.lua#L291
+	--- removeInjuredCallback - server - libs_sv/nextbot.lua#L308
 	---@param callbackid string The unique ID of the callback to remove.
-	function _G.NextBot:removeLandCallback(callbackid) end
-	--- getAcceleration - server - libs_sv/nextbot.lua#L427
-	---@return number undefined NB's acceleration value.
-	function _G.NextBot:getAcceleration() end
-	--- faceTowards - server - libs_sv/nextbot.lua#L165
-	---@param facepos Vector Position to face towards.
-	function _G.NextBot:faceTowards(facepos) end
-	--- removeIgniteCallback - server - libs_sv/nextbot.lua#L335
-	---@param callbackid string The unique ID of the callback to remove.
-	function _G.NextBot:removeIgniteCallback(callbackid) end
-	--- setDeathDropHeight - server - libs_sv/nextbot.lua#L489
+	function _G.NextBot:removeInjuredCallback(callbackid) end
+	--- setDeathDropHeight - server - libs_sv/nextbot.lua#L529
 	---@param newdeathdropheight number New height nextbot is afraid of. Default is 200.
 	function _G.NextBot:setDeathDropHeight(newdeathdropheight) end
-	--- setAcceleration - server - libs_sv/nextbot.lua#L417
-	---@param newaccel number NB's new acceleration. Default is 400
-	function _G.NextBot:setAcceleration(newaccel) end
-	--- setMaxYawRate - server - libs_sv/nextbot.lua#L461
+	--- setMaxYawRate - server - libs_sv/nextbot.lua#L501
 	---@param newmaxyawrate number Desired new maximum yaw rate
 	function _G.NextBot:setMaxYawRate(newmaxyawrate) end
-	--- getDeceleration - server - libs_sv/nextbot.lua#L445
+	--- setDeceleration - server - libs_sv/nextbot.lua#L475
+	---@param newaccel number NB's new deceleration. Default is 400
+	function _G.NextBot:setDeceleration(newaccel) end
+	--- getDeceleration - server - libs_sv/nextbot.lua#L485
 	---@return number undefined NB's deceleration value.
 	function _G.NextBot:getDeceleration() end
-	--- addContactCallback - server - libs_sv/nextbot.lua#L367
+	--- getMoveSpeed - server - libs_sv/nextbot.lua#L449
+	---@return number undefined NB's move speed.
+	function _G.NextBot:getMoveSpeed() end
+	--- removeGotoPos - server - libs_sv/nextbot.lua#L149
+	function _G.NextBot:removeGotoPos() end
+	--- getAcceleration - server - libs_sv/nextbot.lua#L467
+	---@return number undefined NB's acceleration value.
+	function _G.NextBot:getAcceleration() end
+	--- faceTowards - server - libs_sv/nextbot.lua#L178
+	---@param facepos Vector Position to face towards.
+	function _G.NextBot:faceTowards(facepos) end
+	--- removeIgniteCallback - server - libs_sv/nextbot.lua#L374
+	---@param callbackid string The unique ID of the callback to remove.
+	function _G.NextBot:removeIgniteCallback(callbackid) end
+	--- jump - server - libs_sv/nextbot.lua#L244
+	function _G.NextBot:jump() end
+	--- setAcceleration - server - libs_sv/nextbot.lua#L457
+	---@param newaccel number NB's new acceleration. Default is 400
+	function _G.NextBot:setAcceleration(newaccel) end
+	--- setApproachPos - server - libs_sv/nextbot.lua#L123
+	---@param goal Vector The vector we want to get to.
+	function _G.NextBot:setApproachPos(goal) end
+	--- setRunAct - server - libs_sv/nextbot.lua#L187
+	---@param runact number The activity the nextbot will use.
+	function _G.NextBot:setRunAct(runact) end
+	--- addContactCallback - server - libs_sv/nextbot.lua#L406
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback fun(ent: Entity) The function to run when the NB touches another entity. The arguments are: (The entity the NB touched.)
 	function _G.NextBot:addContactCallback(callbackid, callback) end
-	--- removeContactCallback - server - libs_sv/nextbot.lua#L379
+	--- removeContactCallback - server - libs_sv/nextbot.lua#L418
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeContactCallback(callbackid) end
-	--- jump - server - libs_sv/nextbot.lua#L227
-	function _G.NextBot:jump() end
-	--- removeGotoPos - server - libs_sv/nextbot.lua#L136
-	function _G.NextBot:removeGotoPos() end
-	--- setGotoPos - server - libs_sv/nextbot.lua#L127
-	---@param gotopos Vector The position the nextbot will continuosly try to go to.
-	function _G.NextBot:setGotoPos(gotopos) end
-	--- setRunAct - server - libs_sv/nextbot.lua#L174
-	---@param runact number The activity the nextbot will use.
-	function _G.NextBot:setRunAct(runact) end
-	--- getStepHeight - server - libs_sv/nextbot.lua#L517
-	---@return number undefined The max height the bot can step up.
-	function _G.NextBot:getStepHeight() end
-	--- removeLeaveGroundCallback - server - libs_sv/nextbot.lua#L313
-	---@param callbackid string The unique ID of the callback to remove.
-	function _G.NextBot:removeLeaveGroundCallback(callbackid) end
-	--- getGotoPos - server - libs_sv/nextbot.lua#L144
+	--- getGotoPos - server - libs_sv/nextbot.lua#L157
 	---@return Vector? undefined Where the nextbot is trying to go to if it exists, else returns nil.
 	function _G.NextBot:getGotoPos() end
-	--- getIdleAct - server - libs_sv/nextbot.lua#L202
-	---@return number undefined The idle activity.
-	function _G.NextBot:getIdleAct() end
-	--- addNavChangeCallback - server - libs_sv/nextbot.lua#L345
+	--- getVelocity - server - libs_sv/nextbot.lua#L236
+	---@return Vector undefined NB's velocity.
+	function _G.NextBot:getVelocity() end
+	--- removeLandCallback - server - libs_sv/nextbot.lua#L330
+	---@param callbackid string The unique ID of the callback to remove.
+	function _G.NextBot:removeLandCallback(callbackid) end
+	--- setGotoPos - server - libs_sv/nextbot.lua#L140
+	---@param gotopos Vector The position the nextbot will continuosly try to go to.
+	function _G.NextBot:setGotoPos(gotopos) end
+	--- getStepHeight - server - libs_sv/nextbot.lua#L557
+	---@return number undefined The max height the bot can step up.
+	function _G.NextBot:getStepHeight() end
+	--- removeLeaveGroundCallback - server - libs_sv/nextbot.lua#L352
+	---@param callbackid string The unique ID of the callback to remove.
+	function _G.NextBot:removeLeaveGroundCallback(callbackid) end
+	--- addNavChangeCallback - server - libs_sv/nextbot.lua#L384
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB enters a new nav area. The arguments are: (Old Nav Area, New Nav Area)
 	function _G.NextBot:addNavChangeCallback(callbackid, callback) end
+	--- getIdleAct - server - libs_sv/nextbot.lua#L219
+	---@return number undefined The idle activity.
+	function _G.NextBot:getIdleAct() end
+	--- ragdollOnDeath - server - libs_sv/nextbot.lua#L428
+	---@param ragdollondeath boolean Whether the nextbot should ragdoll on death.
+	function _G.NextBot:ragdollOnDeath(ragdollondeath) end
 ---  Vector2 type for wire xv2
 ---@class Vector2
 _G.Vector2 = {}
@@ -7381,68 +7397,68 @@ _G.Sound = {}
 ---  Hologram type
 ---@class Hologram
 _G.Hologram = {}
-	--- setAngVel - server - libs_sh/hologram.lua#L222
+	--- setAngVel - server - libs_sh/hologram.lua#L184
 	---@param angvel Angle *Vector* angular velocity.
 	function _G.Hologram:setAngVel(angvel) end
-	--- setAnimation - shared - libs_sh/hologram.lua#L451
+	--- setAnimation - shared - libs_sh/hologram.lua#L413
 	---@param animation number|string Animation number or string name.
 	---@param frame number? Optional int (Default 0) The starting frame number. Does nothing if nil
 	---@param rate number? Optional float (Default 1) Frame speed. Does nothing if nil
 	function _G.Hologram:setAnimation(animation, frame, rate) end
-	--- setVel - server - libs_sh/hologram.lua#L209
+	--- setVel - server - libs_sh/hologram.lua#L171
 	---@param vel Vector New velocity
 	function _G.Hologram:setVel(vel) end
-	--- setScale - shared - libs_sh/hologram.lua#L384
+	--- setScale - shared - libs_sh/hologram.lua#L346
 	---@param scale Vector Vector new scale
 	function _G.Hologram:setScale(scale) end
-	--- getScale - shared - libs_sh/hologram.lua#L410
+	--- getScale - shared - libs_sh/hologram.lua#L372
 	---@return Vector undefined Vector scale
 	function _G.Hologram:getScale() end
-	--- setSize - shared - libs_sh/hologram.lua#L396
+	--- setSize - shared - libs_sh/hologram.lua#L358
 	---@param size Vector Vector new size in game units
 	function _G.Hologram:setSize(size) end
-	--- setFilterMag - client - libs_sh/hologram.lua#L282
+	--- setFilterMag - client - libs_sh/hologram.lua#L244
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMag(val) end
-	--- addEffects - shared - libs_sh/hologram.lua#L480
+	--- addEffects - shared - libs_sh/hologram.lua#L442
 	---@param effect number The effects to add. See EF Enums
 	function _G.Hologram:addEffects(effect) end
-	--- setRenderMatrix - client - libs_sh/hologram.lua#L314
+	--- setRenderMatrix - client - libs_sh/hologram.lua#L276
 	---@param mat VMatrix Starfall matrix to use
 	function _G.Hologram:setRenderMatrix(mat) end
-	--- setPos - shared - libs_sh/hologram.lua#L246
+	--- setPos - shared - libs_sh/hologram.lua#L208
 	---@param vec Vector New position
 	function _G.Hologram:setPos(vec) end
-	--- setAngles - shared - libs_sh/hologram.lua#L264
+	--- setAngles - shared - libs_sh/hologram.lua#L226
 	---@param ang Angle New angles
 	function _G.Hologram:setAngles(ang) end
-	--- setMoveType - server - libs_sh/hologram.lua#L233
+	--- setMoveType - server - libs_sh/hologram.lua#L195
 	---@param Movetype number to set, either MOVETYPE.NOCLIP (default) or MOVETYPE.NONE
 	function _G.Hologram:setMoveType(Movetype) end
-	--- setModel - shared - libs_sh/hologram.lua#L437
+	--- setModel - shared - libs_sh/hologram.lua#L399
 	---@param model string string model path
 	function _G.Hologram:setModel(model) end
-	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L430
+	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L392
 	---@return boolean undefined Whether engine lighting is suppressed
 	function _G.Hologram:getSuppressEngineLighting() end
-	--- removeEffects - shared - libs_sh/hologram.lua#L492
+	--- removeEffects - shared - libs_sh/hologram.lua#L454
 	---@param effect number The effects to remove. See EF Enums
 	function _G.Hologram:removeEffects(effect) end
-	--- remove - shared - libs_sh/hologram.lua#L504
+	--- remove - shared - libs_sh/hologram.lua#L466
 	function _G.Hologram:remove() end
-	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L417
+	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L379
 	---@param suppress boolean Boolean to represent if shading should be set or not.
 	function _G.Hologram:suppressEngineLighting(suppress) end
-	--- setClip - shared - libs_sh/hologram.lua#L348
+	--- setClip - shared - libs_sh/hologram.lua#L310
 	---@param index number Whatever number you want the clip to be
 	---@param enabled boolean Whether the clip is enabled
 	---@param origin Vector The center of the clip plane in world coordinates, or local to entity if it is specified
 	---@param normal Vector The the direction of the clip plane in world coordinates, or local to entity if it is specified
 	---@param entity Entity? (Optional) The entity to make coordinates local to, otherwise the world is used
 	function _G.Hologram:setClip(index, enabled, origin, normal, entity) end
-	--- draw - client - libs_sh/hologram.lua#L337
+	--- draw - client - libs_sh/hologram.lua#L299
 	function _G.Hologram:draw() end
-	--- setFilterMin - client - libs_sh/hologram.lua#L298
+	--- setFilterMin - client - libs_sh/hologram.lua#L260
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMin(val) end
 ---  Light type
@@ -8383,9 +8399,9 @@ _G.WebSocket = {}
 ---@class Constraint
 ---@operator tostring:string
 _G.Constraint = {}
-	--- remove - server - libs_sv/constraint.lua#L84
+	--- remove - server - libs_sv/constraint.lua#L69
 	function _G.Constraint:remove() end
-	--- isValid - server - libs_sv/constraint.lua#L92
+	--- isValid - server - libs_sv/constraint.lua#L83
 	---@return boolean undefined True if valid, false if not
 	function _G.Constraint:isValid() end
 ---  Entity type
@@ -8576,7 +8592,7 @@ _G.Entity = {}
 	--- isVehicle - shared - libs_sh/entities.lua#L830
 	---@return boolean undefined True if vehicle, false if not
 	function _G.Entity:isVehicle() end
-	--- toHologram - shared - libs_sh/hologram.lua#L120
+	--- toHologram - shared - libs_sh/hologram.lua#L86
 	---@return Hologram undefined Hologram instance
 	function _G.Entity:toHologram() end
 	--- setColor - shared - libs_sh/entities.lua#L382

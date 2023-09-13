@@ -3688,6 +3688,14 @@ _G.prop = {}
 --- 
 ---  string Model = "models/beer/wiremod/gate_e2.mdl"
 --- 
+--- 
+--- 
+---  > starfall_processor
+--- 
+---  string Model = "models/spacecode/sfchip_medium.mdl"
+--- 
+---  string Code
+--- 
 ---  
 --- 
 ---  > gmod_wire_extbus

@@ -3609,10 +3609,10 @@ _G.render.Vertex = {
 	--- V coordinate (optional, default is 0)
 	["v"] = nil,
 }
-	--- setRenderTargetTexture - client - libs_cl/render.lua#L1136
+	--- setRenderTargetTexture - client - libs_cl/render.lua#L1142
 	---@param name string? Name of the render target to use
 	function _G.render.setRenderTargetTexture(name) end
-	--- getScreenEntity - client - libs_cl/render.lua#L1965
+	--- getScreenEntity - client - libs_cl/render.lua#L1971
 	---@return Entity undefined Entity of the screen or hud being rendered
 	function _G.render.getScreenEntity() end
 	--- setStencilCompareFunction - client - libs_cl/render.lua#L618
@@ -3624,16 +3624,16 @@ _G.render.Vertex = {
 	---@param endX number X end coordinate of the scissor rect.
 	---@param endY number Y end coordinate of the scissor rect.
 	function _G.render.enableScissorRect(startX, startY, endX, endY) end
-	--- getAngles - client - libs_cl/render.lua#L534
+	--- getAngles - client - libs_cl/render.lua#L532
 	---@return Angle undefined The angles of the current render context as calculated by calcview.
 	function _G.render.getAngles() end
-	--- setRGBA - client - libs_cl/render.lua#L847
+	--- setRGBA - client - libs_cl/render.lua#L853
 	---@param r number Number, red value
 	---@param g number Number, green value
 	---@param b number Number, blue value
 	---@param a number Number, alpha value
 	function _G.render.setRGBA(r, g, b, a) end
-	--- setFilterMag - client - libs_cl/render.lua#L1176
+	--- setFilterMag - client - libs_cl/render.lua#L1182
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.render.setFilterMag(val) end
 	--- clearBuffersObeyStencil - client - libs_cl/render.lua#L594
@@ -3646,18 +3646,18 @@ _G.render.Vertex = {
 	--- getEyePos - client - libs_cl/render.lua#L524
 	---@return Vector undefined The origin of the current render context as calculated by calcview.
 	function _G.render.getEyePos() end
-	--- renderViewsLeft - client - libs_cl/render.lua#L2177
+	--- renderViewsLeft - client - libs_cl/render.lua#L2183
 	---@return number undefined How many render.renderView calls are left
 	function _G.render.renderViewsLeft() end
-	--- isInRenderView - client - libs_cl/render.lua#L2171
-	---@return boolean undefined Whether render.renderView is being executed
-	function _G.render.isInRenderView() end
-	--- setLightingMode - client - libs_cl/render.lua#L831
+	--- getEyeVector - client - libs_cl/render.lua#L538
+	---@return Vector undefined The normal vector of the current render context as calculated by calcview, similar to render.getAngles.
+	function _G.render.getEyeVector() end
+	--- setLightingMode - client - libs_cl/render.lua#L837
 	---@param mode number The lighting mode. 0 - Default, 1 - Fullbright, 2 - Increased Fullbright
 	function _G.render.setLightingMode(mode) end
-	--- popViewMatrix - client - libs_cl/render.lua#L794
+	--- popViewMatrix - client - libs_cl/render.lua#L800
 	function _G.render.popViewMatrix() end
-	--- overrideBlend - client - libs_cl/render.lua#L1747
+	--- overrideBlend - client - libs_cl/render.lua#L1753
 	---@param on boolean Whether to control the blend mode of upcoming rendering
 	---@param srcBlend number http://wiki.facepunch.com/gmod/Enums/BLEND
 	---@param destBlend number 
@@ -3666,41 +3666,41 @@ _G.render.Vertex = {
 	---@param destBlendAlpha number? 
 	---@param blendFuncAlpha number? http://wiki.facepunch.com/gmod/Enums/BLENDFUNC
 	function _G.render.overrideBlend(on, srcBlend, destBlend, blendFunc, srcBlendAlpha, destBlendAlpha, blendFuncAlpha) end
-	--- setFogHeight - client - libs_cl/render.lua#L2298
+	--- setFogHeight - client - libs_cl/render.lua#L2304
 	---@param height number The fog height
 	function _G.render.setFogHeight(height) end
-	--- drawCircle - client - libs_cl/render.lua#L1292
+	--- drawCircle - client - libs_cl/render.lua#L1298
 	---@param x number Center x coordinate
 	---@param y number Center y coordinate
 	---@param r number Radius
 	function _G.render.drawCircle(x, y, r) end
-	--- drawPixelsRGB - client - libs_cl/render.lua#L1465
+	--- drawPixelsRGB - client - libs_cl/render.lua#L1471
 	---@param w number Width of image to be drawn.
 	---@param h number Height of image to be drawn.
 	---@param dataR table Red channel data.
 	---@param dataG table Green channel data.
 	---@param dataB table Blue channel data.
 	function _G.render.drawPixelsRGB(w, h, dataR, dataG, dataB) end
-	--- draw3DSprite - client - libs_cl/render.lua#L1774
+	--- draw3DSprite - client - libs_cl/render.lua#L1780
 	---@param pos Vector Position of the sprite.
 	---@param width number Width of the sprite.
 	---@param height number Height of the sprite.
 	---@param Color Color? tint to give the sprite. Default: white
 	function _G.render.draw3DSprite(pos, width, height, Color) end
-	--- drawTexturedRectRotatedFast - client - libs_cl/render.lua#L1424
+	--- drawTexturedRectRotatedFast - client - libs_cl/render.lua#L1430
 	---@param x number X coordinate of center of rect
 	---@param y number Y coordinate of center of rect
 	---@param w number Width
 	---@param h number Height
 	---@param rot number Rotation in degrees
 	function _G.render.drawTexturedRectRotatedFast(x, y, w, h, rot) end
-	--- getDefaultFont - client - libs_cl/render.lua#L1660
+	--- getDefaultFont - client - libs_cl/render.lua#L1666
 	---@return string undefined Default font
 	function _G.render.getDefaultFont() end
-	--- setFilterMin - client - libs_cl/render.lua#L1187
+	--- setFilterMin - client - libs_cl/render.lua#L1193
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.render.setFilterMin(val) end
-	--- drawPixelsRGBA - client - libs_cl/render.lua#L1481
+	--- drawPixelsRGBA - client - libs_cl/render.lua#L1487
 	---@param w number Width of image to be drawn.
 	---@param h number Height of image to be drawn.
 	---@param dataR table Red channel data.
@@ -3708,31 +3708,36 @@ _G.render.Vertex = {
 	---@param dataB table Blue channel data.
 	---@param dataA table Alpha channel data.
 	function _G.render.drawPixelsRGBA(w, h, dataR, dataG, dataB, dataA) end
-	--- drawText - client - libs_cl/render.lua#L1666
+	--- drawText - client - libs_cl/render.lua#L1672
 	---@param x number X coordinate
 	---@param y number Y coordinate
 	---@param text string Text to draw
 	---@param alignment number Horizontal text alignment. Default TEXT_ALIGN.LEFT
 	function _G.render.drawText(x, y, text, alignment) end
-	--- drawRoundedBox - client - libs_cl/render.lua#L1220
+	--- drawRoundedBox - client - libs_cl/render.lua#L1226
 	---@param r number The corner radius
 	---@param x number Top left corner x coordinate
 	---@param y number Top left corner y coordinate
 	---@param w number Width
 	---@param h number Height
 	function _G.render.drawRoundedBox(r, x, y, w, h) end
-	--- depthRange - client - libs_cl/render.lua#L2363
+	--- depthRange - client - libs_cl/render.lua#L2369
 	---@param min number The minimum depth of the upcoming render. 0.0 = render normally; 1.0 = render nothing.
 	---@param max number The maximum depth of the upcoming render. 0.0 = render everything (through walls); 1.0 = render normally.
 	function _G.render.depthRange(min, max) end
-	--- setMaterial - client - libs_cl/render.lua#L885
+	--- screenShake - client - libs_cl/render.lua#L2360
+	---@param amplitude number The strength of the effect
+	---@param frequency number The frequency of the effect in hertz
+	---@param duration number The duration of the effect in seconds, max 10.
+	function _G.render.screenShake(amplitude, frequency, duration) end
+	--- setMaterial - client - libs_cl/render.lua#L891
 	---@param mat Material The material object
 	function _G.render.setMaterial(mat) end
-	--- enableClipping - client - libs_cl/render.lua#L2183
+	--- enableClipping - client - libs_cl/render.lua#L2189
 	---@param state boolean New clipping state.
 	---@return boolean undefined Previous clipping state.
 	function _G.render.enableClipping(state) end
-	--- drawSimpleText - client - libs_cl/render.lua#L1679
+	--- drawSimpleText - client - libs_cl/render.lua#L1685
 	---@param x number X coordinate
 	---@param y number Y coordinate
 	---@param text string Text to draw
@@ -3741,30 +3746,28 @@ _G.render.Vertex = {
 	---@return number undefined Width of the drawn text. Same as calling render.getTextSize
 	---@return number undefined Height of the drawn text. Same as calling render.getTextSize
 	function _G.render.drawSimpleText(x, y, text, xalign, yalign) end
-	--- draw3DBox - client - libs_cl/render.lua#L1821
+	--- draw3DBox - client - libs_cl/render.lua#L1827
 	---@param origin Vector Origin of the box.
 	---@param angle Angle Orientation of the box
 	---@param mins Vector Start position of the box, relative to origin.
 	---@param maxs Vector End position of the box, relative to origin.
 	function _G.render.draw3DBox(origin, angle, mins, maxs) end
-	--- screenShake - client - libs_cl/render.lua#L2354
-	---@param amplitude number The strength of the effect
-	---@param frequency number The frequency of the effect in hertz
-	---@param duration number The duration of the effect in seconds, max 10.
-	function _G.render.screenShake(amplitude, frequency, duration) end
-	--- createMaterial - client - libs_cl/render.lua#L858
+	--- isHUDActive - client - libs_cl/render.lua#L2035
+	---@return boolean undefined Whether a hud component is connected to the SF Chip and active
+	function _G.render.isHUDActive() end
+	--- createMaterial - client - libs_cl/render.lua#L864
 	---@param tx string Texture file path, a http url, or image data: https://en.wikipedia.org/wiki/Data_URI_scheme
 	---@param cb function? An optional callback called when loading is done. Passes nil if it fails or Passes the material, url, width, height, and layout function which can be called with x, y, w, h to reposition the image in the texture.
 	---@param done function? An optional callback called when the image is done loading. Passes the material, url
 	---@return Material undefined The material. Use with render.setMaterial to draw with it.
 	function _G.render.createMaterial(tx, cb, done) end
-	--- setStencilFailOperation - client - libs_cl/render.lua#L626
-	---@param operation number 
-	function _G.render.setStencilFailOperation(operation) end
-	--- setChipOverlay - client - libs_cl/render.lua#L2316
+	--- setChipOverlay - client - libs_cl/render.lua#L2322
 	---@param name string? The name of the RT to use or nil to set it back to normal
 	function _G.render.setChipOverlay(name) end
-	--- drawRoundedBoxEx - client - libs_cl/render.lua#L1231
+	--- setFogEnd - client - libs_cl/render.lua#L2295
+	---@param distance number End distance
+	function _G.render.setFogEnd(distance) end
+	--- drawRoundedBoxEx - client - libs_cl/render.lua#L1237
 	---@param r number The corner radius
 	---@param x number Top left corner x coordinate
 	---@param y number Top left corner y coordinate
@@ -3775,37 +3778,38 @@ _G.render.Vertex = {
 	---@param bl boolean? Bottom left corner. Default false
 	---@param br boolean? Bottom right corner. Default false
 	function _G.render.drawRoundedBoxEx(r, x, y, w, h, tl, tr, bl, br) end
-	--- setFogEnd - client - libs_cl/render.lua#L2289
-	---@param distance number End distance
-	function _G.render.setFogEnd(distance) end
-	--- setFogStart - client - libs_cl/render.lua#L2280
+	--- setFogStart - client - libs_cl/render.lua#L2286
 	---@param distance number Start distance
 	function _G.render.setFogStart(distance) end
-	--- setFogDensity - client - libs_cl/render.lua#L2271
+	--- setFogDensity - client - libs_cl/render.lua#L2277
 	---@param density number Density between 0 and 1
 	function _G.render.setFogDensity(density) end
-	--- setFogColor - client - libs_cl/render.lua#L2261
+	--- setFogColor - client - libs_cl/render.lua#L2267
 	---@param col Color Color (alpha won't have any effect)
 	function _G.render.setFogColor(col) end
-	--- drawRectOutline - client - libs_cl/render.lua#L1281
+	--- setFogMode - client - libs_cl/render.lua#L2258
+	---@param mode number Fog mode
+	function _G.render.setFogMode(mode) end
+	--- drawRectOutline - client - libs_cl/render.lua#L1287
 	---@param x number Top left corner x integer coordinate
 	---@param y number Top left corner y integer coordinate
 	---@param w number Width
 	---@param h number Height
 	---@param thickness number? Optional inset border width
 	function _G.render.drawRectOutline(x, y, w, h, thickness) end
-	--- parseMarkup - client - libs_cl/render.lua#L1695
+	--- parseMarkup - client - libs_cl/render.lua#L1701
 	---@param str string The markup string to parse
 	---@param maxsize number? The max width of the markup. Default nil
 	---@return Markup undefined The markup object. See https://wiki.facepunch.com/gmod/markup.Parse
 	function _G.render.parseMarkup(str, maxsize) end
-	--- setFogMode - client - libs_cl/render.lua#L2252
-	---@param mode number Fog mode
-	function _G.render.setFogMode(mode) end
-	--- getAmbientLightColor - client - libs_cl/render.lua#L2246
+	--- getAmbientLightColor - client - libs_cl/render.lua#L2252
 	---@return Vector undefined Vector representing color of the light
 	function _G.render.getAmbientLightColor() end
-	--- drawTexturedRectUV - client - libs_cl/render.lua#L1377
+	--- pushCustomClipPlane - client - libs_cl/render.lua#L2204
+	---@param normal Vector The normal of the clipping plane.
+	---@param distance number The normal of the clipping plane.
+	function _G.render.pushCustomClipPlane(normal, distance) end
+	--- drawTexturedRectUV - client - libs_cl/render.lua#L1383
 	---@param x number Top left corner x
 	---@param y number Top left corner y
 	---@param w number Width
@@ -3815,23 +3819,171 @@ _G.render.Vertex = {
 	---@param endU number Texture mapping at rectangle end
 	---@param endV number Texture mapping at rectangle end
 	function _G.render.drawTexturedRectUV(x, y, w, h, startU, startV, endU, endV) end
-	--- pushCustomClipPlane - client - libs_cl/render.lua#L2198
-	---@param normal Vector The normal of the clipping plane.
-	---@param distance number The normal of the clipping plane.
-	function _G.render.pushCustomClipPlane(normal, distance) end
-	--- getResolution - client - libs_cl/render.lua#L2002
+	--- computeDynamicLighting - client - libs_cl/render.lua#L2237
+	---@param pos Vector Vector position to sample from
+	---@param normal Vector Normal vector of the surface
+	---@return Vector undefined Vector representing color of the light
+	function _G.render.computeDynamicLighting(pos, normal) end
+	--- getResolution - client - libs_cl/render.lua#L2008
 	---@return number undefined the X size of the current render context
 	---@return number undefined the Y size of the current render context
 	function _G.render.getResolution() end
 	--- setWriteDepthToDestAlpha - client - libs_cl/render.lua#L567
 	---@param enable boolean True to write depth to destination alpha.
 	function _G.render.setWriteDepthToDestAlpha(enable) end
-	--- traceSurfaceColor - client - libs_cl/render.lua#L2021
+	--- traceSurfaceColor - client - libs_cl/render.lua#L2027
 	---@param vec1 Vector The starting vector
 	---@param vec2 Vector The ending vector
 	---@return Color undefined The color
 	function _G.render.traceSurfaceColor(vec1, vec2) end
-	--- drawPixelsSubrectRGB - client - libs_cl/render.lua#L1497
+	--- createRenderTarget - client - libs_cl/render.lua#L1065
+	---@param name string The name of the render target
+	function _G.render.createRenderTarget(name) end
+	--- drawTexturedRectRotated - client - libs_cl/render.lua#L1443
+	---@param x number X coordinate of center of rect
+	---@param y number Y coordinate of center of rect
+	---@param w number Width
+	---@param h number Height
+	---@param rot number Rotation in degrees
+	function _G.render.drawTexturedRectRotated(x, y, w, h, rot) end
+	--- resetModelLighting - client - libs_cl/render.lua#L585
+	---@param r number The red part of the color, 0-1
+	---@param g number The green part of the color, 0-1
+	---@param b number The blue part of the color, 0-1
+	function _G.render.resetModelLighting(r, g, b) end
+	--- clear - client - libs_cl/render.lua#L1212
+	---@param clr Color? Color type to clear with
+	---@param depth boolean? Boolean if should clear depth. Default false
+	function _G.render.clear(clr, depth) end
+	--- computeLighting - client - libs_cl/render.lua#L2229
+	---@param pos Vector Vector position to sample from
+	---@param normal Vector Normal vector of the surface
+	---@return Vector undefined Vector representing color of the light
+	function _G.render.computeLighting(pos, normal) end
+	--- popCustomClipPlane - client - libs_cl/render.lua#L2219
+	function _G.render.popCustomClipPlane() end
+	--- setStencilReferenceValue - client - libs_cl/render.lua#L650
+	---@param referenceValue number Reference value.
+	function _G.render.setStencilReferenceValue(referenceValue) end
+	--- draw3DLine - client - libs_cl/render.lua#L1816
+	---@param startPos Vector Starting position
+	---@param endPos Vector Ending position
+	function _G.render.draw3DLine(startPos, endPos) end
+	--- getMatrix - client - libs_cl/render.lua#L739
+	---@return VMatrix undefined The currently active matrix.
+	function _G.render.getMatrix() end
+	--- setModelLighting - client - libs_cl/render.lua#L575
+	---@param lightDirection number The light source to edit, builtins.BOX enumeration.
+	---@param r number The red component of the light color.
+	---@param g number The green component of the light color.
+	---@param b number The blue component of the light color.
+	function _G.render.setModelLighting(lightDirection, r, g, b) end
+	--- getLightColor - client - libs_cl/render.lua#L2245
+	---@param pos Vector Vector position to sample from
+	---@return Vector undefined Vector representing color of the light
+	function _G.render.getLightColor(pos) end
+	--- isInRenderView - client - libs_cl/render.lua#L2177
+	---@return boolean undefined Whether render.renderView is being executed
+	function _G.render.isInRenderView() end
+	--- draw3DWireframeBox - client - libs_cl/render.lua#L1842
+	---@param origin Vector Origin of the box.
+	---@param angle Angle Orientation of the box
+	---@param mins Vector Start position of the box, relative to origin.
+	---@param maxs Vector End position of the box, relative to origin.
+	function _G.render.draw3DWireframeBox(origin, angle, mins, maxs) end
+	--- draw3DWireframeSphere - client - libs_cl/render.lua#L1803
+	---@param pos Vector Position of the sphere
+	---@param radius number Radius of the sphere
+	---@param longitudeSteps number The amount of longitude steps. The larger this number is, the smoother the sphere is
+	---@param latitudeSteps number The amount of latitude steps. The larger this number is, the smoother the sphere is
+	function _G.render.draw3DWireframeSphere(pos, radius, longitudeSteps, latitudeSteps) end
+	--- renderView - client - libs_cl/render.lua#L2041
+	---@param tbl table view The view data to be used in the rendering. See http://wiki.facepunch.com/gmod/Structures/ViewData. There's an additional key drawviewer used to tell the engine whether the local player model should be rendered.
+	function _G.render.renderView(tbl) end
+	--- setMaterialEffectColorModify - client - libs_cl/render.lua#L1003
+	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
+	---@param cmStructure table A table where each key must be of "addr", "addg", "addb", "brightness", "color" or "colour", "contrast", "mulr", "mulg", and "mulb". All keys are optional.
+	function _G.render.setMaterialEffectColorModify(mat, cmStructure) end
+	--- resetStencil - client - libs_cl/render.lua#L674
+	function _G.render.resetStencil() end
+	--- drawTexturedRect - client - libs_cl/render.lua#L1348
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	function _G.render.drawTexturedRect(x, y, w, h) end
+	--- setScreenDimensions - client - libs_cl/render.lua#L2334
+	---@param screen Entity The custom screen to be resized
+	---@param x number The x offset of the screen
+	---@param y number The y offset of the screen
+	---@param w number The width of the screen
+	---@param h number The height of the screen
+	function _G.render.setScreenDimensions(screen, x, y, w, h) end
+	--- getGameResolution - client - libs_cl/render.lua#L2019
+	---@return number undefined the X size of the game window
+	---@return number undefined the Y size of the game window
+	function _G.render.getGameResolution() end
+	--- setFont - client - libs_cl/render.lua#L1635
+	---@param font string The font to use
+	function _G.render.setFont(font) end
+	--- setStencilEnable - client - libs_cl/render.lua#L546
+	---@param enable boolean True to enable, false to disable
+	function _G.render.setStencilEnable(enable) end
+	--- cursorPos - client - libs_cl/render.lua#L1917
+	---@param ply Player? player to get cursor position from. Default player()
+	---@param screen Entity? An explicit screen to get the cursor pos of (default: The current rendering screen using 'render' hook)
+	---@return number undefined X position
+	---@return number undefined Y position
+	function _G.render.cursorPos(ply, screen) end
+	--- setColor - client - libs_cl/render.lua#L845
+	---@param clr Color Color type
+	function _G.render.setColor(clr) end
+	--- setTextureFromScreen - client - libs_cl/render.lua#L1165
+	---@param ent Entity Screen entity
+	function _G.render.setTextureFromScreen(ent) end
+	--- getScreenInfo - client - libs_cl/render.lua#L1961
+	---@param e Entity The screen to get info from.
+	---@return table undefined A table describing the screen.
+	function _G.render.getScreenInfo(e) end
+	--- setBackgroundColor - client - libs_cl/render.lua#L813
+	---@param col Color Color of background
+	---@param screen Entity? (Optional) entity of screen
+	function _G.render.setBackgroundColor(col, screen) end
+	--- setStencilZFailOperation - client - libs_cl/render.lua#L642
+	---@param operation number 
+	function _G.render.setStencilZFailOperation(operation) end
+	--- capturePixels - client - libs_cl/render.lua#L1977
+	function _G.render.capturePixels() end
+	--- drawTexturedRectFast - client - libs_cl/render.lua#L1337
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	function _G.render.drawTexturedRectFast(x, y, w, h) end
+	--- clearStencilBufferRectangle - client - libs_cl/render.lua#L606
+	---@param originX number X origin of the rectangle.
+	---@param originY number Y origin of the rectangle.
+	---@param endX number The end X coordinate of the rectangle.
+	---@param endY number The end Y coordinate of the rectangle.
+	---@param stencilValue number Value to set cleared stencil buffer to.
+	function _G.render.clearStencilBufferRectangle(originX, originY, endX, endY, stencilValue) end
+	--- draw3DBeam - client - libs_cl/render.lua#L1857
+	---@param startPos Vector Beam start position.
+	---@param endPos Vector Beam end position.
+	---@param width number The width of the beam.
+	---@param textureStart number The start coordinate of the texture used.
+	---@param textureEnd number The end coordinate of the texture used.
+	function _G.render.draw3DBeam(startPos, endPos, width, textureStart, textureEnd) end
+	--- setMaterialEffectSub - client - libs_cl/render.lua#L930
+	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
+	function _G.render.setMaterialEffectSub(mat) end
+	--- draw3DQuad - client - libs_cl/render.lua#L1871
+	---@param vert1 Vector First vertex.
+	---@param vert2 Vector The second vertex.
+	---@param vert3 Vector The third vertex.
+	---@param vert4 Vector The fourth vertex.
+	function _G.render.draw3DQuad(vert1, vert2, vert3, vert4) end
+	--- drawPixelsSubrectRGB - client - libs_cl/render.lua#L1503
 	---@param dstX number Destination x coordinate
 	---@param dstY number Destination y coordinate
 	---@param srcX number Source x coordinate
@@ -3844,165 +3996,20 @@ _G.render.Vertex = {
 	---@param dataG table Green channel data.
 	---@param dataB table Blue channel data.
 	function _G.render.drawPixelsSubrectRGB(dstX, dstY, srcX, srcY, srcW, srcH, subrectW, subrectH, dataR, dataG, dataB) end
-	--- drawTexturedRectRotated - client - libs_cl/render.lua#L1437
-	---@param x number X coordinate of center of rect
-	---@param y number Y coordinate of center of rect
-	---@param w number Width
-	---@param h number Height
-	---@param rot number Rotation in degrees
-	function _G.render.drawTexturedRectRotated(x, y, w, h, rot) end
-	--- resetModelLighting - client - libs_cl/render.lua#L585
-	---@param r number The red part of the color, 0-1
-	---@param g number The green part of the color, 0-1
-	---@param b number The blue part of the color, 0-1
-	function _G.render.resetModelLighting(r, g, b) end
-	--- clear - client - libs_cl/render.lua#L1206
-	---@param clr Color? Color type to clear with
-	---@param depth boolean? Boolean if should clear depth. Default false
-	function _G.render.clear(clr, depth) end
-	--- computeDynamicLighting - client - libs_cl/render.lua#L2231
-	---@param pos Vector Vector position to sample from
-	---@param normal Vector Normal vector of the surface
-	---@return Vector undefined Vector representing color of the light
-	function _G.render.computeDynamicLighting(pos, normal) end
-	--- computeLighting - client - libs_cl/render.lua#L2223
-	---@param pos Vector Vector position to sample from
-	---@param normal Vector Normal vector of the surface
-	---@return Vector undefined Vector representing color of the light
-	function _G.render.computeLighting(pos, normal) end
-	--- setStencilReferenceValue - client - libs_cl/render.lua#L650
-	---@param referenceValue number Reference value.
-	function _G.render.setStencilReferenceValue(referenceValue) end
-	--- draw3DLine - client - libs_cl/render.lua#L1810
-	---@param startPos Vector Starting position
-	---@param endPos Vector Ending position
-	function _G.render.draw3DLine(startPos, endPos) end
-	--- popCustomClipPlane - client - libs_cl/render.lua#L2213
-	function _G.render.popCustomClipPlane() end
-	--- setModelLighting - client - libs_cl/render.lua#L575
-	---@param lightDirection number The light source to edit, builtins.BOX enumeration.
-	---@param r number The red component of the light color.
-	---@param g number The green component of the light color.
-	---@param b number The blue component of the light color.
-	function _G.render.setModelLighting(lightDirection, r, g, b) end
-	--- getLightColor - client - libs_cl/render.lua#L2239
-	---@param pos Vector Vector position to sample from
-	---@return Vector undefined Vector representing color of the light
-	function _G.render.getLightColor(pos) end
-	--- renderView - client - libs_cl/render.lua#L2035
-	---@param tbl table view The view data to be used in the rendering. See http://wiki.facepunch.com/gmod/Structures/ViewData. There's an additional key drawviewer used to tell the engine whether the local player model should be rendered.
-	function _G.render.renderView(tbl) end
-	--- draw3DWireframeBox - client - libs_cl/render.lua#L1836
-	---@param origin Vector Origin of the box.
-	---@param angle Angle Orientation of the box
-	---@param mins Vector Start position of the box, relative to origin.
-	---@param maxs Vector End position of the box, relative to origin.
-	function _G.render.draw3DWireframeBox(origin, angle, mins, maxs) end
-	--- draw3DWireframeSphere - client - libs_cl/render.lua#L1797
-	---@param pos Vector Position of the sphere
-	---@param radius number Radius of the sphere
-	---@param longitudeSteps number The amount of longitude steps. The larger this number is, the smoother the sphere is
-	---@param latitudeSteps number The amount of latitude steps. The larger this number is, the smoother the sphere is
-	function _G.render.draw3DWireframeSphere(pos, radius, longitudeSteps, latitudeSteps) end
-	--- isHUDActive - client - libs_cl/render.lua#L2029
-	---@return boolean undefined Whether a hud component is connected to the SF Chip and active
-	function _G.render.isHUDActive() end
-	--- setMaterialEffectColorModify - client - libs_cl/render.lua#L997
-	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
-	---@param cmStructure table A table where each key must be of "addr", "addg", "addb", "brightness", "color" or "colour", "contrast", "mulr", "mulg", and "mulb". All keys are optional.
-	function _G.render.setMaterialEffectColorModify(mat, cmStructure) end
-	--- resetStencil - client - libs_cl/render.lua#L674
-	function _G.render.resetStencil() end
-	--- drawTexturedRect - client - libs_cl/render.lua#L1342
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawTexturedRect(x, y, w, h) end
-	--- setScreenDimensions - client - libs_cl/render.lua#L2328
-	---@param screen Entity The custom screen to be resized
-	---@param x number The x offset of the screen
-	---@param y number The y offset of the screen
-	---@param w number The width of the screen
-	---@param h number The height of the screen
-	function _G.render.setScreenDimensions(screen, x, y, w, h) end
-	--- getGameResolution - client - libs_cl/render.lua#L2013
-	---@return number undefined the X size of the game window
-	---@return number undefined the Y size of the game window
-	function _G.render.getGameResolution() end
-	--- setStencilTestMask - client - libs_cl/render.lua#L658
-	---@param mask number The mask bitflag.
-	function _G.render.setStencilTestMask(mask) end
-	--- selectRenderTarget - client - libs_cl/render.lua#L1088
-	---@param name string? Name of the render target to use
-	function _G.render.selectRenderTarget(name) end
-	--- cursorPos - client - libs_cl/render.lua#L1911
-	---@param ply Player? player to get cursor position from. Default player()
-	---@param screen Entity? An explicit screen to get the cursor pos of (default: The current rendering screen using 'render' hook)
-	---@return number undefined X position
-	---@return number undefined Y position
-	function _G.render.cursorPos(ply, screen) end
-	--- setColor - client - libs_cl/render.lua#L839
-	---@param clr Color Color type
-	function _G.render.setColor(clr) end
-	--- setTextureFromScreen - client - libs_cl/render.lua#L1159
-	---@param ent Entity Screen entity
-	function _G.render.setTextureFromScreen(ent) end
-	--- getScreenInfo - client - libs_cl/render.lua#L1955
-	---@param e Entity The screen to get info from.
-	---@return table undefined A table describing the screen.
-	function _G.render.getScreenInfo(e) end
-	--- setBackgroundColor - client - libs_cl/render.lua#L807
-	---@param col Color Color of background
-	---@param screen Entity? (Optional) entity of screen
-	function _G.render.setBackgroundColor(col, screen) end
-	--- setStencilZFailOperation - client - libs_cl/render.lua#L642
-	---@param operation number 
-	function _G.render.setStencilZFailOperation(operation) end
-	--- capturePixels - client - libs_cl/render.lua#L1971
-	function _G.render.capturePixels() end
-	--- drawTexturedRectFast - client - libs_cl/render.lua#L1331
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawTexturedRectFast(x, y, w, h) end
-	--- draw3DQuad - client - libs_cl/render.lua#L1865
-	---@param vert1 Vector First vertex.
-	---@param vert2 Vector The second vertex.
-	---@param vert3 Vector The third vertex.
-	---@param vert4 Vector The fourth vertex.
-	function _G.render.draw3DQuad(vert1, vert2, vert3, vert4) end
-	--- draw3DBeam - client - libs_cl/render.lua#L1851
-	---@param startPos Vector Beam start position.
-	---@param endPos Vector Beam end position.
-	---@param width number The width of the beam.
-	---@param textureStart number The start coordinate of the texture used.
-	---@param textureEnd number The end coordinate of the texture used.
-	function _G.render.draw3DBeam(startPos, endPos, width, textureStart, textureEnd) end
-	--- setMaterialEffectSub - client - libs_cl/render.lua#L924
-	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
-	function _G.render.setMaterialEffectSub(mat) end
-	--- setStencilEnable - client - libs_cl/render.lua#L546
-	---@param enable boolean True to enable, false to disable
-	function _G.render.setStencilEnable(enable) end
-	--- setStencilPassOperation - client - libs_cl/render.lua#L634
-	---@param operation number 
-	function _G.render.setStencilPassOperation(operation) end
-	--- drawPoly - client - libs_cl/render.lua#L1734
+	--- drawPoly - client - libs_cl/render.lua#L1740
 	---@param poly table Table of polygon vertices. Texture coordinates are optional. {{x=x1, y=y1, u=u1, v=v1}, ... }
 	function _G.render.drawPoly(poly) end
-	--- captureImage - client - libs_cl/render.lua#L1978
+	--- captureImage - client - libs_cl/render.lua#L1984
 	---@param captureData table Parameters of the capture. See https://wiki.facepunch.com/gmod/Structures/RenderCaptureData
 	---@return string undefined Image binary data
 	function _G.render.captureImage(captureData) end
-	--- setCullMode - client - libs_cl/render.lua#L1198
+	--- setCullMode - client - libs_cl/render.lua#L1204
 	---@param mode number Cull mode. 0 for counter clock wise, 1 for clock wise
 	function _G.render.setCullMode(mode) end
-	--- setFont - client - libs_cl/render.lua#L1629
-	---@param font string The font to use
-	function _G.render.setFont(font) end
-	--- readPixel - client - libs_cl/render.lua#L1991
+	--- destroyTexture - client - libs_cl/render.lua#L885
+	---@param mat Material The material object
+	function _G.render.destroyTexture(mat) end
+	--- readPixel - client - libs_cl/render.lua#L1997
 	---@param x number Pixel x-coordinate.
 	---@param y number Pixel y-coordinate.
 	---@return Color undefined Color object with ( r, g, b, a ) from the specified pixel.
@@ -4014,37 +4021,13 @@ _G.render.Vertex = {
 	---@param m VMatrix The matrix
 	---@param world boolean? Should the transformation be relative to the screen or world?
 	function _G.render.pushMatrix(m, world) end
-	--- setMaterialEffectDownsample - client - libs_cl/render.lua#L964
-	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
-	---@param darken number The amount to darken the texture by. -1 to 1 inclusive.
-	---@param multiply number The amount to multiply the pixel colors by. (0-1024)
-	function _G.render.setMaterialEffectDownsample(mat, darken, multiply) end
-	--- destroyRenderTarget - client - libs_cl/render.lua#L1075
+	--- setStencilTestMask - client - libs_cl/render.lua#L658
+	---@param mask number The mask bitflag.
+	function _G.render.setStencilTestMask(mask) end
+	--- destroyRenderTarget - client - libs_cl/render.lua#L1081
 	---@param name string Rendertarget name
 	function _G.render.destroyRenderTarget(name) end
-	--- createFont - client - libs_cl/render.lua#L1555
-	---@param font string Base font to use
-	---@param size number? Font size. Default 16
-	---@param weight number? Font weight. Default 400
-	---@param antialias boolean? Antialias font? Default false
-	---@param additive boolean? If true, adds brightness to pixels behind it rather than drawing over them. Default false
-	---@param shadow boolean? Enable drop shadow? Default false
-	---@param outline boolean? Enable outline? Default false
-	---@param blursize boolean? The size of the blur Default 0
-	---@param extended boolean? Allows the font to display glyphs outside of Latin-1 range. Unicode code points above 0xFFFF are not supported. Required to use FontAwesome
-	---@param scanlines number? Scanline interval. Must be greater than 1 to work. Shares uniqueness with blursize so you cannot create more than one scanline type of font with the same blursize. Default 0
-	---@return string undefined The font name that can be used with the rest of the font functions.
-	function _G.render.createFont(font, size, weight, antialias, additive, shadow, outline, blursize, extended, scanlines) end
-	--- pushViewMatrix - client - libs_cl/render.lua#L748
-	---@param tbl table The view matrix data. See http://wiki.facepunch.com/gmod/Structures/RenderCamData
-	function _G.render.pushViewMatrix(tbl) end
-	--- drawLine - client - libs_cl/render.lua#L1545
-	---@param x1 number X start float coordinate
-	---@param y1 number Y start float coordinate
-	---@param x2 number X end float coordinate
-	---@param y2 number Y end float coordinate
-	function _G.render.drawLine(x1, y1, x2, y2) end
-	--- drawPixelsSubrectRGBA - client - libs_cl/render.lua#L1520
+	--- drawPixelsSubrectRGBA - client - libs_cl/render.lua#L1526
 	---@param dstX number Destination x coordinate
 	---@param dstY number Destination y coordinate
 	---@param srcX number Source x coordinate
@@ -4058,66 +4041,89 @@ _G.render.Vertex = {
 	---@param dataB table Blue channel data.
 	---@param dataA table Alpha channel data.
 	function _G.render.drawPixelsSubrectRGBA(dstX, dstY, srcX, srcY, srcW, srcH, subrectW, subrectH, dataR, dataG, dataB, dataA) end
-	--- getTextSize - client - libs_cl/render.lua#L1620
+	--- pushViewMatrix - client - libs_cl/render.lua#L754
+	---@param tbl table The view matrix data. See http://wiki.facepunch.com/gmod/Structures/RenderCamData
+	function _G.render.pushViewMatrix(tbl) end
+	--- createFont - client - libs_cl/render.lua#L1561
+	---@param font string Base font to use
+	---@param size number? Font size. Default 16
+	---@param weight number? Font weight. Default 400
+	---@param antialias boolean? Antialias font? Default false
+	---@param additive boolean? If true, adds brightness to pixels behind it rather than drawing over them. Default false
+	---@param shadow boolean? Enable drop shadow? Default false
+	---@param outline boolean? Enable outline? Default false
+	---@param blursize boolean? The size of the blur Default 0
+	---@param extended boolean? Allows the font to display glyphs outside of Latin-1 range. Unicode code points above 0xFFFF are not supported. Required to use FontAwesome
+	---@param scanlines number? Scanline interval. Must be greater than 1 to work. Shares uniqueness with blursize so you cannot create more than one scanline type of font with the same blursize. Default 0
+	---@return string undefined The font name that can be used with the rest of the font functions.
+	function _G.render.createFont(font, size, weight, antialias, additive, shadow, outline, blursize, extended, scanlines) end
+	--- drawLine - client - libs_cl/render.lua#L1551
+	---@param x1 number X start float coordinate
+	---@param y1 number Y start float coordinate
+	---@param x2 number X end float coordinate
+	---@param y2 number Y end float coordinate
+	function _G.render.drawLine(x1, y1, x2, y2) end
+	--- getTextSize - client - libs_cl/render.lua#L1626
 	---@param text string Text to get the size of
 	---@return number undefined width of the text
 	---@return number undefined height of the text
 	function _G.render.getTextSize(text) end
-	--- drawFilledCircle - client - libs_cl/render.lua#L1301
+	--- drawFilledCircle - client - libs_cl/render.lua#L1307
 	---@param x number Center x coordinate
 	---@param y number Center y coordinate
 	---@param r number Radius
 	function _G.render.drawFilledCircle(x, y, r) end
 	--- disableScissorRect - client - libs_cl/render.lua#L725
 	function _G.render.disableScissorRect() end
-	--- setMaterialEffectAdd - client - libs_cl/render.lua#L910
+	--- setMaterialEffectAdd - client - libs_cl/render.lua#L916
 	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
 	function _G.render.setMaterialEffectAdd(mat) end
-	--- draw3DSphere - client - libs_cl/render.lua#L1784
+	--- draw3DSphere - client - libs_cl/render.lua#L1790
 	---@param pos Vector Position of the sphere
 	---@param radius number Radius of the sphere
 	---@param longitudeSteps number The amount of longitude steps. The larger this number is, the smoother the sphere is
 	---@param latitudeSteps number The amount of latitude steps. The larger this number is, the smoother the sphere is
 	function _G.render.draw3DSphere(pos, radius, longitudeSteps, latitudeSteps) end
-	--- drawRect - client - libs_cl/render.lua#L1269
+	--- drawRectFast - client - libs_cl/render.lua#L1264
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	function _G.render.drawRectFast(x, y, w, h) end
+	--- clearDepth - client - libs_cl/render.lua#L1772
+	function _G.render.clearDepth() end
+	--- drawRect - client - libs_cl/render.lua#L1275
 	---@param x number Top left corner x
 	---@param y number Top left corner y
 	---@param w number Width
 	---@param h number Height
 	function _G.render.drawRect(x, y, w, h) end
-	--- clearDepth - client - libs_cl/render.lua#L1766
-	function _G.render.clearDepth() end
-	--- clearStencilBufferRectangle - client - libs_cl/render.lua#L606
-	---@param originX number X origin of the rectangle.
-	---@param originY number Y origin of the rectangle.
-	---@param endX number The end X coordinate of the rectangle.
-	---@param endY number The end Y coordinate of the rectangle.
-	---@param stencilValue number Value to set cleared stencil buffer to.
-	function _G.render.clearStencilBufferRectangle(originX, originY, endX, endY, stencilValue) end
 	--- popMatrix - client - libs_cl/render.lua#L731
 	function _G.render.popMatrix() end
-	--- setMaterialEffectBloom - client - libs_cl/render.lua#L938
+	--- setMaterialEffectBloom - client - libs_cl/render.lua#L944
 	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
 	---@param levelr number Multiplier for all red pixels. 1 = unchanged
 	---@param levelg number Multiplier for all green pixels. 1 = unchanged
 	---@param levelb number Multiplier for all blue pixels. 1 = unchanged
 	---@param colormul number Multiplier for all three colors. 1 = unchanged
 	function _G.render.setMaterialEffectBloom(mat, levelr, levelg, levelb, colormul) end
-	--- destroyTexture - client - libs_cl/render.lua#L879
-	---@param mat Material The material object
-	function _G.render.destroyTexture(mat) end
-	--- getEye - client - libs_cl/render.lua#L540
-	---@return Vector undefined The normal vector of the current render context as calculated by calcview, similar to render.getAngles.
-	function _G.render.getEye() end
-	--- enableDepth - client - libs_cl/render.lua#L1740
-	---@param enable boolean True to enable
-	function _G.render.enableDepth(enable) end
-	--- drawBlurEffect - client - libs_cl/render.lua#L1030
+	--- setStencilPassOperation - client - libs_cl/render.lua#L634
+	---@param operation number 
+	function _G.render.setStencilPassOperation(operation) end
+	--- drawBlurEffect - client - libs_cl/render.lua#L1036
 	---@param blurx number The amount of horizontal blur to apply.
 	---@param blury number The amount of vertical blur to apply.
 	---@param passes number The number of times the blur effect is applied.
 	function _G.render.drawBlurEffect(blurx, blury, passes) end
-	--- drawTexturedRectUVFast - client - libs_cl/render.lua#L1353
+	--- enableDepth - client - libs_cl/render.lua#L1746
+	---@param enable boolean True to enable
+	function _G.render.enableDepth(enable) end
+	--- setMaterialEffectDownsample - client - libs_cl/render.lua#L970
+	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
+	---@param darken number The amount to darken the texture by. -1 to 1 inclusive.
+	---@param multiply number The amount to multiply the pixel colors by. (0-1024)
+	function _G.render.setMaterialEffectDownsample(mat, darken, multiply) end
+	--- drawTexturedRectUVFast - client - libs_cl/render.lua#L1359
 	---@param x number Top left corner x
 	---@param y number Top left corner y
 	---@param w number Width
@@ -4130,22 +4136,19 @@ _G.render.Vertex = {
 	function _G.render.drawTexturedRectUVFast(x, y, w, h, startU, startV, endU, endV, UVHack) end
 	--- clearStencil - client - libs_cl/render.lua#L554
 	function _G.render.clearStencil() end
-	--- createRenderTarget - client - libs_cl/render.lua#L1059
-	---@param name string The name of the render target
-	function _G.render.createRenderTarget(name) end
-	--- draw3DQuadUV - client - libs_cl/render.lua#L1881
+	--- setStencilFailOperation - client - libs_cl/render.lua#L626
+	---@param operation number 
+	function _G.render.setStencilFailOperation(operation) end
+	--- draw3DQuadUV - client - libs_cl/render.lua#L1887
 	---@param vert1 Vector First vertex. {x, y, z, u, v}
 	---@param vert2 Vector The second vertex.
 	---@param vert3 Vector The third vertex.
 	---@param vert4 Vector The fourth vertex.
 	function _G.render.draw3DQuadUV(vert1, vert2, vert3, vert4) end
-	--- drawRectFast - client - libs_cl/render.lua#L1258
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawRectFast(x, y, w, h) end
-	--- renderTargetExists - client - libs_cl/render.lua#L1052
+	--- selectRenderTarget - client - libs_cl/render.lua#L1094
+	---@param name string? Name of the render target to use
+	function _G.render.selectRenderTarget(name) end
+	--- renderTargetExists - client - libs_cl/render.lua#L1058
 	---@param name string The name of the render target
 	function _G.render.renderTargetExists(name) end
 	--- setStencilWriteMask - client - libs_cl/render.lua#L666
@@ -6854,11 +6857,11 @@ _G.Vector2 = {}
 ---  The Markup type is used to easily format and draw text. Use render.parseMarkup(str, maxwidth) to create one.
 ---@class Markup
 _G.Markup = {}
-	--- getSize - client - libs_cl/render.lua#L1727
+	--- getSize - client - libs_cl/render.lua#L1733
 	---@return number undefined The width of the object
 	---@return number undefined The height of the object
 	function _G.Markup:getSize() end
-	--- draw - client - libs_cl/render.lua#L1703
+	--- draw - client - libs_cl/render.lua#L1709
 	---@param x number number The x offset
 	---@param y number number The x offset
 	---@param xAlign number? number The x TEXT_ALIGN. Default TEXT_ALIGN.LEFT
@@ -6866,10 +6869,10 @@ _G.Markup = {}
 	---@param alpha number? The alpha to draw it with. Default 255
 	---@param contentAlign number? The content alignment TEXT_ALIGN. Default TEXT_ALIGN.LEFT
 	function _G.Markup:draw(x, y, xAlign, yAlign, alpha, contentAlign) end
-	--- getWidth - client - libs_cl/render.lua#L1715
+	--- getWidth - client - libs_cl/render.lua#L1721
 	---@return number undefined The width of the object
 	function _G.Markup:getWidth() end
-	--- getHeight - client - libs_cl/render.lua#L1721
+	--- getHeight - client - libs_cl/render.lua#L1727
 	---@return number undefined The height of the object
 	function _G.Markup:getHeight() end
 ---  Player type
@@ -7635,7 +7638,7 @@ _G.Material = {}
 	function _G.Material:getShader() end
 	--- getVector - client - libs_cl/material.lua#L647
 	---@param key string The key to get the vector from
-	---@return string? undefined The string id of the texture or nil if it doesn't exist
+	---@return Vector? undefined The vector value or nil if it doesn't exist
 	function _G.Material:getVector(key) end
 	--- setTextureRenderTarget - client - libs_cl/material.lua#L777
 	---@param key string The key name to set. $basetexture is the key name for most purposes.
@@ -8409,26 +8412,26 @@ _G.Vehicle = {}
 ---@class Entity
 ---@operator tostring:string
 _G.Entity = {}
-	--- localToWorld - shared - libs_sh/entities.lua#L1224
+	--- localToWorld - shared - libs_sh/entities.lua#L1238
 	---@param data Vector Local space vector
 	---@return Vector undefined data as world space vector
 	function _G.Entity:localToWorld(data) end
 	--- setVelocity - server - libs_sv/entities.lua#L390
 	---@param vel Vector New velocity
 	function _G.Entity:setVelocity(vel) end
-	--- obbMins - shared - libs_sh/entities.lua#L1118
+	--- obbMins - shared - libs_sh/entities.lua#L1132
 	---@return Vector undefined The min bounding box vector
 	function _G.Entity:obbMins() end
-	--- getForward - shared - libs_sh/entities.lua#L1562
+	--- getForward - shared - libs_sh/entities.lua#L1576
 	---@return Vector undefined Vector forward
 	function _G.Entity:getForward() end
 	--- setSolid - server - libs_sv/entities.lua#L474
 	---@param solid boolean Should the entity be solid?
 	function _G.Entity:setSolid(solid) end
-	--- getCreationTime - shared - libs_sh/entities.lua#L1569
+	--- getCreationTime - shared - libs_sh/entities.lua#L1583
 	---@return number undefined Seconds relative to server map start
 	function _G.Entity:getCreationTime() end
-	--- getNWVar - shared - libs_sh/entities.lua#L1774
+	--- getNWVar - shared - libs_sh/entities.lua#L1788
 	---@param key string The string key to get
 	---@return any undefined The object associated with that key or nil if it's not set
 	function _G.Entity:getNWVar(key) end
@@ -8441,7 +8444,7 @@ _G.Entity = {}
 	---@param attachmentID number? Optional attachmentid the trail should attach to
 	---@param additive boolean? If the trail's rendering is additive
 	function _G.Entity:setTrails(startSize, endSize, length, material, color, attachmentID, additive) end
-	--- getHitBoxBounds - shared - libs_sh/entities.lua#L1611
+	--- getHitBoxBounds - shared - libs_sh/entities.lua#L1625
 	---@param hitbox number The number of the hitbox.
 	---@param group number The number of the hitbox group, 0 in most cases.
 	---@return Vector undefined Hitbox mins vector.
@@ -8459,19 +8462,19 @@ _G.Entity = {}
 	--- getLinkedComponents - shared - libs_sh/entities.lua#L309
 	---@return table undefined A list of components linked to the entity
 	function _G.Entity:getLinkedComponents() end
-	--- getVelocity - shared - libs_sh/entities.lua#L1190
+	--- getVelocity - shared - libs_sh/entities.lua#L1204
 	---@return Vector undefined The velocity vector
 	function _G.Entity:getVelocity() end
 	--- setPhysMaterial - server - libs_sv/entities.lua#L540
 	---@param materialName string Material to use
 	function _G.Entity:setPhysMaterial(materialName) end
-	--- getModelContents - shared - libs_sh/entities.lua#L1466
+	--- getModelContents - shared - libs_sh/entities.lua#L1480
 	---@return number undefined Contents of the entity's model. https://wiki.facepunch.com/gmod/Enums/CONTENTS
 	function _G.Entity:getModelContents() end
 	--- getQuotaUsed - shared - libs_sh/entities.lua#L879
 	---@return number undefined Current quota used this Think
 	function _G.Entity:getQuotaUsed() end
-	--- getMaterials - shared - libs_sh/entities.lua#L1540
+	--- getMaterials - shared - libs_sh/entities.lua#L1554
 	---@return table undefined Material
 	function _G.Entity:getMaterials() end
 	--- enableGravity - server - libs_sv/entities.lua#L587
@@ -8483,7 +8486,7 @@ _G.Entity = {}
 	--- setComponentLocksControls - server - libs_sv/entities.lua#L95
 	---@param enable boolean Whether the component will lock the player's controls when used
 	function _G.Entity:setComponentLocksControls(enable) end
-	--- getBrushPlaneCount - shared - libs_sh/entities.lua#L1697
+	--- getBrushPlaneCount - shared - libs_sh/entities.lua#L1711
 	---@return number undefined The amount of brush planes
 	function _G.Entity:getBrushPlaneCount() end
 	--- getCollisionGroup - shared - libs_sh/entities.lua#L665
@@ -8499,16 +8502,16 @@ _G.Entity = {}
 	--- setRenderMode - shared - libs_sh/entities.lua#L565
 	---@param rendermode number Rendermode to use. http://wiki.facepunch.com/gmod/Enums/RENDERMODE
 	function _G.Entity:setRenderMode(rendermode) end
-	--- getPersistent - shared - libs_sh/entities.lua#L1596
+	--- getPersistent - shared - libs_sh/entities.lua#L1610
 	---@return boolean undefined True if the entity is persistent
 	function _G.Entity:getPersistent() end
 	--- addVelocity - server - libs_sv/entities.lua#L403
 	---@param vel Vector The world velocity vector to apply
 	function _G.Entity:addVelocity(vel) end
-	--- getInertia - shared - libs_sh/entities.lua#L1179
+	--- getInertia - shared - libs_sh/entities.lua#L1193
 	---@return Vector undefined The principle moments of inertia as a vector
 	function _G.Entity:getInertia() end
-	--- getInternalVariable - shared - libs_sh/entities.lua#L1827
+	--- getInternalVariable - shared - libs_sh/entities.lua#L1841
 	---@param variableName string Name of the internal save table variable.
 	---@return any undefined The internal variable associated with the name.
 	function _G.Entity:getInternalVariable(variableName) end
@@ -8521,65 +8524,68 @@ _G.Entity = {}
 	--- getElasticity - shared - libs_sh/entities.lua#L731
 	---@return number undefined Elasticity
 	function _G.Entity:getElasticity() end
-	--- getSequenceCount - shared - libs_sh/entities.lua#L1314
+	--- getSequenceCount - shared - libs_sh/entities.lua#L1328
 	---@return number undefined Count of entity's animations
 	function _G.Entity:getSequenceCount() end
-	--- getDTBool - shared - libs_sh/entities.lua#L1714
+	--- getDTBool - shared - libs_sh/entities.lua#L1728
 	---@param key number The number key. Valid keys are 0 - 31
 	---@return boolean? undefined The boolean or nil if it doesn't exist
 	function _G.Entity:getDTBool(key) end
-	--- getUp - shared - libs_sh/entities.lua#L1548
+	--- getUp - shared - libs_sh/entities.lua#L1562
 	---@return Vector undefined Vector up
 	function _G.Entity:getUp() end
 	--- getRenderMode - shared - libs_sh/entities.lua#L583
 	---@return number undefined rendermode https://wiki.facepunch.com/gmod/Enums/RENDERMODE
 	function _G.Entity:getRenderMode() end
-	--- getHitBoxCount - shared - libs_sh/entities.lua#L1626
+	--- getHitBoxCount - shared - libs_sh/entities.lua#L1640
 	---@param group number The number of the hitbox group.
 	---@return number undefined Number of hitboxes
 	function _G.Entity:getHitBoxCount(group) end
-	--- getManipulateBonePosition - shared - libs_sh/entities.lua#L1077
-	---@param bone number Bone index. (def 0)
-	---@return Vector undefined Manipulate position of the bone
-	function _G.Entity:getManipulateBonePosition(bone) end
-	--- getSaveTable - shared - libs_sh/entities.lua#L1818
+	--- getSaveTable - shared - libs_sh/entities.lua#L1832
 	---@param showAll boolean If set, shows all variables, not just the ones for save.
 	---@return table undefined A table containing all save values in key/value format. The value may be a sequential table (starting to 1) if the field in question is an array in engine.
 	function _G.Entity:getSaveTable(showAll) end
+	--- getManipulateBonePosition - shared - libs_sh/entities.lua#L1091
+	---@param bone number Bone index. (def 0)
+	---@return Vector undefined Manipulate position of the bone
+	function _G.Entity:getManipulateBonePosition(bone) end
+	--- getNearestPoint - shared - libs_sh/entities.lua#L1823
+	---@param The Vector vector to start the intersection from.
+	---@return Vector undefined The nearest hit point of the entity's bounding box in world coordinates, or Vector(0, 0, 0) for some entities such as worldspawn.
+	function _G.Entity:getNearestPoint(The) end
 	--- getOwner - shared - libs_sh/entities.lua#L95
 	---@return Entity undefined Owner
 	function _G.Entity:getOwner() end
 	--- setNocollideAll - server - libs_sv/entities.lua#L496
 	---@param nocollide boolean Whether to collide with nothing except world or not.
 	function _G.Entity:setNocollideAll(nocollide) end
-	--- getNearestPoint - shared - libs_sh/entities.lua#L1809
-	---@param The Vector vector to start the intersection from.
-	---@return Vector undefined The nearest hit point of the entity's bounding box in world coordinates, or Vector(0, 0, 0) for some entities such as worldspawn.
-	function _G.Entity:getNearestPoint(The) end
-	--- isDormant - shared - libs_sh/entities.lua#L1800
+	--- isDormant - shared - libs_sh/entities.lua#L1814
 	---@return boolean undefined Whether entity is dormant or not.
 	function _G.Entity:isDormant() end
-	--- getSequenceInfo - shared - libs_sh/entities.lua#L1295
+	--- obbMaxs - shared - libs_sh/entities.lua#L1139
+	---@return Vector undefined The max bounding box vector
+	function _G.Entity:obbMaxs() end
+	--- getSequenceInfo - shared - libs_sh/entities.lua#L1309
 	---@param id number The ID of the animation
 	---@return table undefined Animation info
 	function _G.Entity:getSequenceInfo(id) end
 	--- getAttachmentParent - shared - libs_sh/entities.lua#L631
 	---@return number undefined Index of the attachment the entity is parented to or 0
 	function _G.Entity:getAttachmentParent() end
-	--- getDTInt - shared - libs_sh/entities.lua#L1744
+	--- getDTInt - shared - libs_sh/entities.lua#L1758
 	---@param key number The number key. Valid keys are 0 - 31
 	---@return number? undefined The int or nil if it doesn't exist
 	function _G.Entity:getDTInt(key) end
 	--- isOnGround - shared - libs_sh/entities.lua#L844
 	---@return boolean undefined If it's flag is set or not
 	function _G.Entity:isOnGround() end
-	--- obbMaxs - shared - libs_sh/entities.lua#L1125
-	---@return Vector undefined The max bounding box vector
-	function _G.Entity:obbMaxs() end
+	--- getNWVarTable - shared - libs_sh/entities.lua#L1800
+	---@return table undefined The table of networked objects
+	function _G.Entity:getNWVarTable() end
 	--- getCreationID - server - libs_sv/entities.lua#L844
 	---@return number undefined The creation ID
 	function _G.Entity:getCreationID() end
-	--- getFlexScale - shared - libs_sh/entities.lua#L1428
+	--- getFlexScale - shared - libs_sh/entities.lua#L1442
 	---@return number undefined The scale of the flexes
 	function _G.Entity:getFlexScale() end
 	--- getPhysicsObjectNum - shared - libs_sh/entities.lua#L723
@@ -8599,41 +8605,42 @@ _G.Entity = {}
 	--- setColor - shared - libs_sh/entities.lua#L382
 	---@param clr Color New color
 	function _G.Entity:setColor(clr) end
-	--- getNWVarTable - shared - libs_sh/entities.lua#L1786
-	---@return table undefined The table of networked objects
-	function _G.Entity:getNWVarTable() end
-	--- getDTVector - shared - libs_sh/entities.lua#L1764
+	--- getDTVector - shared - libs_sh/entities.lua#L1778
 	---@param key number The number key. Valid keys are 0 - 31
 	---@return Vector? undefined The vector or nil if it doesn't exist
 	function _G.Entity:getDTVector(key) end
-	--- getRight - shared - libs_sh/entities.lua#L1555
+	--- getDTString - shared - libs_sh/entities.lua#L1768
+	---@param key number The number key. Valid keys are 0 - 31
+	---@return string? undefined The string or nil if it doesn't exist
+	function _G.Entity:getDTString(key) end
+	--- getRight - shared - libs_sh/entities.lua#L1569
 	---@return Vector undefined Vector right
 	function _G.Entity:getRight() end
 	--- getErroredPlayers - server - libs_sh/entities.lua#L921
 	---@return table undefined A table containing the errored players.
 	function _G.Entity:getErroredPlayers() end
-	--- getDTString - shared - libs_sh/entities.lua#L1754
-	---@param key number The number key. Valid keys are 0 - 31
-	---@return string? undefined The string or nil if it doesn't exist
-	function _G.Entity:getDTString(key) end
-	--- getDTFloat - shared - libs_sh/entities.lua#L1734
+	--- getDTFloat - shared - libs_sh/entities.lua#L1748
 	---@param key number The number key. Valid keys are 0 - 31
 	---@return number? undefined The float or nil if it doesn't exist
 	function _G.Entity:getDTFloat(key) end
-	--- setFlexScale - shared - libs_sh/entities.lua#L1434
+	--- getDTEntity - shared - libs_sh/entities.lua#L1738
+	---@param key number The number key. Valid keys are 0 - 31
+	---@return Entity? undefined The entity or nil if it doesn't exist
+	function _G.Entity:getDTEntity(key) end
+	--- setFlexScale - shared - libs_sh/entities.lua#L1448
 	---@param scale number The scale of the flexes to set
 	function _G.Entity:setFlexScale(scale) end
 	--- translateBoneToPhysBone - shared - libs_sh/entities.lua#L695
 	---@param boneid number The ragdoll boneid
 	---@return number undefined The physobj id
 	function _G.Entity:translateBoneToPhysBone(boneid) end
-	--- getMassCenterW - shared - libs_sh/entities.lua#L1151
+	--- getMassCenterW - shared - libs_sh/entities.lua#L1165
 	---@return Vector undefined The position vector of the mass center
 	function _G.Entity:getMassCenterW() end
-	--- getDTEntity - shared - libs_sh/entities.lua#L1724
+	--- getDTAngle - shared - libs_sh/entities.lua#L1718
 	---@param key number The number key. Valid keys are 0 - 31
-	---@return Entity? undefined The entity or nil if it doesn't exist
-	function _G.Entity:getDTEntity(key) end
+	---@return Angle? undefined The angle or nil if it doesn't exist
+	function _G.Entity:getDTAngle(key) end
 	--- getSolid - shared - libs_sh/entities.lua#L671
 	---@return number undefined The solid enum of the entity. https://wiki.facepunch.com/gmod/Enums/SOLID
 	function _G.Entity:getSolid() end
@@ -8644,25 +8651,26 @@ _G.Entity = {}
 	---@param bodygroup number The ID of the bodygroup you're setting.
 	---@param value number The value you're setting the bodygroup to.
 	function _G.Entity:setBodygroup(bodygroup, value) end
-	--- getDTAngle - shared - libs_sh/entities.lua#L1704
-	---@param key number The number key. Valid keys are 0 - 31
-	---@return Angle? undefined The angle or nil if it doesn't exist
-	function _G.Entity:getDTAngle(key) end
-	--- getModelScale - shared - libs_sh/entities.lua#L1480
-	---@return number undefined Scale of the model
-	function _G.Entity:getModelScale() end
-	--- isLocked - server - libs_sh/darkrp2.lua#L821
-	---@return boolean undefined Whether it's locked.
-	function _G.Entity:isLocked() end
-	--- getBrushPlane - shared - libs_sh/entities.lua#L1685
+	--- getBrushPlane - shared - libs_sh/entities.lua#L1699
 	---@param id number Plane index. Starts from 0
 	---@return Vector undefined The origin of the plane
 	---@return Vector undefined The normal of the plane
 	---@return number undefined The distance to the plane
 	function _G.Entity:getBrushPlane(id) end
-	--- getBrushSurfaces - shared - libs_sh/entities.lua#L1672
+	--- getModelScale - shared - libs_sh/entities.lua#L1494
+	---@return number undefined Scale of the model
+	function _G.Entity:getModelScale() end
+	--- isLocked - server - libs_sh/darkrp2.lua#L821
+	---@return boolean undefined Whether it's locked.
+	function _G.Entity:isLocked() end
+	--- getBrushSurfaces - shared - libs_sh/entities.lua#L1686
 	---@return table undefined Table of SurfaceInfos if the entity has a brush model, or no value otherwise.
 	function _G.Entity:getBrushSurfaces() end
+	--- getHitBoxHitGroup - shared - libs_sh/entities.lua#L1675
+	---@param hitbox number The number of the hit box.
+	---@param hitboxset number The number of the hit box set. This should be 0 in most cases.
+	---@return number undefined The hitbox group of given hitbox. See https://wiki.facepunch.com/gmod/Enums/HITGROUP
+	function _G.Entity:getHitBoxHitGroup(hitbox, hitboxset) end
 	--- getPhysicsObjectCount - shared - libs_sh/entities.lua#L709
 	---@return number undefined The number of physics objects on the entity
 	function _G.Entity:getPhysicsObjectCount() end
@@ -8679,7 +8687,7 @@ _G.Entity = {}
 	--- isMoneyBag - shared - libs_sh/darkrp2.lua#L863
 	---@return boolean undefined Whether this entity is a money bag.
 	function _G.Entity:isMoneyBag() end
-	--- getBoneCount - shared - libs_sh/entities.lua#L1022
+	--- getBoneCount - shared - libs_sh/entities.lua#L1036
 	---@return number undefined Number of bones
 	function _G.Entity:getBoneCount() end
 	--- isSolid - shared - libs_sh/entities.lua#L683
@@ -8692,66 +8700,64 @@ _G.Entity = {}
 	---@param enabled boolean Should the entity be spherical?
 	---@param radius number? Optional custom radius to use (max 500). Otherwise the prop's obb is used
 	function _G.Entity:enableSphere(enabled, radius) end
-	--- getHitBoxHitGroup - shared - libs_sh/entities.lua#L1661
-	---@param hitbox number The number of the hit box.
-	---@param hitboxset number The number of the hit box set. This should be 0 in most cases.
-	---@return number undefined The hitbox group of given hitbox. See https://wiki.facepunch.com/gmod/Enums/HITGROUP
-	function _G.Entity:getHitBoxHitGroup(hitbox, hitboxset) end
-	--- getSequence - shared - libs_sh/entities.lua#L1281
-	---@return number undefined The sequence number
-	function _G.Entity:getSequence() end
-	--- getHitBoxSetCount - shared - libs_sh/entities.lua#L1654
+	--- getHitBoxSetCount - shared - libs_sh/entities.lua#L1668
 	---@return number undefined Number of hitbox sets.
 	function _G.Entity:getHitBoxSetCount() end
-	--- getHitBoxSet - shared - libs_sh/entities.lua#L1646
+	--- getSequence - shared - libs_sh/entities.lua#L1295
+	---@return number undefined The sequence number
+	function _G.Entity:getSequence() end
+	--- getHitBoxSet - shared - libs_sh/entities.lua#L1660
 	---@return number? undefined Hitbox set number, nil if entity has no hitboxes.
 	---@return string? undefined Hitbox set name, nil if entity has no hitboxes.
 	function _G.Entity:getHitBoxSet() end
-	--- getSolidFlags - shared - libs_sh/entities.lua#L677
-	---@return number undefined The solid flag enum of the entity. https://wiki.facepunch.com/gmod/Enums/FSOLID
-	function _G.Entity:getSolidFlags() end
-	--- getHitBoxBone - shared - libs_sh/entities.lua#L1635
+	--- getHitBoxBone - shared - libs_sh/entities.lua#L1649
 	---@param hitbox number The number of the hitbox.
 	---@param group number The number of the hitbox group, 0 in most cases.
 	---@return number undefined Bone ID
 	function _G.Entity:getHitBoxBone(hitbox, group) end
-	--- entOwner - shared - libs_sh/entities.lua#L1603
+	--- getSolidFlags - shared - libs_sh/entities.lua#L677
+	---@return number undefined The solid flag enum of the entity. https://wiki.facepunch.com/gmod/Enums/FSOLID
+	function _G.Entity:getSolidFlags() end
+	--- entOwner - shared - libs_sh/entities.lua#L1617
 	---@return Entity undefined Owner
 	function _G.Entity:entOwner() end
-	--- setPersistent - shared - libs_sh/entities.lua#L1586
+	--- setPersistent - shared - libs_sh/entities.lua#L1600
 	---@param persist boolean True to make persistent
 	function _G.Entity:setPersistent(persist) end
-	--- getFriction - server - libs_sv/entities.lua#L194
-	---@return number undefined friction
-	function _G.Entity:getFriction() end
-	--- isEffectActive - shared - libs_sh/entities.lua#L1576
+	--- isEffectActive - shared - libs_sh/entities.lua#L1590
 	---@param effect number The effect to check. EF table values
 	---@return boolean undefined True or false
 	function _G.Entity:isEffectActive(effect) end
+	--- getFriction - server - libs_sv/entities.lua#L194
+	---@return number undefined friction
+	function _G.Entity:getFriction() end
 	--- getShipmentContents - shared - libs_sh/darkrp2.lua#L894
 	---@return table? undefined Contents, or nil if not a shipment
 	function _G.Entity:getShipmentContents() end
-	--- obbCenter - shared - libs_sh/entities.lua#L1103
+	--- obbCenter - shared - libs_sh/entities.lua#L1117
 	---@return Vector undefined The position vector of the outer bounding box center
 	function _G.Entity:obbCenter() end
-	--- remove - server - libs_sv/entities.lua#L418
-	function _G.Entity:remove() end
-	--- getEyePos - shared - libs_sh/entities.lua#L1508
+	--- getEyePos - shared - libs_sh/entities.lua#L1522
 	---@return Vector undefined Eye position of the entity
 	---@return Vector? undefined In case of a ragdoll, the position of the second eye
 	function _G.Entity:getEyePos() end
-	--- getEyeAngles - shared - libs_sh/entities.lua#L1501
+	--- remove - server - libs_sv/entities.lua#L418
+	function _G.Entity:remove() end
+	--- getEyeAngles - shared - libs_sh/entities.lua#L1515
 	---@return Angle undefined Angles of the entity's eyes
 	function _G.Entity:getEyeAngles() end
+	--- getHealth - shared - libs_sh/entities.lua#L1508
+	---@return number undefined Health of the entity
+	function _G.Entity:getHealth() end
 	--- getRenderFX - shared - libs_sh/entities.lua#L609
 	---@return number undefined Renderfx, https://wiki.facepunch.com/gmod/Enums/kRenderFx
 	function _G.Entity:getRenderFX() end
 	--- isWeapon - shared - libs_sh/entities.lua#L823
 	---@return boolean undefined True if weapon, false if not
 	function _G.Entity:isWeapon() end
-	--- getHealth - shared - libs_sh/entities.lua#L1494
-	---@return number undefined Health of the entity
-	function _G.Entity:getHealth() end
+	--- getMaxHealth - shared - libs_sh/entities.lua#L1501
+	---@return number undefined Max Health of the entity
+	function _G.Entity:getMaxHealth() end
 	--- lookupAttachment - shared - libs_sh/entities.lua#L638
 	---@param name string of the attachment to lookup
 	---@return number undefined Number of the attachment index, or 0 if it doesn't exist
@@ -8761,16 +8767,17 @@ _G.Entity = {}
 	function _G.Entity:setElasticity(elasticity) end
 	--- removeCollisionListener - server - libs_sv/entities.lua#L339
 	function _G.Entity:removeCollisionListener() end
-	--- getMaxHealth - shared - libs_sh/entities.lua#L1487
-	---@return number undefined Max Health of the entity
-	function _G.Entity:getMaxHealth() end
-	--- getModelRadius - shared - libs_sh/entities.lua#L1473
+	--- getModelRadius - shared - libs_sh/entities.lua#L1487
 	---@return number undefined Radius of the model
 	function _G.Entity:getModelRadius() end
+	--- getModelBounds - shared - libs_sh/entities.lua#L1470
+	---@return Vector undefined Minimum vector of the bounds
+	---@return Vector undefined Maximum vector of the bounds
+	function _G.Entity:getModelBounds() end
 	--- getPhysMaterial - server - libs_sv/entities.lua#L554
 	---@return string undefined The physical material
 	function _G.Entity:getPhysMaterial() end
-	--- getAngles - shared - libs_sh/entities.lua#L1161
+	--- getAngles - shared - libs_sh/entities.lua#L1175
 	---@return Angle undefined The angle
 	function _G.Entity:getAngles() end
 	--- getBodygroupName - shared - libs_sh/entities.lua#L515
@@ -8786,35 +8793,35 @@ _G.Entity = {}
 	---@param boneid number The physobject id
 	---@return number undefined The ragdoll bone id
 	function _G.Entity:translatePhysBoneToBone(boneid) end
-	--- getModelBounds - shared - libs_sh/entities.lua#L1456
-	---@return Vector undefined Minimum vector of the bounds
-	---@return Vector undefined Maximum vector of the bounds
-	function _G.Entity:getModelBounds() end
+	--- getModel - shared - libs_sh/entities.lua#L1463
+	---@return string undefined Model of the entity
+	function _G.Entity:getModel() end
 	--- getAmount - shared - libs_sh/darkrp2.lua#L869
 	---@return number? undefined Amount of money or number of items
 	function _G.Entity:getAmount() end
-	--- getModel - shared - libs_sh/entities.lua#L1449
-	---@return string undefined Model of the entity
-	function _G.Entity:getModel() end
 	--- getWirelink - server - libs_sv/wire.lua#L594
 	---@return Wirelink undefined Wirelink of the entity
 	function _G.Entity:getWirelink() end
+	--- getFlexWeight - shared - libs_sh/entities.lua#L1403
+	---@param flexid number The id of the flex
+	---@return number undefined The weight of the flex
+	function _G.Entity:getFlexWeight(flexid) end
 	--- canDraw - client - libs_sh/entities.lua#L247
 	---@return boolean undefined Whether the entity can be drawn
 	function _G.Entity:canDraw() end
 	--- breakEnt - server - libs_sv/entities.lua#L427
 	function _G.Entity:breakEnt() end
-	--- getFlexWeight - shared - libs_sh/entities.lua#L1389
-	---@param flexid number The id of the flex
-	---@return number undefined The weight of the flex
-	function _G.Entity:getFlexWeight(flexid) end
-	--- hasFlexManipulations - shared - libs_sh/entities.lua#L1382
+	--- hasFlexManipulations - shared - libs_sh/entities.lua#L1396
 	---@return boolean undefined True if the entity has flex manipulations, false otherwise.
 	function _G.Entity:hasFlexManipulations() end
-	--- getFlexName - shared - libs_sh/entities.lua#L1373
+	--- getFlexName - shared - libs_sh/entities.lua#L1387
 	---@param flexid number The flex id to look up name of.
 	---@return string undefined The flex name
 	function _G.Entity:getFlexName(flexid) end
+	--- getFlexByName - shared - libs_sh/entities.lua#L1378
+	---@param flexname string The name of the flex to get the ID of. Case sensitive.
+	---@return number undefined The ID of the flex based on given name.
+	function _G.Entity:getFlexByName(flexname) end
 	--- setSubMaterial - shared - libs_sh/entities.lua#L435
 	---@param index number Submaterial index.
 	---@param material string New material name.
@@ -8822,21 +8829,21 @@ _G.Entity = {}
 	--- getClipping - shared - libs_sh/entities.lua#L744
 	---@return table undefined Table containing the clipdata
 	function _G.Entity:getClipping() end
-	--- getFlexByName - shared - libs_sh/entities.lua#L1364
-	---@param flexname string The name of the flex to get the ID of. Case sensitive.
-	---@return number undefined The ID of the flex based on given name.
-	function _G.Entity:getFlexByName(flexname) end
-	--- getFlexes - shared - libs_sh/entities.lua#L1353
+	--- getFlexes - shared - libs_sh/entities.lua#L1367
 	---@return table undefined Table of flexes
 	function _G.Entity:getFlexes() end
-	--- getMoveType - shared - libs_sh/entities.lua#L689
-	---@return number undefined The movetype enum of the entity. https://wiki.facepunch.com/gmod/Enums/MOVETYPE
-	function _G.Entity:getMoveType() end
-	--- getPose - shared - libs_sh/entities.lua#L1346
+	--- getPose - shared - libs_sh/entities.lua#L1360
 	---@param pose string Pose parameter name
 	---@return number undefined Value of the pose parameter
 	function _G.Entity:getPose(pose) end
-	--- worldToLocal - shared - libs_sh/entities.lua#L1248
+	--- getMoveType - shared - libs_sh/entities.lua#L689
+	---@return number undefined The movetype enum of the entity. https://wiki.facepunch.com/gmod/Enums/MOVETYPE
+	function _G.Entity:getMoveType() end
+	--- setPose - shared - libs_sh/entities.lua#L1350
+	---@param pose string Name of the pose parameter
+	---@param value number Value to set it to.
+	function _G.Entity:setPose(pose, value) end
+	--- worldToLocal - shared - libs_sh/entities.lua#L1262
 	---@param data Vector World space vector
 	---@return Vector undefined data as local space vector
 	function _G.Entity:worldToLocal(data) end
@@ -8844,17 +8851,16 @@ _G.Entity = {}
 	---@param bone number? Bone index. (def 0)
 	---@return VMatrix undefined The matrix
 	function _G.Entity:getBoneMatrix(bone) end
-	--- setPose - shared - libs_sh/entities.lua#L1336
-	---@param pose string Name of the pose parameter
-	---@param value number Value to set it to.
-	function _G.Entity:setPose(pose, value) end
-	--- sequenceDuration - shared - libs_sh/entities.lua#L1326
+	--- sequenceDuration - shared - libs_sh/entities.lua#L1340
 	---@param id number? (Optional) The id of the sequence, or will default to the currently playing sequence
 	---@return number undefined Length of the animation in seconds
 	function _G.Entity:sequenceDuration(id) end
 	--- isFrozen - server - libs_sv/entities.lua#L634
 	---@return boolean undefined True if entity is frozen
 	function _G.Entity:isFrozen() end
+	--- getSequenceList - shared - libs_sh/entities.lua#L1322
+	---@return table undefined List of animations, starts at index 0 where value is the animation's name
+	function _G.Entity:getSequenceList() end
 	--- setSheetColor - client - libs_sh/entities.lua#L211
 	---@param clr Color RGB color to use, alpha channel not supported
 	function _G.Entity:setSheetColor(clr) end
@@ -8862,41 +8868,42 @@ _G.Entity = {}
 	---@param bone number The bone ID
 	---@param vec Vector The position it should be manipulated to
 	function _G.Entity:manipulateBonePosition(bone, vec) end
-	--- getSequenceList - shared - libs_sh/entities.lua#L1308
-	---@return table undefined List of animations, starts at index 0 where value is the animation's name
-	function _G.Entity:getSequenceList() end
-	--- getSequenceName - shared - libs_sh/entities.lua#L1287
+	--- getSequenceName - shared - libs_sh/entities.lua#L1301
 	---@param id number The id of the animation
 	---@return string undefined The sequence name
 	function _G.Entity:getSequenceName(id) end
-	--- lookupSequence - shared - libs_sh/entities.lua#L1272
+	--- lookupSequence - shared - libs_sh/entities.lua#L1286
 	---@param animation string Name of the animation
 	---@return number undefined Animation index or -1 if invalid
 	function _G.Entity:lookupSequence(animation) end
-	--- removeTrails - server - libs_sv/entities.lua#L796
-	function _G.Entity:removeTrails() end
 	--- setRenderBounds - client - libs_sh/entities.lua#L230
 	---@param mins Vector The lower bounding corner coordinate local to the hologram
 	---@param maxs Vector The upper bounding corner coordinate local to the hologram
 	function _G.Entity:setRenderBounds(mins, maxs) end
-	--- setMaterial - shared - libs_sh/entities.lua#L417
-	---@param material string New material name.
-	function _G.Entity:setMaterial(material) end
-	--- worldToLocalVector - shared - libs_sh/entities.lua#L1256
+	--- removeTrails - server - libs_sv/entities.lua#L796
+	function _G.Entity:removeTrails() end
+	--- worldToLocalVector - shared - libs_sh/entities.lua#L1270
 	---@param data Vector World space direction vector
 	---@return Vector undefined data as local space direction vector
 	function _G.Entity:worldToLocalVector(data) end
+	--- setMaterial - shared - libs_sh/entities.lua#L417
+	---@param material string New material name.
+	function _G.Entity:setMaterial(material) end
+	--- setBoneMatrix - shared - libs_sh/entities.lua#L1015
+	---@param bone number The bone ID
+	---@param matrix VMatrix The matrix to set
+	function _G.Entity:setBoneMatrix(bone, matrix) end
 	--- testPVS - server - libs_sv/entities.lua#L826
 	---@param other Entity|Vector Entity or Vector to test
 	---@return boolean undefined If the Entity/Vector is within the PVS
 	function _G.Entity:testPVS(other) end
-	--- localToWorldAngles - shared - libs_sh/entities.lua#L1240
+	--- localToWorldAngles - shared - libs_sh/entities.lua#L1254
 	---@param data Angle Local space angle
 	---@return Angle undefined data as world space angle
 	function _G.Entity:localToWorldAngles(data) end
 	--- draw - client - libs_sh/entities.lua#L256
 	function _G.Entity:draw() end
-	--- localToWorldVector - shared - libs_sh/entities.lua#L1232
+	--- localToWorldVector - shared - libs_sh/entities.lua#L1246
 	---@param data Vector Local space vector direction
 	---@return Vector undefined data as world space vector direction
 	function _G.Entity:localToWorldVector(data) end
@@ -8909,14 +8916,14 @@ _G.Entity = {}
 	--- setMaxHealth - server - libs_sh/entities.lua#L949
 	---@param newmaxhealth number New max health value.
 	function _G.Entity:setMaxHealth(newmaxhealth) end
-	--- getAngleVelocityAngle - shared - libs_sh/entities.lua#L1214
+	--- getAngleVelocityAngle - shared - libs_sh/entities.lua#L1228
 	---@return Angle undefined The angular velocity as an angle
 	function _G.Entity:getAngleVelocityAngle() end
-	--- worldToLocalAngles - shared - libs_sh/entities.lua#L1264
+	--- worldToLocalAngles - shared - libs_sh/entities.lua#L1278
 	---@param data Angle World space angle
 	---@return Angle undefined data as local space angle
 	function _G.Entity:worldToLocalAngles(data) end
-	--- getLocalVelocity - shared - libs_sh/entities.lua#L1197
+	--- getLocalVelocity - shared - libs_sh/entities.lua#L1211
 	---@return Vector undefined Vector velocity of the physics object local to itself
 	function _G.Entity:getLocalVelocity() end
 	--- setInertia - server - libs_sv/entities.lua#L522
@@ -8926,10 +8933,10 @@ _G.Entity = {}
 	---@param bone number The bone ID
 	---@param enabled boolean Whether to make the bone jiggly or not
 	function _G.Entity:manipulateBoneJiggle(bone, enabled) end
-	--- getMass - shared - libs_sh/entities.lua#L1168
+	--- getMass - shared - libs_sh/entities.lua#L1182
 	---@return number undefined The numerical mass
 	function _G.Entity:getMass() end
-	--- getMassCenter - shared - libs_sh/entities.lua#L1141
+	--- getMassCenter - shared - libs_sh/entities.lua#L1155
 	---@return Vector undefined The position vector of the mass center
 	function _G.Entity:getMassCenter() end
 	--- isWeldedTo - server - libs_sv/entities.lua#L695
@@ -8938,13 +8945,13 @@ _G.Entity = {}
 	--- setCollisionGroup - server - libs_sv/entities.lua#L484
 	---@param group number The COLLISION_GROUP value to set it to
 	function _G.Entity:setCollisionGroup(group) end
-	--- getBoundingRadius - shared - libs_sh/entities.lua#L1793
+	--- getBoundingRadius - shared - libs_sh/entities.lua#L1807
 	---@return number undefined The radius of the bounding box, or 0 for some entities such as worldspawn
 	function _G.Entity:getBoundingRadius() end
-	--- obbCenterW - shared - libs_sh/entities.lua#L1110
+	--- obbCenterW - shared - libs_sh/entities.lua#L1124
 	---@return Vector undefined The position vector of the outer bounding box center
 	function _G.Entity:obbCenterW() end
-	--- getMaterial - shared - libs_sh/entities.lua#L1520
+	--- getMaterial - shared - libs_sh/entities.lua#L1534
 	---@return string undefined String material
 	function _G.Entity:getMaterial() end
 	--- getChipAuthor - shared - libs_sh/entities.lua#L869
@@ -8953,31 +8960,31 @@ _G.Entity = {}
 	--- applyForceCenter - server - libs_sv/entities.lua#L216
 	---@param vec Vector The force vector
 	function _G.Entity:applyForceCenter(vec) end
-	--- getManipulateBoneJiggle - shared - libs_sh/entities.lua#L1068
+	--- getManipulateBoneJiggle - shared - libs_sh/entities.lua#L1082
 	---@param bone number? Bone index. (def 0)
 	---@return number undefined Manipulate jiggle of the bone
 	function _G.Entity:getManipulateBoneJiggle(bone) end
-	--- getManipulateBoneAngles - shared - libs_sh/entities.lua#L1059
+	--- getManipulateBoneAngles - shared - libs_sh/entities.lua#L1073
 	---@param bone number Bone index. (def 0)
 	---@return Angle undefined Manipulate angle of the bone
 	function _G.Entity:getManipulateBoneAngles(bone) end
-	--- getBonePosition - shared - libs_sh/entities.lua#L1047
+	--- getBonePosition - shared - libs_sh/entities.lua#L1061
 	---@param bone number? Bone index. (def 0)
 	---@return Vector undefined Position of the bone
 	---@return Angle undefined Angle of the bone
 	function _G.Entity:getBonePosition(bone) end
-	--- getBoneParent - shared - libs_sh/entities.lua#L1038
+	--- getBoneParent - shared - libs_sh/entities.lua#L1052
 	---@param bone number? Bone index. (def 0)
 	---@return number undefined Parent index of the bone. Returns -1 on error
 	function _G.Entity:getBoneParent(bone) end
-	--- getBoneName - shared - libs_sh/entities.lua#L1029
+	--- getBoneName - shared - libs_sh/entities.lua#L1043
 	---@param bone number? Bone index. (def 0)
 	---@return string undefined Name of the bone
 	function _G.Entity:getBoneName(bone) end
 	--- setFrozen - server - libs_sv/entities.lua#L628
 	---@param freeze boolean Should the entity be frozen?
 	function _G.Entity:setFrozen(freeze) end
-	--- getMatrix - shared - libs_sh/entities.lua#L1015
+	--- getMatrix - shared - libs_sh/entities.lua#L1029
 	---@return VMatrix undefined The matrix
 	function _G.Entity:getMatrix() end
 	--- getQuaternion - shared - libs_sh/quaternion.lua#L835
@@ -8992,7 +8999,7 @@ _G.Entity = {}
 	--- getChipName - shared - libs_sh/entities.lua#L858
 	---@return string undefined The name of the chip
 	function _G.Entity:getChipName() end
-	--- isSequenceFinished - shared - libs_sh/entities.lua#L1320
+	--- isSequenceFinished - shared - libs_sh/entities.lua#L1334
 	---@return boolean undefined True if the animation is currently playing, False otherwise
 	function _G.Entity:isSequenceFinished() end
 	--- getWaterLevel - shared - libs_sh/entities.lua#L989
@@ -9035,7 +9042,7 @@ _G.Entity = {}
 	--- setHealth - server - libs_sh/entities.lua#L939
 	---@param newhealth number New health value.
 	function _G.Entity:setHealth(newhealth) end
-	--- worldSpaceAABB - shared - libs_sh/entities.lua#L1132
+	--- worldSpaceAABB - shared - libs_sh/entities.lua#L1146
 	---@return Vector undefined The min bounding box vector
 	---@return Vector undefined The max bounding box vector
 	function _G.Entity:worldSpaceAABB() end
@@ -9056,7 +9063,7 @@ _G.Entity = {}
 	---@param volume number Default 1
 	---@param channel number Default CHAN_AUTO or CHAN_WEAPON for weapons
 	function _G.Entity:emitSound(snd, soundLevel, pitchPercent, volume, channel) end
-	--- obbSize - shared - libs_sh/entities.lua#L1095
+	--- obbSize - shared - libs_sh/entities.lua#L1109
 	---@return Vector undefined The outer bounding box size
 	function _G.Entity:obbSize() end
 	--- getAttachment - shared - libs_sh/entities.lua#L646
@@ -9070,7 +9077,7 @@ _G.Entity = {}
 	--- getParent - shared - libs_sh/entities.lua#L617
 	---@return Entity? undefined Entity's parent or nil if not parented
 	function _G.Entity:getParent() end
-	--- getManipulateBoneScale - shared - libs_sh/entities.lua#L1086
+	--- getManipulateBoneScale - shared - libs_sh/entities.lua#L1100
 	---@param bone number Bone index. (def 0)
 	---@return Vector undefined Manipulate scale of the bone
 	function _G.Entity:getManipulateBoneScale(bone) end
@@ -9095,7 +9102,7 @@ _G.Entity = {}
 	--- entIndex - shared - libs_sh/entities.lua#L968
 	---@return number undefined The numerical index of the entity
 	function _G.Entity:entIndex() end
-	--- setFlexWeight - shared - libs_sh/entities.lua#L1405
+	--- setFlexWeight - shared - libs_sh/entities.lua#L1419
 	---@param flexid number The id of the flex
 	---@param weight number The weight of the flex
 	function _G.Entity:setFlexWeight(flexid, weight) end
@@ -9131,7 +9138,7 @@ _G.Entity = {}
 	---@param bone number The bone ID
 	---@param ang Angle The angle it should be manipulated to
 	function _G.Entity:manipulateBoneAngles(bone, ang) end
-	--- getAngleVelocity - shared - libs_sh/entities.lua#L1205
+	--- getAngleVelocity - shared - libs_sh/entities.lua#L1219
 	---@return Vector undefined The angular velocity as a vector
 	function _G.Entity:getAngleVelocity() end
 	--- getQuotaAverage - shared - libs_sh/entities.lua#L891
@@ -9178,7 +9185,7 @@ _G.Entity = {}
 	--- isPlayer - shared - libs_sh/entities.lua#L816
 	---@return boolean undefined True if player, false if not
 	function _G.Entity:isPlayer() end
-	--- getSubMaterial - shared - libs_sh/entities.lua#L1528
+	--- getSubMaterial - shared - libs_sh/entities.lua#L1542
 	---@param index number Number index of the sub material
 	---@return string undefined String material
 	function _G.Entity:getSubMaterial(index) end

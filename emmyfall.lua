@@ -3317,7 +3317,7 @@ _G["CLIENT"] = nil
 	function _G.getUserdata() end
 	--- require - shared - libs_sh/builtins.lua#L734
 	---@param path string The file path to include. Make sure to --@include it
-	---@return ... undefined Return value(s) of the script
+	---@return any undefined Return value of the script
 	function _G.require(path) end
 	--- eyeAngles - client - libs_sh/builtins.lua#L669
 	---@return Angle undefined The local player's camera angles

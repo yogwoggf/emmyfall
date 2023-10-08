@@ -1378,7 +1378,7 @@ _G.math = {}
 	---@param tinc number 
 	---@return number undefined Number value
 	function _G.math.calcBSplineN(i, k, t, tinc) end
-	--- slerpQuaternion - shared - libs_sh/quaternion.lua#L842
+	--- slerpQuaternion - shared - libs_sh/quaternion.lua#L848
 	---@param quat1 Quaternion Quaternion to start with
 	---@param quat2 Quaternion Quaternion to end with
 	---@param t number Ratio, 0 = quat1; 1 = quat2
@@ -1524,7 +1524,7 @@ _G.math = {}
 	---@param base number? Optional logarithmic base. Default 'e'
 	---@return number undefined Logarithm of x to the given base
 	function _G.math.log(x, base) end
-	--- nlerpQuaternion - shared - libs_sh/quaternion.lua#L870
+	--- nlerpQuaternion - shared - libs_sh/quaternion.lua#L876
 	---@param quat1 Quaternion Quaternion to start with
 	---@param quat2 Quaternion Quaternion to end with
 	---@param t number Ratio, 0 = quat1; 1 = quat2
@@ -6965,7 +6965,7 @@ _G.Vector = {}
 	---@param t number Tolerance number.
 	---@return boolean undefined Whether the vector is equal to v within the tolerance.
 	function _G.Vector:isEqualTol(v, t) end
-	--- getQuaternion - shared - libs_sh/quaternion.lua#L775
+	--- getQuaternion - shared - libs_sh/quaternion.lua#L781
 	---@param up Vector Upward direction. If specified, the original vector will act like a forward pointing one
 	---@return Quaternion undefined Quaternion from the given vector
 	function _G.Vector:getQuaternion(up) end
@@ -6975,7 +6975,7 @@ _G.Vector = {}
 	--- round - shared - libs_sh/vectors.lua#L441
 	---@param idp number (Default 0) The integer decimal place to round to.
 	function _G.Vector:round(idp) end
-	--- getQuaternionFromRotation - shared - libs_sh/quaternion.lua#L813
+	--- getQuaternionFromRotation - shared - libs_sh/quaternion.lua#L819
 	---@return Quaternion undefined Rotated quaternion
 	function _G.Vector:getQuaternionFromRotation() end
 	--- withinAABox - shared - libs_sh/vectors.lua#L477
@@ -7003,7 +7003,7 @@ _G.Vector = {}
 	--- getNormalized - shared - libs_sh/vectors.lua#L235
 	---@return Vector undefined Normalized vector
 	function _G.Vector:getNormalized() end
-	--- getQuaternionFromAxis - shared - libs_sh/quaternion.lua#L802
+	--- getQuaternionFromAxis - shared - libs_sh/quaternion.lua#L808
 	---@param ang number Number rotation angle
 	---@return Quaternion undefined Rotated quaternion
 	function _G.Vector:getQuaternionFromAxis(ang) end
@@ -7563,17 +7563,17 @@ _G.File = {}
 ---@operator sub(Quaternion|number):Quaternion
 ---@operator unm:Quaternion
 ---@operator pow(Quaternion|number):Quaternion
----@operator div(Quaternion|number):Quaternion
 ---@operator index(number|string):number
 ---@operator add(Quaternion|number):Quaternion
----@operator tostring(Quaternion):string
 ---@operator eq(Quaternion):boolean
+---@operator tostring(Quaternion):string
+---@operator div(Quaternion|number):Quaternion
 _G.Quaternion = {}
-	--- getMatrix - shared - libs_sh/quaternion.lua#L662
+	--- getMatrix - shared - libs_sh/quaternion.lua#L668
 	---@param Optional boolean? bool, normalizes the quaternion
 	---@return VMatrix undefined Transformation matrix
 	function _G.Quaternion:getMatrix(Optional) end
-	--- getMod - shared - libs_sh/quaternion.lua#L618
+	--- getMod - shared - libs_sh/quaternion.lua#L624
 	---@return Quaternion undefined Quaternion with contained rotation
 	function _G.Quaternion:getMod() end
 	--- getForward - shared - libs_sh/quaternion.lua#L570
@@ -7585,10 +7585,10 @@ _G.Quaternion = {}
 	--- getRight - shared - libs_sh/quaternion.lua#L558
 	---@return Vector undefined Vector pointing right
 	function _G.Quaternion:getRight() end
-	--- getRotationVector - shared - libs_sh/quaternion.lua#L753
+	--- getRotationVector - shared - libs_sh/quaternion.lua#L759
 	---@return Vector undefined Rotation vector
 	function _G.Quaternion:getRotationVector() end
-	--- conjugate - shared - libs_sh/quaternion.lua#L598
+	--- conjugate - shared - libs_sh/quaternion.lua#L604
 	function _G.Quaternion:conjugate() end
 	--- getExp - shared - libs_sh/quaternion.lua#L516
 	---@return Quaternion undefined Constant e raised to the quaternion
@@ -7599,7 +7599,7 @@ _G.Quaternion = {}
 	---@param j number J component
 	---@param k number K component
 	function _G.Quaternion:pack(r, i, j, k) end
-	--- getNormalized - shared - libs_sh/quaternion.lua#L632
+	--- getNormalized - shared - libs_sh/quaternion.lua#L638
 	---@return Quaternion undefined Normalized quaternion
 	function _G.Quaternion:getNormalized() end
 	--- setK - shared - libs_sh/quaternion.lua#L506
@@ -7612,27 +7612,33 @@ _G.Quaternion = {}
 	---@param r number Value of the R component
 	---@return Quaternion undefined self
 	function _G.Quaternion:setR(r) end
-	--- mod - shared - libs_sh/quaternion.lua#L626
-	function _G.Quaternion:mod() end
-	--- getRotationAngle - shared - libs_sh/quaternion.lua#L717
+	--- getRotationAngle - shared - libs_sh/quaternion.lua#L723
 	---@param full boolean? Optional bool, if true returned angle will be between -180 and 180, otherwise between 0 and 360
 	---@return number undefined Angle number
 	function _G.Quaternion:getRotationAngle(full) end
-	--- getEulerAngle - shared - libs_sh/quaternion.lua#L686
+	--- mod - shared - libs_sh/quaternion.lua#L632
+	function _G.Quaternion:mod() end
+	--- getEulerAngle - shared - libs_sh/quaternion.lua#L692
 	---@return Angle undefined Angle object
 	function _G.Quaternion:getEulerAngle() end
+	--- getVector - shared - libs_sh/quaternion.lua#L661
+	---@return Vector undefined Vector from the quaternion
+	function _G.Quaternion:getVector() end
 	--- setI - shared - libs_sh/quaternion.lua#L490
 	---@param i number Value of the I component
 	---@return Quaternion undefined self
 	function _G.Quaternion:setI(i) end
-	--- getVector - shared - libs_sh/quaternion.lua#L655
-	---@return Vector undefined Vector from the quaternion
-	function _G.Quaternion:getVector() end
-	--- dot - shared - libs_sh/quaternion.lua#L646
+	--- getNormSqr - shared - libs_sh/quaternion.lua#L590
+	---@return number undefined squared norm/absolute value
+	function _G.Quaternion:getNormSqr() end
+	--- getNorm - shared - libs_sh/quaternion.lua#L584
+	---@return number undefined norm value
+	function _G.Quaternion:getNorm() end
+	--- dot - shared - libs_sh/quaternion.lua#L652
 	---@param quat Quaternion Second quaternion
 	---@return number undefined The dot product
 	function _G.Quaternion:dot(quat) end
-	--- normalize - shared - libs_sh/quaternion.lua#L640
+	--- normalize - shared - libs_sh/quaternion.lua#L646
 	function _G.Quaternion:normalize() end
 	--- setJ - shared - libs_sh/quaternion.lua#L498
 	---@param j number Value of the J component
@@ -7641,17 +7647,16 @@ _G.Quaternion = {}
 	--- clone - shared - libs_sh/quaternion.lua#L469
 	---@return Quaternion undefined Duplicate quaternion
 	function _G.Quaternion:clone() end
-	--- getRotationAxis - shared - libs_sh/quaternion.lua#L740
+	--- getRotationAxis - shared - libs_sh/quaternion.lua#L746
 	---@return Vector undefined Vector axis
 	function _G.Quaternion:getRotationAxis() end
 	--- getLog - shared - libs_sh/quaternion.lua#L530
 	---@return Quaternion undefined Logarithmic quaternion
 	function _G.Quaternion:getLog() end
-	--- inverse - shared - libs_sh/quaternion.lua#L612
+	--- exp - shared - libs_sh/quaternion.lua#L524
+	function _G.Quaternion:exp() end
+	--- inverse - shared - libs_sh/quaternion.lua#L618
 	function _G.Quaternion:inverse() end
-	--- getAbsolute - shared - libs_sh/quaternion.lua#L584
-	---@return Vector undefined Absolute value
-	function _G.Quaternion:getAbsolute() end
 	--- getUp - shared - libs_sh/quaternion.lua#L546
 	---@return Vector undefined Vector pointing up
 	function _G.Quaternion:getUp() end
@@ -7661,12 +7666,10 @@ _G.Quaternion = {}
 	---@return number undefined j
 	---@return number undefined k
 	function _G.Quaternion:unpack() end
-	--- exp - shared - libs_sh/quaternion.lua#L524
-	function _G.Quaternion:exp() end
-	--- getInverse - shared - libs_sh/quaternion.lua#L604
+	--- getInverse - shared - libs_sh/quaternion.lua#L610
 	---@return Quaternion undefined Inverse of the quaternion
 	function _G.Quaternion:getInverse() end
-	--- getConjugate - shared - libs_sh/quaternion.lua#L590
+	--- getConjugate - shared - libs_sh/quaternion.lua#L596
 	---@return Quaternion undefined Quaternion's conjugate
 	function _G.Quaternion:getConjugate() end
 ---  Effect type
@@ -7896,7 +7899,7 @@ _G.Particle = {}
 _G.Angle = {}
 	--- setZero - shared - libs_sh/angles.lua#L221
 	function _G.Angle:setZero() end
-	--- getQuaternion - shared - libs_sh/quaternion.lua#L829
+	--- getQuaternion - shared - libs_sh/quaternion.lua#L835
 	---@return Quaternion undefined Constructed quaternion
 	function _G.Angle:getQuaternion() end
 	--- round - shared - libs_sh/angles.lua#L197
@@ -8629,7 +8632,7 @@ _G.Entity = {}
 	--- getMatrix - shared - libs_sh/entities.lua#L1029
 	---@return VMatrix undefined The matrix
 	function _G.Entity:getMatrix() end
-	--- getQuaternion - shared - libs_sh/quaternion.lua#L835
+	--- getQuaternion - shared - libs_sh/quaternion.lua#L841
 	---@return Quaternion undefined Constructed quaternion
 	function _G.Entity:getQuaternion() end
 	--- getPos - shared - libs_sh/entities.lua#L982

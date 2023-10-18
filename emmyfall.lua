@@ -7683,103 +7683,103 @@ _G.Quaternion = {}
 ---  Effect type
 ---@class Effect
 _G.Effect = {}
-	--- setAttachment - shared - libs_sh/effect.lua#L178
+	--- setAttachment - shared - libs_sh/effect.lua#L180
 	---@param attachment number The new attachment ID of the effect
 	function _G.Effect:setAttachment(attachment) end
-	--- setRadius - shared - libs_sh/effect.lua#L253
+	--- setRadius - shared - libs_sh/effect.lua#L255
 	---@param radius number The radius
 	function _G.Effect:setRadius(radius) end
-	--- getAttachment - shared - libs_sh/effect.lua#L82
+	--- getAttachment - shared - libs_sh/effect.lua#L84
 	---@return number undefined The effect's attachment ID
 	function _G.Effect:getAttachment() end
-	--- getRadius - shared - libs_sh/effect.lua#L148
+	--- getRadius - shared - libs_sh/effect.lua#L150
 	---@return number undefined The effect's radius
 	function _G.Effect:getRadius() end
-	--- getScale - shared - libs_sh/effect.lua#L154
+	--- getScale - shared - libs_sh/effect.lua#L156
 	---@return number undefined The effect's scale
 	function _G.Effect:getScale() end
-	--- getSurfaceProp - shared - libs_sh/effect.lua#L166
+	--- getSurfaceProp - shared - libs_sh/effect.lua#L168
 	---@return number undefined The effect's surface property index
 	function _G.Effect:getSurfaceProp() end
-	--- getMaterialIndex - shared - libs_sh/effect.lua#L130
+	--- getMaterialIndex - shared - libs_sh/effect.lua#L132
 	---@return number undefined The effect's material index
 	function _G.Effect:getMaterialIndex() end
-	--- setColor - shared - libs_sh/effect.lua#L185
+	--- setColor - shared - libs_sh/effect.lua#L187
 	---@param color number The color represented by a byte 0-255.
 	function _G.Effect:setColor(color) end
-	--- setOrigin - shared - libs_sh/effect.lua#L247
+	--- setOrigin - shared - libs_sh/effect.lua#L249
 	---@param origin Vector The vector origin
 	function _G.Effect:setOrigin(origin) end
-	--- setMaterialIndex - shared - libs_sh/effect.lua#L234
+	--- setMaterialIndex - shared - libs_sh/effect.lua#L236
 	---@param mat number The material index
 	function _G.Effect:setMaterialIndex(mat) end
-	--- setSurfaceProp - shared - libs_sh/effect.lua#L274
+	--- setSurfaceProp - shared - libs_sh/effect.lua#L276
 	---@param prop number The surface property index
 	function _G.Effect:setSurfaceProp(prop) end
-	--- getStart - shared - libs_sh/effect.lua#L160
+	--- getStart - shared - libs_sh/effect.lua#L162
 	---@return Vector undefined The effect's start position
 	function _G.Effect:getStart() end
-	--- setHitBox - shared - libs_sh/effect.lua#L220
+	--- setHitBox - shared - libs_sh/effect.lua#L222
 	---@param hitbox number The hitbox
 	function _G.Effect:setHitBox(hitbox) end
-	--- setNormal - shared - libs_sh/effect.lua#L241
+	--- setNormal - shared - libs_sh/effect.lua#L243
 	---@param normal Vector The vector normal
 	function _G.Effect:setNormal(normal) end
-	--- getColor - shared - libs_sh/effect.lua#L88
+	--- getColor - shared - libs_sh/effect.lua#L90
 	---@return number undefined The effect's color as a byte
 	function _G.Effect:getColor() end
-	--- getOrigin - shared - libs_sh/effect.lua#L142
+	--- getOrigin - shared - libs_sh/effect.lua#L144
 	---@return Vector undefined The effect's origin
 	function _G.Effect:getOrigin() end
-	--- setEntIndex - shared - libs_sh/effect.lua#L200
+	--- setEntIndex - shared - libs_sh/effect.lua#L202
 	---@param index number The entity index
 	function _G.Effect:setEntIndex(index) end
-	--- setStart - shared - libs_sh/effect.lua#L267
+	--- setStart - shared - libs_sh/effect.lua#L269
 	---@param start Vector The vector start
 	function _G.Effect:setStart(start) end
 	--- play - shared - libs_sh/effect.lua#L63
 	---@param eff string The effect type name to play
 	function _G.Effect:play(eff) end
-	--- setMagnitude - shared - libs_sh/effect.lua#L227
+	--- setMagnitude - shared - libs_sh/effect.lua#L229
 	---@param magnitude number The magnitude
 	function _G.Effect:setMagnitude(magnitude) end
-	--- setAngles - shared - libs_sh/effect.lua#L172
+	--- setAngles - shared - libs_sh/effect.lua#L174
 	---@param ang Angle The angles
 	function _G.Effect:setAngles(ang) end
-	--- getEntity - shared - libs_sh/effect.lua#L106
+	--- getEntity - shared - libs_sh/effect.lua#L108
 	---@return Entity undefined The effect's entity
 	function _G.Effect:getEntity() end
-	--- getAngles - shared - libs_sh/effect.lua#L76
+	--- getAngles - shared - libs_sh/effect.lua#L78
 	---@return Angle undefined The effect's angle
 	function _G.Effect:getAngles() end
-	--- getHitBox - shared - libs_sh/effect.lua#L118
+	--- getHitBox - shared - libs_sh/effect.lua#L120
 	---@return number undefined The effect's hitbox ID
 	function _G.Effect:getHitBox() end
-	--- setDamageType - shared - libs_sh/effect.lua#L193
+	--- setDamageType - shared - libs_sh/effect.lua#L195
 	---@param dmgtype number The damage type, see the DMG enums
 	function _G.Effect:setDamageType(dmgtype) end
-	--- getNormal - shared - libs_sh/effect.lua#L136
+	--- getNormal - shared - libs_sh/effect.lua#L138
 	---@return Vector undefined The effect's normal
 	function _G.Effect:getNormal() end
-	--- getDamageType - shared - libs_sh/effect.lua#L94
+	--- getDamageType - shared - libs_sh/effect.lua#L96
 	---@return number undefined The effect's damagetype
 	function _G.Effect:getDamageType() end
-	--- getFlags - shared - libs_sh/effect.lua#L112
+	--- getFlags - shared - libs_sh/effect.lua#L114
 	---@return number undefined The effect's flags
 	function _G.Effect:getFlags() end
-	--- setFlags - shared - libs_sh/effect.lua#L213
+	--- setFlags - shared - libs_sh/effect.lua#L215
 	---@param flags number The flags
 	function _G.Effect:setFlags(flags) end
-	--- getMagnitude - shared - libs_sh/effect.lua#L124
+	--- getMagnitude - shared - libs_sh/effect.lua#L126
 	---@return number undefined The effect's magnitude
 	function _G.Effect:getMagnitude() end
-	--- setEntity - shared - libs_sh/effect.lua#L207
+	--- setEntity - shared - libs_sh/effect.lua#L209
 	---@param ent Entity The entity
 	function _G.Effect:setEntity(ent) end
-	--- getEntIndex - shared - libs_sh/effect.lua#L100
+	--- getEntIndex - shared - libs_sh/effect.lua#L102
 	---@return number undefined The effect's entindex
 	function _G.Effect:getEntIndex() end
-	--- setScale - shared - libs_sh/effect.lua#L260
+	--- setScale - shared - libs_sh/effect.lua#L262
 	---@param scale number The number scale
 	function _G.Effect:setScale(scale) end
 ---  Weapon type

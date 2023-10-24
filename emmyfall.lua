@@ -3771,7 +3771,7 @@ _G["SERVER"] = nil
 ---  Constant that denotes whether the code is executed on the client
 ---@type any
 _G["CLIENT"] = nil
-	--- localToWorld - shared - libs_sh/builtins.lua#L1144
+	--- localToWorld - shared - libs_sh/builtins.lua#L1155
 	---@param localPos Vector The position vector that should be translated to world coordinates
 	---@param localAng Angle The angle that should be converted to a world angle
 	---@param originPos Vector The origin point of the source coordinate system, in world coordinates
@@ -3782,7 +3782,7 @@ _G["CLIENT"] = nil
 	--- version - shared - libs_sh/builtins.lua#L263
 	---@return string undefined Starfall version
 	function _G.version() end
-	--- assert - shared - libs_sh/builtins.lua#L1105
+	--- assert - shared - libs_sh/builtins.lua#L1116
 	---@param expression any Anything that will be evaluated to be true or false
 	---@param msg string? Error message. Default "assertion failed!"
 	---@param args ... Any arguments to return if the assertion is successful
@@ -3799,7 +3799,7 @@ _G["CLIENT"] = nil
 	---@param obj any Object to turn into a number
 	---@return number? undefined The object as a number or nil if it couldn't be converted
 	function _G.tonumber(obj) end
-	--- throw - shared - libs_sh/builtins.lua#L1088
+	--- throw - shared - libs_sh/builtins.lua#L1099
 	---@param msg string Message string
 	---@param level number? Which level in the stacktrace to blame. Defaults to 1
 	---@param uncatchable boolean? Makes this exception uncatchable
@@ -3834,22 +3834,22 @@ _G["CLIENT"] = nil
 	--- print - shared - libs_sh/builtins.lua#L525
 	---@param printArgs ... Values to print. Colors before text will set the text color
 	function _G.print(printArgs) end
-	--- pcall - shared - libs_sh/builtins.lua#L1010
+	--- pcall - shared - libs_sh/builtins.lua#L1021
 	---@param func function Function to be executed and of which the errors should be caught of
 	---@param arguments ... Arguments to call the function with.
 	---@return boolean undefined If the function had no errors occur within it.
 	---@return ... undefined If an error occurred, this will be a string containing the error message. Otherwise, this will be the return values of the function passed in.
 	function _G.pcall(func, arguments) end
-	--- getScript - shared - libs_sh/builtins.lua#L691
+	--- getScript - shared - libs_sh/builtins.lua#L702
 	---@param path string Path of file. Can be absolute or relative to calling file. Must be '--@include'-ed.
 	---@return string? undefined Source code, or nil if could not be found
 	---@return function? undefined Compiled function, or nil if could not be found
 	function _G.getScript(path) end
-	--- isValid - shared - libs_sh/builtins.lua#L1113
+	--- isValid - shared - libs_sh/builtins.lua#L1124
 	---@param object any Table to check
 	---@return boolean undefined If it is valid
 	function _G.isValid(object) end
-	--- getScripts - shared - libs_sh/builtins.lua#L704
+	--- getScripts - shared - libs_sh/builtins.lua#L715
 	---@param ent Entity? Optional target entity. Default: chip()
 	---@return table undefined Table where keys are paths and values are strings
 	---@return table? undefined Table where keys are paths and values are functions, or nil if another chip was specified
@@ -3868,19 +3868,22 @@ _G["CLIENT"] = nil
 	--- setUserdata - server - libs_sh/builtins.lua#L581
 	---@param str string String data
 	function _G.setUserdata(str) end
-	--- setClipboardText - client - libs_sh/builtins.lua#L611
+	--- setClipboardText - client - libs_sh/builtins.lua#L622
 	---@param txt string Text to set to the clipboard
 	function _G.setClipboardText(txt) end
 	--- cpuAverage - shared - libs_sh/builtins.lua#L239
 	---@return number undefined Average CPU Time of the buffer.
 	function _G.cpuAverage() end
+	--- setAuthor - client - libs_sh/builtins.lua#L611
+	---@param author string Author to set the chip's author to
+	function _G.setAuthor(author) end
 	--- next - shared - libs_sh/builtins.lua#L137
 	---@param tbl table Table to get the next key-value pair of
 	---@param k any Previous key (can be nil)
 	---@return any undefined Key or nil
 	---@return any undefined Value or nil
 	function _G.next(tbl, k) end
-	--- requiredir - shared - libs_sh/builtins.lua#L750
+	--- requiredir - shared - libs_sh/builtins.lua#L761
 	---@param path string The directory to include. Make sure to --@includedir it
 	---@param loadpriority table Table of files that should be loaded before any others in the directory
 	---@return table undefined Table of return values of the scripts
@@ -3894,7 +3897,7 @@ _G["CLIENT"] = nil
 	---@param obj any Object to get type of
 	---@return string undefined The name of the object's type.
 	function _G.type(obj) end
-	--- eyePos - client - libs_sh/builtins.lua#L676
+	--- eyePos - client - libs_sh/builtins.lua#L687
 	---@return Vector undefined The local player's camera position
 	function _G.eyePos() end
 	--- isnumber - shared - libs_sh/builtins.lua#L163
@@ -3909,13 +3912,13 @@ _G["CLIENT"] = nil
 	--- permissionRequestSatisfied - client - libs_sh/builtins.lua#L357
 	---@return boolean undefined Whether the client gave all permissions specified in last request or not.
 	function _G.permissionRequestSatisfied() end
-	--- shareScripts - shared - libs_sh/builtins.lua#L728
+	--- shareScripts - shared - libs_sh/builtins.lua#L739
 	---@param enable boolean If true, allow sharing scripts
 	function _G.shareScripts(enable) end
 	--- ramAverage - shared - libs_sh/builtins.lua#L251
 	---@return number undefined The ram used in kilobytes
 	function _G.ramAverage() end
-	--- xpcall - shared - libs_sh/builtins.lua#L1039
+	--- xpcall - shared - libs_sh/builtins.lua#L1050
 	---@param func function The function to call initially.
 	---@param callback function The function to be called if execution of the first fails; the error message and stack trace are passed.
 	---@param passArgs ... Varargs to pass to the initial function.
@@ -3933,18 +3936,18 @@ _G["CLIENT"] = nil
 	---@param path string? Optional path of the websocket.
 	---@return WebSocket undefined The websocket object. Use WebSocket:connect() to connect.
 	function _G.WebSocket(domain, port, secure, path) end
-	--- class - shared - libs_sh/builtins.lua#L1183
+	--- class - shared - libs_sh/builtins.lua#L1194
 	---@param name string The string name of the class
 	---@param super table? The (optional) parent class to inherit from
 	function _G.class(name, super) end
-	--- enableHud - shared - libs_sh/builtins.lua#L1163
+	--- enableHud - shared - libs_sh/builtins.lua#L1174
 	---@param ply Player The player to enable the hud on. If CLIENT, will be forced to player()
 	---@param active boolean Whether hud hooks should be active. true to force on, false to force off.
 	function _G.enableHud(ply, active) end
 	--- chip - shared - libs_sh/builtins.lua#L54
 	---@return Entity undefined Starfall chip entity
 	function _G.chip() end
-	--- worldToLocal - shared - libs_sh/builtins.lua#L1125
+	--- worldToLocal - shared - libs_sh/builtins.lua#L1136
 	---@param pos Vector The position that should be translated from the current to the new system
 	---@param ang Angle The angles that should be translated from the current to the new system
 	---@param newSystemOrigin Vector The origin of the system to translate to
@@ -3952,16 +3955,16 @@ _G["CLIENT"] = nil
 	---@return Vector undefined localPos
 	---@return Angle undefined localAngles
 	function _G.worldToLocal(pos, ang, newSystemOrigin, newSystemAngles) end
-	--- dodir - shared - libs_sh/builtins.lua#L809
+	--- dodir - shared - libs_sh/builtins.lua#L820
 	---@param path string The directory to include. Make sure to --@includedir it
 	---@param loadpriority table Table of files that should be loaded before any others in the directory
 	---@return table undefined Table of return values of the scripts
 	function _G.dodir(path, loadpriority) end
-	--- error - shared - libs_sh/builtins.lua#L1096
+	--- error - shared - libs_sh/builtins.lua#L1107
 	---@param msg string Message string
 	---@param level number? Which level in the stacktrace to blame. Defaults to 1. 0 for no stacktrace.
 	function _G.error(msg, level) end
-	--- try - shared - libs_sh/builtins.lua#L1067
+	--- try - shared - libs_sh/builtins.lua#L1078
 	---@param func function Function to execute
 	---@param catch function? Optional function to execute in case func fails
 	function _G.try(func, catch) end
@@ -3972,14 +3975,14 @@ _G["CLIENT"] = nil
 	---@param a number Alpha
 	---@return Color undefined New color
 	function _G.Color(r, g, b, a) end
-	--- loadstring - shared - libs_sh/builtins.lua#L858
+	--- loadstring - shared - libs_sh/builtins.lua#L869
 	---@param code string String to compile
 	---@param identifier string? Name of compiled function
 	---@param env table? Environment of compiled function
 	---@return function? undefined Compiled function, or nil if failed to compile
 	---@return string? undefined Error string, or nil if successfully compiled
 	function _G.loadstring(code, identifier, env) end
-	--- getMethods - shared - libs_sh/builtins.lua#L930
+	--- getMethods - shared - libs_sh/builtins.lua#L941
 	---@param sfType string Name of SF type
 	---@return table undefined Table of the type's methods which can be edited or iterated
 	function _G.getMethods(sfType) end
@@ -3992,14 +3995,14 @@ _G["CLIENT"] = nil
 	--- concmd - shared - libs_sh/builtins.lua#L570
 	---@param cmd string Command to execute
 	function _G.concmd(cmd) end
-	--- getfenv - shared - libs_sh/builtins.lua#L911
+	--- getfenv - shared - libs_sh/builtins.lua#L922
 	---@param funcOrStackLevel function|number Function or stack level to get the environment of
 	---@return table? undefined Environment table (or nil, if restricted)
 	function _G.getfenv(funcOrStackLevel) end
-	--- eyeVector - client - libs_sh/builtins.lua#L683
+	--- eyeVector - client - libs_sh/builtins.lua#L694
 	---@return Vector undefined The local player's camera forward vector
 	function _G.eyeVector() end
-	--- setfenv - shared - libs_sh/builtins.lua#L890
+	--- setfenv - shared - libs_sh/builtins.lua#L901
 	---@param funcOrStackLevel function|number Function or stack level to set the environment of
 	---@param tbl table New environment
 	---@return function undefined Function with environment set to tbl
@@ -4032,13 +4035,13 @@ _G["CLIENT"] = nil
 	--- cpuMax - shared - libs_sh/builtins.lua#L293
 	---@return number undefined Max SysTime allowed to take for execution of the chip in a Think.
 	function _G.cpuMax() end
-	--- dofile - shared - libs_sh/builtins.lua#L794
+	--- dofile - shared - libs_sh/builtins.lua#L805
 	---@param path string The file path to include. Make sure to --@include it
 	---@return ... undefined Return value(s) of the script
 	function _G.dofile(path) end
-	--- setSoftQuota - shared - libs_sh/builtins.lua#L300
-	---@param quota number The threshold where the soft error will be thrown. Ratio of current cpu to the max cpu usage. 0.5 is 50%
-	function _G.setSoftQuota(quota) end
+	--- printConsole - shared - libs_sh/builtins.lua#L534
+	---@param printArgs ... Values to print. Colors before text will set the text color
+	function _G.printConsole(printArgs) end
 	--- printTable - shared - libs_sh/builtins.lua#L563
 	---@param tbl table Table to print
 	function _G.printTable(tbl) end
@@ -4071,19 +4074,19 @@ _G["CLIENT"] = nil
 	---@param num number Entity index
 	---@return Entity undefined Entity at the index
 	function _G.entity(num) end
-	--- setupPermissionRequest - client - libs_sh/builtins.lua#L324
-	---@param perms table Table of overridable permissions' names.
-	---@param desc string Description attached to request.
-	---@param showOnUse boolean Whether request will popup when player uses chip or linked screen.
-	function _G.setupPermissionRequest(perms, desc, showOnUse) end
-	--- cpuTotalAverage - shared - libs_sh/builtins.lua#L283
-	---@return number undefined Total average CPU Time of all your chips.
-	function _G.cpuTotalAverage() end
 	--- hasPermission - shared - libs_sh/builtins.lua#L307
 	---@param perm string The permission id to check
 	---@param obj any Optional object to pass to the permission system.
 	---@return boolean undefined Whether the client has granted the specified permission.
 	function _G.hasPermission(perm, obj) end
+	--- cpuTotalAverage - shared - libs_sh/builtins.lua#L283
+	---@return number undefined Total average CPU Time of all your chips.
+	function _G.cpuTotalAverage() end
+	--- setupPermissionRequest - client - libs_sh/builtins.lua#L324
+	---@param perms table Table of overridable permissions' names.
+	---@param desc string Description attached to request.
+	---@param showOnUse boolean Whether request will popup when player uses chip or linked screen.
+	function _G.setupPermissionRequest(perms, desc, showOnUse) end
 	--- cpuTotalUsed - shared - libs_sh/builtins.lua#L273
 	---@return number undefined Total used CPU time of all your chips.
 	function _G.cpuTotalUsed() end
@@ -4097,20 +4100,20 @@ _G["CLIENT"] = nil
 	---@param vararg ... Args to select from
 	---@return any undefined Returns a number or vararg, depending on the select method.
 	function _G.select(parameter, vararg) end
-	--- printConsole - shared - libs_sh/builtins.lua#L534
-	---@param printArgs ... Values to print. Colors before text will set the text color
-	function _G.printConsole(printArgs) end
+	--- setSoftQuota - shared - libs_sh/builtins.lua#L300
+	---@param quota number The threshold where the soft error will be thrown. Ratio of current cpu to the max cpu usage. 0.5 is 50%
+	function _G.setSoftQuota(quota) end
 	--- getUserdata - server - libs_sh/builtins.lua#L593
 	---@return string undefined String data
 	function _G.getUserdata() end
-	--- require - shared - libs_sh/builtins.lua#L734
+	--- require - shared - libs_sh/builtins.lua#L745
 	---@param path string The file path to include. Make sure to --@include it
 	---@return any undefined Return value of the script
 	function _G.require(path) end
-	--- eyeAngles - client - libs_sh/builtins.lua#L669
+	--- eyeAngles - client - libs_sh/builtins.lua#L680
 	---@return Angle undefined The local player's camera angles
 	function _G.eyeAngles() end
-	--- printMessage - client - libs_sh/builtins.lua#L620
+	--- printMessage - client - libs_sh/builtins.lua#L631
 	---@param mtype number How the message should be displayed. See http://wiki.facepunch.com/gmod/Enums/HUD
 	---@param text string The message text.
 	function _G.printMessage(mtype, text) end
@@ -4135,18 +4138,18 @@ _G.hologram = {}
 --- debug
 ---  Lua debug library https://wiki.garrysmod.com/page/Category:debug
 _G.debug = {}
-	--- traceback - shared - libs_sh/builtins.lua#L944
+	--- traceback - shared - libs_sh/builtins.lua#L955
 	---@param A thread? thread to get the stack trace of. If nil, this argument will be used as the message and the current thread becomes the target.
 	---@param message string? A message to be included at the beginning of the stack trace. Default: ""
 	---@param stacklevel number? Which position in the execution stack to start the traceback at. Default: 1
 	---@return string undefined A dump of the execution stack.
 	function _G.debug.traceback(A, message, stacklevel) end
-	--- getlocal - shared - libs_sh/builtins.lua#L987
+	--- getlocal - shared - libs_sh/builtins.lua#L998
 	---@param funcOrStackLevel function|number Function or stack level to get info about. Defaults to stack level 0.
 	---@param index number The index of the local to get
 	---@return string undefined The name of the local
 	function _G.debug.getlocal(funcOrStackLevel, index) end
-	--- getinfo - shared - libs_sh/builtins.lua#L971
+	--- getinfo - shared - libs_sh/builtins.lua#L982
 	---@param funcOrStackLevel function|number Function or stack level to get info about. Defaults to stack level 0.
 	---@param fields string? A string that specifies the information to be retrieved. Defaults to all (flnSu).
 	---@return table undefined DebugInfo table

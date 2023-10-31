@@ -7319,7 +7319,7 @@ _G.ParticleEmitter = {}
 ---@operator tostring:string
 ---@operator add(Vector):Vector
 _G.Vector = {}
-	--- isEqualTol - shared - libs_sh/vectors.lua#L243
+	--- isEqualTol - shared - libs_sh/vectors.lua#L251
 	---@param v Vector Second Vector
 	---@param t number Tolerance number.
 	---@return boolean undefined Whether the vector is equal to v within the tolerance.
@@ -7328,127 +7328,127 @@ _G.Vector = {}
 	---@param up Vector Upward direction. If specified, the original vector will act like a forward pointing one
 	---@return Quaternion undefined Quaternion from the given vector
 	function _G.Vector:getQuaternion(up) end
-	--- getLength2D - shared - libs_sh/vectors.lua#L271
+	--- getLength2D - shared - libs_sh/vectors.lua#L279
 	---@return number undefined Vector length
 	function _G.Vector:getLength2D() end
-	--- round - shared - libs_sh/vectors.lua#L441
+	--- round - shared - libs_sh/vectors.lua#L449
 	---@param idp number (Default 0) The integer decimal place to round to.
 	function _G.Vector:round(idp) end
 	--- getQuaternionFromRotation - shared - libs_sh/quaternion.lua#L819
 	---@return Quaternion undefined Rotated quaternion
 	function _G.Vector:getQuaternionFromRotation() end
-	--- withinAABox - shared - libs_sh/vectors.lua#L477
+	--- withinAABox - shared - libs_sh/vectors.lua#L485
 	---@param v1 Vector Vector used to define AABox
 	---@param v2 Vector Second Vector to define AABox
 	---@return boolean undefined True/False.
 	function _G.Vector:withinAABox(v1, v2) end
-	--- getLength - shared - libs_sh/vectors.lua#L259
+	--- getLength - shared - libs_sh/vectors.lua#L267
 	---@return number undefined Length of the vector.
 	function _G.Vector:getLength() end
-	--- getLengthSqr - shared - libs_sh/vectors.lua#L265
+	--- getLengthSqr - shared - libs_sh/vectors.lua#L273
 	---@return number undefined length squared.
 	function _G.Vector:getLengthSqr() end
-	--- vdiv - shared - libs_sh/vectors.lua#L332
+	--- vdiv - shared - libs_sh/vectors.lua#L340
 	---@param v Vector Vector to divide by
 	function _G.Vector:vdiv(v) end
-	--- mul - shared - libs_sh/vectors.lua#L301
+	--- mul - shared - libs_sh/vectors.lua#L309
 	---@param n number Scalar to multiply with.
 	function _G.Vector:mul(n) end
-	--- rotate - shared - libs_sh/vectors.lua#L383
+	--- rotate - shared - libs_sh/vectors.lua#L391
 	---@param b Angle Angle to rotate by.
 	function _G.Vector:rotate(b) end
-	--- normalize - shared - libs_sh/vectors.lua#L373
+	--- normalize - shared - libs_sh/vectors.lua#L381
 	function _G.Vector:normalize() end
-	--- getNormalized - shared - libs_sh/vectors.lua#L235
+	--- getNormalized - shared - libs_sh/vectors.lua#L243
 	---@return Vector undefined Normalized vector
 	function _G.Vector:getNormalized() end
 	--- getQuaternionFromAxis - shared - libs_sh/quaternion.lua#L808
 	---@param ang number Number rotation angle
 	---@return Quaternion undefined Rotated quaternion
 	function _G.Vector:getQuaternionFromAxis(ang) end
-	--- setX - shared - libs_sh/vectors.lua#L349
+	--- setX - shared - libs_sh/vectors.lua#L357
 	---@param x number The x coordinate
 	---@return Vector undefined Modified vector after setting X.
 	function _G.Vector:setX(x) end
-	--- setY - shared - libs_sh/vectors.lua#L357
+	--- setY - shared - libs_sh/vectors.lua#L365
 	---@param y number The y coordinate
 	---@return Vector undefined Modified vector after setting Y.
 	function _G.Vector:setY(y) end
-	--- getDistanceSqr - shared - libs_sh/vectors.lua#L221
+	--- getDistanceSqr - shared - libs_sh/vectors.lua#L229
 	---@param v Vector Second Vector
 	---@return number undefined Vector distance from v
 	function _G.Vector:getDistanceSqr(v) end
-	--- getColor - shared - libs_sh/vectors.lua#L471
+	--- getColor - shared - libs_sh/vectors.lua#L479
 	---@return Color undefined New color object
 	function _G.Vector:getColor() end
-	--- isInWorld - server - libs_sh/vectors.lua#L490
+	--- isInWorld - server - libs_sh/vectors.lua#L498
 	---@return boolean undefined True/False.
 	function _G.Vector:isInWorld() end
-	--- cross - shared - libs_sh/vectors.lua#L205
+	--- cross - shared - libs_sh/vectors.lua#L215
 	---@param v Vector Second Vector
 	---@return Vector undefined Vector from cross product
 	function _G.Vector:cross(v) end
-	--- set - shared - libs_sh/vectors.lua#L456
+	--- set - shared - libs_sh/vectors.lua#L464
 	---@param v Vector Second Vector
 	function _G.Vector:set(v) end
-	--- setZ - shared - libs_sh/vectors.lua#L365
+	--- setZ - shared - libs_sh/vectors.lua#L373
 	---@param z number The z coordinate
 	---@return Vector undefined Modified vector after setting Z.
 	function _G.Vector:setZ(z) end
-	--- sub - shared - libs_sh/vectors.lua#L292
+	--- sub - shared - libs_sh/vectors.lua#L300
 	---@param v Vector Vector to subtract.
 	function _G.Vector:sub(v) end
-	--- add - shared - libs_sh/vectors.lua#L283
+	--- add - shared - libs_sh/vectors.lua#L291
 	---@param v Vector Vector to add
 	function _G.Vector:add(v) end
-	--- rotateAroundAxis - shared - libs_sh/vectors.lua#L418
+	--- rotateAroundAxis - shared - libs_sh/vectors.lua#L426
 	---@param axis Vector Axis the rotate around
 	---@param degrees number? Angle to rotate by in degrees or nil if radians.
 	---@param radians number? Angle to rotate by in radians or nil if degrees.
 	---@return Vector undefined Rotated vector
 	function _G.Vector:rotateAroundAxis(axis, degrees, radians) end
-	--- dot - shared - libs_sh/vectors.lua#L228
+	--- dot - shared - libs_sh/vectors.lua#L236
 	---@param v Vector Second Vector
 	---@return number undefined Dot product result between the two vectors
 	function _G.Vector:dot(v) end
-	--- getRotated - shared - libs_sh/vectors.lua#L395
+	--- getRotated - shared - libs_sh/vectors.lua#L403
 	---@param b Angle Angle to rotate by.
 	---@return Vector undefined Rotated Vector
 	function _G.Vector:getRotated(b) end
-	--- getDistance - shared - libs_sh/vectors.lua#L214
+	--- getDistance - shared - libs_sh/vectors.lua#L222
 	---@param v Vector Second Vector
 	---@return number undefined Vector distance from v
 	function _G.Vector:getDistance(v) end
-	--- clone - shared - libs_sh/vectors.lua#L450
+	--- clone - shared - libs_sh/vectors.lua#L458
 	---@return Vector undefined The copy of the vector
 	function _G.Vector:clone() end
-	--- getAngle - shared - libs_sh/vectors.lua#L192
+	--- getAngle - shared - libs_sh/vectors.lua#L195
 	---@return Angle undefined Angle representing the vector
 	function _G.Vector:getAngle() end
-	--- vmul - shared - libs_sh/vectors.lua#L323
+	--- vmul - shared - libs_sh/vectors.lua#L331
 	---@param v Vector Vector to multiply with
 	function _G.Vector:vmul(v) end
-	--- isZero - shared - libs_sh/vectors.lua#L253
+	--- isZero - shared - libs_sh/vectors.lua#L261
 	---@return boolean undefined Whether all fields are zero
 	function _G.Vector:isZero() end
-	--- toScreen - shared - libs_sh/vectors.lua#L465
+	--- toScreen - shared - libs_sh/vectors.lua#L473
 	---@return table undefined A table {x=screenx,y=screeny,visible=visible}
 	function _G.Vector:toScreen() end
-	--- div - shared - libs_sh/vectors.lua#L312
+	--- div - shared - libs_sh/vectors.lua#L320
 	---@param n number Scalar to divide by.
 	function _G.Vector:div(n) end
-	--- getLength2DSqr - shared - libs_sh/vectors.lua#L277
+	--- getLength2DSqr - shared - libs_sh/vectors.lua#L285
 	---@return number undefined Length squared.
 	function _G.Vector:getLength2DSqr() end
-	--- getBasis - shared - libs_sh/vectors.lua#L405
+	--- getBasis - shared - libs_sh/vectors.lua#L413
 	---@return number undefined Basis 1
 	---@return number undefined Basis 2
 	function _G.Vector:getBasis() end
-	--- getAngleEx - shared - libs_sh/vectors.lua#L198
+	--- getAngleEx - shared - libs_sh/vectors.lua#L208
 	---@param v Vector Second Vector
 	---@return Angle undefined Angle
 	function _G.Vector:getAngleEx(v) end
-	--- setZero - shared - libs_sh/vectors.lua#L341
+	--- setZero - shared - libs_sh/vectors.lua#L349
 	function _G.Vector:setZero() end
 ---  Sound type
 ---@class Sound

@@ -108,10 +108,10 @@
 ---| '"ClientInitialized"' #  Called after a client's starfall has initialized. Use this to know when it's safe to send net messages to the client.
 ---| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
 ---| '"moneyPrinterPrinted"' #  Called after a money printer is has printed money. DarkRP only.  Not guaranteed to work for non-vanilla money printers.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
----| '"OnPhysgunReload"' #  Called when a player reloads his physgun
+---| '"OnPhysgunReload"' #  Called when a player reloads their physgun
 ---| '"calcview"' #  Called when the engine wants to calculate the player's view. Only works if connected to Starfall HUD
 ---| '"PlayerSay"' #  Called when a player sends a chat message
----| '"PlayerSpray"' #  Called when a players sprays his logo
+---| '"PlayerSpray"' #  Called when a players sprays their logo
 ---| '"OnContextMenuClose"' #  Called when the player closes the context menu
 ---| '"permissionrequest"' #  Called when local client changed instance permissions
 ---| '"PlayerUse"' #  Called when a player holds their use key and looks at an entity.  Will continuously run.

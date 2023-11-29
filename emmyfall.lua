@@ -166,21 +166,21 @@ _G.bass = {}
 --- hook
 ---  Deals with hooks
 _G.hook = {}
-	--- run - shared - libs_sh/hook.lua#L584
+	--- run - shared - libs_sh/hook.lua#L592
 	---@param hookname string The hook name
 	---@param arguments ... Arguments to pass to the hook
 	---@return ... undefined returns Return result(s) of the hook ran
 	function _G.hook.run(hookname, arguments) end
-	--- add - shared - libs_sh/hook.lua#L564
+	--- add - shared - libs_sh/hook.lua#L572
 	---@param hookname hooks Name of the event
 	---@param name string Unique identifier
 	---@param func function Function to run
 	function _G.hook.add(hookname, name, func) end
-	--- remove - shared - libs_sh/hook.lua#L653
+	--- remove - shared - libs_sh/hook.lua#L661
 	---@param hookname string The hook name
 	---@param name string The unique name for this hook
 	function _G.hook.remove(hookname, name) end
-	--- runRemote - shared - libs_sh/hook.lua#L616
+	--- runRemote - shared - libs_sh/hook.lua#L624
 	---@param recipient Entity? Starfall entity to call the hook on. Nil to run on every starfall entity
 	---@param payload ... Parameters that will be passed when calling hook functions
 	---@return table undefined A list of the resultset of each called hook
@@ -3948,70 +3948,70 @@ _G.os = {}
 --- timer
 ---  Deals with time and timers.
 _G.timer = {}
-	--- exists - shared - libs_sh/timer.lua#L133
+	--- exists - shared - libs_sh/timer.lua#L134
 	---@param name string The timer name
 	---@return boolean undefined if the timer exists
 	function _G.timer.exists(name) end
-	--- toggle - shared - libs_sh/timer.lua#L198
+	--- toggle - shared - libs_sh/timer.lua#L199
 	---@param name string The timer name
 	---@return boolean undefined Status of the timer.
 	function _G.timer.toggle(name) end
-	--- create - shared - libs_sh/timer.lua#L97
+	--- create - shared - libs_sh/timer.lua#L98
 	---@param name string The timer name
 	---@param delay number The time, in seconds, to set the timer to.
 	---@param reps number The repetitions of the timer. 0 = infinite
 	---@param func function The function to call when the timer is fired
 	function _G.timer.create(name, delay, reps, func) end
-	--- getTimersLeft - shared - libs_sh/timer.lua#L225
+	--- getTimersLeft - shared - libs_sh/timer.lua#L226
 	---@return number undefined Number of available timers
 	function _G.timer.getTimersLeft() end
-	--- start - shared - libs_sh/timer.lua#L149
+	--- start - shared - libs_sh/timer.lua#L150
 	---@param name string The timer name
 	---@return boolean undefined True if the timer exists, false if it doesn't.
 	function _G.timer.start(name) end
-	--- timeleft - shared - libs_sh/timer.lua#L207
+	--- timeleft - shared - libs_sh/timer.lua#L208
 	---@param name string The timer name
 	---@return number undefined The amount of time left (in seconds). If the timer is paused, the amount will be negative. Nil if timer doesnt exist
 	function _G.timer.timeleft(name) end
 	--- frametime - shared - libs_sh/timer.lua#L51
 	---@return number undefined The time between frames / ticks depending on realm
 	function _G.timer.frametime() end
-	--- adjust - shared - libs_sh/timer.lua#L158
+	--- adjust - shared - libs_sh/timer.lua#L159
 	---@param name string The timer name
 	---@param delay number The time, in seconds, to set the timer to.
 	---@param reps number? (Optional) The repetitions of the timer. 0 = infinite, nil = 1
 	---@param func function? (Optional) The function to call when the timer is fired
 	---@return boolean undefined True if succeeded
 	function _G.timer.adjust(name, delay, reps, func) end
-	--- pause - shared - libs_sh/timer.lua#L180
+	--- pause - shared - libs_sh/timer.lua#L181
 	---@param name string The timer name
 	---@return boolean undefined false if the timer didn't exist or was already paused, true otherwise.
 	function _G.timer.pause(name) end
 	--- systime - shared - libs_sh/timer.lua#L45
 	---@return number undefined The time in seconds since start up
 	function _G.timer.systime() end
-	--- repsleft - shared - libs_sh/timer.lua#L216
+	--- repsleft - shared - libs_sh/timer.lua#L217
 	---@param name string The timer name
 	---@return number undefined The amount of executions left. Nil if timer doesnt exist
 	function _G.timer.repsleft(name) end
-	--- remove - shared - libs_sh/timer.lua#L120
+	--- remove - shared - libs_sh/timer.lua#L121
 	---@param name string The timer name
 	function _G.timer.remove(name) end
 	--- realtime - shared - libs_sh/timer.lua#L38
 	---@return number undefined Realtime in seconds
 	function _G.timer.realtime() end
-	--- stop - shared - libs_sh/timer.lua#L141
+	--- stop - shared - libs_sh/timer.lua#L142
 	---@param name string The timer name
 	---@return boolean undefined False if the timer didn't exist or was already stopped, true otherwise.
 	function _G.timer.stop(name) end
 	--- curtime - shared - libs_sh/timer.lua#L31
 	---@return number undefined Curtime in seconds
 	function _G.timer.curtime() end
-	--- simple - shared - libs_sh/timer.lua#L111
+	--- simple - shared - libs_sh/timer.lua#L112
 	---@param delay number The time, in second, to set the timer to
 	---@param func function The function to call when the timer is fired
 	function _G.timer.simple(delay, func) end
-	--- unpause - shared - libs_sh/timer.lua#L189
+	--- unpause - shared - libs_sh/timer.lua#L190
 	---@param name string The timer name
 	---@return boolean undefined false if the timer didn't exist or was already running, true otherwise.
 	function _G.timer.unpause(name) end

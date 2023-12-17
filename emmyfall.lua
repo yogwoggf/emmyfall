@@ -1584,7 +1584,7 @@ _G.particleEffect = {}
 --- hologram
 ---  Library for creating and manipulating physics-less models AKA "Holograms".
 _G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L477
+	--- removeAll - shared - libs_sh/hologram.lua#L473
 	function _G.hologram.removeAll() end
 	--- canSpawn - shared - libs_sh/hologram.lua#L156
 	---@return boolean undefined True if user can spawn holograms, False if not.
@@ -7508,7 +7508,7 @@ _G.Hologram = {}
 	--- setAngVel - server - libs_sh/hologram.lua#L184
 	---@param angvel Angle *Vector* angular velocity.
 	function _G.Hologram:setAngVel(angvel) end
-	--- setAnimation - shared - libs_sh/hologram.lua#L413
+	--- setAnimation - shared - libs_sh/hologram.lua#L409
 	---@param animation number|string Animation number or string name.
 	---@param frame number? Optional int (Default 0) The starting frame number. Does nothing if nil
 	---@param rate number? Optional float (Default 1) Frame speed. Does nothing if nil
@@ -7516,57 +7516,57 @@ _G.Hologram = {}
 	--- setVel - server - libs_sh/hologram.lua#L171
 	---@param vel Vector New velocity
 	function _G.Hologram:setVel(vel) end
-	--- setScale - shared - libs_sh/hologram.lua#L346
+	--- setScale - shared - libs_sh/hologram.lua#L342
 	---@param scale Vector Vector new scale
 	function _G.Hologram:setScale(scale) end
-	--- getScale - shared - libs_sh/hologram.lua#L372
+	--- getScale - shared - libs_sh/hologram.lua#L368
 	---@return Vector undefined Vector scale
 	function _G.Hologram:getScale() end
-	--- setSize - shared - libs_sh/hologram.lua#L358
+	--- setSize - shared - libs_sh/hologram.lua#L354
 	---@param size Vector Vector new size in game units
 	function _G.Hologram:setSize(size) end
-	--- setFilterMag - client - libs_sh/hologram.lua#L244
+	--- setFilterMag - client - libs_sh/hologram.lua#L240
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMag(val) end
-	--- addEffects - shared - libs_sh/hologram.lua#L442
+	--- addEffects - shared - libs_sh/hologram.lua#L438
 	---@param effect number The effects to add. See EF Enums
 	function _G.Hologram:addEffects(effect) end
-	--- setRenderMatrix - client - libs_sh/hologram.lua#L276
+	--- setRenderMatrix - client - libs_sh/hologram.lua#L272
 	---@param mat VMatrix Starfall matrix to use
 	function _G.Hologram:setRenderMatrix(mat) end
 	--- setPos - shared - libs_sh/hologram.lua#L208
 	---@param vec Vector New position
 	function _G.Hologram:setPos(vec) end
-	--- setAngles - shared - libs_sh/hologram.lua#L226
+	--- setAngles - shared - libs_sh/hologram.lua#L224
 	---@param ang Angle New angles
 	function _G.Hologram:setAngles(ang) end
 	--- setMoveType - server - libs_sh/hologram.lua#L195
 	---@param Movetype number to set, either MOVETYPE.NOCLIP (default) or MOVETYPE.NONE
 	function _G.Hologram:setMoveType(Movetype) end
-	--- setModel - shared - libs_sh/hologram.lua#L399
+	--- setModel - shared - libs_sh/hologram.lua#L395
 	---@param model string string model path
 	function _G.Hologram:setModel(model) end
-	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L392
+	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L388
 	---@return boolean undefined Whether engine lighting is suppressed
 	function _G.Hologram:getSuppressEngineLighting() end
-	--- removeEffects - shared - libs_sh/hologram.lua#L454
+	--- removeEffects - shared - libs_sh/hologram.lua#L450
 	---@param effect number The effects to remove. See EF Enums
 	function _G.Hologram:removeEffects(effect) end
-	--- remove - shared - libs_sh/hologram.lua#L466
+	--- remove - shared - libs_sh/hologram.lua#L462
 	function _G.Hologram:remove() end
-	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L379
+	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L375
 	---@param suppress boolean Boolean to represent if shading should be set or not.
 	function _G.Hologram:suppressEngineLighting(suppress) end
-	--- setClip - shared - libs_sh/hologram.lua#L310
+	--- setClip - shared - libs_sh/hologram.lua#L306
 	---@param index number Whatever number you want the clip to be
 	---@param enabled boolean Whether the clip is enabled
 	---@param origin Vector The center of the clip plane in world coordinates, or local to entity if it is specified
 	---@param normal Vector The the direction of the clip plane in world coordinates, or local to entity if it is specified
 	---@param entity Entity? (Optional) The entity to make coordinates local to, otherwise the world is used
 	function _G.Hologram:setClip(index, enabled, origin, normal, entity) end
-	--- draw - client - libs_sh/hologram.lua#L299
+	--- draw - client - libs_sh/hologram.lua#L295
 	function _G.Hologram:draw() end
-	--- setFilterMin - client - libs_sh/hologram.lua#L260
+	--- setFilterMin - client - libs_sh/hologram.lua#L256
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMin(val) end
 ---  Light type
@@ -7664,6 +7664,12 @@ _G.PhysObj = {}
 	--- enableMotion - shared - libs_sh/physobj.lua#L496
 	---@param move boolean Should the bone move?
 	function _G.PhysObj:enableMotion(move) end
+	--- calculateVelocityOffset - server - libs_sh/physobj.lua#L585
+	---@param impulse Vector The impulse acting on the object in world coordinates (kg*source_unit/s)
+	---@param position Vector The location of the impulse in world coordinates
+	---@return Vector undefined The calculated linear velocity from the impulse on the physics object's center of mass in source_unit/s. (World frame)
+	---@return Vector undefined The calculated angular velocity from the impulse on the physics object's center of mass in degrees/s. (Local frame)
+	function _G.PhysObj:calculateVelocityOffset(impulse, position) end
 	--- setPos - server - libs_sh/physobj.lua#L218
 	---@param pos Vector The position vector to set it to
 	function _G.PhysObj:setPos(pos) end
@@ -7676,6 +7682,12 @@ _G.PhysObj = {}
 	--- applyTorque - server - libs_sh/physobj.lua#L339
 	---@param torque Vector The world torque vector to apply
 	function _G.PhysObj:applyTorque(torque) end
+	--- calculateForceOffset - server - libs_sh/physobj.lua#L563
+	---@param impulse Vector The impulse acting on the object in world coordinates (kg*source_unit/s)
+	---@param position Vector The location of the impulse in world coordinates
+	---@return Vector undefined The calculated linear impulse on the physics object's center of mass in kg*source_unit/s. (World frame)
+	---@return Vector undefined The calculated angular impulse on the physics object's center of mass in kg*m^2*degrees/s. (Local frame)
+	function _G.PhysObj:calculateForceOffset(impulse, position) end
 	--- getVelocity - shared - libs_sh/physobj.lua#L74
 	---@return Vector undefined Vector velocity of the physics object
 	function _G.PhysObj:getVelocity() end

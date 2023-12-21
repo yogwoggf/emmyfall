@@ -7356,7 +7356,7 @@ _G.Vector = {}
 	--- getQuaternionFromRotation - shared - libs_sh/quaternion.lua#L819
 	---@return Quaternion undefined Rotated quaternion
 	function _G.Vector:getQuaternionFromRotation() end
-	--- withinAABox - shared - libs_sh/vectors.lua#L485
+	--- withinAABox - shared - libs_sh/vectors.lua#L479
 	---@param v1 Vector Vector used to define AABox
 	---@param v2 Vector Second Vector to define AABox
 	---@return boolean undefined True/False.
@@ -7397,16 +7397,16 @@ _G.Vector = {}
 	---@param v Vector Second Vector
 	---@return number undefined Vector distance from v
 	function _G.Vector:getDistanceSqr(v) end
-	--- getColor - shared - libs_sh/vectors.lua#L479
+	--- getColor - shared - libs_sh/vectors.lua#L473
 	---@return Color undefined New color object
 	function _G.Vector:getColor() end
-	--- isInWorld - server - libs_sh/vectors.lua#L498
-	---@return boolean undefined True/False.
-	function _G.Vector:isInWorld() end
 	--- cross - shared - libs_sh/vectors.lua#L215
 	---@param v Vector Second Vector
 	---@return Vector undefined Vector from cross product
 	function _G.Vector:cross(v) end
+	--- isInWorld - server - libs_sh/vectors.lua#L492
+	---@return boolean undefined True/False.
+	function _G.Vector:isInWorld() end
 	--- set - shared - libs_sh/vectors.lua#L464
 	---@param v Vector Second Vector
 	function _G.Vector:set(v) end
@@ -7450,7 +7450,7 @@ _G.Vector = {}
 	--- isZero - shared - libs_sh/vectors.lua#L261
 	---@return boolean undefined Whether all fields are zero
 	function _G.Vector:isZero() end
-	--- toScreen - shared - libs_sh/vectors.lua#L473
+	--- toScreen - client - libs_sh/vectors.lua#L499
 	---@return table undefined A table {x=screenx,y=screeny,visible=visible}
 	function _G.Vector:toScreen() end
 	--- div - shared - libs_sh/vectors.lua#L320
@@ -7617,22 +7617,22 @@ _G.Light = {}
 ---@class Vehicle
 ---@operator tostring:string
 _G.Vehicle = {}
-	--- getDriver - server - libs_sh/vehicles.lua#L45
+	--- getDriver - shared - libs_sh/vehicles.lua#L44
 	---@return Player undefined Driver of vehicle
 	function _G.Vehicle:getDriver() end
-	--- getPassenger - server - libs_sh/vehicles.lua#L61
+	--- getPassenger - shared - libs_sh/vehicles.lua#L50
 	---@param n number The index of the passenger to get
 	---@return Player undefined The passenger or NULL if empty
 	function _G.Vehicle:getPassenger(n) end
-	--- unlock - server - libs_sh/vehicles.lua#L109
+	--- unlock - server - libs_sh/vehicles.lua#L107
 	function _G.Vehicle:unlock() end
-	--- lock - server - libs_sh/vehicles.lua#L98
+	--- lock - server - libs_sh/vehicles.lua#L96
 	function _G.Vehicle:lock() end
-	--- ejectDriver - server - libs_sh/vehicles.lua#L52
+	--- ejectDriver - server - libs_sh/vehicles.lua#L59
 	function _G.Vehicle:ejectDriver() end
-	--- killDriver - server - libs_sh/vehicles.lua#L70
+	--- killDriver - server - libs_sh/vehicles.lua#L68
 	function _G.Vehicle:killDriver() end
-	--- stripDriver - server - libs_sh/vehicles.lua#L81
+	--- stripDriver - server - libs_sh/vehicles.lua#L79
 	---@param class string? Optional weapon class to strip. Otherwise all are stripped.
 	function _G.Vehicle:stripDriver(class) end
 ---  PhysObj Type

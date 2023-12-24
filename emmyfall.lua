@@ -1584,9 +1584,9 @@ _G.particleEffect = {}
 --- hologram
 ---  Library for creating and manipulating physics-less models AKA "Holograms".
 _G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L473
+	--- removeAll - shared - libs_sh/hologram.lua#L474
 	function _G.hologram.removeAll() end
-	--- canSpawn - shared - libs_sh/hologram.lua#L156
+	--- canSpawn - shared - libs_sh/hologram.lua#L157
 	---@return boolean undefined True if user can spawn holograms, False if not.
 	function _G.hologram.canSpawn() end
 	--- create - shared - libs_sh/hologram.lua#L96
@@ -1596,7 +1596,7 @@ _G.hologram = {}
 	---@param scale Vector? (Optional) The scale to give the hologram
 	---@return Hologram undefined The hologram object
 	function _G.hologram.create(pos, ang, model, scale) end
-	--- hologramsLeft - shared - libs_sh/hologram.lua#L163
+	--- hologramsLeft - shared - libs_sh/hologram.lua#L164
 	---@return number undefined Number of holograms able to be spawned
 	function _G.hologram.hologramsLeft() end
 --- math
@@ -5629,13 +5629,13 @@ _G.prop = {}
 --- 
 ---  
 _G.prop.SENT_Data_Structures = {
-}	--- spawnRate - server - libs_sv/prop.lua#L681
+}	--- spawnRate - server - libs_sv/prop.lua#L682
 	---@return number undefined Number of props per second the user can spawn
 	function _G.prop.spawnRate() end
-	--- setPropUndo - server - libs_sv/prop.lua#L694
+	--- setPropUndo - server - libs_sv/prop.lua#L695
 	---@param on boolean Whether the props should be undo-able
 	function _G.prop.setPropUndo(on) end
-	--- createSent - server - libs_sv/prop.lua#L397
+	--- createSent - server - libs_sv/prop.lua#L398
 	---@param pos Vector Position of created sent
 	---@param ang Angle Angle of created sent
 	---@param class string Class of created sent
@@ -5658,14 +5658,14 @@ _G.prop.SENT_Data_Structures = {
 	---@param frozen boolean True to spawn frozen
 	---@return Entity undefined Component entity
 	function _G.prop.createComponent(pos, ang, class, model, frozen) end
-	--- createSeat - server - libs_sv/prop.lua#L339
+	--- createSeat - server - libs_sv/prop.lua#L340
 	---@param pos Vector Position of created seat
 	---@param ang Angle Angle of created seat
 	---@param model string Model of created seat
 	---@param frozen boolean True to spawn frozen
 	---@return Entity undefined The seat object
 	function _G.prop.createSeat(pos, ang, model, frozen) end
-	--- propsLeft - server - libs_sv/prop.lua#L673
+	--- propsLeft - server - libs_sv/prop.lua#L674
 	---@return number undefined Number of props able to be spawned
 	function _G.prop.propsLeft() end
 	--- createCustom - server - libs_sv/prop.lua#L148
@@ -5675,13 +5675,13 @@ _G.prop.SENT_Data_Structures = {
 	---@param frozen boolean Whether the prop starts frozen
 	---@return Entity undefined The prop object
 	function _G.prop.createCustom(pos, ang, vertices, frozen) end
-	--- setPropClean - server - libs_sv/prop.lua#L688
+	--- setPropClean - server - libs_sv/prop.lua#L689
 	---@param on boolean Whether the props should be cleaned or not
 	function _G.prop.setPropClean(on) end
-	--- canSpawn - server - libs_sv/prop.lua#L665
+	--- canSpawn - server - libs_sv/prop.lua#L666
 	---@return boolean undefined True if user can spawn props, False if not.
 	function _G.prop.canSpawn() end
-	--- getSpawnableSents - server - libs_sv/prop.lua#L308
+	--- getSpawnableSents - server - libs_sv/prop.lua#L309
 	---@param categorized boolean? True to get an categorized list
 	---@return table undefined The table
 	function _G.prop.getSpawnableSents(categorized) end
@@ -7505,68 +7505,68 @@ _G.Sound = {}
 ---  Hologram type
 ---@class Hologram
 _G.Hologram = {}
-	--- setAngVel - server - libs_sh/hologram.lua#L184
+	--- setAngVel - server - libs_sh/hologram.lua#L185
 	---@param angvel Angle *Vector* angular velocity.
 	function _G.Hologram:setAngVel(angvel) end
-	--- setAnimation - shared - libs_sh/hologram.lua#L409
+	--- setAnimation - shared - libs_sh/hologram.lua#L410
 	---@param animation number|string Animation number or string name.
 	---@param frame number? Optional int (Default 0) The starting frame number. Does nothing if nil
 	---@param rate number? Optional float (Default 1) Frame speed. Does nothing if nil
 	function _G.Hologram:setAnimation(animation, frame, rate) end
-	--- setVel - server - libs_sh/hologram.lua#L171
+	--- setVel - server - libs_sh/hologram.lua#L172
 	---@param vel Vector New velocity
 	function _G.Hologram:setVel(vel) end
-	--- setScale - shared - libs_sh/hologram.lua#L342
+	--- setScale - shared - libs_sh/hologram.lua#L343
 	---@param scale Vector Vector new scale
 	function _G.Hologram:setScale(scale) end
-	--- getScale - shared - libs_sh/hologram.lua#L368
+	--- getScale - shared - libs_sh/hologram.lua#L369
 	---@return Vector undefined Vector scale
 	function _G.Hologram:getScale() end
-	--- setSize - shared - libs_sh/hologram.lua#L354
+	--- setSize - shared - libs_sh/hologram.lua#L355
 	---@param size Vector Vector new size in game units
 	function _G.Hologram:setSize(size) end
-	--- setFilterMag - client - libs_sh/hologram.lua#L240
+	--- setFilterMag - client - libs_sh/hologram.lua#L241
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMag(val) end
-	--- addEffects - shared - libs_sh/hologram.lua#L438
+	--- addEffects - shared - libs_sh/hologram.lua#L439
 	---@param effect number The effects to add. See EF Enums
 	function _G.Hologram:addEffects(effect) end
-	--- setRenderMatrix - client - libs_sh/hologram.lua#L272
+	--- setRenderMatrix - client - libs_sh/hologram.lua#L273
 	---@param mat VMatrix Starfall matrix to use
 	function _G.Hologram:setRenderMatrix(mat) end
-	--- setPos - shared - libs_sh/hologram.lua#L208
+	--- setPos - shared - libs_sh/hologram.lua#L209
 	---@param vec Vector New position
 	function _G.Hologram:setPos(vec) end
-	--- setAngles - shared - libs_sh/hologram.lua#L224
+	--- setAngles - shared - libs_sh/hologram.lua#L225
 	---@param ang Angle New angles
 	function _G.Hologram:setAngles(ang) end
-	--- setMoveType - server - libs_sh/hologram.lua#L195
+	--- setMoveType - server - libs_sh/hologram.lua#L196
 	---@param Movetype number to set, either MOVETYPE.NOCLIP (default) or MOVETYPE.NONE
 	function _G.Hologram:setMoveType(Movetype) end
-	--- setModel - shared - libs_sh/hologram.lua#L395
+	--- setModel - shared - libs_sh/hologram.lua#L396
 	---@param model string string model path
 	function _G.Hologram:setModel(model) end
-	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L388
+	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L389
 	---@return boolean undefined Whether engine lighting is suppressed
 	function _G.Hologram:getSuppressEngineLighting() end
-	--- removeEffects - shared - libs_sh/hologram.lua#L450
+	--- removeEffects - shared - libs_sh/hologram.lua#L451
 	---@param effect number The effects to remove. See EF Enums
 	function _G.Hologram:removeEffects(effect) end
-	--- remove - shared - libs_sh/hologram.lua#L462
+	--- remove - shared - libs_sh/hologram.lua#L463
 	function _G.Hologram:remove() end
-	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L375
+	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L376
 	---@param suppress boolean Boolean to represent if shading should be set or not.
 	function _G.Hologram:suppressEngineLighting(suppress) end
-	--- setClip - shared - libs_sh/hologram.lua#L306
+	--- setClip - shared - libs_sh/hologram.lua#L307
 	---@param index number Whatever number you want the clip to be
 	---@param enabled boolean Whether the clip is enabled
 	---@param origin Vector The center of the clip plane in world coordinates, or local to entity if it is specified
 	---@param normal Vector The the direction of the clip plane in world coordinates, or local to entity if it is specified
 	---@param entity Entity? (Optional) The entity to make coordinates local to, otherwise the world is used
 	function _G.Hologram:setClip(index, enabled, origin, normal, entity) end
-	--- draw - client - libs_sh/hologram.lua#L295
+	--- draw - client - libs_sh/hologram.lua#L296
 	function _G.Hologram:draw() end
-	--- setFilterMin - client - libs_sh/hologram.lua#L256
+	--- setFilterMin - client - libs_sh/hologram.lua#L257
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMin(val) end
 ---  Light type

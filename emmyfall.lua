@@ -120,29 +120,29 @@
 --- coroutine
 ---  Coroutine library
 _G.coroutine = {}
-	--- status - shared - libs_sh/coroutine.lua#L100
+	--- status - shared - libs_sh/coroutine.lua#L108
 	---@param coroutine thread The coroutine
 	---@return string undefined Either "suspended", "running", "normal" or "dead"
 	function _G.coroutine.status(coroutine) end
-	--- yield - shared - libs_sh/coroutine.lua#L88
+	--- yield - shared - libs_sh/coroutine.lua#L96
 	---@param Optional ... parameters that will be returned to the main thread
 	---@return ... undefined Any values passed to the coroutine
 	function _G.coroutine.yield(Optional) end
-	--- running - shared - libs_sh/coroutine.lua#L108
+	--- running - shared - libs_sh/coroutine.lua#L116
 	---@return thread undefined Currently running coroutine
 	function _G.coroutine.running() end
-	--- wrap - shared - libs_sh/coroutine.lua#L70
+	--- wrap - shared - libs_sh/coroutine.lua#L78
 	---@param func function Function of the coroutine
 	---@return function undefined A function that, when called, resumes the created coroutine. Any parameters to that function will be passed to the coroutine.
 	function _G.coroutine.wrap(func) end
-	--- wait - shared - libs_sh/coroutine.lua#L115
+	--- wait - shared - libs_sh/coroutine.lua#L123
 	---@param time number Time in seconds to suspend the coroutine
 	function _G.coroutine.wait(time) end
-	--- create - shared - libs_sh/coroutine.lua#L61
+	--- create - shared - libs_sh/coroutine.lua#L69
 	---@param func function Function of the coroutine
 	---@return thread undefined Created coroutine
 	function _G.coroutine.create(func) end
-	--- resume - shared - libs_sh/coroutine.lua#L79
+	--- resume - shared - libs_sh/coroutine.lua#L87
 	---@param coroutine thread to resume
 	---@param args ... Optional parameters that will be passed to the coroutine
 	---@return ... undefined Any values the coroutine is returning to the main thread

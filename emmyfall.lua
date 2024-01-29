@@ -9431,41 +9431,41 @@ _G.Player = {}
 ---  ParticleEffect type
 ---@class ParticleEffect
 _G.ParticleEffect = {}
-	--- setSortOrigin - client - libs_cl/particle_effect.lua#L156
+	--- setSortOrigin - client - libs_cl/particle_effect.lua#L159
 	---@param origin Vector Sort Origin
 	function _G.ParticleEffect:setSortOrigin(origin) end
-	--- restart - client - libs_cl/particle_effect.lua#L133
+	--- restart - client - libs_cl/particle_effect.lua#L136
 	function _G.ParticleEffect:restart() end
 	--- stopEmission - client - libs_cl/particle_effect.lua#L114
 	function _G.ParticleEffect:stopEmission() end
-	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L181
+	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L184
 	---@param id number Child Control Point ID (0-63)
 	---@param entity Entity Entity parent
 	function _G.ParticleEffect:setControlPointEntity(id, entity) end
-	--- isFinished - client - libs_cl/particle_effect.lua#L143
+	--- isFinished - client - libs_cl/particle_effect.lua#L146
 	---@return boolean undefined If the particle effect is finished
 	function _G.ParticleEffect:isFinished() end
-	--- setControlPointParent - client - libs_cl/particle_effect.lua#L238
+	--- setControlPointParent - client - libs_cl/particle_effect.lua#L241
 	---@param id number Child Control Point ID (0-63)
 	---@param parentid number Parent control point ID (0-63)
 	function _G.ParticleEffect:setControlPointParent(id, parentid) end
-	--- setControlPoint - client - libs_cl/particle_effect.lua#L167
+	--- setControlPoint - client - libs_cl/particle_effect.lua#L170
 	---@param id number Control Point ID (0-63)
 	---@param value Vector Value
 	function _G.ParticleEffect:setControlPoint(id, value) end
-	--- setUpVector - client - libs_cl/particle_effect.lua#L223
+	--- setUpVector - client - libs_cl/particle_effect.lua#L226
 	---@param id number Control Point ID (0-63)
 	---@param up Vector Up vector
 	function _G.ParticleEffect:setUpVector(id, up) end
 	--- destroy - client - libs_cl/particle_effect.lua#L123
 	function _G.ParticleEffect:destroy() end
-	--- setForwardVector - client - libs_cl/particle_effect.lua#L196
+	--- setForwardVector - client - libs_cl/particle_effect.lua#L199
 	---@param id number Control Point ID (0-63)
 	---@param fwd Vector Forward vector
 	function _G.ParticleEffect:setForwardVector(id, fwd) end
 	--- startEmission - client - libs_cl/particle_effect.lua#L104
 	function _G.ParticleEffect:startEmission() end
-	--- setRightVector - client - libs_cl/particle_effect.lua#L209
+	--- setRightVector - client - libs_cl/particle_effect.lua#L212
 	---@param id number Control Point ID (0-63)
 	---@param right Vector Right vector
 	function _G.ParticleEffect:setRightVector(id, right) end

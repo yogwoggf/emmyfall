@@ -4599,7 +4599,7 @@ _G.prop.SENT_Data_Structures = {
 --- hologram
 ---  Library for creating and manipulating physics-less models AKA "Holograms".
 _G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L505
+	--- removeAll - shared - libs_sh/hologram.lua#L524
 	function _G.hologram.removeAll() end
 	--- canSpawn - shared - libs_sh/hologram.lua#L159
 	---@return boolean undefined True if user can spawn holograms, False if not.
@@ -5089,55 +5089,69 @@ _G.render.Vertex = {
 	--- V coordinate (optional, default is 0)
 	["v"] = nil,
 }
-	--- setRenderTargetTexture - client - libs_cl/render.lua#L1149
+	--- setRenderTargetTexture - client - libs_cl/render.lua#L1184
 	---@param name string? Name of the render target to use
 	function _G.render.setRenderTargetTexture(name) end
-	--- getScreenEntity - client - libs_cl/render.lua#L1985
+	--- getScreenEntity - client - libs_cl/render.lua#L2027
 	---@return Entity undefined Entity of the screen or hud being rendered
 	function _G.render.getScreenEntity() end
-	--- setStencilCompareFunction - client - libs_cl/render.lua#L625
+	--- setStencilCompareFunction - client - libs_cl/render.lua#L626
 	---@param compareFunction number 
 	function _G.render.setStencilCompareFunction(compareFunction) end
-	--- enableScissorRect - client - libs_cl/render.lua#L722
+	--- enableScissorRect - client - libs_cl/render.lua#L723
 	---@param startX number X start coordinate of the scissor rect.
 	---@param startY number Y start coordinate of the scissor rect.
 	---@param endX number X end coordinate of the scissor rect.
 	---@param endY number Y end coordinate of the scissor rect.
 	function _G.render.enableScissorRect(startX, startY, endX, endY) end
-	--- getAngles - client - libs_cl/render.lua#L539
+	--- getAngles - client - libs_cl/render.lua#L540
 	---@return Angle undefined The angles of the current render context as calculated by calcview.
 	function _G.render.getAngles() end
-	--- setRGBA - client - libs_cl/render.lua#L860
+	--- setRGBA - client - libs_cl/render.lua#L879
 	---@param r number Number, red value
 	---@param g number Number, green value
 	---@param b number Number, blue value
 	---@param a number Number, alpha value
 	function _G.render.setRGBA(r, g, b, a) end
-	--- setFilterMag - client - libs_cl/render.lua#L1189
+	--- setFilterMag - client - libs_cl/render.lua#L1224
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.render.setFilterMag(val) end
-	--- clearBuffersObeyStencil - client - libs_cl/render.lua#L601
+	--- depthRange - client - libs_cl/render.lua#L2436
+	---@param min number The minimum depth of the upcoming render. 0.0 = render normally; 1.0 = render nothing.
+	---@param max number The maximum depth of the upcoming render. 0.0 = render everything (through walls); 1.0 = render normally.
+	function _G.render.depthRange(min, max) end
+	--- clearBuffersObeyStencil - client - libs_cl/render.lua#L602
 	---@param r number Value of the red channel to clear the current rt with.
 	---@param g number Value of the green channel to clear the current rt with.
 	---@param b number Value of the blue channel to clear the current rt with.
 	---@param a number Value of the alpha channel to clear the current rt with.
 	---@param Clear boolean the depth buffer.
 	function _G.render.clearBuffersObeyStencil(r, g, b, a, Clear) end
-	--- getEyePos - client - libs_cl/render.lua#L531
+	--- screenShake - client - libs_cl/render.lua#L2427
+	---@param amplitude number The strength of the effect
+	---@param frequency number The frequency of the effect in hertz
+	---@param duration number The duration of the effect in seconds, max 10.
+	function _G.render.screenShake(amplitude, frequency, duration) end
+	--- getEyePos - client - libs_cl/render.lua#L532
 	---@return Vector undefined The origin of the current render context as calculated by calcview.
 	function _G.render.getEyePos() end
-	--- renderViewsLeft - client - libs_cl/render.lua#L2208
+	--- renderViewsLeft - client - libs_cl/render.lua#L2250
 	---@return number undefined How many render.renderView calls are left
 	function _G.render.renderViewsLeft() end
-	--- getEyeVector - client - libs_cl/render.lua#L545
+	--- getEyeVector - client - libs_cl/render.lua#L546
 	---@return Vector undefined The normal vector of the current render context as calculated by calcview, similar to render.getAngles.
 	function _G.render.getEyeVector() end
-	--- setLightingMode - client - libs_cl/render.lua#L844
+	--- setColorModulation - client - libs_cl/render.lua#L870
+	---@param r number Red channel
+	---@param g number Green channel
+	---@param b number Blue channel
+	function _G.render.setColorModulation(r, g, b) end
+	--- setLightingMode - client - libs_cl/render.lua#L845
 	---@param mode number The lighting mode. 0 - Default, 1 - Fullbright, 2 - Increased Fullbright
 	function _G.render.setLightingMode(mode) end
-	--- popViewMatrix - client - libs_cl/render.lua#L807
+	--- popViewMatrix - client - libs_cl/render.lua#L808
 	function _G.render.popViewMatrix() end
-	--- overrideBlend - client - libs_cl/render.lua#L1760
+	--- overrideBlend - client - libs_cl/render.lua#L1795
 	---@param on boolean Whether to control the blend mode of upcoming rendering
 	---@param srcBlend number http://wiki.facepunch.com/gmod/Enums/BLEND
 	---@param destBlend number 
@@ -5146,50 +5160,53 @@ _G.render.Vertex = {
 	---@param destBlendAlpha number? 
 	---@param blendFuncAlpha number? http://wiki.facepunch.com/gmod/Enums/BLENDFUNC
 	function _G.render.overrideBlend(on, srcBlend, destBlend, blendFunc, srcBlendAlpha, destBlendAlpha, blendFuncAlpha) end
-	--- setFogHeight - client - libs_cl/render.lua#L2329
+	--- setFogHeight - client - libs_cl/render.lua#L2371
 	---@param height number The fog height
 	function _G.render.setFogHeight(height) end
-	--- drawCircle - client - libs_cl/render.lua#L1305
+	--- drawCircle - client - libs_cl/render.lua#L1340
 	---@param x number Center x coordinate
 	---@param y number Center y coordinate
 	---@param r number Radius
 	function _G.render.drawCircle(x, y, r) end
-	--- drawPixelsRGB - client - libs_cl/render.lua#L1478
+	--- setChipOverlay - client - libs_cl/render.lua#L2389
+	---@param name string? The name of the RT to use or nil to set it back to normal
+	function _G.render.setChipOverlay(name) end
+	--- drawPixelsRGB - client - libs_cl/render.lua#L1513
 	---@param w number Width of image to be drawn.
 	---@param h number Height of image to be drawn.
 	---@param dataR table Red channel data.
 	---@param dataG table Green channel data.
 	---@param dataB table Blue channel data.
 	function _G.render.drawPixelsRGB(w, h, dataR, dataG, dataB) end
-	--- draw3DSprite - client - libs_cl/render.lua#L1794
+	--- draw3DSprite - client - libs_cl/render.lua#L1836
 	---@param pos Vector Position of the sprite.
 	---@param width number Width of the sprite.
 	---@param height number Height of the sprite.
 	---@param Color Color? tint to give the sprite. Default: white
 	function _G.render.draw3DSprite(pos, width, height, Color) end
-	--- depthRange - client - libs_cl/render.lua#L2394
-	---@param min number The minimum depth of the upcoming render. 0.0 = render normally; 1.0 = render nothing.
-	---@param max number The maximum depth of the upcoming render. 0.0 = render everything (through walls); 1.0 = render normally.
-	function _G.render.depthRange(min, max) end
-	--- screenShake - client - libs_cl/render.lua#L2385
-	---@param amplitude number The strength of the effect
-	---@param frequency number The frequency of the effect in hertz
-	---@param duration number The duration of the effect in seconds, max 10.
-	function _G.render.screenShake(amplitude, frequency, duration) end
-	--- drawTexturedRectRotatedFast - client - libs_cl/render.lua#L1437
+	--- setFogEnd - client - libs_cl/render.lua#L2362
+	---@param distance number End distance
+	function _G.render.setFogEnd(distance) end
+	--- setFogStart - client - libs_cl/render.lua#L2353
+	---@param distance number Start distance
+	function _G.render.setFogStart(distance) end
+	--- setFogDensity - client - libs_cl/render.lua#L2344
+	---@param density number Density between 0 and 1
+	function _G.render.setFogDensity(density) end
+	--- drawTexturedRectRotatedFast - client - libs_cl/render.lua#L1472
 	---@param x number X coordinate of center of rect
 	---@param y number Y coordinate of center of rect
 	---@param w number Width
 	---@param h number Height
 	---@param rot number Rotation in degrees
 	function _G.render.drawTexturedRectRotatedFast(x, y, w, h, rot) end
-	--- getDefaultFont - client - libs_cl/render.lua#L1673
+	--- getDefaultFont - client - libs_cl/render.lua#L1708
 	---@return string undefined Default font
 	function _G.render.getDefaultFont() end
-	--- setFilterMin - client - libs_cl/render.lua#L1200
+	--- setFilterMin - client - libs_cl/render.lua#L1235
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.render.setFilterMin(val) end
-	--- drawPixelsRGBA - client - libs_cl/render.lua#L1494
+	--- drawPixelsRGBA - client - libs_cl/render.lua#L1529
 	---@param w number Width of image to be drawn.
 	---@param h number Height of image to be drawn.
 	---@param dataR table Red channel data.
@@ -5197,33 +5214,33 @@ _G.render.Vertex = {
 	---@param dataB table Blue channel data.
 	---@param dataA table Alpha channel data.
 	function _G.render.drawPixelsRGBA(w, h, dataR, dataG, dataB, dataA) end
-	--- drawText - client - libs_cl/render.lua#L1679
+	--- drawText - client - libs_cl/render.lua#L1714
 	---@param x number X coordinate
 	---@param y number Y coordinate
 	---@param text string Text to draw
 	---@param alignment number Horizontal text alignment. Default TEXT_ALIGN.LEFT
 	function _G.render.drawText(x, y, text, alignment) end
-	--- drawRoundedBox - client - libs_cl/render.lua#L1233
+	--- drawRoundedBox - client - libs_cl/render.lua#L1268
 	---@param r number The corner radius
 	---@param x number Top left corner x coordinate
 	---@param y number Top left corner y coordinate
 	---@param w number Width
 	---@param h number Height
 	function _G.render.drawRoundedBox(r, x, y, w, h) end
-	--- setFont - client - libs_cl/render.lua#L1642
-	---@param font string The font to use
-	function _G.render.setFont(font) end
-	--- setBlend - client - libs_cl/render.lua#L1779
+	--- setFogColor - client - libs_cl/render.lua#L2334
+	---@param col Color Color (alpha won't have any effect)
+	function _G.render.setFogColor(col) end
+	--- setBlend - client - libs_cl/render.lua#L1821
 	---@param alpha any number Blending in the range 0 to 1
 	function _G.render.setBlend(alpha) end
-	--- setMaterial - client - libs_cl/render.lua#L898
+	--- setMaterial - client - libs_cl/render.lua#L933
 	---@param mat Material The material object
 	function _G.render.setMaterial(mat) end
-	--- enableClipping - client - libs_cl/render.lua#L2214
+	--- enableClipping - client - libs_cl/render.lua#L2256
 	---@param state boolean New clipping state.
 	---@return boolean undefined Previous clipping state.
 	function _G.render.enableClipping(state) end
-	--- drawSimpleText - client - libs_cl/render.lua#L1692
+	--- drawSimpleText - client - libs_cl/render.lua#L1727
 	---@param x number X coordinate
 	---@param y number Y coordinate
 	---@param text string Text to draw
@@ -5232,28 +5249,31 @@ _G.render.Vertex = {
 	---@return number undefined Width of the drawn text. Same as calling render.getTextSize
 	---@return number undefined Height of the drawn text. Same as calling render.getTextSize
 	function _G.render.drawSimpleText(x, y, text, xalign, yalign) end
-	--- draw3DBox - client - libs_cl/render.lua#L1841
+	--- draw3DBox - client - libs_cl/render.lua#L1883
 	---@param origin Vector Origin of the box.
 	---@param angle Angle Orientation of the box
 	---@param mins Vector Start position of the box, relative to origin.
 	---@param maxs Vector End position of the box, relative to origin.
 	function _G.render.draw3DBox(origin, angle, mins, maxs) end
-	--- setChipOverlay - client - libs_cl/render.lua#L2347
-	---@param name string? The name of the RT to use or nil to set it back to normal
-	function _G.render.setChipOverlay(name) end
-	--- createMaterial - client - libs_cl/render.lua#L871
+	--- setFogMode - client - libs_cl/render.lua#L2325
+	---@param mode number Fog mode
+	function _G.render.setFogMode(mode) end
+	--- createMaterial - client - libs_cl/render.lua#L906
 	---@param tx string Texture file path, a http url, or image data: https://en.wikipedia.org/wiki/Data_URI_scheme
 	---@param cb function? An optional callback called when loading is done. Passes nil if it fails or Passes the material, url, width, height, and layout function which can be called with x, y, w, h to reposition the image in the texture.
 	---@param done function? An optional callback called when the image is done loading. Passes the material, url
 	---@return Material undefined The material. Use with render.setMaterial to draw with it.
 	function _G.render.createMaterial(tx, cb, done) end
-	--- setFogEnd - client - libs_cl/render.lua#L2320
-	---@param distance number End distance
-	function _G.render.setFogEnd(distance) end
-	--- setFogStart - client - libs_cl/render.lua#L2311
-	---@param distance number Start distance
-	function _G.render.setFogStart(distance) end
-	--- drawRoundedBoxEx - client - libs_cl/render.lua#L1244
+	--- getAmbientLightColor - client - libs_cl/render.lua#L2319
+	---@return Vector undefined Vector representing color of the light
+	function _G.render.getAmbientLightColor() end
+	--- drawLine - client - libs_cl/render.lua#L1593
+	---@param x1 number X start float coordinate
+	---@param y1 number Y start float coordinate
+	---@param x2 number X end float coordinate
+	---@param y2 number Y end float coordinate
+	function _G.render.drawLine(x1, y1, x2, y2) end
+	--- drawRoundedBoxEx - client - libs_cl/render.lua#L1279
 	---@param r number The corner radius
 	---@param x number Top left corner x coordinate
 	---@param y number Top left corner y coordinate
@@ -5264,39 +5284,41 @@ _G.render.Vertex = {
 	---@param bl boolean? Bottom left corner. Default false
 	---@param br boolean? Bottom right corner. Default false
 	function _G.render.drawRoundedBoxEx(r, x, y, w, h, tl, tr, bl, br) end
-	--- setFogDensity - client - libs_cl/render.lua#L2302
-	---@param density number Density between 0 and 1
-	function _G.render.setFogDensity(density) end
-	--- setFogColor - client - libs_cl/render.lua#L2292
-	---@param col Color Color (alpha won't have any effect)
-	function _G.render.setFogColor(col) end
-	--- setFogMode - client - libs_cl/render.lua#L2283
-	---@param mode number Fog mode
-	function _G.render.setFogMode(mode) end
-	--- getAmbientLightColor - client - libs_cl/render.lua#L2277
+	--- computeDynamicLighting - client - libs_cl/render.lua#L2304
+	---@param pos Vector Vector position to sample from
+	---@param normal Vector Normal vector of the surface
 	---@return Vector undefined Vector representing color of the light
-	function _G.render.getAmbientLightColor() end
-	--- drawRectOutline - client - libs_cl/render.lua#L1294
+	function _G.render.computeDynamicLighting(pos, normal) end
+	--- computeLighting - client - libs_cl/render.lua#L2296
+	---@param pos Vector Vector position to sample from
+	---@param normal Vector Normal vector of the surface
+	---@return Vector undefined Vector representing color of the light
+	function _G.render.computeLighting(pos, normal) end
+	--- popCustomClipPlane - client - libs_cl/render.lua#L2286
+	function _G.render.popCustomClipPlane() end
+	--- pushCustomClipPlane - client - libs_cl/render.lua#L2271
+	---@param normal Vector The normal of the clipping plane.
+	---@param distance number The normal of the clipping plane.
+	function _G.render.pushCustomClipPlane(normal, distance) end
+	--- drawRectOutline - client - libs_cl/render.lua#L1329
 	---@param x number Top left corner x integer coordinate
 	---@param y number Top left corner y integer coordinate
 	---@param w number Width
 	---@param h number Height
 	---@param thickness number? Optional inset border width
 	function _G.render.drawRectOutline(x, y, w, h, thickness) end
-	--- parseMarkup - client - libs_cl/render.lua#L1708
+	--- parseMarkup - client - libs_cl/render.lua#L1743
 	---@param str string The markup string to parse
 	---@param maxsize number? The max width of the markup. Default nil
 	---@return Markup undefined The markup object. See https://wiki.facepunch.com/gmod/markup.Parse
 	function _G.render.parseMarkup(str, maxsize) end
-	--- isInRenderView - client - libs_cl/render.lua#L2202
+	--- isInRenderView - client - libs_cl/render.lua#L2244
 	---@return boolean undefined Whether render.renderView is being executed
 	function _G.render.isInRenderView() end
-	--- computeDynamicLighting - client - libs_cl/render.lua#L2262
-	---@param pos Vector Vector position to sample from
-	---@param normal Vector Normal vector of the surface
-	---@return Vector undefined Vector representing color of the light
-	function _G.render.computeDynamicLighting(pos, normal) end
-	--- drawTexturedRectUV - client - libs_cl/render.lua#L1390
+	--- renderView - client - libs_cl/render.lua#L2108
+	---@param tbl table view The view data to be used in the rendering. See http://wiki.facepunch.com/gmod/Structures/ViewData. There's an additional key drawviewer used to tell the engine whether the local player model should be rendered.
+	function _G.render.renderView(tbl) end
+	--- drawTexturedRectUV - client - libs_cl/render.lua#L1425
 	---@param x number Top left corner x
 	---@param y number Top left corner y
 	---@param w number Width
@@ -5306,214 +5328,218 @@ _G.render.Vertex = {
 	---@param endU number Texture mapping at rectangle end
 	---@param endV number Texture mapping at rectangle end
 	function _G.render.drawTexturedRectUV(x, y, w, h, startU, startV, endU, endV) end
-	--- computeLighting - client - libs_cl/render.lua#L2254
-	---@param pos Vector Vector position to sample from
-	---@param normal Vector Normal vector of the surface
-	---@return Vector undefined Vector representing color of the light
-	function _G.render.computeLighting(pos, normal) end
-	--- getResolution - client - libs_cl/render.lua#L2033
+	--- isHUDActive - client - libs_cl/render.lua#L2102
+	---@return boolean undefined True if a HUD component is connected and active, nil otherwise
+	function _G.render.isHUDActive() end
+	--- getResolution - client - libs_cl/render.lua#L2075
 	---@return number undefined the X size of the current render context
 	---@return number undefined the Y size of the current render context
 	function _G.render.getResolution() end
-	--- setWriteDepthToDestAlpha - client - libs_cl/render.lua#L574
+	--- setWriteDepthToDestAlpha - client - libs_cl/render.lua#L575
 	---@param enable boolean True to write depth to destination alpha.
 	function _G.render.setWriteDepthToDestAlpha(enable) end
-	--- traceSurfaceColor - client - libs_cl/render.lua#L2052
+	--- traceSurfaceColor - client - libs_cl/render.lua#L2094
 	---@param vec1 Vector The starting vector
 	---@param vec2 Vector The ending vector
 	---@return Color undefined The color
 	function _G.render.traceSurfaceColor(vec1, vec2) end
-	--- createRenderTarget - client - libs_cl/render.lua#L1072
+	--- createRenderTarget - client - libs_cl/render.lua#L1107
 	---@param name string The name of the render target
 	function _G.render.createRenderTarget(name) end
-	--- drawTexturedRectRotated - client - libs_cl/render.lua#L1450
-	---@param x number X coordinate of center of rect
-	---@param y number Y coordinate of center of rect
+	--- drawRect - client - libs_cl/render.lua#L1317
+	---@param x number Top left corner x
+	---@param y number Top left corner y
 	---@param w number Width
 	---@param h number Height
-	---@param rot number Rotation in degrees
-	function _G.render.drawTexturedRectRotated(x, y, w, h, rot) end
-	--- resetModelLighting - client - libs_cl/render.lua#L592
+	function _G.render.drawRect(x, y, w, h) end
+	--- resetModelLighting - client - libs_cl/render.lua#L593
 	---@param r number The red part of the color, 0-1
 	---@param g number The green part of the color, 0-1
 	---@param b number The blue part of the color, 0-1
 	function _G.render.resetModelLighting(r, g, b) end
-	--- clear - client - libs_cl/render.lua#L1219
+	--- clear - client - libs_cl/render.lua#L1254
 	---@param clr Color? Color type to clear with
 	---@param depth boolean? Boolean if should clear depth. Default false
 	function _G.render.clear(clr, depth) end
-	--- popCustomClipPlane - client - libs_cl/render.lua#L2244
-	function _G.render.popCustomClipPlane() end
-	--- pushCustomClipPlane - client - libs_cl/render.lua#L2229
-	---@param normal Vector The normal of the clipping plane.
-	---@param distance number The normal of the clipping plane.
-	function _G.render.pushCustomClipPlane(normal, distance) end
-	--- setStencilReferenceValue - client - libs_cl/render.lua#L657
+	--- getBlend - client - libs_cl/render.lua#L1814
+	---@return number undefined Blending in the range 0 to 1
+	function _G.render.getBlend() end
+	--- getColorModulation - client - libs_cl/render.lua#L861
+	---@return number undefined Red channel
+	---@return number undefined Green channel
+	---@return number undefined Blue channel
+	function _G.render.getColorModulation() end
+	--- setStencilReferenceValue - client - libs_cl/render.lua#L658
 	---@param referenceValue number Reference value.
 	function _G.render.setStencilReferenceValue(referenceValue) end
-	--- draw3DLine - client - libs_cl/render.lua#L1830
+	--- draw3DLine - client - libs_cl/render.lua#L1872
 	---@param startPos Vector Starting position
 	---@param endPos Vector Ending position
 	function _G.render.draw3DLine(startPos, endPos) end
-	--- getMatrix - client - libs_cl/render.lua#L746
+	--- getMatrix - client - libs_cl/render.lua#L747
 	---@return VMatrix undefined The currently active matrix.
 	function _G.render.getMatrix() end
-	--- setModelLighting - client - libs_cl/render.lua#L582
+	--- setModelLighting - client - libs_cl/render.lua#L583
 	---@param lightDirection number The light source to edit, builtins.BOX enumeration.
 	---@param r number The red component of the light color.
 	---@param g number The green component of the light color.
 	---@param b number The blue component of the light color.
 	function _G.render.setModelLighting(lightDirection, r, g, b) end
-	--- getLightColor - client - libs_cl/render.lua#L2270
+	--- getLightColor - client - libs_cl/render.lua#L2312
 	---@param pos Vector Vector position to sample from
 	---@return Vector undefined Vector representing color of the light
 	function _G.render.getLightColor(pos) end
-	--- renderView - client - libs_cl/render.lua#L2066
-	---@param tbl table view The view data to be used in the rendering. See http://wiki.facepunch.com/gmod/Structures/ViewData. There's an additional key drawviewer used to tell the engine whether the local player model should be rendered.
-	function _G.render.renderView(tbl) end
-	--- draw3DWireframeBox - client - libs_cl/render.lua#L1856
+	--- suppressEngineLighting - client - libs_cl/render.lua#L568
+	---@param suppress boolean True to suppress false to enable.
+	function _G.render.suppressEngineLighting(suppress) end
+	--- draw3DWireframeBox - client - libs_cl/render.lua#L1898
 	---@param origin Vector Origin of the box.
 	---@param angle Angle Orientation of the box
 	---@param mins Vector Start position of the box, relative to origin.
 	---@param maxs Vector End position of the box, relative to origin.
 	function _G.render.draw3DWireframeBox(origin, angle, mins, maxs) end
-	--- draw3DWireframeSphere - client - libs_cl/render.lua#L1817
+	--- draw3DWireframeSphere - client - libs_cl/render.lua#L1859
 	---@param pos Vector Position of the sphere
 	---@param radius number Radius of the sphere
 	---@param longitudeSteps number The amount of longitude steps. The larger this number is, the smoother the sphere is
 	---@param latitudeSteps number The amount of latitude steps. The larger this number is, the smoother the sphere is
 	function _G.render.draw3DWireframeSphere(pos, radius, longitudeSteps, latitudeSteps) end
-	--- isHUDActive - client - libs_cl/render.lua#L2060
-	---@return boolean undefined True if a HUD component is connected and active, nil otherwise
-	function _G.render.isHUDActive() end
-	--- setMaterialEffectColorModify - client - libs_cl/render.lua#L1010
+	--- drawRectFast - client - libs_cl/render.lua#L1306
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	function _G.render.drawRectFast(x, y, w, h) end
+	--- setMaterialEffectColorModify - client - libs_cl/render.lua#L1045
 	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
 	---@param cmStructure table A table where each key must be of "addr", "addg", "addb", "brightness", "color" or "colour", "contrast", "mulr", "mulg", and "mulb". All keys are optional.
 	function _G.render.setMaterialEffectColorModify(mat, cmStructure) end
-	--- resetStencil - client - libs_cl/render.lua#L681
+	--- resetStencil - client - libs_cl/render.lua#L682
 	function _G.render.resetStencil() end
-	--- drawTexturedRect - client - libs_cl/render.lua#L1355
+	--- drawTexturedRect - client - libs_cl/render.lua#L1390
 	---@param x number Top left corner x
 	---@param y number Top left corner y
 	---@param w number Width
 	---@param h number Height
 	function _G.render.drawTexturedRect(x, y, w, h) end
-	--- setScreenDimensions - client - libs_cl/render.lua#L2359
+	--- setScreenDimensions - client - libs_cl/render.lua#L2401
 	---@param screen Entity The custom screen to be resized
 	---@param x number The x offset of the screen
 	---@param y number The y offset of the screen
 	---@param w number The width of the screen
 	---@param h number The height of the screen
 	function _G.render.setScreenDimensions(screen, x, y, w, h) end
-	--- getGameResolution - client - libs_cl/render.lua#L2044
+	--- getGameResolution - client - libs_cl/render.lua#L2086
 	---@return number undefined the X size of the game window
 	---@return number undefined the Y size of the game window
 	function _G.render.getGameResolution() end
-	--- selectRenderTarget - client - libs_cl/render.lua#L1101
-	---@param name string? Name of the render target to use
-	function _G.render.selectRenderTarget(name) end
-	--- setStencilEnable - client - libs_cl/render.lua#L553
-	---@param enable boolean True to enable, false to disable
-	function _G.render.setStencilEnable(enable) end
-	--- cursorPos - client - libs_cl/render.lua#L1931
+	--- cursorPos - client - libs_cl/render.lua#L1973
 	---@param ply Player? player to get cursor position from. Default player()
 	---@param screen Entity? An explicit screen to get the cursor pos of (default: The current rendering screen using 'render' hook)
 	---@return number undefined X position
 	---@return number undefined Y position
 	function _G.render.cursorPos(ply, screen) end
-	--- setColor - client - libs_cl/render.lua#L852
+	--- setStencilTestMask - client - libs_cl/render.lua#L666
+	---@param mask number The mask bitflag.
+	function _G.render.setStencilTestMask(mask) end
+	--- draw3DQuad - client - libs_cl/render.lua#L1927
+	---@param vert1 Vector First vertex.
+	---@param vert2 Vector The second vertex.
+	---@param vert3 Vector The third vertex.
+	---@param vert4 Vector The fourth vertex.
+	function _G.render.draw3DQuad(vert1, vert2, vert3, vert4) end
+	--- setColor - client - libs_cl/render.lua#L853
 	---@param clr Color Color type
 	function _G.render.setColor(clr) end
-	--- setTextureFromScreen - client - libs_cl/render.lua#L1172
+	--- setTextureFromScreen - client - libs_cl/render.lua#L1207
 	---@param ent Entity Screen entity
 	function _G.render.setTextureFromScreen(ent) end
-	--- getScreenInfo - client - libs_cl/render.lua#L1975
+	--- getScreenInfo - client - libs_cl/render.lua#L2017
 	---@param e Entity The screen to get info from.
 	---@return table undefined A table describing the screen.
 	function _G.render.getScreenInfo(e) end
-	--- setBackgroundColor - client - libs_cl/render.lua#L820
+	--- setBackgroundColor - client - libs_cl/render.lua#L821
 	---@param col Color Color of background
 	---@param screen Entity? (Optional) entity of screen
 	function _G.render.setBackgroundColor(col, screen) end
-	--- setStencilZFailOperation - client - libs_cl/render.lua#L649
+	--- setStencilZFailOperation - client - libs_cl/render.lua#L650
 	---@param operation number 
 	function _G.render.setStencilZFailOperation(operation) end
-	--- capturePixels - client - libs_cl/render.lua#L1991
+	--- capturePixels - client - libs_cl/render.lua#L2033
 	function _G.render.capturePixels() end
-	--- drawTexturedRectFast - client - libs_cl/render.lua#L1344
+	--- drawTexturedRectFast - client - libs_cl/render.lua#L1379
 	---@param x number Top left corner x
 	---@param y number Top left corner y
 	---@param w number Width
 	---@param h number Height
 	function _G.render.drawTexturedRectFast(x, y, w, h) end
-	--- clearStencilBufferRectangle - client - libs_cl/render.lua#L613
+	--- clearStencilBufferRectangle - client - libs_cl/render.lua#L614
 	---@param originX number X origin of the rectangle.
 	---@param originY number Y origin of the rectangle.
 	---@param endX number The end X coordinate of the rectangle.
 	---@param endY number The end Y coordinate of the rectangle.
 	---@param stencilValue number Value to set cleared stencil buffer to.
 	function _G.render.clearStencilBufferRectangle(originX, originY, endX, endY, stencilValue) end
-	--- draw3DBeam - client - libs_cl/render.lua#L1871
+	--- draw3DBeam - client - libs_cl/render.lua#L1913
 	---@param startPos Vector Beam start position.
 	---@param endPos Vector Beam end position.
 	---@param width number The width of the beam.
 	---@param textureStart number The start coordinate of the texture used.
 	---@param textureEnd number The end coordinate of the texture used.
 	function _G.render.draw3DBeam(startPos, endPos, width, textureStart, textureEnd) end
-	--- setMaterialEffectSub - client - libs_cl/render.lua#L937
+	--- setStencilEnable - client - libs_cl/render.lua#L554
+	---@param enable boolean True to enable, false to disable
+	function _G.render.setStencilEnable(enable) end
+	--- setMaterialEffectSub - client - libs_cl/render.lua#L972
 	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
 	function _G.render.setMaterialEffectSub(mat) end
-	--- draw3DQuad - client - libs_cl/render.lua#L1885
-	---@param vert1 Vector First vertex.
-	---@param vert2 Vector The second vertex.
-	---@param vert3 Vector The third vertex.
-	---@param vert4 Vector The fourth vertex.
-	function _G.render.draw3DQuad(vert1, vert2, vert3, vert4) end
-	--- drawPixelsSubrectRGB - client - libs_cl/render.lua#L1510
-	---@param dstX number Destination x coordinate
-	---@param dstY number Destination y coordinate
-	---@param srcX number Source x coordinate
-	---@param srcY number Source y coordinate
-	---@param srcW number Source original width
-	---@param srcH number Source original height
-	---@param subrectW number Width of subrect
-	---@param subrectH number Height of subrect
-	---@param dataR table Red channel data.
-	---@param dataG table Green channel data.
-	---@param dataB table Blue channel data.
-	function _G.render.drawPixelsSubrectRGB(dstX, dstY, srcX, srcY, srcW, srcH, subrectW, subrectH, dataR, dataG, dataB) end
-	--- drawPoly - client - libs_cl/render.lua#L1747
+	--- setFont - client - libs_cl/render.lua#L1677
+	---@param font string The font to use
+	function _G.render.setFont(font) end
+	--- drawPoly - client - libs_cl/render.lua#L1782
 	---@param poly table Table of polygon vertices. Texture coordinates are optional. {{x=x1, y=y1, u=u1, v=v1}, ... }
 	function _G.render.drawPoly(poly) end
-	--- captureImage - client - libs_cl/render.lua#L1998
+	--- captureImage - client - libs_cl/render.lua#L2040
 	---@param captureData table Parameters of the capture. See https://wiki.facepunch.com/gmod/Structures/RenderCaptureData
 	---@return string undefined Image binary data
 	function _G.render.captureImage(captureData) end
-	--- setCullMode - client - libs_cl/render.lua#L1211
+	--- setCullMode - client - libs_cl/render.lua#L1246
 	---@param mode number Cull mode. 0 for counter clock wise, 1 for clock wise
 	function _G.render.setCullMode(mode) end
-	--- destroyTexture - client - libs_cl/render.lua#L892
-	---@param mat Material The material object
-	function _G.render.destroyTexture(mat) end
-	--- readPixel - client - libs_cl/render.lua#L2022
+	--- createFont - client - libs_cl/render.lua#L1603
+	---@param font string Base font to use
+	---@param size number? Font size. Default 16
+	---@param weight number? Font weight. Default 400
+	---@param antialias boolean? Antialias font? Default false
+	---@param additive boolean? If true, adds brightness to pixels behind it rather than drawing over them. Default false
+	---@param shadow boolean? Enable drop shadow? Default false
+	---@param outline boolean? Enable outline? Default false
+	---@param blursize boolean? The size of the blur Default 0
+	---@param extended boolean? Allows the font to display glyphs outside of Latin-1 range. Unicode code points above 0xFFFF are not supported. Required to use FontAwesome
+	---@param scanlines number? Scanline interval. Must be greater than 1 to work. Shares uniqueness with blursize so you cannot create more than one scanline type of font with the same blursize. Default 0
+	---@return string undefined The font name that can be used with the rest of the font functions.
+	function _G.render.createFont(font, size, weight, antialias, additive, shadow, outline, blursize, extended, scanlines) end
+	--- readPixel - client - libs_cl/render.lua#L2064
 	---@param x number Pixel x-coordinate.
 	---@param y number Pixel y-coordinate.
 	---@return Color undefined Color object with ( r, g, b, a ) from the specified pixel.
 	function _G.render.readPixel(x, y) end
-	--- suppressEngineLighting - client - libs_cl/render.lua#L567
-	---@param suppress boolean True to suppress false to enable.
-	function _G.render.suppressEngineLighting(suppress) end
-	--- pushMatrix - client - libs_cl/render.lua#L697
+	--- selectRenderTarget - client - libs_cl/render.lua#L1136
+	---@param name string? Name of the render target to use
+	function _G.render.selectRenderTarget(name) end
+	--- pushMatrix - client - libs_cl/render.lua#L698
 	---@param m VMatrix The matrix
 	---@param world boolean? Should the transformation be relative to the screen or world?
 	function _G.render.pushMatrix(m, world) end
-	--- setStencilTestMask - client - libs_cl/render.lua#L665
-	---@param mask number The mask bitflag.
-	function _G.render.setStencilTestMask(mask) end
-	--- destroyRenderTarget - client - libs_cl/render.lua#L1088
+	--- setMaterialEffectDownsample - client - libs_cl/render.lua#L1012
+	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
+	---@param darken number The amount to darken the texture by. -1 to 1 inclusive.
+	---@param multiply number The amount to multiply the pixel colors by. (0-1024)
+	function _G.render.setMaterialEffectDownsample(mat, darken, multiply) end
+	--- destroyRenderTarget - client - libs_cl/render.lua#L1123
 	---@param name string Rendertarget name
 	function _G.render.destroyRenderTarget(name) end
-	--- drawPixelsSubrectRGBA - client - libs_cl/render.lua#L1533
+	--- drawPixelsSubrectRGBA - client - libs_cl/render.lua#L1568
 	---@param dstX number Destination x coordinate
 	---@param dstY number Destination y coordinate
 	---@param srcX number Source x coordinate
@@ -5527,89 +5553,80 @@ _G.render.Vertex = {
 	---@param dataB table Blue channel data.
 	---@param dataA table Alpha channel data.
 	function _G.render.drawPixelsSubrectRGBA(dstX, dstY, srcX, srcY, srcW, srcH, subrectW, subrectH, dataR, dataG, dataB, dataA) end
-	--- pushViewMatrix - client - libs_cl/render.lua#L761
+	--- pushViewMatrix - client - libs_cl/render.lua#L762
 	---@param tbl table The view matrix data. See http://wiki.facepunch.com/gmod/Structures/RenderCamData
 	function _G.render.pushViewMatrix(tbl) end
-	--- createFont - client - libs_cl/render.lua#L1568
-	---@param font string Base font to use
-	---@param size number? Font size. Default 16
-	---@param weight number? Font weight. Default 400
-	---@param antialias boolean? Antialias font? Default false
-	---@param additive boolean? If true, adds brightness to pixels behind it rather than drawing over them. Default false
-	---@param shadow boolean? Enable drop shadow? Default false
-	---@param outline boolean? Enable outline? Default false
-	---@param blursize boolean? The size of the blur Default 0
-	---@param extended boolean? Allows the font to display glyphs outside of Latin-1 range. Unicode code points above 0xFFFF are not supported. Required to use FontAwesome
-	---@param scanlines number? Scanline interval. Must be greater than 1 to work. Shares uniqueness with blursize so you cannot create more than one scanline type of font with the same blursize. Default 0
-	---@return string undefined The font name that can be used with the rest of the font functions.
-	function _G.render.createFont(font, size, weight, antialias, additive, shadow, outline, blursize, extended, scanlines) end
-	--- drawLine - client - libs_cl/render.lua#L1558
-	---@param x1 number X start float coordinate
-	---@param y1 number Y start float coordinate
-	---@param x2 number X end float coordinate
-	---@param y2 number Y end float coordinate
-	function _G.render.drawLine(x1, y1, x2, y2) end
-	--- getTextSize - client - libs_cl/render.lua#L1633
+	--- drawPixelsSubrectRGB - client - libs_cl/render.lua#L1545
+	---@param dstX number Destination x coordinate
+	---@param dstY number Destination y coordinate
+	---@param srcX number Source x coordinate
+	---@param srcY number Source y coordinate
+	---@param srcW number Source original width
+	---@param srcH number Source original height
+	---@param subrectW number Width of subrect
+	---@param subrectH number Height of subrect
+	---@param dataR table Red channel data.
+	---@param dataG table Green channel data.
+	---@param dataB table Blue channel data.
+	function _G.render.drawPixelsSubrectRGB(dstX, dstY, srcX, srcY, srcW, srcH, subrectW, subrectH, dataR, dataG, dataB) end
+	--- drawTexturedRectRotated - client - libs_cl/render.lua#L1485
+	---@param x number X coordinate of center of rect
+	---@param y number Y coordinate of center of rect
+	---@param w number Width
+	---@param h number Height
+	---@param rot number Rotation in degrees
+	function _G.render.drawTexturedRectRotated(x, y, w, h, rot) end
+	--- getTextSize - client - libs_cl/render.lua#L1668
 	---@param text string Text to get the size of
 	---@return number undefined width of the text
 	---@return number undefined height of the text
 	function _G.render.getTextSize(text) end
-	--- drawFilledCircle - client - libs_cl/render.lua#L1314
+	--- drawFilledCircle - client - libs_cl/render.lua#L1349
 	---@param x number Center x coordinate
 	---@param y number Center y coordinate
 	---@param r number Radius
 	function _G.render.drawFilledCircle(x, y, r) end
-	--- disableScissorRect - client - libs_cl/render.lua#L732
+	--- disableScissorRect - client - libs_cl/render.lua#L733
 	function _G.render.disableScissorRect() end
-	--- setMaterialEffectAdd - client - libs_cl/render.lua#L923
+	--- setMaterialEffectAdd - client - libs_cl/render.lua#L958
 	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
 	function _G.render.setMaterialEffectAdd(mat) end
-	--- draw3DSphere - client - libs_cl/render.lua#L1804
+	--- draw3DSphere - client - libs_cl/render.lua#L1846
 	---@param pos Vector Position of the sphere
 	---@param radius number Radius of the sphere
 	---@param longitudeSteps number The amount of longitude steps. The larger this number is, the smoother the sphere is
 	---@param latitudeSteps number The amount of latitude steps. The larger this number is, the smoother the sphere is
 	function _G.render.draw3DSphere(pos, radius, longitudeSteps, latitudeSteps) end
-	--- drawRectFast - client - libs_cl/render.lua#L1271
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawRectFast(x, y, w, h) end
-	--- clearDepth - client - libs_cl/render.lua#L1786
+	--- setStencilPassOperation - client - libs_cl/render.lua#L642
+	---@param operation number 
+	function _G.render.setStencilPassOperation(operation) end
+	--- clearDepth - client - libs_cl/render.lua#L1828
 	function _G.render.clearDepth() end
-	--- drawRect - client - libs_cl/render.lua#L1282
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawRect(x, y, w, h) end
-	--- popMatrix - client - libs_cl/render.lua#L738
+	--- setStencilFailOperation - client - libs_cl/render.lua#L634
+	---@param operation number 
+	function _G.render.setStencilFailOperation(operation) end
+	--- popMatrix - client - libs_cl/render.lua#L739
 	function _G.render.popMatrix() end
-	--- setMaterialEffectBloom - client - libs_cl/render.lua#L951
+	--- setMaterialEffectBloom - client - libs_cl/render.lua#L986
 	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
 	---@param levelr number Multiplier for all red pixels. 1 = unchanged
 	---@param levelg number Multiplier for all green pixels. 1 = unchanged
 	---@param levelb number Multiplier for all blue pixels. 1 = unchanged
 	---@param colormul number Multiplier for all three colors. 1 = unchanged
 	function _G.render.setMaterialEffectBloom(mat, levelr, levelg, levelb, colormul) end
-	--- setStencilPassOperation - client - libs_cl/render.lua#L641
-	---@param operation number 
-	function _G.render.setStencilPassOperation(operation) end
-	--- drawBlurEffect - client - libs_cl/render.lua#L1043
-	---@param blurx number The amount of horizontal blur to apply.
-	---@param blury number The amount of vertical blur to apply.
-	---@param passes number The number of times the blur effect is applied.
-	function _G.render.drawBlurEffect(blurx, blury, passes) end
-	--- enableDepth - client - libs_cl/render.lua#L1753
+	--- destroyTexture - client - libs_cl/render.lua#L927
+	---@param mat Material The material object
+	function _G.render.destroyTexture(mat) end
+	--- getTint - client - libs_cl/render.lua#L890
+	---@return Color undefined The current color & blend modulation as a color
+	function _G.render.getTint() end
+	--- enableDepth - client - libs_cl/render.lua#L1788
 	---@param enable boolean True to enable
 	function _G.render.enableDepth(enable) end
-	--- setMaterialEffectDownsample - client - libs_cl/render.lua#L977
-	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
-	---@param darken number The amount to darken the texture by. -1 to 1 inclusive.
-	---@param multiply number The amount to multiply the pixel colors by. (0-1024)
-	function _G.render.setMaterialEffectDownsample(mat, darken, multiply) end
-	--- drawTexturedRectUVFast - client - libs_cl/render.lua#L1366
+	--- setTint - client - libs_cl/render.lua#L899
+	---@param c Color A color
+	function _G.render.setTint(c) end
+	--- drawTexturedRectUVFast - client - libs_cl/render.lua#L1401
 	---@param x number Top left corner x
 	---@param y number Top left corner y
 	---@param w number Width
@@ -5620,27 +5637,29 @@ _G.render.Vertex = {
 	---@param endV number Texture mapping at rectangle's end V
 	---@param UVHack boolean? If enabled, will scale the UVs to compensate for internal bug. Should be true for user created materials.
 	function _G.render.drawTexturedRectUVFast(x, y, w, h, startU, startV, endU, endV, UVHack) end
-	--- clearStencil - client - libs_cl/render.lua#L561
+	--- clearStencil - client - libs_cl/render.lua#L562
 	function _G.render.clearStencil() end
-	--- setStencilFailOperation - client - libs_cl/render.lua#L633
-	---@param operation number 
-	function _G.render.setStencilFailOperation(operation) end
-	--- draw3DQuadUV - client - libs_cl/render.lua#L1901
+	--- drawBlurEffect - client - libs_cl/render.lua#L1078
+	---@param blurx number The amount of horizontal blur to apply.
+	---@param blury number The amount of vertical blur to apply.
+	---@param passes number The number of times the blur effect is applied.
+	function _G.render.drawBlurEffect(blurx, blury, passes) end
+	--- draw3DQuadUV - client - libs_cl/render.lua#L1943
 	---@param vert1 Vector First vertex. {x, y, z, u, v}
 	---@param vert2 Vector The second vertex.
 	---@param vert3 Vector The third vertex.
 	---@param vert4 Vector The fourth vertex.
 	function _G.render.draw3DQuadUV(vert1, vert2, vert3, vert4) end
-	--- setViewPort - client - libs_cl/render.lua#L2011
+	--- setViewPort - client - libs_cl/render.lua#L2053
 	---@param x number Pixel x-coordinate.
 	---@param y number Pixel y-coordinate.
 	---@param w number Width of the viewport.
 	---@param h number Height of the viewport.
 	function _G.render.setViewPort(x, y, w, h) end
-	--- renderTargetExists - client - libs_cl/render.lua#L1065
+	--- renderTargetExists - client - libs_cl/render.lua#L1100
 	---@param name string The name of the render target
 	function _G.render.renderTargetExists(name) end
-	--- setStencilWriteMask - client - libs_cl/render.lua#L673
+	--- setStencilWriteMask - client - libs_cl/render.lua#L674
 	---@param mask number The mask bitflag.
 	function _G.render.setStencilWriteMask(mask) end
 --- sql
@@ -7110,11 +7129,11 @@ _G.Vector = {}
 ---  The Markup type is used to easily format and draw text. Use render.parseMarkup(str, maxwidth) to create one.
 ---@class Markup
 _G.Markup = {}
-	--- getSize - client - libs_cl/render.lua#L1740
+	--- getSize - client - libs_cl/render.lua#L1775
 	---@return number undefined The width of the object
 	---@return number undefined The height of the object
 	function _G.Markup:getSize() end
-	--- draw - client - libs_cl/render.lua#L1716
+	--- draw - client - libs_cl/render.lua#L1751
 	---@param x number number The x offset
 	---@param y number number The x offset
 	---@param xAlign number? number The x TEXT_ALIGN. Default TEXT_ALIGN.LEFT
@@ -7122,10 +7141,10 @@ _G.Markup = {}
 	---@param alpha number? The alpha to draw it with. Default 255
 	---@param contentAlign number? The content alignment TEXT_ALIGN. Default TEXT_ALIGN.LEFT
 	function _G.Markup:draw(x, y, xAlign, yAlign, alpha, contentAlign) end
-	--- getWidth - client - libs_cl/render.lua#L1728
+	--- getWidth - client - libs_cl/render.lua#L1763
 	---@return number undefined The width of the object
 	function _G.Markup:getWidth() end
-	--- getHeight - client - libs_cl/render.lua#L1734
+	--- getHeight - client - libs_cl/render.lua#L1769
 	---@return number undefined The height of the object
 	function _G.Markup:getHeight() end
 ---  Hologram type
@@ -7134,21 +7153,21 @@ _G.Hologram = {}
 	--- setAngVel - server - libs_sh/hologram.lua#L187
 	---@param angvel Angle *Vector* angular velocity.
 	function _G.Hologram:setAngVel(angvel) end
-	--- setAnimation - shared - libs_sh/hologram.lua#L441
+	--- setAnimation - shared - libs_sh/hologram.lua#L460
 	---@param animation number|string Animation number or string name.
 	---@param frame number? Optional int (Default 0) The starting frame number. Does nothing if nil
 	---@param rate number? Optional float (Default 1) Frame speed. Does nothing if nil
 	function _G.Hologram:setAnimation(animation, frame, rate) end
-	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L407
+	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L426
 	---@param suppress boolean Boolean to represent if shading should be set or not.
 	function _G.Hologram:suppressEngineLighting(suppress) end
-	--- setScale - shared - libs_sh/hologram.lua#L374
+	--- setScale - shared - libs_sh/hologram.lua#L393
 	---@param scale Vector Vector new scale
 	function _G.Hologram:setScale(scale) end
-	--- getScale - shared - libs_sh/hologram.lua#L400
+	--- getScale - shared - libs_sh/hologram.lua#L419
 	---@return Vector undefined Vector scale
 	function _G.Hologram:getScale() end
-	--- setClip - shared - libs_sh/hologram.lua#L338
+	--- setClip - shared - libs_sh/hologram.lua#L357
 	---@param index number Whatever number you want the clip to be
 	---@param enabled boolean Whether the clip is enabled
 	---@param origin Vector The center of the clip plane in world coordinates, or local to entity if it is specified
@@ -7158,7 +7177,7 @@ _G.Hologram = {}
 	--- setFilterMag - client - libs_sh/hologram.lua#L243
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMag(val) end
-	--- addEffects - shared - libs_sh/hologram.lua#L470
+	--- addEffects - shared - libs_sh/hologram.lua#L489
 	---@param effect number The effects to add. See EF Enums
 	function _G.Hologram:addEffects(effect) end
 	--- setRenderMatrix - client - libs_sh/hologram.lua#L275
@@ -7173,29 +7192,30 @@ _G.Hologram = {}
 	--- setMoveType - server - libs_sh/hologram.lua#L198
 	---@param Movetype number to set, either MOVETYPE.NOCLIP (default) or MOVETYPE.NONE
 	function _G.Hologram:setMoveType(Movetype) end
-	--- setModel - shared - libs_sh/hologram.lua#L427
+	--- setModel - shared - libs_sh/hologram.lua#L446
 	---@param model string string model path
 	function _G.Hologram:setModel(model) end
-	--- getPlayerColor - shared - libs_sh/hologram.lua#L324
+	--- getPlayerColor - shared - libs_sh/hologram.lua#L343
 	---@return Vector? undefined color The player color to use, or nil if disabled
 	function _G.Hologram:getPlayerColor() end
-	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L420
+	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L439
 	---@return boolean undefined Whether engine lighting is suppressed
 	function _G.Hologram:getSuppressEngineLighting() end
-	--- removeEffects - shared - libs_sh/hologram.lua#L482
+	--- removeEffects - shared - libs_sh/hologram.lua#L501
 	---@param effect number The effects to remove. See EF Enums
 	function _G.Hologram:removeEffects(effect) end
-	--- remove - shared - libs_sh/hologram.lua#L494
+	--- remove - shared - libs_sh/hologram.lua#L513
 	function _G.Hologram:remove() end
 	--- setVel - server - libs_sh/hologram.lua#L174
 	---@param vel Vector New velocity
 	function _G.Hologram:setVel(vel) end
-	--- setPlayerColor - shared - libs_sh/hologram.lua#L309
+	--- setPlayerColor - shared - libs_sh/hologram.lua#L328
 	---@param color Vector? The player color to use, or nil to disable
 	function _G.Hologram:setPlayerColor(color) end
-	--- draw - client - libs_sh/hologram.lua#L298
-	function _G.Hologram:draw() end
-	--- setSize - shared - libs_sh/hologram.lua#L386
+	--- draw - client - libs_sh/hologram.lua#L301
+	---@param bool any ? noTint If true, renders the hologram without its color and opacity. The default is for holograms to render with color or opacity, so use this argument if you need that behavior.
+	function _G.Hologram:draw(bool) end
+	--- setSize - shared - libs_sh/hologram.lua#L405
 	---@param size Vector Vector new size in game units
 	function _G.Hologram:setSize(size) end
 	--- setFilterMin - client - libs_sh/hologram.lua#L259

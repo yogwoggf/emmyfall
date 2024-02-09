@@ -366,68 +366,72 @@ _G.particle = {}
 --- file
 ---  File functions. Allows modification of files.
 _G.file = {}
-	--- exists - client - libs_cl/file.lua#L312
+	--- exists - client - libs_cl/file.lua#L313
 	---@param path string Filepath relative to data/sf_filedata/.
 	---@return boolean? undefined True if exists, false if not, nil if error
 	function _G.file.exists(path) end
-	--- find - client - libs_cl/file.lua#L342
+	--- find - client - libs_cl/file.lua#L352
 	---@param path string The folder to enumerate, relative to data/sf_filedata/.
 	---@param sorting string? Optional sorting argument. Either nameasc, namedesc, dateasc, datedesc
 	---@return table undefined Table of file names
 	---@return table undefined Table of directory names
 	function _G.file.find(path, sorting) end
-	--- write - client - libs_cl/file.lua#L233
+	--- write - client - libs_cl/file.lua#L234
 	---@param path string Filepath relative to data/sf_filedata/.
 	---@param data string The data to write
 	function _G.file.write(path, data) end
-	--- readInGame - client - libs_cl/file.lua#L203
+	--- readInGame - client - libs_cl/file.lua#L204
 	---@param path string Filepath relative to GarrysMod/garrysmod/.
 	---@return string? undefined Contents or nil if error
 	function _G.file.readInGame(path) end
-	--- read - client - libs_cl/file.lua#L194
+	--- read - client - libs_cl/file.lua#L195
 	---@param path string Filepath relative to data/sf_filedata/.
 	---@return string? undefined Contents, or nil if error
 	function _G.file.read(path) end
-	--- writeTemp - client - libs_cl/file.lua#L262
+	--- writeTemp - client - libs_cl/file.lua#L263
 	---@param filename string The name to give the file. Must be only a file and not a path
 	---@param data string The data to write
 	---@return string undefined The generated path for your temp file
 	function _G.file.writeTemp(filename, data) end
-	--- existsTemp - client - libs_cl/file.lua#L282
+	--- existsTemp - client - libs_cl/file.lua#L283
 	---@param filename string The temp file name. Must be only a file and not a path
 	---@return string? undefined The path to the temp file or nil if it doesn't exist
 	function _G.file.existsTemp(filename) end
-	--- open - client - libs_cl/file.lua#L179
+	--- open - client - libs_cl/file.lua#L180
 	---@param path string Filepath relative to data/sf_filedata/.
 	---@param mode string The file mode to use. See lua manual for explanation
 	---@return File? undefined File object or nil if it failed
 	function _G.file.open(path, mode) end
-	--- delete - client - libs_cl/file.lua#L321
+	--- delete - client - libs_cl/file.lua#L331
 	---@param path string Filepath relative to data/sf_filedata/.
 	---@return boolean? undefined True if successful, nil if it wasn't found
 	function _G.file.delete(path) end
-	--- asyncRead - client - libs_cl/file.lua#L212
-	---@param path string Filepath relative to data/sf_filedata/.
-	---@param callback function A callback function for when the read operation finishes. It has 3 arguments: `filename` string, `status` number and `data` string
-	function _G.file.asyncRead(path, callback) end
-	--- time - client - libs_cl/file.lua#L366
+	--- time - client - libs_cl/file.lua#L376
 	---@param path string Filepath relative to data/sf_filedata/.
 	---@return number undefined Last modified time in Unix time
 	function _G.file.time(path) end
-	--- findInGame - client - libs_cl/file.lua#L354
+	--- asyncRead - client - libs_cl/file.lua#L213
+	---@param path string Filepath relative to data/sf_filedata/.
+	---@param callback function A callback function for when the read operation finishes. It has 3 arguments: `filename` string, `status` number and `data` string
+	function _G.file.asyncRead(path, callback) end
+	--- findInGame - client - libs_cl/file.lua#L364
 	---@param path string The folder to enumerate, relative to garrysmod.
 	---@param sorting string? Optional sorting argument. Either nameasc, namedesc, dateasc, datedesc
 	---@return table undefined Table of file names
 	---@return table undefined Table of directory names
 	function _G.file.findInGame(path, sorting) end
-	--- createDir - client - libs_cl/file.lua#L334
+	--- isDir - client - libs_cl/file.lua#L322
+	---@param path string Filepath relative to data/sf_filedata/.
+	---@return boolean undefined True if given path is a directory, false if it's a file
+	function _G.file.isDir(path) end
+	--- createDir - client - libs_cl/file.lua#L344
 	---@param path string Filepath relative to data/sf_filedata/.
 	function _G.file.createDir(path) end
-	--- readTemp - client - libs_cl/file.lua#L249
+	--- readTemp - client - libs_cl/file.lua#L250
 	---@param filename string The temp file name. Must be only a file and not a path
 	---@return string? undefined The data of the temp file or nil if it doesn't exist
 	function _G.file.readTemp(filename) end
-	--- append - client - libs_cl/file.lua#L298
+	--- append - client - libs_cl/file.lua#L299
 	---@param path string Filepath relative to data/sf_filedata/.
 	---@param data string String that will be appended to the file.
 	function _G.file.append(path, data) end
@@ -7906,67 +7910,67 @@ _G.PhysObj = {}
 ---  File type
 ---@class File
 _G.File = {}
-	--- write - client - libs_cl/file.lua#L464
+	--- write - client - libs_cl/file.lua#L474
 	---@param str string The data to write
 	function _G.File:write(str) end
-	--- read - client - libs_cl/file.lua#L415
+	--- read - client - libs_cl/file.lua#L425
 	---@param n number The length to read
 	---@return string undefined The data
 	function _G.File:read(n) end
-	--- writeFloat - client - libs_cl/file.lua#L492
+	--- writeFloat - client - libs_cl/file.lua#L502
 	---@param x number The float to write
 	function _G.File:writeFloat(x) end
-	--- seek - client - libs_cl/file.lua#L388
+	--- seek - client - libs_cl/file.lua#L398
 	---@param n number The position to set it to
 	function _G.File:seek(n) end
-	--- writeLong - client - libs_cl/file.lua#L499
+	--- writeLong - client - libs_cl/file.lua#L509
 	---@param x number The long to write
 	function _G.File:writeLong(x) end
-	--- flush - client - libs_cl/file.lua#L376
+	--- flush - client - libs_cl/file.lua#L386
 	function _G.File:flush() end
-	--- writeDouble - client - libs_cl/file.lua#L485
+	--- writeDouble - client - libs_cl/file.lua#L495
 	---@param x number The double to write
 	function _G.File:writeDouble(x) end
-	--- readLine - client - libs_cl/file.lua#L446
+	--- readLine - client - libs_cl/file.lua#L456
 	---@return string undefined Line contents
 	function _G.File:readLine() end
-	--- readBool - client - libs_cl/file.lua#L422
+	--- readBool - client - libs_cl/file.lua#L432
 	---@return boolean undefined Boolean
 	function _G.File:readBool() end
-	--- writeBool - client - libs_cl/file.lua#L471
+	--- writeBool - client - libs_cl/file.lua#L481
 	---@param x boolean The boolean to write
 	function _G.File:writeBool(x) end
-	--- readByte - client - libs_cl/file.lua#L428
+	--- readByte - client - libs_cl/file.lua#L438
 	---@return number undefined UInt8 number
 	function _G.File:readByte() end
-	--- readFloat - client - libs_cl/file.lua#L440
+	--- readFloat - client - libs_cl/file.lua#L450
 	---@return number undefined Float32 number
 	function _G.File:readFloat() end
-	--- writeByte - client - libs_cl/file.lua#L478
+	--- writeByte - client - libs_cl/file.lua#L488
 	---@param x number The byte to write
 	function _G.File:writeByte(x) end
-	--- readLong - client - libs_cl/file.lua#L452
+	--- readLong - client - libs_cl/file.lua#L462
 	---@return number undefined Int32 number
 	function _G.File:readLong() end
-	--- readDouble - client - libs_cl/file.lua#L434
+	--- readDouble - client - libs_cl/file.lua#L444
 	---@return number undefined Float64 number
 	function _G.File:readDouble() end
-	--- close - client - libs_cl/file.lua#L381
+	--- close - client - libs_cl/file.lua#L391
 	function _G.File:close() end
-	--- skip - client - libs_cl/file.lua#L395
+	--- skip - client - libs_cl/file.lua#L405
 	---@param n number How much to move the position
 	---@return number undefined The resulting position
 	function _G.File:skip(n) end
-	--- writeShort - client - libs_cl/file.lua#L506
+	--- writeShort - client - libs_cl/file.lua#L516
 	---@param x number The short to write
 	function _G.File:writeShort(x) end
-	--- tell - client - libs_cl/file.lua#L403
+	--- tell - client - libs_cl/file.lua#L413
 	---@return number undefined The current file position
 	function _G.File:tell() end
-	--- readShort - client - libs_cl/file.lua#L458
+	--- readShort - client - libs_cl/file.lua#L468
 	---@return number undefined Int16 number
 	function _G.File:readShort() end
-	--- size - client - libs_cl/file.lua#L409
+	--- size - client - libs_cl/file.lua#L419
 	---@return number undefined The file's size
 	function _G.File:size() end
 ---  Quaternion type. Recently reworked, for full changelist visit: https://github.com/thegrb93/StarfallEx/pull/953

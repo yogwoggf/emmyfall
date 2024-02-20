@@ -150,18 +150,18 @@ _G.coroutine = {}
 --- bass
 ---  `bass` library is intended to be used only on client side. It's good for streaming local and remote sound files and playing them directly in player's "2D" context.
 _G.bass = {}
-	--- loadURL - client - libs_cl/bass.lua#L96
+	--- loadURL - client - libs_cl/bass.lua#L205
 	---@param path string URL path to play from.
 	---@param flags string Flags for the sound (`3d`, `mono`, `noplay`, `noblock`). noblock will fail if the webserver doesn't provide file length.
-	---@param callback fun(bass: Bass, errorNum: number, errorName: string) Function which is called when the sound channel is loaded. It'll get 3 arguments: `Bass` object, error number and name.
+	---@param callback fun(bass: Bass, errorNum: number, errorName: string) Function which is called when the sound is loaded. It'll get 3 arguments: `Bass` object, error number and name.
 	function _G.bass.loadURL(path, flags, callback) end
-	--- loadFile - client - libs_cl/bass.lua#L60
+	--- loadFile - client - libs_cl/bass.lua#L188
 	---@param path string File path to play from.
 	---@param flags string Flags for the sound (`3d`, `mono`, `noplay`, `noblock`).
-	---@param callback fun(bass: Bass, errorNum: number, errorName: string) Function which is called when the sound channel is loaded. It'll get 3 arguments: `Bass` object, error number and name.
+	---@param callback fun(bass: Bass, errorNum: number, errorName: string) Function which is called when the sound is loaded. It'll get 3 arguments: `Bass` object, error number and name.
 	function _G.bass.loadFile(path, flags, callback) end
-	--- soundsLeft - client - libs_cl/bass.lua#L131
-	---@return number undefined The number of sounds left
+	--- soundsLeft - client - libs_cl/bass.lua#L221
+	---@return number undefined The number of sounds left.
 	function _G.bass.soundsLeft() end
 --- hook
 ---  Deals with hooks
@@ -650,7 +650,7 @@ _G.xinput = {}
 --- 
 ---  Follow install instructions on the addon's page.
 _G.vr = {}
---- VR - client
+--- VR - shared
 ---  VRmod library enums
 _G.vr.VR = {
 	---@type any
@@ -5235,6 +5235,22 @@ _G.FVPHYSICS = {
 	---@type any
 	["WAS_THROWN"] = nil,
 }
+--- BOX - shared
+---  ENUMs used by render.SetModelLighting
+_G.BOX = {
+	---@type any
+	["FRONT"] = nil,
+	---@type any
+	["BACK"] = nil,
+	---@type any
+	["RIGHT"] = nil,
+	---@type any
+	["LEFT"] = nil,
+	---@type any
+	["TOP"] = nil,
+	---@type any
+	["BOTTOM"] = nil,
+}
 --- PATTACH - shared
 ---  PATTACH enum for particle library
 _G.PATTACH = {
@@ -5551,21 +5567,21 @@ _G.NOTIFY = {
 	---@type any
 	["CLEANUP"] = nil,
 }
---- BOX - shared
----  ENUMs used by render.SetModelLighting
-_G.BOX = {
+--- GMOD_CHANNEL - shared
+---  ENUMs used by Bass:getState()
+_G.GMOD_CHANNEL = {
 	---@type any
-	["FRONT"] = nil,
+	--- 0
+	["STOPPED"] = nil,
 	---@type any
-	["BACK"] = nil,
+	--- 1
+	["PLAYING"] = nil,
 	---@type any
-	["RIGHT"] = nil,
+	--- 2
+	["PAUSED"] = nil,
 	---@type any
-	["LEFT"] = nil,
-	---@type any
-	["TOP"] = nil,
-	---@type any
-	["BOTTOM"] = nil,
+	--- 3
+	["STALLED"] = nil,
 }
 --- HITGROUP - shared
 ---  Player and NPC hitgroup ENUMs
@@ -9679,61 +9695,103 @@ _G.Wirelink = {}
 ---  For playing music there is `Bass` type. You can pause and set current playback time in it. If you're looking to apply DSP effects on present game sounds, use `Sound` instead.
 ---@class Bass
 _G.Bass = {}
-	--- stop - client - libs_cl/bass.lua#L144
+	--- stop - client - libs_cl/bass.lua#L234
 	function _G.Bass:stop() end
-	--- getBitsPerSample - client - libs_cl/bass.lua#L261
+	--- isStalled - client - libs_cl/bass.lua#L475
+	---@return boolean undefined True if the sound is stalled.
+	function _G.Bass:isStalled() end
+	--- getBitsPerSample - client - libs_cl/bass.lua#L419
 	---@return number undefined Floating point number of bits per sample, or 0 if unknown.
 	function _G.Bass:getBitsPerSample() end
-	--- setPitch - client - libs_cl/bass.lua#L168
+	--- isPaused - client - libs_cl/bass.lua#L469
+	---@return boolean undefined True if the sound is paused.
+	function _G.Bass:isPaused() end
+	--- setPitch - client - libs_cl/bass.lua#L286
 	---@param pitch number Pitch to set to. (0-100) 1 is normal pitch.
 	function _G.Bass:setPitch(pitch) end
-	--- setLooping - client - libs_cl/bass.lua#L188
-	---@param loop boolean Whether the sound channel should loop.
-	function _G.Bass:setLooping(loop) end
-	--- getLevels - client - libs_cl/bass.lua#L237
+	--- getPos - client - libs_cl/bass.lua#L299
+	---@return Vector undefined The position of the sound.
+	function _G.Bass:getPos() end
+	--- isPlaying - client - libs_cl/bass.lua#L463
+	---@return boolean undefined True if the sound is playing.
+	function _G.Bass:isPlaying() end
+	--- getLevels - client - libs_cl/bass.lua#L395
 	---@return number undefined The left sound level, a value between 0 and 1.
 	---@return number undefined The right sound level, a value between 0 and 1.
 	function _G.Bass:getLevels() end
-	--- setPos - client - libs_cl/bass.lua#L175
-	---@param pos Vector Where to position the sound.
-	function _G.Bass:setPos(pos) end
-	--- isOnline - client - libs_cl/bass.lua#L223
-	---@return boolean undefined Boolean of whether the sound channel is streamed online.
+	--- isLooping - client - libs_cl/bass.lua#L346
+	---@return boolean undefined Whether the sound loops.
+	function _G.Bass:isLooping() end
+	--- getPan - client - libs_cl/bass.lua#L402
+	---@return number undefined The pan. -1 to 1 for relative left to right
+	function _G.Bass:getPan() end
+	--- setVolume - client - libs_cl/bass.lua#L251
+	---@param vol number Volume multiplier (1 is normal), between 0x and 10x.
+	function _G.Bass:setVolume(vol) end
+	--- is3D - client - libs_cl/bass.lua#L444
+	---@return boolean undefined True if the sound is 3D.
+	function _G.Bass:is3D() end
+	--- setLooping - client - libs_cl/bass.lua#L340
+	---@param loop boolean Whether the sound should loop.
+	function _G.Bass:setLooping(loop) end
+	--- play - client - libs_cl/bass.lua#L229
+	function _G.Bass:play() end
+	--- isOnline - client - libs_cl/bass.lua#L381
+	---@return boolean undefined Boolean of whether the sound is streamed online.
 	function _G.Bass:isOnline() end
-	--- setFade - client - libs_cl/bass.lua#L181
-	---@param min number The channel's volume is at maximum when the listener is within this distance (50-1000)
-	---@param max number The channel's volume stops decreasing when the listener is beyond this distance. (10,000-200,000)
-	function _G.Bass:setFade(min, max) end
-	--- getLength - client - libs_cl/bass.lua#L194
-	---@return number undefined Sound channel length in seconds.
+	--- getFlags - client - libs_cl/bass.lua#L432
+	---@return string undefined The flags of the sound (`3d`, `mono`, `noplay`, `noblock`).
+	function _G.Bass:getFlags() end
+	--- getAverageBitRate - client - libs_cl/bass.lua#L426
+	---@return number undefined The average bit rate of the sound.
+	function _G.Bass:getAverageBitRate() end
+	--- setPan - client - libs_cl/bass.lua#L408
+	---@param Relative number integer volume between the left and right channels. Values must be -1 to 1 for relative left to right.
+	function _G.Bass:setPan(Relative) end
+	--- getTime - client - libs_cl/bass.lua#L366
+	---@return number undefined Sound playback time in seconds.
+	function _G.Bass:getTime() end
+	--- getLength - client - libs_cl/bass.lua#L352
+	---@return number undefined Sound length in seconds.
 	function _G.Bass:getLength() end
-	--- pause - client - libs_cl/bass.lua#L156
+	--- pause - client - libs_cl/bass.lua#L246
 	function _G.Bass:pause() end
-	--- getFFT - client - libs_cl/bass.lua#L214
+	--- getState - client - libs_cl/bass.lua#L450
+	---@return number undefined The state enum of the sound. https://wiki.facepunch.com/gmod/Enums/GMOD_CHANNEL
+	function _G.Bass:getState() end
+	--- isStopped - client - libs_cl/bass.lua#L456
+	---@return boolean undefined True if the sound is stopped.
+	function _G.Bass:isStopped() end
+	--- getFFT - client - libs_cl/bass.lua#L372
 	---@param n number Number of consecutive audio samples, between 0 and 7. Depending on this parameter you will get 256*2^n samples.
 	---@return table undefined Table containing DFT magnitudes, each between 0 and 1.
 	function _G.Bass:getFFT(n) end
-	--- getAverageBitRate - client - libs_cl/bass.lua#L268
-	---@return number undefined The average bit rate of the sound channel.
-	function _G.Bass:getAverageBitRate() end
-	--- setPan - client - libs_cl/bass.lua#L250
-	---@param Relative number integer volume between the left and right channels. Values must be -1 to 1 for relative left to right
-	function _G.Bass:setPan(Relative) end
-	--- getPan - client - libs_cl/bass.lua#L244
-	---@return number undefined The pan. -1 to 1 for relative left to right
-	function _G.Bass:getPan() end
-	--- play - client - libs_cl/bass.lua#L139
-	function _G.Bass:play() end
-	--- setTime - client - libs_cl/bass.lua#L200
-	---@param time number Sound channel playback time in seconds.
-	---@param dontDecode boolean? Skip decoding to set time, which is much faster but less accurate. True by default.
-	function _G.Bass:setTime(time, dontDecode) end
-	--- getTime - client - libs_cl/bass.lua#L208
-	---@return number undefined Sound channel playback time in seconds.
-	function _G.Bass:getTime() end
-	--- setVolume - client - libs_cl/bass.lua#L161
-	---@param vol number Volume multiplier (1 is normal), between 0x and 10x.
-	function _G.Bass:setVolume(vol) end
-	--- isValid - client - libs_cl/bass.lua#L229
+	--- isValid - client - libs_cl/bass.lua#L387
 	---@return boolean undefined Boolean of whether the bass is valid.
 	function _G.Bass:isValid() end
+	--- setFade - client - libs_cl/bass.lua#L305
+	---@param min number The distance where the sound starts to fade. (50-1,000)
+	---@param max number The maximal distance, as described above. (min-20,000 for simple fading, 5,000-200,000 for non-simple fading)
+	---@param useSimpleFading boolean? Whether to use simple fading for this sound. True by default.
+	function _G.Bass:setFade(min, max, useSimpleFading) end
+	--- setTime - client - libs_cl/bass.lua#L358
+	---@param time number Sound playback time in seconds.
+	---@param dontDecode boolean? Skip decoding to set time, which is much faster but less accurate. True by default.
+	function _G.Bass:setTime(time, dontDecode) end
+	--- setPos - client - libs_cl/bass.lua#L293
+	---@param pos Vector Where to position the sound.
+	function _G.Bass:setPos(pos) end
+	--- getFade - client - libs_cl/bass.lua#L329
+	---@return number undefined The distance before the sound starts to fade.
+	---@return number undefined The distance before the sound stops fading.
+	---@return boolean undefined Whether or not this sound uses simple fading.
+	function _G.Bass:getFade() end
+	--- is2D - client - libs_cl/bass.lua#L438
+	---@return boolean undefined True if the sound is 2D.
+	function _G.Bass:is2D() end
+	--- getVolume - client - libs_cl/bass.lua#L269
+	---@return number undefined Volume multiplier (1 is normal), between 0x and 10x.
+	function _G.Bass:getVolume() end
+	--- getFadeMultiplier - client - libs_cl/bass.lua#L276
+	---@return number undefined Volume fade multiplier (1 is normal), between 0x and 10x.
+	function _G.Bass:getFadeMultiplier() end

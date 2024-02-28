@@ -27,43 +27,44 @@
 ---| '"DupeFinished"' #  Called after the starfall chip is duplicated and the duplication is finished.
 ---| '"PlayerHurt"' #  Called when a player gets hurt, uses the player_hurt game event clientside.
 ---| '"VRStart"' #  Called when a player enters VR
+---| '"xinputStick"' #  Called when a stick on the controller has moved. Client must have XInput Lua binary installed.
 ---| '"PlayerSwitchWeapon"' #  Called when a player switches their weapon
 ---| '"think"' #  Think hook. Called each frame on the client and each game tick on the server.
 ---| '"OnPhysgunFreeze"' #  Called when an entity is being frozen  Note this is not called for players or NPCs held with the physgun (bug)
----| '"xinputStick"' #  Called when a stick on the controller has moved. Client must have XInput Lua binary installed.
----| '"EntityFireBullets"' #  Called every time a bullet is fired from an entity
 ---| '"xinputTrigger"' #  Called when a trigger on the controller has moved. Client must have XInput Lua binary installed.
+---| '"EntityFireBullets"' #  Called every time a bullet is fired from an entity
+---| '"mousemoved"' #  Called when the mouse is moved
 ---| '"OnContextMenuOpen"' #  Called when the player opens the context menu
 ---| '"PlayerChat"' #  Called when a player's chat message is printed to the chat window
----| '"mousemoved"' #  Called when the mouse is moved
----| '"OnPlayerPhysicsDrop"' #  Called when an entity is being dropped or thrown by +use
 ---| '"xinputDisconnected"' #  Called when a controller has been disconnected. Client must have XInput Lua binary installed.
----| '"GravGunPunt"' #  Called when a player punts with the gravity gun
+---| '"OnPlayerPhysicsDrop"' #  Called when an entity is being dropped or thrown by +use
 ---| '"xinputConnected"' #  Called when a controller has been connected. Client must have XInput Lua binary installed.
+---| '"GravGunPunt"' #  Called when a player punts with the gravity gun
+---| '"OnContextMenuClose"' #  Called when the player closes the context menu
 ---| '"GravGunOnPickedUp"' #  Called when an entity is being picked up by a gravity gun
----| '"PlayerLeaveVehicle"' #  Called when a players leaves a vehicle
+---| '"ComponentLinked"' #  Called when a component is linked to the starfall
 ---| '"PlayerEndVoice"' #  Called when a player stops using voice chat.
 ---| '"OnEntityWaterLevelChanged"' #  Called when the Entity:getWaterLevel of an entity is changed.
 ---| '"PlayerNoClip"' #  Called when a player toggles noclip
----| '"ComponentLinked"' #  Called when a component is linked to the starfall
----| '"StartEntityDriving"' #  Called when a player starts driving an entity
 ---| '"VRInput"' #  This gets called every time a boolean controller input action changes state
----| '"NetworkEntityCreated"' #  Called when a clientside entity gets created or re-created via lag/PVS
+---| '"StartEntityDriving"' #  Called when a player starts driving an entity
 ---| '"VRExit"' #  Called when a player exits VR
+---| '"NetworkEntityCreated"' #  Called when a clientside entity gets created or re-created via lag/PVS
+---| '"OnPhysgunReload"' #  Called when a player reloads their physgun
 ---| '"ComponentUnlinked"' #  Called when a component is unlinked to the starfall
----| '"PlayerSwitchFlashlight"' #  Called when a players turns their flashlight on or off
----| '"OnNPCKilled"' #  Called whenever an NPC is killed.
+---| '"postdrawskybox"' #  Called after the 3D skybox is drawn. This will not be called if PreDrawSkyBox has prevented rendering of the skybox
 ---| '"postdraw2dskybox"' #  Called right after the 2D skybox has been drawn - allowing you to draw over it.
+---| '"predrawskybox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
 ---| '"starfallUsed"' #  Called when a player uses the screen
 ---| '"render"' #  Called when a frame is requested to be drawn on screen. (2D/3D Context)
----| '"predrawskybox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
----| '"NotifyShouldTransmit"' #  Called when a clientside entity transmit state is changed. Usually when changing PVS  If you want clientside render changes to persist on an entity you have to re-apply them  each time it begins transmitting again
 ---| '"StarfallError"' #  Called when starfall chip errors
+---| '"NotifyShouldTransmit"' #  Called when a clientside entity transmit state is changed. Usually when changing PVS  If you want clientside render changes to persist on an entity you have to re-apply them  each time it begins transmitting again
 ---| '"predrawviewmodels"' #  Called before drawing the viewmodel rendergroup (3D Context)
----| '"drawhud"' #  Called when a frame is requested to be drawn on hud. (2D Context)
 ---| '"postdrawhud"' #  Called after drawing HUD (2D Context)
+---| '"drawhud"' #  Called when a frame is requested to be drawn on hud. (2D Context)
 ---| '"predrawhud"' #  Called before drawing HUD (2D Context)
----| '"postdrawskybox"' #  Called after the 3D skybox is drawn. This will not be called if PreDrawSkyBox has prevented rendering of the skybox
+---| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
+---| '"PostEntityFireBullets"' #  Called after a bullet is fired and it's trace has been calculated
 ---| '"removeLaw"' #  Called when a law is removed. DarkRP only. Not usually called when /resetlaws is used.
 ---| '"predrawtranslucentrenderables"' #  Called before translucent entities are drawn. (Only works with HUD) (3D context)
 ---| '"PhysgunDrop"' #  Called when an entity being held by a physgun gets dropped
@@ -79,7 +80,7 @@
 ---| '"xinputReleased"' #  Called when a controller button has been released. Client must have XInput Lua binary installed.
 ---| '"input"' #  Called when an input on a wired SF chip is written to
 ---| '"net"' #  Called when a net message arrives
----| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
+---| '"PlayerLeaveVehicle"' #  Called when a players leaves a vehicle
 ---| '"readcell"' #  Called when a high speed device reads from a wired SF chip
 ---| '"DoAnimationEvent"' #  Called when a player animation event occurs
 ---| '"inputReleased"' #  Called when a button is released
@@ -93,26 +94,26 @@
 ---| '"setupworldfog"' #  Called when world fog is drawn.
 ---| '"postdrawtranslucentrenderables"' #  Called after translucent entities are drawn. (Only works with HUD) (3D context)
 ---| '"ChatTextChanged"' #  Called when the player's chat box text changes.  Requires the 'input' permission.
----| '"EndEntityDriving"' #  Called when a player stops driving an entity
+---| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
 ---| '"moneyPrinterCatchFire"' #  Called when a money printer is about to catch fire. DarkRP only. Called between moneyPrinterPrintMoney and moneyPrinterPrinted.  Not guaranteed to work for non-vanilla money printers.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
 ---| '"lockdownStarted"' #  Called when a lockdown has started. DarkRP only.
+---| '"EndEntityDriving"' #  Called when a player stops driving an entity
 ---| '"PlayerDeath"' #  Called when a player dies
----| '"resetLaws"' #  Called when laws are reset. DarkRP only. Usually the only hook called when /resetlaws is used.
 ---| '"PlayerUnfrozeObject"' #  Called when a player unfreezes an object
 ---| '"EntityEmitSound"' #  Called whenever a sound has been played. This will not be called clientside if the server played the sound without the client also calling Entity:EmitSound.
+---| '"resetLaws"' #  Called when laws are reset. DarkRP only. Usually the only hook called when /resetlaws is used.
 ---| '"PlayerSpawn"' #  Called when a player spawns
----| '"PlayerDisconnected"' #  Called when a player disconnects
 ---| '"PlayerChangename"' #  Called when a player changes their Steam name. (Game Event)
+---| '"PlayerDisconnected"' #  Called when a player disconnects
 ---| '"playerWalletChanged"' #  Called when a player receives money. DarkRP only.  Will only be called if the recipient is the owner of the chip, or if the chip is running in superuser mode.
----| '"PlayerCanPickupWeapon"' #  Called when a wants to pick up a weapon
 ---| '"ClientInitialized"' #  Called after a client's starfall has initialized. Use this to know when it's safe to send net messages to the client.
----| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
+---| '"OnNPCKilled"' #  Called whenever an NPC is killed.
 ---| '"moneyPrinterPrinted"' #  Called after a money printer is has printed money. DarkRP only.  Not guaranteed to work for non-vanilla money printers.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
----| '"OnPhysgunReload"' #  Called when a player reloads their physgun
+---| '"PlayerCanPickupWeapon"' #  Called when a wants to pick up a weapon
 ---| '"calcview"' #  Called when the engine wants to calculate the player's view. Only works if connected to Starfall HUD
+---| '"PlayerSwitchFlashlight"' #  Called when a players turns their flashlight on or off
 ---| '"PlayerSay"' #  Called when a player sends a chat message
 ---| '"PlayerSpray"' #  Called when a players sprays their logo
----| '"OnContextMenuClose"' #  Called when the player closes the context menu
 ---| '"permissionrequest"' #  Called when local client changed instance permissions
 ---| '"PlayerUse"' #  Called when a player holds their use key and looks at an entity.  Will continuously run.
 ---| '"OnEntityCreated"' #  Called when an entity gets created
@@ -166,21 +167,21 @@ _G.bass = {}
 --- hook
 ---  Deals with hooks
 _G.hook = {}
-	--- run - shared - libs_sh/hook.lua#L592
+	--- run - shared - libs_sh/hook.lua#L604
 	---@param hookname string The hook name
 	---@param arguments ... Arguments to pass to the hook
 	---@return ... undefined returns Return result(s) of the hook ran
 	function _G.hook.run(hookname, arguments) end
-	--- add - shared - libs_sh/hook.lua#L572
+	--- add - shared - libs_sh/hook.lua#L584
 	---@param hookname hooks Name of the event
 	---@param name string Unique identifier
 	---@param func function Function to run
 	function _G.hook.add(hookname, name, func) end
-	--- remove - shared - libs_sh/hook.lua#L661
+	--- remove - shared - libs_sh/hook.lua#L673
 	---@param hookname string The hook name
 	---@param name string The unique name for this hook
 	function _G.hook.remove(hookname, name) end
-	--- runRemote - shared - libs_sh/hook.lua#L624
+	--- runRemote - shared - libs_sh/hook.lua#L636
 	---@param recipient Entity? Starfall entity to call the hook on. Nil to run on every starfall entity
 	---@param payload ... Parameters that will be passed when calling hook functions
 	---@return table undefined A list of the resultset of each called hook

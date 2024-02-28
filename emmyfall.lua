@@ -5188,6 +5188,22 @@ _G.FSOLID = {
 	---@type any
 	["TRIGGER_TOUCH_DEBRIS"] = nil,
 }
+--- BOX - shared
+---  ENUMs used by render.SetModelLighting
+_G.BOX = {
+	---@type any
+	["FRONT"] = nil,
+	---@type any
+	["BACK"] = nil,
+	---@type any
+	["RIGHT"] = nil,
+	---@type any
+	["LEFT"] = nil,
+	---@type any
+	["TOP"] = nil,
+	---@type any
+	["BOTTOM"] = nil,
+}
 --- EF - shared
 ---  ENUMs of ef for use with hologram:addEffects hologram:removeEffects entity:isEffectActive
 _G.EF = {
@@ -5244,21 +5260,75 @@ _G.FVPHYSICS = {
 	---@type any
 	["WAS_THROWN"] = nil,
 }
---- BOX - shared
----  ENUMs used by render.SetModelLighting
-_G.BOX = {
+--- DAMAGE - shared
+---  ENUMs used for anything that returns a damage type.
+_G.DAMAGE = {
 	---@type any
-	["FRONT"] = nil,
+	["GENERIC"] = nil,
 	---@type any
-	["BACK"] = nil,
+	["CRUSH"] = nil,
 	---@type any
-	["RIGHT"] = nil,
+	["BULLET"] = nil,
 	---@type any
-	["LEFT"] = nil,
+	["SPLASH"] = nil,
 	---@type any
-	["TOP"] = nil,
+	["BURN"] = nil,
 	---@type any
-	["BOTTOM"] = nil,
+	["VEHICLE"] = nil,
+	---@type any
+	["FALL"] = nil,
+	---@type any
+	["BLAST"] = nil,
+	---@type any
+	["CLUB"] = nil,
+	---@type any
+	["SHOCK"] = nil,
+	---@type any
+	["SONIC"] = nil,
+	---@type any
+	["ENERGYBEAM"] = nil,
+	---@type any
+	["PREVENTPHYSICSFORCE"] = nil,
+	---@type any
+	["NEVERGIB"] = nil,
+	---@type any
+	["ALWAYSGIB"] = nil,
+	---@type any
+	["DROWN"] = nil,
+	---@type any
+	["PARALYZE"] = nil,
+	---@type any
+	["NERVEGAS"] = nil,
+	---@type any
+	["POISON"] = nil,
+	---@type any
+	["RADIATION"] = nil,
+	---@type any
+	["DROWNRECOVER"] = nil,
+	---@type any
+	["ACID"] = nil,
+	---@type any
+	["SLOWBURN"] = nil,
+	---@type any
+	["REMOVENORAGDOLL"] = nil,
+	---@type any
+	["PHYSGUN"] = nil,
+	---@type any
+	["PLASMA"] = nil,
+	---@type any
+	["AIRBOAT"] = nil,
+	---@type any
+	["DISSOLVE"] = nil,
+	---@type any
+	["BLASTSURFACE"] = nil,
+	---@type any
+	["DIRECT"] = nil,
+	---@type any
+	["BUCKSHOT"] = nil,
+	---@type any
+	["SNIPER"] = nil,
+	---@type any
+	["MISSILEDEFENSE"] = nil,
 }
 --- PATTACH - shared
 ---  PATTACH enum for particle library

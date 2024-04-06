@@ -167,21 +167,21 @@ _G.bass = {}
 --- hook
 ---  Deals with hooks
 _G.hook = {}
-	--- run - shared - libs_sh/hook.lua#L607
+	--- run - shared - libs_sh/hook.lua#L608
 	---@param hookname string The hook name
 	---@param arguments ... Arguments to pass to the hook
 	---@return ... undefined returns Return result(s) of the hook ran
 	function _G.hook.run(hookname, arguments) end
-	--- add - shared - libs_sh/hook.lua#L587
+	--- add - shared - libs_sh/hook.lua#L588
 	---@param hookname hooks Name of the event
 	---@param name string Unique identifier
 	---@param func function Function to run
 	function _G.hook.add(hookname, name, func) end
-	--- remove - shared - libs_sh/hook.lua#L676
+	--- remove - shared - libs_sh/hook.lua#L677
 	---@param hookname string The hook name
 	---@param name string The unique name for this hook
 	function _G.hook.remove(hookname, name) end
-	--- runRemote - shared - libs_sh/hook.lua#L639
+	--- runRemote - shared - libs_sh/hook.lua#L640
 	---@param recipient Entity? Starfall entity to call the hook on. Nil to run on every starfall entity
 	---@param payload ... Parameters that will be passed when calling hook functions
 	---@return table undefined A list of the resultset of each called hook
@@ -4295,27 +4295,27 @@ _G.von = {}
 --- find
 ---  Find library. Finds entities in various shapes.
 _G.find = {}
-	--- all - shared - libs_sh/find.lua#L163
+	--- all - shared - libs_sh/find.lua#L183
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.all(filter) end
-	--- closest - shared - libs_sh/find.lua#L172
+	--- closest - shared - libs_sh/find.lua#L192
 	---@param ents table The array of entities
 	---@param pos Vector The position
 	---@return Entity undefined The closest entity
 	function _G.find.closest(ents, pos) end
-	--- byName - shared - libs_sh/find.lua#L119
+	--- byName - shared - libs_sh/find.lua#L139
 	---@param name string The targetname
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.byName(name, filter) end
-	--- inSphere - shared - libs_sh/find.lua#L56
+	--- inSphere - shared - libs_sh/find.lua#L76
 	---@param center Vector Center of the sphere
 	---@param radius number Sphere radius
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.inSphere(center, radius, filter) end
-	--- inRay - shared - libs_sh/find.lua#L87
+	--- inRay - shared - libs_sh/find.lua#L107
 	---@param startpos Vector The ray start
 	---@param endpos Vector The ray end
 	---@param mins Vector? If not nil, will define a lower bound of the ray's hull
@@ -4323,11 +4323,11 @@ _G.find = {}
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.inRay(startpos, endpos, mins, maxs, filter) end
-	--- allPlayers - shared - libs_sh/find.lua#L154
+	--- allPlayers - shared - libs_sh/find.lua#L174
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.allPlayers(filter) end
-	--- inCone - shared - libs_sh/find.lua#L70
+	--- inCone - shared - libs_sh/find.lua#L90
 	---@param pos Vector The cone vertex position
 	---@param dir Vector The direction to project the cone
 	---@param distance number The length to project the cone
@@ -4335,46 +4335,46 @@ _G.find = {}
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.inCone(pos, dir, distance, radius, filter) end
-	--- inPVS - server - libs_sh/find.lua#L142
+	--- inPVS - server - libs_sh/find.lua#L162
 	---@param pos Vector Vector view point
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.inPVS(pos, filter) end
-	--- inBox - shared - libs_sh/find.lua#L43
+	--- inBox - shared - libs_sh/find.lua#L63
 	---@param min Vector Bottom corner
 	---@param max Vector Top corner
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.inBox(min, max, filter) end
-	--- sortByClosest - shared - libs_sh/find.lua#L191
+	--- sortByClosest - shared - libs_sh/find.lua#L211
 	---@param ents table The array of entities
 	---@param pos Vector The position
 	---@param furthest boolean Whether to have the further entities first
 	---@return table undefined A table of the closest entities
 	function _G.find.sortByClosest(ents, pos, furthest) end
-	--- playerBySteamID64 - shared - libs_sh/find.lua#L260
+	--- playerBySteamID64 - shared - libs_sh/find.lua#L280
 	---@param steamid string 64-bit steam id to search for
 	---@return Player? undefined The player with matching steamid
 	function _G.find.playerBySteamID64(steamid) end
-	--- getMapCreatedEntity - shared - libs_sh/find.lua#L268
+	--- getMapCreatedEntity - shared - libs_sh/find.lua#L288
 	---@param num number Entity's creation id
 	---@return Entity? undefined The found entity or nil if not found
 	function _G.find.getMapCreatedEntity(num) end
-	--- byClass - shared - libs_sh/find.lua#L108
+	--- byClass - shared - libs_sh/find.lua#L128
 	---@param class string The class name
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.byClass(class, filter) end
-	--- byModel - shared - libs_sh/find.lua#L130
+	--- byModel - shared - libs_sh/find.lua#L150
 	---@param model string The model file
 	---@param filter function? Optional function to filter results
 	---@return table undefined An array of found entities
 	function _G.find.byModel(model, filter) end
-	--- playerBySteamID - shared - libs_sh/find.lua#L252
+	--- playerBySteamID - shared - libs_sh/find.lua#L272
 	---@param steamid string Steam Id to search for
 	---@return Player? undefined The player with matching steamid
 	function _G.find.playerBySteamID(steamid) end
-	--- playersByName - shared - libs_sh/find.lua#L215
+	--- playersByName - shared - libs_sh/find.lua#L235
 	---@param name string Name to search for
 	---@param casesensitive boolean? Boolean should the match be case sensitive?
 	---@param exact boolean? Boolean should the name match exactly

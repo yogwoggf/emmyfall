@@ -189,77 +189,77 @@ _G.hook = {}
 --- material
 ---  `material` library is allows creating material objects which are used for controlling shaders in rendering.
 _G.material = {}
-	--- getFloat - client - libs_cl/material.lua#L421
+	--- getFloat - client - libs_cl/material.lua#L478
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@param key string The key to get the float from
 	---@return number? undefined The float value or nil if it doesn't exist
 	function _G.material.getFloat(path, key) end
-	--- createFromImage - client - libs_cl/material.lua#L501
+	--- createFromImage - client - libs_cl/material.lua#L558
 	---@param path string The path to the image file, must be a jpg or png image
 	---@param params string The shader parameters to apply to the material. See https://wiki.facepunch.com/gmod/Material_Parameters
 	---@return Material undefined The Material created.
 	function _G.material.createFromImage(path, params) end
-	--- create - client - libs_cl/material.lua#L481
+	--- create - client - libs_cl/material.lua#L538
 	---@param shader string The shader of the material. Must be one of
 	---@return Material undefined The Material created.
 	function _G.material.create(shader) end
-	--- getMatrix - client - libs_cl/material.lua#L441
+	--- getMatrix - client - libs_cl/material.lua#L498
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@param key string The key to get the matrix from
 	---@return VMatrix? undefined The matrix value or nil if it doesn't exist
 	function _G.material.getMatrix(path, key) end
-	--- getVectorLinear - client - libs_cl/material.lua#L471
+	--- getVectorLinear - client - libs_cl/material.lua#L528
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@param key string The key to get the vector from
 	---@return Vector? undefined The vector value or nil if it doesn't exist
 	function _G.material.getVectorLinear(path, key) end
-	--- getKeyValues - client - libs_cl/material.lua#L369
+	--- getKeyValues - client - libs_cl/material.lua#L426
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@return table undefined The table of keyvalues
 	function _G.material.getKeyValues(path) end
-	--- getColor - client - libs_cl/material.lua#L409
+	--- getColor - client - libs_cl/material.lua#L466
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@param x number The x coordinate of the pixel
 	---@param y number The y coordinate of the pixel
 	---@return Color undefined The color value
 	function _G.material.getColor(path, x, y) end
-	--- getShader - client - libs_cl/material.lua#L385
+	--- getShader - client - libs_cl/material.lua#L442
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@return string undefined The shader name of the material
 	function _G.material.getShader(path) end
-	--- getInt - client - libs_cl/material.lua#L431
+	--- getInt - client - libs_cl/material.lua#L488
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@param key string The key to get the int from
 	---@return number? undefined The int value or nil if it doesn't exist
 	function _G.material.getInt(path, key) end
-	--- load - client - libs_cl/material.lua#L344
+	--- load - client - libs_cl/material.lua#L401
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@return Material undefined The material object. Can't be modified.
 	function _G.material.load(path) end
-	--- getTexture - client - libs_cl/material.lua#L358
+	--- getTexture - client - libs_cl/material.lua#L415
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@param texture string The texture key to get
 	---@return string? undefined The texture's name or nil if texture key isn't found
 	function _G.material.getTexture(path, texture) end
-	--- getString - client - libs_cl/material.lua#L451
+	--- getString - client - libs_cl/material.lua#L508
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@param key string The key to get the string from
 	---@return string? undefined The string value or nil if it doesn't exist
 	function _G.material.getString(path, key) end
-	--- getVector - client - libs_cl/material.lua#L461
+	--- getVector - client - libs_cl/material.lua#L518
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@param key string The key to get the vector from
 	---@return Vector? undefined The vector value or nil if it doesn't exist
 	function _G.material.getVector(path, key) end
-	--- getName - client - libs_cl/material.lua#L377
+	--- getName - client - libs_cl/material.lua#L434
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@return string undefined The name of a material. If this material is user created, add ! to the beginning of this to use it with entity.setMaterial
 	function _G.material.getName(path) end
-	--- getWidth - client - libs_cl/material.lua#L393
+	--- getWidth - client - libs_cl/material.lua#L450
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@return number undefined The basetexture's width
 	function _G.material.getWidth(path) end
-	--- getHeight - client - libs_cl/material.lua#L401
+	--- getHeight - client - libs_cl/material.lua#L458
 	---@param path string The path of the material (don't include .vmt in the path)
 	---@return number undefined The basetexture's height
 	function _G.material.getHeight(path) end
@@ -7884,93 +7884,93 @@ _G.Light = {}
 ---  For a list of $flags and $flags2, see https://developer.valvesoftware.com/wiki/Material_Flags
 ---@class Material
 _G.Material = {}
-	--- getFloat - client - libs_cl/material.lua#L591
+	--- getFloat - client - libs_cl/material.lua#L648
 	---@param key string The key to get the float from
 	---@return number? undefined The float value or nil if it doesn't exist
 	function _G.Material:getFloat(key) end
-	--- recompute - client - libs_cl/material.lua#L662
+	--- recompute - client - libs_cl/material.lua#L719
 	function _G.Material:recompute() end
-	--- getMatrix - client - libs_cl/material.lua#L616
+	--- getMatrix - client - libs_cl/material.lua#L673
 	---@param key string The key to get the matrix from
 	---@return VMatrix? undefined The matrix value or nil if it doesn't exist
 	function _G.Material:getMatrix(key) end
-	--- getColor - client - libs_cl/material.lua#L580
+	--- getColor - client - libs_cl/material.lua#L637
 	---@param x number The x coordinate of the pixel
 	---@param y number The y coordinate of the pixel
 	---@return Color undefined The color value
 	function _G.Material:getColor(x, y) end
-	--- getInt - client - libs_cl/material.lua#L600
+	--- getInt - client - libs_cl/material.lua#L657
 	---@param key string The key to get the int from
 	---@return number? undefined The int value or nil if it doesn't exist
 	function _G.Material:getInt(key) end
-	--- setInt - client - libs_cl/material.lua#L676
+	--- setInt - client - libs_cl/material.lua#L733
 	---@param key string The key name to set
 	---@param v number The value to set it to
 	function _G.Material:setInt(key, v) end
-	--- getTexture - client - libs_cl/material.lua#L634
+	--- getTexture - client - libs_cl/material.lua#L691
 	---@param key string The key to get the texture from
 	---@return string? undefined The string id of the texture or nil if it doesn't exist
 	function _G.Material:getTexture(key) end
-	--- setFloat - client - libs_cl/material.lua#L667
+	--- setFloat - client - libs_cl/material.lua#L724
 	---@param key string The key name to set
 	---@param v number The value to set it to
 	function _G.Material:setFloat(key, v) end
-	--- setTexture - client - libs_cl/material.lua#L702
+	--- setTexture - client - libs_cl/material.lua#L759
 	---@param key string The key name to set. $basetexture is the key name for most purposes.
 	---@param v string The texture name to set it to.
 	function _G.Material:setTexture(key, v) end
-	--- setUndefined - client - libs_cl/material.lua#L788
+	--- setUndefined - client - libs_cl/material.lua#L839
 	---@param key string The key name to set
 	function _G.Material:setUndefined(key) end
-	--- getString - client - libs_cl/material.lua#L625
+	--- getString - client - libs_cl/material.lua#L682
 	---@param key string The key to get the string from
 	---@return string? undefined The string value or nil if it doesn't exist
 	function _G.Material:getString(key) end
-	--- getVectorLinear - client - libs_cl/material.lua#L653
+	--- getVectorLinear - client - libs_cl/material.lua#L710
 	---@param key string The key to get the vector from
 	---@return Vector? undefined The vector value or nil if it doesn't exist
 	function _G.Material:getVectorLinear(key) end
-	--- setTextureURL - client - libs_cl/material.lua#L712
+	--- setTextureURL - client - libs_cl/material.lua#L769
 	---@param key string The key name to set. $basetexture is the key name for most purposes.
 	---@param url string The url or base64 data
 	---@param cb function? An optional callback called when image is loaded. Passes nil if it fails or Passes the material, url, width, height, and layout function which can be called with x, y, w, h, pixelated to reposition the image in the texture. Setting the optional 'pixelated' argument to True tells the image to use nearest-neighbor interpolation
 	---@param done function? An optional callback called when the image is done loading. Passes the material, url
 	function _G.Material:setTextureURL(key, url, cb, done) end
-	--- getKeyValues - client - libs_cl/material.lua#L609
+	--- getKeyValues - client - libs_cl/material.lua#L666
 	---@return table undefined The table of keyvalues
 	function _G.Material:getKeyValues() end
-	--- getName - client - libs_cl/material.lua#L552
+	--- getName - client - libs_cl/material.lua#L609
 	---@return string undefined The name of the material. If this material is user created, add ! to the beginning of this to use it with entity.setMaterial
 	function _G.Material:getName() end
-	--- destroy - client - libs_cl/material.lua#L529
+	--- destroy - client - libs_cl/material.lua#L586
 	function _G.Material:destroy() end
-	--- setVector - client - libs_cl/material.lua#L795
+	--- setVector - client - libs_cl/material.lua#L846
 	---@param key string The key name to set
 	---@param v Vector The value to set it to
 	function _G.Material:setVector(key, v) end
-	--- setString - client - libs_cl/material.lua#L693
+	--- setString - client - libs_cl/material.lua#L750
 	---@param key string The key name to set
 	---@param v string The value to set it to
 	function _G.Material:setString(key, v) end
-	--- setMatrix - client - libs_cl/material.lua#L685
+	--- setMatrix - client - libs_cl/material.lua#L742
 	---@param key string The key name to set
 	---@param v VMatrix The value to set it to
 	function _G.Material:setMatrix(key, v) end
-	--- getShader - client - libs_cl/material.lua#L559
+	--- getShader - client - libs_cl/material.lua#L616
 	---@return string undefined The shader name of the material
 	function _G.Material:getShader() end
-	--- getVector - client - libs_cl/material.lua#L644
+	--- getVector - client - libs_cl/material.lua#L701
 	---@param key string The key to get the vector from
 	---@return Vector? undefined The vector value or nil if it doesn't exist
 	function _G.Material:getVector(key) end
-	--- setTextureRenderTarget - client - libs_cl/material.lua#L774
+	--- setTextureRenderTarget - client - libs_cl/material.lua#L825
 	---@param key string The key name to set. $basetexture is the key name for most purposes.
 	---@param name string The name of the rendertarget
 	function _G.Material:setTextureRenderTarget(key, name) end
-	--- getWidth - client - libs_cl/material.lua#L566
+	--- getWidth - client - libs_cl/material.lua#L623
 	---@return number undefined The basetexture's width
 	function _G.Material:getWidth() end
-	--- getHeight - client - libs_cl/material.lua#L573
+	--- getHeight - client - libs_cl/material.lua#L630
 	---@return number undefined The basetexture's height
 	function _G.Material:getHeight() end
 ---  Angle Type

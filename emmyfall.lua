@@ -28,73 +28,74 @@
 ---| '"PlayerHurt"' #  Called when a player gets hurt, uses the player_hurt game event clientside.
 ---| '"VRStart"' #  Called when a player enters VR
 ---| '"mouseWheeled"' #  Called when the mouse wheel is rotated
+---| '"mousemoved"' #  Called when the mouse is moved
 ---| '"PlayerSwitchWeapon"' #  Called when a player switches their weapon
 ---| '"think"' #  Think hook. Called each frame on the client and each game tick on the server.
 ---| '"OnPhysgunFreeze"' #  Called when an entity is being frozen  Note this is not called for players or NPCs held with the physgun (bug)
----| '"mousemoved"' #  Called when the mouse is moved
+---| '"midi"' #  Event hook for midi devices.    Everytime a midi device outputs a signal, the callback function on the hook is called.  Read up on the MIDI protocol to make better sense of everything -> https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html  Commands and their parameters:  0x80 NOTE_OFF              : param1 = key;                         param2 = velocity  0x90 NOTE_ON               : param1 = key;                         param2 = velocity  0xA0 AFTERTOUCH            : param1 = key;                         param2 = touch  0xB0 CONTINUOUS_CONTROLLER : param1 = button_number;               param2 = button_value  0xC0 PATCH_CHANGE          : param1 = patch number;  0xD0 CHANNEL_PRESSURE      : param1 = pressure;  0xE0 PITCH_BEND            : param1 = lsb(least signifigant bit);  param2 = msb(most signifigant bit)
 ---| '"EntityFireBullets"' #  Called every time a bullet is fired from an entity
----| '"input"' #  Called when an input on a wired SF chip is written to
+---| '"inputPressed"' #  Called when a button is pressed
 ---| '"OnContextMenuOpen"' #  Called when the player opens the context menu
 ---| '"PlayerChat"' #  Called when a chat message is printed your chat window (chip owner only)
----| '"inputPressed"' #  Called when a button is pressed
+---| '"PlayerSpray"' #  Called when a players sprays their logo
 ---| '"OnPlayerPhysicsDrop"' #  Called when an entity is being dropped or thrown by +use
----| '"OnContextMenuClose"' #  Called when the player closes the context menu
----| '"GravGunPunt"' #  Called when a player punts with the gravity gun
 ---| '"xinputStick"' #  Called when a stick on the controller has moved. Client must have XInput Lua binary installed.
----| '"GravGunOnPickedUp"' #  Called when an entity is being picked up by a gravity gun
+---| '"GravGunPunt"' #  Called when a player punts with the gravity gun
 ---| '"xinputTrigger"' #  Called when a trigger on the controller has moved. Client must have XInput Lua binary installed.
+---| '"GravGunOnPickedUp"' #  Called when an entity is being picked up by a gravity gun
+---| '"VRExit"' #  Called when a player exits VR
 ---| '"PlayerEndVoice"' #  Called when a player stops using voice chat.
 ---| '"OnEntityWaterLevelChanged"' #  Called when the Entity:getWaterLevel of an entity is changed.
 ---| '"PlayerNoClip"' #  Called when a player toggles noclip
----| '"VRInput"' #  This gets called every time a boolean controller input action changes state
----| '"StartEntityDriving"' #  Called when a player starts driving an entity
 ---| '"xinputDisconnected"' #  Called when a controller has been disconnected. Client must have XInput Lua binary installed.
----| '"NetworkEntityCreated"' #  Called when a clientside entity gets created or re-created via lag/PVS
+---| '"StartEntityDriving"' #  Called when a player starts driving an entity
 ---| '"xinputConnected"' #  Called when a controller has been connected. Client must have XInput Lua binary installed.
----| '"ComponentUnlinked"' #  Called when a component is unlinked to the starfall
+---| '"NetworkEntityCreated"' #  Called when a clientside entity gets created or re-created via lag/PVS
 ---| '"OnPhysgunReload"' #  Called when a player reloads their physgun
+---| '"ComponentUnlinked"' #  Called when a component is unlinked to the starfall
 ---| '"postdrawskybox"' #  Called after the 3D skybox is drawn. This will not be called if PreDrawSkyBox has prevented rendering of the skybox
 ---| '"postdraw2dskybox"' #  Called right after the 2D skybox has been drawn - allowing you to draw over it.
+---| '"predrawskybox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
 ---| '"starfallUsed"' #  Called when a player uses the screen
 ---| '"render"' #  Called when a frame is requested to be drawn on screen. (2D/3D Context)
----| '"predrawskybox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
----| '"NotifyShouldTransmit"' #  Called when a clientside entity transmit state is changed. Usually when changing PVS  If you want clientside render changes to persist on an entity you have to re-apply them  each time it begins transmitting again
----| '"StarfallError"' #  Called when starfall chip errors
----| '"predrawviewmodels"' #  Called before drawing the viewmodel rendergroup (3D Context)
----| '"drawhud"' #  Called when a frame is requested to be drawn on hud. (2D Context)
----| '"predrawhud"' #  Called before drawing HUD (2D Context)
 ---| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
+---| '"NotifyShouldTransmit"' #  Called when a clientside entity transmit state is changed. Usually when changing PVS  If you want clientside render changes to persist on an entity you have to re-apply them  each time it begins transmitting again
+---| '"predrawviewmodels"' #  Called before drawing the viewmodel rendergroup (3D Context)
+---| '"predrawhud"' #  Called before drawing HUD (2D Context)
+---| '"drawhud"' #  Called when a frame is requested to be drawn on hud. (2D Context)
+---| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
+---| '"postdrawopaquerenderables"' #  Called after opaque entities are drawn. (Only works with HUD) (3D context)
 ---| '"PostEntityFireBullets"' #  Called after a bullet is fired and it's trace has been calculated
 ---| '"removeLaw"' #  Called when a law is removed. DarkRP only. Not usually called when /resetlaws is used.
 ---| '"predrawtranslucentrenderables"' #  Called before translucent entities are drawn. (Only works with HUD) (3D context)
 ---| '"PhysgunDrop"' #  Called when an entity being held by a physgun gets dropped
----| '"PlayerInitialSpawn"' #  Called when a player spawns for the first time
----| '"postdrawopaquerenderables"' #  Called after opaque entities are drawn. (Only works with HUD) (3D context)
----| '"predrawopaquerenderables"' #  Called before opaque entities are drawn. (Only works with HUD) (3D context)
+---| '"PlayerFootstep"' #  Called whenever a player steps
 ---| '"hologrammatrix"' #  Called before entities are drawn. You can't render anything, but you can edit hologram matrices before they are drawn.
+---| '"predrawopaquerenderables"' #  Called before opaque entities are drawn. (Only works with HUD) (3D context)
+---| '"renderscene"' #  Called when a scene is requested to be drawn. This is used for the render.renderview function.
 ---| '"tick"' #  Tick hook. Called each game tick on both the server and client.
 ---| '"KeyPress"' #  Called when a player presses a key
----| '"renderscene"' #  Called when a scene is requested to be drawn. This is used for the render.renderview function.
+---| '"StarfallError"' #  Called when starfall chip errors
 ---| '"PropBreak"' #  Called when an entity is broken
----| '"ComponentLinked"' #  Called when a component is linked to the starfall
+---| '"VRInput"' #  This gets called every time a boolean controller input action changes state
 ---| '"xinputReleased"' #  Called when a controller button has been released. Client must have XInput Lua binary installed.
----| '"VRExit"' #  Called when a player exits VR
 ---| '"net"' #  Called when a net message arrives
----| '"PlayerLeaveVehicle"' #  Called when a players leaves a vehicle
 ---| '"readcell"' #  Called when a high speed device reads from a wired SF chip
+---| '"PlayerLeaveVehicle"' #  Called when a players leaves a vehicle
+---| '"input"' #  Called when an input on a wired SF chip is written to
 ---| '"DoAnimationEvent"' #  Called when a player animation event occurs
 ---| '"inputReleased"' #  Called when a button is released
----| '"midi"' #  Event hook for midi devices.    Everytime a midi device outputs a signal, the callback function on the hook is called.  Read up on the MIDI protocol to make better sense of everything -> https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html  Commands and their parameters:  0x80 NOTE_OFF              : param1 = key;                         param2 = velocity  0x90 NOTE_ON               : param1 = key;                         param2 = velocity  0xA0 AFTERTOUCH            : param1 = key;                         param2 = touch  0xB0 CONTINUOUS_CONTROLLER : param1 = button_number;               param2 = button_value  0xC0 PATCH_CHANGE          : param1 = patch number;  0xD0 CHANNEL_PRESSURE      : param1 = pressure;  0xE0 PITCH_BEND            : param1 = lsb(least signifigant bit);  param2 = msb(most signifigant bit)
+---| '"hudconnected"' #  Called when the player connects to a HUD component linked to the Starfall Chip
 ---| '"lockdownEnded"' #  Called when a lockdown has ended. DarkRP only.
 ---| '"PlayerDisconnect"' #  Called when a player disconnects from the server. (Game Event)
----| '"hudconnected"' #  Called when the player connects to a HUD component linked to the Starfall Chip
 ---| '"huddisconnected"' #  Called when the player disconnects from a HUD component linked to the Starfall Chip
+---| '"ComponentLinked"' #  Called when a component is linked to the starfall
 ---| '"VRPreRender"' #  Called before rendering the game. Any code that you want to run once per frame should be put here. HUD is required.
 ---| '"EntityTakeDamage"' #  Called when an entity is damaged
 ---| '"setupworldfog"' #  Called when world fog is drawn.
 ---| '"postdrawtranslucentrenderables"' #  Called after translucent entities are drawn. (Only works with HUD) (3D context)
 ---| '"ChatTextChanged"' #  Called when the player's chat box text changes.  Requires the 'input' permission.
----| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
+---| '"PlayerChangename"' #  Called when a player changes their Steam name. (Game Event)
 ---| '"moneyPrinterCatchFire"' #  Called when a money printer is about to catch fire. DarkRP only. Called between moneyPrinterPrintMoney and moneyPrinterPrinted.  Not guaranteed to work for non-vanilla money printers.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
 ---| '"lockdownStarted"' #  Called when a lockdown has started. DarkRP only.
 ---| '"EndEntityDriving"' #  Called when a player stops driving an entity
@@ -103,7 +104,7 @@
 ---| '"EntityEmitSound"' #  Called whenever a sound has been played. This will not be called clientside if the server played the sound without the client also calling Entity:EmitSound.
 ---| '"resetLaws"' #  Called when laws are reset. DarkRP only. Usually the only hook called when /resetlaws is used.
 ---| '"PlayerSpawn"' #  Called when a player spawns
----| '"PlayerChangename"' #  Called when a player changes their Steam name. (Game Event)
+---| '"OnContextMenuClose"' #  Called when the player closes the context menu
 ---| '"PlayerDisconnected"' #  Called when a player disconnects
 ---| '"playerWalletChanged"' #  Called when a player receives money. DarkRP only.  Will only be called if the recipient is the owner of the chip, or if the chip is running in superuser mode.
 ---| '"ClientInitialized"' #  Called after a client's starfall has initialized. Use this to know when it's safe to send net messages to the client.
@@ -113,7 +114,7 @@
 ---| '"calcview"' #  Called when the engine wants to calculate the player's view. Only works if connected to Starfall HUD
 ---| '"PlayerSwitchFlashlight"' #  Called when a players turns their flashlight on or off
 ---| '"PlayerSay"' #  Called when a player sends a chat message
----| '"PlayerSpray"' #  Called when a players sprays their logo
+---| '"PlayerInitialSpawn"' #  Called when a player spawns for the first time
 ---| '"permissionrequest"' #  Called when local client changed instance permissions
 ---| '"PlayerUse"' #  Called when a player holds their use key and looks at an entity.  Will continuously run.
 ---| '"OnEntityCreated"' #  Called when an entity gets created
@@ -167,21 +168,21 @@ _G.bass = {}
 --- hook
 ---  Deals with hooks
 _G.hook = {}
-	--- run - shared - libs_sh/hook.lua#L618
+	--- run - shared - libs_sh/hook.lua#L638
 	---@param hookname string The hook name
 	---@param arguments ... Arguments to pass to the hook
 	---@return ... undefined returns Return result(s) of the hook ran
 	function _G.hook.run(hookname, arguments) end
-	--- add - shared - libs_sh/hook.lua#L598
+	--- add - shared - libs_sh/hook.lua#L618
 	---@param hookname hooks Name of the event
 	---@param name string Unique identifier
 	---@param func function Function to run
 	function _G.hook.add(hookname, name, func) end
-	--- remove - shared - libs_sh/hook.lua#L687
+	--- remove - shared - libs_sh/hook.lua#L707
 	---@param hookname string The hook name
 	---@param name string The unique name for this hook
 	function _G.hook.remove(hookname, name) end
-	--- runRemote - shared - libs_sh/hook.lua#L650
+	--- runRemote - shared - libs_sh/hook.lua#L670
 	---@param recipient Entity? Starfall entity to call the hook on. Nil to run on every starfall entity
 	---@param payload ... Parameters that will be passed when calling hook functions
 	---@return table undefined A list of the resultset of each called hook

@@ -8967,6 +8967,9 @@ _G.Entity = {}
 	--- isFrozen - server - libs_sv/entities.lua#L686
 	---@return boolean undefined True if entity is frozen
 	function _G.Entity:isFrozen() end
+	--- getNetworkVars - shared - libs_sh/entities.lua#L1898
+	---@return table? undefined The networked variables table of the entity or nil if it doesn't have one.
+	function _G.Entity:getNetworkVars() end
 	--- getSaveTable - shared - libs_sh/entities.lua#L1872
 	---@param showAll boolean If set, shows all variables, not just the ones for save.
 	---@return table undefined A table containing all save values in key/value format. The value may be a sequential table (starting to 1) if the field in question is an array in engine.

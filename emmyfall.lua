@@ -43,7 +43,7 @@
 ---| '"GravGunPunt"' #  Called when a player punts with the gravity gun
 ---| '"xinputTrigger"' #  Called when a trigger on the controller has moved. Client must have XInput Lua binary installed.
 ---| '"GravGunOnPickedUp"' #  Called when an entity is being picked up by a gravity gun
----| '"VRExit"' #  Called when a player exits VR
+---| '"renderscene"' #  Called when a scene is requested to be drawn. This is used for the render.renderview function.
 ---| '"PlayerEndVoice"' #  Called when a player stops using voice chat.
 ---| '"OnEntityWaterLevelChanged"' #  Called when the Entity:getWaterLevel of an entity is changed.
 ---| '"PlayerNoClip"' #  Called when a player toggles noclip
@@ -51,33 +51,33 @@
 ---| '"StartEntityDriving"' #  Called when a player starts driving an entity
 ---| '"xinputConnected"' #  Called when a controller has been connected. Client must have XInput Lua binary installed.
 ---| '"NetworkEntityCreated"' #  Called when a clientside entity gets created or re-created via lag/PVS
----| '"OnPhysgunReload"' #  Called when a player reloads their physgun
+---| '"StarfallError"' #  Called when starfall chip errors
 ---| '"ComponentUnlinked"' #  Called when a component is unlinked to the starfall
----| '"postdrawskybox"' #  Called after the 3D skybox is drawn. This will not be called if PreDrawSkyBox has prevented rendering of the skybox
----| '"postdraw2dskybox"' #  Called right after the 2D skybox has been drawn - allowing you to draw over it.
----| '"predrawskybox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
+---| '"VRInput"' #  This gets called every time a boolean controller input action changes state
+---| '"VRExit"' #  Called when a player exits VR
+---| '"OnPhysgunReload"' #  Called when a player reloads their physgun
 ---| '"starfallUsed"' #  Called when a player uses the screen
 ---| '"render"' #  Called when a frame is requested to be drawn on screen. (2D/3D Context)
----| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
+---| '"postdrawskybox"' #  Called after the 3D skybox is drawn. This will not be called if PreDrawSkyBox has prevented rendering of the skybox
 ---| '"NotifyShouldTransmit"' #  Called when a clientside entity transmit state is changed. Usually when changing PVS  If you want clientside render changes to persist on an entity you have to re-apply them  each time it begins transmitting again
----| '"predrawviewmodels"' #  Called before drawing the viewmodel rendergroup (3D Context)
----| '"predrawhud"' #  Called before drawing HUD (2D Context)
+---| '"postdraw2dskybox"' #  Called right after the 2D skybox has been drawn - allowing you to draw over it.
+---| '"predrawskybox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
 ---| '"drawhud"' #  Called when a frame is requested to be drawn on hud. (2D Context)
----| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
----| '"postdrawopaquerenderables"' #  Called after opaque entities are drawn. (Only works with HUD) (3D context)
+---| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
+---| '"predrawviewmodels"' #  Called before drawing the viewmodel rendergroup (3D Context)
 ---| '"PostEntityFireBullets"' #  Called after a bullet is fired and it's trace has been calculated
 ---| '"removeLaw"' #  Called when a law is removed. DarkRP only. Not usually called when /resetlaws is used.
 ---| '"predrawtranslucentrenderables"' #  Called before translucent entities are drawn. (Only works with HUD) (3D context)
 ---| '"PhysgunDrop"' #  Called when an entity being held by a physgun gets dropped
 ---| '"PlayerFootstep"' #  Called whenever a player steps
----| '"hologrammatrix"' #  Called before entities are drawn. You can't render anything, but you can edit hologram matrices before they are drawn.
+---| '"predrawhud"' #  Called before drawing HUD (2D Context)
 ---| '"predrawopaquerenderables"' #  Called before opaque entities are drawn. (Only works with HUD) (3D context)
----| '"renderscene"' #  Called when a scene is requested to be drawn. This is used for the render.renderview function.
+---| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
 ---| '"tick"' #  Tick hook. Called each game tick on both the server and client.
 ---| '"KeyPress"' #  Called when a player presses a key
----| '"StarfallError"' #  Called when starfall chip errors
+---| '"postdrawopaquerenderables"' #  Called after opaque entities are drawn. (Only works with HUD) (3D context)
 ---| '"PropBreak"' #  Called when an entity is broken
----| '"VRInput"' #  This gets called every time a boolean controller input action changes state
+---| '"hologrammatrix"' #  Called before entities are drawn. You can't render anything, but you can edit hologram matrices before they are drawn.
 ---| '"xinputReleased"' #  Called when a controller button has been released. Client must have XInput Lua binary installed.
 ---| '"net"' #  Called when a net message arrives
 ---| '"readcell"' #  Called when a high speed device reads from a wired SF chip
@@ -1146,394 +1146,16 @@ _G.nextbot = {}
 	function _G.nextbot.create(spawnpos, model) end
 	--- remove - server - libs_sv/nextbot.lua#L108
 	function _G.nextbot.remove() end
---- math
----  Lua math library https://wiki.garrysmod.com/page/Category:math
-_G.math = {}
-	--- ceil - shared - libs_sh/math.lua#L96
-	---@param n number Number to be rounded
-	---@return number undefined Rounded number
-	function _G.math.ceil(n) end
-	--- tan - shared - libs_sh/math.lua#L296
-	---@param ang number Angle in radians
-	---@return number undefined The tangent of the given angle
-	function _G.math.tan(ang) end
-	--- lerp - shared - libs_sh/math.lua#L333
-	---@param t number The fraction for finding the result. This number is clamped between 0 and 1
-	---@param from number The starting number. The result will be equal to this if value t is 0
-	---@param to number The ending number. The result will be equal to this if value t is 1
-	---@return number undefined The result of the linear interpolation, (1 - t) * from + t * to
-	function _G.math.lerp(t, from, to) end
-	--- sinh - shared - libs_sh/math.lua#L284
-	---@param ang number Angle in radians
-	---@return number undefined The hyperbolic sine of the given angle
-	function _G.math.sinh(ang) end
-	--- approach - shared - libs_sh/math.lua#L46
-	---@param current number The value we're currently at
-	---@param target number The target value. This function will never overshoot this value
-	---@param change number The amount that the current value is allowed to change by to approach the target (positive or negative)
-	---@return number undefined New current value, closer to the target than it was previously
-	function _G.math.approach(current, target, change) end
-	--- distance - shared - libs_sh/math.lua#L128
-	---@param x1 number X position of first point
-	---@param y1 number Y position of first point
-	---@param x2 number X position of second point
-	---@param y2 number Y position of second point
-	---@return number undefined Distance between the two points
-	function _G.math.distance(x1, y1, x2, y2) end
-	--- truncate - shared - libs_sh/math.lua#L316
-	---@param val number The number to truncate
-	---@param digits number? The amount of digits to keep after the point. Default 0
-	---@return number undefined Rounded number
-	function _G.math.truncate(val, digits) end
-	--- easeInOutBack - shared - libs_sh/math.lua#L470
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutBack(fraction) end
-	--- easeInExpo - shared - libs_sh/math.lua#L464
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInExpo(fraction) end
-	--- min - shared - libs_sh/math.lua#L206
-	---@param numbers ...number Any amount of number values
-	---@return number undefined The smallest number
-	function _G.math.min(numbers) end
-	--- frexp - shared - libs_sh/math.lua#L164
-	---@param x number The value to get the normalized fraction and the exponent from
-	---@return number undefined Multiplier between 0.5 and 1
-	---@return number undefined Exponent integer
-	function _G.math.frexp(x) end
-	--- easeInOutExpo - shared - libs_sh/math.lua#L500
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutExpo(fraction) end
-	--- easeInOutCubic - shared - libs_sh/math.lua#L488
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutCubic(fraction) end
-	--- sin - shared - libs_sh/math.lua#L278
-	---@param ang number Angle in radians
-	---@return number undefined Sine for given angle
-	function _G.math.sin(ang) end
-	--- easeInBack - shared - libs_sh/math.lua#L434
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInBack(fraction) end
-	--- lerpVector - shared - libs_sh/math.lua#L357
-	---@param ratio number Ratio of progress through values
-	---@param from Vector Vector to begin from
-	---@param Vector Vector to end at
-	---@return Vector undefined The interpolated vector
-	function _G.math.lerpVector(ratio, from, Vector) end
-	--- easeInBounce - shared - libs_sh/math.lua#L440
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInBounce(fraction) end
-	--- bSplinePoint - shared - libs_sh/math.lua#L323
-	---@param tDiff number From 0 to tMax, where alongside the spline the point will be
-	---@param tPoints number A table of Vectors. The amount cannot be less than 4
-	---@param tMax number Dictates maximum value for tDiff
-	---@return number undefined Point on Bezier curve, related to tDiff
-	function _G.math.bSplinePoint(tDiff, tPoints, tMax) end
-	--- easeInQuint - shared - libs_sh/math.lua#L542
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInQuint(fraction) end
-	--- easeInCirc - shared - libs_sh/math.lua#L446
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInCirc(fraction) end
-	--- tanh - shared - libs_sh/math.lua#L302
-	---@param ang number Angle in radians
-	---@return number undefined The hyperbolic tangent of the given angle
-	function _G.math.tanh(ang) end
-	--- easeInQuart - shared - libs_sh/math.lua#L536
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInQuart(fraction) end
-	--- pow - shared - libs_sh/math.lua#L227
-	---@param base number The Base number
-	---@param exp number The Exponent
-	---@return number undefined Exponent power of base
-	function _G.math.pow(base, exp) end
-	--- easeInOutSine - shared - libs_sh/math.lua#L524
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutSine(fraction) end
-	--- acos - shared - libs_sh/math.lua#L33
-	---@param cos number Cosine value in range of -1 to 1
-	---@return number undefined Angle in radians or nothing if the argument is out of range
-	function _G.math.acos(cos) end
-	--- distanceToLine - shared - libs_sh/math.lua#L368
-	---@param lineStart Vector Start of the line
-	---@param lineEnd Vector End of the line
-	---@param pointPos Vector Position of the point
-	---@return number undefined Distance from line
-	---@return Vector undefined Nearest point on line
-	---@return number undefined Distance along line from start
-	function _G.math.distanceToLine(lineStart, lineEnd, pointPos) end
-	--- normalizeAngle - shared - libs_sh/math.lua#L219
-	---@param ang number The angle in degrees
-	---@return number undefined The normalized angle
-	function _G.math.normalizeAngle(ang) end
-	--- timeFraction - shared - libs_sh/math.lua#L308
-	---@param start number Start time in seconds
-	---@param _end number End time in seconds
-	---@param current number Current time in seconds
-	---@return number undefined The time fraction
-	function _G.math.timeFraction(start, _end, current) end
-	--- factorial - shared - libs_sh/math.lua#L234
-	---@param value number The number value
-	---@return number undefined Factorial of value
-	function _G.math.factorial(value) end
-	--- log10 - shared - libs_sh/math.lua#L194
-	---@param x number The value to get the base from exponent from
-	---@return number undefined Logarithm of x to the base 10
-	function _G.math.log10(x) end
-	--- sign - shared - libs_sh/math.lua#L25
-	---@param x number The number to get the sign of
-	---@return number undefined -1 if negative, 1 if positive, 0 if 0
-	function _G.math.sign(x) end
-	--- easeInOutCirc - shared - libs_sh/math.lua#L482
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutCirc(fraction) end
-	--- round - shared - libs_sh/math.lua#L272
-	---@param value number The number to be rounded
-	---@param decimals number? Optional decimal places to round to. Defaults to 0
-	function _G.math.round(value, decimals) end
-	--- easeInOutQuint - shared - libs_sh/math.lua#L518
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutQuint(fraction) end
-	--- ldexp - shared - libs_sh/math.lua#L179
-	---@param normalizedFraction number The value to get the normalized fraction and the exponent from
-	---@param exponent number The value to get the normalized fraction and the exponent from
-	---@return number undefined Floating point reperesentation
-	function _G.math.ldexp(normalizedFraction, exponent) end
-	--- deg - shared - libs_sh/math.lua#L122
-	---@param rad number Angle in radians to be converted
-	---@return number undefined Angle in degrees
-	function _G.math.deg(rad) end
-	--- nlerpQuaternion - shared - libs_sh/quaternion.lua#L876
-	---@param quat1 Quaternion Quaternion to start with
-	---@param quat2 Quaternion Quaternion to end with
-	---@param t number Ratio, 0 = quat1; 1 = quat2
-	---@return Quaternion undefined Interpolated quaternion
-	function _G.math.nlerpQuaternion(quat1, quat2, t) end
-	--- intToBin - shared - libs_sh/math.lua#L173
-	---@param int number Number to be converted
-	---@return string undefined Binary number string. The length of this will always be a multiple of 3
-	function _G.math.intToBin(int) end
-	--- rand - shared - libs_sh/math.lua#L246
-	---@param min number The minimum value
-	---@param max number The maximum value
-	---@return number undefined Random float between min and max
-	function _G.math.rand(min, max) end
-	--- atan2 - shared - libs_sh/math.lua#L74
-	---@param y number The Y coordinate
-	---@param x number The X coordinate
-	---@return number undefined Angle of the line from (0, 0) to (x, y) in radians, in the range -pi to pi
-	function _G.math.atan2(y, x) end
-	--- easeOutElastic - shared - libs_sh/math.lua#L578
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeOutElastic(fraction) end
-	--- easeOutQuint - shared - libs_sh/math.lua#L590
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeOutQuint(fraction) end
-	--- calcBSplineN - shared - libs_sh/math.lua#L87
-	---@param i number 
-	---@param k number 
-	---@param t number 
-	---@param tinc number 
-	---@return number undefined Number value
-	function _G.math.calcBSplineN(i, k, t, tinc) end
-	--- slerpQuaternion - shared - libs_sh/quaternion.lua#L848
-	---@param quat1 Quaternion Quaternion to start with
-	---@param quat2 Quaternion Quaternion to end with
-	---@param t number Ratio, 0 = quat1; 1 = quat2
-	---@return Quaternion undefined Interpolated quaternion
-	function _G.math.slerpQuaternion(quat1, quat2, t) end
-	--- easeOutSine - shared - libs_sh/math.lua#L596
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeOutSine(fraction) end
-	--- easeInOutElastic - shared - libs_sh/math.lua#L494
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutElastic(fraction) end
-	--- random - shared - libs_sh/math.lua#L253
-	---@param m number? Optional integer value. If n is not provided - upper limit; if n is provided - lower limit
-	---@param n number? Optional integer value. Upper value
-	---@return number undefined Random value
-	function _G.math.random(m, n) end
-	--- max - shared - libs_sh/math.lua#L200
-	---@param numbers ...number Any amount of number values
-	---@return number undefined The largest number
-	function _G.math.max(numbers) end
-	--- bezierVectorCubic - shared - libs_sh/math.lua#L398
-	---@param ratio number Number representing how far along the curve, 0-1.
-	---@param start Vector The start position of the curve.
-	---@param tangent1 Vector First tangent
-	---@param tangent2 Vector Second tangent
-	---@param _end Vector The end position of the curve.
-	---@return Vector undefined Vector representing the point along the curve.
-	function _G.math.bezierVectorCubic(ratio, start, tangent1, tangent2, _end) end
-	--- lerpAngle - shared - libs_sh/math.lua#L346
-	---@param ratio number Ratio of progress through values
-	---@param from Angle Angle to begin from
-	---@param to Angle Angle to end at
-	---@return Angle undefined The interpolated angle
-	function _G.math.lerpAngle(ratio, from, to) end
-	--- sharedRandom - shared - libs_sh/math.lua#L422
-	---@param uniqueName string The seed for the random value
-	---@param Min number The minimum value of the random range
-	---@param Max number The maximum value of the random range
-	---@param additionalSeed number? The additional seed. Default 0
-	---@return number undefined The random float value
-	function _G.math.sharedRandom(uniqueName, Min, Max, additionalSeed) end
-	--- easeOutBounce - shared - libs_sh/math.lua#L560
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeOutBounce(fraction) end
-	--- easeOutBack - shared - libs_sh/math.lua#L554
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeOutBack(fraction) end
-	--- easeInQuad - shared - libs_sh/math.lua#L530
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInQuad(fraction) end
-	--- easeInSine - shared - libs_sh/math.lua#L548
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInSine(fraction) end
-	--- angleDifference - shared - libs_sh/math.lua#L39
-	---@param a number The first angle
-	---@param b number The second angle
-	---@return number undefined The difference between the angles between -180 and 180
-	function _G.math.angleDifference(a, b) end
-	--- cos - shared - libs_sh/math.lua#L110
-	---@param angle number Angle in radians
-	---@return number undefined Cosine of the angle
-	function _G.math.cos(angle) end
-	--- easeInCubic - shared - libs_sh/math.lua#L452
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInCubic(fraction) end
-	--- easeInOutQuart - shared - libs_sh/math.lua#L512
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutQuart(fraction) end
-	--- easeOutQuart - shared - libs_sh/math.lua#L584
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeOutQuart(fraction) end
-	--- easeOutCirc - shared - libs_sh/math.lua#L566
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeOutCirc(fraction) end
-	--- fmod - shared - libs_sh/math.lua#L157
-	---@param base number The base value
-	---@param mod number The modulator
-	---@return number undefined The calculated modulus
-	function _G.math.fmod(base, mod) end
-	--- atan - shared - libs_sh/math.lua#L68
-	---@param tan number Tangent value
-	---@return number undefined Angle in radians
-	function _G.math.atan(tan) end
-	--- floor - shared - libs_sh/math.lua#L151
-	---@param n number Number to be rounded
-	---@return number undefined Rounded number
-	function _G.math.floor(n) end
-	--- asin - shared - libs_sh/math.lua#L62
-	---@param sin number Sine value in the range of -1 to 1
-	---@return number undefined Angle in radians or nothing if the argument is out of range
-	function _G.math.asin(sin) end
-	--- easeInOut - shared - libs_sh/math.lua#L137
-	---@param progress number Fraction of the progress to ease
-	---@param easeIn number Fraction of how much easing to begin with
-	---@param easeOut number Fraction of how much easing to end with
-	---@return number undefined Eased value
-	function _G.math.easeInOut(progress, easeIn, easeOut) end
-	--- binToInt - shared - libs_sh/math.lua#L81
-	---@param str string Binary string to convert
-	---@return number undefined Base 10 number
-	function _G.math.binToInt(str) end
-	--- modf - shared - libs_sh/math.lua#L212
-	---@param base number The base value
-	---@return number undefined The integral component
-	---@return number undefined The fractional component
-	function _G.math.modf(base) end
-	--- approachAngle - shared - libs_sh/math.lua#L54
-	---@param currentAngle number The current angle to increase
-	---@param targetAngle number The angle to increase towards
-	---@param rate number The amount to approach the target angle by
-	---@return number undefined Modified angle
-	function _G.math.approachAngle(currentAngle, targetAngle, rate) end
-	--- cosh - shared - libs_sh/math.lua#L116
-	---@param angle number Angle in radians
-	---@return number undefined The hyperbolic cosine of the angle
-	function _G.math.cosh(angle) end
-	--- easeInOutQuad - shared - libs_sh/math.lua#L506
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutQuad(fraction) end
-	--- abs - shared - libs_sh/math.lua#L19
-	---@param x number The number to get the absolute value of
-	---@return number undefined Absolute value
-	function _G.math.abs(x) end
-	--- easeOutCubic - shared - libs_sh/math.lua#L572
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeOutCubic(fraction) end
-	--- sqrt - shared - libs_sh/math.lua#L290
-	---@param value number The value to get the square root of
-	---@return number undefined Square root of the provided value
-	function _G.math.sqrt(value) end
-	--- clamp - shared - libs_sh/math.lua#L102
-	---@param current number Input number
-	---@param min number Minimum value
-	---@param max number Maximum value
-	---@return number undefined Clamped number
-	function _G.math.clamp(current, min, max) end
-	--- log - shared - libs_sh/math.lua#L186
-	---@param x number The value to get the base from exponent from
-	---@param base number? Optional logarithmic base. Default 'e'
-	---@return number undefined Logarithm of x to the given base
-	function _G.math.log(x, base) end
-	--- rad - shared - libs_sh/math.lua#L240
-	---@param deg number Angle in degrees
-	---@return number undefined Angle in radians
-	function _G.math.rad(deg) end
-	--- bezierVector - shared - libs_sh/math.lua#L380
-	---@param ratio number Number representing how far along the curve, 0-1.
-	---@param start Vector The start position of the curve.
-	---@param middle Vector The middle position of the curve.
-	---@param _end Vector The end position of the curve.
-	---@return Vector undefined Vector representing the point along the curve.
-	function _G.math.bezierVector(ratio, start, middle, _end) end
-	--- easeInOutBounce - shared - libs_sh/math.lua#L476
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInOutBounce(fraction) end
-	--- exp - shared - libs_sh/math.lua#L145
-	---@param x number The exponent of the function
-	---@return number undefined e to the specific power
-	function _G.math.exp(x) end
-	--- remap - shared - libs_sh/math.lua#L262
-	---@param value number The number value
-	---@param inMin number The minimum of the initial range
-	---@param inMax number The maximum of the initial range
-	---@param outMin number The minimum of new range
-	---@param outMax number The maximum of new range
-	---@return number undefined The number in the new range
-	function _G.math.remap(value, inMin, inMax, outMin, outMax) end
-	--- easeInElastic - shared - libs_sh/math.lua#L458
-	---@param fraction number Fraction of the progress to ease, from 0 to 1
-	---@return number undefined "Eased" Value
-	function _G.math.easeInElastic(fraction) end
+--- particleEffect
+---  ParticleEffect library.
+_G.particleEffect = {}
+	--- attach - client - libs_cl/particle_effect.lua#L62
+	---@param entity Entity Entity to attach to
+	---@param name string Name of the particle effect
+	---@param pattach number PATTACH enum
+	---@param options table Table of options
+	---@return ParticleEffect undefined ParticleEffect type.
+	function _G.particleEffect.attach(entity, name, pattach, options) end
 --- convar
 ---  ConVar library https://wiki.facepunch.com/gmod/ConVar
 _G.convar = {}
@@ -1578,114 +1200,106 @@ _G.convar = {}
 	---@param name string Name of the ConVar
 	---@return boolean undefined The boolean value
 	function _G.convar.getBool(name) end
---- particleEffect
----  ParticleEffect library.
-_G.particleEffect = {}
-	--- attach - client - libs_cl/particle_effect.lua#L62
-	---@param entity Entity Entity to attach to
-	---@param name string Name of the particle effect
-	---@param pattach number PATTACH enum
-	---@param options table Table of options
-	---@return ParticleEffect undefined ParticleEffect type.
-	function _G.particleEffect.attach(entity, name, pattach, options) end
---- mesh
----  Mesh library.
-_G.mesh = {}
-	--- generate - client - libs_sh/mesh.lua#L1003
-	---@param mesh_obj Mesh? Optional Mesh object, mesh to build. (default: nil)
-	---@param prim_type number Int, primitive type, see MATERIAL
-	---@param prim_count number Int, the amount of primitives
-	---@param func function The function provided that will generate the mesh vertices
-	function _G.mesh.generate(mesh_obj, prim_type, prim_count, func) end
-	--- parseObj - shared - libs_sh/mesh.lua#L705
-	---@param obj string The obj data
-	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
-	---@param triangulate boolean? Whether to triangulate the faces
-	---@return table undefined Table of Mesh tables. The keys correspond to the objs object names, and the values are tables of vertices that can be passed to mesh.createFromTable
-	---@return table undefined Table of Mesh data. {positions = positionData, normals = normalData, texturecoords = texturecoordData, faces = faceData}
-	function _G.mesh.parseObj(obj, threaded, triangulate) end
-	--- writeNormal - client - libs_sh/mesh.lua#L1063
-	---@param normal Vector Normal
-	function _G.mesh.writeNormal(normal) end
-	--- writeUV - client - libs_sh/mesh.lua#L1077
-	---@param stage number Stage of the texture coordinate
-	---@param u number U coordinate
-	---@param v number V coordinate
-	function _G.mesh.writeUV(stage, u, v) end
-	--- getModelMeshes - client - libs_sh/mesh.lua#L941
-	---@param model string The full path to a model to get the visual meshes of.
-	---@param lod number? The lod of the model to use. Default 0.
-	---@param bodygroupMask number? The bodygroupMask of the model to use. Default 0.
-	---@return table undefined A table of tables with the following format:  string material - The material of the specific mesh table triangles - A table of MeshVertex structures ready to be fed into IMesh:BuildFromTriangles table verticies - A table of MeshVertex structures representing all the vertexes of the mesh. This table is used internally to generate the "triangles" table. Each MeshVertex structure returned also has an extra table of tables field called "weights" with the following data:  number boneID - The bone this vertex is attached to number weight - How "strong" this vertex is attached to the bone. A vertex can be attached to multiple bones at once.
-	---@return table undefined A table of tables with bone id keys with the following format:  number parent - The parent bone id Matrix matrix - pretransformed bone matrix
-	function _G.mesh.getModelMeshes(model, lod, bodygroupMask) end
-	--- trianglesLeft - client - libs_sh/mesh.lua#L977
-	---@return number undefined Number of triangles that can be created
-	function _G.mesh.trianglesLeft() end
-	--- writeColor - client - libs_sh/mesh.lua#L1053
-	---@param r number Number, red value
-	---@param g number Number, green value
-	---@param b number Number, blue value
-	---@param a number Number, alpha value
-	function _G.mesh.writeColor(r, g, b, a) end
-	--- writePosition - client - libs_sh/mesh.lua#L1070
-	---@param position Vector Position
-	function _G.mesh.writePosition(position) end
-	--- trianglesLeftRender - client - libs_sh/mesh.lua#L984
-	---@return number undefined Number of triangles that can be rendered
-	function _G.mesh.trianglesLeftRender() end
-	--- createFromObj - client - libs_sh/mesh.lua#L885
-	---@param obj string The obj file data
-	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
-	---@param triangulate boolean? Whether to triangulate faces. (Consumes more CPU)
-	---@return table undefined Table of Mesh objects. The keys correspond to the objs object names
-	function _G.mesh.createFromObj(obj, threaded, triangulate) end
-	--- generateNormals - shared - libs_sh/mesh.lua#L719
-	---@param vertices table The table of vertices
-	---@param inverted boolean? Optional bool, invert the normal
-	---@param smooth_limit number? Optional number, smooths the normal based on the limit in radians
-	function _G.mesh.generateNormals(vertices, inverted, smooth_limit) end
-	--- advanceVertex - client - libs_sh/mesh.lua#L1116
-	function _G.mesh.advanceVertex() end
-	--- writeQuadEasy - client - libs_sh/mesh.lua#L1106
-	---@param position Vector 
-	---@param normal Vector 
-	---@param w number 
-	---@param h number 
-	function _G.mesh.writeQuadEasy(position, normal, w, h) end
-	--- writeQuad - client - libs_sh/mesh.lua#L1096
-	---@param v1 Vector Vertex1 position
-	---@param v2 Vector Vertex2 position
-	---@param v3 Vector Vertex3 position
-	---@param v4 Vector Vertex4 position
-	function _G.mesh.writeQuad(v1, v2, v3, v4) end
-	--- generateTangents - shared - libs_sh/mesh.lua#L745
-	---@param vertices table The table of vertices
-	function _G.mesh.generateTangents(vertices) end
-	--- generateUV - shared - libs_sh/mesh.lua#L733
-	---@param vertices table The table of vertices
-	---@param scale number The scale of the uvs
-	function _G.mesh.generateUV(vertices, scale) end
-	--- createEmpty - client - libs_sh/mesh.lua#L914
-	---@return Mesh undefined Mesh object
-	function _G.mesh.createEmpty() end
-	--- createFromTable - client - libs_sh/mesh.lua#L844
-	---@param vertices table Table containing vertex data. http://wiki.facepunch.com/gmod/Structures/MeshVertex
-	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit. The thread will yield with number of vertices remaining to be processed. After 0 is yielded, the final expensive phase starts.
-	---@return Mesh undefined Mesh object
-	function _G.mesh.createFromTable(vertices, threaded) end
-	--- findConvexHull - shared - libs_sh/mesh.lua#L755
-	---@param vertices table The table of vertices (vectors) or vertex data (http://wiki.facepunch.com/gmod/Structures/MeshVertex)
-	---@param threaded boolean? Optional bool, use threading object that can be used to run algorithm over time to prevent hitting quota limit
-	---@return table undefined The mesh table which can be passed to mesh.createFromTable
-	---@return table undefined The table of vertices which can be passed to prop.createCustom
-	function _G.mesh.findConvexHull(vertices, threaded) end
-	--- writeUserData - client - libs_sh/mesh.lua#L1086
-	---@param x number x
-	---@param y number y
-	---@param z number z
-	---@param handedness number 
-	function _G.mesh.writeUserData(x, y, z, handedness) end
+--- von
+---  vON Library
+_G.von = {}
+	--- serialize - shared - libs_sh/von.lua#L817
+	---@param tbl table Table to serialize
+	---@param checkRecursive boolean? Enable checking for table recursion (default: false)
+	---@return string undefined String encoded from the table
+	function _G.von.serialize(tbl, checkRecursive) end
+	--- deserialize - shared - libs_sh/von.lua#L808
+	---@param str string String to deserialize
+	---@return table undefined Table
+	function _G.von.deserialize(str) end
+--- find
+---  Find library. Finds entities in various shapes.
+_G.find = {}
+	--- all - shared - libs_sh/find.lua#L183
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.all(filter) end
+	--- closest - shared - libs_sh/find.lua#L192
+	---@param ents table The array of entities
+	---@param pos Vector The position
+	---@return Entity undefined The closest entity
+	function _G.find.closest(ents, pos) end
+	--- byName - shared - libs_sh/find.lua#L139
+	---@param name string The targetname
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.byName(name, filter) end
+	--- inSphere - shared - libs_sh/find.lua#L76
+	---@param center Vector Center of the sphere
+	---@param radius number Sphere radius
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inSphere(center, radius, filter) end
+	--- inRay - shared - libs_sh/find.lua#L107
+	---@param startpos Vector The ray start
+	---@param endpos Vector The ray end
+	---@param mins Vector? If not nil, will define a lower bound of the ray's hull
+	---@param maxs Vector? If not nil, will define a upper bound of the ray's hull
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inRay(startpos, endpos, mins, maxs, filter) end
+	--- allPlayers - shared - libs_sh/find.lua#L174
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.allPlayers(filter) end
+	--- inCone - shared - libs_sh/find.lua#L90
+	---@param pos Vector The cone vertex position
+	---@param dir Vector The direction to project the cone
+	---@param distance number The length to project the cone
+	---@param radius number The cosine of angle of the cone. 1 makes a 0° cone, 0.707 makes approximately 90°, 0 makes 180°, and so on.
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inCone(pos, dir, distance, radius, filter) end
+	--- inPVS - server - libs_sh/find.lua#L162
+	---@param pos Vector Vector view point
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inPVS(pos, filter) end
+	--- inBox - shared - libs_sh/find.lua#L63
+	---@param min Vector Bottom corner
+	---@param max Vector Top corner
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inBox(min, max, filter) end
+	--- sortByClosest - shared - libs_sh/find.lua#L211
+	---@param ents table The array of entities
+	---@param pos Vector The position
+	---@param furthest boolean Whether to have the further entities first
+	---@return table undefined A table of the closest entities
+	function _G.find.sortByClosest(ents, pos, furthest) end
+	--- playerBySteamID64 - shared - libs_sh/find.lua#L280
+	---@param steamid string 64-bit steam id to search for
+	---@return Player? undefined The player with matching steamid
+	function _G.find.playerBySteamID64(steamid) end
+	--- getMapCreatedEntity - shared - libs_sh/find.lua#L288
+	---@param num number Entity's creation id
+	---@return Entity? undefined The found entity or nil if not found
+	function _G.find.getMapCreatedEntity(num) end
+	--- byClass - shared - libs_sh/find.lua#L128
+	---@param class string The class name
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.byClass(class, filter) end
+	--- byModel - shared - libs_sh/find.lua#L150
+	---@param model string The model file
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.byModel(model, filter) end
+	--- playerBySteamID - shared - libs_sh/find.lua#L272
+	---@param steamid string Steam Id to search for
+	---@return Player? undefined The player with matching steamid
+	function _G.find.playerBySteamID(steamid) end
+	--- playersByName - shared - libs_sh/find.lua#L235
+	---@param name string Name to search for
+	---@param casesensitive boolean? Boolean should the match be case sensitive?
+	---@param exact boolean? Boolean should the name match exactly
+	---@return table undefined Table of found players
+	function _G.find.playersByName(name, casesensitive, exact) end
 --- table
 ---  Lua table library https://wiki.garrysmod.com/page/Category:table
 _G.table = {}
@@ -1833,124 +1447,6 @@ _G.table = {}
 	---@param val any Value to search for
 	---@return any undefined Found key
 	function _G.table.keyFromValue(tbl, val) end
---- von
----  vON Library
-_G.von = {}
-	--- serialize - shared - libs_sh/von.lua#L817
-	---@param tbl table Table to serialize
-	---@param checkRecursive boolean? Enable checking for table recursion (default: false)
-	---@return string undefined String encoded from the table
-	function _G.von.serialize(tbl, checkRecursive) end
-	--- deserialize - shared - libs_sh/von.lua#L808
-	---@param str string String to deserialize
-	---@return table undefined Table
-	function _G.von.deserialize(str) end
---- hologram
----  Library for creating and manipulating physics-less models AKA "Holograms".
-_G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L522
-	function _G.hologram.removeAll() end
-	--- canSpawn - shared - libs_sh/hologram.lua#L157
-	---@return boolean undefined True if user can spawn holograms, False if not.
-	function _G.hologram.canSpawn() end
-	--- create - shared - libs_sh/hologram.lua#L99
-	---@param pos Vector The position to create the hologram
-	---@param ang Angle The angle to create the hologram
-	---@param model string The model to give the hologram
-	---@param scale Vector? (Optional) The scale to give the hologram
-	---@return Hologram undefined The hologram object
-	function _G.hologram.create(pos, ang, model, scale) end
-	--- hologramsLeft - shared - libs_sh/hologram.lua#L164
-	---@return number undefined Number of holograms able to be spawned
-	function _G.hologram.hologramsLeft() end
---- find
----  Find library. Finds entities in various shapes.
-_G.find = {}
-	--- all - shared - libs_sh/find.lua#L183
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.all(filter) end
-	--- closest - shared - libs_sh/find.lua#L192
-	---@param ents table The array of entities
-	---@param pos Vector The position
-	---@return Entity undefined The closest entity
-	function _G.find.closest(ents, pos) end
-	--- byName - shared - libs_sh/find.lua#L139
-	---@param name string The targetname
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.byName(name, filter) end
-	--- inSphere - shared - libs_sh/find.lua#L76
-	---@param center Vector Center of the sphere
-	---@param radius number Sphere radius
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inSphere(center, radius, filter) end
-	--- inRay - shared - libs_sh/find.lua#L107
-	---@param startpos Vector The ray start
-	---@param endpos Vector The ray end
-	---@param mins Vector? If not nil, will define a lower bound of the ray's hull
-	---@param maxs Vector? If not nil, will define a upper bound of the ray's hull
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inRay(startpos, endpos, mins, maxs, filter) end
-	--- allPlayers - shared - libs_sh/find.lua#L174
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.allPlayers(filter) end
-	--- inCone - shared - libs_sh/find.lua#L90
-	---@param pos Vector The cone vertex position
-	---@param dir Vector The direction to project the cone
-	---@param distance number The length to project the cone
-	---@param radius number The cosine of angle of the cone. 1 makes a 0° cone, 0.707 makes approximately 90°, 0 makes 180°, and so on.
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inCone(pos, dir, distance, radius, filter) end
-	--- inPVS - server - libs_sh/find.lua#L162
-	---@param pos Vector Vector view point
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inPVS(pos, filter) end
-	--- inBox - shared - libs_sh/find.lua#L63
-	---@param min Vector Bottom corner
-	---@param max Vector Top corner
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inBox(min, max, filter) end
-	--- sortByClosest - shared - libs_sh/find.lua#L211
-	---@param ents table The array of entities
-	---@param pos Vector The position
-	---@param furthest boolean Whether to have the further entities first
-	---@return table undefined A table of the closest entities
-	function _G.find.sortByClosest(ents, pos, furthest) end
-	--- playerBySteamID64 - shared - libs_sh/find.lua#L280
-	---@param steamid string 64-bit steam id to search for
-	---@return Player? undefined The player with matching steamid
-	function _G.find.playerBySteamID64(steamid) end
-	--- getMapCreatedEntity - shared - libs_sh/find.lua#L288
-	---@param num number Entity's creation id
-	---@return Entity? undefined The found entity or nil if not found
-	function _G.find.getMapCreatedEntity(num) end
-	--- byClass - shared - libs_sh/find.lua#L128
-	---@param class string The class name
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.byClass(class, filter) end
-	--- byModel - shared - libs_sh/find.lua#L150
-	---@param model string The model file
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.byModel(model, filter) end
-	--- playerBySteamID - shared - libs_sh/find.lua#L272
-	---@param steamid string Steam Id to search for
-	---@return Player? undefined The player with matching steamid
-	function _G.find.playerBySteamID(steamid) end
-	--- playersByName - shared - libs_sh/find.lua#L235
-	---@param name string Name to search for
-	---@param casesensitive boolean? Boolean should the match be case sensitive?
-	---@param exact boolean? Boolean should the name match exactly
-	---@return table undefined Table of found players
-	function _G.find.playersByName(name, casesensitive, exact) end
 --- bit
 ---  Bit library http://wiki.facepunch.com/gmod/Category:bit
 _G.bit = {}
@@ -2046,143 +1542,104 @@ _G.bit = {}
 	---@param otherValues ...number Values bit to perform bitwise "and" with. Optional.
 	---@return number undefined Result of bitwise "and" operation.
 	function _G.bit.band(value, otherValues) end
---- game
----  Game functions
-_G.game = {}
-	--- getAmmoData - shared - libs_sh/game.lua#L80
-	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
-	---@return table undefined AmmoData, see https://wiki.facepunch.com/gmod/Structures/AmmoData
-	function _G.game.getAmmoData(id) end
-	--- getTickInterval - shared - libs_sh/game.lua#L68
-	---@return number undefined Interval
-	function _G.game.getTickInterval() end
-	--- steamIDTo64 - shared - libs_sh/game.lua#L118
-	---@param id string The STEAM_0 style id
-	---@return string undefined 64bit Steam ID
-	function _G.game.steamIDTo64(id) end
-	--- serverFrameTime - client - libs_sh/game.lua#L163
-	---@return number undefined Server frametime
-	---@return number undefined Server frametime standard deviation
-	function _G.game.serverFrameTime() end
-	--- blastDamage - server - libs_sh/game.lua#L127
-	---@param damageOrigin Vector The center of the explosion
-	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
-	---@param damage number The amount of damage to be applied
-	function _G.game.blastDamage(damageOrigin, damageRadius, damage) end
-	--- getHostname - shared - libs_sh/game.lua#L25
-	---@return string undefined The hostname of the server
-	function _G.game.getHostname() end
-	--- getPlayerModels - shared - libs_sh/game.lua#L100
-	---@return table undefined List of valid playermodels
-	function _G.game.getPlayerModels() end
-	--- getAmmoMax - shared - libs_sh/game.lua#L87
-	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
-	---@return number undefined The maximum amount of reserve ammo a player can hold of this ammo type
-	function _G.game.getAmmoMax(id) end
-	--- steamIDFrom64 - shared - libs_sh/game.lua#L111
-	---@param id string The 64 bit Steam ID
-	---@return string undefined STEAM_0 style Steam ID
-	function _G.game.steamIDFrom64(id) end
-	--- isDedicated - shared - libs_sh/game.lua#L43
-	---@return boolean undefined True if the game is a dedicated server
-	function _G.game.isDedicated() end
-	--- isLan - shared - libs_sh/game.lua#L31
-	---@return boolean undefined True if the game is a lan game
-	function _G.game.isLan() end
-	--- getTimeScale - shared - libs_sh/game.lua#L62
-	---@return number undefined Time scale
-	function _G.game.getTimeScale() end
-	--- isTimingOut - client - libs_sh/game.lua#L171
-	---@return boolean undefined If currently timing out
-	---@return number undefined Time since the connection started to timeout
-	function _G.game.isTimingOut() end
-	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L155
-	---@param position Vector The position to check the skybox visibility from
-	---@return boolean undefined Whether the skybox is visible from the position
-	function _G.game.isSkyboxVisibleFromPoint(position) end
-	--- getTickCount - shared - libs_sh/game.lua#L74
-	---@return number undefined Ticks
-	function _G.game.getTickCount() end
-	--- getSunInfo - client - libs_sh/game.lua#L146
-	---@return Vector undefined The direction of the sun
-	---@return number undefined How obstructed the sun is 0 to 1.
-	function _G.game.getSunInfo() end
-	--- getWorld - shared - libs_sh/game.lua#L94
-	---@return Entity undefined Worldspawn
-	function _G.game.getWorld() end
-	--- getMap - shared - libs_sh/game.lua#L19
-	---@return string undefined The name of the current map
-	function _G.game.getMap() end
-	--- isSinglePlayer - shared - libs_sh/game.lua#L37
-	---@return boolean undefined True if the game is singleplayer
-	function _G.game.isSinglePlayer() end
-	--- getMaxPlayers - shared - libs_sh/game.lua#L49
-	---@return number undefined The max players allowed by the server
-	function _G.game.getMaxPlayers() end
-	--- isMounted - shared - libs_sh/game.lua#L55
-	---@param str string String identifier of the game, eg. 'cstrike'
-	---@return boolean undefined True if the game is mounted
-	function _G.game.isMounted(str) end
-	--- hasFocus - client - libs_sh/game.lua#L139
-	---@return boolean undefined True if the game is focused
-	function _G.game.hasFocus() end
---- team
----  Library for retreiving information about teams
-_G.team = {}
-	--- getPlayers - shared - libs_sh/team.lua#L28
-	---@param ind number Index of the team
-	---@return table undefined Table of players
-	function _G.team.getPlayers(ind) end
-	--- getScore - shared - libs_sh/team.lua#L48
-	---@param ind number Index of the team
-	---@return number undefined Number score of the team
-	function _G.team.getScore(ind) end
-	--- getNumPlayers - shared - libs_sh/team.lua#L62
-	---@param ind number Index of the team
-	---@return number undefined Number of players on the team
-	function _G.team.getNumPlayers(ind) end
-	--- getName - shared - libs_sh/team.lua#L41
-	---@param ind number Index of the team
-	---@return string undefined String name of the team
-	function _G.team.getName(ind) end
-	--- getJoinable - shared - libs_sh/team.lua#L55
-	---@param ind number Index of the team
-	---@return boolean undefined Whether the team is joinable
-	function _G.team.getJoinable(ind) end
-	--- exists - shared - libs_sh/team.lua#L83
-	---@param ind number Index of the team
-	---@return boolean undefined Whether the team exists
-	function _G.team.exists(ind) end
-	--- getNumDeaths - shared - libs_sh/team.lua#L69
-	---@param ind number Index of the team
-	---@return number undefined Number of deaths
-	function _G.team.getNumDeaths(ind) end
-	--- getAllTeams - shared - libs_sh/team.lua#L15
-	---@return table undefined Table containing team information
-	function _G.team.getAllTeams() end
-	--- getNumFrags - shared - libs_sh/team.lua#L76
-	---@param ind number Index of the team
-	---@return number undefined Number of frags
-	function _G.team.getNumFrags(ind) end
-	--- bestAutoJoinTeam - shared - libs_sh/team.lua#L35
-	---@return number undefined Index of the best team to join
-	function _G.team.bestAutoJoinTeam() end
-	--- getColor - shared - libs_sh/team.lua#L21
-	---@param ind number Index of the team
-	---@return Color undefined Color of the team
-	function _G.team.getColor(ind) end
---- effect
----  Effects library.
-_G.effect = {}
-	--- canCreate - shared - libs_sh/effect.lua#L57
-	---@return boolean undefined If an effect can be played
-	function _G.effect.canCreate() end
-	--- create - shared - libs_sh/effect.lua#L45
-	---@return Effect undefined Effect Object
-	function _G.effect.create() end
-	--- effectsLeft - shared - libs_sh/effect.lua#L51
-	---@return number undefined Number of effects able to be created
-	function _G.effect.effectsLeft() end
+--- mesh
+---  Mesh library.
+_G.mesh = {}
+	--- generate - client - libs_sh/mesh.lua#L1003
+	---@param mesh_obj Mesh? Optional Mesh object, mesh to build. (default: nil)
+	---@param prim_type number Int, primitive type, see MATERIAL
+	---@param prim_count number Int, the amount of primitives
+	---@param func function The function provided that will generate the mesh vertices
+	function _G.mesh.generate(mesh_obj, prim_type, prim_count, func) end
+	--- parseObj - shared - libs_sh/mesh.lua#L705
+	---@param obj string The obj data
+	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
+	---@param triangulate boolean? Whether to triangulate the faces
+	---@return table undefined Table of Mesh tables. The keys correspond to the objs object names, and the values are tables of vertices that can be passed to mesh.createFromTable
+	---@return table undefined Table of Mesh data. {positions = positionData, normals = normalData, texturecoords = texturecoordData, faces = faceData}
+	function _G.mesh.parseObj(obj, threaded, triangulate) end
+	--- writeNormal - client - libs_sh/mesh.lua#L1063
+	---@param normal Vector Normal
+	function _G.mesh.writeNormal(normal) end
+	--- writeUV - client - libs_sh/mesh.lua#L1077
+	---@param stage number Stage of the texture coordinate
+	---@param u number U coordinate
+	---@param v number V coordinate
+	function _G.mesh.writeUV(stage, u, v) end
+	--- getModelMeshes - client - libs_sh/mesh.lua#L941
+	---@param model string The full path to a model to get the visual meshes of.
+	---@param lod number? The lod of the model to use. Default 0.
+	---@param bodygroupMask number? The bodygroupMask of the model to use. Default 0.
+	---@return table undefined A table of tables with the following format:  string material - The material of the specific mesh table triangles - A table of MeshVertex structures ready to be fed into IMesh:BuildFromTriangles table verticies - A table of MeshVertex structures representing all the vertexes of the mesh. This table is used internally to generate the "triangles" table. Each MeshVertex structure returned also has an extra table of tables field called "weights" with the following data:  number boneID - The bone this vertex is attached to number weight - How "strong" this vertex is attached to the bone. A vertex can be attached to multiple bones at once.
+	---@return table undefined A table of tables with bone id keys with the following format:  number parent - The parent bone id Matrix matrix - pretransformed bone matrix
+	function _G.mesh.getModelMeshes(model, lod, bodygroupMask) end
+	--- trianglesLeft - client - libs_sh/mesh.lua#L977
+	---@return number undefined Number of triangles that can be created
+	function _G.mesh.trianglesLeft() end
+	--- writeColor - client - libs_sh/mesh.lua#L1053
+	---@param r number Number, red value
+	---@param g number Number, green value
+	---@param b number Number, blue value
+	---@param a number Number, alpha value
+	function _G.mesh.writeColor(r, g, b, a) end
+	--- writePosition - client - libs_sh/mesh.lua#L1070
+	---@param position Vector Position
+	function _G.mesh.writePosition(position) end
+	--- trianglesLeftRender - client - libs_sh/mesh.lua#L984
+	---@return number undefined Number of triangles that can be rendered
+	function _G.mesh.trianglesLeftRender() end
+	--- createFromObj - client - libs_sh/mesh.lua#L885
+	---@param obj string The obj file data
+	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
+	---@param triangulate boolean? Whether to triangulate faces. (Consumes more CPU)
+	---@return table undefined Table of Mesh objects. The keys correspond to the objs object names
+	function _G.mesh.createFromObj(obj, threaded, triangulate) end
+	--- generateNormals - shared - libs_sh/mesh.lua#L719
+	---@param vertices table The table of vertices
+	---@param inverted boolean? Optional bool, invert the normal
+	---@param smooth_limit number? Optional number, smooths the normal based on the limit in radians
+	function _G.mesh.generateNormals(vertices, inverted, smooth_limit) end
+	--- advanceVertex - client - libs_sh/mesh.lua#L1116
+	function _G.mesh.advanceVertex() end
+	--- writeQuadEasy - client - libs_sh/mesh.lua#L1106
+	---@param position Vector 
+	---@param normal Vector 
+	---@param w number 
+	---@param h number 
+	function _G.mesh.writeQuadEasy(position, normal, w, h) end
+	--- writeQuad - client - libs_sh/mesh.lua#L1096
+	---@param v1 Vector Vertex1 position
+	---@param v2 Vector Vertex2 position
+	---@param v3 Vector Vertex3 position
+	---@param v4 Vector Vertex4 position
+	function _G.mesh.writeQuad(v1, v2, v3, v4) end
+	--- generateTangents - shared - libs_sh/mesh.lua#L745
+	---@param vertices table The table of vertices
+	function _G.mesh.generateTangents(vertices) end
+	--- generateUV - shared - libs_sh/mesh.lua#L733
+	---@param vertices table The table of vertices
+	---@param scale number The scale of the uvs
+	function _G.mesh.generateUV(vertices, scale) end
+	--- createEmpty - client - libs_sh/mesh.lua#L914
+	---@return Mesh undefined Mesh object
+	function _G.mesh.createEmpty() end
+	--- createFromTable - client - libs_sh/mesh.lua#L844
+	---@param vertices table Table containing vertex data. http://wiki.facepunch.com/gmod/Structures/MeshVertex
+	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit. The thread will yield with number of vertices remaining to be processed. After 0 is yielded, the final expensive phase starts.
+	---@return Mesh undefined Mesh object
+	function _G.mesh.createFromTable(vertices, threaded) end
+	--- findConvexHull - shared - libs_sh/mesh.lua#L755
+	---@param vertices table The table of vertices (vectors) or vertex data (http://wiki.facepunch.com/gmod/Structures/MeshVertex)
+	---@param threaded boolean? Optional bool, use threading object that can be used to run algorithm over time to prevent hitting quota limit
+	---@return table undefined The mesh table which can be passed to mesh.createFromTable
+	---@return table undefined The table of vertices which can be passed to prop.createCustom
+	function _G.mesh.findConvexHull(vertices, threaded) end
+	--- writeUserData - client - libs_sh/mesh.lua#L1086
+	---@param x number x
+	---@param y number y
+	---@param z number z
+	---@param handedness number 
+	function _G.mesh.writeUserData(x, y, z, handedness) end
 --- builtins
 ---  Built in values. These don't need to be loaded; they are in the default builtins_library.
 _G = {}
@@ -3516,6 +2973,10 @@ _G["CLIENT"] = nil
 	--- restart - shared - libs_sh/builtins.lua#L1208
 	---@param chip Entity? The chip to restart. If nil, it will restart the current chip.
 	function _G.restart(chip) end
+	--- getMethods - shared - libs_sh/builtins.lua#L955
+	---@param sfType string Name of SF type
+	---@return table undefined Table of the type's methods which can be edited or iterated
+	function _G.getMethods(sfType) end
 	--- WebSocket - client - libs_cl/websocket.lua#L112
 	---@param domain string Domain of the websocket server.
 	---@param port number? Port of the websocket server. (Default 443)
@@ -3527,13 +2988,18 @@ _G["CLIENT"] = nil
 	---@param name string The string name of the class
 	---@param super table? The (optional) parent class to inherit from
 	function _G.class(name, super) end
+	--- chip - shared - libs_sh/builtins.lua#L57
+	---@return Entity undefined Starfall chip entity
+	function _G.chip() end
 	--- enableHud - shared - libs_sh/builtins.lua#L1188
 	---@param ply Player The player to enable the hud on. If CLIENT, will be forced to player()
 	---@param active boolean Whether hud hooks should be active. true to force on, false to force off.
 	function _G.enableHud(ply, active) end
-	--- chip - shared - libs_sh/builtins.lua#L57
-	---@return Entity undefined Starfall chip entity
-	function _G.chip() end
+	--- dodir - shared - libs_sh/builtins.lua#L834
+	---@param path string The directory to include. Make sure to --@includedir it
+	---@param loadpriority table Table of files that should be loaded before any others in the directory
+	---@return table undefined Table of return values of the scripts
+	function _G.dodir(path, loadpriority) end
 	--- worldToLocal - shared - libs_sh/builtins.lua#L1150
 	---@param pos Vector The position that should be translated from the current to the new system
 	---@param ang Angle The angles that should be translated from the current to the new system
@@ -3542,19 +3008,10 @@ _G["CLIENT"] = nil
 	---@return Vector undefined localPos
 	---@return Angle undefined localAngles
 	function _G.worldToLocal(pos, ang, newSystemOrigin, newSystemAngles) end
-	--- dodir - shared - libs_sh/builtins.lua#L834
-	---@param path string The directory to include. Make sure to --@includedir it
-	---@param loadpriority table Table of files that should be loaded before any others in the directory
-	---@return table undefined Table of return values of the scripts
-	function _G.dodir(path, loadpriority) end
 	--- error - shared - libs_sh/builtins.lua#L1121
 	---@param msg string Message string
 	---@param level number? Which level in the stacktrace to blame. Defaults to 1. 0 for no stacktrace.
 	function _G.error(msg, level) end
-	--- try - shared - libs_sh/builtins.lua#L1092
-	---@param func function Function to execute
-	---@param catch function? Optional function to execute in case func fails
-	function _G.try(func, catch) end
 	--- Color - shared - libs_sh/color.lua#L64
 	---@param r number Red or string hexadecimal color
 	---@param g number Green
@@ -3569,10 +3026,10 @@ _G["CLIENT"] = nil
 	---@return function? undefined Compiled function, or nil if failed to compile
 	---@return string? undefined Error string, or nil if successfully compiled
 	function _G.loadstring(code, identifier, env) end
-	--- getMethods - shared - libs_sh/builtins.lua#L955
-	---@param sfType string Name of SF type
-	---@return table undefined Table of the type's methods which can be edited or iterated
-	function _G.getMethods(sfType) end
+	--- try - shared - libs_sh/builtins.lua#L1092
+	---@param func function Function to execute
+	---@param catch function? Optional function to execute in case func fails
+	function _G.try(func, catch) end
 	--- Angle - shared - libs_sh/angles.lua#L33
 	---@param p number? Pitch
 	---@param y number? Yaw
@@ -3642,22 +3099,21 @@ _G["CLIENT"] = nil
 	--- ramMax - shared - libs_sh/builtins.lua#L261
 	---@return number undefined The max ram usage in kilobytes
 	function _G.ramMax() end
-	--- printConsole - shared - libs_sh/builtins.lua#L543
-	---@param printArgs ... Values to print. Colors before text will set the text color
-	function _G.printConsole(printArgs) end
+	--- owner - shared - libs_sh/builtins.lua#L63
+	---@return Player undefined Owner of the chip
+	function _G.owner() end
+	--- setSoftQuota - shared - libs_sh/builtins.lua#L304
+	---@param quota number The threshold where the soft error will be thrown. Ratio of current cpu to the max cpu usage. 0.5 is 50%
+	function _G.setSoftQuota(quota) end
 	--- Vector2 - server - libs_sv/wire.lua#L163
 	---@param x number? X value
 	---@param y number? Y value
 	---@return Vector2 undefined Vector2
 	function _G.Vector2(x, y) end
-	--- owner - shared - libs_sh/builtins.lua#L63
-	---@return Player undefined Owner of the chip
-	function _G.owner() end
-	--- setupPermissionRequest - client - libs_sh/builtins.lua#L329
-	---@param perms table Table of overridable permissions' names.
-	---@param desc string Description attached to request.
-	---@param showOnUse boolean Whether request will popup when player uses chip or linked screen.
-	function _G.setupPermissionRequest(perms, desc, showOnUse) end
+	--- istable - shared - libs_sh/builtins.lua#L181
+	---@param x any Input to check
+	---@return boolean undefined If the object is a table or not
+	function _G.istable(x) end
 	--- entity - shared - libs_sh/builtins.lua#L83
 	---@param num number Entity index
 	---@return Entity undefined Entity at the index
@@ -3671,10 +3127,11 @@ _G["CLIENT"] = nil
 	--- cpuTotalAverage - shared - libs_sh/builtins.lua#L287
 	---@return number undefined Total average CPU Time of all your chips.
 	function _G.cpuTotalAverage() end
-	--- istable - shared - libs_sh/builtins.lua#L181
-	---@param x any Input to check
-	---@return boolean undefined If the object is a table or not
-	function _G.istable(x) end
+	--- setupPermissionRequest - client - libs_sh/builtins.lua#L329
+	---@param perms table Table of overridable permissions' names.
+	---@param desc string Description attached to request.
+	---@param showOnUse boolean Whether request will popup when player uses chip or linked screen.
+	function _G.setupPermissionRequest(perms, desc, showOnUse) end
 	--- cpuTotalUsed - shared - libs_sh/builtins.lua#L277
 	---@return number undefined Total used CPU time of all your chips.
 	function _G.cpuTotalUsed() end
@@ -3688,9 +3145,9 @@ _G["CLIENT"] = nil
 	---@param vararg ... Args to select from
 	---@return any undefined Returns a number or vararg, depending on the select method.
 	function _G.select(parameter, vararg) end
-	--- setSoftQuota - shared - libs_sh/builtins.lua#L304
-	---@param quota number The threshold where the soft error will be thrown. Ratio of current cpu to the max cpu usage. 0.5 is 50%
-	function _G.setSoftQuota(quota) end
+	--- printConsole - shared - libs_sh/builtins.lua#L543
+	---@param printArgs ... Values to print. Colors before text will set the text color
+	function _G.printConsole(printArgs) end
 	--- getUserdata - server - libs_sh/builtins.lua#L602
 	---@return string undefined String data
 	function _G.getUserdata() end
@@ -3705,721 +3162,190 @@ _G["CLIENT"] = nil
 	---@param x any Input to check
 	---@return boolean undefined If the object is a function or not
 	function _G.isfunction(x) end
---- render
---- 
----  Render library. Screens are 512x512 units. Most functions require
---- 
----  that you be in the rendering hook to call, otherwise an error is
---- 
----  thrown. +x is right, +y is down
-_G.render = {}
---- Screen - client
---- 
-_G.render.Screen = {
-	---@type any
-	--- Pretty name of model
-	["Name"] = nil,
-	---@type any
-	--- Offset of screen from prop
-	["offset"] = nil,
-	---@type any
-	--- Resolution/scale
-	["RS"] = nil,
-	---@type any
-	--- Inverted Aspect ratio (height divided by width)
-	["RatioX"] = nil,
-	---@type any
-	--- Corner of screen in local coordinates (relative to offset?)
-	["x1"] = nil,
-	---@type any
-	--- Corner of screen in local coordinates (relative to offset?)
-	["x2"] = nil,
-	---@type any
-	--- Corner of screen in local coordinates (relative to offset?)
-	["y1"] = nil,
-	---@type any
-	--- Corner of screen in local coordinates (relative to offset?)
-	["y2"] = nil,
-	---@type any
-	--- Screen plane offset in local coordinates (relative to offset?)
-	["z"] = nil,
-	---@type any
-	--- Screen rotation
-	["rot"] = nil,
-}
---- Vertex - client
----  Vertex format
-_G.render.Vertex = {
-	---@type any
-	--- X coordinate
-	["x"] = nil,
-	---@type any
-	--- Y coordinate
-	["y"] = nil,
-	---@type any
-	--- U coordinate (optional, default is 0)
-	["u"] = nil,
-	---@type any
-	--- V coordinate (optional, default is 0)
-	["v"] = nil,
-}
-	--- setFogEnd - client - libs_cl/render.lua#L2630
-	---@param distance number End distance
-	function _G.render.setFogEnd(distance) end
-	--- setRGBA - client - libs_cl/render.lua#L898
-	---@param r number Number, red value
-	---@param g number Number, green value
-	---@param b number Number, blue value
-	---@param a number Number, alpha value
-	function _G.render.setRGBA(r, g, b, a) end
-	--- getTintRGBA - client - libs_cl/render.lua#L922
-	---@return number undefined The red channel value. Color The current color & blend modulation as a color
-	---@return number undefined The green channel value.
-	---@return number undefined The blue channel value.
-	---@return number undefined The alpha channel value.
-	function _G.render.getTintRGBA() end
-	--- clearBuffersObeyStencil - client - libs_cl/render.lua#L620
-	---@param r number Value of the red channel to clear the current rt with.
-	---@param g number Value of the green channel to clear the current rt with.
-	---@param b number Value of the blue channel to clear the current rt with.
-	---@param a number Value of the alpha channel to clear the current rt with.
-	---@param Clear boolean the depth buffer.
-	function _G.render.clearBuffersObeyStencil(r, g, b, a, Clear) end
-	--- popViewMatrix - client - libs_cl/render.lua#L826
-	function _G.render.popViewMatrix() end
-	--- overrideBlend - client - libs_cl/render.lua#L1928
-	---@param on boolean Whether to control the blend mode of upcoming rendering
-	---@param srcBlend number http://wiki.facepunch.com/gmod/Enums/BLEND
-	---@param destBlend number 
-	---@param blendFunc number http://wiki.facepunch.com/gmod/Enums/BLENDFUNC
-	---@param srcBlendAlpha number? http://wiki.facepunch.com/gmod/Enums/BLEND
-	---@param destBlendAlpha number? 
-	---@param blendFuncAlpha number? http://wiki.facepunch.com/gmod/Enums/BLENDFUNC
-	function _G.render.overrideBlend(on, srcBlend, destBlend, blendFunc, srcBlendAlpha, destBlendAlpha, blendFuncAlpha) end
-	--- setFogHeight - client - libs_cl/render.lua#L2639
-	---@param height number The fog height
-	function _G.render.setFogHeight(height) end
-	--- drawPixelsRGB - client - libs_cl/render.lua#L1647
-	---@param w number Width of image to be drawn.
-	---@param h number Height of image to be drawn.
-	---@param dataR table Red channel data.
-	---@param dataG table Green channel data.
-	---@param dataB table Blue channel data.
-	function _G.render.drawPixelsRGB(w, h, dataR, dataG, dataB) end
-	--- draw3DSprite - client - libs_cl/render.lua#L1969
-	---@param pos Vector Position of the sprite.
-	---@param width number Width of the sprite.
-	---@param height number Height of the sprite.
-	---@param Color Color? tint to give the sprite. Default: white
-	function _G.render.draw3DSprite(pos, width, height, Color) end
-	--- clearRGBA - client - libs_cl/render.lua#L1307
-	---@param depth boolean? Boolean if should clear depth. Default false
-	---@return number undefined The red channel value.
-	---@return number undefined The green channel value.
-	---@return number undefined The blue channel value.
-	---@return number undefined The alpha channel value.
-	function _G.render.clearRGBA(depth) end
-	--- drawTexturedRectRotatedFast - client - libs_cl/render.lua#L1590
-	---@param x number X coordinate of center of rect
-	---@param y number Y coordinate of center of rect
-	---@param w number Width
-	---@param h number Height
-	---@param rot number Rotation in degrees
-	function _G.render.drawTexturedRectRotatedFast(x, y, w, h, rot) end
-	--- drawPixelsRGBA - client - libs_cl/render.lua#L1663
-	---@param w number Width of image to be drawn.
-	---@param h number Height of image to be drawn.
-	---@param dataR table Red channel data.
-	---@param dataG table Green channel data.
-	---@param dataB table Blue channel data.
-	---@param dataA table Alpha channel data.
-	function _G.render.drawPixelsRGBA(w, h, dataR, dataG, dataB, dataA) end
-	--- popCustomClipPlane - client - libs_cl/render.lua#L2550
-	function _G.render.popCustomClipPlane() end
-	--- drawRoundedBox - client - libs_cl/render.lua#L1321
-	---@param r number The corner radius
-	---@param x number Top left corner x coordinate
-	---@param y number Top left corner y coordinate
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawRoundedBox(r, x, y, w, h) end
-	--- enableClipping - client - libs_cl/render.lua#L2519
-	---@param state boolean New clipping state.
-	---@return boolean undefined Previous clipping state.
-	function _G.render.enableClipping(state) end
-	--- draw3DBox - client - libs_cl/render.lua#L2020
-	---@param origin Vector Origin of the box.
-	---@param angle Angle Orientation of the box
-	---@param mins Vector Start position of the box, relative to origin.
-	---@param maxs Vector End position of the box, relative to origin.
-	function _G.render.draw3DBox(origin, angle, mins, maxs) end
-	--- createMaterial - client - libs_cl/render.lua#L941
-	---@param tx string Texture file path, a http url, or image data: https://en.wikipedia.org/wiki/Data_URI_scheme
-	---@param cb function? An optional callback called when loading is done. Passes nil if it fails or Passes the material, url, width, height, and layout function which can be called with x, y, w, h to reposition the image in the texture.
-	---@param done function? An optional callback called when the image is done loading. Passes the material, url
-	---@return Material undefined The material. Use with render.setMaterial to draw with it.
-	function _G.render.createMaterial(tx, cb, done) end
-	--- add3DBeam - client - libs_cl/render.lua#L2073
-	---@param startPos Vector Beam start position.
-	---@param width number The width of the beam.
-	---@param textureEnd number The end coordinate of the texture used.
-	---@param color Color The color to be used.
-	function _G.render.add3DBeam(startPos, width, textureEnd, color) end
-	--- drawRectOutline - client - libs_cl/render.lua#L1411
-	---@param x number Top left corner x integer coordinate
-	---@param y number Top left corner y integer coordinate
-	---@param w number Width
-	---@param h number Height
-	---@param thickness number? Optional inset border width
-	function _G.render.drawRectOutline(x, y, w, h, thickness) end
-	--- start3DBeam - client - libs_cl/render.lua#L2066
-	---@param segmentCount number The number of Beam Segments that this multi-segment Beam will contain
-	function _G.render.start3DBeam(segmentCount) end
-	--- drawTexturedTriangleUV - client - libs_cl/render.lua#L1633
-	---@param vert1 table First vertex. {x = x1, y = y1, u = u1, v = v1}
-	---@param vert2 table The second vertex.
-	---@param vert3 table The third vertex.
-	function _G.render.drawTexturedTriangleUV(vert1, vert2, vert3) end
-	--- getResolution - client - libs_cl/render.lua#L2333
-	---@return number undefined the X size of the current render context
-	---@return number undefined the Y size of the current render context
-	function _G.render.getResolution() end
-	--- traceSurfaceColor - client - libs_cl/render.lua#L2354
-	---@param startpos Vector The starting vector
-	---@param endpos Vector The ending vector
-	---@return Color undefined The color
-	function _G.render.traceSurfaceColor(startpos, endpos) end
-	--- setStencilPassOperation - client - libs_cl/render.lua#L660
-	---@param operation number 
-	function _G.render.setStencilPassOperation(operation) end
-	--- drawTexturedRectRotated - client - libs_cl/render.lua#L1603
-	---@param x number X coordinate of center of rect
-	---@param y number Y coordinate of center of rect
-	---@param w number Width
-	---@param h number Height
-	---@param rot number Rotation in degrees
-	function _G.render.drawTexturedRectRotated(x, y, w, h, rot) end
-	--- getColorModulation - client - libs_cl/render.lua#L877
-	---@return number undefined Red channel
-	---@return number undefined Green channel
-	---@return number undefined Blue channel
-	function _G.render.getColorModulation() end
-	--- setStencilReferenceValue - client - libs_cl/render.lua#L676
-	---@param referenceValue number Reference value.
-	function _G.render.setStencilReferenceValue(referenceValue) end
-	--- draw3DLine - client - libs_cl/render.lua#L2007
-	---@param startPos Vector Starting position
-	---@param endPos Vector Ending position
-	---@param writeZ boolean? Optional should the line be drawn with depth considered (default: true)
-	function _G.render.draw3DLine(startPos, endPos, writeZ) end
-	--- getMatrix - client - libs_cl/render.lua#L765
-	---@return VMatrix undefined The currently active matrix.
-	function _G.render.getMatrix() end
-	--- setModelLighting - client - libs_cl/render.lua#L601
-	---@param lightDirection number The light source to edit, builtins.BOX enumeration.
-	---@param r number The red component of the light color.
-	---@param g number The green component of the light color.
-	---@param b number The blue component of the light color.
-	function _G.render.setModelLighting(lightDirection, r, g, b) end
-	--- draw3DWireframeBox - client - libs_cl/render.lua#L2035
-	---@param origin Vector Origin of the box.
-	---@param angle Angle Orientation of the box
-	---@param mins Vector Start position of the box, relative to origin.
-	---@param maxs Vector End position of the box, relative to origin.
-	---@param writeZ boolean? Optional should the box be drawn with depth considered (default: true)
-	function _G.render.draw3DWireframeBox(origin, angle, mins, maxs, writeZ) end
-	--- draw3DWireframeSphere - client - libs_cl/render.lua#L1992
-	---@param pos Vector Position of the sphere
-	---@param radius number Radius of the sphere
-	---@param longitudeSteps number The amount of longitude steps. The larger this number is, the smoother the sphere is
-	---@param latitudeSteps number The amount of latitude steps. The larger this number is, the smoother the sphere is
-	---@param writeZ boolean? Optional should the sphere be drawn with depth considered (default: true)
-	function _G.render.draw3DWireframeSphere(pos, radius, longitudeSteps, latitudeSteps, writeZ) end
-	--- drawRectFast - client - libs_cl/render.lua#L1361
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawRectFast(x, y, w, h) end
-	--- setScreenDimensions - client - libs_cl/render.lua#L2669
-	---@param screen Entity The custom screen to be resized
-	---@param x number The x offset of the screen
-	---@param y number The y offset of the screen
-	---@param w number The width of the screen
-	---@param h number The height of the screen
-	function _G.render.setScreenDimensions(screen, x, y, w, h) end
-	--- setColor - client - libs_cl/render.lua#L871
-	---@param clr Color Color type
-	function _G.render.setColor(clr) end
-	--- setChipOverlay - client - libs_cl/render.lua#L2657
-	---@param name string? The name of the RT to use or nil to set it back to normal
-	function _G.render.setChipOverlay(name) end
-	--- setBackgroundColor - client - libs_cl/render.lua#L839
-	---@param col Color Color of background
-	---@param screen Entity? (Optional) entity of screen
-	function _G.render.setBackgroundColor(col, screen) end
-	--- pushCustomClipPlane - client - libs_cl/render.lua#L2534
-	---@param normal Vector The normal of the clipping plane.
-	---@param distance number The normal of the clipping plane.
-	function _G.render.pushCustomClipPlane(normal, distance) end
-	--- setMaterialEffectSub - client - libs_cl/render.lua#L1012
-	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
-	function _G.render.setMaterialEffectSub(mat) end
-	--- readPixel - client - libs_cl/render.lua#L2312
-	---@param x number Pixel x-coordinate.
-	---@param y number Pixel y-coordinate.
-	---@return Color undefined Color object with ( r, g, b, a ) from the specified pixel.
-	function _G.render.readPixel(x, y) end
-	--- pushMatrix - client - libs_cl/render.lua#L716
-	---@param m VMatrix The matrix
-	---@param world boolean? Should the transformation be relative to the screen or world?
-	function _G.render.pushMatrix(m, world) end
-	--- depthRange - client - libs_cl/render.lua#L2706
-	---@param min number The minimum depth of the upcoming render. 0.0 = render normally; 1.0 = render nothing.
-	---@param max number The maximum depth of the upcoming render. 0.0 = render everything (through walls); 1.0 = render normally.
-	function _G.render.depthRange(min, max) end
-	--- destroyRenderTarget - client - libs_cl/render.lua#L1162
-	---@param name string Rendertarget name
-	function _G.render.destroyRenderTarget(name) end
-	--- pushViewMatrix - client - libs_cl/render.lua#L780
-	---@param tbl table The view matrix data. See http://wiki.facepunch.com/gmod/Structures/RenderCamData
-	function _G.render.pushViewMatrix(tbl) end
-	--- getTextSize - client - libs_cl/render.lua#L1802
-	---@param text string Text to get the size of
-	---@return number undefined width of the text
-	---@return number undefined height of the text
-	function _G.render.getTextSize(text) end
-	--- disableScissorRect - client - libs_cl/render.lua#L751
-	function _G.render.disableScissorRect() end
-	--- setMaterialEffectAdd - client - libs_cl/render.lua#L998
-	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
-	function _G.render.setMaterialEffectAdd(mat) end
-	--- draw3DSphere - client - libs_cl/render.lua#L1979
-	---@param pos Vector Position of the sphere
-	---@param radius number Radius of the sphere
-	---@param longitudeSteps number The amount of longitude steps. The larger this number is, the smoother the sphere is
-	---@param latitudeSteps number The amount of latitude steps. The larger this number is, the smoother the sphere is
-	function _G.render.draw3DSphere(pos, radius, longitudeSteps, latitudeSteps) end
-	--- setMaterialEffectBloom - client - libs_cl/render.lua#L1026
-	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
-	---@param levelr number Multiplier for all red pixels. 1 = unchanged
-	---@param levelg number Multiplier for all green pixels. 1 = unchanged
-	---@param levelb number Multiplier for all blue pixels. 1 = unchanged
-	---@param colormul number Multiplier for all three colors. 1 = unchanged
-	function _G.render.setMaterialEffectBloom(mat, levelr, levelg, levelb, colormul) end
-	--- setFogMode - client - libs_cl/render.lua#L2594
-	---@param mode number Fog mode
-	function _G.render.setFogMode(mode) end
-	--- clearStencil - client - libs_cl/render.lua#L580
-	function _G.render.clearStencil() end
-	--- draw3DQuadUV - client - libs_cl/render.lua#L2142
-	---@param vert1 table First vertex. {x, y, z, u, v}
-	---@param vert2 table The second vertex.
-	---@param vert3 table The third vertex.
-	---@param vert4 table The fourth vertex.
-	function _G.render.draw3DQuadUV(vert1, vert2, vert3, vert4) end
-	--- drawLine - client - libs_cl/render.lua#L1727
-	---@param x1 number X start float coordinate
-	---@param y1 number Y start float coordinate
-	---@param x2 number X end float coordinate
-	---@param y2 number Y end float coordinate
-	function _G.render.drawLine(x1, y1, x2, y2) end
-	--- setRenderTargetTexture - client - libs_cl/render.lua#L1223
-	---@param name string? Name of the render target to use
-	function _G.render.setRenderTargetTexture(name) end
-	--- getScreenEntity - client - libs_cl/render.lua#L2275
-	---@return Entity undefined Entity of the screen or hud being rendered
-	function _G.render.getScreenEntity() end
-	--- setStencilCompareFunction - client - libs_cl/render.lua#L644
-	---@param compareFunction number 
-	function _G.render.setStencilCompareFunction(compareFunction) end
-	--- enableScissorRect - client - libs_cl/render.lua#L741
-	---@param startX number X start coordinate of the scissor rect.
-	---@param startY number Y start coordinate of the scissor rect.
-	---@param endX number X end coordinate of the scissor rect.
-	---@param endY number Y end coordinate of the scissor rect.
-	function _G.render.enableScissorRect(startX, startY, endX, endY) end
-	--- getAmbientLightColor - client - libs_cl/render.lua#L2588
-	---@return Vector undefined Vector representing color of the light
-	function _G.render.getAmbientLightColor() end
-	--- setFont - client - libs_cl/render.lua#L1811
-	---@param font string The font to use
-	function _G.render.setFont(font) end
-	--- drawRectRotatedFast - client - libs_cl/render.lua#L1384
-	---@param x number X coordinate of center of rect
-	---@param y number Y coordinate of center of rect
-	---@param w number Width
-	---@param h number Height
-	---@param rot number Rotation in degrees
-	function _G.render.drawRectRotatedFast(x, y, w, h, rot) end
-	--- getEyePos - client - libs_cl/render.lua#L550
-	---@return Vector undefined The origin of the current render context as calculated by calcview.
-	function _G.render.getEyePos() end
-	--- renderViewsLeft - client - libs_cl/render.lua#L2513
-	---@return number undefined How many render.renderView calls are left
-	function _G.render.renderViewsLeft() end
-	--- getEyeVector - client - libs_cl/render.lua#L564
-	---@return Vector undefined The normal vector of the current render context as calculated by calcview, similar to render.getAngles.
-	function _G.render.getEyeVector() end
-	--- setLightingMode - client - libs_cl/render.lua#L863
-	---@param mode number The lighting mode. 0 - Default, 1 - Fullbright, 2 - Increased Fullbright
-	function _G.render.setLightingMode(mode) end
-	--- readPixelRGBA - client - libs_cl/render.lua#L2321
-	---@param x number Pixel x-coordinate.
-	---@param y number Pixel y-coordinate.
-	---@return number undefined The red channel value.
-	---@return number undefined The green channel value.
-	---@return number undefined The blue channel value.
-	---@return number undefined The alpha channel value.
-	function _G.render.readPixelRGBA(x, y) end
-	--- drawCircle - client - libs_cl/render.lua#L1422
-	---@param x number Center x coordinate
-	---@param y number Center y coordinate
-	---@param radius number Radius
-	function _G.render.drawCircle(x, y, radius) end
-	--- getBlend - client - libs_cl/render.lua#L1947
-	---@return number undefined Blending in the range 0 to 1
-	function _G.render.getBlend() end
-	--- getDefaultFont - client - libs_cl/render.lua#L1842
-	---@return string undefined Default font
-	function _G.render.getDefaultFont() end
-	--- setFilterMin - client - libs_cl/render.lua#L1274
-	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
-	function _G.render.setFilterMin(val) end
-	--- setBlend - client - libs_cl/render.lua#L1954
-	---@param alpha number Blending in the range 0 to 1
-	function _G.render.setBlend(alpha) end
-	--- renderView - client - libs_cl/render.lua#L2371
-	---@param tbl table view The view data to be used in the rendering. See http://wiki.facepunch.com/gmod/Structures/ViewData. There's an additional key drawviewer used to tell the engine whether the local player model should be rendered.
-	function _G.render.renderView(tbl) end
-	--- setFogColor - client - libs_cl/render.lua#L2603
-	---@param col Color Color (alpha won't have any effect)
-	function _G.render.setFogColor(col) end
-	--- drawSimpleText - client - libs_cl/render.lua#L1861
-	---@param x number X coordinate
-	---@param y number Y coordinate
-	---@param text string Text to draw
-	---@param xalign number? Horizontal text alignment. Default TEXT_ALIGN.LEFT
-	---@param yalign number? Vertical text alignment. Default TEXT_ALIGN.TOP
-	---@return number undefined Width of the drawn text. Same as calling render.getTextSize
-	---@return number undefined Height of the drawn text. Same as calling render.getTextSize
-	function _G.render.drawSimpleText(x, y, text, xalign, yalign) end
-	--- draw3DTriangleUV - client - libs_cl/render.lua#L2206
-	---@param vert1 table First vertex. {x = x1, y = y1, z = z1, u = u1, v = v1}
-	---@param vert2 table The second vertex.
-	---@param vert3 table The third vertex.
-	function _G.render.draw3DTriangleUV(vert1, vert2, vert3) end
-	--- drawRoundedBoxEx - client - libs_cl/render.lua#L1332
-	---@param r number The corner radius
-	---@param x number Top left corner x coordinate
-	---@param y number Top left corner y coordinate
-	---@param w number Width
-	---@param h number Height
-	---@param tl boolean? Top left corner. Default false
-	---@param tr boolean? Top right corner. Default false
-	---@param bl boolean? Bottom left corner. Default false
-	---@param br boolean? Bottom right corner. Default false
-	function _G.render.drawRoundedBoxEx(r, x, y, w, h, tl, tr, bl, br) end
-	--- drawTriangle - client - libs_cl/render.lua#L1483
-	---@param x1 number X of the first vertex
-	---@param y1 number Y of the first vertex
-	---@param x2 number X of the second vertex
-	---@param y2 number Y of the second vertex
-	---@param x3 number X of the third vertex
-	---@param y3 number Y of the third vertex
-	function _G.render.drawTriangle(x1, y1, x2, y2, x3, y3) end
-	--- parseMarkup - client - libs_cl/render.lua#L1877
-	---@param str string The markup string to parse
-	---@param maxsize number? The max width of the markup. Default nil
-	---@return Markup undefined The markup object. See https://wiki.facepunch.com/gmod/markup.Parse
-	function _G.render.parseMarkup(str, maxsize) end
-	--- computeLighting - client - libs_cl/render.lua#L2560
-	---@param pos Vector Vector position to sample from
-	---@param normal Vector Normal vector of the surface
-	---@return Vector undefined Vector representing color of the light
-	function _G.render.computeLighting(pos, normal) end
-	--- setWriteDepthToDestAlpha - client - libs_cl/render.lua#L593
-	---@param enable boolean True to write depth to destination alpha.
-	function _G.render.setWriteDepthToDestAlpha(enable) end
-	--- drawPixelsSubrectRGB - client - libs_cl/render.lua#L1679
-	---@param dstX number Destination x coordinate
-	---@param dstY number Destination y coordinate
-	---@param srcX number Source x coordinate
-	---@param srcY number Source y coordinate
-	---@param srcW number Source original width
-	---@param srcH number Source original height
-	---@param subrectW number Width of subrect
-	---@param subrectH number Height of subrect
-	---@param dataR table Red channel data.
-	---@param dataG table Green channel data.
-	---@param dataB table Blue channel data.
-	function _G.render.drawPixelsSubrectRGB(dstX, dstY, srcX, srcY, srcW, srcH, subrectW, subrectH, dataR, dataG, dataB) end
-	--- drawRect - client - libs_cl/render.lua#L1372
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawRect(x, y, w, h) end
-	--- resetModelLighting - client - libs_cl/render.lua#L611
-	---@param r number The red part of the color, 0-1
-	---@param g number The green part of the color, 0-1
-	---@param b number The blue part of the color, 0-1
-	function _G.render.resetModelLighting(r, g, b) end
-	--- clear - client - libs_cl/render.lua#L1293
-	---@param clr Color? Color type to clear with
-	---@param depth boolean? Boolean if should clear depth. Default false
-	function _G.render.clear(clr, depth) end
-	--- getLightColor - client - libs_cl/render.lua#L2580
-	---@param pos Vector Vector position to sample from
-	---@return Vector undefined Vector representing color of the light
-	function _G.render.getLightColor(pos) end
-	--- pixelVisible - client - libs_cl/render.lua#L2714
-	---@param position Vector 
-	---@param radius number 
-	---@return number undefined Percentage visible, from 0-1
-	function _G.render.pixelVisible(position, radius) end
-	--- resetStencil - client - libs_cl/render.lua#L700
-	function _G.render.resetStencil() end
-	--- drawTexturedRect - client - libs_cl/render.lua#L1512
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawTexturedRect(x, y, w, h) end
-	--- screenShake - client - libs_cl/render.lua#L2697
-	---@param amplitude number The strength of the effect
-	---@param frequency number The frequency of the effect in hertz
-	---@param duration number The duration of the effect in seconds, max 10.
-	function _G.render.screenShake(amplitude, frequency, duration) end
-	--- getGameResolution - client - libs_cl/render.lua#L2344
-	---@return number undefined the X size of the game window
-	---@return number undefined the Y size of the game window
-	function _G.render.getGameResolution() end
-	--- setFogStart - client - libs_cl/render.lua#L2621
-	---@param distance number Start distance
-	function _G.render.setFogStart(distance) end
-	--- setFogDensity - client - libs_cl/render.lua#L2612
-	---@param density number Density between 0 and 1
-	function _G.render.setFogDensity(density) end
-	--- getAngles - client - libs_cl/render.lua#L558
-	---@return Angle undefined The angles of the current render context as calculated by calcview.
-	function _G.render.getAngles() end
-	--- renderTargetExists - client - libs_cl/render.lua#L1140
-	---@param name string The name of the render target
-	function _G.render.renderTargetExists(name) end
-	--- setTextureFromScreen - client - libs_cl/render.lua#L1246
-	---@param ent Entity Screen entity
-	function _G.render.setTextureFromScreen(ent) end
-	--- getScreenInfo - client - libs_cl/render.lua#L2265
-	---@param e Entity The screen to get info from.
-	---@return table undefined A table describing the screen.
-	function _G.render.getScreenInfo(e) end
-	--- drawText - client - libs_cl/render.lua#L1848
-	---@param x number X coordinate
-	---@param y number Y coordinate
-	---@param text string Text to draw
-	---@param alignment number Horizontal text alignment. Default TEXT_ALIGN.LEFT
-	function _G.render.drawText(x, y, text, alignment) end
-	--- setStencilZFailOperation - client - libs_cl/render.lua#L668
-	---@param operation number 
-	function _G.render.setStencilZFailOperation(operation) end
-	--- capturePixels - client - libs_cl/render.lua#L2281
-	function _G.render.capturePixels() end
-	--- drawTexturedRectFast - client - libs_cl/render.lua#L1501
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	function _G.render.drawTexturedRectFast(x, y, w, h) end
-	--- setMaterialEffectColorModify - client - libs_cl/render.lua#L1085
-	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
-	---@param cmStructure table A table where each key must be of "addr", "addg", "addb", "brightness", "color" or "colour", "contrast", "mulr", "mulg", and "mulb". All keys are optional.
-	function _G.render.setMaterialEffectColorModify(mat, cmStructure) end
-	--- draw3DBeam - client - libs_cl/render.lua#L2052
-	---@param startPos Vector Beam start position.
-	---@param endPos Vector Beam end position.
-	---@param width number The width of the beam.
-	---@param textureStart number The start coordinate of the texture used.
-	---@param textureEnd number The end coordinate of the texture used.
-	function _G.render.draw3DBeam(startPos, endPos, width, textureStart, textureEnd) end
-	--- setStencilEnable - client - libs_cl/render.lua#L572
-	---@param enable boolean True to enable, false to disable
-	function _G.render.setStencilEnable(enable) end
-	--- drawBlurEffect - client - libs_cl/render.lua#L1118
-	---@param blurx number The amount of horizontal blur to apply.
-	---@param blury number The amount of vertical blur to apply.
-	---@param passes number The number of times the blur effect is applied.
-	function _G.render.drawBlurEffect(blurx, blury, passes) end
-	--- setTint - client - libs_cl/render.lua#L934
-	---@param c Color A color
-	function _G.render.setTint(c) end
-	--- drawPoly - client - libs_cl/render.lua#L1916
-	---@param poly table Table of polygon vertices. Texture coordinates are optional. {{x=x1, y=y1, u=u1, v=v1}, ... }
-	function _G.render.drawPoly(poly) end
-	--- captureImage - client - libs_cl/render.lua#L2288
-	---@param captureData table Parameters of the capture. See https://wiki.facepunch.com/gmod/Structures/RenderCaptureData
-	---@return string undefined Image binary data
-	function _G.render.captureImage(captureData) end
-	--- cursorPos - client - libs_cl/render.lua#L2221
-	---@param ply Player? player to get cursor position from. Default player()
-	---@param screen Entity? An explicit screen to get the cursor pos of (default: The current rendering screen using 'render' hook)
-	---@return number undefined X position
-	---@return number undefined Y position
-	function _G.render.cursorPos(ply, screen) end
-	--- draw3DQuadEasy - client - libs_cl/render.lua#L2109
-	---@param pos Vector Origin of the quad.
-	---@param normal Vector The face direction of the quad.
-	---@param width number The width of the quad.
-	---@param height number The height of the quad.
-	---@param rot number? The rotation of the quad counter-clockwise in degrees around the normal axis. In other words, the quad will always face the same way but this will rotate its corners.
-	function _G.render.draw3DQuadEasy(pos, normal, width, height, rot) end
-	--- getTint - client - libs_cl/render.lua#L913
-	---@return Color undefined The current color & blend modulation as a color
-	function _G.render.getTint() end
-	--- suppressEngineLighting - client - libs_cl/render.lua#L586
-	---@param suppress boolean True to suppress false to enable.
-	function _G.render.suppressEngineLighting(suppress) end
-	--- setStencilFailOperation - client - libs_cl/render.lua#L652
-	---@param operation number 
-	function _G.render.setStencilFailOperation(operation) end
-	--- setStencilTestMask - client - libs_cl/render.lua#L684
-	---@param mask number The mask bitflag.
-	function _G.render.setStencilTestMask(mask) end
-	--- setColorModulation - client - libs_cl/render.lua#L886
-	---@param r number Red channel
-	---@param g number Green channel
-	---@param b number Blue channel
-	function _G.render.setColorModulation(r, g, b) end
-	--- clearStencilBufferRectangle - client - libs_cl/render.lua#L632
-	---@param originX number X origin of the rectangle.
-	---@param originY number Y origin of the rectangle.
-	---@param endX number The end X coordinate of the rectangle.
-	---@param endY number The end Y coordinate of the rectangle.
-	---@param stencilValue number Value to set cleared stencil buffer to.
-	function _G.render.clearStencilBufferRectangle(originX, originY, endX, endY, stencilValue) end
-	--- drawRectRotated - client - libs_cl/render.lua#L1397
-	---@param x number X coordinate of center of rect
-	---@param y number Y coordinate of center of rect
-	---@param w number Width
-	---@param h number Height
-	---@param rot number Rotation in degrees
-	function _G.render.drawRectRotated(x, y, w, h, rot) end
-	--- setFilterMag - client - libs_cl/render.lua#L1263
-	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
-	function _G.render.setFilterMag(val) end
-	--- setMaterialEffectDownsample - client - libs_cl/render.lua#L1052
-	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
-	---@param darken number The amount to darken the texture by. -1 to 1 inclusive.
-	---@param multiply number The amount to multiply the pixel colors by. (0-1024)
-	function _G.render.setMaterialEffectDownsample(mat, darken, multiply) end
-	--- drawTexturedRectUV - client - libs_cl/render.lua#L1561
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	---@param startU number Texture mapping at rectangle origin
-	---@param startV number Texture mapping at rectangle origin
-	---@param endU number Texture mapping at rectangle end
-	---@param endV number Texture mapping at rectangle end
-	function _G.render.drawTexturedRectUV(x, y, w, h, startU, startV, endU, endV) end
-	--- drawFilledCircle - client - libs_cl/render.lua#L1432
-	---@param x number Center x coordinate
-	---@param y number Center y coordinate
-	---@param radius number Radius
-	function _G.render.drawFilledCircle(x, y, radius) end
-	--- selectRenderTarget - client - libs_cl/render.lua#L1175
-	---@param name string? Name of the render target to use
-	function _G.render.selectRenderTarget(name) end
-	--- drawPixelsSubrectRGBA - client - libs_cl/render.lua#L1702
-	---@param dstX number Destination x coordinate
-	---@param dstY number Destination y coordinate
-	---@param srcX number Source x coordinate
-	---@param srcY number Source y coordinate
-	---@param srcW number Source original width
-	---@param srcH number Source original height
-	---@param subrectW number Width of subrect
-	---@param subrectH number Height of subrect
-	---@param dataR table Red channel data.
-	---@param dataG table Green channel data.
-	---@param dataB table Blue channel data.
-	---@param dataA table Alpha channel data.
-	function _G.render.drawPixelsSubrectRGBA(dstX, dstY, srcX, srcY, srcW, srcH, subrectW, subrectH, dataR, dataG, dataB, dataA) end
-	--- setCullMode - client - libs_cl/render.lua#L1285
-	---@param mode number Cull mode. 0 for counter clock wise, 1 for clock wise
-	function _G.render.setCullMode(mode) end
-	--- createRenderTarget - client - libs_cl/render.lua#L1147
-	---@param name string The name of the render target
-	function _G.render.createRenderTarget(name) end
-	--- clearDepth - client - libs_cl/render.lua#L1961
-	function _G.render.clearDepth() end
-	--- createFont - client - libs_cl/render.lua#L1737
-	---@param font string Base font to use
-	---@param size number? Font size. Default 16
-	---@param weight number? Font weight. Default 400
-	---@param antialias boolean? Antialias font? Default false
-	---@param additive boolean? If true, adds brightness to pixels behind it rather than drawing over them. Default false
-	---@param shadow boolean? Enable drop shadow? Default false
-	---@param outline boolean? Enable outline? Default false
-	---@param blursize boolean? The size of the blur Default 0
-	---@param extended boolean? Allows the font to display glyphs outside of Latin-1 range. Unicode code points above 0xFFFF are not supported. Required to use FontAwesome
-	---@param scanlines number? Scanline interval. Must be greater than 1 to work. Shares uniqueness with blursize so you cannot create more than one scanline type of font with the same blursize. Default 0
-	---@return string undefined The font name that can be used with the rest of the font functions.
-	function _G.render.createFont(font, size, weight, antialias, additive, shadow, outline, blursize, extended, scanlines) end
-	--- popMatrix - client - libs_cl/render.lua#L757
-	function _G.render.popMatrix() end
-	--- computeDynamicLighting - client - libs_cl/render.lua#L2570
-	---@param pos Vector Vector position to sample from
-	---@param normal Vector Normal vector of the surface
-	---@return Vector undefined Vector representing color of the light
-	function _G.render.computeDynamicLighting(pos, normal) end
-	--- end3DBeam - client - libs_cl/render.lua#L2086
-	function _G.render.end3DBeam() end
-	--- draw3DQuad - client - libs_cl/render.lua#L2092
-	---@param vert1 Vector First vertex.
-	---@param vert2 Vector The second vertex.
-	---@param vert3 Vector The third vertex.
-	---@param vert4 Vector The fourth vertex.
-	function _G.render.draw3DQuad(vert1, vert2, vert3, vert4) end
-	--- enableDepth - client - libs_cl/render.lua#L1921
-	---@param enable boolean True to enable
-	function _G.render.enableDepth(enable) end
-	--- draw3DTriangle - client - libs_cl/render.lua#L2173
-	---@param vert1 Vector Position of the first vertex.
-	---@param vert2 Vector Position of the the second vertex.
-	---@param vert3 Vector Position of the the third vertex.
-	function _G.render.draw3DTriangle(vert1, vert2, vert3) end
-	--- drawTexturedRectUVFast - client - libs_cl/render.lua#L1523
-	---@param x number Top left corner x
-	---@param y number Top left corner y
-	---@param w number Width
-	---@param h number Height
-	---@param startU number Texture mapping at rectangle's origin U
-	---@param startV number Texture mapping at rectangle's origin V
-	---@param endU number Texture mapping at rectangle's end U
-	---@param endV number Texture mapping at rectangle's end V
-	---@param UVHack boolean? If enabled, will scale the UVs to compensate for internal bug. Should be true for user created materials.
-	function _G.render.drawTexturedRectUVFast(x, y, w, h, startU, startV, endU, endV, UVHack) end
-	--- destroyTexture - client - libs_cl/render.lua#L962
-	---@param mat Material The material object
-	function _G.render.destroyTexture(mat) end
-	--- setMaterial - client - libs_cl/render.lua#L973
-	---@param mat Material The material object
-	function _G.render.setMaterial(mat) end
-	--- isHUDActive - client - libs_cl/render.lua#L2365
-	---@return boolean undefined True if a HUD component is connected and active, nil otherwise
-	function _G.render.isHUDActive() end
-	--- setViewPort - client - libs_cl/render.lua#L2301
-	---@param x number Pixel x-coordinate.
-	---@param y number Pixel y-coordinate.
-	---@param w number Width of the viewport.
-	---@param h number Height of the viewport.
-	function _G.render.setViewPort(x, y, w, h) end
-	--- isInRenderView - client - libs_cl/render.lua#L2507
-	---@return boolean undefined Whether render.renderView is being executed
-	function _G.render.isInRenderView() end
-	--- setStencilWriteMask - client - libs_cl/render.lua#L692
-	---@param mask number The mask bitflag.
-	function _G.render.setStencilWriteMask(mask) end
+--- debug
+---  Lua debug library https://wiki.garrysmod.com/page/Category:debug
+_G.debug = {}
+	--- traceback - shared - libs_sh/builtins.lua#L969
+	---@param A thread? thread to get the stack trace of. If nil, this argument will be used as the message and the current thread becomes the target.
+	---@param message string? A message to be included at the beginning of the stack trace. Default: ""
+	---@param stacklevel number? Which position in the execution stack to start the traceback at. Default: 1
+	---@return string undefined A dump of the execution stack.
+	function _G.debug.traceback(A, message, stacklevel) end
+	--- getlocal - shared - libs_sh/builtins.lua#L1012
+	---@param funcOrStackLevel function|number Function or stack level to get info about. Defaults to stack level 0.
+	---@param index number The index of the local to get
+	---@return string undefined The name of the local
+	function _G.debug.getlocal(funcOrStackLevel, index) end
+	--- getinfo - shared - libs_sh/builtins.lua#L996
+	---@param funcOrStackLevel function|number Function or stack level to get info about. Defaults to stack level 0.
+	---@param fields string? A string that specifies the information to be retrieved. Defaults to all (flnSu).
+	---@return table undefined DebugInfo table
+	function _G.debug.getinfo(funcOrStackLevel, fields) end
+--- light
+---  Light library.
+_G.light = {}
+	--- create - client - libs_cl/light.lua#L107
+	---@param pos Vector The position of the light
+	---@param size number The size of the light. Must be lower than sf_light_maxsize
+	---@param brightness number The brightness of the light
+	---@param color Color The color of the light
+	---@return Light undefined Dynamic light
+	function _G.light.create(pos, size, brightness, color) end
+--- game
+---  Game functions
+_G.game = {}
+	--- getAmmoData - shared - libs_sh/game.lua#L80
+	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
+	---@return table undefined AmmoData, see https://wiki.facepunch.com/gmod/Structures/AmmoData
+	function _G.game.getAmmoData(id) end
+	--- getTickInterval - shared - libs_sh/game.lua#L68
+	---@return number undefined Interval
+	function _G.game.getTickInterval() end
+	--- steamIDTo64 - shared - libs_sh/game.lua#L118
+	---@param id string The STEAM_0 style id
+	---@return string undefined 64bit Steam ID
+	function _G.game.steamIDTo64(id) end
+	--- serverFrameTime - client - libs_sh/game.lua#L163
+	---@return number undefined Server frametime
+	---@return number undefined Server frametime standard deviation
+	function _G.game.serverFrameTime() end
+	--- blastDamage - server - libs_sh/game.lua#L127
+	---@param damageOrigin Vector The center of the explosion
+	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
+	---@param damage number The amount of damage to be applied
+	function _G.game.blastDamage(damageOrigin, damageRadius, damage) end
+	--- getHostname - shared - libs_sh/game.lua#L25
+	---@return string undefined The hostname of the server
+	function _G.game.getHostname() end
+	--- getPlayerModels - shared - libs_sh/game.lua#L100
+	---@return table undefined List of valid playermodels
+	function _G.game.getPlayerModels() end
+	--- getAmmoMax - shared - libs_sh/game.lua#L87
+	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
+	---@return number undefined The maximum amount of reserve ammo a player can hold of this ammo type
+	function _G.game.getAmmoMax(id) end
+	--- steamIDFrom64 - shared - libs_sh/game.lua#L111
+	---@param id string The 64 bit Steam ID
+	---@return string undefined STEAM_0 style Steam ID
+	function _G.game.steamIDFrom64(id) end
+	--- isDedicated - shared - libs_sh/game.lua#L43
+	---@return boolean undefined True if the game is a dedicated server
+	function _G.game.isDedicated() end
+	--- isLan - shared - libs_sh/game.lua#L31
+	---@return boolean undefined True if the game is a lan game
+	function _G.game.isLan() end
+	--- getTimeScale - shared - libs_sh/game.lua#L62
+	---@return number undefined Time scale
+	function _G.game.getTimeScale() end
+	--- isTimingOut - client - libs_sh/game.lua#L171
+	---@return boolean undefined If currently timing out
+	---@return number undefined Time since the connection started to timeout
+	function _G.game.isTimingOut() end
+	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L155
+	---@param position Vector The position to check the skybox visibility from
+	---@return boolean undefined Whether the skybox is visible from the position
+	function _G.game.isSkyboxVisibleFromPoint(position) end
+	--- getTickCount - shared - libs_sh/game.lua#L74
+	---@return number undefined Ticks
+	function _G.game.getTickCount() end
+	--- getSunInfo - client - libs_sh/game.lua#L146
+	---@return Vector undefined The direction of the sun
+	---@return number undefined How obstructed the sun is 0 to 1.
+	function _G.game.getSunInfo() end
+	--- getWorld - shared - libs_sh/game.lua#L94
+	---@return Entity undefined Worldspawn
+	function _G.game.getWorld() end
+	--- getMap - shared - libs_sh/game.lua#L19
+	---@return string undefined The name of the current map
+	function _G.game.getMap() end
+	--- isSinglePlayer - shared - libs_sh/game.lua#L37
+	---@return boolean undefined True if the game is singleplayer
+	function _G.game.isSinglePlayer() end
+	--- getMaxPlayers - shared - libs_sh/game.lua#L49
+	---@return number undefined The max players allowed by the server
+	function _G.game.getMaxPlayers() end
+	--- isMounted - shared - libs_sh/game.lua#L55
+	---@param str string String identifier of the game, eg. 'cstrike'
+	---@return boolean undefined True if the game is mounted
+	function _G.game.isMounted(str) end
+	--- hasFocus - client - libs_sh/game.lua#L139
+	---@return boolean undefined True if the game is focused
+	function _G.game.hasFocus() end
+--- effect
+---  Effects library.
+_G.effect = {}
+	--- canCreate - shared - libs_sh/effect.lua#L57
+	---@return boolean undefined If an effect can be played
+	function _G.effect.canCreate() end
+	--- create - shared - libs_sh/effect.lua#L45
+	---@return Effect undefined Effect Object
+	function _G.effect.create() end
+	--- effectsLeft - shared - libs_sh/effect.lua#L51
+	---@return number undefined Number of effects able to be created
+	function _G.effect.effectsLeft() end
+--- team
+---  Library for retreiving information about teams
+_G.team = {}
+	--- getPlayers - shared - libs_sh/team.lua#L28
+	---@param ind number Index of the team
+	---@return table undefined Table of players
+	function _G.team.getPlayers(ind) end
+	--- getScore - shared - libs_sh/team.lua#L48
+	---@param ind number Index of the team
+	---@return number undefined Number score of the team
+	function _G.team.getScore(ind) end
+	--- getNumPlayers - shared - libs_sh/team.lua#L62
+	---@param ind number Index of the team
+	---@return number undefined Number of players on the team
+	function _G.team.getNumPlayers(ind) end
+	--- getName - shared - libs_sh/team.lua#L41
+	---@param ind number Index of the team
+	---@return string undefined String name of the team
+	function _G.team.getName(ind) end
+	--- getJoinable - shared - libs_sh/team.lua#L55
+	---@param ind number Index of the team
+	---@return boolean undefined Whether the team is joinable
+	function _G.team.getJoinable(ind) end
+	--- exists - shared - libs_sh/team.lua#L83
+	---@param ind number Index of the team
+	---@return boolean undefined Whether the team exists
+	function _G.team.exists(ind) end
+	--- getNumDeaths - shared - libs_sh/team.lua#L69
+	---@param ind number Index of the team
+	---@return number undefined Number of deaths
+	function _G.team.getNumDeaths(ind) end
+	--- getAllTeams - shared - libs_sh/team.lua#L15
+	---@return table undefined Table containing team information
+	function _G.team.getAllTeams() end
+	--- getNumFrags - shared - libs_sh/team.lua#L76
+	---@param ind number Index of the team
+	---@return number undefined Number of frags
+	function _G.team.getNumFrags(ind) end
+	--- bestAutoJoinTeam - shared - libs_sh/team.lua#L35
+	---@return number undefined Index of the best team to join
+	function _G.team.bestAutoJoinTeam() end
+	--- getColor - shared - libs_sh/team.lua#L21
+	---@param ind number Index of the team
+	---@return Color undefined Color of the team
+	function _G.team.getColor(ind) end
+--- hologram
+---  Library for creating and manipulating physics-less models AKA "Holograms".
+_G.hologram = {}
+	--- removeAll - shared - libs_sh/hologram.lua#L522
+	function _G.hologram.removeAll() end
+	--- canSpawn - shared - libs_sh/hologram.lua#L157
+	---@return boolean undefined True if user can spawn holograms, False if not.
+	function _G.hologram.canSpawn() end
+	--- create - shared - libs_sh/hologram.lua#L99
+	---@param pos Vector The position to create the hologram
+	---@param ang Angle The angle to create the hologram
+	---@param model string The model to give the hologram
+	---@param scale Vector? (Optional) The scale to give the hologram
+	---@return Hologram undefined The hologram object
+	function _G.hologram.create(pos, ang, model, scale) end
+	--- hologramsLeft - shared - libs_sh/hologram.lua#L164
+	---@return number undefined Number of holograms able to be spawned
+	function _G.hologram.hologramsLeft() end
 --- prop
 ---  Library for creating and manipulating physics-less models AKA "Props".
 _G.prop = {}
@@ -5946,31 +4872,79 @@ _G.sql = {}
 	---@param tabname string The table to remove.
 	---@return boolean undefined True if the table was successfully removed, false if not.
 	function _G.sql.tableRemove(tabname) end
---- sound
----  Sound library.
-_G.sound = {}
-	--- duration - shared - libs_sh/sound.lua#L107
-	---@param path string String path to the sound file
-	---@return number undefined Number duration in seconds
-	function _G.sound.duration(path) end
-	--- emitSoundsLeft - shared - libs_sh/entities.lua#L286
-	---@return number undefined The number of sounds left
-	function _G.sound.emitSoundsLeft() end
-	--- soundsLeft - shared - libs_sh/sound.lua#L101
-	---@return number undefined The number of sounds left
-	function _G.sound.soundsLeft() end
-	--- canEmitSound - shared - libs_sh/entities.lua#L280
-	---@return boolean undefined If it is possible to emit a sound
-	function _G.sound.canEmitSound() end
-	--- create - shared - libs_sh/sound.lua#L61
-	---@param ent Entity Entity to attach sound to.
-	---@param path string Filepath to the sound file.
-	---@param nofilter boolean? (Optional) Boolean Make the sound play for everyone regardless of range or location. Only affects Server-side sounds.
-	---@return Sound undefined Sound Object
-	function _G.sound.create(ent, path, nofilter) end
-	--- canCreate - shared - libs_sh/sound.lua#L95
-	---@return boolean undefined If it is possible to make a sound
-	function _G.sound.canCreate() end
+--- darkrp
+---  Functions relating to DarkRP. These functions WILL NOT EXIST if DarkRP is not in use.
+_G.darkrp = {}
+	--- openF1Menu - client - libs_sh/darkrp2.lua#L755
+	function _G.darkrp.openF1Menu() end
+	--- doorIndexToEnt - server - libs_sh/darkrp2.lua#L642
+	---@param doorIndex number The door index
+	---@return Entity? undefined The door entity, or nil if the index is invalid or the door was removed.
+	function _G.darkrp.doorIndexToEnt(doorIndex) end
+	--- canMakeMoneyRequest - server - libs_sh/darkrp2.lua#L726
+	---@param sender Player? Player you intend to ask for money from later (if nil, will only check your money request rate)
+	---@return boolean undefined If you can make another money request
+	function _G.darkrp.canMakeMoneyRequest(sender) end
+	--- canGiveMoney - server - libs_sh/darkrp2.lua#L748
+	---@return boolean undefined If you can give someone money
+	function _G.darkrp.canGiveMoney() end
+	--- closeF4Menu - client - libs_sh/darkrp2.lua#L779
+	function _G.darkrp.closeF4Menu() end
+	--- getFoodItems - shared - libs_sh/darkrp2.lua#L614
+	---@return table? undefined Table with food items, or nil if there are none.
+	function _G.darkrp.getFoodItems() end
+	--- requestMoney - server - libs_sh/darkrp2.lua#L683
+	---@param sender Player The player who may or may not send the money.
+	---@param amount number The amount of money to ask for.
+	---@param message string? An optional custom message that will be shown in the money request prompt. May not exceed 60 bytes in length.
+	---@param callbackSuccess function? Optional function to call if request succeeds. Args (string: The request message, player: The money sender, number: The amount)
+	---@param callbackFailure function? Optional function to call if request fails. Args (string: why it failed)
+	---@param receiver Player? The player who may or may not receive the money, or the owner of the chip if not specified. Superuser only.
+	function _G.darkrp.requestMoney(sender, amount, message, callbackSuccess, callbackFailure, receiver) end
+	--- moneyRequestsLeft - server - libs_sh/darkrp2.lua#L717
+	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
+	function _G.darkrp.moneyRequestsLeft() end
+	--- openPocketMenu - client - libs_sh/darkrp2.lua#L803
+	function _G.darkrp.openPocketMenu() end
+	--- payPlayer - server - libs_sh/darkrp2.lua#L661
+	---@param sender Player The player who gives the money.
+	---@param receiver Player The player who receives the money.
+	---@param amount number The amount of money.
+	function _G.darkrp.payPlayer(sender, receiver, amount) end
+	--- formatMoney - shared - libs_sh/darkrp2.lua#L594
+	---@param amount number The money to format, e.g. 100000.
+	---@return string undefined The money as a nice string, e.g. "$100,000".
+	function _G.darkrp.formatMoney(amount) end
+	--- isDarkRPVarBlacklisted - shared - libs_sh/darkrp2.lua#L633
+	---@param var string The name of the variable
+	---@return boolean undefined If the variable is blacklisted
+	function _G.darkrp.isDarkRPVarBlacklisted(var) end
+	--- moneyGivingsLeft - server - libs_sh/darkrp2.lua#L739
+	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
+	function _G.darkrp.moneyGivingsLeft() end
+	--- toggleF4Menu - client - libs_sh/darkrp2.lua#L787
+	function _G.darkrp.toggleF4Menu() end
+	--- openF4Menu - client - libs_sh/darkrp2.lua#L771
+	function _G.darkrp.openF4Menu() end
+	--- getLaws - shared - libs_sh/darkrp2.lua#L621
+	---@return table undefined A table of all current laws.
+	function _G.darkrp.getLaws() end
+	--- getAvailableVehicles - shared - libs_sh/darkrp2.lua#L602
+	---@return table undefined Names, models and classnames of all supported vehicles.
+	function _G.darkrp.getAvailableVehicles() end
+	--- getCategories - shared - libs_sh/darkrp2.lua#L608
+	---@return table undefined All categories.
+	function _G.darkrp.getCategories() end
+	--- closeF1Menu - client - libs_sh/darkrp2.lua#L763
+	function _G.darkrp.closeF1Menu() end
+	--- getCustomShipments - shared - libs_sh/darkrp2.lua#L627
+	---@return table? undefined A table with the contents of the GLua global "CustomShipments", or nil if it doesn't exist.
+	function _G.darkrp.getCustomShipments() end
+	--- openKeysMenu - client - libs_sh/darkrp2.lua#L795
+	function _G.darkrp.openKeysMenu() end
+	--- jailPosCount - server - libs_sh/darkrp2.lua#L654
+	---@return number undefined The number of jail positions in the current map.
+	function _G.darkrp.jailPosCount() end
 --- joystick
 ---  Joystick library.
 _G.joystick = {}
@@ -6171,16 +5145,6 @@ _G.os = {}
 	---@param timeB number The value to subtract
 	---@return number undefined Time difference
 	function _G.os.difftime(timeA, timeB) end
---- light
----  Light library.
-_G.light = {}
-	--- create - client - libs_cl/light.lua#L107
-	---@param pos Vector The position of the light
-	---@param size number The size of the light. Must be lower than sf_light_maxsize
-	---@param brightness number The brightness of the light
-	---@param color Color The color of the light
-	---@return Light undefined Dynamic light
-	function _G.light.create(pos, size, brightness, color) end
 --- physenv
 ---  Physenv functions
 _G.physenv = {}
@@ -6193,6 +5157,394 @@ _G.physenv = {}
 	--- getGravity - shared - libs_sh/physenv.lua#L21
 	---@return Vector undefined Gravity Vector ( eg Vector(0,0,-600) )
 	function _G.physenv.getGravity() end
+--- math
+---  Lua math library https://wiki.garrysmod.com/page/Category:math
+_G.math = {}
+	--- ceil - shared - libs_sh/math.lua#L96
+	---@param n number Number to be rounded
+	---@return number undefined Rounded number
+	function _G.math.ceil(n) end
+	--- tan - shared - libs_sh/math.lua#L296
+	---@param ang number Angle in radians
+	---@return number undefined The tangent of the given angle
+	function _G.math.tan(ang) end
+	--- lerp - shared - libs_sh/math.lua#L333
+	---@param t number The fraction for finding the result. This number is clamped between 0 and 1
+	---@param from number The starting number. The result will be equal to this if value t is 0
+	---@param to number The ending number. The result will be equal to this if value t is 1
+	---@return number undefined The result of the linear interpolation, (1 - t) * from + t * to
+	function _G.math.lerp(t, from, to) end
+	--- sinh - shared - libs_sh/math.lua#L284
+	---@param ang number Angle in radians
+	---@return number undefined The hyperbolic sine of the given angle
+	function _G.math.sinh(ang) end
+	--- approach - shared - libs_sh/math.lua#L46
+	---@param current number The value we're currently at
+	---@param target number The target value. This function will never overshoot this value
+	---@param change number The amount that the current value is allowed to change by to approach the target (positive or negative)
+	---@return number undefined New current value, closer to the target than it was previously
+	function _G.math.approach(current, target, change) end
+	--- distance - shared - libs_sh/math.lua#L128
+	---@param x1 number X position of first point
+	---@param y1 number Y position of first point
+	---@param x2 number X position of second point
+	---@param y2 number Y position of second point
+	---@return number undefined Distance between the two points
+	function _G.math.distance(x1, y1, x2, y2) end
+	--- truncate - shared - libs_sh/math.lua#L316
+	---@param val number The number to truncate
+	---@param digits number? The amount of digits to keep after the point. Default 0
+	---@return number undefined Rounded number
+	function _G.math.truncate(val, digits) end
+	--- easeInOutBack - shared - libs_sh/math.lua#L470
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutBack(fraction) end
+	--- easeInExpo - shared - libs_sh/math.lua#L464
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInExpo(fraction) end
+	--- min - shared - libs_sh/math.lua#L206
+	---@param numbers ...number Any amount of number values
+	---@return number undefined The smallest number
+	function _G.math.min(numbers) end
+	--- frexp - shared - libs_sh/math.lua#L164
+	---@param x number The value to get the normalized fraction and the exponent from
+	---@return number undefined Multiplier between 0.5 and 1
+	---@return number undefined Exponent integer
+	function _G.math.frexp(x) end
+	--- easeInOutExpo - shared - libs_sh/math.lua#L500
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutExpo(fraction) end
+	--- easeInOutCubic - shared - libs_sh/math.lua#L488
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutCubic(fraction) end
+	--- sin - shared - libs_sh/math.lua#L278
+	---@param ang number Angle in radians
+	---@return number undefined Sine for given angle
+	function _G.math.sin(ang) end
+	--- easeInBack - shared - libs_sh/math.lua#L434
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInBack(fraction) end
+	--- lerpVector - shared - libs_sh/math.lua#L357
+	---@param ratio number Ratio of progress through values
+	---@param from Vector Vector to begin from
+	---@param Vector Vector to end at
+	---@return Vector undefined The interpolated vector
+	function _G.math.lerpVector(ratio, from, Vector) end
+	--- easeInBounce - shared - libs_sh/math.lua#L440
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInBounce(fraction) end
+	--- bSplinePoint - shared - libs_sh/math.lua#L323
+	---@param tDiff number From 0 to tMax, where alongside the spline the point will be
+	---@param tPoints number A table of Vectors. The amount cannot be less than 4
+	---@param tMax number Dictates maximum value for tDiff
+	---@return number undefined Point on Bezier curve, related to tDiff
+	function _G.math.bSplinePoint(tDiff, tPoints, tMax) end
+	--- easeInQuint - shared - libs_sh/math.lua#L542
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInQuint(fraction) end
+	--- easeInCirc - shared - libs_sh/math.lua#L446
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInCirc(fraction) end
+	--- tanh - shared - libs_sh/math.lua#L302
+	---@param ang number Angle in radians
+	---@return number undefined The hyperbolic tangent of the given angle
+	function _G.math.tanh(ang) end
+	--- easeInQuart - shared - libs_sh/math.lua#L536
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInQuart(fraction) end
+	--- pow - shared - libs_sh/math.lua#L227
+	---@param base number The Base number
+	---@param exp number The Exponent
+	---@return number undefined Exponent power of base
+	function _G.math.pow(base, exp) end
+	--- easeInOutSine - shared - libs_sh/math.lua#L524
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutSine(fraction) end
+	--- acos - shared - libs_sh/math.lua#L33
+	---@param cos number Cosine value in range of -1 to 1
+	---@return number undefined Angle in radians or nothing if the argument is out of range
+	function _G.math.acos(cos) end
+	--- distanceToLine - shared - libs_sh/math.lua#L368
+	---@param lineStart Vector Start of the line
+	---@param lineEnd Vector End of the line
+	---@param pointPos Vector Position of the point
+	---@return number undefined Distance from line
+	---@return Vector undefined Nearest point on line
+	---@return number undefined Distance along line from start
+	function _G.math.distanceToLine(lineStart, lineEnd, pointPos) end
+	--- normalizeAngle - shared - libs_sh/math.lua#L219
+	---@param ang number The angle in degrees
+	---@return number undefined The normalized angle
+	function _G.math.normalizeAngle(ang) end
+	--- timeFraction - shared - libs_sh/math.lua#L308
+	---@param start number Start time in seconds
+	---@param _end number End time in seconds
+	---@param current number Current time in seconds
+	---@return number undefined The time fraction
+	function _G.math.timeFraction(start, _end, current) end
+	--- factorial - shared - libs_sh/math.lua#L234
+	---@param value number The number value
+	---@return number undefined Factorial of value
+	function _G.math.factorial(value) end
+	--- log10 - shared - libs_sh/math.lua#L194
+	---@param x number The value to get the base from exponent from
+	---@return number undefined Logarithm of x to the base 10
+	function _G.math.log10(x) end
+	--- sign - shared - libs_sh/math.lua#L25
+	---@param x number The number to get the sign of
+	---@return number undefined -1 if negative, 1 if positive, 0 if 0
+	function _G.math.sign(x) end
+	--- easeInOutCirc - shared - libs_sh/math.lua#L482
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutCirc(fraction) end
+	--- round - shared - libs_sh/math.lua#L272
+	---@param value number The number to be rounded
+	---@param decimals number? Optional decimal places to round to. Defaults to 0
+	function _G.math.round(value, decimals) end
+	--- easeInOutQuint - shared - libs_sh/math.lua#L518
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutQuint(fraction) end
+	--- ldexp - shared - libs_sh/math.lua#L179
+	---@param normalizedFraction number The value to get the normalized fraction and the exponent from
+	---@param exponent number The value to get the normalized fraction and the exponent from
+	---@return number undefined Floating point reperesentation
+	function _G.math.ldexp(normalizedFraction, exponent) end
+	--- deg - shared - libs_sh/math.lua#L122
+	---@param rad number Angle in radians to be converted
+	---@return number undefined Angle in degrees
+	function _G.math.deg(rad) end
+	--- nlerpQuaternion - shared - libs_sh/quaternion.lua#L876
+	---@param quat1 Quaternion Quaternion to start with
+	---@param quat2 Quaternion Quaternion to end with
+	---@param t number Ratio, 0 = quat1; 1 = quat2
+	---@return Quaternion undefined Interpolated quaternion
+	function _G.math.nlerpQuaternion(quat1, quat2, t) end
+	--- intToBin - shared - libs_sh/math.lua#L173
+	---@param int number Number to be converted
+	---@return string undefined Binary number string. The length of this will always be a multiple of 3
+	function _G.math.intToBin(int) end
+	--- rand - shared - libs_sh/math.lua#L246
+	---@param min number The minimum value
+	---@param max number The maximum value
+	---@return number undefined Random float between min and max
+	function _G.math.rand(min, max) end
+	--- atan2 - shared - libs_sh/math.lua#L74
+	---@param y number The Y coordinate
+	---@param x number The X coordinate
+	---@return number undefined Angle of the line from (0, 0) to (x, y) in radians, in the range -pi to pi
+	function _G.math.atan2(y, x) end
+	--- easeOutElastic - shared - libs_sh/math.lua#L578
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutElastic(fraction) end
+	--- easeOutQuint - shared - libs_sh/math.lua#L590
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutQuint(fraction) end
+	--- calcBSplineN - shared - libs_sh/math.lua#L87
+	---@param i number 
+	---@param k number 
+	---@param t number 
+	---@param tinc number 
+	---@return number undefined Number value
+	function _G.math.calcBSplineN(i, k, t, tinc) end
+	--- slerpQuaternion - shared - libs_sh/quaternion.lua#L848
+	---@param quat1 Quaternion Quaternion to start with
+	---@param quat2 Quaternion Quaternion to end with
+	---@param t number Ratio, 0 = quat1; 1 = quat2
+	---@return Quaternion undefined Interpolated quaternion
+	function _G.math.slerpQuaternion(quat1, quat2, t) end
+	--- easeOutSine - shared - libs_sh/math.lua#L596
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutSine(fraction) end
+	--- easeInOutElastic - shared - libs_sh/math.lua#L494
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutElastic(fraction) end
+	--- random - shared - libs_sh/math.lua#L253
+	---@param m number? Optional integer value. If n is not provided - upper limit; if n is provided - lower limit
+	---@param n number? Optional integer value. Upper value
+	---@return number undefined Random value
+	function _G.math.random(m, n) end
+	--- max - shared - libs_sh/math.lua#L200
+	---@param numbers ...number Any amount of number values
+	---@return number undefined The largest number
+	function _G.math.max(numbers) end
+	--- bezierVectorCubic - shared - libs_sh/math.lua#L398
+	---@param ratio number Number representing how far along the curve, 0-1.
+	---@param start Vector The start position of the curve.
+	---@param tangent1 Vector First tangent
+	---@param tangent2 Vector Second tangent
+	---@param _end Vector The end position of the curve.
+	---@return Vector undefined Vector representing the point along the curve.
+	function _G.math.bezierVectorCubic(ratio, start, tangent1, tangent2, _end) end
+	--- lerpAngle - shared - libs_sh/math.lua#L346
+	---@param ratio number Ratio of progress through values
+	---@param from Angle Angle to begin from
+	---@param to Angle Angle to end at
+	---@return Angle undefined The interpolated angle
+	function _G.math.lerpAngle(ratio, from, to) end
+	--- sharedRandom - shared - libs_sh/math.lua#L422
+	---@param uniqueName string The seed for the random value
+	---@param Min number The minimum value of the random range
+	---@param Max number The maximum value of the random range
+	---@param additionalSeed number? The additional seed. Default 0
+	---@return number undefined The random float value
+	function _G.math.sharedRandom(uniqueName, Min, Max, additionalSeed) end
+	--- easeOutBounce - shared - libs_sh/math.lua#L560
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutBounce(fraction) end
+	--- easeOutBack - shared - libs_sh/math.lua#L554
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutBack(fraction) end
+	--- easeInQuad - shared - libs_sh/math.lua#L530
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInQuad(fraction) end
+	--- easeInSine - shared - libs_sh/math.lua#L548
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInSine(fraction) end
+	--- angleDifference - shared - libs_sh/math.lua#L39
+	---@param a number The first angle
+	---@param b number The second angle
+	---@return number undefined The difference between the angles between -180 and 180
+	function _G.math.angleDifference(a, b) end
+	--- cos - shared - libs_sh/math.lua#L110
+	---@param angle number Angle in radians
+	---@return number undefined Cosine of the angle
+	function _G.math.cos(angle) end
+	--- easeInCubic - shared - libs_sh/math.lua#L452
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInCubic(fraction) end
+	--- easeInOutQuart - shared - libs_sh/math.lua#L512
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutQuart(fraction) end
+	--- easeOutQuart - shared - libs_sh/math.lua#L584
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutQuart(fraction) end
+	--- easeOutCirc - shared - libs_sh/math.lua#L566
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutCirc(fraction) end
+	--- fmod - shared - libs_sh/math.lua#L157
+	---@param base number The base value
+	---@param mod number The modulator
+	---@return number undefined The calculated modulus
+	function _G.math.fmod(base, mod) end
+	--- atan - shared - libs_sh/math.lua#L68
+	---@param tan number Tangent value
+	---@return number undefined Angle in radians
+	function _G.math.atan(tan) end
+	--- floor - shared - libs_sh/math.lua#L151
+	---@param n number Number to be rounded
+	---@return number undefined Rounded number
+	function _G.math.floor(n) end
+	--- asin - shared - libs_sh/math.lua#L62
+	---@param sin number Sine value in the range of -1 to 1
+	---@return number undefined Angle in radians or nothing if the argument is out of range
+	function _G.math.asin(sin) end
+	--- easeInOut - shared - libs_sh/math.lua#L137
+	---@param progress number Fraction of the progress to ease
+	---@param easeIn number Fraction of how much easing to begin with
+	---@param easeOut number Fraction of how much easing to end with
+	---@return number undefined Eased value
+	function _G.math.easeInOut(progress, easeIn, easeOut) end
+	--- binToInt - shared - libs_sh/math.lua#L81
+	---@param str string Binary string to convert
+	---@return number undefined Base 10 number
+	function _G.math.binToInt(str) end
+	--- modf - shared - libs_sh/math.lua#L212
+	---@param base number The base value
+	---@return number undefined The integral component
+	---@return number undefined The fractional component
+	function _G.math.modf(base) end
+	--- approachAngle - shared - libs_sh/math.lua#L54
+	---@param currentAngle number The current angle to increase
+	---@param targetAngle number The angle to increase towards
+	---@param rate number The amount to approach the target angle by
+	---@return number undefined Modified angle
+	function _G.math.approachAngle(currentAngle, targetAngle, rate) end
+	--- cosh - shared - libs_sh/math.lua#L116
+	---@param angle number Angle in radians
+	---@return number undefined The hyperbolic cosine of the angle
+	function _G.math.cosh(angle) end
+	--- easeInOutQuad - shared - libs_sh/math.lua#L506
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutQuad(fraction) end
+	--- abs - shared - libs_sh/math.lua#L19
+	---@param x number The number to get the absolute value of
+	---@return number undefined Absolute value
+	function _G.math.abs(x) end
+	--- easeOutCubic - shared - libs_sh/math.lua#L572
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutCubic(fraction) end
+	--- sqrt - shared - libs_sh/math.lua#L290
+	---@param value number The value to get the square root of
+	---@return number undefined Square root of the provided value
+	function _G.math.sqrt(value) end
+	--- clamp - shared - libs_sh/math.lua#L102
+	---@param current number Input number
+	---@param min number Minimum value
+	---@param max number Maximum value
+	---@return number undefined Clamped number
+	function _G.math.clamp(current, min, max) end
+	--- log - shared - libs_sh/math.lua#L186
+	---@param x number The value to get the base from exponent from
+	---@param base number? Optional logarithmic base. Default 'e'
+	---@return number undefined Logarithm of x to the given base
+	function _G.math.log(x, base) end
+	--- rad - shared - libs_sh/math.lua#L240
+	---@param deg number Angle in degrees
+	---@return number undefined Angle in radians
+	function _G.math.rad(deg) end
+	--- bezierVector - shared - libs_sh/math.lua#L380
+	---@param ratio number Number representing how far along the curve, 0-1.
+	---@param start Vector The start position of the curve.
+	---@param middle Vector The middle position of the curve.
+	---@param _end Vector The end position of the curve.
+	---@return Vector undefined Vector representing the point along the curve.
+	function _G.math.bezierVector(ratio, start, middle, _end) end
+	--- easeInOutBounce - shared - libs_sh/math.lua#L476
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInOutBounce(fraction) end
+	--- exp - shared - libs_sh/math.lua#L145
+	---@param x number The exponent of the function
+	---@return number undefined e to the specific power
+	function _G.math.exp(x) end
+	--- remap - shared - libs_sh/math.lua#L262
+	---@param value number The number value
+	---@param inMin number The minimum of the initial range
+	---@param inMax number The maximum of the initial range
+	---@param outMin number The minimum of new range
+	---@param outMax number The maximum of new range
+	---@return number undefined The number in the new range
+	function _G.math.remap(value, inMin, inMax, outMin, outMax) end
+	--- easeInElastic - shared - libs_sh/math.lua#L458
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeInElastic(fraction) end
 --- string
 ---  Lua string library https://wiki.garrysmod.com/page/Category:string
 _G.string = {}
@@ -6437,98 +5789,31 @@ _G.string = {}
 	---@param size number The filesize in bytes
 	---@return string undefined The human-readable filesize, in Bytes/KB/MB/GB (whichever is appropriate)
 	function _G.string.niceSize(size) end
---- debug
----  Lua debug library https://wiki.garrysmod.com/page/Category:debug
-_G.debug = {}
-	--- traceback - shared - libs_sh/builtins.lua#L969
-	---@param A thread? thread to get the stack trace of. If nil, this argument will be used as the message and the current thread becomes the target.
-	---@param message string? A message to be included at the beginning of the stack trace. Default: ""
-	---@param stacklevel number? Which position in the execution stack to start the traceback at. Default: 1
-	---@return string undefined A dump of the execution stack.
-	function _G.debug.traceback(A, message, stacklevel) end
-	--- getlocal - shared - libs_sh/builtins.lua#L1012
-	---@param funcOrStackLevel function|number Function or stack level to get info about. Defaults to stack level 0.
-	---@param index number The index of the local to get
-	---@return string undefined The name of the local
-	function _G.debug.getlocal(funcOrStackLevel, index) end
-	--- getinfo - shared - libs_sh/builtins.lua#L996
-	---@param funcOrStackLevel function|number Function or stack level to get info about. Defaults to stack level 0.
-	---@param fields string? A string that specifies the information to be retrieved. Defaults to all (flnSu).
-	---@return table undefined DebugInfo table
-	function _G.debug.getinfo(funcOrStackLevel, fields) end
---- darkrp
----  Functions relating to DarkRP. These functions WILL NOT EXIST if DarkRP is not in use.
-_G.darkrp = {}
-	--- openF1Menu - client - libs_sh/darkrp2.lua#L755
-	function _G.darkrp.openF1Menu() end
-	--- doorIndexToEnt - server - libs_sh/darkrp2.lua#L642
-	---@param doorIndex number The door index
-	---@return Entity? undefined The door entity, or nil if the index is invalid or the door was removed.
-	function _G.darkrp.doorIndexToEnt(doorIndex) end
-	--- canMakeMoneyRequest - server - libs_sh/darkrp2.lua#L726
-	---@param sender Player? Player you intend to ask for money from later (if nil, will only check your money request rate)
-	---@return boolean undefined If you can make another money request
-	function _G.darkrp.canMakeMoneyRequest(sender) end
-	--- canGiveMoney - server - libs_sh/darkrp2.lua#L748
-	---@return boolean undefined If you can give someone money
-	function _G.darkrp.canGiveMoney() end
-	--- closeF4Menu - client - libs_sh/darkrp2.lua#L779
-	function _G.darkrp.closeF4Menu() end
-	--- getFoodItems - shared - libs_sh/darkrp2.lua#L614
-	---@return table? undefined Table with food items, or nil if there are none.
-	function _G.darkrp.getFoodItems() end
-	--- requestMoney - server - libs_sh/darkrp2.lua#L683
-	---@param sender Player The player who may or may not send the money.
-	---@param amount number The amount of money to ask for.
-	---@param message string? An optional custom message that will be shown in the money request prompt. May not exceed 60 bytes in length.
-	---@param callbackSuccess function? Optional function to call if request succeeds. Args (string: The request message, player: The money sender, number: The amount)
-	---@param callbackFailure function? Optional function to call if request fails. Args (string: why it failed)
-	---@param receiver Player? The player who may or may not receive the money, or the owner of the chip if not specified. Superuser only.
-	function _G.darkrp.requestMoney(sender, amount, message, callbackSuccess, callbackFailure, receiver) end
-	--- moneyRequestsLeft - server - libs_sh/darkrp2.lua#L717
-	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
-	function _G.darkrp.moneyRequestsLeft() end
-	--- openPocketMenu - client - libs_sh/darkrp2.lua#L803
-	function _G.darkrp.openPocketMenu() end
-	--- payPlayer - server - libs_sh/darkrp2.lua#L661
-	---@param sender Player The player who gives the money.
-	---@param receiver Player The player who receives the money.
-	---@param amount number The amount of money.
-	function _G.darkrp.payPlayer(sender, receiver, amount) end
-	--- formatMoney - shared - libs_sh/darkrp2.lua#L594
-	---@param amount number The money to format, e.g. 100000.
-	---@return string undefined The money as a nice string, e.g. "$100,000".
-	function _G.darkrp.formatMoney(amount) end
-	--- isDarkRPVarBlacklisted - shared - libs_sh/darkrp2.lua#L633
-	---@param var string The name of the variable
-	---@return boolean undefined If the variable is blacklisted
-	function _G.darkrp.isDarkRPVarBlacklisted(var) end
-	--- moneyGivingsLeft - server - libs_sh/darkrp2.lua#L739
-	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
-	function _G.darkrp.moneyGivingsLeft() end
-	--- toggleF4Menu - client - libs_sh/darkrp2.lua#L787
-	function _G.darkrp.toggleF4Menu() end
-	--- openF4Menu - client - libs_sh/darkrp2.lua#L771
-	function _G.darkrp.openF4Menu() end
-	--- getLaws - shared - libs_sh/darkrp2.lua#L621
-	---@return table undefined A table of all current laws.
-	function _G.darkrp.getLaws() end
-	--- getAvailableVehicles - shared - libs_sh/darkrp2.lua#L602
-	---@return table undefined Names, models and classnames of all supported vehicles.
-	function _G.darkrp.getAvailableVehicles() end
-	--- getCategories - shared - libs_sh/darkrp2.lua#L608
-	---@return table undefined All categories.
-	function _G.darkrp.getCategories() end
-	--- closeF1Menu - client - libs_sh/darkrp2.lua#L763
-	function _G.darkrp.closeF1Menu() end
-	--- getCustomShipments - shared - libs_sh/darkrp2.lua#L627
-	---@return table? undefined A table with the contents of the GLua global "CustomShipments", or nil if it doesn't exist.
-	function _G.darkrp.getCustomShipments() end
-	--- openKeysMenu - client - libs_sh/darkrp2.lua#L795
-	function _G.darkrp.openKeysMenu() end
-	--- jailPosCount - server - libs_sh/darkrp2.lua#L654
-	---@return number undefined The number of jail positions in the current map.
-	function _G.darkrp.jailPosCount() end
+--- sound
+---  Sound library.
+_G.sound = {}
+	--- duration - shared - libs_sh/sound.lua#L107
+	---@param path string String path to the sound file
+	---@return number undefined Number duration in seconds
+	function _G.sound.duration(path) end
+	--- emitSoundsLeft - shared - libs_sh/entities.lua#L286
+	---@return number undefined The number of sounds left
+	function _G.sound.emitSoundsLeft() end
+	--- soundsLeft - shared - libs_sh/sound.lua#L101
+	---@return number undefined The number of sounds left
+	function _G.sound.soundsLeft() end
+	--- canEmitSound - shared - libs_sh/entities.lua#L280
+	---@return boolean undefined If it is possible to emit a sound
+	function _G.sound.canEmitSound() end
+	--- create - shared - libs_sh/sound.lua#L61
+	---@param ent Entity Entity to attach sound to.
+	---@param path string Filepath to the sound file.
+	---@param nofilter boolean? (Optional) Boolean Make the sound play for everyone regardless of range or location. Only affects Server-side sounds.
+	---@return Sound undefined Sound Object
+	function _G.sound.create(ent, path, nofilter) end
+	--- canCreate - shared - libs_sh/sound.lua#L95
+	---@return boolean undefined If it is possible to make a sound
+	function _G.sound.canCreate() end
 --- net
 ---  Net message library. Used for sending data from the server to the client and back
 _G.net = {}
@@ -6665,6 +5950,721 @@ _G.net = {}
 	--- writeMatrix - shared - libs_sh/net.lua#L427
 	---@param t VMatrix The matrix to be written
 	function _G.net.writeMatrix(t) end
+--- render
+--- 
+---  Render library. Screens are 512x512 units. Most functions require
+--- 
+---  that you be in the rendering hook to call, otherwise an error is
+--- 
+---  thrown. +x is right, +y is down
+_G.render = {}
+--- Screen - client
+--- 
+_G.render.Screen = {
+	---@type any
+	--- Pretty name of model
+	["Name"] = nil,
+	---@type any
+	--- Offset of screen from prop
+	["offset"] = nil,
+	---@type any
+	--- Resolution/scale
+	["RS"] = nil,
+	---@type any
+	--- Inverted Aspect ratio (height divided by width)
+	["RatioX"] = nil,
+	---@type any
+	--- Corner of screen in local coordinates (relative to offset?)
+	["x1"] = nil,
+	---@type any
+	--- Corner of screen in local coordinates (relative to offset?)
+	["x2"] = nil,
+	---@type any
+	--- Corner of screen in local coordinates (relative to offset?)
+	["y1"] = nil,
+	---@type any
+	--- Corner of screen in local coordinates (relative to offset?)
+	["y2"] = nil,
+	---@type any
+	--- Screen plane offset in local coordinates (relative to offset?)
+	["z"] = nil,
+	---@type any
+	--- Screen rotation
+	["rot"] = nil,
+}
+--- Vertex - client
+---  Vertex format
+_G.render.Vertex = {
+	---@type any
+	--- X coordinate
+	["x"] = nil,
+	---@type any
+	--- Y coordinate
+	["y"] = nil,
+	---@type any
+	--- U coordinate (optional, default is 0)
+	["u"] = nil,
+	---@type any
+	--- V coordinate (optional, default is 0)
+	["v"] = nil,
+}
+	--- setFogEnd - client - libs_cl/render.lua#L2630
+	---@param distance number End distance
+	function _G.render.setFogEnd(distance) end
+	--- setRGBA - client - libs_cl/render.lua#L898
+	---@param r number Number, red value
+	---@param g number Number, green value
+	---@param b number Number, blue value
+	---@param a number Number, alpha value
+	function _G.render.setRGBA(r, g, b, a) end
+	--- getTintRGBA - client - libs_cl/render.lua#L922
+	---@return number undefined The red channel value. Color The current color & blend modulation as a color
+	---@return number undefined The green channel value.
+	---@return number undefined The blue channel value.
+	---@return number undefined The alpha channel value.
+	function _G.render.getTintRGBA() end
+	--- clearBuffersObeyStencil - client - libs_cl/render.lua#L620
+	---@param r number Value of the red channel to clear the current rt with.
+	---@param g number Value of the green channel to clear the current rt with.
+	---@param b number Value of the blue channel to clear the current rt with.
+	---@param a number Value of the alpha channel to clear the current rt with.
+	---@param Clear boolean the depth buffer.
+	function _G.render.clearBuffersObeyStencil(r, g, b, a, Clear) end
+	--- popViewMatrix - client - libs_cl/render.lua#L826
+	function _G.render.popViewMatrix() end
+	--- overrideBlend - client - libs_cl/render.lua#L1928
+	---@param on boolean Whether to control the blend mode of upcoming rendering
+	---@param srcBlend number http://wiki.facepunch.com/gmod/Enums/BLEND
+	---@param destBlend number 
+	---@param blendFunc number http://wiki.facepunch.com/gmod/Enums/BLENDFUNC
+	---@param srcBlendAlpha number? http://wiki.facepunch.com/gmod/Enums/BLEND
+	---@param destBlendAlpha number? 
+	---@param blendFuncAlpha number? http://wiki.facepunch.com/gmod/Enums/BLENDFUNC
+	function _G.render.overrideBlend(on, srcBlend, destBlend, blendFunc, srcBlendAlpha, destBlendAlpha, blendFuncAlpha) end
+	--- setFogHeight - client - libs_cl/render.lua#L2639
+	---@param height number The fog height
+	function _G.render.setFogHeight(height) end
+	--- drawPixelsRGB - client - libs_cl/render.lua#L1647
+	---@param w number Width of image to be drawn.
+	---@param h number Height of image to be drawn.
+	---@param dataR table Red channel data.
+	---@param dataG table Green channel data.
+	---@param dataB table Blue channel data.
+	function _G.render.drawPixelsRGB(w, h, dataR, dataG, dataB) end
+	--- draw3DSprite - client - libs_cl/render.lua#L1969
+	---@param pos Vector Position of the sprite.
+	---@param width number Width of the sprite.
+	---@param height number Height of the sprite.
+	---@param Color Color? tint to give the sprite. Default: white
+	function _G.render.draw3DSprite(pos, width, height, Color) end
+	--- clearRGBA - client - libs_cl/render.lua#L1307
+	---@param depth boolean? Boolean if should clear depth. Default false
+	---@return number undefined The red channel value.
+	---@return number undefined The green channel value.
+	---@return number undefined The blue channel value.
+	---@return number undefined The alpha channel value.
+	function _G.render.clearRGBA(depth) end
+	--- drawTexturedRectRotatedFast - client - libs_cl/render.lua#L1590
+	---@param x number X coordinate of center of rect
+	---@param y number Y coordinate of center of rect
+	---@param w number Width
+	---@param h number Height
+	---@param rot number Rotation in degrees
+	function _G.render.drawTexturedRectRotatedFast(x, y, w, h, rot) end
+	--- drawPixelsRGBA - client - libs_cl/render.lua#L1663
+	---@param w number Width of image to be drawn.
+	---@param h number Height of image to be drawn.
+	---@param dataR table Red channel data.
+	---@param dataG table Green channel data.
+	---@param dataB table Blue channel data.
+	---@param dataA table Alpha channel data.
+	function _G.render.drawPixelsRGBA(w, h, dataR, dataG, dataB, dataA) end
+	--- popCustomClipPlane - client - libs_cl/render.lua#L2550
+	function _G.render.popCustomClipPlane() end
+	--- drawRoundedBox - client - libs_cl/render.lua#L1321
+	---@param r number The corner radius
+	---@param x number Top left corner x coordinate
+	---@param y number Top left corner y coordinate
+	---@param w number Width
+	---@param h number Height
+	function _G.render.drawRoundedBox(r, x, y, w, h) end
+	--- enableClipping - client - libs_cl/render.lua#L2519
+	---@param state boolean New clipping state.
+	---@return boolean undefined Previous clipping state.
+	function _G.render.enableClipping(state) end
+	--- draw3DBox - client - libs_cl/render.lua#L2020
+	---@param origin Vector Origin of the box.
+	---@param angle Angle Orientation of the box
+	---@param mins Vector Start position of the box, relative to origin.
+	---@param maxs Vector End position of the box, relative to origin.
+	function _G.render.draw3DBox(origin, angle, mins, maxs) end
+	--- createMaterial - client - libs_cl/render.lua#L941
+	---@param tx string Texture file path, a http url, or image data: https://en.wikipedia.org/wiki/Data_URI_scheme
+	---@param cb function? An optional callback called when loading is done. Passes nil if it fails or Passes the material, url, width, height, and layout function which can be called with x, y, w, h to reposition the image in the texture.
+	---@param done function? An optional callback called when the image is done loading. Passes the material, url
+	---@return Material undefined The material. Use with render.setMaterial to draw with it.
+	function _G.render.createMaterial(tx, cb, done) end
+	--- add3DBeam - client - libs_cl/render.lua#L2073
+	---@param startPos Vector Beam start position.
+	---@param width number The width of the beam.
+	---@param textureEnd number The end coordinate of the texture used.
+	---@param color Color The color to be used.
+	function _G.render.add3DBeam(startPos, width, textureEnd, color) end
+	--- drawRectOutline - client - libs_cl/render.lua#L1411
+	---@param x number Top left corner x integer coordinate
+	---@param y number Top left corner y integer coordinate
+	---@param w number Width
+	---@param h number Height
+	---@param thickness number? Optional inset border width
+	function _G.render.drawRectOutline(x, y, w, h, thickness) end
+	--- start3DBeam - client - libs_cl/render.lua#L2066
+	---@param segmentCount number The number of Beam Segments that this multi-segment Beam will contain
+	function _G.render.start3DBeam(segmentCount) end
+	--- drawTexturedTriangleUV - client - libs_cl/render.lua#L1633
+	---@param vert1 table First vertex. {x = x1, y = y1, u = u1, v = v1}
+	---@param vert2 table The second vertex.
+	---@param vert3 table The third vertex.
+	function _G.render.drawTexturedTriangleUV(vert1, vert2, vert3) end
+	--- getResolution - client - libs_cl/render.lua#L2333
+	---@return number undefined the X size of the current render context
+	---@return number undefined the Y size of the current render context
+	function _G.render.getResolution() end
+	--- traceSurfaceColor - client - libs_cl/render.lua#L2354
+	---@param startpos Vector The starting vector
+	---@param endpos Vector The ending vector
+	---@return Color undefined The color
+	function _G.render.traceSurfaceColor(startpos, endpos) end
+	--- setStencilPassOperation - client - libs_cl/render.lua#L660
+	---@param operation number 
+	function _G.render.setStencilPassOperation(operation) end
+	--- drawTexturedRectRotated - client - libs_cl/render.lua#L1603
+	---@param x number X coordinate of center of rect
+	---@param y number Y coordinate of center of rect
+	---@param w number Width
+	---@param h number Height
+	---@param rot number Rotation in degrees
+	function _G.render.drawTexturedRectRotated(x, y, w, h, rot) end
+	--- getColorModulation - client - libs_cl/render.lua#L877
+	---@return number undefined Red channel
+	---@return number undefined Green channel
+	---@return number undefined Blue channel
+	function _G.render.getColorModulation() end
+	--- setStencilReferenceValue - client - libs_cl/render.lua#L676
+	---@param referenceValue number Reference value.
+	function _G.render.setStencilReferenceValue(referenceValue) end
+	--- draw3DLine - client - libs_cl/render.lua#L2007
+	---@param startPos Vector Starting position
+	---@param endPos Vector Ending position
+	---@param writeZ boolean? Optional should the line be drawn with depth considered (default: true)
+	function _G.render.draw3DLine(startPos, endPos, writeZ) end
+	--- getMatrix - client - libs_cl/render.lua#L765
+	---@return VMatrix undefined The currently active matrix.
+	function _G.render.getMatrix() end
+	--- setModelLighting - client - libs_cl/render.lua#L601
+	---@param lightDirection number The light source to edit, builtins.BOX enumeration.
+	---@param r number The red component of the light color.
+	---@param g number The green component of the light color.
+	---@param b number The blue component of the light color.
+	function _G.render.setModelLighting(lightDirection, r, g, b) end
+	--- draw3DWireframeBox - client - libs_cl/render.lua#L2035
+	---@param origin Vector Origin of the box.
+	---@param angle Angle Orientation of the box
+	---@param mins Vector Start position of the box, relative to origin.
+	---@param maxs Vector End position of the box, relative to origin.
+	---@param writeZ boolean? Optional should the box be drawn with depth considered (default: true)
+	function _G.render.draw3DWireframeBox(origin, angle, mins, maxs, writeZ) end
+	--- draw3DWireframeSphere - client - libs_cl/render.lua#L1992
+	---@param pos Vector Position of the sphere
+	---@param radius number Radius of the sphere
+	---@param longitudeSteps number The amount of longitude steps. The larger this number is, the smoother the sphere is
+	---@param latitudeSteps number The amount of latitude steps. The larger this number is, the smoother the sphere is
+	---@param writeZ boolean? Optional should the sphere be drawn with depth considered (default: true)
+	function _G.render.draw3DWireframeSphere(pos, radius, longitudeSteps, latitudeSteps, writeZ) end
+	--- drawRectFast - client - libs_cl/render.lua#L1361
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	function _G.render.drawRectFast(x, y, w, h) end
+	--- setScreenDimensions - client - libs_cl/render.lua#L2669
+	---@param screen Entity The custom screen to be resized
+	---@param x number The x offset of the screen
+	---@param y number The y offset of the screen
+	---@param w number The width of the screen
+	---@param h number The height of the screen
+	function _G.render.setScreenDimensions(screen, x, y, w, h) end
+	--- setColor - client - libs_cl/render.lua#L871
+	---@param clr Color Color type
+	function _G.render.setColor(clr) end
+	--- setChipOverlay - client - libs_cl/render.lua#L2657
+	---@param name string? The name of the RT to use or nil to set it back to normal
+	function _G.render.setChipOverlay(name) end
+	--- setBackgroundColor - client - libs_cl/render.lua#L839
+	---@param col Color Color of background
+	---@param screen Entity? (Optional) entity of screen
+	function _G.render.setBackgroundColor(col, screen) end
+	--- pushCustomClipPlane - client - libs_cl/render.lua#L2534
+	---@param normal Vector The normal of the clipping plane.
+	---@param distance number The normal of the clipping plane.
+	function _G.render.pushCustomClipPlane(normal, distance) end
+	--- setMaterialEffectSub - client - libs_cl/render.lua#L1012
+	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
+	function _G.render.setMaterialEffectSub(mat) end
+	--- readPixel - client - libs_cl/render.lua#L2312
+	---@param x number Pixel x-coordinate.
+	---@param y number Pixel y-coordinate.
+	---@return Color undefined Color object with ( r, g, b, a ) from the specified pixel.
+	function _G.render.readPixel(x, y) end
+	--- pushMatrix - client - libs_cl/render.lua#L716
+	---@param m VMatrix The matrix
+	---@param world boolean? Should the transformation be relative to the screen or world?
+	function _G.render.pushMatrix(m, world) end
+	--- depthRange - client - libs_cl/render.lua#L2706
+	---@param min number The minimum depth of the upcoming render. 0.0 = render normally; 1.0 = render nothing.
+	---@param max number The maximum depth of the upcoming render. 0.0 = render everything (through walls); 1.0 = render normally.
+	function _G.render.depthRange(min, max) end
+	--- destroyRenderTarget - client - libs_cl/render.lua#L1162
+	---@param name string Rendertarget name
+	function _G.render.destroyRenderTarget(name) end
+	--- pushViewMatrix - client - libs_cl/render.lua#L780
+	---@param tbl table The view matrix data. See http://wiki.facepunch.com/gmod/Structures/RenderCamData
+	function _G.render.pushViewMatrix(tbl) end
+	--- getTextSize - client - libs_cl/render.lua#L1802
+	---@param text string Text to get the size of
+	---@return number undefined width of the text
+	---@return number undefined height of the text
+	function _G.render.getTextSize(text) end
+	--- disableScissorRect - client - libs_cl/render.lua#L751
+	function _G.render.disableScissorRect() end
+	--- setMaterialEffectAdd - client - libs_cl/render.lua#L998
+	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
+	function _G.render.setMaterialEffectAdd(mat) end
+	--- draw3DSphere - client - libs_cl/render.lua#L1979
+	---@param pos Vector Position of the sphere
+	---@param radius number Radius of the sphere
+	---@param longitudeSteps number The amount of longitude steps. The larger this number is, the smoother the sphere is
+	---@param latitudeSteps number The amount of latitude steps. The larger this number is, the smoother the sphere is
+	function _G.render.draw3DSphere(pos, radius, longitudeSteps, latitudeSteps) end
+	--- setMaterialEffectBloom - client - libs_cl/render.lua#L1026
+	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
+	---@param levelr number Multiplier for all red pixels. 1 = unchanged
+	---@param levelg number Multiplier for all green pixels. 1 = unchanged
+	---@param levelb number Multiplier for all blue pixels. 1 = unchanged
+	---@param colormul number Multiplier for all three colors. 1 = unchanged
+	function _G.render.setMaterialEffectBloom(mat, levelr, levelg, levelb, colormul) end
+	--- setFogMode - client - libs_cl/render.lua#L2594
+	---@param mode number Fog mode
+	function _G.render.setFogMode(mode) end
+	--- clearStencil - client - libs_cl/render.lua#L580
+	function _G.render.clearStencil() end
+	--- draw3DQuadUV - client - libs_cl/render.lua#L2142
+	---@param vert1 table First vertex. {x, y, z, u, v}
+	---@param vert2 table The second vertex.
+	---@param vert3 table The third vertex.
+	---@param vert4 table The fourth vertex.
+	function _G.render.draw3DQuadUV(vert1, vert2, vert3, vert4) end
+	--- drawLine - client - libs_cl/render.lua#L1727
+	---@param x1 number X start float coordinate
+	---@param y1 number Y start float coordinate
+	---@param x2 number X end float coordinate
+	---@param y2 number Y end float coordinate
+	function _G.render.drawLine(x1, y1, x2, y2) end
+	--- setRenderTargetTexture - client - libs_cl/render.lua#L1223
+	---@param name string? Name of the render target to use
+	function _G.render.setRenderTargetTexture(name) end
+	--- getScreenEntity - client - libs_cl/render.lua#L2275
+	---@return Entity undefined Entity of the screen or hud being rendered
+	function _G.render.getScreenEntity() end
+	--- setStencilCompareFunction - client - libs_cl/render.lua#L644
+	---@param compareFunction number 
+	function _G.render.setStencilCompareFunction(compareFunction) end
+	--- enableScissorRect - client - libs_cl/render.lua#L741
+	---@param startX number X start coordinate of the scissor rect.
+	---@param startY number Y start coordinate of the scissor rect.
+	---@param endX number X end coordinate of the scissor rect.
+	---@param endY number Y end coordinate of the scissor rect.
+	function _G.render.enableScissorRect(startX, startY, endX, endY) end
+	--- getAmbientLightColor - client - libs_cl/render.lua#L2588
+	---@return Vector undefined Vector representing color of the light
+	function _G.render.getAmbientLightColor() end
+	--- setFont - client - libs_cl/render.lua#L1811
+	---@param font string The font to use
+	function _G.render.setFont(font) end
+	--- drawRectRotatedFast - client - libs_cl/render.lua#L1384
+	---@param x number X coordinate of center of rect
+	---@param y number Y coordinate of center of rect
+	---@param w number Width
+	---@param h number Height
+	---@param rot number Rotation in degrees
+	function _G.render.drawRectRotatedFast(x, y, w, h, rot) end
+	--- getEyePos - client - libs_cl/render.lua#L550
+	---@return Vector undefined The origin of the current render context as calculated by calcview.
+	function _G.render.getEyePos() end
+	--- renderViewsLeft - client - libs_cl/render.lua#L2513
+	---@return number undefined How many render.renderView calls are left
+	function _G.render.renderViewsLeft() end
+	--- getEyeVector - client - libs_cl/render.lua#L564
+	---@return Vector undefined The normal vector of the current render context as calculated by calcview, similar to render.getAngles.
+	function _G.render.getEyeVector() end
+	--- setLightingMode - client - libs_cl/render.lua#L863
+	---@param mode number The lighting mode. 0 - Default, 1 - Fullbright, 2 - Increased Fullbright
+	function _G.render.setLightingMode(mode) end
+	--- readPixelRGBA - client - libs_cl/render.lua#L2321
+	---@param x number Pixel x-coordinate.
+	---@param y number Pixel y-coordinate.
+	---@return number undefined The red channel value.
+	---@return number undefined The green channel value.
+	---@return number undefined The blue channel value.
+	---@return number undefined The alpha channel value.
+	function _G.render.readPixelRGBA(x, y) end
+	--- drawCircle - client - libs_cl/render.lua#L1422
+	---@param x number Center x coordinate
+	---@param y number Center y coordinate
+	---@param radius number Radius
+	function _G.render.drawCircle(x, y, radius) end
+	--- getBlend - client - libs_cl/render.lua#L1947
+	---@return number undefined Blending in the range 0 to 1
+	function _G.render.getBlend() end
+	--- getDefaultFont - client - libs_cl/render.lua#L1842
+	---@return string undefined Default font
+	function _G.render.getDefaultFont() end
+	--- setFilterMin - client - libs_cl/render.lua#L1274
+	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
+	function _G.render.setFilterMin(val) end
+	--- setBlend - client - libs_cl/render.lua#L1954
+	---@param alpha number Blending in the range 0 to 1
+	function _G.render.setBlend(alpha) end
+	--- renderView - client - libs_cl/render.lua#L2371
+	---@param tbl table view The view data to be used in the rendering. See http://wiki.facepunch.com/gmod/Structures/ViewData. There's an additional key drawviewer used to tell the engine whether the local player model should be rendered.
+	function _G.render.renderView(tbl) end
+	--- setFogColor - client - libs_cl/render.lua#L2603
+	---@param col Color Color (alpha won't have any effect)
+	function _G.render.setFogColor(col) end
+	--- drawSimpleText - client - libs_cl/render.lua#L1861
+	---@param x number X coordinate
+	---@param y number Y coordinate
+	---@param text string Text to draw
+	---@param xalign number? Horizontal text alignment. Default TEXT_ALIGN.LEFT
+	---@param yalign number? Vertical text alignment. Default TEXT_ALIGN.TOP
+	---@return number undefined Width of the drawn text. Same as calling render.getTextSize
+	---@return number undefined Height of the drawn text. Same as calling render.getTextSize
+	function _G.render.drawSimpleText(x, y, text, xalign, yalign) end
+	--- draw3DTriangleUV - client - libs_cl/render.lua#L2206
+	---@param vert1 table First vertex. {x = x1, y = y1, z = z1, u = u1, v = v1}
+	---@param vert2 table The second vertex.
+	---@param vert3 table The third vertex.
+	function _G.render.draw3DTriangleUV(vert1, vert2, vert3) end
+	--- drawRoundedBoxEx - client - libs_cl/render.lua#L1332
+	---@param r number The corner radius
+	---@param x number Top left corner x coordinate
+	---@param y number Top left corner y coordinate
+	---@param w number Width
+	---@param h number Height
+	---@param tl boolean? Top left corner. Default false
+	---@param tr boolean? Top right corner. Default false
+	---@param bl boolean? Bottom left corner. Default false
+	---@param br boolean? Bottom right corner. Default false
+	function _G.render.drawRoundedBoxEx(r, x, y, w, h, tl, tr, bl, br) end
+	--- drawTriangle - client - libs_cl/render.lua#L1483
+	---@param x1 number X of the first vertex
+	---@param y1 number Y of the first vertex
+	---@param x2 number X of the second vertex
+	---@param y2 number Y of the second vertex
+	---@param x3 number X of the third vertex
+	---@param y3 number Y of the third vertex
+	function _G.render.drawTriangle(x1, y1, x2, y2, x3, y3) end
+	--- parseMarkup - client - libs_cl/render.lua#L1877
+	---@param str string The markup string to parse
+	---@param maxsize number? The max width of the markup. Default nil
+	---@return Markup undefined The markup object. See https://wiki.facepunch.com/gmod/markup.Parse
+	function _G.render.parseMarkup(str, maxsize) end
+	--- computeLighting - client - libs_cl/render.lua#L2560
+	---@param pos Vector Vector position to sample from
+	---@param normal Vector Normal vector of the surface
+	---@return Vector undefined Vector representing color of the light
+	function _G.render.computeLighting(pos, normal) end
+	--- setWriteDepthToDestAlpha - client - libs_cl/render.lua#L593
+	---@param enable boolean True to write depth to destination alpha.
+	function _G.render.setWriteDepthToDestAlpha(enable) end
+	--- drawPixelsSubrectRGB - client - libs_cl/render.lua#L1679
+	---@param dstX number Destination x coordinate
+	---@param dstY number Destination y coordinate
+	---@param srcX number Source x coordinate
+	---@param srcY number Source y coordinate
+	---@param srcW number Source original width
+	---@param srcH number Source original height
+	---@param subrectW number Width of subrect
+	---@param subrectH number Height of subrect
+	---@param dataR table Red channel data.
+	---@param dataG table Green channel data.
+	---@param dataB table Blue channel data.
+	function _G.render.drawPixelsSubrectRGB(dstX, dstY, srcX, srcY, srcW, srcH, subrectW, subrectH, dataR, dataG, dataB) end
+	--- drawRect - client - libs_cl/render.lua#L1372
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	function _G.render.drawRect(x, y, w, h) end
+	--- resetModelLighting - client - libs_cl/render.lua#L611
+	---@param r number The red part of the color, 0-1
+	---@param g number The green part of the color, 0-1
+	---@param b number The blue part of the color, 0-1
+	function _G.render.resetModelLighting(r, g, b) end
+	--- clear - client - libs_cl/render.lua#L1293
+	---@param clr Color? Color type to clear with
+	---@param depth boolean? Boolean if should clear depth. Default false
+	function _G.render.clear(clr, depth) end
+	--- getLightColor - client - libs_cl/render.lua#L2580
+	---@param pos Vector Vector position to sample from
+	---@return Vector undefined Vector representing color of the light
+	function _G.render.getLightColor(pos) end
+	--- pixelVisible - client - libs_cl/render.lua#L2714
+	---@param position Vector 
+	---@param radius number 
+	---@return number undefined Percentage visible, from 0-1
+	function _G.render.pixelVisible(position, radius) end
+	--- resetStencil - client - libs_cl/render.lua#L700
+	function _G.render.resetStencil() end
+	--- drawTexturedRect - client - libs_cl/render.lua#L1512
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	function _G.render.drawTexturedRect(x, y, w, h) end
+	--- screenShake - client - libs_cl/render.lua#L2697
+	---@param amplitude number The strength of the effect
+	---@param frequency number The frequency of the effect in hertz
+	---@param duration number The duration of the effect in seconds, max 10.
+	function _G.render.screenShake(amplitude, frequency, duration) end
+	--- getGameResolution - client - libs_cl/render.lua#L2344
+	---@return number undefined the X size of the game window
+	---@return number undefined the Y size of the game window
+	function _G.render.getGameResolution() end
+	--- setFogStart - client - libs_cl/render.lua#L2621
+	---@param distance number Start distance
+	function _G.render.setFogStart(distance) end
+	--- setFogDensity - client - libs_cl/render.lua#L2612
+	---@param density number Density between 0 and 1
+	function _G.render.setFogDensity(density) end
+	--- getAngles - client - libs_cl/render.lua#L558
+	---@return Angle undefined The angles of the current render context as calculated by calcview.
+	function _G.render.getAngles() end
+	--- renderTargetExists - client - libs_cl/render.lua#L1140
+	---@param name string The name of the render target
+	function _G.render.renderTargetExists(name) end
+	--- setTextureFromScreen - client - libs_cl/render.lua#L1246
+	---@param ent Entity Screen entity
+	function _G.render.setTextureFromScreen(ent) end
+	--- getScreenInfo - client - libs_cl/render.lua#L2265
+	---@param e Entity The screen to get info from.
+	---@return table undefined A table describing the screen.
+	function _G.render.getScreenInfo(e) end
+	--- drawText - client - libs_cl/render.lua#L1848
+	---@param x number X coordinate
+	---@param y number Y coordinate
+	---@param text string Text to draw
+	---@param alignment number Horizontal text alignment. Default TEXT_ALIGN.LEFT
+	function _G.render.drawText(x, y, text, alignment) end
+	--- setStencilZFailOperation - client - libs_cl/render.lua#L668
+	---@param operation number 
+	function _G.render.setStencilZFailOperation(operation) end
+	--- capturePixels - client - libs_cl/render.lua#L2281
+	function _G.render.capturePixels() end
+	--- drawTexturedRectFast - client - libs_cl/render.lua#L1501
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	function _G.render.drawTexturedRectFast(x, y, w, h) end
+	--- setMaterialEffectColorModify - client - libs_cl/render.lua#L1085
+	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
+	---@param cmStructure table A table where each key must be of "addr", "addg", "addb", "brightness", "color" or "colour", "contrast", "mulr", "mulg", and "mulb". All keys are optional.
+	function _G.render.setMaterialEffectColorModify(mat, cmStructure) end
+	--- draw3DBeam - client - libs_cl/render.lua#L2052
+	---@param startPos Vector Beam start position.
+	---@param endPos Vector Beam end position.
+	---@param width number The width of the beam.
+	---@param textureStart number The start coordinate of the texture used.
+	---@param textureEnd number The end coordinate of the texture used.
+	function _G.render.draw3DBeam(startPos, endPos, width, textureStart, textureEnd) end
+	--- setStencilEnable - client - libs_cl/render.lua#L572
+	---@param enable boolean True to enable, false to disable
+	function _G.render.setStencilEnable(enable) end
+	--- drawBlurEffect - client - libs_cl/render.lua#L1118
+	---@param blurx number The amount of horizontal blur to apply.
+	---@param blury number The amount of vertical blur to apply.
+	---@param passes number The number of times the blur effect is applied.
+	function _G.render.drawBlurEffect(blurx, blury, passes) end
+	--- setTint - client - libs_cl/render.lua#L934
+	---@param c Color A color
+	function _G.render.setTint(c) end
+	--- drawPoly - client - libs_cl/render.lua#L1916
+	---@param poly table Table of polygon vertices. Texture coordinates are optional. {{x=x1, y=y1, u=u1, v=v1}, ... }
+	function _G.render.drawPoly(poly) end
+	--- captureImage - client - libs_cl/render.lua#L2288
+	---@param captureData table Parameters of the capture. See https://wiki.facepunch.com/gmod/Structures/RenderCaptureData
+	---@return string undefined Image binary data
+	function _G.render.captureImage(captureData) end
+	--- cursorPos - client - libs_cl/render.lua#L2221
+	---@param ply Player? player to get cursor position from. Default player()
+	---@param screen Entity? An explicit screen to get the cursor pos of (default: The current rendering screen using 'render' hook)
+	---@return number undefined X position
+	---@return number undefined Y position
+	function _G.render.cursorPos(ply, screen) end
+	--- draw3DQuadEasy - client - libs_cl/render.lua#L2109
+	---@param pos Vector Origin of the quad.
+	---@param normal Vector The face direction of the quad.
+	---@param width number The width of the quad.
+	---@param height number The height of the quad.
+	---@param rot number? The rotation of the quad counter-clockwise in degrees around the normal axis. In other words, the quad will always face the same way but this will rotate its corners.
+	function _G.render.draw3DQuadEasy(pos, normal, width, height, rot) end
+	--- getTint - client - libs_cl/render.lua#L913
+	---@return Color undefined The current color & blend modulation as a color
+	function _G.render.getTint() end
+	--- suppressEngineLighting - client - libs_cl/render.lua#L586
+	---@param suppress boolean True to suppress false to enable.
+	function _G.render.suppressEngineLighting(suppress) end
+	--- setStencilFailOperation - client - libs_cl/render.lua#L652
+	---@param operation number 
+	function _G.render.setStencilFailOperation(operation) end
+	--- setStencilTestMask - client - libs_cl/render.lua#L684
+	---@param mask number The mask bitflag.
+	function _G.render.setStencilTestMask(mask) end
+	--- setColorModulation - client - libs_cl/render.lua#L886
+	---@param r number Red channel
+	---@param g number Green channel
+	---@param b number Blue channel
+	function _G.render.setColorModulation(r, g, b) end
+	--- clearStencilBufferRectangle - client - libs_cl/render.lua#L632
+	---@param originX number X origin of the rectangle.
+	---@param originY number Y origin of the rectangle.
+	---@param endX number The end X coordinate of the rectangle.
+	---@param endY number The end Y coordinate of the rectangle.
+	---@param stencilValue number Value to set cleared stencil buffer to.
+	function _G.render.clearStencilBufferRectangle(originX, originY, endX, endY, stencilValue) end
+	--- drawRectRotated - client - libs_cl/render.lua#L1397
+	---@param x number X coordinate of center of rect
+	---@param y number Y coordinate of center of rect
+	---@param w number Width
+	---@param h number Height
+	---@param rot number Rotation in degrees
+	function _G.render.drawRectRotated(x, y, w, h, rot) end
+	--- setFilterMag - client - libs_cl/render.lua#L1263
+	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
+	function _G.render.setFilterMag(val) end
+	--- setMaterialEffectDownsample - client - libs_cl/render.lua#L1052
+	---@param mat Material The material object to use the texture of, or the name of a rendertarget to use instead.
+	---@param darken number The amount to darken the texture by. -1 to 1 inclusive.
+	---@param multiply number The amount to multiply the pixel colors by. (0-1024)
+	function _G.render.setMaterialEffectDownsample(mat, darken, multiply) end
+	--- drawTexturedRectUV - client - libs_cl/render.lua#L1561
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	---@param startU number Texture mapping at rectangle origin
+	---@param startV number Texture mapping at rectangle origin
+	---@param endU number Texture mapping at rectangle end
+	---@param endV number Texture mapping at rectangle end
+	function _G.render.drawTexturedRectUV(x, y, w, h, startU, startV, endU, endV) end
+	--- drawFilledCircle - client - libs_cl/render.lua#L1432
+	---@param x number Center x coordinate
+	---@param y number Center y coordinate
+	---@param radius number Radius
+	function _G.render.drawFilledCircle(x, y, radius) end
+	--- selectRenderTarget - client - libs_cl/render.lua#L1175
+	---@param name string? Name of the render target to use
+	function _G.render.selectRenderTarget(name) end
+	--- drawPixelsSubrectRGBA - client - libs_cl/render.lua#L1702
+	---@param dstX number Destination x coordinate
+	---@param dstY number Destination y coordinate
+	---@param srcX number Source x coordinate
+	---@param srcY number Source y coordinate
+	---@param srcW number Source original width
+	---@param srcH number Source original height
+	---@param subrectW number Width of subrect
+	---@param subrectH number Height of subrect
+	---@param dataR table Red channel data.
+	---@param dataG table Green channel data.
+	---@param dataB table Blue channel data.
+	---@param dataA table Alpha channel data.
+	function _G.render.drawPixelsSubrectRGBA(dstX, dstY, srcX, srcY, srcW, srcH, subrectW, subrectH, dataR, dataG, dataB, dataA) end
+	--- setCullMode - client - libs_cl/render.lua#L1285
+	---@param mode number Cull mode. 0 for counter clock wise, 1 for clock wise
+	function _G.render.setCullMode(mode) end
+	--- createRenderTarget - client - libs_cl/render.lua#L1147
+	---@param name string The name of the render target
+	function _G.render.createRenderTarget(name) end
+	--- clearDepth - client - libs_cl/render.lua#L1961
+	function _G.render.clearDepth() end
+	--- createFont - client - libs_cl/render.lua#L1737
+	---@param font string Base font to use
+	---@param size number? Font size. Default 16
+	---@param weight number? Font weight. Default 400
+	---@param antialias boolean? Antialias font? Default false
+	---@param additive boolean? If true, adds brightness to pixels behind it rather than drawing over them. Default false
+	---@param shadow boolean? Enable drop shadow? Default false
+	---@param outline boolean? Enable outline? Default false
+	---@param blursize boolean? The size of the blur Default 0
+	---@param extended boolean? Allows the font to display glyphs outside of Latin-1 range. Unicode code points above 0xFFFF are not supported. Required to use FontAwesome
+	---@param scanlines number? Scanline interval. Must be greater than 1 to work. Shares uniqueness with blursize so you cannot create more than one scanline type of font with the same blursize. Default 0
+	---@return string undefined The font name that can be used with the rest of the font functions.
+	function _G.render.createFont(font, size, weight, antialias, additive, shadow, outline, blursize, extended, scanlines) end
+	--- popMatrix - client - libs_cl/render.lua#L757
+	function _G.render.popMatrix() end
+	--- computeDynamicLighting - client - libs_cl/render.lua#L2570
+	---@param pos Vector Vector position to sample from
+	---@param normal Vector Normal vector of the surface
+	---@return Vector undefined Vector representing color of the light
+	function _G.render.computeDynamicLighting(pos, normal) end
+	--- end3DBeam - client - libs_cl/render.lua#L2086
+	function _G.render.end3DBeam() end
+	--- draw3DQuad - client - libs_cl/render.lua#L2092
+	---@param vert1 Vector First vertex.
+	---@param vert2 Vector The second vertex.
+	---@param vert3 Vector The third vertex.
+	---@param vert4 Vector The fourth vertex.
+	function _G.render.draw3DQuad(vert1, vert2, vert3, vert4) end
+	--- enableDepth - client - libs_cl/render.lua#L1921
+	---@param enable boolean True to enable
+	function _G.render.enableDepth(enable) end
+	--- draw3DTriangle - client - libs_cl/render.lua#L2173
+	---@param vert1 Vector Position of the first vertex.
+	---@param vert2 Vector Position of the the second vertex.
+	---@param vert3 Vector Position of the the third vertex.
+	function _G.render.draw3DTriangle(vert1, vert2, vert3) end
+	--- drawTexturedRectUVFast - client - libs_cl/render.lua#L1523
+	---@param x number Top left corner x
+	---@param y number Top left corner y
+	---@param w number Width
+	---@param h number Height
+	---@param startU number Texture mapping at rectangle's origin U
+	---@param startV number Texture mapping at rectangle's origin V
+	---@param endU number Texture mapping at rectangle's end U
+	---@param endV number Texture mapping at rectangle's end V
+	---@param UVHack boolean? If enabled, will scale the UVs to compensate for internal bug. Should be true for user created materials.
+	function _G.render.drawTexturedRectUVFast(x, y, w, h, startU, startV, endU, endV, UVHack) end
+	--- destroyTexture - client - libs_cl/render.lua#L962
+	---@param mat Material The material object
+	function _G.render.destroyTexture(mat) end
+	--- setMaterial - client - libs_cl/render.lua#L973
+	---@param mat Material The material object
+	function _G.render.setMaterial(mat) end
+	--- isHUDActive - client - libs_cl/render.lua#L2365
+	---@return boolean undefined True if a HUD component is connected and active, nil otherwise
+	function _G.render.isHUDActive() end
+	--- setViewPort - client - libs_cl/render.lua#L2301
+	---@param x number Pixel x-coordinate.
+	---@param y number Pixel y-coordinate.
+	---@param w number Width of the viewport.
+	---@param h number Height of the viewport.
+	function _G.render.setViewPort(x, y, w, h) end
+	--- isInRenderView - client - libs_cl/render.lua#L2507
+	---@return boolean undefined Whether render.renderView is being executed
+	function _G.render.isInRenderView() end
+	--- setStencilWriteMask - client - libs_cl/render.lua#L692
+	---@param mask number The mask bitflag.
+	function _G.render.setStencilWriteMask(mask) end
 --- socket
 --- 
 ---  Socket library. Only usable by owner of starfall.
@@ -7131,50 +7131,408 @@ _G.NextBot = {}
 ---  Vector2 type for wire xv2
 ---@class Vector2
 _G.Vector2 = {}
----  ParticleEffect type
----@class ParticleEffect
-_G.ParticleEffect = {}
-	--- setSortOrigin - client - libs_cl/particle_effect.lua#L159
-	---@param origin Vector Sort Origin
-	function _G.ParticleEffect:setSortOrigin(origin) end
-	--- restart - client - libs_cl/particle_effect.lua#L136
-	function _G.ParticleEffect:restart() end
-	--- stopEmission - client - libs_cl/particle_effect.lua#L114
-	function _G.ParticleEffect:stopEmission() end
-	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L184
-	---@param id number Child Control Point ID (0-63)
-	---@param entity Entity Entity parent
-	function _G.ParticleEffect:setControlPointEntity(id, entity) end
-	--- isFinished - client - libs_cl/particle_effect.lua#L146
-	---@return boolean undefined If the particle effect is finished
-	function _G.ParticleEffect:isFinished() end
-	--- setControlPointParent - client - libs_cl/particle_effect.lua#L241
-	---@param id number Child Control Point ID (0-63)
-	---@param parentid number Parent control point ID (0-63)
-	function _G.ParticleEffect:setControlPointParent(id, parentid) end
-	--- setControlPoint - client - libs_cl/particle_effect.lua#L170
-	---@param id number Control Point ID (0-63)
-	---@param value Vector Value
-	function _G.ParticleEffect:setControlPoint(id, value) end
-	--- setUpVector - client - libs_cl/particle_effect.lua#L226
-	---@param id number Control Point ID (0-63)
-	---@param up Vector Up vector
-	function _G.ParticleEffect:setUpVector(id, up) end
-	--- destroy - client - libs_cl/particle_effect.lua#L123
-	function _G.ParticleEffect:destroy() end
-	--- setForwardVector - client - libs_cl/particle_effect.lua#L199
-	---@param id number Control Point ID (0-63)
-	---@param fwd Vector Forward vector
-	function _G.ParticleEffect:setForwardVector(id, fwd) end
-	--- startEmission - client - libs_cl/particle_effect.lua#L104
-	function _G.ParticleEffect:startEmission() end
-	--- setRightVector - client - libs_cl/particle_effect.lua#L212
-	---@param id number Control Point ID (0-63)
-	---@param right Vector Right vector
-	function _G.ParticleEffect:setRightVector(id, right) end
-	--- isValid - client - libs_cl/particle_effect.lua#L96
-	---@return boolean undefined Is valid or not
-	function _G.ParticleEffect:isValid() end
+---  Player type
+---@class Player
+_G.Player = {}
+	--- getVehicle - shared - libs_sh/players.lua#L308
+	---@return Vehicle undefined Vehicle if player in vehicle or nil
+	function _G.Player:getVehicle() end
+	--- isNoclipped - shared - libs_sh/players.lua#L245
+	---@return boolean undefined True if the player is noclipped
+	function _G.Player:isNoclipped() end
+	--- getAnimationProgress - client - libs_sh/players.lua#L1094
+	---@return number undefined Progress ranging 0-1
+	function _G.Player:getAnimationProgress() end
+	--- setWalkSpeed - server - libs_sh/players.lua#L764
+	---@param newwalkspeed number New Walk speed.
+	function _G.Player:setWalkSpeed(newwalkspeed) end
+	--- isPlayingAnimation - client - libs_sh/players.lua#L1086
+	---@return boolean undefined If an animation is playing
+	function _G.Player:isPlayingAnimation() end
+	--- setAnimationRange - client - libs_sh/players.lua#L1067
+	---@param min number Min. Ranging from 0-1
+	---@param max number Max. Ranging from 0-1
+	function _G.Player:setAnimationRange(min, max) end
+	--- getTeam - shared - libs_sh/players.lua#L387
+	---@return number undefined Team Index, from TEAM enums or custom teams
+	function _G.Player:getTeam() end
+	--- getGroundEntity - shared - libs_sh/players.lua#L470
+	---@return Entity undefined Ground entity
+	function _G.Player:getGroundEntity() end
+	--- getSteamID - shared - libs_sh/players.lua#L365
+	---@return string undefined SteamID
+	function _G.Player:getSteamID() end
+	--- isMuted - client - libs_sh/players.lua#L824
+	---@return boolean undefined True if the player was muted
+	function _G.Player:isMuted() end
+	--- isCrouching - shared - libs_sh/players.lua#L224
+	---@return boolean undefined True if player crouching
+	function _G.Player:isCrouching() end
+	--- setLadderClimbSpeed - server - libs_sh/players.lua#L724
+	---@param newladderclimbspeed number New Ladder Climb speed.
+	function _G.Player:setLadderClimbSpeed(newladderclimbspeed) end
+	--- getMoney - shared - libs_sh/darkrp2.lua#L1076
+	---@return number? undefined The amount of money, or nil if not accessible.
+	function _G.Player:getMoney() end
+	--- stripWeapon - server - libs_sh/players.lua#L570
+	---@param weapon string The weapon class name of the weapon to strip
+	function _G.Player:stripWeapon(weapon) end
+	--- setAnimationBounce - client - libs_sh/players.lua#L1037
+	---@param bounce boolean Should the animation bounce instead of loop?
+	function _G.Player:setAnimationBounce(bounce) end
+	--- getWalkSpeed - shared - libs_sh/players.lua#L196
+	---@return number undefined Walk Speed value
+	function _G.Player:getWalkSpeed() end
+	--- isHitman - shared - libs_sh/darkrp2.lua#L1052
+	---@return boolean? undefined Whether this player is a hitman. May be nil instead of false.
+	function _G.Player:isHitman() end
+	--- setAnimationAutoAdvance - client - libs_sh/players.lua#L1022
+	---@param auto_advance boolean Should the animation handle advancing itself?
+	function _G.Player:setAnimationAutoAdvance(auto_advance) end
+	--- getJobTable - shared - libs_sh/darkrp2.lua#L1003
+	---@return table undefined Table with the job information.
+	function _G.Player:getJobTable() end
+	--- getWeaponColor - shared - libs_sh/players.lua#L452
+	---@return Vector undefined The color
+	function _G.Player:getWeaponColor() end
+	--- getAnimationTime - client - libs_sh/players.lua#L1105
+	---@return number undefined Time in seconds
+	function _G.Player:getAnimationTime() end
+	--- getViewPunchAngles - shared - libs_sh/players.lua#L430
+	---@return Angle undefined The angle of the view offset
+	function _G.Player:getViewPunchAngles() end
+	--- isHUDActive - server - libs_sh/players.lua#L526
+	---@return boolean undefined True if a HUD component is connected and active for the player, nil otherwise
+	function _G.Player:isHUDActive() end
+	--- setAnimationTime - client - libs_sh/players.lua#L992
+	---@param time number The time of the animation in seconds. Float
+	function _G.Player:setAnimationTime(time) end
+	--- isWalking - shared - libs_sh/players.lua#L501
+	---@return boolean undefined Whether they are walking
+	function _G.Player:isWalking() end
+	--- isSuperAdmin - shared - libs_sh/players.lua#L343
+	---@return boolean undefined True if player is super admin
+	function _G.Player:isSuperAdmin() end
+	--- voiceVolume - client - libs_sh/players.lua#L838
+	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number. Doesn't work on local player unless the voice_loopback convar is set to 1.
+	function _G.Player:voiceVolume() end
+	--- getUserID - shared - libs_sh/players.lua#L401
+	---@return number undefined UserID
+	function _G.Player:getUserID() end
+	--- setAnimationActivity - client - libs_sh/players.lua#L958
+	---@param activity number|string|nil Activity, nil to use the current animation sequence
+	function _G.Player:setAnimationActivity(activity) end
+	--- isConnected - shared - libs_sh/players.lua#L329
+	---@return boolean undefined True if player is connected
+	function _G.Player:isConnected() end
+	--- isUserGroup - shared - libs_sh/players.lua#L350
+	---@param groupName string Group to check against
+	---@return boolean undefined True if player belongs to group
+	function _G.Player:isUserGroup(groupName) end
+	--- getLadderClimbSpeed - shared - libs_sh/players.lua#L168
+	---@return number undefined Ladder Climb Speed value
+	function _G.Player:getLadderClimbSpeed() end
+	--- isTimingOut - server - libs_sh/players.lua#L652
+	---@return boolean undefined isTimingOut
+	function _G.Player:isTimingOut() end
+	--- setAnimation - client - libs_sh/players.lua#L901
+	---@param sequence number|string Sequence number or string name
+	---@param progress number? Optional float (Default 0), the progress of the animation. Ranging from 0-1
+	---@param rate number? Optional float (Default 1), the playback rate of the animation
+	---@param loop boolean? Optional boolean (Default false), should the animation loop
+	---@param auto_advance boolean? Optional boolean (Default true), should the animation handle advancing itself
+	---@param act number|string|nil Optional number or string name (Default sequence value), the activity the player should use
+	function _G.Player:setAnimation(sequence, progress, rate, loop, auto_advance, act) end
+	--- getDarkRPVar - shared - libs_sh/darkrp2.lua#L991
+	---@param var string The name of the variable.
+	---@return any undefined The value of the DarkRP var.
+	function _G.Player:getDarkRPVar(var) end
+	--- setAnimationRate - client - libs_sh/players.lua#L1007
+	---@param rate number The playback rate of the animation. Float
+	function _G.Player:setAnimationRate(rate) end
+	--- getTeamName - shared - libs_sh/players.lua#L394
+	---@return string undefined Team Name
+	function _G.Player:getTeamName() end
+	--- resetGesture - client - libs_sh/players.lua#L875
+	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
+	function _G.Player:resetGesture(slot) end
+	--- isChief - shared - libs_sh/darkrp2.lua#L1034
+	---@return boolean? undefined Whether this player is a Chief. May be nil instead of false.
+	function _G.Player:isChief() end
+	--- playGesture - client - libs_sh/players.lua#L845
+	---@param animation string|number Sequence string or act number. https://wiki.facepunch.com/gmod/Enums/ACT
+	---@param loop boolean? Optional boolean (Default true), should the gesture loop
+	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
+	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
+	function _G.Player:playGesture(animation, loop, slot, weight) end
+	--- getEyeTrace - shared - libs_sh/players.lua#L408
+	---@return table undefined Trace data https://wiki.facepunch.com/gmod/Structures/TraceResult
+	function _G.Player:getEyeTrace() end
+	--- isMedic - shared - libs_sh/darkrp2.lua#L1064
+	---@return boolean? undefined Whether this player is a medic. May be nil instead of false.
+	function _G.Player:isMedic() end
+	--- requestMoney - server - libs_sh/darkrp2.lua#L929
+	---@param message string? An optional custom message that will be shown in the money request prompt. May not exceed 60 bytes in length.
+	---@param amount number The amount of money to ask for.
+	---@param callbackSuccess function? Optional function to call if request succeeds.
+	---@param callbackFailure function? Optional function to call if request fails.
+	---@param receiver Player? The player who may or may not receive the money, or the owner of the chip if not specified. Superuser only.
+	function _G.Player:requestMoney(message, amount, callbackSuccess, callbackFailure, receiver) end
+	--- setAnimationProgress - client - libs_sh/players.lua#L977
+	---@param progress number The progress of the animation. Ranging from 0-1
+	function _G.Player:setAnimationProgress(progress) end
+	--- getMaxArmor - shared - libs_sh/players.lua#L140
+	---@return number undefined Armor limit
+	function _G.Player:getMaxArmor() end
+	--- getViewModel - shared - libs_sh/players.lua#L422
+	---@return Entity undefined Player's view model
+	function _G.Player:getViewModel() end
+	--- isFrozen - shared - libs_sh/players.lua#L336
+	---@return boolean undefined True if player is frozen
+	function _G.Player:isFrozen() end
+	--- isSpeaking - client - libs_sh/players.lua#L831
+	---@return boolean undefined Whether they are speaking and able to be heard by LocalPlayer
+	function _G.Player:isSpeaking() end
+	--- setMaxSpeed - server - libs_sh/players.lua#L734
+	---@param newmaxspeed number New Max speed.
+	function _G.Player:setMaxSpeed(newmaxspeed) end
+	--- teamBanTimeLeft - server - libs_sh/darkrp2.lua#L916
+	---@param team number? The number of the job (e.g. TEAM_MEDIC). Uses the player's team if nil.
+	---@return number? undefined The time left on the team ban in seconds, or nil if not banned.
+	function _G.Player:teamBanTimeLeft(team) end
+	--- getShootPos - shared - libs_sh/players.lua#L294
+	---@return Vector undefined Shoot position
+	function _G.Player:getShootPos() end
+	--- keyDown - shared - libs_sh/players.lua#L805
+	---@param key number Key to check. IN_KEY table values
+	---@return boolean undefined Whether they key is down
+	function _G.Player:keyDown(key) end
+	--- getMaxSpeed - shared - libs_sh/players.lua#L175
+	---@return number undefined Max Speed value
+	function _G.Player:getMaxSpeed() end
+	--- getSlowWalkSpeed - shared - libs_sh/players.lua#L189
+	---@return number undefined Slow Walk Speed value
+	function _G.Player:getSlowWalkSpeed() end
+	--- setStepSize - server - libs_sh/players.lua#L784
+	---@param newstepsize number New Step Size.
+	function _G.Player:setStepSize(newstepsize) end
+	--- setJumpPower - server - libs_sh/players.lua#L774
+	---@param newjumppower number New Jump Power.
+	function _G.Player:setJumpPower(newjumppower) end
+	--- resetAnimation - client - libs_sh/players.lua#L949
+	function _G.Player:resetAnimation() end
+	--- getPing - shared - libs_sh/players.lua#L358
+	---@return number undefined The player's ping
+	function _G.Player:getPing() end
+	--- setMaxArmor - server - libs_sh/players.lua#L684
+	---@param newmaxarmor number New max armor value.
+	function _G.Player:setMaxArmor(newmaxarmor) end
+	--- setUnDuckSpeed - server - libs_sh/players.lua#L714
+	---@param newunduckspeed number New UnDuck speed, This is a multiplier from 0 to 1.
+	function _G.Player:setUnDuckSpeed(newunduckspeed) end
+	--- setDuckSpeed - server - libs_sh/players.lua#L704
+	---@param newduckspeed number New Duck speed, This is a multiplier from 0 to 1.
+	function _G.Player:setDuckSpeed(newduckspeed) end
+	--- stripWeapons - server - libs_sh/players.lua#L580
+	function _G.Player:stripWeapons() end
+	--- isCP - shared - libs_sh/darkrp2.lua#L1046
+	---@return boolean undefined Whether this player is a part of the police force.
+	function _G.Player:isCP() end
+	--- getJumpPower - shared - libs_sh/players.lua#L203
+	---@return number undefined Jump Power value
+	function _G.Player:getJumpPower() end
+	--- dropWeapon - server - libs_sh/players.lua#L550
+	---@param weapon Weapon|string The weapon instance or class name of the weapon to drop
+	---@param target Vector? If set, launches the weapon at the given position
+	---@param velocity Vector? If set and target is unset, launches the weapon with the given velocity
+	function _G.Player:dropWeapon(weapon, target, velocity) end
+	--- setRunSpeed - server - libs_sh/players.lua#L744
+	---@param newrunspeed number New Run speed.
+	function _G.Player:setRunSpeed(newrunspeed) end
+	--- isFlashlightOn - shared - libs_sh/players.lua#L238
+	---@return boolean undefined True if player has flashlight on
+	function _G.Player:isFlashlightOn() end
+	--- getPocketItems - shared - libs_sh/darkrp2.lua#L1009
+	---@return table undefined A table containing information about the items in the pocket.
+	function _G.Player:getPocketItems() end
+	--- isInRoom - client - libs_sh/darkrp2.lua#L959
+	---@return boolean undefined Whether this player is in the same room.
+	function _G.Player:isInRoom() end
+	--- isTyping - shared - libs_sh/players.lua#L487
+	---@return boolean undefined Whether they are typing in the chat
+	function _G.Player:isTyping() end
+	--- setAmmo - server - libs_sh/players.lua#L588
+	---@param amount number The ammo value
+	---@param ammoType number|string Ammo type id or name
+	function _G.Player:setAmmo(amount, ammoType) end
+	--- say - server - libs_sh/players.lua#L659
+	---@param text string The text to force the player to say
+	---@param teamOnly boolean? Team chat only?, Defaults to false.
+	function _G.Player:say(text, teamOnly) end
+	--- getFrags - shared - libs_sh/players.lua#L252
+	---@return number undefined Amount of kills
+	function _G.Player:getFrags() end
+	--- setSlowWalkSpeed - server - libs_sh/players.lua#L754
+	---@param newslowwalkspeed number New Slow Walk speed.
+	function _G.Player:setSlowWalkSpeed(newslowwalkspeed) end
+	--- keysUnOwnAll - server - libs_sh/darkrp2.lua#L907
+	function _G.Player:keysUnOwnAll() end
+	--- getTimeoutSeconds - server - libs_sh/players.lua#L645
+	---@return number undefined Timeout seconds
+	function _G.Player:getTimeoutSeconds() end
+	--- getWeapons - shared - libs_sh/players.lua#L436
+	---@return table undefined Table of weapons
+	function _G.Player:getWeapons() end
+	--- getAmmoCount - shared - libs_sh/players.lua#L477
+	---@param idOrName string|number The string ammo name or number id of the ammo
+	---@return number undefined The amount of ammo player has in reserve.
+	function _G.Player:getAmmoCount(idOrName) end
+	--- getWeapon - shared - libs_sh/players.lua#L443
+	---@param wep string Weapon class name
+	---@return Weapon undefined Weapon
+	function _G.Player:getWeapon(wep) end
+	--- setFriction - server - libs_sh/players.lua#L794
+	---@param newfriction number New Friction.
+	function _G.Player:setFriction(newfriction) end
+	--- getPacketLoss - server - libs_sh/players.lua#L631
+	---@return number undefined Packets lost
+	function _G.Player:getPacketLoss() end
+	--- setEyeAngles - server - libs_sh/players.lua#L619
+	---@param ang Angle New angles
+	function _G.Player:setEyeAngles(ang) end
+	--- isAdmin - shared - libs_sh/players.lua#L315
+	---@return boolean undefined True if player is admin
+	function _G.Player:isAdmin() end
+	--- getName - shared - libs_sh/players.lua#L280
+	---@return string undefined Name
+	function _G.Player:getName() end
+	--- isWanted - shared - libs_sh/darkrp2.lua#L1070
+	---@return boolean? undefined Whether this player is wanted. May be nil instead of false.
+	function _G.Player:isWanted() end
+	--- stripAmmo - server - libs_sh/players.lua#L604
+	function _G.Player:stripAmmo() end
+	--- hasGodMode - server - libs_sh/players.lua#L543
+	---@return boolean undefined True if the player has godmode
+	function _G.Player:hasGodMode() end
+	--- setViewEntity - server - libs_sh/players.lua#L533
+	---@param ent Entity Entity to set the player's view entity to, or nothing to reset it
+	function _G.Player:setViewEntity(ent) end
+	--- canAfford - shared - libs_sh/darkrp2.lua#L969
+	---@param amount number The amount of money
+	---@return boolean undefined Whether the player can afford it
+	function _G.Player:canAfford(amount) end
+	--- getUnDuckSpeed - shared - libs_sh/players.lua#L161
+	---@return number undefined UnDuck Speed value
+	function _G.Player:getUnDuckSpeed() end
+	--- getDeathRagdoll - shared - libs_sh/players.lua#L509
+	---@return Entity? undefined The entity or nil if it doesn't exist
+	function _G.Player:getDeathRagdoll() end
+	--- isSprinting - shared - libs_sh/players.lua#L494
+	---@return boolean undefined Whether they are sprinting
+	function _G.Player:isSprinting() end
+	--- canKeysLock - shared - libs_sh/darkrp2.lua#L977
+	---@param door Entity The door
+	---@return boolean? undefined Whether the player is allowed to lock the door. May be nil instead of false.
+	function _G.Player:canKeysLock(door) end
+	--- getRunSpeed - shared - libs_sh/players.lua#L182
+	---@return number undefined Run Speed value
+	function _G.Player:getRunSpeed() end
+	--- getViewEntity - shared - libs_sh/players.lua#L415
+	---@return Entity undefined Player's current view entity
+	function _G.Player:getViewEntity() end
+	--- giveMoney - server - libs_sh/darkrp2.lua#L942
+	---@param amount number The amount of money to give.
+	function _G.Player:giveMoney(amount) end
+	--- setAnimationLoop - client - libs_sh/players.lua#L1052
+	---@param loop boolean Should the animation loop?
+	function _G.Player:setAnimationLoop(loop) end
+	--- setArmor - server - libs_sh/players.lua#L674
+	---@param newarmor number New armor value.
+	function _G.Player:setArmor(newarmor) end
+	--- getSteamID64 - shared - libs_sh/players.lua#L372
+	---@param owner boolean? Return the actual game owner account id
+	---@return string undefined SteamID64 aka Community ID
+	function _G.Player:getSteamID64(owner) end
+	--- getFriendStatus - client - libs_sh/players.lua#L816
+	---@return string undefined One of: "friend", "blocked", "none", "requested"
+	function _G.Player:getFriendStatus() end
+	--- lastHitGroup - server - libs_sh/players.lua#L612
+	---@return number undefined Hitgroup, see https://wiki.facepunch.com/gmod/Enums/HITGROUP
+	function _G.Player:lastHitGroup() end
+	--- isArrested - shared - libs_sh/darkrp2.lua#L1028
+	---@return boolean? undefined Whether this player is arrested. May be nil instead of false.
+	function _G.Player:isArrested() end
+	--- inVehicle - shared - libs_sh/players.lua#L301
+	---@return boolean undefined True if player in vehicle
+	function _G.Player:inVehicle() end
+	--- getCrouchedWalkSpeed - shared - libs_sh/players.lua#L147
+	---@return number undefined Crouch Walk Speed value
+	function _G.Player:getCrouchedWalkSpeed() end
+	--- isAlive - shared - libs_sh/players.lua#L126
+	---@return boolean undefined True if player alive
+	function _G.Player:isAlive() end
+	--- hasDarkRPPrivilege - shared - libs_sh/darkrp2.lua#L1021
+	---@return boolean undefined Whether the player has the privilege.
+	function _G.Player:hasDarkRPPrivilege() end
+	--- setModelScale - server - libs_sh/players.lua#L516
+	---@param scale number The scale to apply, will be truncated to the first two decimal places (min 0.01, max 100)
+	function _G.Player:setModelScale(scale) end
+	--- getWantedReason - shared - libs_sh/darkrp2.lua#L1015
+	---@return string? undefined The reason, or nil if not wanted
+	function _G.Player:getWantedReason() end
+	--- isBot - shared - libs_sh/players.lua#L322
+	---@return boolean undefined True if player is a bot
+	function _G.Player:isBot() end
+	--- getDeaths - shared - libs_sh/players.lua#L231
+	---@return number undefined Amount of deaths
+	function _G.Player:getDeaths() end
+	--- getDuckSpeed - shared - libs_sh/players.lua#L154
+	---@return number undefined Duck Speed value
+	function _G.Player:getDuckSpeed() end
+	--- getTimeConnected - server - libs_sh/players.lua#L638
+	---@return number undefined Time connected
+	function _G.Player:getTimeConnected() end
+	--- getEntityInUse - shared - libs_sh/players.lua#L287
+	---@return Entity undefined Entity
+	function _G.Player:getEntityInUse() end
+	--- isMayor - shared - libs_sh/darkrp2.lua#L1058
+	---@return boolean? undefined Whether this player is the Mayor. May be nil instead of false.
+	function _G.Player:isMayor() end
+	--- getPlayerColor - shared - libs_sh/players.lua#L461
+	---@return Vector undefined The color
+	function _G.Player:getPlayerColor() end
+	--- getFriction - shared - libs_sh/players.lua#L210
+	---@return number undefined Friction value
+	function _G.Player:getFriction() end
+	--- getStepSize - shared - libs_sh/players.lua#L217
+	---@return number undefined Step Size Value
+	function _G.Player:getStepSize() end
+	--- getArmor - shared - libs_sh/players.lua#L133
+	---@return number undefined Armor
+	function _G.Player:getArmor() end
+	--- getAimVector - shared - libs_sh/players.lua#L266
+	---@return Vector undefined Aim vector
+	function _G.Player:getAimVector() end
+	--- getFOV - shared - libs_sh/players.lua#L273
+	---@return number undefined Field of view as a float
+	function _G.Player:getFOV() end
+	--- canKeysUnlock - shared - libs_sh/darkrp2.lua#L984
+	---@param door Entity The door
+	---@return boolean? undefined Whether the player is allowed to unlock the door. May be nil instead of false.
+	function _G.Player:canKeysUnlock(door) end
+	--- setCrouchedWalkSpeed - server - libs_sh/players.lua#L694
+	---@param newcwalkspeed number New Crouch Walk speed, This is a multiplier from 0 to 1.
+	function _G.Player:setCrouchedWalkSpeed(newcwalkspeed) end
+	--- isCook - shared - libs_sh/darkrp2.lua#L1040
+	---@return boolean? undefined Whether this player is a cook. May be nil instead of false.
+	function _G.Player:isCook() end
+	--- getActiveWeapon - shared - libs_sh/players.lua#L259
+	---@return Weapon undefined The weapon
+	function _G.Player:getActiveWeapon() end
+	--- setGestureWeight - client - libs_sh/players.lua#L887
+	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
+	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
+	function _G.Player:setGestureWeight(slot, weight) end
 ---  ParticleEmitter type
 ---@class ParticleEmitter
 _G.ParticleEmitter = {}
@@ -7519,13 +7877,50 @@ _G.Light = {}
 	--- setDirection - client - libs_cl/light.lua#L176
 	---@param dir Vector Direction of the light
 	function _G.Light:setDirection(dir) end
----  Mesh type
----@class Mesh
-_G.Mesh = {}
-	--- destroy - client - libs_sh/mesh.lua#L1133
-	function _G.Mesh:destroy() end
-	--- draw - client - libs_sh/mesh.lua#L1122
-	function _G.Mesh:draw() end
+---  ParticleEffect type
+---@class ParticleEffect
+_G.ParticleEffect = {}
+	--- setSortOrigin - client - libs_cl/particle_effect.lua#L159
+	---@param origin Vector Sort Origin
+	function _G.ParticleEffect:setSortOrigin(origin) end
+	--- restart - client - libs_cl/particle_effect.lua#L136
+	function _G.ParticleEffect:restart() end
+	--- stopEmission - client - libs_cl/particle_effect.lua#L114
+	function _G.ParticleEffect:stopEmission() end
+	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L184
+	---@param id number Child Control Point ID (0-63)
+	---@param entity Entity Entity parent
+	function _G.ParticleEffect:setControlPointEntity(id, entity) end
+	--- isFinished - client - libs_cl/particle_effect.lua#L146
+	---@return boolean undefined If the particle effect is finished
+	function _G.ParticleEffect:isFinished() end
+	--- setControlPointParent - client - libs_cl/particle_effect.lua#L241
+	---@param id number Child Control Point ID (0-63)
+	---@param parentid number Parent control point ID (0-63)
+	function _G.ParticleEffect:setControlPointParent(id, parentid) end
+	--- setControlPoint - client - libs_cl/particle_effect.lua#L170
+	---@param id number Control Point ID (0-63)
+	---@param value Vector Value
+	function _G.ParticleEffect:setControlPoint(id, value) end
+	--- setUpVector - client - libs_cl/particle_effect.lua#L226
+	---@param id number Control Point ID (0-63)
+	---@param up Vector Up vector
+	function _G.ParticleEffect:setUpVector(id, up) end
+	--- destroy - client - libs_cl/particle_effect.lua#L123
+	function _G.ParticleEffect:destroy() end
+	--- setForwardVector - client - libs_cl/particle_effect.lua#L199
+	---@param id number Control Point ID (0-63)
+	---@param fwd Vector Forward vector
+	function _G.ParticleEffect:setForwardVector(id, fwd) end
+	--- startEmission - client - libs_cl/particle_effect.lua#L104
+	function _G.ParticleEffect:startEmission() end
+	--- setRightVector - client - libs_cl/particle_effect.lua#L212
+	---@param id number Control Point ID (0-63)
+	---@param right Vector Right vector
+	function _G.ParticleEffect:setRightVector(id, right) end
+	--- isValid - client - libs_cl/particle_effect.lua#L96
+	---@return boolean undefined Is valid or not
+	function _G.ParticleEffect:isValid() end
 ---  For playing music there is `Bass` type. You can pause and set current playback time in it. If you're looking to apply DSP effects on present game sounds, use `Sound` instead.
 ---@class Bass
 _G.Bass = {}
@@ -8023,6 +8418,27 @@ _G.Particle = {}
 	--- getColor - client - libs_cl/particle.lua#L205
 	---@return Color undefined Color of the particle
 	function _G.Particle:getColor() end
+---  The Markup type is used to easily format and draw text. Use render.parseMarkup(str, maxwidth) to create one.
+---@class Markup
+_G.Markup = {}
+	--- getSize - client - libs_cl/render.lua#L1909
+	---@return number undefined The width of the object
+	---@return number undefined The height of the object
+	function _G.Markup:getSize() end
+	--- draw - client - libs_cl/render.lua#L1885
+	---@param x number number The x offset
+	---@param y number number The x offset
+	---@param xAlign number? number The x TEXT_ALIGN. Default TEXT_ALIGN.LEFT
+	---@param yAlign number? number The y TEXT_ALIGN. Default TEXT_ALIGN.TOP
+	---@param alpha number? The alpha to draw it with. Default 255
+	---@param contentAlign number? The content alignment TEXT_ALIGN. Default TEXT_ALIGN.LEFT
+	function _G.Markup:draw(x, y, xAlign, yAlign, alpha, contentAlign) end
+	--- getWidth - client - libs_cl/render.lua#L1897
+	---@return number undefined The width of the object
+	function _G.Markup:getWidth() end
+	--- getHeight - client - libs_cl/render.lua#L1903
+	---@return number undefined The height of the object
+	function _G.Markup:getHeight() end
 ---  PhysObj Type
 ---@class PhysObj
 _G.PhysObj = {}
@@ -8303,6 +8719,40 @@ _G.Material = {}
 	--- getHeight - client - libs_cl/material.lua#L631
 	---@return number undefined The basetexture's height
 	function _G.Material:getHeight() end
+---  Websocket Type. Create a websocket with WebSocket(...)
+---@class WebSocket
+_G.WebSocket = {}
+	--- close - client - libs_cl/websocket.lua#L132
+	function _G.WebSocket:close() end
+	--- write - client - libs_cl/websocket.lua#L137
+	---@param msg string What to send
+	function _G.WebSocket:write(msg) end
+	--- getState - client - libs_cl/websocket.lua#L148
+	---@return number undefined The current state of the websocket.
+	function _G.WebSocket:getState() end
+	--- connect - client - libs_cl/websocket.lua#L143
+	function _G.WebSocket:connect() end
+---  Vehicle type
+---@class Vehicle
+_G.Vehicle = {}
+	--- getDriver - shared - libs_sh/vehicles.lua#L42
+	---@return Player undefined Driver of vehicle
+	function _G.Vehicle:getDriver() end
+	--- getPassenger - shared - libs_sh/vehicles.lua#L48
+	---@param n number The index of the passenger to get
+	---@return Player undefined The passenger or NULL if empty
+	function _G.Vehicle:getPassenger(n) end
+	--- ejectDriver - server - libs_sh/vehicles.lua#L57
+	function _G.Vehicle:ejectDriver() end
+	--- unlock - server - libs_sh/vehicles.lua#L105
+	function _G.Vehicle:unlock() end
+	--- lock - server - libs_sh/vehicles.lua#L94
+	function _G.Vehicle:lock() end
+	--- killDriver - server - libs_sh/vehicles.lua#L66
+	function _G.Vehicle:killDriver() end
+	--- stripDriver - server - libs_sh/vehicles.lua#L77
+	---@param class string? Optional weapon class to strip. Otherwise all are stripped.
+	function _G.Vehicle:stripDriver(class) end
 ---  VMatrix type
 ---@class VMatrix
 ---@operator mul(VMatrix|Vector):VMatrix
@@ -8415,442 +8865,99 @@ _G.VMatrix = {}
 	--- scaleTranslation - shared - libs_sh/vmatrix.lua#L143
 	---@param num number Amount to scale by
 	function _G.VMatrix:scaleTranslation(num) end
----  Websocket Type. Create a websocket with WebSocket(...)
----@class WebSocket
-_G.WebSocket = {}
-	--- close - client - libs_cl/websocket.lua#L132
-	function _G.WebSocket:close() end
-	--- write - client - libs_cl/websocket.lua#L137
-	---@param msg string What to send
-	function _G.WebSocket:write(msg) end
-	--- getState - client - libs_cl/websocket.lua#L148
-	---@return number undefined The current state of the websocket.
-	function _G.WebSocket:getState() end
-	--- connect - client - libs_cl/websocket.lua#L143
-	function _G.WebSocket:connect() end
----  Vehicle type
----@class Vehicle
-_G.Vehicle = {}
-	--- getDriver - shared - libs_sh/vehicles.lua#L42
-	---@return Player undefined Driver of vehicle
-	function _G.Vehicle:getDriver() end
-	--- getPassenger - shared - libs_sh/vehicles.lua#L48
-	---@param n number The index of the passenger to get
-	---@return Player undefined The passenger or NULL if empty
-	function _G.Vehicle:getPassenger(n) end
-	--- ejectDriver - server - libs_sh/vehicles.lua#L57
-	function _G.Vehicle:ejectDriver() end
-	--- unlock - server - libs_sh/vehicles.lua#L105
-	function _G.Vehicle:unlock() end
-	--- lock - server - libs_sh/vehicles.lua#L94
-	function _G.Vehicle:lock() end
-	--- killDriver - server - libs_sh/vehicles.lua#L66
-	function _G.Vehicle:killDriver() end
-	--- stripDriver - server - libs_sh/vehicles.lua#L77
-	---@param class string? Optional weapon class to strip. Otherwise all are stripped.
-	function _G.Vehicle:stripDriver(class) end
----  Player type
----@class Player
-_G.Player = {}
-	--- getVehicle - shared - libs_sh/players.lua#L308
-	---@return Vehicle undefined Vehicle if player in vehicle or nil
-	function _G.Player:getVehicle() end
-	--- isNoclipped - shared - libs_sh/players.lua#L245
-	---@return boolean undefined True if the player is noclipped
-	function _G.Player:isNoclipped() end
-	--- getAnimationProgress - client - libs_sh/players.lua#L1094
-	---@return number undefined Progress ranging 0-1
-	function _G.Player:getAnimationProgress() end
-	--- setWalkSpeed - server - libs_sh/players.lua#L764
-	---@param newwalkspeed number New Walk speed.
-	function _G.Player:setWalkSpeed(newwalkspeed) end
-	--- isPlayingAnimation - client - libs_sh/players.lua#L1086
-	---@return boolean undefined If an animation is playing
-	function _G.Player:isPlayingAnimation() end
-	--- setAnimationRange - client - libs_sh/players.lua#L1067
-	---@param min number Min. Ranging from 0-1
-	---@param max number Max. Ranging from 0-1
-	function _G.Player:setAnimationRange(min, max) end
-	--- getTeam - shared - libs_sh/players.lua#L387
-	---@return number undefined Team Index, from TEAM enums or custom teams
-	function _G.Player:getTeam() end
-	--- getGroundEntity - shared - libs_sh/players.lua#L470
-	---@return Entity undefined Ground entity
-	function _G.Player:getGroundEntity() end
-	--- getSteamID - shared - libs_sh/players.lua#L365
-	---@return string undefined SteamID
-	function _G.Player:getSteamID() end
-	--- isMuted - client - libs_sh/players.lua#L824
-	---@return boolean undefined True if the player was muted
-	function _G.Player:isMuted() end
-	--- isCrouching - shared - libs_sh/players.lua#L224
-	---@return boolean undefined True if player crouching
-	function _G.Player:isCrouching() end
-	--- setLadderClimbSpeed - server - libs_sh/players.lua#L724
-	---@param newladderclimbspeed number New Ladder Climb speed.
-	function _G.Player:setLadderClimbSpeed(newladderclimbspeed) end
-	--- getMoney - shared - libs_sh/darkrp2.lua#L1076
-	---@return number? undefined The amount of money, or nil if not accessible.
-	function _G.Player:getMoney() end
-	--- stripWeapon - server - libs_sh/players.lua#L570
-	---@param weapon string The weapon class name of the weapon to strip
-	function _G.Player:stripWeapon(weapon) end
-	--- setAnimationBounce - client - libs_sh/players.lua#L1037
-	---@param bounce boolean Should the animation bounce instead of loop?
-	function _G.Player:setAnimationBounce(bounce) end
-	--- getWalkSpeed - shared - libs_sh/players.lua#L196
-	---@return number undefined Walk Speed value
-	function _G.Player:getWalkSpeed() end
-	--- isHitman - shared - libs_sh/darkrp2.lua#L1052
-	---@return boolean? undefined Whether this player is a hitman. May be nil instead of false.
-	function _G.Player:isHitman() end
-	--- setAnimationAutoAdvance - client - libs_sh/players.lua#L1022
-	---@param auto_advance boolean Should the animation handle advancing itself?
-	function _G.Player:setAnimationAutoAdvance(auto_advance) end
-	--- getJobTable - shared - libs_sh/darkrp2.lua#L1003
-	---@return table undefined Table with the job information.
-	function _G.Player:getJobTable() end
-	--- getWeaponColor - shared - libs_sh/players.lua#L452
-	---@return Vector undefined The color
-	function _G.Player:getWeaponColor() end
-	--- getAnimationTime - client - libs_sh/players.lua#L1105
-	---@return number undefined Time in seconds
-	function _G.Player:getAnimationTime() end
-	--- getViewPunchAngles - shared - libs_sh/players.lua#L430
-	---@return Angle undefined The angle of the view offset
-	function _G.Player:getViewPunchAngles() end
-	--- isHUDActive - server - libs_sh/players.lua#L526
-	---@return boolean undefined True if a HUD component is connected and active for the player, nil otherwise
-	function _G.Player:isHUDActive() end
-	--- setAnimationTime - client - libs_sh/players.lua#L992
-	---@param time number The time of the animation in seconds. Float
-	function _G.Player:setAnimationTime(time) end
-	--- isWalking - shared - libs_sh/players.lua#L501
-	---@return boolean undefined Whether they are walking
-	function _G.Player:isWalking() end
-	--- isSuperAdmin - shared - libs_sh/players.lua#L343
-	---@return boolean undefined True if player is super admin
-	function _G.Player:isSuperAdmin() end
-	--- voiceVolume - client - libs_sh/players.lua#L838
-	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number. Doesn't work on local player unless the voice_loopback convar is set to 1.
-	function _G.Player:voiceVolume() end
-	--- getUserID - shared - libs_sh/players.lua#L401
-	---@return number undefined UserID
-	function _G.Player:getUserID() end
-	--- setAnimationActivity - client - libs_sh/players.lua#L958
-	---@param activity number|string|nil Activity, nil to use the current animation sequence
-	function _G.Player:setAnimationActivity(activity) end
-	--- isConnected - shared - libs_sh/players.lua#L329
-	---@return boolean undefined True if player is connected
-	function _G.Player:isConnected() end
-	--- isUserGroup - shared - libs_sh/players.lua#L350
-	---@param groupName string Group to check against
-	---@return boolean undefined True if player belongs to group
-	function _G.Player:isUserGroup(groupName) end
-	--- getLadderClimbSpeed - shared - libs_sh/players.lua#L168
-	---@return number undefined Ladder Climb Speed value
-	function _G.Player:getLadderClimbSpeed() end
-	--- isTimingOut - server - libs_sh/players.lua#L652
-	---@return boolean undefined isTimingOut
-	function _G.Player:isTimingOut() end
-	--- setAnimation - client - libs_sh/players.lua#L901
-	---@param sequence number|string Sequence number or string name
-	---@param progress number? Optional float (Default 0), the progress of the animation. Ranging from 0-1
-	---@param rate number? Optional float (Default 1), the playback rate of the animation
-	---@param loop boolean? Optional boolean (Default false), should the animation loop
-	---@param auto_advance boolean? Optional boolean (Default true), should the animation handle advancing itself
-	---@param act number|string|nil Optional number or string name (Default sequence value), the activity the player should use
-	function _G.Player:setAnimation(sequence, progress, rate, loop, auto_advance, act) end
-	--- getDarkRPVar - shared - libs_sh/darkrp2.lua#L991
-	---@param var string The name of the variable.
-	---@return any undefined The value of the DarkRP var.
-	function _G.Player:getDarkRPVar(var) end
-	--- setAnimationRate - client - libs_sh/players.lua#L1007
-	---@param rate number The playback rate of the animation. Float
-	function _G.Player:setAnimationRate(rate) end
-	--- getTeamName - shared - libs_sh/players.lua#L394
-	---@return string undefined Team Name
-	function _G.Player:getTeamName() end
-	--- resetGesture - client - libs_sh/players.lua#L875
-	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
-	function _G.Player:resetGesture(slot) end
-	--- isChief - shared - libs_sh/darkrp2.lua#L1034
-	---@return boolean? undefined Whether this player is a Chief. May be nil instead of false.
-	function _G.Player:isChief() end
-	--- playGesture - client - libs_sh/players.lua#L845
-	---@param animation string|number Sequence string or act number. https://wiki.facepunch.com/gmod/Enums/ACT
-	---@param loop boolean? Optional boolean (Default true), should the gesture loop
-	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
-	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
-	function _G.Player:playGesture(animation, loop, slot, weight) end
-	--- getEyeTrace - shared - libs_sh/players.lua#L408
-	---@return table undefined Trace data https://wiki.facepunch.com/gmod/Structures/TraceResult
-	function _G.Player:getEyeTrace() end
-	--- isMedic - shared - libs_sh/darkrp2.lua#L1064
-	---@return boolean? undefined Whether this player is a medic. May be nil instead of false.
-	function _G.Player:isMedic() end
-	--- requestMoney - server - libs_sh/darkrp2.lua#L929
-	---@param message string? An optional custom message that will be shown in the money request prompt. May not exceed 60 bytes in length.
-	---@param amount number The amount of money to ask for.
-	---@param callbackSuccess function? Optional function to call if request succeeds.
-	---@param callbackFailure function? Optional function to call if request fails.
-	---@param receiver Player? The player who may or may not receive the money, or the owner of the chip if not specified. Superuser only.
-	function _G.Player:requestMoney(message, amount, callbackSuccess, callbackFailure, receiver) end
-	--- setAnimationProgress - client - libs_sh/players.lua#L977
-	---@param progress number The progress of the animation. Ranging from 0-1
-	function _G.Player:setAnimationProgress(progress) end
-	--- getMaxArmor - shared - libs_sh/players.lua#L140
-	---@return number undefined Armor limit
-	function _G.Player:getMaxArmor() end
-	--- getViewModel - shared - libs_sh/players.lua#L422
-	---@return Entity undefined Player's view model
-	function _G.Player:getViewModel() end
-	--- isFrozen - shared - libs_sh/players.lua#L336
-	---@return boolean undefined True if player is frozen
-	function _G.Player:isFrozen() end
-	--- isSpeaking - client - libs_sh/players.lua#L831
-	---@return boolean undefined Whether they are speaking and able to be heard by LocalPlayer
-	function _G.Player:isSpeaking() end
-	--- setMaxSpeed - server - libs_sh/players.lua#L734
-	---@param newmaxspeed number New Max speed.
-	function _G.Player:setMaxSpeed(newmaxspeed) end
-	--- teamBanTimeLeft - server - libs_sh/darkrp2.lua#L916
-	---@param team number? The number of the job (e.g. TEAM_MEDIC). Uses the player's team if nil.
-	---@return number? undefined The time left on the team ban in seconds, or nil if not banned.
-	function _G.Player:teamBanTimeLeft(team) end
-	--- getShootPos - shared - libs_sh/players.lua#L294
-	---@return Vector undefined Shoot position
-	function _G.Player:getShootPos() end
-	--- keyDown - shared - libs_sh/players.lua#L805
-	---@param key number Key to check. IN_KEY table values
-	---@return boolean undefined Whether they key is down
-	function _G.Player:keyDown(key) end
-	--- getMaxSpeed - shared - libs_sh/players.lua#L175
-	---@return number undefined Max Speed value
-	function _G.Player:getMaxSpeed() end
-	--- getSlowWalkSpeed - shared - libs_sh/players.lua#L189
-	---@return number undefined Slow Walk Speed value
-	function _G.Player:getSlowWalkSpeed() end
-	--- setStepSize - server - libs_sh/players.lua#L784
-	---@param newstepsize number New Step Size.
-	function _G.Player:setStepSize(newstepsize) end
-	--- setJumpPower - server - libs_sh/players.lua#L774
-	---@param newjumppower number New Jump Power.
-	function _G.Player:setJumpPower(newjumppower) end
-	--- resetAnimation - client - libs_sh/players.lua#L949
-	function _G.Player:resetAnimation() end
-	--- getPing - shared - libs_sh/players.lua#L358
-	---@return number undefined The player's ping
-	function _G.Player:getPing() end
-	--- setMaxArmor - server - libs_sh/players.lua#L684
-	---@param newmaxarmor number New max armor value.
-	function _G.Player:setMaxArmor(newmaxarmor) end
-	--- setUnDuckSpeed - server - libs_sh/players.lua#L714
-	---@param newunduckspeed number New UnDuck speed, This is a multiplier from 0 to 1.
-	function _G.Player:setUnDuckSpeed(newunduckspeed) end
-	--- setDuckSpeed - server - libs_sh/players.lua#L704
-	---@param newduckspeed number New Duck speed, This is a multiplier from 0 to 1.
-	function _G.Player:setDuckSpeed(newduckspeed) end
-	--- stripWeapons - server - libs_sh/players.lua#L580
-	function _G.Player:stripWeapons() end
-	--- isCP - shared - libs_sh/darkrp2.lua#L1046
-	---@return boolean undefined Whether this player is a part of the police force.
-	function _G.Player:isCP() end
-	--- getJumpPower - shared - libs_sh/players.lua#L203
-	---@return number undefined Jump Power value
-	function _G.Player:getJumpPower() end
-	--- dropWeapon - server - libs_sh/players.lua#L550
-	---@param weapon Weapon|string The weapon instance or class name of the weapon to drop
-	---@param target Vector? If set, launches the weapon at the given position
-	---@param velocity Vector? If set and target is unset, launches the weapon with the given velocity
-	function _G.Player:dropWeapon(weapon, target, velocity) end
-	--- setRunSpeed - server - libs_sh/players.lua#L744
-	---@param newrunspeed number New Run speed.
-	function _G.Player:setRunSpeed(newrunspeed) end
-	--- isFlashlightOn - shared - libs_sh/players.lua#L238
-	---@return boolean undefined True if player has flashlight on
-	function _G.Player:isFlashlightOn() end
-	--- getPocketItems - shared - libs_sh/darkrp2.lua#L1009
-	---@return table undefined A table containing information about the items in the pocket.
-	function _G.Player:getPocketItems() end
-	--- isInRoom - client - libs_sh/darkrp2.lua#L959
-	---@return boolean undefined Whether this player is in the same room.
-	function _G.Player:isInRoom() end
-	--- isTyping - shared - libs_sh/players.lua#L487
-	---@return boolean undefined Whether they are typing in the chat
-	function _G.Player:isTyping() end
-	--- setAmmo - server - libs_sh/players.lua#L588
-	---@param amount number The ammo value
-	---@param ammoType number|string Ammo type id or name
-	function _G.Player:setAmmo(amount, ammoType) end
-	--- say - server - libs_sh/players.lua#L659
-	---@param text string The text to force the player to say
-	---@param teamOnly boolean? Team chat only?, Defaults to false.
-	function _G.Player:say(text, teamOnly) end
-	--- getFrags - shared - libs_sh/players.lua#L252
-	---@return number undefined Amount of kills
-	function _G.Player:getFrags() end
-	--- setSlowWalkSpeed - server - libs_sh/players.lua#L754
-	---@param newslowwalkspeed number New Slow Walk speed.
-	function _G.Player:setSlowWalkSpeed(newslowwalkspeed) end
-	--- keysUnOwnAll - server - libs_sh/darkrp2.lua#L907
-	function _G.Player:keysUnOwnAll() end
-	--- getTimeoutSeconds - server - libs_sh/players.lua#L645
-	---@return number undefined Timeout seconds
-	function _G.Player:getTimeoutSeconds() end
-	--- getWeapons - shared - libs_sh/players.lua#L436
-	---@return table undefined Table of weapons
-	function _G.Player:getWeapons() end
-	--- getAmmoCount - shared - libs_sh/players.lua#L477
-	---@param idOrName string|number The string ammo name or number id of the ammo
-	---@return number undefined The amount of ammo player has in reserve.
-	function _G.Player:getAmmoCount(idOrName) end
-	--- getWeapon - shared - libs_sh/players.lua#L443
-	---@param wep string Weapon class name
-	---@return Weapon undefined Weapon
-	function _G.Player:getWeapon(wep) end
-	--- setFriction - server - libs_sh/players.lua#L794
-	---@param newfriction number New Friction.
-	function _G.Player:setFriction(newfriction) end
-	--- getPacketLoss - server - libs_sh/players.lua#L631
-	---@return number undefined Packets lost
-	function _G.Player:getPacketLoss() end
-	--- setEyeAngles - server - libs_sh/players.lua#L619
-	---@param ang Angle New angles
-	function _G.Player:setEyeAngles(ang) end
-	--- isAdmin - shared - libs_sh/players.lua#L315
-	---@return boolean undefined True if player is admin
-	function _G.Player:isAdmin() end
-	--- getName - shared - libs_sh/players.lua#L280
-	---@return string undefined Name
-	function _G.Player:getName() end
-	--- isWanted - shared - libs_sh/darkrp2.lua#L1070
-	---@return boolean? undefined Whether this player is wanted. May be nil instead of false.
-	function _G.Player:isWanted() end
-	--- stripAmmo - server - libs_sh/players.lua#L604
-	function _G.Player:stripAmmo() end
-	--- hasGodMode - server - libs_sh/players.lua#L543
-	---@return boolean undefined True if the player has godmode
-	function _G.Player:hasGodMode() end
-	--- setViewEntity - server - libs_sh/players.lua#L533
-	---@param ent Entity Entity to set the player's view entity to, or nothing to reset it
-	function _G.Player:setViewEntity(ent) end
-	--- canAfford - shared - libs_sh/darkrp2.lua#L969
-	---@param amount number The amount of money
-	---@return boolean undefined Whether the player can afford it
-	function _G.Player:canAfford(amount) end
-	--- getUnDuckSpeed - shared - libs_sh/players.lua#L161
-	---@return number undefined UnDuck Speed value
-	function _G.Player:getUnDuckSpeed() end
-	--- getDeathRagdoll - shared - libs_sh/players.lua#L509
-	---@return Entity? undefined The entity or nil if it doesn't exist
-	function _G.Player:getDeathRagdoll() end
-	--- isSprinting - shared - libs_sh/players.lua#L494
-	---@return boolean undefined Whether they are sprinting
-	function _G.Player:isSprinting() end
-	--- canKeysLock - shared - libs_sh/darkrp2.lua#L977
-	---@param door Entity The door
-	---@return boolean? undefined Whether the player is allowed to lock the door. May be nil instead of false.
-	function _G.Player:canKeysLock(door) end
-	--- getRunSpeed - shared - libs_sh/players.lua#L182
-	---@return number undefined Run Speed value
-	function _G.Player:getRunSpeed() end
-	--- getViewEntity - shared - libs_sh/players.lua#L415
-	---@return Entity undefined Player's current view entity
-	function _G.Player:getViewEntity() end
-	--- giveMoney - server - libs_sh/darkrp2.lua#L942
-	---@param amount number The amount of money to give.
-	function _G.Player:giveMoney(amount) end
-	--- setAnimationLoop - client - libs_sh/players.lua#L1052
-	---@param loop boolean Should the animation loop?
-	function _G.Player:setAnimationLoop(loop) end
-	--- setArmor - server - libs_sh/players.lua#L674
-	---@param newarmor number New armor value.
-	function _G.Player:setArmor(newarmor) end
-	--- getSteamID64 - shared - libs_sh/players.lua#L372
-	---@param owner boolean? Return the actual game owner account id
-	---@return string undefined SteamID64 aka Community ID
-	function _G.Player:getSteamID64(owner) end
-	--- getFriendStatus - client - libs_sh/players.lua#L816
-	---@return string undefined One of: "friend", "blocked", "none", "requested"
-	function _G.Player:getFriendStatus() end
-	--- lastHitGroup - server - libs_sh/players.lua#L612
-	---@return number undefined Hitgroup, see https://wiki.facepunch.com/gmod/Enums/HITGROUP
-	function _G.Player:lastHitGroup() end
-	--- isArrested - shared - libs_sh/darkrp2.lua#L1028
-	---@return boolean? undefined Whether this player is arrested. May be nil instead of false.
-	function _G.Player:isArrested() end
-	--- inVehicle - shared - libs_sh/players.lua#L301
-	---@return boolean undefined True if player in vehicle
-	function _G.Player:inVehicle() end
-	--- getCrouchedWalkSpeed - shared - libs_sh/players.lua#L147
-	---@return number undefined Crouch Walk Speed value
-	function _G.Player:getCrouchedWalkSpeed() end
-	--- isAlive - shared - libs_sh/players.lua#L126
-	---@return boolean undefined True if player alive
-	function _G.Player:isAlive() end
-	--- hasDarkRPPrivilege - shared - libs_sh/darkrp2.lua#L1021
-	---@return boolean undefined Whether the player has the privilege.
-	function _G.Player:hasDarkRPPrivilege() end
-	--- setModelScale - server - libs_sh/players.lua#L516
-	---@param scale number The scale to apply, will be truncated to the first two decimal places (min 0.01, max 100)
-	function _G.Player:setModelScale(scale) end
-	--- getWantedReason - shared - libs_sh/darkrp2.lua#L1015
-	---@return string? undefined The reason, or nil if not wanted
-	function _G.Player:getWantedReason() end
-	--- isBot - shared - libs_sh/players.lua#L322
-	---@return boolean undefined True if player is a bot
-	function _G.Player:isBot() end
-	--- getDeaths - shared - libs_sh/players.lua#L231
-	---@return number undefined Amount of deaths
-	function _G.Player:getDeaths() end
-	--- getDuckSpeed - shared - libs_sh/players.lua#L154
-	---@return number undefined Duck Speed value
-	function _G.Player:getDuckSpeed() end
-	--- getTimeConnected - server - libs_sh/players.lua#L638
-	---@return number undefined Time connected
-	function _G.Player:getTimeConnected() end
-	--- getEntityInUse - shared - libs_sh/players.lua#L287
-	---@return Entity undefined Entity
-	function _G.Player:getEntityInUse() end
-	--- isMayor - shared - libs_sh/darkrp2.lua#L1058
-	---@return boolean? undefined Whether this player is the Mayor. May be nil instead of false.
-	function _G.Player:isMayor() end
-	--- getPlayerColor - shared - libs_sh/players.lua#L461
-	---@return Vector undefined The color
-	function _G.Player:getPlayerColor() end
-	--- getFriction - shared - libs_sh/players.lua#L210
-	---@return number undefined Friction value
-	function _G.Player:getFriction() end
-	--- getStepSize - shared - libs_sh/players.lua#L217
-	---@return number undefined Step Size Value
-	function _G.Player:getStepSize() end
-	--- getArmor - shared - libs_sh/players.lua#L133
-	---@return number undefined Armor
-	function _G.Player:getArmor() end
-	--- getAimVector - shared - libs_sh/players.lua#L266
-	---@return Vector undefined Aim vector
-	function _G.Player:getAimVector() end
-	--- getFOV - shared - libs_sh/players.lua#L273
-	---@return number undefined Field of view as a float
-	function _G.Player:getFOV() end
-	--- canKeysUnlock - shared - libs_sh/darkrp2.lua#L984
-	---@param door Entity The door
-	---@return boolean? undefined Whether the player is allowed to unlock the door. May be nil instead of false.
-	function _G.Player:canKeysUnlock(door) end
-	--- setCrouchedWalkSpeed - server - libs_sh/players.lua#L694
-	---@param newcwalkspeed number New Crouch Walk speed, This is a multiplier from 0 to 1.
-	function _G.Player:setCrouchedWalkSpeed(newcwalkspeed) end
-	--- isCook - shared - libs_sh/darkrp2.lua#L1040
-	---@return boolean? undefined Whether this player is a cook. May be nil instead of false.
-	function _G.Player:isCook() end
-	--- getActiveWeapon - shared - libs_sh/players.lua#L259
-	---@return Weapon undefined The weapon
-	function _G.Player:getActiveWeapon() end
-	--- setGestureWeight - client - libs_sh/players.lua#L887
-	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
-	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
-	function _G.Player:setGestureWeight(slot, weight) end
+---  StringStream type
+---@class StringStream
+_G.StringStream = {}
+	--- writeInt32 - shared - libs_sh/bit.lua#L474
+	---@param x number Int32 to write
+	function _G.StringStream:writeInt32(x) end
+	--- writeEntity - shared - libs_sh/bit.lua#L520
+	---@param e Entity The entity to be written
+	function _G.StringStream:writeEntity(e) end
+	--- readUInt32 - shared - libs_sh/bit.lua#L349
+	---@return number undefined UInt32 at this position
+	function _G.StringStream:readUInt32() end
+	--- readUInt16 - shared - libs_sh/bit.lua#L338
+	---@return number undefined UInt16 at this position
+	function _G.StringStream:readUInt16() end
+	--- read - shared - libs_sh/bit.lua#L224
+	---@param length number How many bytes to read
+	---@return string undefined A string containing the bytes
+	function _G.StringStream:read(length) end
+	--- writeFloat - shared - libs_sh/bit.lua#L493
+	---@param x number The float to write
+	function _G.StringStream:writeFloat(x) end
+	--- seek - shared - libs_sh/bit.lua#L254
+	---@param pos number Position to seek to
+	function _G.StringStream:seek(pos) end
+	--- getString - shared - libs_sh/bit.lua#L549
+	---@return string undefined The buffer as a string
+	function _G.StringStream:getString() end
+	--- readEntity - shared - libs_sh/bit.lua#L530
+	---@param callback function? (Client only) optional callback to be ran whenever the entity becomes valid; returns nothing if this is used. The callback passes the entity if it succeeds or nil if it fails.
+	---@return Entity undefined The entity that was read
+	function _G.StringStream:readEntity(callback) end
+	--- writeDouble - shared - libs_sh/bit.lua#L503
+	---@param x number The double to write
+	function _G.StringStream:writeDouble(x) end
+	--- tell - shared - libs_sh/bit.lua#L309
+	---@return number undefined The buffer position
+	function _G.StringStream:tell() end
+	--- writeUInt32 - shared - libs_sh/bit.lua#L487
+	---@param x number UInt32 to write
+	function _G.StringStream:writeUInt32(x) end
+	--- readInt8 - shared - libs_sh/bit.lua#L360
+	---@return number undefined Int8 at this position
+	function _G.StringStream:readInt8() end
+	--- readFloat - shared - libs_sh/bit.lua#L384
+	---@return number undefined Float32 at this position
+	function _G.StringStream:readFloat() end
+	--- readInt16 - shared - libs_sh/bit.lua#L368
+	---@return number undefined Int16 at this position
+	function _G.StringStream:readInt16() end
+	--- setEndian - shared - libs_sh/bit.lua#L179
+	---@param endian string The endianness of number types. "big" or "little" (default "little")
+	function _G.StringStream:setEndian(endian) end
+	--- writeUInt8 - shared - libs_sh/bit.lua#L449
+	---@param x number UInt8 to write
+	function _G.StringStream:writeUInt8(x) end
+	--- readUInt8 - shared - libs_sh/bit.lua#L329
+	---@return number undefined UInt8 at this position
+	function _G.StringStream:readUInt8() end
+	--- writeInt16 - shared - libs_sh/bit.lua#L455
+	---@param x number Int16 to write
+	function _G.StringStream:writeInt16(x) end
+	--- writeInt8 - shared - libs_sh/bit.lua#L441
+	---@param x number Int8 to write
+	function _G.StringStream:writeInt8(x) end
+	--- readString - shared - libs_sh/bit.lua#L434
+	---@return string undefined The string of bytes read
+	function _G.StringStream:readString() end
+	--- size - shared - libs_sh/bit.lua#L319
+	---@return number undefined The buffer size
+	function _G.StringStream:size() end
+	--- readDouble - shared - libs_sh/bit.lua#L394
+	---@return number undefined Double at this position
+	function _G.StringStream:readDouble() end
+	--- readInt32 - shared - libs_sh/bit.lua#L376
+	---@return number undefined Int32 at this position
+	function _G.StringStream:readInt32() end
+	--- skip - shared - libs_sh/bit.lua#L272
+	---@param length number The offset
+	function _G.StringStream:skip(length) end
+	--- writeString - shared - libs_sh/bit.lua#L513
+	---@param str string The string of bytes to write
+	function _G.StringStream:writeString(str) end
+	--- readUntil - shared - libs_sh/bit.lua#L404
+	---@param byte number The byte to read until (in number form)
+	---@return string undefined The string of bytes read
+	function _G.StringStream:readUntil(byte) end
+	--- write - shared - libs_sh/bit.lua#L191
+	---@param data string A string of data to write
+	function _G.StringStream:write(data) end
+	--- writeUInt16 - shared - libs_sh/bit.lua#L468
+	---@param x number UInt16 to write
+	function _G.StringStream:writeUInt16(x) end
 ---  Entity type
 ---@class Entity
 ---@operator tostring:string
@@ -9659,99 +9766,22 @@ _G.Entity = {}
 	---@param index number Number index of the sub material
 	---@return string undefined String material
 	function _G.Entity:getSubMaterial(index) end
----  StringStream type
----@class StringStream
-_G.StringStream = {}
-	--- writeInt32 - shared - libs_sh/bit.lua#L474
-	---@param x number Int32 to write
-	function _G.StringStream:writeInt32(x) end
-	--- writeEntity - shared - libs_sh/bit.lua#L520
-	---@param e Entity The entity to be written
-	function _G.StringStream:writeEntity(e) end
-	--- readUInt32 - shared - libs_sh/bit.lua#L349
-	---@return number undefined UInt32 at this position
-	function _G.StringStream:readUInt32() end
-	--- readUInt16 - shared - libs_sh/bit.lua#L338
-	---@return number undefined UInt16 at this position
-	function _G.StringStream:readUInt16() end
-	--- read - shared - libs_sh/bit.lua#L224
-	---@param length number How many bytes to read
-	---@return string undefined A string containing the bytes
-	function _G.StringStream:read(length) end
-	--- writeFloat - shared - libs_sh/bit.lua#L493
-	---@param x number The float to write
-	function _G.StringStream:writeFloat(x) end
-	--- seek - shared - libs_sh/bit.lua#L254
-	---@param pos number Position to seek to
-	function _G.StringStream:seek(pos) end
-	--- getString - shared - libs_sh/bit.lua#L549
-	---@return string undefined The buffer as a string
-	function _G.StringStream:getString() end
-	--- readEntity - shared - libs_sh/bit.lua#L530
-	---@param callback function? (Client only) optional callback to be ran whenever the entity becomes valid; returns nothing if this is used. The callback passes the entity if it succeeds or nil if it fails.
-	---@return Entity undefined The entity that was read
-	function _G.StringStream:readEntity(callback) end
-	--- writeDouble - shared - libs_sh/bit.lua#L503
-	---@param x number The double to write
-	function _G.StringStream:writeDouble(x) end
-	--- tell - shared - libs_sh/bit.lua#L309
-	---@return number undefined The buffer position
-	function _G.StringStream:tell() end
-	--- writeUInt32 - shared - libs_sh/bit.lua#L487
-	---@param x number UInt32 to write
-	function _G.StringStream:writeUInt32(x) end
-	--- readInt8 - shared - libs_sh/bit.lua#L360
-	---@return number undefined Int8 at this position
-	function _G.StringStream:readInt8() end
-	--- readFloat - shared - libs_sh/bit.lua#L384
-	---@return number undefined Float32 at this position
-	function _G.StringStream:readFloat() end
-	--- readInt16 - shared - libs_sh/bit.lua#L368
-	---@return number undefined Int16 at this position
-	function _G.StringStream:readInt16() end
-	--- setEndian - shared - libs_sh/bit.lua#L179
-	---@param endian string The endianness of number types. "big" or "little" (default "little")
-	function _G.StringStream:setEndian(endian) end
-	--- writeUInt8 - shared - libs_sh/bit.lua#L449
-	---@param x number UInt8 to write
-	function _G.StringStream:writeUInt8(x) end
-	--- readUInt8 - shared - libs_sh/bit.lua#L329
-	---@return number undefined UInt8 at this position
-	function _G.StringStream:readUInt8() end
-	--- writeInt16 - shared - libs_sh/bit.lua#L455
-	---@param x number Int16 to write
-	function _G.StringStream:writeInt16(x) end
-	--- writeInt8 - shared - libs_sh/bit.lua#L441
-	---@param x number Int8 to write
-	function _G.StringStream:writeInt8(x) end
-	--- readString - shared - libs_sh/bit.lua#L434
-	---@return string undefined The string of bytes read
-	function _G.StringStream:readString() end
-	--- size - shared - libs_sh/bit.lua#L319
-	---@return number undefined The buffer size
-	function _G.StringStream:size() end
-	--- readDouble - shared - libs_sh/bit.lua#L394
-	---@return number undefined Double at this position
-	function _G.StringStream:readDouble() end
-	--- readInt32 - shared - libs_sh/bit.lua#L376
-	---@return number undefined Int32 at this position
-	function _G.StringStream:readInt32() end
-	--- skip - shared - libs_sh/bit.lua#L272
-	---@param length number The offset
-	function _G.StringStream:skip(length) end
-	--- writeString - shared - libs_sh/bit.lua#L513
-	---@param str string The string of bytes to write
-	function _G.StringStream:writeString(str) end
-	--- readUntil - shared - libs_sh/bit.lua#L404
-	---@param byte number The byte to read until (in number form)
-	---@return string undefined The string of bytes read
-	function _G.StringStream:readUntil(byte) end
-	--- write - shared - libs_sh/bit.lua#L191
-	---@param data string A string of data to write
-	function _G.StringStream:write(data) end
-	--- writeUInt16 - shared - libs_sh/bit.lua#L468
-	---@param x number UInt16 to write
-	function _G.StringStream:writeUInt16(x) end
+---  A constraint entity returned by constraint functions
+---@class Constraint
+---@operator tostring:string
+_G.Constraint = {}
+	--- remove - server - libs_sv/constraint.lua#L71
+	function _G.Constraint:remove() end
+	--- isValid - server - libs_sv/constraint.lua#L85
+	---@return boolean undefined True if valid, false if not
+	function _G.Constraint:isValid() end
+---  Mesh type
+---@class Mesh
+_G.Mesh = {}
+	--- destroy - client - libs_sh/mesh.lua#L1133
+	function _G.Mesh:destroy() end
+	--- draw - client - libs_sh/mesh.lua#L1122
+	function _G.Mesh:draw() end
 ---  Npc type
 ---@class Npc
 _G.Npc = {}
@@ -9788,36 +9818,6 @@ _G.Npc = {}
 	--- setEnemy - server - libs_sh/npc.lua#L105
 	---@param ent Entity Target entity
 	function _G.Npc:setEnemy(ent) end
----  A constraint entity returned by constraint functions
----@class Constraint
----@operator tostring:string
-_G.Constraint = {}
-	--- remove - server - libs_sv/constraint.lua#L71
-	function _G.Constraint:remove() end
-	--- isValid - server - libs_sv/constraint.lua#L85
-	---@return boolean undefined True if valid, false if not
-	function _G.Constraint:isValid() end
----  The Markup type is used to easily format and draw text. Use render.parseMarkup(str, maxwidth) to create one.
----@class Markup
-_G.Markup = {}
-	--- getSize - client - libs_cl/render.lua#L1909
-	---@return number undefined The width of the object
-	---@return number undefined The height of the object
-	function _G.Markup:getSize() end
-	--- draw - client - libs_cl/render.lua#L1885
-	---@param x number number The x offset
-	---@param y number number The x offset
-	---@param xAlign number? number The x TEXT_ALIGN. Default TEXT_ALIGN.LEFT
-	---@param yAlign number? number The y TEXT_ALIGN. Default TEXT_ALIGN.TOP
-	---@param alpha number? The alpha to draw it with. Default 255
-	---@param contentAlign number? The content alignment TEXT_ALIGN. Default TEXT_ALIGN.LEFT
-	function _G.Markup:draw(x, y, xAlign, yAlign, alpha, contentAlign) end
-	--- getWidth - client - libs_cl/render.lua#L1897
-	---@return number undefined The width of the object
-	function _G.Markup:getWidth() end
-	--- getHeight - client - libs_cl/render.lua#L1903
-	---@return number undefined The height of the object
-	function _G.Markup:getHeight() end
 ---  Color type
 ---@class Color
 ---@operator mul(number|Color):Color

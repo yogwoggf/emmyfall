@@ -3184,7 +3184,7 @@ _G.debug = {}
 --- light
 ---  Light library.
 _G.light = {}
-	--- create - client - libs_cl/light.lua#L107
+	--- create - client - libs_cl/light.lua#L105
 	---@param pos Vector The position of the light
 	---@param size number The size of the light. Must be lower than sf_light_maxsize
 	---@param brightness number The brightness of the light
@@ -7836,45 +7836,45 @@ _G.Hologram = {}
 ---  Light type
 ---@class Light
 _G.Light = {}
-	--- setNoWorld - client - libs_cl/light.lua#L203
+	--- setNoWorld - client - libs_cl/light.lua#L201
 	---@param on boolean Whether the light shouldn't cast onto the world
 	function _G.Light:setNoWorld(on) end
-	--- setOuterAngle - client - libs_cl/light.lua#L189
+	--- setOuterAngle - client - libs_cl/light.lua#L187
 	---@param ang number Outer angle of the light
 	function _G.Light:setOuterAngle(ang) end
-	--- setInnerAngle - client - libs_cl/light.lua#L182
+	--- setInnerAngle - client - libs_cl/light.lua#L180
 	---@param ang number Inner angle of the light
 	function _G.Light:setInnerAngle(ang) end
-	--- setStyle - client - libs_cl/light.lua#L230
+	--- setStyle - client - libs_cl/light.lua#L228
 	---@param style number The number of the flicker style
 	function _G.Light:setStyle(style) end
-	--- setColor - client - libs_cl/light.lua#L237
+	--- setColor - client - libs_cl/light.lua#L235
 	---@param col Color The color of the light
 	function _G.Light:setColor(col) end
-	--- setBrightness - client - libs_cl/light.lua#L155
+	--- setBrightness - client - libs_cl/light.lua#L153
 	---@param brightness number The light's brightness
 	function _G.Light:setBrightness(brightness) end
-	--- setDieTime - client - libs_cl/light.lua#L169
+	--- setDieTime - client - libs_cl/light.lua#L167
 	---@param dietime number The how long the light will stay alive after turning it off.
 	function _G.Light:setDieTime(dietime) end
-	--- draw - client - libs_cl/light.lua#L135
+	--- draw - client - libs_cl/light.lua#L133
 	function _G.Light:draw() end
-	--- setSize - client - libs_cl/light.lua#L223
+	--- setSize - client - libs_cl/light.lua#L221
 	---@param size number The size of the light
 	function _G.Light:setSize(size) end
-	--- setMinLight - client - libs_cl/light.lua#L196
+	--- setMinLight - client - libs_cl/light.lua#L194
 	---@param min number The minimum light
 	function _G.Light:setMinLight(min) end
-	--- setDecay - client - libs_cl/light.lua#L162
+	--- setDecay - client - libs_cl/light.lua#L160
 	---@param decay number The light's decay speed
 	function _G.Light:setDecay(decay) end
-	--- setPos - client - libs_cl/light.lua#L217
+	--- setPos - client - libs_cl/light.lua#L215
 	---@param pos Vector The position of the light
 	function _G.Light:setPos(pos) end
-	--- setNoModel - client - libs_cl/light.lua#L210
+	--- setNoModel - client - libs_cl/light.lua#L208
 	---@param on boolean Whether the light shouldn't cast onto the models
 	function _G.Light:setNoModel(on) end
-	--- setDirection - client - libs_cl/light.lua#L176
+	--- setDirection - client - libs_cl/light.lua#L174
 	---@param dir Vector Direction of the light
 	function _G.Light:setDirection(dir) end
 ---  ParticleEffect type

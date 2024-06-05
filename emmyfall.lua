@@ -1474,9 +1474,9 @@ _G.bit = {}
 	---@return number undefined Return of bitwise lshift operation
 	function _G.bit.lshift(value, shiftCount) end
 	--- stringstream - shared - libs_sh/bit.lua#L648
-	---@param stream string String to set the initial buffer to (default "")
-	---@param i number The initial buffer pointer (default 1)
-	---@param endian string The endianness of number types. "big" or "little" (default "little")
+	---@param stream string? String to set the initial buffer to (default "")
+	---@param i number? The initial buffer pointer (default 1)
+	---@param endian string? The endianness of number types. "big" or "little" (default "little")
 	---@return StringStream undefined StringStream object
 	function _G.bit.stringstream(stream, i, endian) end
 	--- sha256 - shared - libs_sh/bit.lua#L729
@@ -3013,12 +3013,12 @@ _G["CLIENT"] = nil
 	---@param level number? Which level in the stacktrace to blame. Defaults to 1. 0 for no stacktrace.
 	function _G.error(msg, level) end
 	--- Color - shared - libs_sh/color.lua#L64
-	---@param r number Red or string hexadecimal color
-	---@param g number Green
-	---@param b number Blue
-	---@param a number Alpha
+	---@param number any |string? r Red component or string hexadecimal color. Defaults to 255.
+	---@param g number? Green component. Defaults to 255.
+	---@param b number? Blue component. Defaults to 255.
+	---@param a number? Alpha component. Defaults to 255.
 	---@return Color undefined New color
-	function _G.Color(r, g, b, a) end
+	function _G.Color(number, g, b, a) end
 	--- loadstring - shared - libs_sh/builtins.lua#L883
 	---@param code string String to compile
 	---@param identifier string? Name of compiled function

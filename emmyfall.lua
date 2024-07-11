@@ -56,7 +56,7 @@
 ---| '"postdraw2dskybox"' #  Called right after the 2D skybox has been drawn - allowing you to draw over it.
 ---| '"ComponentUnlinked"' #  Called when a component is unlinked to the starfall
 ---| '"predrawskybox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
----| '"PlayerChangename"' #  Called when a player changes their Steam name. (Game Event)
+---| '"StarfallError"' #  Called when starfall chip errors
 ---| '"predrawviewmodels"' #  Called before drawing the viewmodel rendergroup (3D Context)
 ---| '"starfallUsed"' #  Called when a player uses the screen
 ---| '"render"' #  Called when a frame is requested to be drawn on screen. (2D/3D Context)
@@ -74,7 +74,7 @@
 ---| '"PlayerFootstep"' #  Called whenever a player steps
 ---| '"renderscene"' #  Called when a scene is requested to be drawn. This is used for the render.renderview function.
 ---| '"predrawopaquerenderables"' #  Called before opaque entities are drawn. (Only works with HUD) (3D context)
----| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
+---| '"PlayerChangename"' #  Called when a player changes their Steam name. (Game Event)
 ---| '"OnPlayerJump"' #  Called when a player jumps.
 ---| '"resetLaws"' #  Called when laws are reset. DarkRP only. Usually the only hook called when /resetlaws is used.
 ---| '"VRInput"' #  This gets called every time a boolean controller input action changes state
@@ -90,8 +90,8 @@
 ---| '"ComponentLinked"' #  Called when a component is linked to the starfall
 ---| '"lockdownEnded"' #  Called when a lockdown has ended. DarkRP only.
 ---| '"PlayerDisconnect"' #  Called when a player disconnects from the server. (Game Event)
----| '"StarfallError"' #  Called when starfall chip errors
 ---| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
+---| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
 ---| '"VRPreRender"' #  Called before rendering the game. Any code that you want to run once per frame should be put here. HUD is required.
 ---| '"EntityTakeDamage"' #  Called when an entity is damaged
 ---| '"setupworldfog"' #  Called when world fog is drawn.
@@ -170,21 +170,21 @@ _G.bass = {}
 --- hook
 ---  Deals with hooks
 _G.hook = {}
-	--- run - shared - libs_sh/hook.lua#L653
+	--- run - shared - libs_sh/hook.lua#L664
 	---@param hookname string The hook name
 	---@param arguments ... Arguments to pass to the hook
 	---@return ... undefined returns Return result(s) of the hook ran
 	function _G.hook.run(hookname, arguments) end
-	--- add - shared - libs_sh/hook.lua#L633
+	--- add - shared - libs_sh/hook.lua#L644
 	---@param hookname hooks Name of the event
 	---@param name string Unique identifier
 	---@param func function Function to run
 	function _G.hook.add(hookname, name, func) end
-	--- remove - shared - libs_sh/hook.lua#L722
+	--- remove - shared - libs_sh/hook.lua#L733
 	---@param hookname string The hook name
 	---@param name string The unique name for this hook
 	function _G.hook.remove(hookname, name) end
-	--- runRemote - shared - libs_sh/hook.lua#L685
+	--- runRemote - shared - libs_sh/hook.lua#L696
 	---@param recipient Entity? Starfall entity to call the hook on. Nil to run on every starfall entity
 	---@param payload ... Parameters that will be passed when calling hook functions
 	---@return table undefined A list of the resultset of each called hook

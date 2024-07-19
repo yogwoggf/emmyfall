@@ -7142,32 +7142,35 @@ _G.Player = {}
 	--- getVehicle - shared - libs_sh/players.lua#L308
 	---@return Vehicle undefined Vehicle if player in vehicle or nil
 	function _G.Player:getVehicle() end
-	--- getTeam - shared - libs_sh/players.lua#L380
-	---@return number undefined Team Index, from TEAM enums or custom teams
-	function _G.Player:getTeam() end
-	--- getAnimationProgress - client - libs_sh/players.lua#L1094
+	--- setAnimationTime - client - libs_sh/players.lua#L1003
+	---@param time number The time of the animation in seconds. Float
+	function _G.Player:setAnimationTime(time) end
+	--- getAnimationProgress - client - libs_sh/players.lua#L1105
 	---@return number undefined Progress ranging 0-1
 	function _G.Player:getAnimationProgress() end
+	--- isPlayingAnimation - client - libs_sh/players.lua#L1097
+	---@return boolean undefined If an animation is playing
+	function _G.Player:isPlayingAnimation() end
 	--- setWalkSpeed - server - libs_sh/players.lua#L764
 	---@param newwalkspeed number New Walk speed.
 	function _G.Player:setWalkSpeed(newwalkspeed) end
-	--- isPlayingAnimation - client - libs_sh/players.lua#L1086
-	---@return boolean undefined If an animation is playing
-	function _G.Player:isPlayingAnimation() end
-	--- setAnimationRange - client - libs_sh/players.lua#L1067
+	--- setAnimationRange - client - libs_sh/players.lua#L1078
 	---@param min number Min. Ranging from 0-1
 	---@param max number Max. Ranging from 0-1
 	function _G.Player:setAnimationRange(min, max) end
-	--- isNoclipped - shared - libs_sh/players.lua#L245
-	---@return boolean undefined True if the player is noclipped
-	function _G.Player:isNoclipped() end
 	--- getGroundEntity - shared - libs_sh/players.lua#L463
 	---@return Entity undefined Ground entity
 	function _G.Player:getGroundEntity() end
+	--- isNoclipped - shared - libs_sh/players.lua#L245
+	---@return boolean undefined True if the player is noclipped
+	function _G.Player:isNoclipped() end
+	--- setAnimationBounce - client - libs_sh/players.lua#L1048
+	---@param bounce boolean Should the animation bounce instead of loop?
+	function _G.Player:setAnimationBounce(bounce) end
 	--- getSteamID - shared - libs_sh/players.lua#L358
 	---@return string undefined SteamID
 	function _G.Player:getSteamID() end
-	--- isMuted - client - libs_sh/players.lua#L824
+	--- isMuted - client - libs_sh/players.lua#L835
 	---@return boolean undefined True if the player was muted
 	function _G.Player:isMuted() end
 	--- isCrouching - shared - libs_sh/players.lua#L224
@@ -7182,25 +7185,25 @@ _G.Player = {}
 	--- stripWeapon - server - libs_sh/players.lua#L563
 	---@param weapon string The weapon class name of the weapon to strip
 	function _G.Player:stripWeapon(weapon) end
-	--- setAnimationBounce - client - libs_sh/players.lua#L1037
-	---@param bounce boolean Should the animation bounce instead of loop?
-	function _G.Player:setAnimationBounce(bounce) end
+	--- setAnimationAutoAdvance - client - libs_sh/players.lua#L1033
+	---@param auto_advance boolean Should the animation handle advancing itself?
+	function _G.Player:setAnimationAutoAdvance(auto_advance) end
 	--- getWalkSpeed - shared - libs_sh/players.lua#L196
 	---@return number undefined Walk Speed value
 	function _G.Player:getWalkSpeed() end
 	--- isHitman - shared - libs_sh/darkrp2.lua#L1052
 	---@return boolean? undefined Whether this player is a hitman. May be nil instead of false.
 	function _G.Player:isHitman() end
-	--- setAnimationAutoAdvance - client - libs_sh/players.lua#L1022
-	---@param auto_advance boolean Should the animation handle advancing itself?
-	function _G.Player:setAnimationAutoAdvance(auto_advance) end
+	--- resetGesture - client - libs_sh/players.lua#L886
+	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
+	function _G.Player:resetGesture(slot) end
 	--- getJobTable - shared - libs_sh/darkrp2.lua#L1003
 	---@return table undefined Table with the job information.
 	function _G.Player:getJobTable() end
 	--- getWeaponColor - shared - libs_sh/players.lua#L445
 	---@return Vector undefined The color
 	function _G.Player:getWeaponColor() end
-	--- getAnimationTime - client - libs_sh/players.lua#L1105
+	--- getAnimationTime - client - libs_sh/players.lua#L1116
 	---@return number undefined Time in seconds
 	function _G.Player:getAnimationTime() end
 	--- getViewPunchAngles - shared - libs_sh/players.lua#L423
@@ -7209,24 +7212,24 @@ _G.Player = {}
 	--- isHUDActive - server - libs_sh/players.lua#L519
 	---@return boolean undefined True if a HUD component is connected and active for the player, nil otherwise
 	function _G.Player:isHUDActive() end
-	--- setAnimationTime - client - libs_sh/players.lua#L992
-	---@param time number The time of the animation in seconds. Float
-	function _G.Player:setAnimationTime(time) end
+	--- isSpeaking - client - libs_sh/players.lua#L842
+	---@return boolean undefined Whether they are speaking and able to be heard by LocalPlayer
+	function _G.Player:isSpeaking() end
 	--- isWalking - shared - libs_sh/players.lua#L494
 	---@return boolean undefined Whether they are walking
 	function _G.Player:isWalking() end
 	--- isSuperAdmin - shared - libs_sh/players.lua#L336
 	---@return boolean undefined True if player is super admin
 	function _G.Player:isSuperAdmin() end
-	--- voiceVolume - client - libs_sh/players.lua#L838
-	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number. Doesn't work on local player unless the voice_loopback convar is set to 1.
-	function _G.Player:voiceVolume() end
+	--- setAnimationActivity - client - libs_sh/players.lua#L969
+	---@param activity number|string|nil Activity, nil to use the current animation sequence
+	function _G.Player:setAnimationActivity(activity) end
 	--- getUserID - shared - libs_sh/players.lua#L394
 	---@return number undefined UserID
 	function _G.Player:getUserID() end
-	--- setAnimationActivity - client - libs_sh/players.lua#L958
-	---@param activity number|string|nil Activity, nil to use the current animation sequence
-	function _G.Player:setAnimationActivity(activity) end
+	--- isTimingOut - server - libs_sh/players.lua#L645
+	---@return boolean undefined isTimingOut
+	function _G.Player:isTimingOut() end
 	--- isConnected - server - libs_sh/players.lua#L652
 	---@return boolean undefined True if player is connected
 	function _G.Player:isConnected() end
@@ -7237,10 +7240,7 @@ _G.Player = {}
 	--- getLadderClimbSpeed - shared - libs_sh/players.lua#L168
 	---@return number undefined Ladder Climb Speed value
 	function _G.Player:getLadderClimbSpeed() end
-	--- isTimingOut - server - libs_sh/players.lua#L645
-	---@return boolean undefined isTimingOut
-	function _G.Player:isTimingOut() end
-	--- setAnimation - client - libs_sh/players.lua#L901
+	--- setAnimation - client - libs_sh/players.lua#L912
 	---@param sequence number|string Sequence number or string name
 	---@param progress number? Optional float (Default 0), the progress of the animation. Ranging from 0-1
 	---@param rate number? Optional float (Default 1), the playback rate of the animation
@@ -7248,28 +7248,31 @@ _G.Player = {}
 	---@param auto_advance boolean? Optional boolean (Default true), should the animation handle advancing itself
 	---@param act number|string|nil Optional number or string name (Default sequence value), the activity the player should use
 	function _G.Player:setAnimation(sequence, progress, rate, loop, auto_advance, act) end
+	--- getTeam - shared - libs_sh/players.lua#L380
+	---@return number undefined Team Index, from TEAM enums or custom teams
+	function _G.Player:getTeam() end
 	--- getDarkRPVar - shared - libs_sh/darkrp2.lua#L991
 	---@param var string The name of the variable.
 	---@return any undefined The value of the DarkRP var.
 	function _G.Player:getDarkRPVar(var) end
-	--- setAnimationRate - client - libs_sh/players.lua#L1007
+	--- setAnimationRate - client - libs_sh/players.lua#L1018
 	---@param rate number The playback rate of the animation. Float
 	function _G.Player:setAnimationRate(rate) end
 	--- getTeamName - shared - libs_sh/players.lua#L387
 	---@return string undefined Team Name
 	function _G.Player:getTeamName() end
-	--- resetGesture - client - libs_sh/players.lua#L875
-	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
-	function _G.Player:resetGesture(slot) end
-	--- isChief - shared - libs_sh/darkrp2.lua#L1034
-	---@return boolean? undefined Whether this player is a Chief. May be nil instead of false.
-	function _G.Player:isChief() end
-	--- playGesture - client - libs_sh/players.lua#L845
+	--- playGesture - client - libs_sh/players.lua#L856
 	---@param animation string|number Sequence string or act number. https://wiki.facepunch.com/gmod/Enums/ACT
 	---@param loop boolean? Optional boolean (Default true), should the gesture loop
 	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
 	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
 	function _G.Player:playGesture(animation, loop, slot, weight) end
+	--- isChief - shared - libs_sh/darkrp2.lua#L1034
+	---@return boolean? undefined Whether this player is a Chief. May be nil instead of false.
+	function _G.Player:isChief() end
+	--- voiceVolume - client - libs_sh/players.lua#L849
+	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number. Doesn't work on local player unless the voice_loopback convar is set to 1.
+	function _G.Player:voiceVolume() end
 	--- getEyeTrace - shared - libs_sh/players.lua#L401
 	---@return table undefined Trace data https://wiki.facepunch.com/gmod/Structures/TraceResult
 	function _G.Player:getEyeTrace() end
@@ -7283,7 +7286,7 @@ _G.Player = {}
 	---@param callbackFailure function? Optional function to call if request fails.
 	---@param receiver Player? The player who may or may not receive the money, or the owner of the chip if not specified. Superuser only.
 	function _G.Player:requestMoney(message, amount, callbackSuccess, callbackFailure, receiver) end
-	--- setAnimationProgress - client - libs_sh/players.lua#L977
+	--- setAnimationProgress - client - libs_sh/players.lua#L988
 	---@param progress number The progress of the animation. Ranging from 0-1
 	function _G.Player:setAnimationProgress(progress) end
 	--- getMaxArmor - shared - libs_sh/players.lua#L140
@@ -7295,9 +7298,9 @@ _G.Player = {}
 	--- isFrozen - shared - libs_sh/players.lua#L329
 	---@return boolean undefined True if player is frozen
 	function _G.Player:isFrozen() end
-	--- isSpeaking - client - libs_sh/players.lua#L831
-	---@return boolean undefined Whether they are speaking and able to be heard by LocalPlayer
-	function _G.Player:isSpeaking() end
+	--- getShootPos - shared - libs_sh/players.lua#L294
+	---@return Vector undefined Shoot position
+	function _G.Player:getShootPos() end
 	--- setMaxSpeed - server - libs_sh/players.lua#L734
 	---@param newmaxspeed number New Max speed.
 	function _G.Player:setMaxSpeed(newmaxspeed) end
@@ -7305,13 +7308,12 @@ _G.Player = {}
 	---@param team number? The number of the job (e.g. TEAM_MEDIC). Uses the player's team if nil.
 	---@return number? undefined The time left on the team ban in seconds, or nil if not banned.
 	function _G.Player:teamBanTimeLeft(team) end
-	--- getShootPos - shared - libs_sh/players.lua#L294
-	---@return Vector undefined Shoot position
-	function _G.Player:getShootPos() end
-	--- keyDown - shared - libs_sh/players.lua#L805
+	--- keyDown - shared - libs_sh/players.lua#L816
 	---@param key number Key to check. IN_KEY table values
 	---@return boolean undefined Whether they key is down
 	function _G.Player:keyDown(key) end
+	--- kill - server - libs_sh/players.lua#L804
+	function _G.Player:kill() end
 	--- getMaxSpeed - shared - libs_sh/players.lua#L175
 	---@return number undefined Max Speed value
 	function _G.Player:getMaxSpeed() end
@@ -7324,7 +7326,7 @@ _G.Player = {}
 	--- setJumpPower - server - libs_sh/players.lua#L774
 	---@param newjumppower number New Jump Power.
 	function _G.Player:setJumpPower(newjumppower) end
-	--- resetAnimation - client - libs_sh/players.lua#L949
+	--- resetAnimation - client - libs_sh/players.lua#L960
 	function _G.Player:resetAnimation() end
 	--- getPing - shared - libs_sh/players.lua#L351
 	---@return number undefined The player's ping
@@ -7448,7 +7450,7 @@ _G.Player = {}
 	--- giveMoney - server - libs_sh/darkrp2.lua#L942
 	---@param amount number The amount of money to give.
 	function _G.Player:giveMoney(amount) end
-	--- setAnimationLoop - client - libs_sh/players.lua#L1052
+	--- setAnimationLoop - client - libs_sh/players.lua#L1063
 	---@param loop boolean Should the animation loop?
 	function _G.Player:setAnimationLoop(loop) end
 	--- setArmor - server - libs_sh/players.lua#L674
@@ -7458,7 +7460,7 @@ _G.Player = {}
 	---@param owner boolean? Return the actual game owner account id
 	---@return string undefined SteamID64 aka Community ID
 	function _G.Player:getSteamID64(owner) end
-	--- getFriendStatus - client - libs_sh/players.lua#L816
+	--- getFriendStatus - client - libs_sh/players.lua#L827
 	---@return string undefined One of: "friend", "blocked", "none", "requested"
 	function _G.Player:getFriendStatus() end
 	--- lastHitGroup - server - libs_sh/players.lua#L605
@@ -7534,7 +7536,7 @@ _G.Player = {}
 	--- getActiveWeapon - shared - libs_sh/players.lua#L259
 	---@return Weapon undefined The weapon
 	function _G.Player:getActiveWeapon() end
-	--- setGestureWeight - client - libs_sh/players.lua#L887
+	--- setGestureWeight - client - libs_sh/players.lua#L898
 	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
 	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
 	function _G.Player:setGestureWeight(slot, weight) end

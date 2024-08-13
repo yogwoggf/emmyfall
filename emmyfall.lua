@@ -5647,8 +5647,9 @@ _G.notification = {}
 	--- addProgress - client - libs_cl/notification.lua#L51
 	---@param id string String index of the notification
 	---@param text string The text to display
-	function _G.notification.addProgress(id, text) end
-	--- kill - client - libs_cl/notification.lua#L79
+	---@param progress number? An optional progress val 0-1 indicating progress.
+	function _G.notification.addProgress(id, text, progress) end
+	--- kill - client - libs_cl/notification.lua#L84
 	---@param id string String index of the notification to kill
 	function _G.notification.kill(id) end
 	--- addLegacy - client - libs_cl/notification.lua#L28

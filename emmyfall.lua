@@ -6196,7 +6196,7 @@ _G.timer = {}
 --- light
 ---  Light library.
 _G.light = {}
-	--- create - client - libs_cl/light.lua#L105
+	--- create - client - libs_cl/light.lua#L117
 	---@param pos Vector The position of the light
 	---@param size number The size of the light. Must be lower than sf_light_maxsize
 	---@param brightness number The brightness of the light
@@ -6451,26 +6451,26 @@ _G.string = {}
 --- sound
 ---  Sound library.
 _G.sound = {}
-	--- duration - shared - libs_sh/sound.lua#L107
+	--- duration - shared - libs_sh/sound.lua#L113
 	---@param path string String path to the sound file
 	---@return number undefined Number duration in seconds
 	function _G.sound.duration(path) end
 	--- emitSoundsLeft - shared - libs_sh/entities.lua#L298
 	---@return number undefined The number of sounds left
 	function _G.sound.emitSoundsLeft() end
-	--- soundsLeft - shared - libs_sh/sound.lua#L101
+	--- soundsLeft - shared - libs_sh/sound.lua#L107
 	---@return number undefined The number of sounds left
 	function _G.sound.soundsLeft() end
 	--- canEmitSound - shared - libs_sh/entities.lua#L292
 	---@return boolean undefined If it is possible to emit a sound
 	function _G.sound.canEmitSound() end
-	--- create - shared - libs_sh/sound.lua#L61
+	--- create - shared - libs_sh/sound.lua#L70
 	---@param ent Entity Entity to attach sound to.
 	---@param path string Filepath to the sound file.
 	---@param nofilter boolean? (Optional) Boolean Make the sound play for everyone regardless of range or location. Only affects Server-side sounds.
 	---@return Sound undefined Sound Object
 	function _G.sound.create(ent, path, nofilter) end
-	--- canCreate - shared - libs_sh/sound.lua#L95
+	--- canCreate - shared - libs_sh/sound.lua#L101
 	---@return boolean undefined If it is possible to make a sound
 	function _G.sound.canCreate() end
 --- darkrp
@@ -6760,7 +6760,7 @@ _G.NavArea = {}
 	---@param navDirType number The direction, in which to look for the connection. See NAV_DIR enums
 	---@return boolean undefined 
 	function _G.NavArea:isConnectedAtSide(other, navDirType) end
-	--- setParent - server - libs_sv/navmesh.lua#L689
+	--- setParent - server - libs_sv/navmesh.lua#L687
 	---@param parent NavArea The new parent to set
 	---@param how number How we get from parent to us using NAV_TRAVERSE_TYPE
 	function _G.NavArea:setParent(parent, how) end
@@ -6779,32 +6779,32 @@ _G.NavArea = {}
 	---@param other NavArea The nav area to test against.
 	---@return number undefined 
 	function _G.NavArea:computeGroundHeightChange(other) end
-	--- clearSearchLists - server - libs_sv/navmesh.lua#L751
+	--- clearSearchLists - server - libs_sv/navmesh.lua#L749
 	function _G.NavArea:clearSearchLists() end
 	--- isOpen - server - libs_sv/navmesh.lua#L239
 	---@return boolean undefined Whether this area is in the Open List.
 	function _G.NavArea:isOpen() end
-	--- addToOpenList - server - libs_sv/navmesh.lua#L744
+	--- addToOpenList - server - libs_sv/navmesh.lua#L742
 	function _G.NavArea:addToOpenList() end
-	--- addToClosedList - server - libs_sv/navmesh.lua#L739
+	--- addToClosedList - server - libs_sv/navmesh.lua#L737
 	function _G.NavArea:addToClosedList() end
 	--- getClosestPointOnArea - server - libs_sv/navmesh.lua#L397
 	---@param pos Vector The given position, can be outside of the NavArea bounds.
 	---@return Vector undefined The closest point on the NavArea.
 	function _G.NavArea:getClosestPointOnArea(pos) end
-	--- addHidingSpot - server - libs_sv/navmesh.lua#L724
+	--- addHidingSpot - server - libs_sv/navmesh.lua#L722
 	---@param pos Vector The position of the hiding spot on the nav area
 	---@param flags number Flags describing what kind of hiding spot this is.
 	function _G.NavArea:addHidingSpot(pos, flags) end
-	--- disconnect - server - libs_sv/navmesh.lua#L717
+	--- disconnect - server - libs_sv/navmesh.lua#L715
 	---@param other NavArea The other NavArea to disconnect from.
 	function _G.NavArea:disconnect(other) end
-	--- updateOnOpenList - server - libs_sv/navmesh.lua#L712
+	--- updateOnOpenList - server - libs_sv/navmesh.lua#L710
 	function _G.NavArea:updateOnOpenList() end
 	--- getAttributes - server - libs_sv/navmesh.lua#L383
 	---@return number undefined Attribute mask for this CNavArea, see NAV_MESH for the specific flags.
 	function _G.NavArea:getAttributes() end
-	--- setTotalCost - server - libs_sv/navmesh.lua#L705
+	--- setTotalCost - server - libs_sv/navmesh.lua#L703
 	---@param cost number The total cost of the path to set. (>= 0)
 	function _G.NavArea:setTotalCost(cost) end
 	--- computeDirection - server - libs_sv/navmesh.lua#L313
@@ -6817,14 +6817,14 @@ _G.NavArea = {}
 	--- placeOnGround - server - libs_sv/navmesh.lua#L636
 	---@param corner number The corner(s) to drop, uses NAV_CORNER enums
 	function _G.NavArea:placeOnGround(corner) end
-	--- connectTo - server - libs_sv/navmesh.lua#L756
+	--- connectTo - server - libs_sv/navmesh.lua#L754
 	---@param other NavArea The CNavArea this area leads to.
 	function _G.NavArea:connectTo(other) end
-	--- setPlace - server - libs_sv/navmesh.lua#L697
+	--- setPlace - server - libs_sv/navmesh.lua#L695
 	---@param place string? Place to set. Leave as nil to remove place from NavArea
 	---@return boolean undefined True if operation succeeded, false otherwise.
 	function _G.NavArea:setPlace(place) end
-	--- setCorner - server - libs_sv/navmesh.lua#L674
+	--- setCorner - server - libs_sv/navmesh.lua#L672
 	---@param corner number The corner to set, uses NAV_CORNER enums
 	---@param pos Vector The new position to set.
 	function _G.NavArea:setCorner(corner, pos) end
@@ -6851,10 +6851,10 @@ _G.NavArea = {}
 	--- isFlat - server - libs_sv/navmesh.lua#L279
 	---@return boolean undefined Whether this NavArea is mostly flat.
 	function _G.NavArea:isFlat() end
-	--- setCostSoFar - server - libs_sv/navmesh.lua#L682
+	--- setCostSoFar - server - libs_sv/navmesh.lua#L680
 	---@param cost number The cost so far
 	function _G.NavArea:setCostSoFar(cost) end
-	--- removeFromClosedList - server - libs_sv/navmesh.lua#L662
+	--- removeFromClosedList - server - libs_sv/navmesh.lua#L660
 	function _G.NavArea:removeFromClosedList() end
 	--- remove - server - libs_sv/navmesh.lua#L652
 	function _G.NavArea:remove() end
@@ -6895,7 +6895,7 @@ _G.NavArea = {}
 	---@param area NavArea The area to test.
 	---@return boolean undefined Whether the given area is visible from this area
 	function _G.NavArea:isPotentiallyVisible(area) end
-	--- setAttributes - server - libs_sv/navmesh.lua#L667
+	--- setAttributes - server - libs_sv/navmesh.lua#L665
 	---@param attributes number The attribute bitflag. See NAV_MESH enums
 	function _G.NavArea:setAttributes(attributes) end
 	--- getRandomAdjacentAreaAtSide - server - libs_sv/navmesh.lua#L502
@@ -7247,6 +7247,9 @@ _G.Player = {}
 	--- getShootPos - shared - libs_sh/players.lua#L294
 	---@return Vector undefined Shoot position
 	function _G.Player:getShootPos() end
+	--- shouldDrawLocalPlayer - client - libs_sh/players.lua#L1134
+	---@return boolean undefined True if the player's playermodel is visible
+	function _G.Player:shouldDrawLocalPlayer() end
 	--- getVehicle - shared - libs_sh/players.lua#L308
 	---@return Vehicle undefined Vehicle if player in vehicle or nil
 	function _G.Player:getVehicle() end
@@ -7793,33 +7796,33 @@ _G.Vector = {}
 ---  Sound type
 ---@class Sound
 _G.Sound = {}
-	--- stop - shared - libs_sh/sound.lua#L122
+	--- stop - shared - libs_sh/sound.lua#L128
 	---@param fade number? Time in seconds to fade out, if nil or 0 the sound stops instantly.
 	function _G.Sound:stop(fade) end
-	--- setPitch - shared - libs_sh/sound.lua#L165
+	--- setPitch - shared - libs_sh/sound.lua#L164
 	---@param pitch number Pitch to set to, between 0 and 255.
 	---@param fade number? Time in seconds to transition to this new pitch. Default 0
 	function _G.Sound:setPitch(pitch, fade) end
-	--- setDSP - shared - libs_sh/sound.lua#L201
+	--- setDSP - shared - libs_sh/sound.lua#L200
 	---@param dsp number (0 - 133) DSP values. List can be found here https://developer.valvesoftware.com/wiki/Dsp_presets
 	function _G.Sound:setDSP(dsp) end
-	--- setSoundLevel - shared - libs_sh/sound.lua#L188
+	--- setSoundLevel - shared - libs_sh/sound.lua#L187
 	---@param level number dB level, for information on the value to use see https://developer.valvesoftware.com/wiki/Soundscripts#SoundLevel
 	function _G.Sound:setSoundLevel(level) end
-	--- isPlaying - shared - libs_sh/sound.lua#L182
+	--- isPlaying - shared - libs_sh/sound.lua#L181
 	---@return boolean undefined Whether the sound is playing or not
 	function _G.Sound:isPlaying() end
-	--- getSoundLevel - shared - libs_sh/sound.lua#L195
+	--- getSoundLevel - shared - libs_sh/sound.lua#L194
 	---@return number undefined Level in dB
 	function _G.Sound:getSoundLevel() end
-	--- getDSP - shared - libs_sh/sound.lua#L208
+	--- getDSP - shared - libs_sh/sound.lua#L207
 	---@return number undefined (0 - 133) DSP value.
 	function _G.Sound:getDSP() end
-	--- play - shared - libs_sh/sound.lua#L117
+	--- play - shared - libs_sh/sound.lua#L123
 	function _G.Sound:play() end
-	--- destroy - shared - libs_sh/sound.lua#L133
+	--- destroy - shared - libs_sh/sound.lua#L139
 	function _G.Sound:destroy() end
-	--- setVolume - shared - libs_sh/sound.lua#L148
+	--- setVolume - shared - libs_sh/sound.lua#L147
 	---@param vol number Volume to set to, between 0 and 1.
 	---@param fade number? Time in seconds to transition to this new volume. Default 0
 	function _G.Sound:setVolume(vol, fade) end
@@ -7903,45 +7906,47 @@ _G.Hologram = {}
 ---  Light type
 ---@class Light
 _G.Light = {}
-	--- setNoWorld - client - libs_cl/light.lua#L201
+	--- setNoWorld - client - libs_cl/light.lua#L211
 	---@param on boolean Whether the light shouldn't cast onto the world
 	function _G.Light:setNoWorld(on) end
-	--- setOuterAngle - client - libs_cl/light.lua#L187
+	--- setOuterAngle - client - libs_cl/light.lua#L197
 	---@param ang number Outer angle of the light
 	function _G.Light:setOuterAngle(ang) end
-	--- setInnerAngle - client - libs_cl/light.lua#L180
+	--- setInnerAngle - client - libs_cl/light.lua#L190
 	---@param ang number Inner angle of the light
 	function _G.Light:setInnerAngle(ang) end
-	--- setStyle - client - libs_cl/light.lua#L228
+	--- destroy - client - libs_cl/light.lua#L255
+	function _G.Light:destroy() end
+	--- setStyle - client - libs_cl/light.lua#L238
 	---@param style number The number of the flicker style
 	function _G.Light:setStyle(style) end
-	--- setColor - client - libs_cl/light.lua#L235
+	--- setColor - client - libs_cl/light.lua#L245
 	---@param col Color The color of the light
 	function _G.Light:setColor(col) end
-	--- setBrightness - client - libs_cl/light.lua#L153
+	--- setBrightness - client - libs_cl/light.lua#L163
 	---@param brightness number The light's brightness
 	function _G.Light:setBrightness(brightness) end
-	--- setDieTime - client - libs_cl/light.lua#L167
+	--- setDieTime - client - libs_cl/light.lua#L177
 	---@param dietime number The how long the light will stay alive after turning it off.
 	function _G.Light:setDieTime(dietime) end
-	--- draw - client - libs_cl/light.lua#L133
+	--- draw - client - libs_cl/light.lua#L143
 	function _G.Light:draw() end
-	--- setSize - client - libs_cl/light.lua#L221
+	--- setSize - client - libs_cl/light.lua#L231
 	---@param size number The size of the light
 	function _G.Light:setSize(size) end
-	--- setMinLight - client - libs_cl/light.lua#L194
+	--- setMinLight - client - libs_cl/light.lua#L204
 	---@param min number The minimum light
 	function _G.Light:setMinLight(min) end
-	--- setDecay - client - libs_cl/light.lua#L160
+	--- setDecay - client - libs_cl/light.lua#L170
 	---@param decay number The light's decay speed
 	function _G.Light:setDecay(decay) end
-	--- setPos - client - libs_cl/light.lua#L215
+	--- setPos - client - libs_cl/light.lua#L225
 	---@param pos Vector The position of the light
 	function _G.Light:setPos(pos) end
-	--- setNoModel - client - libs_cl/light.lua#L208
+	--- setNoModel - client - libs_cl/light.lua#L218
 	---@param on boolean Whether the light shouldn't cast onto the models
 	function _G.Light:setNoModel(on) end
-	--- setDirection - client - libs_cl/light.lua#L174
+	--- setDirection - client - libs_cl/light.lua#L184
 	---@param dir Vector Direction of the light
 	function _G.Light:setDirection(dir) end
 ---  Angle Type
@@ -8007,93 +8012,93 @@ _G.Angle = {}
 ---  For a list of $flags and $flags2, see https://developer.valvesoftware.com/wiki/Material_Flags
 ---@class Material
 _G.Material = {}
-	--- getFloat - client - libs_cl/material.lua#L649
+	--- getFloat - client - libs_cl/material.lua#L644
 	---@param key string The key to get the float from
 	---@return number? undefined The float value or nil if it doesn't exist
 	function _G.Material:getFloat(key) end
-	--- recompute - client - libs_cl/material.lua#L720
+	--- recompute - client - libs_cl/material.lua#L715
 	function _G.Material:recompute() end
-	--- getMatrix - client - libs_cl/material.lua#L674
+	--- getMatrix - client - libs_cl/material.lua#L669
 	---@param key string The key to get the matrix from
 	---@return VMatrix? undefined The matrix value or nil if it doesn't exist
 	function _G.Material:getMatrix(key) end
-	--- getColor - client - libs_cl/material.lua#L638
+	--- getColor - client - libs_cl/material.lua#L633
 	---@param x number The x coordinate of the pixel
 	---@param y number The y coordinate of the pixel
 	---@return Color undefined The color value
 	function _G.Material:getColor(x, y) end
-	--- getInt - client - libs_cl/material.lua#L658
+	--- getInt - client - libs_cl/material.lua#L653
 	---@param key string The key to get the int from
 	---@return number? undefined The int value or nil if it doesn't exist
 	function _G.Material:getInt(key) end
-	--- setInt - client - libs_cl/material.lua#L734
+	--- setInt - client - libs_cl/material.lua#L729
 	---@param key string The key name to set
 	---@param v number The value to set it to
 	function _G.Material:setInt(key, v) end
-	--- getTexture - client - libs_cl/material.lua#L692
+	--- getTexture - client - libs_cl/material.lua#L687
 	---@param key string The key to get the texture from
 	---@return string? undefined The string id of the texture or nil if it doesn't exist
 	function _G.Material:getTexture(key) end
-	--- setFloat - client - libs_cl/material.lua#L725
+	--- setFloat - client - libs_cl/material.lua#L720
 	---@param key string The key name to set
 	---@param v number The value to set it to
 	function _G.Material:setFloat(key, v) end
-	--- setTexture - client - libs_cl/material.lua#L760
+	--- setTexture - client - libs_cl/material.lua#L755
 	---@param key string The key name to set. $basetexture is the key name for most purposes.
 	---@param v string The texture name to set it to.
 	function _G.Material:setTexture(key, v) end
-	--- setUndefined - client - libs_cl/material.lua#L840
+	--- setUndefined - client - libs_cl/material.lua#L835
 	---@param key string The key name to set
 	function _G.Material:setUndefined(key) end
-	--- getString - client - libs_cl/material.lua#L683
+	--- getString - client - libs_cl/material.lua#L678
 	---@param key string The key to get the string from
 	---@return string? undefined The string value or nil if it doesn't exist
 	function _G.Material:getString(key) end
-	--- getVectorLinear - client - libs_cl/material.lua#L711
+	--- getVectorLinear - client - libs_cl/material.lua#L706
 	---@param key string The key to get the vector from
 	---@return Vector? undefined The vector value or nil if it doesn't exist
 	function _G.Material:getVectorLinear(key) end
-	--- setTextureURL - client - libs_cl/material.lua#L770
+	--- setTextureURL - client - libs_cl/material.lua#L765
 	---@param key string The key name to set. $basetexture is the key name for most purposes.
 	---@param url string The url or base64 data
 	---@param cb function? An optional callback called when image is loaded. Passes nil if it fails or Passes the material, url, width, height, and layout function which can be called with x, y, w, h, pixelated to reposition the image in the texture. Setting the optional 'pixelated' argument to True tells the image to use nearest-neighbor interpolation
 	---@param done function? An optional callback called when the image is done loading. Passes the material, url
 	function _G.Material:setTextureURL(key, url, cb, done) end
-	--- getKeyValues - client - libs_cl/material.lua#L667
+	--- getKeyValues - client - libs_cl/material.lua#L662
 	---@return table undefined The table of keyvalues
 	function _G.Material:getKeyValues() end
-	--- getName - client - libs_cl/material.lua#L610
+	--- getName - client - libs_cl/material.lua#L605
 	---@return string undefined The name of the material. If this material is user created, add ! to the beginning of this to use it with entity.setMaterial
 	function _G.Material:getName() end
 	--- destroy - client - libs_cl/material.lua#L587
 	function _G.Material:destroy() end
-	--- setVector - client - libs_cl/material.lua#L847
+	--- setVector - client - libs_cl/material.lua#L842
 	---@param key string The key name to set
 	---@param v Vector The value to set it to
 	function _G.Material:setVector(key, v) end
-	--- setString - client - libs_cl/material.lua#L751
+	--- setString - client - libs_cl/material.lua#L746
 	---@param key string The key name to set
 	---@param v string The value to set it to
 	function _G.Material:setString(key, v) end
-	--- setMatrix - client - libs_cl/material.lua#L743
+	--- setMatrix - client - libs_cl/material.lua#L738
 	---@param key string The key name to set
 	---@param v VMatrix The value to set it to
 	function _G.Material:setMatrix(key, v) end
-	--- getShader - client - libs_cl/material.lua#L617
+	--- getShader - client - libs_cl/material.lua#L612
 	---@return string undefined The shader name of the material
 	function _G.Material:getShader() end
-	--- getVector - client - libs_cl/material.lua#L702
+	--- getVector - client - libs_cl/material.lua#L697
 	---@param key string The key to get the vector from
 	---@return Vector? undefined The vector value or nil if it doesn't exist
 	function _G.Material:getVector(key) end
-	--- setTextureRenderTarget - client - libs_cl/material.lua#L826
+	--- setTextureRenderTarget - client - libs_cl/material.lua#L821
 	---@param key string The key name to set. $basetexture is the key name for most purposes.
 	---@param name string The name of the rendertarget
 	function _G.Material:setTextureRenderTarget(key, name) end
-	--- getWidth - client - libs_cl/material.lua#L624
+	--- getWidth - client - libs_cl/material.lua#L619
 	---@return number undefined The basetexture's width
 	function _G.Material:getWidth() end
-	--- getHeight - client - libs_cl/material.lua#L631
+	--- getHeight - client - libs_cl/material.lua#L626
 	---@return number undefined The basetexture's height
 	function _G.Material:getHeight() end
 ---  File type

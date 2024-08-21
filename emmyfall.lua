@@ -815,14 +815,14 @@ _G.vr.VR = {
 --- trace
 ---  Provides functions for doing line/AABB traces
 _G.trace = {}
-	--- pointContents - shared - libs_sh/trace.lua#L186
+	--- pointContents - shared - libs_sh/trace.lua#L187
 	---@param position Vector The position to get the CONTENTS of
 	---@return number undefined Contents bitflag, see the CONTENTS enums
 	function _G.trace.pointContents(position) end
-	--- canCreateDecal - shared - libs_sh/trace.lua#L174
+	--- canCreateDecal - shared - libs_sh/trace.lua#L175
 	---@return boolean undefined Whether the decal trace can be used
 	function _G.trace.canCreateDecal() end
-	--- intersectRayWithOBB - shared - libs_sh/trace.lua#L116
+	--- intersectRayWithOBB - shared - libs_sh/trace.lua#L117
 	---@param rayStart Vector The origin of the ray
 	---@param rayDelta Vector The direction and length of the ray
 	---@param boxOrigin Vector The origin of the box
@@ -833,7 +833,7 @@ _G.trace = {}
 	---@return Vector? undefined Hit normal or nil if not hit
 	---@return number? undefined Hit fraction or nil if not hit
 	function _G.trace.intersectRayWithOBB(rayStart, rayDelta, boxOrigin, boxAngles, boxMins, boxMaxs) end
-	--- hull - shared - libs_sh/trace.lua#L88
+	--- hull - shared - libs_sh/trace.lua#L89
 	---@param start Vector Start position
 	---@param endpos Vector End position
 	---@param minbox Vector Lower box corner
@@ -844,13 +844,13 @@ _G.trace = {}
 	---@param ignworld boolean? Whether the trace should ignore world
 	---@return table undefined Result of the trace https://wiki.facepunch.com/gmod/Structures/TraceResult
 	function _G.trace.hull(start, endpos, minbox, maxbox, filter, mask, colgroup, ignworld) end
-	--- decal - shared - libs_sh/trace.lua#L154
+	--- decal - shared - libs_sh/trace.lua#L155
 	---@param name string The decal name, see https://wiki.facepunch.com/gmod/util.Decal
 	---@param start Vector Start position
 	---@param endpos Vector End position
 	---@param filter Entity|table|nil (Optional) Entity/array of entities to filter
 	function _G.trace.decal(name, start, endpos, filter) end
-	--- line - shared - libs_sh/trace.lua#L66
+	--- line - shared - libs_sh/trace.lua#L67
 	---@param start Vector Start position
 	---@param endpos Vector End position
 	---@param filter Entity|table|function|nil Entity/array of entities to filter, or a function callback with an entity argument that returns whether the trace should hit
@@ -859,10 +859,10 @@ _G.trace = {}
 	---@param ignworld boolean? Whether the trace should ignore world
 	---@return table undefined Result of the trace https://wiki.facepunch.com/gmod/Structures/TraceResult
 	function _G.trace.line(start, endpos, filter, mask, colgroup, ignworld) end
-	--- decalsLeft - shared - libs_sh/trace.lua#L180
+	--- decalsLeft - shared - libs_sh/trace.lua#L181
 	---@return number undefined The number of decals left
 	function _G.trace.decalsLeft() end
-	--- aimVector - shared - libs_sh/trace.lua#L194
+	--- aimVector - shared - libs_sh/trace.lua#L195
 	---@param viewAngles Angle View angles
 	---@param viewFOV number View field of view
 	---@param x number X position on the screen
@@ -871,7 +871,7 @@ _G.trace = {}
 	---@param screenHeight number Screen height
 	---@return Vector undefined The aim vector
 	function _G.trace.aimVector(viewAngles, viewFOV, x, y, screenWidth, screenHeight) end
-	--- intersectRayWithPlane - shared - libs_sh/trace.lua#L138
+	--- intersectRayWithPlane - shared - libs_sh/trace.lua#L139
 	---@param rayStart Vector The origin of the ray
 	---@param rayDelta Vector The direction and length of the ray
 	---@param planeOrigin Vector The origin of the plane

@@ -2323,17 +2323,17 @@ _G.prop = {}
 --- 
 ---  
 _G.prop.SENT_Data_Structures = {
-}	--- spawnRate - server - libs_sv/prop.lua#L692
+}	--- spawnRate - server - libs_sv/prop.lua#L693
 	---@return number undefined Number of props per second the user can spawn
 	function _G.prop.spawnRate() end
-	--- setPropUndo - server - libs_sv/prop.lua#L705
+	--- setPropUndo - server - libs_sv/prop.lua#L706
 	---@param on boolean Whether the props should be undo-able
 	function _G.prop.setPropUndo(on) end
-	--- createSent - server - libs_sv/prop.lua#L404
+	--- createSent - server - libs_sv/prop.lua#L405
 	---@param pos Vector Position of created sent
 	---@param ang Angle Angle of created sent
 	---@param class string Class of created sent
-	---@param frozen boolean True to spawn frozen
+	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@param data table? Optional table, additional entity data to be supplied to certain SENTs. See prop.SENT_Data_Structures table in Docs for list of SENTs
 	---@return Entity undefined The sent object
 	function _G.prop.createSent(pos, ang, class, frozen, data) end
@@ -2349,33 +2349,33 @@ _G.prop.SENT_Data_Structures = {
 	---@param ang Angle Angle of created component
 	---@param class string Class of created component
 	---@param model string Model of created component
-	---@param frozen boolean True to spawn frozen
+	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@return Entity undefined Component entity
 	function _G.prop.createComponent(pos, ang, class, model, frozen) end
-	--- createSeat - server - libs_sv/prop.lua#L346
+	--- createSeat - server - libs_sv/prop.lua#L347
 	---@param pos Vector Position of created seat
 	---@param ang Angle Angle of created seat
 	---@param model string Model of created seat
-	---@param frozen boolean True to spawn frozen
+	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@return Entity undefined The seat object
 	function _G.prop.createSeat(pos, ang, model, frozen) end
-	--- propsLeft - server - libs_sv/prop.lua#L684
+	--- propsLeft - server - libs_sv/prop.lua#L685
 	---@return number undefined Number of props able to be spawned
 	function _G.prop.propsLeft() end
 	--- createCustom - server - libs_sv/prop.lua#L150
 	---@param pos Vector The position to spawn the prop
 	---@param ang Angle The angles to spawn the prop
 	---@param vertices table The table of tables of vertices that make up the physics mesh {{v1,v2,...},{v1,v2,...},...}
-	---@param frozen boolean Whether the prop starts frozen
+	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@return Entity undefined The prop object
 	function _G.prop.createCustom(pos, ang, vertices, frozen) end
-	--- setPropClean - server - libs_sv/prop.lua#L699
+	--- setPropClean - server - libs_sv/prop.lua#L700
 	---@param on boolean Whether the props should be cleaned or not
 	function _G.prop.setPropClean(on) end
-	--- canSpawn - server - libs_sv/prop.lua#L676
+	--- canSpawn - server - libs_sv/prop.lua#L677
 	---@return boolean undefined True if user can spawn props, False if not.
 	function _G.prop.canSpawn() end
-	--- getSpawnableSents - server - libs_sv/prop.lua#L315
+	--- getSpawnableSents - server - libs_sv/prop.lua#L316
 	---@param categorized boolean? True to get an categorized list
 	---@return table undefined The table
 	function _G.prop.getSpawnableSents(categorized) end

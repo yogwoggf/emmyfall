@@ -3118,7 +3118,7 @@ _G.DAMAGE = {
 	---@type any
 	["BULLET"] = nil,
 	---@type any
-	["SPLASH"] = nil,
+	["SLASH"] = nil,
 	---@type any
 	["BURN"] = nil,
 	---@type any

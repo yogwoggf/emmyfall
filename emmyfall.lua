@@ -5882,6 +5882,10 @@ _G.string = {}
 --- sound
 ---  Sound library.
 _G.sound = {}
+	--- exists - shared - libs_sh/sound.lua#L119
+	---@param path string String path to the sound file
+	---@return boolean undefined True if exists, false if not
+	function _G.sound.exists(path) end
 	--- duration - shared - libs_sh/sound.lua#L111
 	---@param path string String path to the sound file
 	---@return number undefined Number duration in seconds
@@ -8673,33 +8677,33 @@ _G.PhysObj = {}
 ---  Sound type
 ---@class Sound
 _G.Sound = {}
-	--- stop - shared - libs_sh/sound.lua#L126
+	--- stop - shared - libs_sh/sound.lua#L134
 	---@param fade number? Time in seconds to fade out, if nil or 0 the sound stops instantly.
 	function _G.Sound:stop(fade) end
-	--- setPitch - shared - libs_sh/sound.lua#L162
+	--- setPitch - shared - libs_sh/sound.lua#L170
 	---@param pitch number Pitch to set to, between 0 and 255.
 	---@param fade number? Time in seconds to transition to this new pitch. Default 0
 	function _G.Sound:setPitch(pitch, fade) end
-	--- setDSP - shared - libs_sh/sound.lua#L198
+	--- setDSP - shared - libs_sh/sound.lua#L206
 	---@param dsp number (0 - 133) DSP values. List can be found here https://developer.valvesoftware.com/wiki/Dsp_presets
 	function _G.Sound:setDSP(dsp) end
-	--- setSoundLevel - shared - libs_sh/sound.lua#L185
+	--- setSoundLevel - shared - libs_sh/sound.lua#L193
 	---@param level number dB level, for information on the value to use see https://developer.valvesoftware.com/wiki/Soundscripts#SoundLevel
 	function _G.Sound:setSoundLevel(level) end
-	--- isPlaying - shared - libs_sh/sound.lua#L179
+	--- isPlaying - shared - libs_sh/sound.lua#L187
 	---@return boolean undefined Whether the sound is playing or not
 	function _G.Sound:isPlaying() end
-	--- getSoundLevel - shared - libs_sh/sound.lua#L192
+	--- getSoundLevel - shared - libs_sh/sound.lua#L200
 	---@return number undefined Level in dB
 	function _G.Sound:getSoundLevel() end
-	--- getDSP - shared - libs_sh/sound.lua#L205
+	--- getDSP - shared - libs_sh/sound.lua#L213
 	---@return number undefined (0 - 133) DSP value.
 	function _G.Sound:getDSP() end
-	--- play - shared - libs_sh/sound.lua#L121
+	--- play - shared - libs_sh/sound.lua#L129
 	function _G.Sound:play() end
-	--- destroy - shared - libs_sh/sound.lua#L137
+	--- destroy - shared - libs_sh/sound.lua#L145
 	function _G.Sound:destroy() end
-	--- setVolume - shared - libs_sh/sound.lua#L145
+	--- setVolume - shared - libs_sh/sound.lua#L153
 	---@param vol number Volume to set to, between 0 and 1.
 	---@param fade number? Time in seconds to transition to this new volume. Default 0
 	function _G.Sound:setVolume(vol, fade) end

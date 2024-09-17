@@ -5658,11 +5658,14 @@ _G.string = {}
 	---@param str string The string that should be escaped
 	---@return string undefined The safe string
 	function _G.string.javascriptSafe(str) end
-	--- left - shared - libs_sh/string.lua#L142
-	---@param str string The string to extract from
-	---@param num number Amount of chars relative to the beginning (starting from 1)
-	---@return string undefined Returns a string containing a specified number of characters from the left side of a string
-	function _G.string.left(str, num) end
+	--- gsub - shared - libs_sh/string.lua#L126
+	---@param str string String which should be modified.
+	---@param pattern string The pattern that defines what should be matched and eventually be replaced.
+	---@param replacement string|table|function If string: matched sequence will be replaced with it; If table: matched sequence will be used as key; If function: matches will be passed as parameters to the function (return to replace)
+	---@param max number? Optional maximum number of replacements to be made
+	---@return string undefined String with replaced parts
+	---@return number undefined Replacements count
+	function _G.string.gsub(str, pattern, replacement, max) end
 	--- replace - shared - libs_sh/string.lua#L203
 	---@param str string The string we are seeking to replace an occurrence(s)
 	---@param find string What we are seeking to replace
@@ -5678,7 +5681,7 @@ _G.string = {}
 	---@param bytes ... The bytes to create the string from
 	---@return string undefined String built from given bytes
 	function _G.string.char(bytes) end
-	--- toHoursMinutesSeconds - shared - libs_sh/string.lua#L274
+	--- toHoursMinutesSeconds - shared - libs_sh/string.lua#L276
 	---@param time number Time in seconds
 	---@return string undefined Given time in "HH:MM:SS" format
 	function _G.string.toHoursMinutesSeconds(time) end
@@ -5707,7 +5710,7 @@ _G.string = {}
 	---@param sep string? (Optional) seperator string between each repeated string
 	---@return string undefined String result
 	function _G.string.rep(str, rep, sep) end
-	--- utf8force - shared - libs_sh/string.lua#L358
+	--- utf8force - shared - libs_sh/string.lua#L360
 	---@param str string The string that will become a valid UTF-8 string
 	---@return string undefined The UTF-8 string
 	function _G.string.utf8force(str) end
@@ -5720,10 +5723,15 @@ _G.string = {}
 	---@param str string String to be reversed
 	---@return string undefined Reversed string
 	function _G.string.reverse(str) end
-	--- toMinutesSecondsMilliseconds - shared - libs_sh/string.lua#L268
+	--- toMinutesSecondsMilliseconds - shared - libs_sh/string.lua#L270
 	---@param time number Time in seconds
 	---@return string undefined Returns given time in "MM:SS:MS" format
 	function _G.string.toMinutesSecondsMilliseconds(time) end
+	--- startsWith - shared - libs_sh/string.lua#L239
+	---@param str string String to be checked
+	---@param start string String to check with
+	---@return boolean undefined True if the first string starts with the second
+	function _G.string.startsWith(str, start) end
 	--- right - shared - libs_sh/string.lua#L217
 	---@param str string The string to extract from
 	---@param num number Amount of chars relative to the end (starting from 1)
@@ -5733,70 +5741,70 @@ _G.string = {}
 	---@param col Color The color to put in the string
 	---@return string undefined String with the color RGBA values separated by spaces
 	function _G.string.fromColor(col) end
-	--- utf8offset - shared - libs_sh/string.lua#L374
+	--- utf8offset - shared - libs_sh/string.lua#L376
 	---@param str string The string that you will get the byte position from
 	---@param n number The position to get the beginning byte position from
 	---@param startPos number? The offset for n. Defaults to 1 if n >= 0, otherwise -1
 	---@return number undefined Starting byte-index of the given position
 	function _G.string.utf8offset(str, n, startPos) end
-	--- utf8len - shared - libs_sh/string.lua#L364
+	--- utf8len - shared - libs_sh/string.lua#L366
 	---@param str string The string to calculate the length of
 	---@param startPos number? The starting position to get the length from
 	---@param endPos number? The ending position to get the length from
 	---@return number|boolean undefined The number of UTF-8 characters in the string. If there are invalid bytes, this will be false
 	---@return number? undefined The position of the first invalid byte. If there were no invalid bytes, this will be nil
 	function _G.string.utf8len(str, startPos, endPos) end
-	--- utf8codes - shared - libs_sh/string.lua#L351
+	--- utf8codes - shared - libs_sh/string.lua#L353
 	---@param str string The string that you will get the codes from
 	---@return function undefined The iterator (to be used in a for loop)
 	function _G.string.utf8codes(str) end
-	--- utf8codepoint - shared - libs_sh/string.lua#L342
+	--- toMinutesSeconds - shared - libs_sh/string.lua#L264
+	---@param time number Time in seconds
+	---@return string undefined Given time in "MM:SS" format
+	function _G.string.toMinutesSeconds(time) end
+	--- utf8codepoint - shared - libs_sh/string.lua#L344
 	---@param str string The string that you will get the code(s) from
 	---@param startPos number? The starting byte of the string to get the codepoint of
 	---@param endPos number? The ending byte of the string to get the codepoint of
 	---@return ... undefined The codepoint number(s)
 	function _G.string.utf8codepoint(str, startPos, endPos) end
-	--- toMinutesSeconds - shared - libs_sh/string.lua#L262
-	---@param time number Time in seconds
-	---@return string undefined Given time in "MM:SS" format
-	function _G.string.toMinutesSeconds(time) end
-	--- utf8char - shared - libs_sh/string.lua#L335
-	---@param codepoints ... Unicode code points to be converted in to a UTF-8 string
-	---@return string undefined UTF-8 string generated from given arguments
-	function _G.string.utf8char(codepoints) end
 	--- niceTime - shared - libs_sh/string.lua#L175
 	---@param time number The number to format, in seconds
 	---@return string undefined A nicely formatted time string
 	function _G.string.niceTime(time) end
-	--- upper - shared - libs_sh/string.lua#L321
+	--- upper - shared - libs_sh/string.lua#L323
 	---@param str string The string to convert
 	---@return string undefined String with all letters upper case
 	function _G.string.upper(str) end
-	--- sub - shared - libs_sh/string.lua#L252
+	--- sub - shared - libs_sh/string.lua#L254
 	---@param str string The string you'll take a sub-string out of
 	---@param startPos number The position of the first character that will be included in the sub-string
 	---@param endPos number? The position of the last character to be included in the sub-string. It can be negative to count from the end
 	---@return string undefined The sub-string
 	function _G.string.sub(str, startPos, endPos) end
-	--- normalizePath - shared - libs_sh/string.lua#L327
+	--- normalizePath - shared - libs_sh/string.lua#L329
 	---@param str string Path
 	---@return string undefined Path with all .. replaced
 	function _G.string.normalizePath(str) end
-	--- trimRight - shared - libs_sh/string.lua#L314
+	--- utf8char - shared - libs_sh/string.lua#L337
+	---@param codepoints ... Unicode code points to be converted in to a UTF-8 string
+	---@return string undefined UTF-8 string generated from given arguments
+	function _G.string.utf8char(codepoints) end
+	--- trimRight - shared - libs_sh/string.lua#L316
 	---@param str string The string to trim
 	---@param char string Optional character to be trimmed. Defaults to space character
 	---@return string undefined Trimmed string
 	function _G.string.trimRight(str, char) end
-	--- trimLeft - shared - libs_sh/string.lua#L307
-	---@param str string The string to trim
-	---@param char string? Optional character to be trimmed. Defaults to space character
-	---@return string undefined Trimmed string
-	function _G.string.trimLeft(str, char) end
 	--- patternSafe - shared - libs_sh/string.lua#L181
 	---@param str string The string to be sanitized
 	---@return string undefined The sanitized string
 	function _G.string.patternSafe(str) end
-	--- trim - shared - libs_sh/string.lua#L300
+	--- trimLeft - shared - libs_sh/string.lua#L309
+	---@param str string The string to trim
+	---@param char string? Optional character to be trimmed. Defaults to space character
+	---@return string undefined Trimmed string
+	function _G.string.trimLeft(str, char) end
+	--- trim - shared - libs_sh/string.lua#L302
 	---@param str string The string to trim
 	---@param char string? Optional character to be trimmed. Defaults to space character
 	---@return string undefined Trimmed string
@@ -5806,15 +5814,12 @@ _G.string = {}
 	---@param _end string The string to be matched with the end of the first
 	---@return boolean undefined True if the first string ends with the second, or the second is empty
 	function _G.string.endsWith(str, _end) end
-	--- gsub - shared - libs_sh/string.lua#L126
-	---@param str string String which should be modified.
-	---@param pattern string The pattern that defines what should be matched and eventually be replaced.
-	---@param replacement string|table|function If string: matched sequence will be replaced with it; If table: matched sequence will be used as key; If function: matches will be passed as parameters to the function (return to replace)
-	---@param max number? Optional maximum number of replacements to be made
-	---@return string undefined String with replaced parts
-	---@return number undefined Replacements count
-	function _G.string.gsub(str, pattern, replacement, max) end
-	--- stripExtension - shared - libs_sh/string.lua#L246
+	--- left - shared - libs_sh/string.lua#L142
+	---@param str string The string to extract from
+	---@param num number Amount of chars relative to the beginning (starting from 1)
+	---@return string undefined Returns a string containing a specified number of characters from the left side of a string
+	function _G.string.left(str, num) end
+	--- stripExtension - shared - libs_sh/string.lua#L248
 	---@param path string The file-path to change
 	---@return string undefined Path without the extension
 	function _G.string.stripExtension(path) end
@@ -5822,11 +5827,6 @@ _G.string = {}
 	---@param str string The string to convert from
 	---@return Color undefined The color object
 	function _G.string.toColor(str) end
-	--- startWith - shared - libs_sh/string.lua#L239
-	---@param str string String to be checked
-	---@param start string String to check with
-	---@return boolean undefined True if the first string starts with the second
-	function _G.string.startWith(str, start) end
 	--- lower - shared - libs_sh/string.lua#L155
 	---@param str string The string to convert
 	---@return string undefined String with all uppercase letters replaced with their lowercase variants
@@ -5861,11 +5861,11 @@ _G.string = {}
 	---@param _end number The last character of the string to get the byte of
 	---@return ... undefined Vararg numerical bytes
 	function _G.string.byte(str, start, _end) end
-	--- toTable - shared - libs_sh/string.lua#L292
+	--- toTable - shared - libs_sh/string.lua#L294
 	---@param str string The string to turn into a table
 	---@return table undefined A sequential table where each value is a character from the given string
 	function _G.string.toTable(str) end
-	--- toHoursMinutesSecondsMilliseconds - shared - libs_sh/string.lua#L283
+	--- toHoursMinutesSecondsMilliseconds - shared - libs_sh/string.lua#L285
 	---@param time number Time in seconds
 	---@return string undefined Returns given time in "HH:MM:SS.MS" format
 	function _G.string.toHoursMinutesSecondsMilliseconds(time) end

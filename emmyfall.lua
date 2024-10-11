@@ -7787,9 +7787,9 @@ _G.Hologram = {}
 	--- setClip - shared - libs_sh/hologram.lua#L358
 	---@param index number Whatever number you want the clip to be
 	---@param enabled boolean Whether the clip is enabled
-	---@param origin Vector The center of the clip plane in world coordinates, or local to entity if it is specified
-	---@param normal Vector The the direction of the clip plane in world coordinates, or local to entity if it is specified
-	---@param entity Entity? (Optional) The entity to make coordinates local to, otherwise the world is used
+	---@param origin Vector? The center of the clip plane in world coordinates, or local to entity if it is specified. Only used if enabled.
+	---@param normal Vector? The the direction of the clip plane in world coordinates, or local to entity if it is specified. Only used if enabled.
+	---@param entity Entity? (Optional) The entity to make coordinates local to, otherwise the world is used. Only used if enabled.
 	function _G.Hologram:setClip(index, enabled, origin, normal, entity) end
 	--- setFilterMag - client - libs_sh/hologram.lua#L242
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER

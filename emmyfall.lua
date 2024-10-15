@@ -5200,7 +5200,7 @@ _G.math = {}
 	---@param rad number Angle in radians to be converted
 	---@return number undefined Angle in degrees
 	function _G.math.deg(rad) end
-	--- nlerpQuaternion - shared - libs_sh/quaternion.lua#L876
+	--- nlerpQuaternion - shared - libs_sh/quaternion.lua#L875
 	---@param quat1 Quaternion Quaternion to start with
 	---@param quat2 Quaternion Quaternion to end with
 	---@param t number Ratio, 0 = quat1; 1 = quat2

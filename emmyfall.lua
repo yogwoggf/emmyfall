@@ -4744,7 +4744,7 @@ _G.effect = {}
 --- hologram
 ---  Library for creating and manipulating physics-less models AKA "Holograms".
 _G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L562
+	--- removeAll - shared - libs_sh/hologram.lua#L555
 	function _G.hologram.removeAll() end
 	--- canSpawn - shared - libs_sh/hologram.lua#L158
 	---@return boolean undefined True if user can spawn holograms, False if not.
@@ -7805,7 +7805,7 @@ _G.Hologram = {}
 	--- setScale - shared - libs_sh/hologram.lua#L394
 	---@param scale Vector Vector new scale
 	function _G.Hologram:setScale(scale) end
-	--- setRenderGroup - shared - libs_sh/hologram.lua#L511
+	--- setRenderGroup - shared - libs_sh/hologram.lua#L504
 	---@param group number|nil Render group. If unset, the engine will decide the render group based on the entity's materials. Can be RENDERGROUP.OPAQUE RENDERGROUP.TRANSLUCENT RENDERGROUP.BOTH RENDERGROUP.VIEWMODEL RENDERGROUP.VIEWMODEL.TRANSLUCENT RENDERGROUP.OPAQUE.BRUSH
 	function _G.Hologram:setRenderGroup(group) end
 	--- getScale - shared - libs_sh/hologram.lua#L420
@@ -7821,7 +7821,7 @@ _G.Hologram = {}
 	--- setFilterMag - client - libs_sh/hologram.lua#L242
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMag(val) end
-	--- addEffects - shared - libs_sh/hologram.lua#L527
+	--- addEffects - shared - libs_sh/hologram.lua#L520
 	---@param effect number The effects to add. See EF Enums
 	function _G.Hologram:addEffects(effect) end
 	--- setRenderMatrix - client - libs_sh/hologram.lua#L276
@@ -7845,10 +7845,10 @@ _G.Hologram = {}
 	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L440
 	---@return boolean undefined Whether engine lighting is suppressed
 	function _G.Hologram:getSuppressEngineLighting() end
-	--- removeEffects - shared - libs_sh/hologram.lua#L539
+	--- removeEffects - shared - libs_sh/hologram.lua#L532
 	---@param effect number The effects to remove. See EF Enums
 	function _G.Hologram:removeEffects(effect) end
-	--- remove - shared - libs_sh/hologram.lua#L551
+	--- remove - shared - libs_sh/hologram.lua#L544
 	function _G.Hologram:remove() end
 	--- setVel - server - libs_sh/hologram.lua#L173
 	---@param vel Vector New velocity

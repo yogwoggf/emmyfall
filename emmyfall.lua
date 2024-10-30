@@ -8024,25 +8024,30 @@ _G.Material = {}
 ---  File type
 ---@class File
 _G.File = {}
-	--- write - client - libs_cl/file.lua#L492
+	--- readUInt64 - client - libs_cl/file.lua#L504
+	---@return string undefined UInt64 number
+	function _G.File:readUInt64() end
+	--- write - client - libs_cl/file.lua#L511
 	---@param str string The data to write
 	function _G.File:write(str) end
-	--- read - client - libs_cl/file.lua#L443
-	---@param n number The length to read
-	---@return string undefined The data
-	function _G.File:read(n) end
-	--- writeFloat - client - libs_cl/file.lua#L520
-	---@param x number The float to write
-	function _G.File:writeFloat(x) end
+	--- readShort - client - libs_cl/file.lua#L492
+	---@return number undefined Int16 number
+	function _G.File:readShort() end
+	--- readUShort - client - libs_cl/file.lua#L498
+	---@return number undefined UInt16 number
+	function _G.File:readUShort() end
 	--- seek - client - libs_cl/file.lua#L416
 	---@param n number The position to set it to
 	function _G.File:seek(n) end
-	--- writeLong - client - libs_cl/file.lua#L527
+	--- readULong - client - libs_cl/file.lua#L486
+	---@return number undefined UInt32 number
+	function _G.File:readULong() end
+	--- writeLong - client - libs_cl/file.lua#L546
 	---@param x number The long to write
 	function _G.File:writeLong(x) end
 	--- flush - client - libs_cl/file.lua#L404
 	function _G.File:flush() end
-	--- writeDouble - client - libs_cl/file.lua#L513
+	--- writeDouble - client - libs_cl/file.lua#L532
 	---@param x number The double to write
 	function _G.File:writeDouble(x) end
 	--- readLine - client - libs_cl/file.lua#L474
@@ -8051,42 +8056,55 @@ _G.File = {}
 	--- readBool - client - libs_cl/file.lua#L450
 	---@return boolean undefined Boolean
 	function _G.File:readBool() end
-	--- writeBool - client - libs_cl/file.lua#L499
-	---@param x boolean The boolean to write
-	function _G.File:writeBool(x) end
+	--- writeUInt64 - client - libs_cl/file.lua#L574
+	---@param x string The unsigned 64-bit integer to write
+	function _G.File:writeUInt64(x) end
+	--- writeByte - client - libs_cl/file.lua#L525
+	---@param x number The byte to write
+	function _G.File:writeByte(x) end
+	--- size - client - libs_cl/file.lua#L437
+	---@return number undefined The file's size
+	function _G.File:size() end
 	--- readByte - client - libs_cl/file.lua#L456
 	---@return number undefined UInt8 number
 	function _G.File:readByte() end
 	--- readFloat - client - libs_cl/file.lua#L468
 	---@return number undefined Float32 number
 	function _G.File:readFloat() end
-	--- writeByte - client - libs_cl/file.lua#L506
-	---@param x number The byte to write
-	function _G.File:writeByte(x) end
+	--- writeULong - client - libs_cl/file.lua#L553
+	---@param x number The unsigned long to write
+	function _G.File:writeULong(x) end
+	--- writeFloat - client - libs_cl/file.lua#L539
+	---@param x number The float to write
+	function _G.File:writeFloat(x) end
+	--- writeUShort - client - libs_cl/file.lua#L567
+	---@param x number The unsigned short to write
+	function _G.File:writeUShort(x) end
 	--- readLong - client - libs_cl/file.lua#L480
 	---@return number undefined Int32 number
 	function _G.File:readLong() end
 	--- readDouble - client - libs_cl/file.lua#L462
 	---@return number undefined Float64 number
 	function _G.File:readDouble() end
-	--- close - client - libs_cl/file.lua#L409
-	function _G.File:close() end
+	--- writeBool - client - libs_cl/file.lua#L518
+	---@param x boolean The boolean to write
+	function _G.File:writeBool(x) end
 	--- skip - client - libs_cl/file.lua#L423
 	---@param n number How much to move the position
 	---@return number undefined The resulting position
 	function _G.File:skip(n) end
-	--- writeShort - client - libs_cl/file.lua#L534
+	--- writeShort - client - libs_cl/file.lua#L560
 	---@param x number The short to write
 	function _G.File:writeShort(x) end
 	--- tell - client - libs_cl/file.lua#L431
 	---@return number undefined The current file position
 	function _G.File:tell() end
-	--- readShort - client - libs_cl/file.lua#L486
-	---@return number undefined Int16 number
-	function _G.File:readShort() end
-	--- size - client - libs_cl/file.lua#L437
-	---@return number undefined The file's size
-	function _G.File:size() end
+	--- close - client - libs_cl/file.lua#L409
+	function _G.File:close() end
+	--- read - client - libs_cl/file.lua#L443
+	---@param n number The length to read
+	---@return string undefined The data
+	function _G.File:read(n) end
 ---  Quaternion type. Recently reworked, for full changelist visit: https://github.com/thegrb93/StarfallEx/pull/953
 ---@class Quaternion
 ---@operator mul(Quaternion|number):Quaternion

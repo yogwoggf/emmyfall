@@ -4964,11 +4964,11 @@ _G.navmesh.NAV_TRAVERSE_TYPE = {
 --- json
 ---  JSON library
 _G.json = {}
-	--- decode - shared - libs_sh/json.lua#L23
+	--- decode - shared - libs_sh/json.lua#L25
 	---@param s string String to decode
 	---@return table undefined Table representing the JSON object
 	function _G.json.decode(s) end
-	--- encode - shared - libs_sh/json.lua#L14
+	--- encode - shared - libs_sh/json.lua#L15
 	---@param tbl table Table to encode
 	---@param prettyPrint boolean? Optional. If true, formats and indents the resulting JSON
 	---@return string undefined JSON encoded string representation of the table

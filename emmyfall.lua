@@ -23,14 +23,15 @@
 ---| '"FinishChat"' #  Called when the local player closes their chat window.
 ---| '"moneyPrinterPrintMoney"' #  Called when a money printer is about to print money. DarkRP only.  Not guaranteed to work for non-vanilla money printers.  You should use moneyPrinterPrinted instead, as the printer is not guaranteed to print money even if this hook is called.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
 ---| '"Removed"' #  Called when the starfall chip is removed
----| '"xinputPressed"' #  Called when a controller button has been pressed. Client must have XInput Lua binary installed.
 ---| '"PlayerChangename"' #  Called when a player changes their Steam name. (Game Event)
----| '"DupeFinished"' #  Called after the starfall chip is duplicated and the duplication is finished.
+---| '"xinputPressed"' #  Called when a controller button has been pressed. Client must have XInput Lua binary installed.
 ---| '"VRInput"' #  This gets called every time a boolean controller input action changes state
+---| '"DupeFinished"' #  Called after the starfall chip is duplicated and the duplication is finished.
+---| '"VRExit"' #  Called when a player exits VR
 ---| '"PlayerHurt"' #  Called when a player gets hurt, uses the player_hurt game event clientside.
 ---| '"xinputDisconnected"' #  Called when a controller has been disconnected. Client must have XInput Lua binary installed.
----| '"VRExit"' #  Called when a player exits VR
 ---| '"VRStart"' #  Called when a player enters VR
+---| '"inputBindPressed"' #  Called when a keybind is pressed
 ---| '"PlayerSwitchWeapon"' #  Called when a player switches their weapon
 ---| '"think"' #  Think hook. Called each frame on the client and each game tick on the server.
 ---| '"OnPhysgunFreeze"' #  Called when an entity is being frozen  Note this is not called for players or NPCs held with the physgun (bug)
@@ -2755,56 +2756,56 @@ _G.vr.VR = {
 --- input
 ---  Input library.
 _G.input = {}
-	--- isControlLocked - client - libs_sh/input.lua#L366
+	--- isControlLocked - client - libs_sh/input.lua#L379
 	---@return boolean undefined Whether the player's control is locked
 	function _G.input.isControlLocked() end
-	--- isKeyDown - client - libs_sh/input.lua#L233
+	--- isKeyDown - client - libs_sh/input.lua#L246
 	---@param key number The key id, see input
 	---@return boolean undefined True if the key is down
 	function _G.input.isKeyDown(key) end
-	--- getCursorPos - client - libs_sh/input.lua#L288
+	--- getCursorPos - client - libs_sh/input.lua#L301
 	---@return number undefined The x position of the mouse
 	---@return number undefined The y position of the mouse
 	function _G.input.getCursorPos() end
-	--- enableCursor - client - libs_sh/input.lua#L319
+	--- enableCursor - client - libs_sh/input.lua#L332
 	---@param enabled boolean Whether or not the cursor should be enabled
 	function _G.input.enableCursor(enabled) end
-	--- lookupKeyBinding - client - libs_sh/input.lua#L223
+	--- lookupKeyBinding - client - libs_sh/input.lua#L236
 	---@param key number The key id, see input
 	---@return string undefined The command bound to the key
 	function _G.input.lookupKeyBinding(key) end
-	--- lockControls - client - libs_sh/input.lua#L344
+	--- lockControls - client - libs_sh/input.lua#L357
 	---@param enabled boolean Whether to lock or unlock the controls
 	function _G.input.lockControls(enabled) end
-	--- screenToVector - client - libs_sh/input.lua#L307
+	--- screenToVector - client - libs_sh/input.lua#L320
 	---@param x number X coordinate on the screen
 	---@param y number Y coordinate on the screen
 	---@return Vector undefined Aim vector
 	function _G.input.screenToVector(x, y) end
-	--- getKeyName - client - libs_sh/input.lua#L258
+	--- getKeyName - client - libs_sh/input.lua#L271
 	---@param key number The key id, see input
 	---@return string undefined The name of the key
 	function _G.input.getKeyName(key) end
-	--- isShiftDown - client - libs_sh/input.lua#L270
+	--- isShiftDown - client - libs_sh/input.lua#L283
 	---@return boolean undefined True if the shift key is down
 	function _G.input.isShiftDown() end
-	--- getCursorVisible - client - libs_sh/input.lua#L298
+	--- getCursorVisible - client - libs_sh/input.lua#L311
 	---@return boolean undefined The cursor's visibility
 	function _G.input.getCursorVisible() end
-	--- canLockControls - client - libs_sh/input.lua#L373
+	--- canLockControls - client - libs_sh/input.lua#L386
 	---@return boolean undefined Whether the player's control can be locked
 	function _G.input.canLockControls() end
-	--- isMouseDown - client - libs_sh/input.lua#L246
+	--- isMouseDown - client - libs_sh/input.lua#L259
 	---@param key number The mouse button id, see input
 	---@return boolean undefined True if the key is down
 	function _G.input.isMouseDown(key) end
-	--- selectWeapon - client - libs_sh/input.lua#L334
+	--- selectWeapon - client - libs_sh/input.lua#L347
 	---@param weapon Weapon The weapon entity to select
 	function _G.input.selectWeapon(weapon) end
-	--- isControlDown - client - libs_sh/input.lua#L279
+	--- isControlDown - client - libs_sh/input.lua#L292
 	---@return boolean undefined True if the control key is down
 	function _G.input.isControlDown() end
-	--- lookupBinding - client - libs_sh/input.lua#L205
+	--- lookupBinding - client - libs_sh/input.lua#L218
 	---@param binding string The name of the bind
 	---@return number undefined The id of the first key bound
 	---@return string undefined The name of the first key bound

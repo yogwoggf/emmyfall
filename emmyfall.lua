@@ -4371,7 +4371,7 @@ _G["CLIENT"] = nil
 	---@param sfType string Name of SF type
 	---@return table undefined Table of the type's methods which can be edited or iterated
 	function _G.getMethods(sfType) end
-	--- Angle - shared - libs_sh/angles.lua#L33
+	--- Angle - shared - libs_sh/angles.lua#L34
 	---@param p number? Pitch
 	---@param y number? Yaw
 	---@param r number? Roll
@@ -4443,7 +4443,7 @@ _G["CLIENT"] = nil
 	---@param endIndex number? Which index to end at (default #tbl)
 	---@return ... undefined Elements of tbl
 	function _G.unpack(tbl, startIndex, endIndex) end
-	--- Vector2 - server - libs_sv/wire.lua#L163
+	--- Vector2 - server - libs_sv/wire.lua#L160
 	---@param x number? X value
 	---@param y number? Y value
 	---@return Vector2 undefined Vector2
@@ -6679,19 +6679,34 @@ _G.wire = {}
 --- 
 ---  of the same name. Writes will write to the wire output of the same name.
 _G.wire.ports = {
-}	--- self - server - libs_sv/wire.lua#L496
+}	--- readCell - server - libs_sv/wire.lua#L700
+	---@param ent Entity Entity with wire memory
+	---@param index number The cell address
+	---@return number undefined The value at the address
+	function _G.wire.readCell(ent, index) end
+	--- self - server - libs_sv/wire.lua#L481
 	---@return Wirelink undefined Wirelink representing this entity
 	function _G.wire.self() end
-	--- getWirelink - server - libs_sv/wire.lua#L615
+	--- getWirelink - server - libs_sv/wire.lua#L595
 	---@param ent Entity Wire entity
 	---@return Wirelink undefined Wirelink of the entity
 	function _G.wire.getWirelink(ent) end
-	--- adjustInputs - server - libs_sv/wire.lua#L345
+	--- adjustInputs - server - libs_sv/wire.lua#L330
 	---@param names table An array of input names. May be modified by the function.
 	---@param types table An array of input types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of input descriptions. 
 	function _G.wire.adjustInputs(names, types, descriptions) end
-	--- create - server - libs_sv/wire.lua#L511
+	--- readOutput - server - libs_sv/wire.lua#L691
+	---@param ent Entity Entity with output
+	---@param outputname string Output name
+	---@return any undefined value The value to set the output to (must match the output type)
+	function _G.wire.readOutput(ent, outputname) end
+	--- triggerOutput - server - libs_sv/wire.lua#L663
+	---@param ent Entity Entity with output
+	---@param outputname string Output name
+	---@param value any The value to set the output to (must match the output type)
+	function _G.wire.triggerOutput(ent, outputname, value) end
+	--- create - server - libs_sv/wire.lua#L496
 	---@param entI Entity Entity with input
 	---@param entO Entity Entity with output
 	---@param inputname string Input to be wired
@@ -6700,32 +6715,47 @@ _G.wire.ports = {
 	---@param color Color? Color of the wire(optional)
 	---@param materialName string? Material of the wire(optional), Valid materials are cable/rope, cable/cable2, cable/xbeam, cable/redlaser, cable/blue_elec, cable/physbeam, cable/hydra, arrowire/arrowire, arrowire/arrowire2
 	function _G.wire.create(entI, entO, inputname, outputname, width, color, materialName) end
-	--- serverUUID - server - libs_sv/wire.lua#L504
+	--- serverUUID - server - libs_sv/wire.lua#L489
 	---@return string undefined Server UUID
 	function _G.wire.serverUUID() end
-	--- delete - server - libs_sv/wire.lua#L563
+	--- delete - server - libs_sv/wire.lua#L543
 	---@param entI Entity Entity with input
 	---@param inputname string Input to be un-wired
 	function _G.wire.delete(entI, inputname) end
-	--- getOutputs - server - libs_sv/wire.lua#L607
+	--- getOutputs - server - libs_sv/wire.lua#L587
 	---@param entO Entity Entity with output(s)
 	---@return table undefined Table of entity's output names
 	---@return table undefined Table of entity's output types
 	function _G.wire.getOutputs(entO) end
-	--- adjustPorts - server - libs_sv/wire.lua#L440
+	--- readInput - server - libs_sv/wire.lua#L682
+	---@param ent Entity Entity with input
+	---@param inputname string Input name
+	---@return any undefined value The value to set the input to (must match the input type)
+	function _G.wire.readInput(ent, inputname) end
+	--- triggerCell - server - libs_sv/wire.lua#L672
+	---@param ent Entity Entity with wire memory
+	---@param index number The cell address
+	---@param value number The value to set the cell
+	function _G.wire.triggerCell(ent, index, value) end
+	--- adjustPorts - server - libs_sv/wire.lua#L425
 	---@param inputs table? (Optional) A key-value table with input port names as keys and types as values. e.g. {MyInput="number"} or {MyInput={type="number"}}. If nil, input ports won't be changed. If you use the latter syntax for defining ports, you can also specify description alongside the type, ex. {MyInput={type="number", description="Description for this input."}}
 	---@param outputs table? (Optional) A key-value table with output port names as keys and types as values. The above behavior for inputs also applies for outputs.
 	function _G.wire.adjustPorts(inputs, outputs) end
-	--- getInputs - server - libs_sv/wire.lua#L599
+	--- getInputs - server - libs_sv/wire.lua#L579
 	---@param entI Entity Entity with input(s)
 	---@return table undefined Table of entity's input names
 	---@return table undefined Table of entity's input types
 	function _G.wire.getInputs(entI) end
-	--- adjustOutputs - server - libs_sv/wire.lua#L388
+	--- adjustOutputs - server - libs_sv/wire.lua#L373
 	---@param names table An array of output names. May be modified by the function.
 	---@param types table An array of output types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of output descriptions. 
 	function _G.wire.adjustOutputs(names, types, descriptions) end
+	--- triggerInput - server - libs_sv/wire.lua#L654
+	---@param ent Entity Entity with input
+	---@param inputname string Input name
+	---@param value any The value to set the input to (must match the input type)
+	function _G.wire.triggerInput(ent, inputname, value) end
 --- socket
 --- 
 ---  Socket library. Only usable by owner of starfall.
@@ -9479,7 +9509,7 @@ _G.Entity = {}
 	--- getClass - shared - libs_sh/entities.lua#L1030
 	---@return string undefined The string class name
 	function _G.Entity:getClass() end
-	--- getWirelink - server - libs_sv/wire.lua#L629
+	--- getWirelink - server - libs_sv/wire.lua#L709
 	---@return Wirelink undefined Wirelink of the entity
 	function _G.Entity:getWirelink() end
 	--- doNotDuplicate - server - libs_sh/entities.lua#L1014
@@ -10028,44 +10058,40 @@ _G.SurfaceInfo = {}
 	function _G.SurfaceInfo:isSky() end
 ---  Wirelink type
 ---@class Wirelink
----@operator index(any):any
+---@operator index(string|number):any
 _G.Wirelink = {}
-	--- inputValue - server - libs_sv/wire.lua#L678
-	---@param name string Input name
-	---@return any undefined Input value
-	function _G.Wirelink:inputValue(name) end
-	--- entity - server - libs_sv/wire.lua#L706
-	---@return Entity undefined Entity the wirelink represents
-	function _G.Wirelink:entity() end
-	--- getWiredToName - server - libs_sv/wire.lua#L775
-	---@param name string Name of the input of the wirelink.
-	---@return string undefined String name of the output that the input is wired to.
-	function _G.Wirelink:getWiredToName(name) end
-	--- inputs - server - libs_sv/wire.lua#L712
-	---@return table undefined All of the wirelink's inputs
-	function _G.Wirelink:inputs() end
-	--- inputType - server - libs_sv/wire.lua#L688
-	---@param name string Input name to search for
-	---@return string undefined Type of input
-	function _G.Wirelink:inputType(name) end
-	--- getWiredTo - server - libs_sv/wire.lua#L763
-	---@param name string Name of the input
-	---@return Entity undefined The entity the wirelink is wired to
-	function _G.Wirelink:getWiredTo(name) end
-	--- outputType - server - libs_sv/wire.lua#L697
-	---@param name string Output name to search for
-	---@return string undefined Type of output
-	function _G.Wirelink:outputType(name) end
-	--- isWired - server - libs_sv/wire.lua#L752
+	--- isWired - server - libs_sv/wire.lua#L816
 	---@param name string Name of the input to check
 	---@return boolean undefined Whether it is wired
 	function _G.Wirelink:isWired(name) end
-	--- outputs - server - libs_sv/wire.lua#L732
+	--- entity - server - libs_sv/wire.lua#L770
+	---@return Entity undefined Entity the wirelink represents
+	function _G.Wirelink:entity() end
+	--- getWiredToName - server - libs_sv/wire.lua#L839
+	---@param name string Name of the input of the wirelink.
+	---@return string undefined String name of the output that the input is wired to.
+	function _G.Wirelink:getWiredToName(name) end
+	--- outputs - server - libs_sv/wire.lua#L796
 	---@return table undefined All of the wirelink's outputs
 	function _G.Wirelink:outputs() end
-	--- isValid - server - libs_sv/wire.lua#L672
+	--- inputType - server - libs_sv/wire.lua#L752
+	---@param name string Input name to search for
+	---@return string undefined Type of input
+	function _G.Wirelink:inputType(name) end
+	--- outputType - server - libs_sv/wire.lua#L761
+	---@param name string Output name to search for
+	---@return string undefined Type of output
+	function _G.Wirelink:outputType(name) end
+	--- getWiredTo - server - libs_sv/wire.lua#L827
+	---@param name string Name of the input
+	---@return Entity undefined The entity the wirelink is wired to
+	function _G.Wirelink:getWiredTo(name) end
+	--- isValid - server - libs_sv/wire.lua#L746
 	---@return boolean undefined Whether the wirelink is valid
 	function _G.Wirelink:isValid() end
+	--- inputs - server - libs_sv/wire.lua#L776
+	---@return table undefined All of the wirelink's inputs
+	function _G.Wirelink:inputs() end
 ---  Angle Type
 ---@class Angle
 ---@operator mul(number|Angle):Angle
@@ -10077,47 +10103,47 @@ _G.Wirelink = {}
 ---@operator sub(Angle):Angle
 ---@operator eq(Angle):boolean
 _G.Angle = {}
-	--- setZero - shared - libs_sh/angles.lua#L221
+	--- setZero - shared - libs_sh/angles.lua#L222
 	function _G.Angle:setZero() end
 	--- getQuaternion - shared - libs_sh/quaternion.lua#L835
 	---@return Quaternion undefined Constructed quaternion
 	function _G.Angle:getQuaternion() end
-	--- round - shared - libs_sh/angles.lua#L197
+	--- round - shared - libs_sh/angles.lua#L198
 	---@param idp number? (Default 0) The integer decimal place to round to.
 	function _G.Angle:round(idp) end
-	--- rotateAroundAxis - shared - libs_sh/angles.lua#L175
+	--- rotateAroundAxis - shared - libs_sh/angles.lua#L176
 	---@param v Vector Vector axis
 	---@param deg number? Number of degrees or nil if radians.
 	---@param rad number? Number of radians or nil if degrees.
 	---@return Angle undefined The modified angle
 	function _G.Angle:rotateAroundAxis(v, deg, rad) end
-	--- clone - shared - libs_sh/angles.lua#L206
+	--- clone - shared - libs_sh/angles.lua#L207
 	---@return Angle undefined The copy of the angle
 	function _G.Angle:clone() end
-	--- setY - shared - libs_sh/angles.lua#L237
+	--- setY - shared - libs_sh/angles.lua#L238
 	---@param y number The yaw
 	---@return Angle undefined Angle after modification
 	function _G.Angle:setY(y) end
-	--- getRight - shared - libs_sh/angles.lua#L163
+	--- getRight - shared - libs_sh/angles.lua#L164
 	---@return Vector undefined Right direction.
 	function _G.Angle:getRight() end
-	--- setP - shared - libs_sh/angles.lua#L229
+	--- setP - shared - libs_sh/angles.lua#L230
 	---@param p number The pitch
 	---@return Angle undefined Angle after modification
 	function _G.Angle:setP(p) end
-	--- set - shared - libs_sh/angles.lua#L212
+	--- set - shared - libs_sh/angles.lua#L213
 	---@param b Angle The angle to copy from.
 	function _G.Angle:set(b) end
-	--- getUp - shared - libs_sh/angles.lua#L169
+	--- getUp - shared - libs_sh/angles.lua#L170
 	---@return Vector undefined Up direction.
 	function _G.Angle:getUp() end
-	--- isZero - shared - libs_sh/angles.lua#L151
+	--- isZero - shared - libs_sh/angles.lua#L152
 	---@return boolean undefined If they are all zero
 	function _G.Angle:isZero() end
-	--- setR - shared - libs_sh/angles.lua#L245
+	--- setR - shared - libs_sh/angles.lua#L246
 	---@param r number The roll
 	---@return Angle undefined Angle after modification
 	function _G.Angle:setR(r) end
-	--- getForward - shared - libs_sh/angles.lua#L157
+	--- getForward - shared - libs_sh/angles.lua#L158
 	---@return Vector undefined Forward direction.
 	function _G.Angle:getForward() end

@@ -2756,56 +2756,56 @@ _G.vr.VR = {
 --- input
 ---  Input library.
 _G.input = {}
-	--- isControlLocked - client - libs_sh/input.lua#L379
+	--- isControlLocked - client - libs_sh/input.lua#L378
 	---@return boolean undefined Whether the player's control is locked
 	function _G.input.isControlLocked() end
-	--- isKeyDown - client - libs_sh/input.lua#L246
+	--- isKeyDown - client - libs_sh/input.lua#L245
 	---@param key number The key id, see input
 	---@return boolean undefined True if the key is down
 	function _G.input.isKeyDown(key) end
-	--- getCursorPos - client - libs_sh/input.lua#L301
+	--- getCursorPos - client - libs_sh/input.lua#L300
 	---@return number undefined The x position of the mouse
 	---@return number undefined The y position of the mouse
 	function _G.input.getCursorPos() end
-	--- enableCursor - client - libs_sh/input.lua#L332
+	--- enableCursor - client - libs_sh/input.lua#L331
 	---@param enabled boolean Whether or not the cursor should be enabled
 	function _G.input.enableCursor(enabled) end
-	--- lookupKeyBinding - client - libs_sh/input.lua#L236
+	--- lookupKeyBinding - client - libs_sh/input.lua#L235
 	---@param key number The key id, see input
 	---@return string undefined The command bound to the key
 	function _G.input.lookupKeyBinding(key) end
-	--- lockControls - client - libs_sh/input.lua#L357
+	--- lockControls - client - libs_sh/input.lua#L356
 	---@param enabled boolean Whether to lock or unlock the controls
 	function _G.input.lockControls(enabled) end
-	--- screenToVector - client - libs_sh/input.lua#L320
+	--- screenToVector - client - libs_sh/input.lua#L319
 	---@param x number X coordinate on the screen
 	---@param y number Y coordinate on the screen
 	---@return Vector undefined Aim vector
 	function _G.input.screenToVector(x, y) end
-	--- getKeyName - client - libs_sh/input.lua#L271
+	--- getKeyName - client - libs_sh/input.lua#L270
 	---@param key number The key id, see input
 	---@return string undefined The name of the key
 	function _G.input.getKeyName(key) end
-	--- isShiftDown - client - libs_sh/input.lua#L283
+	--- isShiftDown - client - libs_sh/input.lua#L282
 	---@return boolean undefined True if the shift key is down
 	function _G.input.isShiftDown() end
-	--- getCursorVisible - client - libs_sh/input.lua#L311
+	--- getCursorVisible - client - libs_sh/input.lua#L310
 	---@return boolean undefined The cursor's visibility
 	function _G.input.getCursorVisible() end
-	--- canLockControls - client - libs_sh/input.lua#L386
+	--- canLockControls - client - libs_sh/input.lua#L385
 	---@return boolean undefined Whether the player's control can be locked
 	function _G.input.canLockControls() end
-	--- isMouseDown - client - libs_sh/input.lua#L259
+	--- isMouseDown - client - libs_sh/input.lua#L258
 	---@param key number The mouse button id, see input
 	---@return boolean undefined True if the key is down
 	function _G.input.isMouseDown(key) end
-	--- selectWeapon - client - libs_sh/input.lua#L347
+	--- selectWeapon - client - libs_sh/input.lua#L346
 	---@param weapon Weapon The weapon entity to select
 	function _G.input.selectWeapon(weapon) end
-	--- isControlDown - client - libs_sh/input.lua#L292
+	--- isControlDown - client - libs_sh/input.lua#L291
 	---@return boolean undefined True if the control key is down
 	function _G.input.isControlDown() end
-	--- lookupBinding - client - libs_sh/input.lua#L218
+	--- lookupBinding - client - libs_sh/input.lua#L217
 	---@param binding string The name of the bind
 	---@return number undefined The id of the first key bound
 	---@return string undefined The name of the first key bound

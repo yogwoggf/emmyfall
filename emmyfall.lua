@@ -8362,15 +8362,9 @@ _G.Effect = {}
 ---  Weapon type
 ---@class Weapon
 _G.Weapon = {}
-	--- getNextSecondaryFire - shared - libs_sh/weapons.lua#L83
-	---@return number undefined The time, relative to CurTime
-	function _G.Weapon:getNextSecondaryFire() end
-	--- lastShootTime - shared - libs_sh/weapons.lua#L111
-	---@return number undefined Time the weapon was last shot
-	function _G.Weapon:lastShootTime() end
-	--- clip1 - shared - libs_sh/weapons.lua#L34
-	---@return number undefined Amount of ammo
-	function _G.Weapon:clip1() end
+	--- getWorldModel - shared - libs_sh/weapons.lua#L133
+	---@return string undefined The world model of the weapon.
+	function _G.Weapon:getWorldModel() end
 	--- maxClip1 - shared - libs_sh/weapons.lua#L41
 	---@return number undefined Amount of ammo
 	function _G.Weapon:maxClip1() end
@@ -8380,27 +8374,39 @@ _G.Weapon = {}
 	--- maxClip2 - shared - libs_sh/weapons.lua#L55
 	---@return number undefined Amount of ammo
 	function _G.Weapon:maxClip2() end
-	--- getNextPrimaryFire - shared - libs_sh/weapons.lua#L76
-	---@return number undefined The time, relative to CurTime
-	function _G.Weapon:getNextPrimaryFire() end
-	--- isCarriedByLocalPlayer - client - libs_sh/weapons.lua#L134
-	---@return boolean undefined Whether or not the weapon is carried by the local player
-	function _G.Weapon:isCarriedByLocalPlayer() end
-	--- getPrintName - client - libs_sh/weapons.lua#L127
-	---@return string undefined Display name of weapon
-	function _G.Weapon:getPrintName() end
-	--- getToolMode - shared - libs_sh/weapons.lua#L118
-	---@return string undefined The tool mode of the toolgun
-	function _G.Weapon:getToolMode() end
-	--- isWeaponVisible - shared - libs_sh/weapons.lua#L104
-	---@return boolean undefined Whether the weapon is visible or not
-	function _G.Weapon:isWeaponVisible() end
 	--- clip2 - shared - libs_sh/weapons.lua#L48
 	---@return number undefined Amount of ammo
 	function _G.Weapon:clip2() end
+	--- getNextSecondaryFire - shared - libs_sh/weapons.lua#L83
+	---@return number undefined The time, relative to CurTime
+	function _G.Weapon:getNextSecondaryFire() end
+	--- lastShootTime - shared - libs_sh/weapons.lua#L111
+	---@return number undefined Time the weapon was last shot
+	function _G.Weapon:lastShootTime() end
+	--- clip1 - shared - libs_sh/weapons.lua#L34
+	---@return number undefined Amount of ammo
+	function _G.Weapon:clip1() end
+	--- getToolMode - shared - libs_sh/weapons.lua#L118
+	---@return string undefined The tool mode of the toolgun
+	function _G.Weapon:getToolMode() end
+	--- getNextPrimaryFire - shared - libs_sh/weapons.lua#L76
+	---@return number undefined The time, relative to CurTime
+	function _G.Weapon:getNextPrimaryFire() end
+	--- isCarriedByLocalPlayer - client - libs_sh/weapons.lua#L148
+	---@return boolean undefined Whether or not the weapon is carried by the local player
+	function _G.Weapon:isCarriedByLocalPlayer() end
+	--- getPrintName - client - libs_sh/weapons.lua#L141
+	---@return string undefined Display name of weapon
+	function _G.Weapon:getPrintName() end
+	--- getViewModel - shared - libs_sh/weapons.lua#L126
+	---@return string undefined The view model of the weapon.
+	function _G.Weapon:getViewModel() end
 	--- getSecondaryAmmoType - shared - libs_sh/weapons.lua#L97
 	---@return number undefined Ammo number type
 	function _G.Weapon:getSecondaryAmmoType() end
+	--- isWeaponVisible - shared - libs_sh/weapons.lua#L104
+	---@return boolean undefined Whether the weapon is visible or not
+	function _G.Weapon:isWeaponVisible() end
 	--- getHoldType - shared - libs_sh/weapons.lua#L69
 	---@return string undefined Holdtype
 	function _G.Weapon:getHoldType() end

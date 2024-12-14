@@ -597,22 +597,22 @@ _G.constraint = {}
 --- game
 ---  Game functions
 _G.game = {}
-	--- getAmmoData - shared - libs_sh/game.lua#L80
+	--- getAmmoData - shared - libs_sh/game.lua#L86
 	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
 	---@return table undefined AmmoData, see https://wiki.facepunch.com/gmod/Structures/AmmoData
 	function _G.game.getAmmoData(id) end
 	--- getTickInterval - shared - libs_sh/game.lua#L68
-	---@return number undefined Interval
+	---@return number undefined Time interval in seconds
 	function _G.game.getTickInterval() end
-	--- steamIDTo64 - shared - libs_sh/game.lua#L118
+	--- steamIDTo64 - shared - libs_sh/game.lua#L124
 	---@param id string The STEAM_0 style id
 	---@return string undefined 64bit Steam ID
 	function _G.game.steamIDTo64(id) end
-	--- serverFrameTime - client - libs_sh/game.lua#L163
+	--- serverFrameTime - client - libs_sh/game.lua#L169
 	---@return number undefined Server frametime
 	---@return number undefined Server frametime standard deviation
 	function _G.game.serverFrameTime() end
-	--- blastDamage - server - libs_sh/game.lua#L127
+	--- blastDamage - server - libs_sh/game.lua#L133
 	---@param damageOrigin Vector The center of the explosion
 	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
 	---@param damage number The amount of damage to be applied
@@ -620,14 +620,14 @@ _G.game = {}
 	--- getHostname - shared - libs_sh/game.lua#L25
 	---@return string undefined The hostname of the server
 	function _G.game.getHostname() end
-	--- getPlayerModels - shared - libs_sh/game.lua#L100
+	--- getPlayerModels - shared - libs_sh/game.lua#L106
 	---@return table undefined List of valid playermodels
 	function _G.game.getPlayerModels() end
-	--- getAmmoMax - shared - libs_sh/game.lua#L87
+	--- getAmmoMax - shared - libs_sh/game.lua#L93
 	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
 	---@return number undefined The maximum amount of reserve ammo a player can hold of this ammo type
 	function _G.game.getAmmoMax(id) end
-	--- steamIDFrom64 - shared - libs_sh/game.lua#L111
+	--- steamIDFrom64 - shared - libs_sh/game.lua#L117
 	---@param id string The 64 bit Steam ID
 	---@return string undefined STEAM_0 style Steam ID
 	function _G.game.steamIDFrom64(id) end
@@ -640,22 +640,25 @@ _G.game = {}
 	--- getTimeScale - shared - libs_sh/game.lua#L62
 	---@return number undefined Time scale
 	function _G.game.getTimeScale() end
-	--- isTimingOut - client - libs_sh/game.lua#L171
+	--- getRealTickInterval - shared - libs_sh/game.lua#L74
+	---@return number undefined Time interval in seconds
+	function _G.game.getRealTickInterval() end
+	--- isTimingOut - client - libs_sh/game.lua#L177
 	---@return boolean undefined If currently timing out
 	---@return number undefined Time since the connection started to timeout
 	function _G.game.isTimingOut() end
-	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L155
+	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L161
 	---@param position Vector The position to check the skybox visibility from
 	---@return boolean undefined Whether the skybox is visible from the position
 	function _G.game.isSkyboxVisibleFromPoint(position) end
-	--- getTickCount - shared - libs_sh/game.lua#L74
+	--- getTickCount - shared - libs_sh/game.lua#L80
 	---@return number undefined Ticks
 	function _G.game.getTickCount() end
-	--- getSunInfo - client - libs_sh/game.lua#L146
+	--- getSunInfo - client - libs_sh/game.lua#L152
 	---@return Vector undefined The direction of the sun
 	---@return number undefined How obstructed the sun is 0 to 1.
 	function _G.game.getSunInfo() end
-	--- getWorld - shared - libs_sh/game.lua#L94
+	--- getWorld - shared - libs_sh/game.lua#L100
 	---@return Entity undefined Worldspawn
 	function _G.game.getWorld() end
 	--- getMap - shared - libs_sh/game.lua#L19
@@ -671,7 +674,7 @@ _G.game = {}
 	---@param str string String identifier of the game, eg. 'cstrike'
 	---@return boolean undefined True if the game is mounted
 	function _G.game.isMounted(str) end
-	--- hasFocus - client - libs_sh/game.lua#L139
+	--- hasFocus - client - libs_sh/game.lua#L145
 	---@return boolean undefined True if the game is focused
 	function _G.game.hasFocus() end
 --- xinput

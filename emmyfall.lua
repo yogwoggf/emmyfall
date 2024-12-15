@@ -6266,7 +6266,7 @@ _G.render.Vertex = {
 	---@param name string? Name of the render target to use
 	function _G.render.setRenderTargetTexture(name) end
 	--- getScreenEntity - client - libs_cl/render.lua#L2297
-	---@return Entity undefined Entity of the screen or hud being rendered
+	---@return Entity undefined Entity of the screen being rendered
 	function _G.render.getScreenEntity() end
 	--- setStencilCompareFunction - client - libs_cl/render.lua#L643
 	---@param compareFunction number 

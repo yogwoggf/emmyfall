@@ -5000,13 +5000,16 @@ _G.sql = {}
 --- light
 ---  Light library.
 _G.light = {}
-	--- create - client - libs_cl/light.lua#L117
+	--- create - client - libs_cl/light.lua#L130
 	---@param pos Vector The position of the light
 	---@param size number The size of the light. Must be lower than sf_light_maxsize
 	---@param brightness number The brightness of the light
 	---@param color Color The color of the light
 	---@return Light undefined Dynamic light
 	function _G.light.create(pos, size, brightness, color) end
+	--- createProjected - client - libs_cl/light.lua#L277
+	---@return any undefined Projected Texture
+	function _G.light.createProjected() end
 --- joystick
 ---  Joystick library.
 _G.joystick = {}
@@ -7246,6 +7249,19 @@ _G.Vehicle = {}
 	--- stripDriver - server - libs_sh/vehicles.lua#L77
 	---@param class string? Optional weapon class to strip. Otherwise all are stripped.
 	function _G.Vehicle:stripDriver(class) end
+---  Websocket Type. Create a websocket with WebSocket(...)
+---@class WebSocket
+_G.WebSocket = {}
+	--- close - client - libs_cl/websocket.lua#L132
+	function _G.WebSocket:close() end
+	--- write - client - libs_cl/websocket.lua#L137
+	---@param msg string What to send
+	function _G.WebSocket:write(msg) end
+	--- getState - client - libs_cl/websocket.lua#L148
+	---@return number undefined The current state of the websocket.
+	function _G.WebSocket:getState() end
+	--- connect - client - libs_cl/websocket.lua#L143
+	function _G.WebSocket:connect() end
 ---  Player type
 ---@class Player
 _G.Player = {}
@@ -7798,27 +7814,39 @@ _G.Vector = {}
 	function _G.Vector:getAngleEx(v) end
 	--- setZero - shared - libs_sh/vectors.lua#L349
 	function _G.Vector:setZero() end
----  The Markup type is used to easily format and draw text. Use render.parseMarkup(str, maxwidth) to create one.
----@class Markup
-_G.Markup = {}
-	--- getSize - client - libs_cl/render.lua#L1920
-	---@return number undefined The width of the object
-	---@return number undefined The height of the object
-	function _G.Markup:getSize() end
-	--- draw - client - libs_cl/render.lua#L1896
-	---@param x number number The x offset
-	---@param y number number The x offset
-	---@param xAlign number? number The x TEXT_ALIGN. Default TEXT_ALIGN.LEFT
-	---@param yAlign number? number The y TEXT_ALIGN. Default TEXT_ALIGN.TOP
-	---@param alpha number? The alpha to draw it with. Default 255
-	---@param contentAlign number? The content alignment TEXT_ALIGN. Default TEXT_ALIGN.LEFT
-	function _G.Markup:draw(x, y, xAlign, yAlign, alpha, contentAlign) end
-	--- getWidth - client - libs_cl/render.lua#L1908
-	---@return number undefined The width of the object
-	function _G.Markup:getWidth() end
-	--- getHeight - client - libs_cl/render.lua#L1914
-	---@return number undefined The height of the object
-	function _G.Markup:getHeight() end
+---  Sound type
+---@class Sound
+_G.Sound = {}
+	--- stop - shared - libs_sh/sound.lua#L134
+	---@param fade number? Time in seconds to fade out, if nil or 0 the sound stops instantly.
+	function _G.Sound:stop(fade) end
+	--- setPitch - shared - libs_sh/sound.lua#L170
+	---@param pitch number Pitch to set to, between 0 and 255.
+	---@param fade number? Time in seconds to transition to this new pitch. Default 0
+	function _G.Sound:setPitch(pitch, fade) end
+	--- setDSP - shared - libs_sh/sound.lua#L206
+	---@param dsp number (0 - 133) DSP values. List can be found here https://developer.valvesoftware.com/wiki/Dsp_presets
+	function _G.Sound:setDSP(dsp) end
+	--- setSoundLevel - shared - libs_sh/sound.lua#L193
+	---@param level number dB level, for information on the value to use see https://developer.valvesoftware.com/wiki/Soundscripts#SoundLevel
+	function _G.Sound:setSoundLevel(level) end
+	--- isPlaying - shared - libs_sh/sound.lua#L187
+	---@return boolean undefined Whether the sound is playing or not
+	function _G.Sound:isPlaying() end
+	--- getSoundLevel - shared - libs_sh/sound.lua#L200
+	---@return number undefined Level in dB
+	function _G.Sound:getSoundLevel() end
+	--- getDSP - shared - libs_sh/sound.lua#L213
+	---@return number undefined (0 - 133) DSP value.
+	function _G.Sound:getDSP() end
+	--- play - shared - libs_sh/sound.lua#L129
+	function _G.Sound:play() end
+	--- destroy - shared - libs_sh/sound.lua#L145
+	function _G.Sound:destroy() end
+	--- setVolume - shared - libs_sh/sound.lua#L153
+	---@param vol number Volume to set to, between 0 and 1.
+	---@param fade number? Time in seconds to transition to this new volume. Default 0
+	function _G.Sound:setVolume(vol, fade) end
 ---  Hologram type
 ---@class Hologram
 _G.Hologram = {}
@@ -7908,62 +7936,49 @@ _G.Hologram = {}
 ---  Light type
 ---@class Light
 _G.Light = {}
-	--- setNoWorld - client - libs_cl/light.lua#L211
+	--- setNoWorld - client - libs_cl/light.lua#L224
 	---@param on boolean Whether the light shouldn't cast onto the world
 	function _G.Light:setNoWorld(on) end
-	--- setOuterAngle - client - libs_cl/light.lua#L197
+	--- setOuterAngle - client - libs_cl/light.lua#L210
 	---@param ang number Outer angle of the light
 	function _G.Light:setOuterAngle(ang) end
-	--- setInnerAngle - client - libs_cl/light.lua#L190
+	--- setInnerAngle - client - libs_cl/light.lua#L203
 	---@param ang number Inner angle of the light
 	function _G.Light:setInnerAngle(ang) end
-	--- destroy - client - libs_cl/light.lua#L255
+	--- destroy - client - libs_cl/light.lua#L268
 	function _G.Light:destroy() end
-	--- setStyle - client - libs_cl/light.lua#L238
+	--- setStyle - client - libs_cl/light.lua#L251
 	---@param style number The number of the flicker style
 	function _G.Light:setStyle(style) end
-	--- setColor - client - libs_cl/light.lua#L245
+	--- setColor - client - libs_cl/light.lua#L258
 	---@param col Color The color of the light
 	function _G.Light:setColor(col) end
-	--- setBrightness - client - libs_cl/light.lua#L163
+	--- setBrightness - client - libs_cl/light.lua#L176
 	---@param brightness number The light's brightness
 	function _G.Light:setBrightness(brightness) end
-	--- setDieTime - client - libs_cl/light.lua#L177
+	--- setDieTime - client - libs_cl/light.lua#L190
 	---@param dietime number The how long the light will stay alive after turning it off.
 	function _G.Light:setDieTime(dietime) end
-	--- draw - client - libs_cl/light.lua#L143
+	--- draw - client - libs_cl/light.lua#L156
 	function _G.Light:draw() end
-	--- setSize - client - libs_cl/light.lua#L231
+	--- setSize - client - libs_cl/light.lua#L244
 	---@param size number The size of the light
 	function _G.Light:setSize(size) end
-	--- setMinLight - client - libs_cl/light.lua#L204
+	--- setMinLight - client - libs_cl/light.lua#L217
 	---@param min number The minimum light
 	function _G.Light:setMinLight(min) end
-	--- setDecay - client - libs_cl/light.lua#L170
+	--- setDecay - client - libs_cl/light.lua#L183
 	---@param decay number The light's decay speed
 	function _G.Light:setDecay(decay) end
-	--- setPos - client - libs_cl/light.lua#L225
+	--- setPos - client - libs_cl/light.lua#L238
 	---@param pos Vector The position of the light
 	function _G.Light:setPos(pos) end
-	--- setNoModel - client - libs_cl/light.lua#L218
+	--- setNoModel - client - libs_cl/light.lua#L231
 	---@param on boolean Whether the light shouldn't cast onto the models
 	function _G.Light:setNoModel(on) end
-	--- setDirection - client - libs_cl/light.lua#L184
+	--- setDirection - client - libs_cl/light.lua#L197
 	---@param dir Vector Direction of the light
 	function _G.Light:setDirection(dir) end
----  Websocket Type. Create a websocket with WebSocket(...)
----@class WebSocket
-_G.WebSocket = {}
-	--- close - client - libs_cl/websocket.lua#L132
-	function _G.WebSocket:close() end
-	--- write - client - libs_cl/websocket.lua#L137
-	---@param msg string What to send
-	function _G.WebSocket:write(msg) end
-	--- getState - client - libs_cl/websocket.lua#L148
-	---@return number undefined The current state of the websocket.
-	function _G.WebSocket:getState() end
-	--- connect - client - libs_cl/websocket.lua#L143
-	function _G.WebSocket:connect() end
 --- 
 ---  The `Material` type is used to control shaders in rendering.
 --- 
@@ -8061,6 +8076,192 @@ _G.Material = {}
 	--- getHeight - client - libs_cl/material.lua#L626
 	---@return number undefined The basetexture's height
 	function _G.Material:getHeight() end
+---  PhysObj Type
+---@class PhysObj
+_G.PhysObj = {}
+	--- localToWorld - shared - libs_sh/physobj.lua#L150
+	---@param vec Vector The vector to transform
+	---@return Vector undefined The transformed vector
+	function _G.PhysObj:localToWorld(vec) end
+	--- setDamping - shared - libs_sh/physobj.lua#L494
+	---@param linear number Number of the linear damping
+	---@param angular number Number of the angular damping
+	function _G.PhysObj:setDamping(linear, angular) end
+	--- getMatrix - shared - libs_sh/physobj.lua#L61
+	---@return VMatrix undefined The matrix
+	function _G.PhysObj:getMatrix() end
+	--- setAngleVelocity - server - libs_sh/physobj.lua#L324
+	---@param angvel Vector The local angvel vector to set
+	function _G.PhysObj:setAngleVelocity(angvel) end
+	--- getPos - shared - libs_sh/physobj.lua#L54
+	---@return Vector undefined Vector position of the physics object
+	function _G.PhysObj:getPos() end
+	--- getAngles - shared - libs_sh/physobj.lua#L68
+	---@return Angle undefined Angle angles of the physics object
+	function _G.PhysObj:getAngles() end
+	--- addGameFlags - shared - libs_sh/physobj.lua#L395
+	---@param flags number The flags to add. FVPHYSICS enum.
+	function _G.PhysObj:addGameFlags(flags) end
+	--- enableMotion - shared - libs_sh/physobj.lua#L507
+	---@param move boolean Should the bone move?
+	function _G.PhysObj:enableMotion(move) end
+	--- calculateVelocityOffset - server - libs_sh/physobj.lua#L596
+	---@param impulse Vector The impulse acting on the object in world coordinates (kg*source_unit/s)
+	---@param position Vector The location of the impulse in world coordinates
+	---@return Vector undefined The calculated linear velocity from the impulse on the physics object's center of mass in source_unit/s. (World frame)
+	---@return Vector undefined The calculated angular velocity from the impulse on the physics object's center of mass in degrees/s. (Local frame)
+	function _G.PhysObj:calculateVelocityOffset(impulse, position) end
+	--- setPos - server - libs_sh/physobj.lua#L219
+	---@param pos Vector The position vector to set it to
+	function _G.PhysObj:setPos(pos) end
+	--- isDragEnabled - shared - libs_sh/physobj.lua#L461
+	---@return boolean undefined If bone is affected by drag
+	function _G.PhysObj:isDragEnabled() end
+	--- setAngleDragCoefficient - shared - libs_sh/physobj.lua#L477
+	---@param coeff number How much drag affects the bone when rotating
+	function _G.PhysObj:setAngleDragCoefficient(coeff) end
+	--- setContents - server - libs_sh/physobj.lua#L285
+	---@param contents number The CONTENTS enum
+	function _G.PhysObj:setContents(contents) end
+	--- applyTorque - server - libs_sh/physobj.lua#L350
+	---@param torque Vector The world torque vector to apply
+	function _G.PhysObj:applyTorque(torque) end
+	--- calculateForceOffset - server - libs_sh/physobj.lua#L574
+	---@param impulse Vector The impulse acting on the object in world coordinates (kg*source_unit/s)
+	---@param position Vector The location of the impulse in world coordinates
+	---@return Vector undefined The calculated linear impulse on the physics object's center of mass in kg*source_unit/s. (World frame)
+	---@return Vector undefined The calculated angular impulse on the physics object's center of mass in kg*m^2*degrees/s. (Local frame)
+	function _G.PhysObj:calculateForceOffset(impulse, position) end
+	--- getVelocity - shared - libs_sh/physobj.lua#L75
+	---@return Vector undefined Vector velocity of the physics object
+	function _G.PhysObj:getVelocity() end
+	--- getStress - server - libs_sh/physobj.lua#L566
+	---@return number undefined External stress. Usually about the mass of the object if on the ground, usually 0 if in freefall.
+	---@return number undefined Internal stress. Usually about the mass of every object resting on top of it combined.
+	function _G.PhysObj:getStress() end
+	--- worldToLocal - shared - libs_sh/physobj.lua#L143
+	---@param vec Vector The vector to transform
+	---@return Vector undefined The transformed vector
+	function _G.PhysObj:worldToLocal(vec) end
+	--- sleep - server - libs_sh/physobj.lua#L524
+	function _G.PhysObj:sleep() end
+	--- getFrictionSnapshot - server - libs_sh/physobj.lua#L540
+	---@return table undefined Table of tables of data. Each table will contain:
+	function _G.PhysObj:getFrictionSnapshot() end
+	--- setDragCoefficient - shared - libs_sh/physobj.lua#L468
+	---@param coeff number How much drag affects the bone
+	function _G.PhysObj:setDragCoefficient(coeff) end
+	--- getMassCenter - shared - libs_sh/physobj.lua#L122
+	---@return Vector undefined Center of mass vector in the physobject's local reference frame.
+	function _G.PhysObj:getMassCenter() end
+	--- getVolume - shared - libs_sh/physobj.lua#L559
+	---@return number? undefined The volume or nil if the PhysObj is a generated sphere or box.
+	function _G.PhysObj:getVolume() end
+	--- getMesh - shared - libs_sh/physobj.lua#L171
+	---@return table undefined Table of MeshVertex structures
+	function _G.PhysObj:getMesh() end
+	--- addAngleVelocity - server - libs_sh/physobj.lua#L337
+	---@param angvel Vector The local angvel vector to apply
+	function _G.PhysObj:addAngleVelocity(angvel) end
+	--- isAsleep - server - libs_sh/physobj.lua#L516
+	---@return boolean undefined If the physobj is asleep
+	function _G.PhysObj:isAsleep() end
+	--- getLocalVelocity - shared - libs_sh/physobj.lua#L82
+	---@return Vector undefined Vector velocity of the physics object local to itself
+	function _G.PhysObj:getLocalVelocity() end
+	--- applyForceOffset - server - libs_sh/physobj.lua#L308
+	---@param force Vector The force vector in world coordinates
+	---@param position Vector The force position in world coordinates
+	function _G.PhysObj:applyForceOffset(force, position) end
+	--- setBuoyancyRatio - server - libs_sh/physobj.lua#L270
+	---@param ratio number The buoyancy ratio to use
+	function _G.PhysObj:setBuoyancyRatio(ratio) end
+	--- setMaterial - shared - libs_sh/physobj.lua#L185
+	---@param materialName string The physical material to set it to
+	function _G.PhysObj:setMaterial(materialName) end
+	--- isMoveable - shared - libs_sh/physobj.lua#L204
+	---@return boolean undefined Whether the object is moveable
+	function _G.PhysObj:isMoveable() end
+	--- getMass - shared - libs_sh/physobj.lua#L115
+	---@return number undefined Mass of the physics object
+	function _G.PhysObj:getMass() end
+	--- isValid - shared - libs_sh/physobj.lua#L40
+	---@return boolean undefined If the physics object is valid
+	function _G.PhysObj:isValid() end
+	--- wake - server - libs_sh/physobj.lua#L532
+	function _G.PhysObj:wake() end
+	--- localToWorldVector - shared - libs_sh/physobj.lua#L164
+	---@param vec Vector The normal vector to transform
+	---@return Vector undefined The transformed vector
+	function _G.PhysObj:localToWorldVector(vec) end
+	--- enableDrag - shared - libs_sh/physobj.lua#L453
+	---@param drag boolean Should the bone have air resistance?
+	function _G.PhysObj:enableDrag(drag) end
+	--- addVelocity - server - libs_sh/physobj.lua#L258
+	---@param vel Vector The world velocity vector to apply
+	function _G.PhysObj:addVelocity(vel) end
+	--- applyForceCenter - server - libs_sh/physobj.lua#L295
+	---@param force Vector The force vector to apply
+	function _G.PhysObj:applyForceCenter(force) end
+	--- getVelocityAtPoint - shared - libs_sh/physobj.lua#L99
+	---@param vec Vector The point to get velocity of in local reference frame
+	---@return Vector undefined Vector Local velocity of the physics object at the point
+	function _G.PhysObj:getVelocityAtPoint(vec) end
+	--- isGravityEnabled - shared - libs_sh/physobj.lua#L211
+	---@return boolean undefined Whether the object is affect gravity
+	function _G.PhysObj:isGravityEnabled() end
+	--- getAngleVelocity - shared - libs_sh/physobj.lua#L108
+	---@return Vector undefined Vector angular velocity of the physics object
+	function _G.PhysObj:getAngleVelocity() end
+	--- setInertia - server - libs_sh/physobj.lua#L376
+	---@param inertia Vector The inertia vector to set it to
+	function _G.PhysObj:setInertia(inertia) end
+	--- setAngles - server - libs_sh/physobj.lua#L232
+	---@param ang Angle The angle to set it to
+	function _G.PhysObj:setAngles(ang) end
+	--- getEntity - shared - libs_sh/physobj.lua#L47
+	---@return Entity undefined The entity attached to the physics object
+	function _G.PhysObj:getEntity() end
+	--- enableGravity - shared - libs_sh/physobj.lua#L444
+	---@param grav boolean Should the bone respect gravity?
+	function _G.PhysObj:enableGravity(grav) end
+	--- getDamping - shared - libs_sh/physobj.lua#L486
+	---@return number undefined Linear damping
+	---@return number undefined Angular damping
+	function _G.PhysObj:getDamping() end
+	--- clearGameFlags - shared - libs_sh/physobj.lua#L415
+	---@param flags number The flags to clear. FVPHYSICS enum.
+	function _G.PhysObj:clearGameFlags(flags) end
+	--- setMass - server - libs_sh/physobj.lua#L363
+	---@param mass number The mass to set it to
+	function _G.PhysObj:setMass(mass) end
+	--- hasGameFlags - shared - libs_sh/physobj.lua#L435
+	---@param flags number The flags to test. FVPHYSICS enum.
+	---@return boolean undefined If the flags are set
+	function _G.PhysObj:hasGameFlags(flags) end
+	--- getMaterial - shared - libs_sh/physobj.lua#L136
+	---@return string undefined The physics material of the physics object
+	function _G.PhysObj:getMaterial() end
+	--- worldToLocalVector - shared - libs_sh/physobj.lua#L157
+	---@param vec Vector The normal vector to transform
+	---@return Vector undefined The transformed vector
+	function _G.PhysObj:worldToLocalVector(vec) end
+	--- getSurfaceArea - shared - libs_sh/physobj.lua#L198
+	---@return number? undefined Surface area, or nil if a generated sphere or box
+	function _G.PhysObj:getSurfaceArea() end
+	--- getAABB - shared - libs_sh/physobj.lua#L90
+	---@return Vector undefined The mins of the AABB
+	---@return Vector undefined The maxs of the AABB
+	function _G.PhysObj:getAABB() end
+	--- getMeshConvexes - shared - libs_sh/physobj.lua#L178
+	---@return table undefined Table of MeshVertex structures
+	function _G.PhysObj:getMeshConvexes() end
+	--- getInertia - shared - libs_sh/physobj.lua#L129
+	---@return Vector undefined Vector Inertia of the physics object
+	function _G.PhysObj:getInertia() end
+	--- setVelocity - server - libs_sh/physobj.lua#L245
+	---@param vel Vector The velocity vector to set it to
+	function _G.PhysObj:setVelocity(vel) end
 ---  File type
 ---@class File
 _G.File = {}
@@ -8479,192 +8680,6 @@ _G.Particle = {}
 	--- getColor - client - libs_cl/particle.lua#L205
 	---@return Color undefined Color of the particle
 	function _G.Particle:getColor() end
----  PhysObj Type
----@class PhysObj
-_G.PhysObj = {}
-	--- localToWorld - shared - libs_sh/physobj.lua#L150
-	---@param vec Vector The vector to transform
-	---@return Vector undefined The transformed vector
-	function _G.PhysObj:localToWorld(vec) end
-	--- setDamping - shared - libs_sh/physobj.lua#L494
-	---@param linear number Number of the linear damping
-	---@param angular number Number of the angular damping
-	function _G.PhysObj:setDamping(linear, angular) end
-	--- getMatrix - shared - libs_sh/physobj.lua#L61
-	---@return VMatrix undefined The matrix
-	function _G.PhysObj:getMatrix() end
-	--- setAngleVelocity - server - libs_sh/physobj.lua#L324
-	---@param angvel Vector The local angvel vector to set
-	function _G.PhysObj:setAngleVelocity(angvel) end
-	--- getPos - shared - libs_sh/physobj.lua#L54
-	---@return Vector undefined Vector position of the physics object
-	function _G.PhysObj:getPos() end
-	--- getAngles - shared - libs_sh/physobj.lua#L68
-	---@return Angle undefined Angle angles of the physics object
-	function _G.PhysObj:getAngles() end
-	--- addGameFlags - shared - libs_sh/physobj.lua#L395
-	---@param flags number The flags to add. FVPHYSICS enum.
-	function _G.PhysObj:addGameFlags(flags) end
-	--- enableMotion - shared - libs_sh/physobj.lua#L507
-	---@param move boolean Should the bone move?
-	function _G.PhysObj:enableMotion(move) end
-	--- calculateVelocityOffset - server - libs_sh/physobj.lua#L596
-	---@param impulse Vector The impulse acting on the object in world coordinates (kg*source_unit/s)
-	---@param position Vector The location of the impulse in world coordinates
-	---@return Vector undefined The calculated linear velocity from the impulse on the physics object's center of mass in source_unit/s. (World frame)
-	---@return Vector undefined The calculated angular velocity from the impulse on the physics object's center of mass in degrees/s. (Local frame)
-	function _G.PhysObj:calculateVelocityOffset(impulse, position) end
-	--- setPos - server - libs_sh/physobj.lua#L219
-	---@param pos Vector The position vector to set it to
-	function _G.PhysObj:setPos(pos) end
-	--- isDragEnabled - shared - libs_sh/physobj.lua#L461
-	---@return boolean undefined If bone is affected by drag
-	function _G.PhysObj:isDragEnabled() end
-	--- setAngleDragCoefficient - shared - libs_sh/physobj.lua#L477
-	---@param coeff number How much drag affects the bone when rotating
-	function _G.PhysObj:setAngleDragCoefficient(coeff) end
-	--- setContents - server - libs_sh/physobj.lua#L285
-	---@param contents number The CONTENTS enum
-	function _G.PhysObj:setContents(contents) end
-	--- applyTorque - server - libs_sh/physobj.lua#L350
-	---@param torque Vector The world torque vector to apply
-	function _G.PhysObj:applyTorque(torque) end
-	--- calculateForceOffset - server - libs_sh/physobj.lua#L574
-	---@param impulse Vector The impulse acting on the object in world coordinates (kg*source_unit/s)
-	---@param position Vector The location of the impulse in world coordinates
-	---@return Vector undefined The calculated linear impulse on the physics object's center of mass in kg*source_unit/s. (World frame)
-	---@return Vector undefined The calculated angular impulse on the physics object's center of mass in kg*m^2*degrees/s. (Local frame)
-	function _G.PhysObj:calculateForceOffset(impulse, position) end
-	--- getVelocity - shared - libs_sh/physobj.lua#L75
-	---@return Vector undefined Vector velocity of the physics object
-	function _G.PhysObj:getVelocity() end
-	--- getStress - server - libs_sh/physobj.lua#L566
-	---@return number undefined External stress. Usually about the mass of the object if on the ground, usually 0 if in freefall.
-	---@return number undefined Internal stress. Usually about the mass of every object resting on top of it combined.
-	function _G.PhysObj:getStress() end
-	--- worldToLocal - shared - libs_sh/physobj.lua#L143
-	---@param vec Vector The vector to transform
-	---@return Vector undefined The transformed vector
-	function _G.PhysObj:worldToLocal(vec) end
-	--- sleep - server - libs_sh/physobj.lua#L524
-	function _G.PhysObj:sleep() end
-	--- getFrictionSnapshot - server - libs_sh/physobj.lua#L540
-	---@return table undefined Table of tables of data. Each table will contain:
-	function _G.PhysObj:getFrictionSnapshot() end
-	--- setDragCoefficient - shared - libs_sh/physobj.lua#L468
-	---@param coeff number How much drag affects the bone
-	function _G.PhysObj:setDragCoefficient(coeff) end
-	--- getMassCenter - shared - libs_sh/physobj.lua#L122
-	---@return Vector undefined Center of mass vector in the physobject's local reference frame.
-	function _G.PhysObj:getMassCenter() end
-	--- getVolume - shared - libs_sh/physobj.lua#L559
-	---@return number? undefined The volume or nil if the PhysObj is a generated sphere or box.
-	function _G.PhysObj:getVolume() end
-	--- getMesh - shared - libs_sh/physobj.lua#L171
-	---@return table undefined Table of MeshVertex structures
-	function _G.PhysObj:getMesh() end
-	--- addAngleVelocity - server - libs_sh/physobj.lua#L337
-	---@param angvel Vector The local angvel vector to apply
-	function _G.PhysObj:addAngleVelocity(angvel) end
-	--- isAsleep - server - libs_sh/physobj.lua#L516
-	---@return boolean undefined If the physobj is asleep
-	function _G.PhysObj:isAsleep() end
-	--- getLocalVelocity - shared - libs_sh/physobj.lua#L82
-	---@return Vector undefined Vector velocity of the physics object local to itself
-	function _G.PhysObj:getLocalVelocity() end
-	--- applyForceOffset - server - libs_sh/physobj.lua#L308
-	---@param force Vector The force vector in world coordinates
-	---@param position Vector The force position in world coordinates
-	function _G.PhysObj:applyForceOffset(force, position) end
-	--- setBuoyancyRatio - server - libs_sh/physobj.lua#L270
-	---@param ratio number The buoyancy ratio to use
-	function _G.PhysObj:setBuoyancyRatio(ratio) end
-	--- setMaterial - shared - libs_sh/physobj.lua#L185
-	---@param materialName string The physical material to set it to
-	function _G.PhysObj:setMaterial(materialName) end
-	--- isMoveable - shared - libs_sh/physobj.lua#L204
-	---@return boolean undefined Whether the object is moveable
-	function _G.PhysObj:isMoveable() end
-	--- getMass - shared - libs_sh/physobj.lua#L115
-	---@return number undefined Mass of the physics object
-	function _G.PhysObj:getMass() end
-	--- isValid - shared - libs_sh/physobj.lua#L40
-	---@return boolean undefined If the physics object is valid
-	function _G.PhysObj:isValid() end
-	--- wake - server - libs_sh/physobj.lua#L532
-	function _G.PhysObj:wake() end
-	--- localToWorldVector - shared - libs_sh/physobj.lua#L164
-	---@param vec Vector The normal vector to transform
-	---@return Vector undefined The transformed vector
-	function _G.PhysObj:localToWorldVector(vec) end
-	--- enableDrag - shared - libs_sh/physobj.lua#L453
-	---@param drag boolean Should the bone have air resistance?
-	function _G.PhysObj:enableDrag(drag) end
-	--- addVelocity - server - libs_sh/physobj.lua#L258
-	---@param vel Vector The world velocity vector to apply
-	function _G.PhysObj:addVelocity(vel) end
-	--- applyForceCenter - server - libs_sh/physobj.lua#L295
-	---@param force Vector The force vector to apply
-	function _G.PhysObj:applyForceCenter(force) end
-	--- getVelocityAtPoint - shared - libs_sh/physobj.lua#L99
-	---@param vec Vector The point to get velocity of in local reference frame
-	---@return Vector undefined Vector Local velocity of the physics object at the point
-	function _G.PhysObj:getVelocityAtPoint(vec) end
-	--- isGravityEnabled - shared - libs_sh/physobj.lua#L211
-	---@return boolean undefined Whether the object is affect gravity
-	function _G.PhysObj:isGravityEnabled() end
-	--- getAngleVelocity - shared - libs_sh/physobj.lua#L108
-	---@return Vector undefined Vector angular velocity of the physics object
-	function _G.PhysObj:getAngleVelocity() end
-	--- setInertia - server - libs_sh/physobj.lua#L376
-	---@param inertia Vector The inertia vector to set it to
-	function _G.PhysObj:setInertia(inertia) end
-	--- setAngles - server - libs_sh/physobj.lua#L232
-	---@param ang Angle The angle to set it to
-	function _G.PhysObj:setAngles(ang) end
-	--- getEntity - shared - libs_sh/physobj.lua#L47
-	---@return Entity undefined The entity attached to the physics object
-	function _G.PhysObj:getEntity() end
-	--- enableGravity - shared - libs_sh/physobj.lua#L444
-	---@param grav boolean Should the bone respect gravity?
-	function _G.PhysObj:enableGravity(grav) end
-	--- getDamping - shared - libs_sh/physobj.lua#L486
-	---@return number undefined Linear damping
-	---@return number undefined Angular damping
-	function _G.PhysObj:getDamping() end
-	--- clearGameFlags - shared - libs_sh/physobj.lua#L415
-	---@param flags number The flags to clear. FVPHYSICS enum.
-	function _G.PhysObj:clearGameFlags(flags) end
-	--- setMass - server - libs_sh/physobj.lua#L363
-	---@param mass number The mass to set it to
-	function _G.PhysObj:setMass(mass) end
-	--- hasGameFlags - shared - libs_sh/physobj.lua#L435
-	---@param flags number The flags to test. FVPHYSICS enum.
-	---@return boolean undefined If the flags are set
-	function _G.PhysObj:hasGameFlags(flags) end
-	--- getMaterial - shared - libs_sh/physobj.lua#L136
-	---@return string undefined The physics material of the physics object
-	function _G.PhysObj:getMaterial() end
-	--- worldToLocalVector - shared - libs_sh/physobj.lua#L157
-	---@param vec Vector The normal vector to transform
-	---@return Vector undefined The transformed vector
-	function _G.PhysObj:worldToLocalVector(vec) end
-	--- getSurfaceArea - shared - libs_sh/physobj.lua#L198
-	---@return number? undefined Surface area, or nil if a generated sphere or box
-	function _G.PhysObj:getSurfaceArea() end
-	--- getAABB - shared - libs_sh/physobj.lua#L90
-	---@return Vector undefined The mins of the AABB
-	---@return Vector undefined The maxs of the AABB
-	function _G.PhysObj:getAABB() end
-	--- getMeshConvexes - shared - libs_sh/physobj.lua#L178
-	---@return table undefined Table of MeshVertex structures
-	function _G.PhysObj:getMeshConvexes() end
-	--- getInertia - shared - libs_sh/physobj.lua#L129
-	---@return Vector undefined Vector Inertia of the physics object
-	function _G.PhysObj:getInertia() end
-	--- setVelocity - server - libs_sh/physobj.lua#L245
-	---@param vel Vector The velocity vector to set it to
-	function _G.PhysObj:setVelocity(vel) end
 ---  VMatrix type
 ---@class VMatrix
 ---@operator mul(VMatrix|Vector):VMatrix
@@ -8880,6 +8895,50 @@ _G.Bass = {}
 	--- getFadeMultiplier - client - libs_cl/bass.lua#L280
 	---@return number undefined Volume fade multiplier (1 is normal), between 0x and 10x.
 	function _G.Bass:getFadeMultiplier() end
+---  ParticleEffect type
+---@class ParticleEffect
+_G.ParticleEffect = {}
+	--- setSortOrigin - client - libs_cl/particle_effect.lua#L159
+	---@param origin Vector Sort Origin
+	function _G.ParticleEffect:setSortOrigin(origin) end
+	--- restart - client - libs_cl/particle_effect.lua#L136
+	function _G.ParticleEffect:restart() end
+	--- stopEmission - client - libs_cl/particle_effect.lua#L114
+	function _G.ParticleEffect:stopEmission() end
+	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L184
+	---@param id number Child Control Point ID (0-63)
+	---@param entity Entity Entity parent
+	function _G.ParticleEffect:setControlPointEntity(id, entity) end
+	--- isFinished - client - libs_cl/particle_effect.lua#L146
+	---@return boolean undefined If the particle effect is finished
+	function _G.ParticleEffect:isFinished() end
+	--- setControlPointParent - client - libs_cl/particle_effect.lua#L241
+	---@param id number Child Control Point ID (0-63)
+	---@param parentid number Parent control point ID (0-63)
+	function _G.ParticleEffect:setControlPointParent(id, parentid) end
+	--- setControlPoint - client - libs_cl/particle_effect.lua#L170
+	---@param id number Control Point ID (0-63)
+	---@param value Vector Value
+	function _G.ParticleEffect:setControlPoint(id, value) end
+	--- setUpVector - client - libs_cl/particle_effect.lua#L226
+	---@param id number Control Point ID (0-63)
+	---@param up Vector Up vector
+	function _G.ParticleEffect:setUpVector(id, up) end
+	--- destroy - client - libs_cl/particle_effect.lua#L123
+	function _G.ParticleEffect:destroy() end
+	--- setForwardVector - client - libs_cl/particle_effect.lua#L199
+	---@param id number Control Point ID (0-63)
+	---@param fwd Vector Forward vector
+	function _G.ParticleEffect:setForwardVector(id, fwd) end
+	--- startEmission - client - libs_cl/particle_effect.lua#L104
+	function _G.ParticleEffect:startEmission() end
+	--- setRightVector - client - libs_cl/particle_effect.lua#L212
+	---@param id number Control Point ID (0-63)
+	---@param right Vector Right vector
+	function _G.ParticleEffect:setRightVector(id, right) end
+	--- isValid - client - libs_cl/particle_effect.lua#L96
+	---@return boolean undefined Is valid or not
+	function _G.ParticleEffect:isValid() end
 ---  Entity type
 ---@class Entity
 ---@operator tostring:string
@@ -9737,50 +9796,147 @@ _G.Constraint = {}
 	--- isValid - server - libs_sv/constraint.lua#L85
 	---@return boolean undefined True if valid, false if not
 	function _G.Constraint:isValid() end
----  ParticleEffect type
----@class ParticleEffect
-_G.ParticleEffect = {}
-	--- setSortOrigin - client - libs_cl/particle_effect.lua#L159
-	---@param origin Vector Sort Origin
-	function _G.ParticleEffect:setSortOrigin(origin) end
-	--- restart - client - libs_cl/particle_effect.lua#L136
-	function _G.ParticleEffect:restart() end
-	--- stopEmission - client - libs_cl/particle_effect.lua#L114
-	function _G.ParticleEffect:stopEmission() end
-	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L184
-	---@param id number Child Control Point ID (0-63)
-	---@param entity Entity Entity parent
-	function _G.ParticleEffect:setControlPointEntity(id, entity) end
-	--- isFinished - client - libs_cl/particle_effect.lua#L146
-	---@return boolean undefined If the particle effect is finished
-	function _G.ParticleEffect:isFinished() end
-	--- setControlPointParent - client - libs_cl/particle_effect.lua#L241
-	---@param id number Child Control Point ID (0-63)
-	---@param parentid number Parent control point ID (0-63)
-	function _G.ParticleEffect:setControlPointParent(id, parentid) end
-	--- setControlPoint - client - libs_cl/particle_effect.lua#L170
-	---@param id number Control Point ID (0-63)
-	---@param value Vector Value
-	function _G.ParticleEffect:setControlPoint(id, value) end
-	--- setUpVector - client - libs_cl/particle_effect.lua#L226
-	---@param id number Control Point ID (0-63)
-	---@param up Vector Up vector
-	function _G.ParticleEffect:setUpVector(id, up) end
-	--- destroy - client - libs_cl/particle_effect.lua#L123
-	function _G.ParticleEffect:destroy() end
-	--- setForwardVector - client - libs_cl/particle_effect.lua#L199
-	---@param id number Control Point ID (0-63)
-	---@param fwd Vector Forward vector
-	function _G.ParticleEffect:setForwardVector(id, fwd) end
-	--- startEmission - client - libs_cl/particle_effect.lua#L104
-	function _G.ParticleEffect:startEmission() end
-	--- setRightVector - client - libs_cl/particle_effect.lua#L212
-	---@param id number Control Point ID (0-63)
-	---@param right Vector Right vector
-	function _G.ParticleEffect:setRightVector(id, right) end
-	--- isValid - client - libs_cl/particle_effect.lua#L96
-	---@return boolean undefined Is valid or not
-	function _G.ParticleEffect:isValid() end
+---  Projected Texture type
+---@class ProjectedTexture
+_G.ProjectedTexture = {}
+	--- getHorizontalFOV - client - libs_cl/light.lua#L324
+	---@return number undefined fov
+	function _G.ProjectedTexture:getHorizontalFOV() end
+	--- getTextureFrame - client - libs_cl/light.lua#L406
+	---@return number undefined frame
+	function _G.ProjectedTexture:getTextureFrame() end
+	--- getPos - client - libs_cl/light.lua#L370
+	---@return Vector undefined Pos
+	function _G.ProjectedTexture:getPos() end
+	--- getAngles - client - libs_cl/light.lua#L288
+	---@return Angle undefined Angles
+	function _G.ProjectedTexture:getAngles() end
+	--- setEnableShadows - client - libs_cl/light.lua#L460
+	---@param enabled boolean 
+	function _G.ProjectedTexture:setEnableShadows(enabled) end
+	--- setHorizontalFOV - client - libs_cl/light.lua#L483
+	---@param fov number 
+	function _G.ProjectedTexture:setHorizontalFOV(fov) end
+	--- setPos - client - libs_cl/light.lua#L532
+	---@param pos Vector 
+	function _G.ProjectedTexture:setPos(pos) end
+	--- update - client - libs_cl/light.lua#L598
+	function _G.ProjectedTexture:update() end
+	--- setFarZ - client - libs_cl/light.lua#L468
+	---@param farZ number 
+	function _G.ProjectedTexture:setFarZ(farZ) end
+	--- getLinearAttentuation - client - libs_cl/light.lua#L342
+	---@return number undefined attenuation
+	function _G.ProjectedTexture:getLinearAttentuation() end
+	--- getShadowFilter - client - libs_cl/light.lua#L388
+	---@return number undefined filter
+	function _G.ProjectedTexture:getShadowFilter() end
+	--- setColor - client - libs_cl/light.lua#L446
+	---@param col Color 
+	function _G.ProjectedTexture:setColor(col) end
+	--- getBrightness - client - libs_cl/light.lua#L294
+	---@return number undefined brightness
+	function _G.ProjectedTexture:getBrightness() end
+	--- setLinearAttenuation - client - libs_cl/light.lua#L498
+	---@param attenuation number 
+	function _G.ProjectedTexture:setLinearAttenuation(attenuation) end
+	--- isValid - client - libs_cl/light.lua#L418
+	---@return boolean undefined valid
+	function _G.ProjectedTexture:isValid() end
+	--- getOrthographic - client - libs_cl/light.lua#L360
+	---@return boolean undefined orthograhpic Whether or not the Projected Texture is actually orthographic. If false, then the other value are not returned.
+	---@return number undefined left
+	---@return number undefined top
+	---@return number undefined right
+	---@return number undefined botom
+	function _G.ProjectedTexture:getOrthographic() end
+	--- getNearZ - client - libs_cl/light.lua#L348
+	---@return number undefined nearZ
+	function _G.ProjectedTexture:getNearZ() end
+	--- setShadowSlopeScaleDepthBias - client - libs_cl/light.lua#L561
+	---@param bias number 
+	function _G.ProjectedTexture:setShadowSlopeScaleDepthBias(bias) end
+	--- getColor - client - libs_cl/light.lua#L300
+	---@return Color undefined col
+	function _G.ProjectedTexture:getColor() end
+	--- setBrightness - client - libs_cl/light.lua#L439
+	---@param brightness number 
+	function _G.ProjectedTexture:setBrightness(brightness) end
+	--- getTargetEntity - client - libs_cl/light.lua#L400
+	---@return Entity undefined target
+	function _G.ProjectedTexture:getTargetEntity() end
+	--- setTextureFrame - client - libs_cl/light.lua#L583
+	---@param frame number 
+	function _G.ProjectedTexture:setTextureFrame(frame) end
+	--- setTexture - client - libs_cl/light.lua#L576
+	---@param texture string 
+	function _G.ProjectedTexture:setTexture(texture) end
+	--- setTargetEntity - client - libs_cl/light.lua#L568
+	---@param ent Entity 
+	function _G.ProjectedTexture:setTargetEntity(ent) end
+	--- setNoCull - client - libs_cl/light.lua#L520
+	---@param orthograhpic boolean 
+	---@param left number 
+	---@param top number 
+	---@param right number 
+	---@param bottom number 
+	function _G.ProjectedTexture:setNoCull(orthograhpic, left, top, right, bottom) end
+	--- getShadowSlopeScaleDepthBias - client - libs_cl/light.lua#L394
+	---@return number undefined bias
+	function _G.ProjectedTexture:getShadowSlopeScaleDepthBias() end
+	--- getShadowDepthBias - client - libs_cl/light.lua#L382
+	---@return number undefined bias
+	function _G.ProjectedTexture:getShadowDepthBias() end
+	--- setConstantAttenuation - client - libs_cl/light.lua#L453
+	---@param attenuation number 
+	function _G.ProjectedTexture:setConstantAttenuation(attenuation) end
+	--- setFOV - client - libs_cl/light.lua#L475
+	---@param fov number 
+	function _G.ProjectedTexture:setFOV(fov) end
+	--- setShadowDepthBias - client - libs_cl/light.lua#L546
+	---@param bias number 
+	function _G.ProjectedTexture:setShadowDepthBias(bias) end
+	--- setAngles - client - libs_cl/light.lua#L432
+	---@param ang Angle New angles
+	function _G.ProjectedTexture:setAngles(ang) end
+	--- setQuadraticAttenuation - client - libs_cl/light.lua#L539
+	---@param attenuation number 
+	function _G.ProjectedTexture:setQuadraticAttenuation(attenuation) end
+	--- setNearZ - client - libs_cl/light.lua#L505
+	---@param nearZ number 
+	function _G.ProjectedTexture:setNearZ(nearZ) end
+	--- setShadowFilter - client - libs_cl/light.lua#L553
+	---@param filter number 
+	function _G.ProjectedTexture:setShadowFilter(filter) end
+	--- getEnableShadows - client - libs_cl/light.lua#L312
+	---@return boolean undefined enabled
+	function _G.ProjectedTexture:getEnableShadows() end
+	--- setVerticalFOV - client - libs_cl/light.lua#L590
+	---@param fov number 
+	function _G.ProjectedTexture:setVerticalFOV(fov) end
+	--- getNoCull - client - libs_cl/light.lua#L354
+	---@return boolean undefined nocull
+	function _G.ProjectedTexture:getNoCull() end
+	--- getVerticalFOV - client - libs_cl/light.lua#L412
+	---@return number undefined fov
+	function _G.ProjectedTexture:getVerticalFOV() end
+	--- remove - client - libs_cl/light.lua#L424
+	function _G.ProjectedTexture:remove() end
+	--- getConstantAttenuation - client - libs_cl/light.lua#L306
+	---@return number undefined attenuation
+	function _G.ProjectedTexture:getConstantAttenuation() end
+	--- getQuadraticAttentuation - client - libs_cl/light.lua#L376
+	---@return number undefined Attenuation
+	function _G.ProjectedTexture:getQuadraticAttentuation() end
+	--- getFarZ - client - libs_cl/light.lua#L318
+	---@return number undefined farZ
+	function _G.ProjectedTexture:getFarZ() end
+	--- getLightWorld - client - libs_cl/light.lua#L330
+	---@return boolean undefined Lighting
+	function _G.ProjectedTexture:getLightWorld() end
+	--- setLightWorld - client - libs_cl/light.lua#L491
+	---@param enable boolean 
+	function _G.ProjectedTexture:setLightWorld(enable) end
 ---  ParticleEmitter type
 ---@class ParticleEmitter
 _G.ParticleEmitter = {}
@@ -9932,39 +10088,27 @@ _G.Mesh = {}
 	function _G.Mesh:destroy() end
 	--- draw - client - libs_sh/mesh.lua#L1122
 	function _G.Mesh:draw() end
----  Sound type
----@class Sound
-_G.Sound = {}
-	--- stop - shared - libs_sh/sound.lua#L134
-	---@param fade number? Time in seconds to fade out, if nil or 0 the sound stops instantly.
-	function _G.Sound:stop(fade) end
-	--- setPitch - shared - libs_sh/sound.lua#L170
-	---@param pitch number Pitch to set to, between 0 and 255.
-	---@param fade number? Time in seconds to transition to this new pitch. Default 0
-	function _G.Sound:setPitch(pitch, fade) end
-	--- setDSP - shared - libs_sh/sound.lua#L206
-	---@param dsp number (0 - 133) DSP values. List can be found here https://developer.valvesoftware.com/wiki/Dsp_presets
-	function _G.Sound:setDSP(dsp) end
-	--- setSoundLevel - shared - libs_sh/sound.lua#L193
-	---@param level number dB level, for information on the value to use see https://developer.valvesoftware.com/wiki/Soundscripts#SoundLevel
-	function _G.Sound:setSoundLevel(level) end
-	--- isPlaying - shared - libs_sh/sound.lua#L187
-	---@return boolean undefined Whether the sound is playing or not
-	function _G.Sound:isPlaying() end
-	--- getSoundLevel - shared - libs_sh/sound.lua#L200
-	---@return number undefined Level in dB
-	function _G.Sound:getSoundLevel() end
-	--- getDSP - shared - libs_sh/sound.lua#L213
-	---@return number undefined (0 - 133) DSP value.
-	function _G.Sound:getDSP() end
-	--- play - shared - libs_sh/sound.lua#L129
-	function _G.Sound:play() end
-	--- destroy - shared - libs_sh/sound.lua#L145
-	function _G.Sound:destroy() end
-	--- setVolume - shared - libs_sh/sound.lua#L153
-	---@param vol number Volume to set to, between 0 and 1.
-	---@param fade number? Time in seconds to transition to this new volume. Default 0
-	function _G.Sound:setVolume(vol, fade) end
+---  The Markup type is used to easily format and draw text. Use render.parseMarkup(str, maxwidth) to create one.
+---@class Markup
+_G.Markup = {}
+	--- getSize - client - libs_cl/render.lua#L1920
+	---@return number undefined The width of the object
+	---@return number undefined The height of the object
+	function _G.Markup:getSize() end
+	--- draw - client - libs_cl/render.lua#L1896
+	---@param x number number The x offset
+	---@param y number number The x offset
+	---@param xAlign number? number The x TEXT_ALIGN. Default TEXT_ALIGN.LEFT
+	---@param yAlign number? number The y TEXT_ALIGN. Default TEXT_ALIGN.TOP
+	---@param alpha number? The alpha to draw it with. Default 255
+	---@param contentAlign number? The content alignment TEXT_ALIGN. Default TEXT_ALIGN.LEFT
+	function _G.Markup:draw(x, y, xAlign, yAlign, alpha, contentAlign) end
+	--- getWidth - client - libs_cl/render.lua#L1908
+	---@return number undefined The width of the object
+	function _G.Markup:getWidth() end
+	--- getHeight - client - libs_cl/render.lua#L1914
+	---@return number undefined The height of the object
+	function _G.Markup:getHeight() end
 ---  Npc type
 ---@class Npc
 _G.Npc = {}

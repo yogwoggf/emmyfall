@@ -9863,6 +9863,13 @@ _G.ProjectedTexture = {}
 	--- setLinearAttenuation - client - libs_cl/light.lua#L498
 	---@param attenuation number 
 	function _G.ProjectedTexture:setLinearAttenuation(attenuation) end
+	--- setOrthographic - client - libs_cl/light.lua#L520
+	---@param orthographic boolean 
+	---@param left number 
+	---@param top number 
+	---@param right number 
+	---@param bottom number 
+	function _G.ProjectedTexture:setOrthographic(orthographic, left, top, right, bottom) end
 	--- isValid - client - libs_cl/light.lua#L418
 	---@return boolean undefined valid
 	function _G.ProjectedTexture:isValid() end
@@ -9897,13 +9904,9 @@ _G.ProjectedTexture = {}
 	--- setTargetEntity - client - libs_cl/light.lua#L568
 	---@param ent Entity 
 	function _G.ProjectedTexture:setTargetEntity(ent) end
-	--- setNoCull - client - libs_cl/light.lua#L520
-	---@param orthographic boolean 
-	---@param left number 
-	---@param top number 
-	---@param right number 
-	---@param bottom number 
-	function _G.ProjectedTexture:setNoCull(orthographic, left, top, right, bottom) end
+	--- setNoCull - client - libs_cl/light.lua#L513
+	---@param enable boolean 
+	function _G.ProjectedTexture:setNoCull(enable) end
 	--- getShadowSlopeScaleDepthBias - client - libs_cl/light.lua#L394
 	---@return number undefined bias
 	function _G.ProjectedTexture:getShadowSlopeScaleDepthBias() end

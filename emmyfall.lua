@@ -10239,38 +10239,42 @@ _G.SurfaceInfo = {}
 ---@class Wirelink
 ---@operator index(string|number):any
 _G.Wirelink = {}
-	--- isWired - server - libs_sv/wire.lua#L816
-	---@param name string Name of the input to check
-	---@return boolean undefined Whether it is wired
-	function _G.Wirelink:isWired(name) end
-	--- entity - server - libs_sv/wire.lua#L770
+	--- inputValue - server - libs_sv/wire.lua#L752
+	---@param name string Input name
+	---@return any undefined Input value
+	function _G.Wirelink:inputValue(name) end
+	--- entity - server - libs_sv/wire.lua#L778
 	---@return Entity undefined Entity the wirelink represents
 	function _G.Wirelink:entity() end
-	--- getWiredToName - server - libs_sv/wire.lua#L839
+	--- getWiredToName - server - libs_sv/wire.lua#L847
 	---@param name string Name of the input of the wirelink.
 	---@return string undefined String name of the output that the input is wired to.
 	function _G.Wirelink:getWiredToName(name) end
-	--- outputs - server - libs_sv/wire.lua#L796
-	---@return table undefined All of the wirelink's outputs
-	function _G.Wirelink:outputs() end
-	--- inputType - server - libs_sv/wire.lua#L752
+	--- inputs - server - libs_sv/wire.lua#L784
+	---@return table undefined All of the wirelink's inputs
+	function _G.Wirelink:inputs() end
+	--- inputType - server - libs_sv/wire.lua#L760
 	---@param name string Input name to search for
 	---@return string undefined Type of input
 	function _G.Wirelink:inputType(name) end
-	--- outputType - server - libs_sv/wire.lua#L761
-	---@param name string Output name to search for
-	---@return string undefined Type of output
-	function _G.Wirelink:outputType(name) end
-	--- getWiredTo - server - libs_sv/wire.lua#L827
+	--- getWiredTo - server - libs_sv/wire.lua#L835
 	---@param name string Name of the input
 	---@return Entity undefined The entity the wirelink is wired to
 	function _G.Wirelink:getWiredTo(name) end
+	--- outputType - server - libs_sv/wire.lua#L769
+	---@param name string Output name to search for
+	---@return string undefined Type of output
+	function _G.Wirelink:outputType(name) end
+	--- isWired - server - libs_sv/wire.lua#L824
+	---@param name string Name of the input to check
+	---@return boolean undefined Whether it is wired
+	function _G.Wirelink:isWired(name) end
+	--- outputs - server - libs_sv/wire.lua#L804
+	---@return table undefined All of the wirelink's outputs
+	function _G.Wirelink:outputs() end
 	--- isValid - server - libs_sv/wire.lua#L746
 	---@return boolean undefined Whether the wirelink is valid
 	function _G.Wirelink:isValid() end
-	--- inputs - server - libs_sv/wire.lua#L776
-	---@return table undefined All of the wirelink's inputs
-	function _G.Wirelink:inputs() end
 ---  Angle Type
 ---@class Angle
 ---@operator mul(number|Angle):Angle

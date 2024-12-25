@@ -5023,14 +5023,14 @@ _G.sql = {}
 --- light
 ---  Light library.
 _G.light = {}
-	--- create - client - libs_cl/light.lua#L135
+	--- create - client - libs_cl/light.lua#L134
 	---@param pos Vector The position of the light
 	---@param size number The size of the light. Must be lower than sf_light_maxsize
 	---@param brightness number The brightness of the light
 	---@param color Color The color of the light
 	---@return Light undefined Dynamic light
 	function _G.light.create(pos, size, brightness, color) end
-	--- createProjected - client - libs_cl/light.lua#L280
+	--- createProjected - client - libs_cl/light.lua#L279
 	---@return ProjectedTexture undefined Projected Texture
 	function _G.light.createProjected() end
 --- joystick
@@ -7959,47 +7959,47 @@ _G.Hologram = {}
 ---  Light type
 ---@class Light
 _G.Light = {}
-	--- setNoWorld - client - libs_cl/light.lua#L228
+	--- setNoWorld - client - libs_cl/light.lua#L227
 	---@param on boolean Whether the light shouldn't cast onto the world
 	function _G.Light:setNoWorld(on) end
-	--- setOuterAngle - client - libs_cl/light.lua#L214
+	--- setOuterAngle - client - libs_cl/light.lua#L213
 	---@param ang number Outer angle of the light
 	function _G.Light:setOuterAngle(ang) end
-	--- setInnerAngle - client - libs_cl/light.lua#L207
+	--- setInnerAngle - client - libs_cl/light.lua#L206
 	---@param ang number Inner angle of the light
 	function _G.Light:setInnerAngle(ang) end
-	--- destroy - client - libs_cl/light.lua#L271
+	--- destroy - client - libs_cl/light.lua#L270
 	function _G.Light:destroy() end
-	--- setStyle - client - libs_cl/light.lua#L255
+	--- setStyle - client - libs_cl/light.lua#L254
 	---@param style number The number of the flicker style
 	function _G.Light:setStyle(style) end
-	--- setColor - client - libs_cl/light.lua#L262
+	--- setColor - client - libs_cl/light.lua#L261
 	---@param col Color The color of the light
 	function _G.Light:setColor(col) end
-	--- setBrightness - client - libs_cl/light.lua#L180
+	--- setBrightness - client - libs_cl/light.lua#L179
 	---@param brightness number The light's brightness
 	function _G.Light:setBrightness(brightness) end
-	--- setDieTime - client - libs_cl/light.lua#L194
+	--- setDieTime - client - libs_cl/light.lua#L193
 	---@param dietime number The how long the light will stay alive after turning it off.
 	function _G.Light:setDieTime(dietime) end
-	--- draw - client - libs_cl/light.lua#L160
+	--- draw - client - libs_cl/light.lua#L159
 	function _G.Light:draw() end
-	--- setSize - client - libs_cl/light.lua#L248
+	--- setSize - client - libs_cl/light.lua#L247
 	---@param size number The size of the light
 	function _G.Light:setSize(size) end
-	--- setMinLight - client - libs_cl/light.lua#L221
+	--- setMinLight - client - libs_cl/light.lua#L220
 	---@param min number The minimum light
 	function _G.Light:setMinLight(min) end
-	--- setDecay - client - libs_cl/light.lua#L187
+	--- setDecay - client - libs_cl/light.lua#L186
 	---@param decay number The light's decay speed
 	function _G.Light:setDecay(decay) end
-	--- setPos - client - libs_cl/light.lua#L242
+	--- setPos - client - libs_cl/light.lua#L241
 	---@param pos Vector The position of the light
 	function _G.Light:setPos(pos) end
-	--- setNoModel - client - libs_cl/light.lua#L235
+	--- setNoModel - client - libs_cl/light.lua#L234
 	---@param on boolean Whether the light shouldn't cast onto the models
 	function _G.Light:setNoModel(on) end
-	--- setDirection - client - libs_cl/light.lua#L201
+	--- setDirection - client - libs_cl/light.lua#L200
 	---@param dir Vector Direction of the light
 	function _G.Light:setDirection(dir) end
 --- 
@@ -9822,145 +9822,145 @@ _G.Constraint = {}
 ---  Projected Texture type
 ---@class ProjectedTexture
 _G.ProjectedTexture = {}
-	--- getHorizontalFOV - client - libs_cl/light.lua#L327
+	--- getHorizontalFOV - client - libs_cl/light.lua#L326
 	---@return number undefined fov
 	function _G.ProjectedTexture:getHorizontalFOV() end
-	--- getTextureFrame - client - libs_cl/light.lua#L409
+	--- getTextureFrame - client - libs_cl/light.lua#L408
 	---@return number undefined frame
 	function _G.ProjectedTexture:getTextureFrame() end
-	--- getPos - client - libs_cl/light.lua#L373
+	--- getPos - client - libs_cl/light.lua#L372
 	---@return Vector undefined Pos
 	function _G.ProjectedTexture:getPos() end
-	--- getAngles - client - libs_cl/light.lua#L291
+	--- getAngles - client - libs_cl/light.lua#L290
 	---@return Angle undefined Angles
 	function _G.ProjectedTexture:getAngles() end
-	--- setEnableShadows - client - libs_cl/light.lua#L463
+	--- setEnableShadows - client - libs_cl/light.lua#L462
 	---@param enabled boolean 
 	function _G.ProjectedTexture:setEnableShadows(enabled) end
-	--- setHorizontalFOV - client - libs_cl/light.lua#L486
+	--- setHorizontalFOV - client - libs_cl/light.lua#L485
 	---@param fov number 
 	function _G.ProjectedTexture:setHorizontalFOV(fov) end
-	--- setPos - client - libs_cl/light.lua#L535
+	--- setPos - client - libs_cl/light.lua#L534
 	---@param pos Vector 
 	function _G.ProjectedTexture:setPos(pos) end
-	--- update - client - libs_cl/light.lua#L601
+	--- update - client - libs_cl/light.lua#L600
 	function _G.ProjectedTexture:update() end
-	--- setFarZ - client - libs_cl/light.lua#L471
+	--- setFarZ - client - libs_cl/light.lua#L470
 	---@param farZ number 
 	function _G.ProjectedTexture:setFarZ(farZ) end
-	--- getLinearAttentuation - client - libs_cl/light.lua#L345
+	--- getLinearAttentuation - client - libs_cl/light.lua#L344
 	---@return number undefined attenuation
 	function _G.ProjectedTexture:getLinearAttentuation() end
-	--- getShadowFilter - client - libs_cl/light.lua#L391
+	--- getShadowFilter - client - libs_cl/light.lua#L390
 	---@return number undefined filter
 	function _G.ProjectedTexture:getShadowFilter() end
-	--- setColor - client - libs_cl/light.lua#L449
+	--- setColor - client - libs_cl/light.lua#L448
 	---@param col Color 
 	function _G.ProjectedTexture:setColor(col) end
-	--- getBrightness - client - libs_cl/light.lua#L297
+	--- getBrightness - client - libs_cl/light.lua#L296
 	---@return number undefined brightness
 	function _G.ProjectedTexture:getBrightness() end
-	--- setLinearAttenuation - client - libs_cl/light.lua#L501
+	--- setLinearAttenuation - client - libs_cl/light.lua#L500
 	---@param attenuation number 
 	function _G.ProjectedTexture:setLinearAttenuation(attenuation) end
-	--- setOrthographic - client - libs_cl/light.lua#L523
+	--- setOrthographic - client - libs_cl/light.lua#L522
 	---@param orthographic boolean 
 	---@param left number 
 	---@param top number 
 	---@param right number 
 	---@param bottom number 
 	function _G.ProjectedTexture:setOrthographic(orthographic, left, top, right, bottom) end
-	--- isValid - client - libs_cl/light.lua#L421
+	--- isValid - client - libs_cl/light.lua#L420
 	---@return boolean undefined valid
 	function _G.ProjectedTexture:isValid() end
-	--- getOrthographic - client - libs_cl/light.lua#L363
+	--- getOrthographic - client - libs_cl/light.lua#L362
 	---@return boolean undefined orthographic Whether or not the Projected Texture is actually orthographic. If false, then the other value are not returned.
 	---@return number undefined left
 	---@return number undefined top
 	---@return number undefined right
 	---@return number undefined botom
 	function _G.ProjectedTexture:getOrthographic() end
-	--- getNearZ - client - libs_cl/light.lua#L351
+	--- getNearZ - client - libs_cl/light.lua#L350
 	---@return number undefined nearZ
 	function _G.ProjectedTexture:getNearZ() end
-	--- setShadowSlopeScaleDepthBias - client - libs_cl/light.lua#L564
+	--- setShadowSlopeScaleDepthBias - client - libs_cl/light.lua#L563
 	---@param bias number 
 	function _G.ProjectedTexture:setShadowSlopeScaleDepthBias(bias) end
-	--- getColor - client - libs_cl/light.lua#L303
+	--- getColor - client - libs_cl/light.lua#L302
 	---@return Color undefined col
 	function _G.ProjectedTexture:getColor() end
-	--- setBrightness - client - libs_cl/light.lua#L442
+	--- setBrightness - client - libs_cl/light.lua#L441
 	---@param brightness number 
 	function _G.ProjectedTexture:setBrightness(brightness) end
-	--- getTargetEntity - client - libs_cl/light.lua#L403
+	--- getTargetEntity - client - libs_cl/light.lua#L402
 	---@return Entity undefined target
 	function _G.ProjectedTexture:getTargetEntity() end
-	--- setTextureFrame - client - libs_cl/light.lua#L586
+	--- setTextureFrame - client - libs_cl/light.lua#L585
 	---@param frame number 
 	function _G.ProjectedTexture:setTextureFrame(frame) end
-	--- setTexture - client - libs_cl/light.lua#L579
+	--- setTexture - client - libs_cl/light.lua#L578
 	---@param texture string 
 	function _G.ProjectedTexture:setTexture(texture) end
-	--- setTargetEntity - client - libs_cl/light.lua#L571
+	--- setTargetEntity - client - libs_cl/light.lua#L570
 	---@param ent Entity 
 	function _G.ProjectedTexture:setTargetEntity(ent) end
-	--- setNoCull - client - libs_cl/light.lua#L516
+	--- setNoCull - client - libs_cl/light.lua#L515
 	---@param enable boolean 
 	function _G.ProjectedTexture:setNoCull(enable) end
-	--- getShadowSlopeScaleDepthBias - client - libs_cl/light.lua#L397
+	--- getShadowSlopeScaleDepthBias - client - libs_cl/light.lua#L396
 	---@return number undefined bias
 	function _G.ProjectedTexture:getShadowSlopeScaleDepthBias() end
-	--- getShadowDepthBias - client - libs_cl/light.lua#L385
+	--- getShadowDepthBias - client - libs_cl/light.lua#L384
 	---@return number undefined bias
 	function _G.ProjectedTexture:getShadowDepthBias() end
-	--- setConstantAttenuation - client - libs_cl/light.lua#L456
+	--- setConstantAttenuation - client - libs_cl/light.lua#L455
 	---@param attenuation number 
 	function _G.ProjectedTexture:setConstantAttenuation(attenuation) end
-	--- setFOV - client - libs_cl/light.lua#L478
+	--- setFOV - client - libs_cl/light.lua#L477
 	---@param fov number 
 	function _G.ProjectedTexture:setFOV(fov) end
-	--- setShadowDepthBias - client - libs_cl/light.lua#L549
+	--- setShadowDepthBias - client - libs_cl/light.lua#L548
 	---@param bias number 
 	function _G.ProjectedTexture:setShadowDepthBias(bias) end
-	--- setAngles - client - libs_cl/light.lua#L435
+	--- setAngles - client - libs_cl/light.lua#L434
 	---@param ang Angle New angles
 	function _G.ProjectedTexture:setAngles(ang) end
-	--- setQuadraticAttenuation - client - libs_cl/light.lua#L542
+	--- setQuadraticAttenuation - client - libs_cl/light.lua#L541
 	---@param attenuation number 
 	function _G.ProjectedTexture:setQuadraticAttenuation(attenuation) end
-	--- setNearZ - client - libs_cl/light.lua#L508
+	--- setNearZ - client - libs_cl/light.lua#L507
 	---@param nearZ number 
 	function _G.ProjectedTexture:setNearZ(nearZ) end
-	--- setShadowFilter - client - libs_cl/light.lua#L556
+	--- setShadowFilter - client - libs_cl/light.lua#L555
 	---@param filter number 
 	function _G.ProjectedTexture:setShadowFilter(filter) end
-	--- getEnableShadows - client - libs_cl/light.lua#L315
+	--- getEnableShadows - client - libs_cl/light.lua#L314
 	---@return boolean undefined enabled
 	function _G.ProjectedTexture:getEnableShadows() end
-	--- setVerticalFOV - client - libs_cl/light.lua#L593
+	--- setVerticalFOV - client - libs_cl/light.lua#L592
 	---@param fov number 
 	function _G.ProjectedTexture:setVerticalFOV(fov) end
-	--- getNoCull - client - libs_cl/light.lua#L357
+	--- getNoCull - client - libs_cl/light.lua#L356
 	---@return boolean undefined nocull
 	function _G.ProjectedTexture:getNoCull() end
-	--- getVerticalFOV - client - libs_cl/light.lua#L415
+	--- getVerticalFOV - client - libs_cl/light.lua#L414
 	---@return number undefined fov
 	function _G.ProjectedTexture:getVerticalFOV() end
-	--- remove - client - libs_cl/light.lua#L427
+	--- remove - client - libs_cl/light.lua#L426
 	function _G.ProjectedTexture:remove() end
-	--- getConstantAttenuation - client - libs_cl/light.lua#L309
+	--- getConstantAttenuation - client - libs_cl/light.lua#L308
 	---@return number undefined attenuation
 	function _G.ProjectedTexture:getConstantAttenuation() end
-	--- getQuadraticAttentuation - client - libs_cl/light.lua#L379
+	--- getQuadraticAttentuation - client - libs_cl/light.lua#L378
 	---@return number undefined Attenuation
 	function _G.ProjectedTexture:getQuadraticAttentuation() end
-	--- getFarZ - client - libs_cl/light.lua#L321
+	--- getFarZ - client - libs_cl/light.lua#L320
 	---@return number undefined farZ
 	function _G.ProjectedTexture:getFarZ() end
-	--- getLightWorld - client - libs_cl/light.lua#L333
+	--- getLightWorld - client - libs_cl/light.lua#L332
 	---@return boolean undefined Lighting
 	function _G.ProjectedTexture:getLightWorld() end
-	--- setLightWorld - client - libs_cl/light.lua#L494
+	--- setLightWorld - client - libs_cl/light.lua#L493
 	---@param enable boolean 
 	function _G.ProjectedTexture:setLightWorld(enable) end
 ---  ParticleEmitter type

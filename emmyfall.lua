@@ -2285,6 +2285,10 @@ _G.input = {}
 	--- isControlLocked - client - libs_sh/input.lua#L378
 	---@return boolean undefined Whether the player's control is locked
 	function _G.input.isControlLocked() end
+	--- lookupKeyBinding - client - libs_sh/input.lua#L235
+	---@param key number The key id, see input
+	---@return string undefined The command bound to the key
+	function _G.input.lookupKeyBinding(key) end
 	--- isKeyDown - client - libs_sh/input.lua#L245
 	---@param key number The key id, see input
 	---@return boolean undefined True if the key is down
@@ -2296,10 +2300,9 @@ _G.input = {}
 	--- enableCursor - client - libs_sh/input.lua#L331
 	---@param enabled boolean Whether or not the cursor should be enabled
 	function _G.input.enableCursor(enabled) end
-	--- lookupKeyBinding - client - libs_sh/input.lua#L235
-	---@param key number The key id, see input
-	---@return string undefined The command bound to the key
-	function _G.input.lookupKeyBinding(key) end
+	--- isGameUIVisible - client - libs_sh/input.lua#L392
+	---@return boolean undefined Whether the game menu overlay ( main menu ) is open or not
+	function _G.input.isGameUIVisible() end
 	--- lockControls - client - libs_sh/input.lua#L356
 	---@param enabled boolean Whether to lock or unlock the controls
 	function _G.input.lockControls(enabled) end

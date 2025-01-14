@@ -6712,12 +6712,12 @@ _G["CLIENT"] = nil
 	---@return Angle undefined localAngles
 	function _G.worldToLocal(pos, ang, newSystemOrigin, newSystemAngles) end
 	--- Color - shared - libs_sh/color.lua#L77
-	---@param number any |string? r Red component or string hexadecimal color. Defaults to 255.
+	---@param r number|string|nil Red component or string hexadecimal color. Defaults to 255.
 	---@param g number? Green component. Defaults to 255.
 	---@param b number? Blue component. Defaults to 255.
 	---@param a number? Alpha component. Defaults to 255.
 	---@return Color undefined New color
-	function _G.Color(number, g, b, a) end
+	function _G.Color(r, g, b, a) end
 	--- setfenv - shared - libs_sh/builtins.lua#L906
 	---@param funcOrStackLevel function|number Function or stack level to set the environment of
 	---@param tbl table New environment
@@ -10167,39 +10167,39 @@ _G.Constraint = {}
 ---@operator eq(Color):boolean
 ---@operator tostring:string
 _G.Color = {}
-	--- setB - shared - libs_sh/color.lua#L274
+	--- setB - shared - libs_sh/color.lua#L275
 	---@param b number The blue
 	---@return Color undefined Color after modification
 	function _G.Color:setB(b) end
-	--- round - shared - libs_sh/color.lua#L232
+	--- round - shared - libs_sh/color.lua#L233
 	---@param idp number? (Default 0) The integer decimal place to round to.
 	function _G.Color:round(idp) end
-	--- set - shared - libs_sh/color.lua#L248
+	--- set - shared - libs_sh/color.lua#L249
 	---@param b Color The color to copy from.
 	function _G.Color:set(b) end
-	--- rgbToHSV - shared - libs_sh/color.lua#L204
+	--- rgbToHSV - shared - libs_sh/color.lua#L205
 	---@return Color undefined A triplet of numbers representing HSV.
 	function _G.Color:rgbToHSV() end
-	--- setA - shared - libs_sh/color.lua#L282
+	--- setA - shared - libs_sh/color.lua#L283
 	---@param a number The alpha
 	---@return Color undefined Color after modification
 	function _G.Color:setA(a) end
-	--- setG - shared - libs_sh/color.lua#L266
+	--- setG - shared - libs_sh/color.lua#L267
 	---@param g number The green
 	---@return Color undefined Color after modification
 	function _G.Color:setG(g) end
-	--- hsvToRGB - shared - libs_sh/color.lua#L212
+	--- hsvToRGB - shared - libs_sh/color.lua#L213
 	---@return Color undefined A triplet of numbers representing HSV.
 	function _G.Color:hsvToRGB() end
-	--- toHex - shared - libs_sh/color.lua#L220
+	--- toHex - shared - libs_sh/color.lua#L221
 	---@param alpha boolean? Optional boolean whether to include the alpha channel, False by default
 	---@return string undefined String hexadecimal color
 	function _G.Color:toHex(alpha) end
-	--- setR - shared - libs_sh/color.lua#L258
+	--- setR - shared - libs_sh/color.lua#L259
 	---@param r number The red
 	---@return Color undefined Color after modification
 	function _G.Color:setR(r) end
-	--- clone - shared - libs_sh/color.lua#L242
+	--- clone - shared - libs_sh/color.lua#L243
 	---@return Color undefined The copy of the color
 	function _G.Color:clone() end
 ---  SurfaceInfo type

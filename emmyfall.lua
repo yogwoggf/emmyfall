@@ -2,125 +2,125 @@
 -- Generated with emmyfall
 ---@alias hooks
 ---| '"OnPhysgunPickup"' #  Called when a player has successfully picked up an entity with their Physics Gun.  Not to be confused with PhysgunPickup which is a predicted hook
----| '"setupskyboxfog"' #  Called when skybox fog is drawn.
 ---| '"PlayerEnteredVehicle"' #  Called when a players enters a vehicle
 ---| '"OnPlayerPhysicsPickup"' #  Called when an entity is being picked up by +use
----| '"postdrawhud"' #  Called after drawing HUD (2D Context)
----| '"writecell"' #  Called when a high speed device writes to a wired SF chip
----| '"remote"' #  Remote hook.  This hook can be called from other instances
+---| '"InputBindPressed"' #  Called when a keybind is pressed
+---| '"MoneyPrinterCatchFire"' #  Called when a money printer is about to catch fire. DarkRP only. Called between moneyPrinterPrintMoney and moneyPrinterPrinted.  Not guaranteed to work for non-vanilla money printers.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
 ---| '"EntityRemoved"' #  Called when an entity is removed
----| '"addLaw"' #  Called when a law is added. DarkRP only.
----| '"hudshoulddraw"' #  Called when a hud element is attempting to be drawn
----| '"onLockpickCompleted"' #  Called when a player has finished picking a lock, successfully or otherwise. DarkRP only.  Will only be called if the lockpicker is the owner of the chip, or if the chip is running in superuser mode.
----| '"renderoffscreen"' #  Called when a frame is requested to be drawn. Doesn't require a screen or HUD but only works on rendertargets. (2D Context)
+---| '"SetupSkyboxFog"' #  Called when skybox fog is drawn.
+---| '"HologramMatrix"' #  Called before entities are drawn. You can't render anything, but you can edit hologram matrices before they are drawn.
+---| '"VRExit"' #  Called when a player exits VR
+---| '"PlayerChangename"' #  Called when a player changes their Steam name. (Game Event)
 ---| '"PlayerStartVoice"' #  Called when a player starts using voice chat.
+---| '"VRInput"' #  This gets called every time a boolean controller input action changes state
 ---| '"VRPreRenderRight"' #  Called before rendering the right eye. This along with the previous hook can be used to render different things in different eyes. HUD is required.
 ---| '"KeyRelease"' #  Called when a player releases a key
 ---| '"PhysgunPickup"' #  Called when an entity gets picked up by a physgun  This hook is predicted.
+---| '"XInputTrigger"' #  Called when a trigger on the controller has moved. Client must have XInput Lua binary installed.
 ---| '"PlayerAmmoChanged"' #  Called when a player's reserve ammo count changes.
 ---| '"StartChat"' #  Called when the local player opens their chat window.
----| '"lockpickStarted"' #  Called when a player is about to pick a lock. DarkRP only.  Will only be called if the lockpicker is the owner of the chip, or if the chip is running in superuser mode.
+---| '"HUDConnected"' #  Called when the player connects to a HUD component linked to the Starfall Chip
 ---| '"FinishChat"' #  Called when the local player closes their chat window.
----| '"moneyPrinterPrintMoney"' #  Called when a money printer is about to print money. DarkRP only.  Not guaranteed to work for non-vanilla money printers.  You should use moneyPrinterPrinted instead, as the printer is not guaranteed to print money even if this hook is called.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
+---| '"PreDrawHUD"' #  Called before drawing HUD (2D Context)
 ---| '"Removed"' #  Called when the starfall chip is removed
----| '"PlayerChangename"' #  Called when a player changes their Steam name. (Game Event)
----| '"xinputPressed"' #  Called when a controller button has been pressed. Client must have XInput Lua binary installed.
----| '"VRInput"' #  This gets called every time a boolean controller input action changes state
+---| '"PostDrawOpaqueRenderables"' #  Called after opaque entities are drawn. (Only works with HUD) (3D context)
+---| '"HUDShouldDraw"' #  Called when a hud element is attempting to be drawn
+---| '"PlayerSpawn"' #  Called when a player spawns
 ---| '"DupeFinished"' #  Called after the starfall chip is duplicated and the duplication is finished.
----| '"VRExit"' #  Called when a player exits VR
+---| '"StarfallUsed"' #  Called when a player uses the screen
 ---| '"PlayerHurt"' #  Called when a player gets hurt, uses the player_hurt game event clientside.
----| '"xinputDisconnected"' #  Called when a controller has been disconnected. Client must have XInput Lua binary installed.
 ---| '"VRStart"' #  Called when a player enters VR
----| '"inputBindPressed"' #  Called when a keybind is pressed
+---| '"XInputReleased"' #  Called when a controller button has been released. Client must have XInput Lua binary installed.
+---| '"InputPressed"' #  Called when a button is pressed
 ---| '"PlayerSwitchWeapon"' #  Called when a player switches their weapon
----| '"think"' #  Think hook. Called each frame on the client and each game tick on the server.
+---| '"XInputPressed"' #  Called when a controller button has been pressed. Client must have XInput Lua binary installed.
 ---| '"OnPhysgunFreeze"' #  Called when an entity is being frozen  Note this is not called for players or NPCs held with the physgun (bug)
----| '"xinputStick"' #  Called when a stick on the controller has moved. Client must have XInput Lua binary installed.
+---| '"XInputStick"' #  Called when a stick on the controller has moved. Client must have XInput Lua binary installed.
 ---| '"EntityFireBullets"' #  Called every time a bullet is fired from an entity
----| '"xinputTrigger"' #  Called when a trigger on the controller has moved. Client must have XInput Lua binary installed.
----| '"OnContextMenuOpen"' #  Called when the player opens the context menu
+---| '"RemoveLaw"' #  Called when a law is removed. DarkRP only. Not usually called when /resetlaws is used.
+---| '"PlayerDeath"' #  Called when a player dies
 ---| '"PlayerChat"' #  Called when a chat message is printed your chat window (chip owner only)
----| '"readcell"' #  Called when a high speed device reads from a wired SF chip
+---| '"PlayerWalletChanged"' #  Called when a player receives money. DarkRP only.  Will only be called if the recipient is the owner of the chip, or if the chip is running in superuser mode.
 ---| '"OnPlayerPhysicsDrop"' #  Called when an entity is being dropped or thrown by +use
----| '"xinputConnected"' #  Called when a controller has been connected. Client must have XInput Lua binary installed.
+---| '"XInputConnected"' #  Called when a controller has been connected. Client must have XInput Lua binary installed.
 ---| '"GravGunPunt"' #  Called when a player punts with the gravity gun
----| '"PlayerSpray"' #  Called when a players sprays their logo
----| '"GravGunOnPickedUp"' #  Called when an entity is being picked up by a gravity gun
----| '"mouseWheeled"' #  Called when the mouse wheel is rotated
+---| '"PermissionRequest"' #  Called when local client changed instance permissions
+---| '"ResetLaws"' #  Called when laws are reset. DarkRP only. Usually the only hook called when /resetlaws is used.
+---| '"MouseWheeled"' #  Called when the mouse wheel is rotated
 ---| '"PlayerEndVoice"' #  Called when a player stops using voice chat.
 ---| '"OnEntityWaterLevelChanged"' #  Called when the Entity:getWaterLevel of an entity is changed.
 ---| '"PlayerNoClip"' #  Called when a player toggles noclip
----| '"mousemoved"' #  Called when the mouse is moved
+---| '"CalcView"' #  Called when the engine wants to calculate the player's view. Only works if connected to Starfall HUD
 ---| '"StartEntityDriving"' #  Called when a player starts driving an entity
----| '"huddisconnected"' #  Called when the player disconnects from a HUD component linked to the Starfall Chip
+---| '"OnEntityCreated"' #  Called when an entity gets created
 ---| '"NetworkEntityCreated"' #  Called when a clientside entity gets created or re-created via lag/PVS
----| '"inputPressed"' #  Called when a button is pressed
+---| '"MouseMoved"' #  Called when the mouse is moved
 ---| '"ComponentUnlinked"' #  Called when a component is unlinked to the starfall
----| '"OnPhysgunReload"' #  Called when a player reloads their physgun
----| '"postdrawskybox"' #  Called after the 3D skybox is drawn. This will not be called if PreDrawSkyBox has prevented rendering of the skybox
----| '"postdraw2dskybox"' #  Called right after the 2D skybox has been drawn - allowing you to draw over it.
----| '"starfallUsed"' #  Called when a player uses the screen
----| '"render"' #  Called when a frame is requested to be drawn on screen. (2D/3D Context)
----| '"predrawskybox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
+---| '"PostDrawSkyBox"' #  Called after the 3D skybox is drawn. This will not be called if PreDrawSkyBox has prevented rendering of the skybox
+---| '"LockdownEnded"' #  Called when a lockdown has ended. DarkRP only.
+---| '"PreDrawViewModels"' #  Called before drawing the viewmodel rendergroup (3D Context)
+---| '"Render"' #  Called when a frame is requested to be drawn on screen. (2D/3D Context)
+---| '"PlayerCanPickupWeapon"' #  Called when a wants to pick up a weapon
+---| '"XInputDisconnected"' #  Called when a controller has been disconnected. Client must have XInput Lua binary installed.
 ---| '"NotifyShouldTransmit"' #  Called when a clientside entity transmit state is changed. Usually when changing PVS  If you want clientside render changes to persist on an entity you have to re-apply them  each time it begins transmitting again
----| '"StarfallError"' #  Called when starfall chip errors
----| '"predrawviewmodels"' #  Called before drawing the viewmodel rendergroup (3D Context)
----| '"drawhud"' #  Called when a frame is requested to be drawn on hud. (2D Context)
----| '"predrawhud"' #  Called before drawing HUD (2D Context)
----| '"tick"' #  Tick hook. Called each game tick on both the server and client.
+---| '"SetupWorldFog"' #  Called when world fog is drawn.
+---| '"PostDrawHUD"' #  Called after drawing HUD (2D Context)
+---| '"Tick"' #  Tick hook. Called each game tick on both the server and client.
+---| '"Remote"' #  Remote hook.  This hook can be called from other instances
+---| '"PreDrawTranslucentRenderables"' #  Called before translucent entities are drawn. (Only works with HUD) (3D context)
 ---| '"PostEntityFireBullets"' #  Called after a bullet is fired and it's trace has been calculated
----| '"removeLaw"' #  Called when a law is removed. DarkRP only. Not usually called when /resetlaws is used.
----| '"predrawtranslucentrenderables"' #  Called before translucent entities are drawn. (Only works with HUD) (3D context)
+---| '"PreDrawOpaqueRenderables"' #  Called before opaque entities are drawn. (Only works with HUD) (3D context)
+---| '"DrawHUD"' #  Called when a frame is requested to be drawn on hud. (2D Context)
 ---| '"PhysgunDrop"' #  Called when an entity being held by a physgun gets dropped
----| '"PlayerFootstep"' #  Called whenever a player steps
----| '"postdrawopaquerenderables"' #  Called after opaque entities are drawn. (Only works with HUD) (3D context)
----| '"predrawopaquerenderables"' #  Called before opaque entities are drawn. (Only works with HUD) (3D context)
----| '"hologrammatrix"' #  Called before entities are drawn. You can't render anything, but you can edit hologram matrices before they are drawn.
+---| '"PlayerInitialSpawn"' #  Called when a player spawns for the first time
+---| '"RenderOffscreen"' #  Called when a frame is requested to be drawn. Doesn't require a screen or HUD but only works on rendertargets. (2D Context)
+---| '"RenderScene"' #  Called when a scene is requested to be drawn. This is used for the render.renderview function.
+---| '"Net"' #  Called when a net message arrives
 ---| '"OnPlayerJump"' #  Called when a player jumps.
----| '"resetLaws"' #  Called when laws are reset. DarkRP only. Usually the only hook called when /resetlaws is used.
----| '"renderscene"' #  Called when a scene is requested to be drawn. This is used for the render.renderview function.
+---| '"KeyPress"' #  Called when a player presses a key
+---| '"ReadCell"' #  Called when a high speed device reads from a wired SF chip
 ---| '"PropBreak"' #  Called when an entity is broken
----| '"net"' #  Called when a net message arrives
----| '"xinputReleased"' #  Called when a controller button has been released. Client must have XInput Lua binary installed.
----| '"input"' #  Called when an input on a wired SF chip is written to
----| '"midi"' #  Event hook for midi devices.    Everytime a midi device outputs a signal, the callback function on the hook is called.  Read up on the MIDI protocol to make better sense of everything -> https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html  Commands and their parameters:  0x80 NOTE_OFF              : param1 = key;                         param2 = velocity  0x90 NOTE_ON               : param1 = key;                         param2 = velocity  0xA0 AFTERTOUCH            : param1 = key;                         param2 = touch  0xB0 CONTINUOUS_CONTROLLER : param1 = button_number;               param2 = button_value  0xC0 PATCH_CHANGE          : param1 = patch number;  0xD0 CHANNEL_PRESSURE      : param1 = pressure;  0xE0 PITCH_BEND            : param1 = lsb(least signifigant bit);  param2 = msb(most signifigant bit)
+---| '"MoneyPrinterPrinted"' #  Called after a money printer is has printed money. DarkRP only.  Not guaranteed to work for non-vanilla money printers.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
+---| '"WriteCell"' #  Called when a high speed device writes to a wired SF chip
+---| '"Input"' #  Called when an input on a wired SF chip is written to
+---| '"MIDI"' #  Event hook for midi devices.    Everytime a midi device outputs a signal, the callback function on the hook is called.  Read up on the MIDI protocol to make better sense of everything -> https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html  Commands and their parameters:  0x80 NOTE_OFF              : param1 = key;                         param2 = velocity  0x90 NOTE_ON               : param1 = key;                         param2 = velocity  0xA0 AFTERTOUCH            : param1 = key;                         param2 = touch  0xB0 CONTINUOUS_CONTROLLER : param1 = button_number;               param2 = button_value  0xC0 PATCH_CHANGE          : param1 = patch number;  0xD0 CHANNEL_PRESSURE      : param1 = pressure;  0xE0 PITCH_BEND            : param1 = lsb(least signifigant bit);  param2 = msb(most signifigant bit)
 ---| '"PlayerLeaveVehicle"' #  Called when a players leaves a vehicle
----| '"hudconnected"' #  Called when the player connects to a HUD component linked to the Starfall Chip
+---| '"HUDDisconnected"' #  Called when the player disconnects from a HUD component linked to the Starfall Chip
 ---| '"DoAnimationEvent"' #  Called when a player animation event occurs
----| '"inputReleased"' #  Called when a button is released
 ---| '"ComponentLinked"' #  Called when a component is linked to the starfall
----| '"lockdownEnded"' #  Called when a lockdown has ended. DarkRP only.
+---| '"LockdownStarted"' #  Called when a lockdown has started. DarkRP only.
+---| '"PlayerSpray"' #  Called when a players sprays their logo
 ---| '"PlayerDisconnect"' #  Called when a player disconnects from the server. (Game Event)
----| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
+---| '"Think"' #  Think hook. Called each frame on the client and each game tick on the server.
 ---| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
 ---| '"VRPreRender"' #  Called before rendering the game. Any code that you want to run once per frame should be put here. HUD is required.
 ---| '"EntityTakeDamage"' #  Called when an entity is damaged
----| '"setupworldfog"' #  Called when world fog is drawn.
----| '"postdrawtranslucentrenderables"' #  Called after translucent entities are drawn. (Only works with HUD) (3D context)
+---| '"StarfallError"' #  Called when starfall chip errors
+---| '"PostDrawTranslucentRenderables"' #  Called after translucent entities are drawn. (Only works with HUD) (3D context)
 ---| '"ChatTextChanged"' #  Called when the player's chat box text changes.  Requires the 'input' permission.
----| '"OnEntityCreated"' #  Called when an entity gets created
----| '"moneyPrinterCatchFire"' #  Called when a money printer is about to catch fire. DarkRP only. Called between moneyPrinterPrintMoney and moneyPrinterPrinted.  Not guaranteed to work for non-vanilla money printers.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
----| '"lockdownStarted"' #  Called when a lockdown has started. DarkRP only.
----| '"PlayerDeath"' #  Called when a player dies
----| '"OnPlayerHitGround"' #  Called when a player makes contact with the ground after a jump or a fall.
+---| '"OnLockpickCompleted"' #  Called when a player has finished picking a lock, successfully or otherwise. DarkRP only.  Will only be called if the lockpicker is the owner of the chip, or if the chip is running in superuser mode.
+---| '"PlayerFootstep"' #  Called whenever a player steps
+---| '"PreDrawSkyBox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
+---| '"MoneyPrinterPrintMoney"' #  Called when a money printer is about to print money. DarkRP only.  Not guaranteed to work for non-vanilla money printers.  You should use moneyPrinterPrinted instead, as the printer is not guaranteed to print money even if this hook is called.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
+---| '"PlayerDisconnected"' #  Called when a player disconnects
 ---| '"EndEntityDriving"' #  Called when a player stops driving an entity
 ---| '"EntityEmitSound"' #  Called whenever a sound has been played. This will not be called clientside if the server played the sound without the client also calling Entity:EmitSound.
----| '"PlayerSpawn"' #  Called when a player spawns
----| '"PlayerDisconnected"' #  Called when a player disconnects
----| '"OnContextMenuClose"' #  Called when the player closes the context menu
 ---| '"PlayerUnfrozeObject"' #  Called when a player unfreezes an object
----| '"playerWalletChanged"' #  Called when a player receives money. DarkRP only.  Will only be called if the recipient is the owner of the chip, or if the chip is running in superuser mode.
+---| '"OnPhysgunReload"' #  Called when a player reloads their physgun
+---| '"OnContextMenuClose"' #  Called when the player closes the context menu
+---| '"AddLaw"' #  Called when a law is added. DarkRP only.
+---| '"GravGunOnPickedUp"' #  Called when an entity is being picked up by a gravity gun
 ---| '"ClientInitialized"' #  Called after a client's starfall has initialized. Use this to know when it's safe to send net messages to the client.
+---| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
 ---| '"OnNPCKilled"' #  Called whenever an NPC is killed.
----| '"moneyPrinterPrinted"' #  Called after a money printer is has printed money. DarkRP only.  Not guaranteed to work for non-vanilla money printers.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
----| '"PlayerCanPickupWeapon"' #  Called when a wants to pick up a weapon
----| '"calcview"' #  Called when the engine wants to calculate the player's view. Only works if connected to Starfall HUD
+---| '"PostDraw2DSkyBox"' #  Called right after the 2D skybox has been drawn - allowing you to draw over it.
+---| '"LockpickStarted"' #  Called when a player is about to pick a lock. DarkRP only.  Will only be called if the lockpicker is the owner of the chip, or if the chip is running in superuser mode.
 ---| '"PlayerSwitchFlashlight"' #  Called when a players turns their flashlight on or off
 ---| '"PlayerSay"' #  Called when a player sends a chat message
----| '"PlayerInitialSpawn"' #  Called when a player spawns for the first time
----| '"permissionrequest"' #  Called when local client changed instance permissions
+---| '"OnContextMenuOpen"' #  Called when the player opens the context menu
+---| '"OnPlayerHitGround"' #  Called when a player makes contact with the ground after a jump or a fall.
 ---| '"PlayerUse"' #  Called when a player holds their use key and looks at an entity.  Will continuously run.
----| '"KeyPress"' #  Called when a player presses a key
+---| '"InputReleased"' #  Called when a button is released
 ---| '"GravGunOnDropped"' #  Called when an entity is being dropped by a gravity gun
 --- coroutine
 ---  Coroutine library
@@ -7383,10 +7383,10 @@ _G.Vehicle = {}
 ---  Player type
 ---@class Player
 _G.Player = {}
-	--- shouldDrawLocalPlayer - client - libs_sh/players.lua#L1150
+	--- shouldDrawLocalPlayer - client - libs_sh/players.lua#L1151
 	---@return boolean undefined True if the player's playermodel is visible
 	function _G.Player:shouldDrawLocalPlayer() end
-	--- setAnimation - client - libs_sh/players.lua#L935
+	--- setAnimation - client - libs_sh/players.lua#L936
 	---@param sequence number|string Sequence number or string name
 	---@param progress number? Optional float (Default 0), the progress of the animation. Ranging from 0-1
 	---@param rate number? Optional float (Default 1), the playback rate of the animation
@@ -7394,29 +7394,29 @@ _G.Player = {}
 	---@param auto_advance boolean? Optional boolean (Default true), should the animation handle advancing itself
 	---@param act number|string|nil Optional number or string name (Default sequence value), the activity the player should use
 	function _G.Player:setAnimation(sequence, progress, rate, loop, auto_advance, act) end
-	--- setWalkSpeed - server - libs_sh/players.lua#L778
+	--- setWalkSpeed - server - libs_sh/players.lua#L779
 	---@param newwalkspeed number New Walk speed.
 	function _G.Player:setWalkSpeed(newwalkspeed) end
 	--- getTeam - shared - libs_sh/players.lua#L397
 	---@return number undefined Team Index, from TEAM enums or custom teams
 	function _G.Player:getTeam() end
-	--- setAnimationTime - client - libs_sh/players.lua#L1026
+	--- setAnimationTime - client - libs_sh/players.lua#L1027
 	---@param time number The time of the animation in seconds. Float
 	function _G.Player:setAnimationTime(time) end
-	--- isMuted - client - libs_sh/players.lua#L858
+	--- isMuted - client - libs_sh/players.lua#L859
 	---@return boolean undefined True if the player was muted
 	function _G.Player:isMuted() end
 	--- isCrouching - shared - libs_sh/players.lua#L234
 	---@return boolean undefined True if player crouching
 	function _G.Player:isCrouching() end
-	--- setLadderClimbSpeed - server - libs_sh/players.lua#L738
+	--- setLadderClimbSpeed - server - libs_sh/players.lua#L739
 	---@param newladderclimbspeed number New Ladder Climb speed.
 	function _G.Player:setLadderClimbSpeed(newladderclimbspeed) end
-	--- setAnimationRange - client - libs_sh/players.lua#L1101
+	--- setAnimationRange - client - libs_sh/players.lua#L1102
 	---@param min number Min. Ranging from 0-1
 	---@param max number Max. Ranging from 0-1
 	function _G.Player:setAnimationRange(min, max) end
-	--- stripWeapon - server - libs_sh/players.lua#L580
+	--- stripWeapon - server - libs_sh/players.lua#L581
 	---@param weapon string The weapon class name of the weapon to strip
 	function _G.Player:stripWeapon(weapon) end
 	--- getWalkSpeed - shared - libs_sh/players.lua#L206
@@ -7425,7 +7425,7 @@ _G.Player = {}
 	--- isHitman - shared - libs_sh/darkrp2.lua#L1107
 	---@return boolean? undefined Whether this player is a hitman. May be nil instead of false.
 	function _G.Player:isHitman() end
-	--- getAnimationTime - client - libs_sh/players.lua#L1139
+	--- getAnimationTime - client - libs_sh/players.lua#L1140
 	---@return number undefined Time in seconds
 	function _G.Player:getAnimationTime() end
 	--- getViewPunchAngles - shared - libs_sh/players.lua#L440
@@ -7446,13 +7446,13 @@ _G.Player = {}
 	--- getStepSize - shared - libs_sh/players.lua#L227
 	---@return number undefined Step Size Value
 	function _G.Player:getStepSize() end
-	--- voiceVolume - client - libs_sh/players.lua#L872
+	--- voiceVolume - client - libs_sh/players.lua#L873
 	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number. Doesn't work on local player unless the voice_loopback convar is set to 1.
 	function _G.Player:voiceVolume() end
-	--- setAnimationRate - client - libs_sh/players.lua#L1041
+	--- setAnimationRate - client - libs_sh/players.lua#L1042
 	---@param rate number The playback rate of the animation. Float
 	function _G.Player:setAnimationRate(rate) end
-	--- isTimingOut - server - libs_sh/players.lua#L659
+	--- isTimingOut - server - libs_sh/players.lua#L660
 	---@return boolean undefined isTimingOut
 	function _G.Player:isTimingOut() end
 	--- getMaxArmor - shared - libs_sh/players.lua#L150
@@ -7467,31 +7467,31 @@ _G.Player = {}
 	--- getMaxSpeed - shared - libs_sh/players.lua#L185
 	---@return number undefined Max Speed value
 	function _G.Player:getMaxSpeed() end
-	--- resetAnimation - client - libs_sh/players.lua#L983
+	--- resetAnimation - client - libs_sh/players.lua#L984
 	function _G.Player:resetAnimation() end
 	--- getPing - shared - libs_sh/players.lua#L368
 	---@return number undefined The player's ping
 	function _G.Player:getPing() end
-	--- stripWeapons - server - libs_sh/players.lua#L590
+	--- stripWeapons - server - libs_sh/players.lua#L591
 	function _G.Player:stripWeapons() end
-	--- dropWeapon - server - libs_sh/players.lua#L560
+	--- dropWeapon - server - libs_sh/players.lua#L561
 	---@param weapon Weapon|string The weapon instance or class name of the weapon to drop
 	---@param target Vector? If set, launches the weapon at the given position
 	---@param velocity Vector? If set and target is unset, launches the weapon with the given velocity
 	function _G.Player:dropWeapon(weapon, target, velocity) end
-	--- setRunSpeed - server - libs_sh/players.lua#L758
+	--- setRunSpeed - server - libs_sh/players.lua#L759
 	---@param newrunspeed number New Run speed.
 	function _G.Player:setRunSpeed(newrunspeed) end
 	--- isFlashlightOn - shared - libs_sh/players.lua#L248
 	---@return boolean undefined True if player has flashlight on
 	function _G.Player:isFlashlightOn() end
-	--- setAnimationAutoAdvance - client - libs_sh/players.lua#L1056
+	--- setAnimationAutoAdvance - client - libs_sh/players.lua#L1057
 	---@param auto_advance boolean Should the animation handle advancing itself?
 	function _G.Player:setAnimationAutoAdvance(auto_advance) end
-	--- getPacketLoss - server - libs_sh/players.lua#L638
+	--- getPacketLoss - server - libs_sh/players.lua#L639
 	---@return number undefined Packets lost
 	function _G.Player:getPacketLoss() end
-	--- setSlowWalkSpeed - server - libs_sh/players.lua#L768
+	--- setSlowWalkSpeed - server - libs_sh/players.lua#L769
 	---@param newslowwalkspeed number New Slow Walk speed.
 	function _G.Player:setSlowWalkSpeed(newslowwalkspeed) end
 	--- getAmmoCount - shared - libs_sh/players.lua#L487
@@ -7520,26 +7520,26 @@ _G.Player = {}
 	--- giveMoney - server - libs_sh/darkrp2.lua#L997
 	---@param amount number The amount of money to give.
 	function _G.Player:giveMoney(amount) end
-	--- setArmor - server - libs_sh/players.lua#L688
+	--- setArmor - server - libs_sh/players.lua#L689
 	---@param newarmor number New armor value.
 	function _G.Player:setArmor(newarmor) end
-	--- lastHitGroup - server - libs_sh/players.lua#L622
+	--- lastHitGroup - server - libs_sh/players.lua#L623
 	---@return number undefined Hitgroup, see https://wiki.facepunch.com/gmod/Enums/HITGROUP
 	function _G.Player:lastHitGroup() end
 	--- inVehicle - shared - libs_sh/players.lua#L311
 	---@return boolean undefined True if player in vehicle
 	function _G.Player:inVehicle() end
-	--- resetGesture - client - libs_sh/players.lua#L909
+	--- resetGesture - client - libs_sh/players.lua#L910
 	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
 	function _G.Player:resetGesture(slot) end
 	--- canAfford - shared - libs_sh/darkrp2.lua#L1024
 	---@param amount number The amount of money
 	---@return boolean undefined Whether the player can afford it
 	function _G.Player:canAfford(amount) end
-	--- getTimeoutSeconds - server - libs_sh/players.lua#L652
+	--- getTimeoutSeconds - server - libs_sh/players.lua#L653
 	---@return number undefined Timeout seconds
 	function _G.Player:getTimeoutSeconds() end
-	--- getTimeConnected - server - libs_sh/players.lua#L645
+	--- getTimeConnected - server - libs_sh/players.lua#L646
 	---@return number undefined Time connected
 	function _G.Player:getTimeConnected() end
 	--- getPlayerColor - shared - libs_sh/players.lua#L471
@@ -7555,13 +7555,13 @@ _G.Player = {}
 	---@param door Entity The door
 	---@return boolean? undefined Whether the player is allowed to unlock the door. May be nil instead of false.
 	function _G.Player:canKeysUnlock(door) end
-	--- setCrouchedWalkSpeed - server - libs_sh/players.lua#L708
+	--- setCrouchedWalkSpeed - server - libs_sh/players.lua#L709
 	---@param newcwalkspeed number New Crouch Walk speed, This is a multiplier from 0 to 1.
 	function _G.Player:setCrouchedWalkSpeed(newcwalkspeed) end
 	--- getActiveWeapon - shared - libs_sh/players.lua#L269
 	---@return Weapon undefined The weapon
 	function _G.Player:getActiveWeapon() end
-	--- setGestureWeight - client - libs_sh/players.lua#L921
+	--- setGestureWeight - client - libs_sh/players.lua#L922
 	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
 	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
 	function _G.Player:setGestureWeight(slot, weight) end
@@ -7574,10 +7574,10 @@ _G.Player = {}
 	--- getSteamID - shared - libs_sh/players.lua#L375
 	---@return string undefined SteamID
 	function _G.Player:getSteamID() end
-	--- isPlayingAnimation - client - libs_sh/players.lua#L1120
+	--- isPlayingAnimation - client - libs_sh/players.lua#L1121
 	---@return boolean undefined If an animation is playing
 	function _G.Player:isPlayingAnimation() end
-	--- getAnimationProgress - client - libs_sh/players.lua#L1128
+	--- getAnimationProgress - client - libs_sh/players.lua#L1129
 	---@return number undefined Progress ranging 0-1
 	function _G.Player:getAnimationProgress() end
 	--- getJobTable - shared - libs_sh/darkrp2.lua#L1058
@@ -7586,7 +7586,7 @@ _G.Player = {}
 	--- getWeaponColor - shared - libs_sh/players.lua#L462
 	---@return Vector undefined The color
 	function _G.Player:getWeaponColor() end
-	--- hasGodMode - server - libs_sh/players.lua#L553
+	--- hasGodMode - server - libs_sh/players.lua#L554
 	---@return boolean undefined True if the player has godmode
 	function _G.Player:hasGodMode() end
 	--- isMayor - shared - libs_sh/darkrp2.lua#L1113
@@ -7595,7 +7595,7 @@ _G.Player = {}
 	--- getUserID - shared - libs_sh/players.lua#L411
 	---@return number undefined UserID
 	function _G.Player:getUserID() end
-	--- isConnected - server - libs_sh/players.lua#L666
+	--- isConnected - server - libs_sh/players.lua#L667
 	---@return boolean undefined True if player is connected
 	function _G.Player:isConnected() end
 	--- isUserGroup - shared - libs_sh/players.lua#L353
@@ -7615,13 +7615,13 @@ _G.Player = {}
 	--- getEyeTrace - shared - libs_sh/players.lua#L418
 	---@return table undefined Trace data https://wiki.facepunch.com/gmod/Structures/TraceResult
 	function _G.Player:getEyeTrace() end
-	--- setAnimationActivity - client - libs_sh/players.lua#L992
+	--- setAnimationActivity - client - libs_sh/players.lua#L993
 	---@param activity number|string|nil Activity, nil to use the current animation sequence
 	function _G.Player:setAnimationActivity(activity) end
 	--- getGroundEntity - shared - libs_sh/players.lua#L480
 	---@return Entity undefined Ground entity
 	function _G.Player:getGroundEntity() end
-	--- setAnimationProgress - client - libs_sh/players.lua#L1011
+	--- setAnimationProgress - client - libs_sh/players.lua#L1012
 	---@param progress number The progress of the animation. Ranging from 0-1
 	function _G.Player:setAnimationProgress(progress) end
 	--- getAimVector - shared - libs_sh/players.lua#L276
@@ -7630,16 +7630,16 @@ _G.Player = {}
 	--- getSlowWalkSpeed - shared - libs_sh/players.lua#L199
 	---@return number undefined Slow Walk Speed value
 	function _G.Player:getSlowWalkSpeed() end
-	--- setMaxSpeed - server - libs_sh/players.lua#L748
+	--- setMaxSpeed - server - libs_sh/players.lua#L749
 	---@param newmaxspeed number New Max speed.
 	function _G.Player:setMaxSpeed(newmaxspeed) end
 	--- teamBanTimeLeft - server - libs_sh/darkrp2.lua#L971
 	---@param team number? The number of the job (e.g. TEAM_MEDIC). Uses the player's team if nil.
 	---@return number? undefined The time left on the team ban in seconds, or nil if not banned.
 	function _G.Player:teamBanTimeLeft(team) end
-	--- kill - server - libs_sh/players.lua#L818
+	--- kill - server - libs_sh/players.lua#L819
 	function _G.Player:kill() end
-	--- setAnimationBounce - client - libs_sh/players.lua#L1071
+	--- setAnimationBounce - client - libs_sh/players.lua#L1072
 	---@param bounce boolean Should the animation bounce instead of loop?
 	function _G.Player:setAnimationBounce(bounce) end
 	--- getJumpPower - shared - libs_sh/players.lua#L213
@@ -7651,20 +7651,20 @@ _G.Player = {}
 	--- isTyping - shared - libs_sh/players.lua#L497
 	---@return boolean undefined Whether they are typing in the chat
 	function _G.Player:isTyping() end
-	--- setAmmo - server - libs_sh/players.lua#L598
+	--- setAmmo - server - libs_sh/players.lua#L599
 	---@param amount number The ammo value
 	---@param ammoType number|string Ammo type id or name
 	function _G.Player:setAmmo(amount, ammoType) end
 	--- getFrags - shared - libs_sh/players.lua#L262
 	---@return number undefined Amount of kills
 	function _G.Player:getFrags() end
-	--- setDuckSpeed - server - libs_sh/players.lua#L718
+	--- setDuckSpeed - server - libs_sh/players.lua#L719
 	---@param newduckspeed number New Duck speed, This is a multiplier from 0 to 1.
 	function _G.Player:setDuckSpeed(newduckspeed) end
 	--- getWeapons - shared - libs_sh/players.lua#L446
 	---@return table undefined Table of weapons
 	function _G.Player:getWeapons() end
-	--- setFriction - server - libs_sh/players.lua#L808
+	--- setFriction - server - libs_sh/players.lua#L809
 	---@param newfriction number New Friction.
 	function _G.Player:setFriction(newfriction) end
 	--- getUserGroup - shared - libs_sh/players.lua#L361
@@ -7679,10 +7679,10 @@ _G.Player = {}
 	--- getFOV - shared - libs_sh/players.lua#L283
 	---@return number undefined Field of view as a float
 	function _G.Player:getFOV() end
-	--- setMaxArmor - server - libs_sh/players.lua#L698
+	--- setMaxArmor - server - libs_sh/players.lua#L699
 	---@param newmaxarmor number New max armor value.
 	function _G.Player:setMaxArmor(newmaxarmor) end
-	--- setEyeAngles - server - libs_sh/players.lua#L629
+	--- setEyeAngles - server - libs_sh/players.lua#L630
 	---@param ang Angle New angles
 	function _G.Player:setEyeAngles(ang) end
 	--- canKeysLock - shared - libs_sh/darkrp2.lua#L1032
@@ -7698,7 +7698,7 @@ _G.Player = {}
 	--- isWanted - shared - libs_sh/darkrp2.lua#L1125
 	---@return boolean? undefined Whether this player is wanted. May be nil instead of false.
 	function _G.Player:isWanted() end
-	--- setAnimationLoop - client - libs_sh/players.lua#L1086
+	--- setAnimationLoop - client - libs_sh/players.lua#L1087
 	---@param loop boolean Should the animation loop?
 	function _G.Player:setAnimationLoop(loop) end
 	--- getWantedReason - shared - libs_sh/darkrp2.lua#L1070
@@ -7707,7 +7707,7 @@ _G.Player = {}
 	--- setModelScale - server - libs_sh/players.lua#L526
 	---@param scale number The scale to apply, will be truncated to the first two decimal places (min 0.01, max 100)
 	function _G.Player:setModelScale(scale) end
-	--- getFriendStatus - client - libs_sh/players.lua#L850
+	--- getFriendStatus - client - libs_sh/players.lua#L851
 	---@return string undefined One of: "friend", "blocked", "none", "requested"
 	function _G.Player:getFriendStatus() end
 	--- hasDarkRPPrivilege - shared - libs_sh/darkrp2.lua#L1076
@@ -7729,18 +7729,18 @@ _G.Player = {}
 	--- isSprinting - shared - libs_sh/players.lua#L504
 	---@return boolean undefined Whether they are sprinting
 	function _G.Player:isSprinting() end
-	--- playGesture - client - libs_sh/players.lua#L879
+	--- playGesture - client - libs_sh/players.lua#L880
 	---@param animation string|number Sequence string or act number. https://wiki.facepunch.com/gmod/Enums/ACT
 	---@param loop boolean? Optional boolean (Default true), should the gesture loop
 	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
 	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
 	function _G.Player:playGesture(animation, loop, slot, weight) end
-	--- stripAmmo - server - libs_sh/players.lua#L614
+	--- stripAmmo - server - libs_sh/players.lua#L615
 	function _G.Player:stripAmmo() end
 	--- isBot - shared - libs_sh/players.lua#L332
 	---@return boolean undefined True if player is a bot
 	function _G.Player:isBot() end
-	--- say - server - libs_sh/players.lua#L673
+	--- say - server - libs_sh/players.lua#L674
 	---@param text string The text to force the player to say
 	---@param teamOnly boolean? Team chat only?, Defaults to false.
 	function _G.Player:say(text, teamOnly) end
@@ -7752,16 +7752,16 @@ _G.Player = {}
 	--- getEntityInUse - shared - libs_sh/players.lua#L297
 	---@return Entity undefined Entity
 	function _G.Player:getEntityInUse() end
-	--- setUnDuckSpeed - server - libs_sh/players.lua#L728
+	--- setUnDuckSpeed - server - libs_sh/players.lua#L729
 	---@param newunduckspeed number New UnDuck speed, This is a multiplier from 0 to 1.
 	function _G.Player:setUnDuckSpeed(newunduckspeed) end
-	--- enterVehicle - server - libs_sh/players.lua#L829
+	--- enterVehicle - server - libs_sh/players.lua#L830
 	---@param vehicle Vehicle 
 	function _G.Player:enterVehicle(vehicle) end
-	--- setJumpPower - server - libs_sh/players.lua#L788
+	--- setJumpPower - server - libs_sh/players.lua#L789
 	---@param newjumppower number New Jump Power.
 	function _G.Player:setJumpPower(newjumppower) end
-	--- setStepSize - server - libs_sh/players.lua#L798
+	--- setStepSize - server - libs_sh/players.lua#L799
 	---@param newstepsize number New Step Size.
 	function _G.Player:setStepSize(newstepsize) end
 	--- getPocketItems - shared - libs_sh/darkrp2.lua#L1064
@@ -7780,13 +7780,13 @@ _G.Player = {}
 	--- getShootPos - shared - libs_sh/players.lua#L304
 	---@return Vector undefined Shoot position
 	function _G.Player:getShootPos() end
-	--- isSpeaking - client - libs_sh/players.lua#L865
+	--- isSpeaking - client - libs_sh/players.lua#L866
 	---@return boolean undefined Whether they are speaking and able to be heard by LocalPlayer
 	function _G.Player:isSpeaking() end
 	--- isCook - shared - libs_sh/darkrp2.lua#L1095
 	---@return boolean? undefined Whether this player is a cook. May be nil instead of false.
 	function _G.Player:isCook() end
-	--- keyDown - shared - libs_sh/players.lua#L840
+	--- keyDown - shared - libs_sh/players.lua#L841
 	---@param key number Key to check. IN_KEY table values
 	---@return boolean undefined Whether they key is down
 	function _G.Player:keyDown(key) end

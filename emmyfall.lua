@@ -277,7 +277,7 @@ _G.wire = {}
 --- 
 ---  of the same name. Writes will write to the wire output of the same name.
 _G.wire.ports = {
-}	--- readCell - server - libs_sv/wire.lua#L700
+}	--- readCell - server - libs_sv/wire.lua#L701
 	---@param ent Entity Entity with wire memory
 	---@param index number The cell address
 	---@return number undefined The value at the address
@@ -294,12 +294,12 @@ _G.wire.ports = {
 	---@param types table An array of input types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of input descriptions. 
 	function _G.wire.adjustInputs(names, types, descriptions) end
-	--- readOutput - server - libs_sv/wire.lua#L691
+	--- readOutput - server - libs_sv/wire.lua#L692
 	---@param ent Entity Entity with output
 	---@param outputname string Output name
 	---@return any undefined value The value to set the output to (must match the output type)
 	function _G.wire.readOutput(ent, outputname) end
-	--- triggerOutput - server - libs_sv/wire.lua#L663
+	--- triggerOutput - server - libs_sv/wire.lua#L664
 	---@param ent Entity Entity with output
 	---@param outputname string Output name
 	---@param value any The value to set the output to (must match the output type)
@@ -325,12 +325,12 @@ _G.wire.ports = {
 	---@return table undefined Table of entity's output names
 	---@return table undefined Table of entity's output types
 	function _G.wire.getOutputs(entO) end
-	--- readInput - server - libs_sv/wire.lua#L682
+	--- readInput - server - libs_sv/wire.lua#L683
 	---@param ent Entity Entity with input
 	---@param inputname string Input name
 	---@return any undefined value The value to set the input to (must match the input type)
 	function _G.wire.readInput(ent, inputname) end
-	--- triggerCell - server - libs_sv/wire.lua#L672
+	--- triggerCell - server - libs_sv/wire.lua#L673
 	---@param ent Entity Entity with wire memory
 	---@param index number The cell address
 	---@param value number The value to set the cell
@@ -349,7 +349,7 @@ _G.wire.ports = {
 	---@param types table An array of output types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of output descriptions. 
 	function _G.wire.adjustOutputs(names, types, descriptions) end
-	--- triggerInput - server - libs_sv/wire.lua#L654
+	--- triggerInput - server - libs_sv/wire.lua#L655
 	---@param ent Entity Entity with input
 	---@param inputname string Input name
 	---@param value any The value to set the input to (must match the input type)
@@ -1282,6 +1282,8 @@ _G.prop = {}
 ---  string Model = "models/spacecode/sfchip_medium.mdl"
 --- 
 ---  string Code
+--- 
+---  table Files = {main = Code}
 --- 
 ---  
 --- 
@@ -2219,10 +2221,10 @@ _G.prop = {}
 --- 
 ---  
 _G.prop.SENT_Data_Structures = {
-}	--- spawnRate - server - libs_sv/prop.lua#L701
+}	--- spawnRate - server - libs_sv/prop.lua#L693
 	---@return number undefined Number of props per second the user can spawn
 	function _G.prop.spawnRate() end
-	--- setPropUndo - server - libs_sv/prop.lua#L714
+	--- setPropUndo - server - libs_sv/prop.lua#L706
 	---@param on boolean Whether the props should be undo-able
 	function _G.prop.setPropUndo(on) end
 	--- createSent - server - libs_sv/prop.lua#L413
@@ -2255,7 +2257,7 @@ _G.prop.SENT_Data_Structures = {
 	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@return Entity undefined The seat object
 	function _G.prop.createSeat(pos, ang, model, frozen) end
-	--- propsLeft - server - libs_sv/prop.lua#L693
+	--- propsLeft - server - libs_sv/prop.lua#L685
 	---@return number undefined Number of props able to be spawned
 	function _G.prop.propsLeft() end
 	--- createCustom - server - libs_sv/prop.lua#L158
@@ -2265,10 +2267,10 @@ _G.prop.SENT_Data_Structures = {
 	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@return Entity undefined The prop object
 	function _G.prop.createCustom(pos, ang, vertices, frozen) end
-	--- setPropClean - server - libs_sv/prop.lua#L708
+	--- setPropClean - server - libs_sv/prop.lua#L700
 	---@param on boolean Whether the props should be cleaned or not
 	function _G.prop.setPropClean(on) end
-	--- canSpawn - server - libs_sv/prop.lua#L685
+	--- canSpawn - server - libs_sv/prop.lua#L677
 	---@return boolean undefined True if user can spawn props, False if not.
 	function _G.prop.canSpawn() end
 	--- getSpawnableSents - server - libs_sv/prop.lua#L324
@@ -9724,7 +9726,7 @@ _G.Entity = {}
 	--- addAngleVelocity - server - libs_sv/entities.lua#L407
 	---@param angvel Vector The local angvel vector to apply
 	function _G.Entity:addAngleVelocity(angvel) end
-	--- getWirelink - server - libs_sv/wire.lua#L709
+	--- getWirelink - server - libs_sv/wire.lua#L710
 	---@return Wirelink undefined Wirelink of the entity
 	function _G.Entity:getWirelink() end
 	--- getChildren - shared - libs_sh/entities.lua#L713
@@ -10225,40 +10227,40 @@ _G.SurfaceInfo = {}
 ---@class Wirelink
 ---@operator index(string|number):any
 _G.Wirelink = {}
-	--- inputValue - server - libs_sv/wire.lua#L752
+	--- inputValue - server - libs_sv/wire.lua#L753
 	---@param name string Input name
 	---@return any undefined Input value
 	function _G.Wirelink:inputValue(name) end
-	--- entity - server - libs_sv/wire.lua#L778
+	--- entity - server - libs_sv/wire.lua#L779
 	---@return Entity undefined Entity the wirelink represents
 	function _G.Wirelink:entity() end
-	--- getWiredToName - server - libs_sv/wire.lua#L847
+	--- getWiredToName - server - libs_sv/wire.lua#L848
 	---@param name string Name of the input of the wirelink.
 	---@return string undefined String name of the output that the input is wired to.
 	function _G.Wirelink:getWiredToName(name) end
-	--- inputs - server - libs_sv/wire.lua#L784
+	--- inputs - server - libs_sv/wire.lua#L785
 	---@return table undefined All of the wirelink's inputs
 	function _G.Wirelink:inputs() end
-	--- inputType - server - libs_sv/wire.lua#L760
+	--- inputType - server - libs_sv/wire.lua#L761
 	---@param name string Input name to search for
 	---@return string undefined Type of input
 	function _G.Wirelink:inputType(name) end
-	--- getWiredTo - server - libs_sv/wire.lua#L835
+	--- getWiredTo - server - libs_sv/wire.lua#L836
 	---@param name string Name of the input
 	---@return Entity undefined The entity the wirelink is wired to
 	function _G.Wirelink:getWiredTo(name) end
-	--- outputType - server - libs_sv/wire.lua#L769
+	--- outputType - server - libs_sv/wire.lua#L770
 	---@param name string Output name to search for
 	---@return string undefined Type of output
 	function _G.Wirelink:outputType(name) end
-	--- isWired - server - libs_sv/wire.lua#L824
+	--- isWired - server - libs_sv/wire.lua#L825
 	---@param name string Name of the input to check
 	---@return boolean undefined Whether it is wired
 	function _G.Wirelink:isWired(name) end
-	--- outputs - server - libs_sv/wire.lua#L804
+	--- outputs - server - libs_sv/wire.lua#L805
 	---@return table undefined All of the wirelink's outputs
 	function _G.Wirelink:outputs() end
-	--- isValid - server - libs_sv/wire.lua#L746
+	--- isValid - server - libs_sv/wire.lua#L747
 	---@return boolean undefined Whether the wirelink is valid
 	function _G.Wirelink:isValid() end
 ---  For playing music there is `Bass` type. You can pause and set current playback time in it. If you're looking to apply DSP effects on present game sounds, use `Sound` instead.

@@ -1020,63 +1020,63 @@ _G.navmesh.NAV_TRAVERSE_TYPE = {
 --- input
 ---  Input library.
 _G.input = {}
-	--- getAnalogValue - client - libs_sh/input.lua#L397
+	--- getAnalogValue - client - libs_sh/input.lua#L401
 	---@param axis number The analog axis to poll. See https://wiki.facepunch.com/gmod/Enums/ANALOG
 	---@return number undefined The digital value.
 	function _G.input.getAnalogValue(axis) end
-	--- lookupKeyBinding - client - libs_sh/input.lua#L233
+	--- lookupKeyBinding - client - libs_sh/input.lua#L237
 	---@param key number The key id, see input
 	---@return string undefined The command bound to the key
 	function _G.input.lookupKeyBinding(key) end
-	--- lockControls - client - libs_sh/input.lua#L354
+	--- lockControls - client - libs_sh/input.lua#L358
 	---@param enabled boolean Whether to lock or unlock the controls
 	function _G.input.lockControls(enabled) end
-	--- getKeyName - client - libs_sh/input.lua#L268
+	--- getKeyName - client - libs_sh/input.lua#L272
 	---@param key number The key id, see input
 	---@return string undefined The name of the key
 	function _G.input.getKeyName(key) end
-	--- getCursorVisible - client - libs_sh/input.lua#L308
+	--- getCursorVisible - client - libs_sh/input.lua#L312
 	---@return boolean undefined The cursor's visibility
 	function _G.input.getCursorVisible() end
-	--- selectWeapon - client - libs_sh/input.lua#L344
+	--- selectWeapon - client - libs_sh/input.lua#L348
 	---@param weapon Weapon The weapon entity to select
 	function _G.input.selectWeapon(weapon) end
-	--- isControlDown - client - libs_sh/input.lua#L289
+	--- isControlDown - client - libs_sh/input.lua#L293
 	---@return boolean undefined True if the control key is down
 	function _G.input.isControlDown() end
-	--- isControlLocked - client - libs_sh/input.lua#L376
+	--- isControlLocked - client - libs_sh/input.lua#L380
 	---@return boolean undefined Whether the player's control is locked
 	function _G.input.isControlLocked() end
-	--- isKeyDown - client - libs_sh/input.lua#L243
+	--- isKeyDown - client - libs_sh/input.lua#L247
 	---@param key number The key id, see input
 	---@return boolean undefined True if the key is down
 	function _G.input.isKeyDown(key) end
-	--- enableCursor - client - libs_sh/input.lua#L329
+	--- enableCursor - client - libs_sh/input.lua#L333
 	---@param enabled boolean Whether or not the cursor should be enabled
 	function _G.input.enableCursor(enabled) end
-	--- isGameUIVisible - client - libs_sh/input.lua#L390
+	--- isGameUIVisible - client - libs_sh/input.lua#L394
 	---@return boolean undefined Whether the game menu overlay ( main menu ) is open or not
 	function _G.input.isGameUIVisible() end
-	--- screenToVector - client - libs_sh/input.lua#L317
+	--- screenToVector - client - libs_sh/input.lua#L321
 	---@param x number X coordinate on the screen
 	---@param y number Y coordinate on the screen
 	---@return Vector undefined Aim vector
 	function _G.input.screenToVector(x, y) end
-	--- getCursorPos - client - libs_sh/input.lua#L298
+	--- getCursorPos - client - libs_sh/input.lua#L302
 	---@return number undefined The x position of the mouse
 	---@return number undefined The y position of the mouse
 	function _G.input.getCursorPos() end
-	--- isShiftDown - client - libs_sh/input.lua#L280
+	--- isShiftDown - client - libs_sh/input.lua#L284
 	---@return boolean undefined True if the shift key is down
 	function _G.input.isShiftDown() end
-	--- canLockControls - client - libs_sh/input.lua#L383
+	--- canLockControls - client - libs_sh/input.lua#L387
 	---@return boolean undefined Whether the player's control can be locked
 	function _G.input.canLockControls() end
-	--- isMouseDown - client - libs_sh/input.lua#L256
+	--- isMouseDown - client - libs_sh/input.lua#L260
 	---@param key number The mouse button id, see input
 	---@return boolean undefined True if the key is down
 	function _G.input.isMouseDown(key) end
-	--- lookupBinding - client - libs_sh/input.lua#L215
+	--- lookupBinding - client - libs_sh/input.lua#L219
 	---@param binding string The name of the bind
 	---@return number undefined The id of the first key bound
 	---@return string undefined The name of the first key bound
@@ -5640,25 +5640,206 @@ _G.sql = {}
 --- darkrp
 ---  Functions relating to DarkRP. These functions WILL NOT EXIST if DarkRP is not in use.
 _G.darkrp = {}
-	--- openF1Menu - client - libs_sh/darkrp2.lua#L810
+	--- openF1Menu - client - libs_sh/darkrp2.lua#L771
 	function _G.darkrp.openF1Menu() end
-	--- doorIndexToEnt - server - libs_sh/darkrp2.lua#L697
+	--- doorIndexToEnt - server - libs_sh/darkrp2.lua#L658
 	---@param doorIndex number The door index
 	---@return Entity? undefined The door entity, or nil if the index is invalid or the door was removed.
 	function _G.darkrp.doorIndexToEnt(doorIndex) end
-	--- canMakeMoneyRequest - server - libs_sh/darkrp2.lua#L781
+	--- canMakeMoneyRequest - server - libs_sh/darkrp2.lua#L742
 	---@param sender Player? Player you intend to ask for money from later (if nil, will only check your money request rate)
 	---@return boolean undefined If you can make another money request
 	function _G.darkrp.canMakeMoneyRequest(sender) end
-	--- canGiveMoney - server - libs_sh/darkrp2.lua#L803
+	--- isInRoom - client - libs_sh/darkrp2.lua#L975
+	---@param ply Player The player
+	---@return boolean undefined Whether this player is in the same room.
+	function _G.darkrp.isInRoom(ply) end
+	--- canGiveMoney - server - libs_sh/darkrp2.lua#L764
 	---@return boolean undefined If you can give someone money
 	function _G.darkrp.canGiveMoney() end
-	--- closeF4Menu - client - libs_sh/darkrp2.lua#L834
+	--- closeF4Menu - client - libs_sh/darkrp2.lua#L795
 	function _G.darkrp.closeF4Menu() end
-	--- getFoodItems - shared - libs_sh/darkrp2.lua#L669
+	--- getFoodItems - shared - libs_sh/darkrp2.lua#L630
 	---@return table? undefined Table with food items, or nil if there are none.
 	function _G.darkrp.getFoodItems() end
-	--- requestMoney - server - libs_sh/darkrp2.lua#L738
+	--- keysUnOwnAll - server - libs_sh/darkrp2.lua#L935
+	---@param ply Player The player
+	function _G.darkrp.keysUnOwnAll(ply) end
+	--- getMoney - shared - libs_sh/darkrp2.lua#L1109
+	---@param ply Player The player
+	---@return number? undefined The amount of money, or nil if not accessible.
+	function _G.darkrp.getMoney(ply) end
+	--- isKeysOwnedBy - shared - libs_sh/darkrp2.lua#L878
+	---@param ent Entity The door
+	---@param ply Player The player to query.
+	---@return boolean undefined Whether this door is (co-)owned by the player.
+	function _G.darkrp.isKeysOwnedBy(ent, ply) end
+	--- payPlayer - server - libs_sh/darkrp2.lua#L677
+	---@param sender Player The player who gives the money.
+	---@param receiver Player The player who receives the money.
+	---@param amount number The amount of money.
+	function _G.darkrp.payPlayer(sender, receiver, amount) end
+	--- isKeysOwned - shared - libs_sh/darkrp2.lua#L871
+	---@param ent Entity The door
+	---@return boolean undefined Whether it's owned.
+	function _G.darkrp.isKeysOwned(ent) end
+	--- isDarkRPVarBlacklisted - shared - libs_sh/darkrp2.lua#L649
+	---@param var string The name of the variable
+	---@return boolean undefined If the variable is blacklisted
+	function _G.darkrp.isDarkRPVarBlacklisted(var) end
+	--- closeF1Menu - client - libs_sh/darkrp2.lua#L779
+	function _G.darkrp.closeF1Menu() end
+	--- isMedic - shared - libs_sh/darkrp2.lua#L1095
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is a medic. May be nil instead of false.
+	function _G.darkrp.isMedic(ply) end
+	--- openF4Menu - client - libs_sh/darkrp2.lua#L787
+	function _G.darkrp.openF4Menu() end
+	--- getLaws - shared - libs_sh/darkrp2.lua#L637
+	---@return table undefined A table of all current laws.
+	function _G.darkrp.getLaws() end
+	--- getAvailableVehicles - shared - libs_sh/darkrp2.lua#L618
+	---@return table undefined Names, models and classnames of all supported vehicles.
+	function _G.darkrp.getAvailableVehicles() end
+	--- isHitman - shared - libs_sh/darkrp2.lua#L1081
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is a hitman. May be nil instead of false.
+	function _G.darkrp.isHitman(ply) end
+	--- isMayor - shared - libs_sh/darkrp2.lua#L1088
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is the Mayor. May be nil instead of false.
+	function _G.darkrp.isMayor(ply) end
+	--- getCustomShipments - shared - libs_sh/darkrp2.lua#L643
+	---@return table? undefined A table with the contents of the GLua global "CustomShipments", or nil if it doesn't exist.
+	function _G.darkrp.getCustomShipments() end
+	--- isCP - shared - libs_sh/darkrp2.lua#L1074
+	---@param ply Player The player
+	---@return boolean undefined Whether this player is a part of the police force.
+	function _G.darkrp.isCP(ply) end
+	--- getKeysTitle - shared - libs_sh/darkrp2.lua#L856
+	---@param ent Entity The door
+	---@return string? undefined The title of the door or vehicle, or nil if none is set.
+	function _G.darkrp.getKeysTitle(ent) end
+	--- isChief - shared - libs_sh/darkrp2.lua#L1060
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is a Chief. May be nil instead of false.
+	function _G.darkrp.isChief(ply) end
+	--- isArrested - shared - libs_sh/darkrp2.lua#L1053
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is arrested. May be nil instead of false.
+	function _G.darkrp.isArrested(ply) end
+	--- isLocked - server - libs_sh/darkrp2.lua#L839
+	---@param ent Entity The door
+	---@return boolean undefined Whether it's locked.
+	function _G.darkrp.isLocked(ent) end
+	--- getShipmentCount - shared - libs_sh/darkrp2.lua#L903
+	---@param ent Entity The shipment
+	---@return number? undefined Number of items remaining, or nil if not a shipment
+	function _G.darkrp.getShipmentCount(ent) end
+	--- hasDarkRPPrivilege - shared - libs_sh/darkrp2.lua#L1045
+	---@param ply Player The player
+	---@return boolean undefined Whether the player has the privilege.
+	function _G.darkrp.hasDarkRPPrivilege(ply) end
+	--- getDarkRPVar - shared - libs_sh/darkrp2.lua#L1011
+	---@param ply Player The player
+	---@param var string The name of the variable.
+	---@return any undefined The value of the DarkRP var.
+	function _G.darkrp.getDarkRPVar(ply, var) end
+	--- getPocketItems - shared - libs_sh/darkrp2.lua#L1031
+	---@param ply Player The player
+	---@return table undefined A table containing information about the items in the pocket.
+	function _G.darkrp.getPocketItems(ply) end
+	--- getWantedReason - shared - libs_sh/darkrp2.lua#L1038
+	---@param ply Player The player
+	---@return string? undefined The reason, or nil if not wanted
+	function _G.darkrp.getWantedReason(ply) end
+	--- getJobTable - shared - libs_sh/darkrp2.lua#L1024
+	---@param ply Player The player
+	---@return table undefined Table with the job information.
+	function _G.darkrp.getJobTable(ply) end
+	--- isMoneyBag - shared - libs_sh/darkrp2.lua#L887
+	---@param ent Entity The entity
+	---@return boolean undefined Whether this entity is a money bag.
+	function _G.darkrp.isMoneyBag(ent) end
+	--- openPocketMenu - client - libs_sh/darkrp2.lua#L819
+	function _G.darkrp.openPocketMenu() end
+	--- getDoorOwner - shared - libs_sh/darkrp2.lua#L848
+	---@param ent Entity The door
+	---@return Player? undefined The owner of the door, or nil if the door is unowned.
+	function _G.darkrp.getDoorOwner(ent) end
+	--- canAfford - shared - libs_sh/darkrp2.lua#L986
+	---@param ply Player The player
+	---@param amount number The amount of money
+	---@return boolean undefined Whether the player can afford it
+	function _G.darkrp.canAfford(ply, amount) end
+	--- formatMoney - shared - libs_sh/darkrp2.lua#L610
+	---@param amount number The money to format, e.g. 100000.
+	---@return string undefined The money as a nice string, e.g. "$100,000".
+	function _G.darkrp.formatMoney(amount) end
+	--- canKeysUnlock - shared - libs_sh/darkrp2.lua#L1003
+	---@param ply Player The player
+	---@param door Entity The door
+	---@return boolean? undefined Whether the player is allowed to unlock the door. May be nil instead of false.
+	function _G.darkrp.canKeysUnlock(ply, door) end
+	--- canKeysLock - shared - libs_sh/darkrp2.lua#L995
+	---@param ply Player The player
+	---@param door Entity The door
+	---@return boolean? undefined Whether the player is allowed to lock the door. May be nil instead of false.
+	function _G.darkrp.canKeysLock(ply, door) end
+	--- doorIndex - server - libs_sh/darkrp2.lua#L831
+	---@param ent Entity The door
+	---@return number? undefined The door index, or nil if not a door.
+	function _G.darkrp.doorIndex(ent) end
+	--- moneyRequestsLeft - server - libs_sh/darkrp2.lua#L733
+	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
+	function _G.darkrp.moneyRequestsLeft() end
+	--- getMoneyAmount - shared - libs_sh/darkrp2.lua#L894
+	---@param ent Entity The money
+	---@return number? undefined Amount of money or number of items
+	function _G.darkrp.getMoneyAmount(ent) end
+	--- giveMoney - server - libs_sh/darkrp2.lua#L957
+	---@param ply Player The player
+	---@param amount number The amount of money to give.
+	function _G.darkrp.giveMoney(ply, amount) end
+	--- teamBanTimeLeft - server - libs_sh/darkrp2.lua#L944
+	---@param ply Player The player
+	---@param team number? The number of the job (e.g. TEAM_MEDIC). Uses the player's team if nil.
+	---@return number? undefined The time left on the team ban in seconds, or nil if not banned.
+	function _G.darkrp.teamBanTimeLeft(ply, team) end
+	--- isDoor - shared - libs_sh/darkrp2.lua#L864
+	---@param ent Entity The entity
+	---@return boolean undefined Whether it's a door.
+	function _G.darkrp.isDoor(ent) end
+	--- moneyGivingsLeft - server - libs_sh/darkrp2.lua#L755
+	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
+	function _G.darkrp.moneyGivingsLeft() end
+	--- getShipmentContents - shared - libs_sh/darkrp2.lua#L922
+	---@param ent Entity The shipment
+	---@return table? undefined Contents, or nil if not a shipment
+	function _G.darkrp.getShipmentContents(ent) end
+	--- getShipmentContentsIndex - shared - libs_sh/darkrp2.lua#L912
+	---@param ent Entity The shipment
+	---@return number? undefined Index of contents, or nil if not a shipment
+	function _G.darkrp.getShipmentContentsIndex(ent) end
+	--- jailPosCount - server - libs_sh/darkrp2.lua#L670
+	---@return number undefined The number of jail positions in the current map.
+	function _G.darkrp.jailPosCount() end
+	--- toggleF4Menu - client - libs_sh/darkrp2.lua#L803
+	function _G.darkrp.toggleF4Menu() end
+	--- getCategories - shared - libs_sh/darkrp2.lua#L624
+	---@return table undefined All categories.
+	function _G.darkrp.getCategories() end
+	--- isWanted - shared - libs_sh/darkrp2.lua#L1102
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is wanted. May be nil instead of false.
+	function _G.darkrp.isWanted(ply) end
+	--- isCook - shared - libs_sh/darkrp2.lua#L1067
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is a cook. May be nil instead of false.
+	function _G.darkrp.isCook(ply) end
+	--- openKeysMenu - client - libs_sh/darkrp2.lua#L811
+	function _G.darkrp.openKeysMenu() end
+	--- requestMoney - server - libs_sh/darkrp2.lua#L699
 	---@param sender Player The player who may or may not send the money.
 	---@param amount number The amount of money to ask for.
 	---@param message string? An optional custom message that will be shown in the money request prompt. May not exceed 60 bytes in length.
@@ -5666,50 +5847,6 @@ _G.darkrp = {}
 	---@param callbackFailure function? Optional function to call if request fails. Args (string: why it failed)
 	---@param receiver Player? The player who may or may not receive the money, or the owner of the chip if not specified. Superuser only.
 	function _G.darkrp.requestMoney(sender, amount, message, callbackSuccess, callbackFailure, receiver) end
-	--- moneyRequestsLeft - server - libs_sh/darkrp2.lua#L772
-	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
-	function _G.darkrp.moneyRequestsLeft() end
-	--- openPocketMenu - client - libs_sh/darkrp2.lua#L858
-	function _G.darkrp.openPocketMenu() end
-	--- payPlayer - server - libs_sh/darkrp2.lua#L716
-	---@param sender Player The player who gives the money.
-	---@param receiver Player The player who receives the money.
-	---@param amount number The amount of money.
-	function _G.darkrp.payPlayer(sender, receiver, amount) end
-	--- formatMoney - shared - libs_sh/darkrp2.lua#L649
-	---@param amount number The money to format, e.g. 100000.
-	---@return string undefined The money as a nice string, e.g. "$100,000".
-	function _G.darkrp.formatMoney(amount) end
-	--- isDarkRPVarBlacklisted - shared - libs_sh/darkrp2.lua#L688
-	---@param var string The name of the variable
-	---@return boolean undefined If the variable is blacklisted
-	function _G.darkrp.isDarkRPVarBlacklisted(var) end
-	--- moneyGivingsLeft - server - libs_sh/darkrp2.lua#L794
-	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
-	function _G.darkrp.moneyGivingsLeft() end
-	--- toggleF4Menu - client - libs_sh/darkrp2.lua#L842
-	function _G.darkrp.toggleF4Menu() end
-	--- openF4Menu - client - libs_sh/darkrp2.lua#L826
-	function _G.darkrp.openF4Menu() end
-	--- getLaws - shared - libs_sh/darkrp2.lua#L676
-	---@return table undefined A table of all current laws.
-	function _G.darkrp.getLaws() end
-	--- getAvailableVehicles - shared - libs_sh/darkrp2.lua#L657
-	---@return table undefined Names, models and classnames of all supported vehicles.
-	function _G.darkrp.getAvailableVehicles() end
-	--- getCategories - shared - libs_sh/darkrp2.lua#L663
-	---@return table undefined All categories.
-	function _G.darkrp.getCategories() end
-	--- closeF1Menu - client - libs_sh/darkrp2.lua#L818
-	function _G.darkrp.closeF1Menu() end
-	--- getCustomShipments - shared - libs_sh/darkrp2.lua#L682
-	---@return table? undefined A table with the contents of the GLua global "CustomShipments", or nil if it doesn't exist.
-	function _G.darkrp.getCustomShipments() end
-	--- openKeysMenu - client - libs_sh/darkrp2.lua#L850
-	function _G.darkrp.openKeysMenu() end
-	--- jailPosCount - server - libs_sh/darkrp2.lua#L709
-	---@return number undefined The number of jail positions in the current map.
-	function _G.darkrp.jailPosCount() end
 --- joystick
 ---  Joystick library.
 _G.joystick = {}
@@ -7279,23 +7416,17 @@ _G.Player = {}
 	--- shouldDrawLocalPlayer - client - libs_sh/players.lua#L1151
 	---@return boolean undefined True if the player's playermodel is visible
 	function _G.Player:shouldDrawLocalPlayer() end
-	--- setAnimation - client - libs_sh/players.lua#L936
-	---@param sequence number|string Sequence number or string name
-	---@param progress number? Optional float (Default 0), the progress of the animation. Ranging from 0-1
-	---@param rate number? Optional float (Default 1), the playback rate of the animation
-	---@param loop boolean? Optional boolean (Default false), should the animation loop
-	---@param auto_advance boolean? Optional boolean (Default true), should the animation handle advancing itself
-	---@param act number|string|nil Optional number or string name (Default sequence value), the activity the player should use
-	function _G.Player:setAnimation(sequence, progress, rate, loop, auto_advance, act) end
+	--- getVehicle - shared - libs_sh/players.lua#L318
+	---@return Vehicle undefined Vehicle if player in vehicle or nil
+	function _G.Player:getVehicle() end
 	--- setWalkSpeed - server - libs_sh/players.lua#L779
 	---@param newwalkspeed number New Walk speed.
 	function _G.Player:setWalkSpeed(newwalkspeed) end
-	--- getTeam - shared - libs_sh/players.lua#L397
-	---@return number undefined Team Index, from TEAM enums or custom teams
-	function _G.Player:getTeam() end
-	--- setAnimationTime - client - libs_sh/players.lua#L1027
-	---@param time number The time of the animation in seconds. Float
-	function _G.Player:setAnimationTime(time) end
+	--- stripAmmo - server - libs_sh/players.lua#L615
+	function _G.Player:stripAmmo() end
+	--- getSteamID - shared - libs_sh/players.lua#L375
+	---@return string undefined SteamID
+	function _G.Player:getSteamID() end
 	--- isMuted - client - libs_sh/players.lua#L859
 	---@return boolean undefined True if the player was muted
 	function _G.Player:isMuted() end
@@ -7305,19 +7436,21 @@ _G.Player = {}
 	--- setLadderClimbSpeed - server - libs_sh/players.lua#L739
 	---@param newladderclimbspeed number New Ladder Climb speed.
 	function _G.Player:setLadderClimbSpeed(newladderclimbspeed) end
-	--- setAnimationRange - client - libs_sh/players.lua#L1102
-	---@param min number Min. Ranging from 0-1
-	---@param max number Max. Ranging from 0-1
-	function _G.Player:setAnimationRange(min, max) end
+	--- setEyeAngles - server - libs_sh/players.lua#L630
+	---@param ang Angle New angles
+	function _G.Player:setEyeAngles(ang) end
 	--- stripWeapon - server - libs_sh/players.lua#L581
 	---@param weapon string The weapon class name of the weapon to strip
 	function _G.Player:stripWeapon(weapon) end
 	--- getWalkSpeed - shared - libs_sh/players.lua#L206
 	---@return number undefined Walk Speed value
 	function _G.Player:getWalkSpeed() end
-	--- isHitman - shared - libs_sh/darkrp2.lua#L1107
-	---@return boolean? undefined Whether this player is a hitman. May be nil instead of false.
-	function _G.Player:isHitman() end
+	--- setUnDuckSpeed - server - libs_sh/players.lua#L729
+	---@param newunduckspeed number New UnDuck speed, This is a multiplier from 0 to 1.
+	function _G.Player:setUnDuckSpeed(newunduckspeed) end
+	--- getWeaponColor - shared - libs_sh/players.lua#L462
+	---@return Vector undefined The color
+	function _G.Player:getWeaponColor() end
 	--- getAnimationTime - client - libs_sh/players.lua#L1140
 	---@return number undefined Time in seconds
 	function _G.Player:getAnimationTime() end
@@ -7327,46 +7460,97 @@ _G.Player = {}
 	--- isHUDActive - server - libs_sh/players.lua#L536
 	---@return boolean undefined True if a HUD component is connected and active for the player, nil otherwise
 	function _G.Player:isHUDActive() end
-	--- isWalking - shared - libs_sh/players.lua#L511
-	---@return boolean undefined Whether they are walking
-	function _G.Player:isWalking() end
+	--- hasGodMode - server - libs_sh/players.lua#L554
+	---@return boolean undefined True if the player has godmode
+	function _G.Player:hasGodMode() end
 	--- isSuperAdmin - shared - libs_sh/players.lua#L346
 	---@return boolean undefined True if player is super admin
 	function _G.Player:isSuperAdmin() end
-	--- isCP - shared - libs_sh/darkrp2.lua#L1101
-	---@return boolean undefined Whether this player is a part of the police force.
-	function _G.Player:isCP() end
+	--- getSteamID64 - shared - libs_sh/players.lua#L382
+	---@param owner boolean? Return the actual game owner account id
+	---@return string undefined SteamID64 aka Community ID
+	function _G.Player:getSteamID64(owner) end
+	--- isConnected - server - libs_sh/players.lua#L667
+	---@return boolean undefined True if player is connected
+	function _G.Player:isConnected() end
 	--- getStepSize - shared - libs_sh/players.lua#L227
 	---@return number undefined Step Size Value
 	function _G.Player:getStepSize() end
-	--- voiceVolume - client - libs_sh/players.lua#L873
-	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number. Doesn't work on local player unless the voice_loopback convar is set to 1.
-	function _G.Player:voiceVolume() end
+	--- getLadderClimbSpeed - shared - libs_sh/players.lua#L178
+	---@return number undefined Ladder Climb Speed value
+	function _G.Player:getLadderClimbSpeed() end
 	--- setAnimationRate - client - libs_sh/players.lua#L1042
 	---@param rate number The playback rate of the animation. Float
 	function _G.Player:setAnimationRate(rate) end
+	--- getTeamName - shared - libs_sh/players.lua#L404
+	---@return string undefined Team Name
+	function _G.Player:getTeamName() end
+	--- getEyeTrace - shared - libs_sh/players.lua#L418
+	---@return table undefined Trace data https://wiki.facepunch.com/gmod/Structures/TraceResult
+	function _G.Player:getEyeTrace() end
 	--- isTimingOut - server - libs_sh/players.lua#L660
 	---@return boolean undefined isTimingOut
 	function _G.Player:isTimingOut() end
+	--- getGroundEntity - shared - libs_sh/players.lua#L480
+	---@return Entity undefined Ground entity
+	function _G.Player:getGroundEntity() end
+	--- setAnimationProgress - client - libs_sh/players.lua#L1012
+	---@param progress number The progress of the animation. Ranging from 0-1
+	function _G.Player:setAnimationProgress(progress) end
 	--- getMaxArmor - shared - libs_sh/players.lua#L150
 	---@return number undefined Armor limit
 	function _G.Player:getMaxArmor() end
 	--- getViewModel - shared - libs_sh/players.lua#L432
 	---@return Entity undefined Player's view model
 	function _G.Player:getViewModel() end
-	--- isFrozen - shared - libs_sh/players.lua#L339
-	---@return boolean undefined True if player is frozen
-	function _G.Player:isFrozen() end
+	--- getSlowWalkSpeed - shared - libs_sh/players.lua#L199
+	---@return number undefined Slow Walk Speed value
+	function _G.Player:getSlowWalkSpeed() end
+	--- setMaxSpeed - server - libs_sh/players.lua#L749
+	---@param newmaxspeed number New Max speed.
+	function _G.Player:setMaxSpeed(newmaxspeed) end
+	--- getAnimationProgress - client - libs_sh/players.lua#L1129
+	---@return number undefined Progress ranging 0-1
+	function _G.Player:getAnimationProgress() end
+	--- isPlayingAnimation - client - libs_sh/players.lua#L1121
+	---@return boolean undefined If an animation is playing
+	function _G.Player:isPlayingAnimation() end
 	--- getMaxSpeed - shared - libs_sh/players.lua#L185
 	---@return number undefined Max Speed value
 	function _G.Player:getMaxSpeed() end
-	--- resetAnimation - client - libs_sh/players.lua#L984
-	function _G.Player:resetAnimation() end
+	--- setAnimationRange - client - libs_sh/players.lua#L1102
+	---@param min number Min. Ranging from 0-1
+	---@param max number Max. Ranging from 0-1
+	function _G.Player:setAnimationRange(min, max) end
+	--- say - server - libs_sh/players.lua#L674
+	---@param text string The text to force the player to say
+	---@param teamOnly boolean? Team chat only?, Defaults to false.
+	function _G.Player:say(text, teamOnly) end
+	--- setAnimationBounce - client - libs_sh/players.lua#L1072
+	---@param bounce boolean Should the animation bounce instead of loop?
+	function _G.Player:setAnimationBounce(bounce) end
+	--- enterVehicle - server - libs_sh/players.lua#L830
+	---@param vehicle Vehicle 
+	function _G.Player:enterVehicle(vehicle) end
 	--- getPing - shared - libs_sh/players.lua#L368
 	---@return number undefined The player's ping
 	function _G.Player:getPing() end
+	--- setAnimationAutoAdvance - client - libs_sh/players.lua#L1057
+	---@param auto_advance boolean Should the animation handle advancing itself?
+	function _G.Player:setAnimationAutoAdvance(auto_advance) end
+	--- setAnimationTime - client - libs_sh/players.lua#L1027
+	---@param time number The time of the animation in seconds. Float
+	function _G.Player:setAnimationTime(time) end
+	--- setAnimationActivity - client - libs_sh/players.lua#L993
+	---@param activity number|string|nil Activity, nil to use the current animation sequence
+	function _G.Player:setAnimationActivity(activity) end
 	--- stripWeapons - server - libs_sh/players.lua#L591
 	function _G.Player:stripWeapons() end
+	--- resetAnimation - client - libs_sh/players.lua#L984
+	function _G.Player:resetAnimation() end
+	--- getJumpPower - shared - libs_sh/players.lua#L213
+	---@return number undefined Jump Power value
+	function _G.Player:getJumpPower() end
 	--- dropWeapon - server - libs_sh/players.lua#L561
 	---@param weapon Weapon|string The weapon instance or class name of the weapon to drop
 	---@param target Vector? If set, launches the weapon at the given position
@@ -7378,15 +7562,45 @@ _G.Player = {}
 	--- isFlashlightOn - shared - libs_sh/players.lua#L248
 	---@return boolean undefined True if player has flashlight on
 	function _G.Player:isFlashlightOn() end
-	--- setAnimationAutoAdvance - client - libs_sh/players.lua#L1057
-	---@param auto_advance boolean Should the animation handle advancing itself?
-	function _G.Player:setAnimationAutoAdvance(auto_advance) end
-	--- getPacketLoss - server - libs_sh/players.lua#L639
-	---@return number undefined Packets lost
-	function _G.Player:getPacketLoss() end
+	--- setAnimation - client - libs_sh/players.lua#L936
+	---@param sequence number|string Sequence number or string name
+	---@param progress number? Optional float (Default 0), the progress of the animation. Ranging from 0-1
+	---@param rate number? Optional float (Default 1), the playback rate of the animation
+	---@param loop boolean? Optional boolean (Default false), should the animation loop
+	---@param auto_advance boolean? Optional boolean (Default true), should the animation handle advancing itself
+	---@param act number|string|nil Optional number or string name (Default sequence value), the activity the player should use
+	function _G.Player:setAnimation(sequence, progress, rate, loop, auto_advance, act) end
+	--- isNoclipped - shared - libs_sh/players.lua#L255
+	---@return boolean undefined True if the player is noclipped
+	function _G.Player:isNoclipped() end
+	--- isTyping - shared - libs_sh/players.lua#L497
+	---@return boolean undefined Whether they are typing in the chat
+	function _G.Player:isTyping() end
+	--- setAmmo - server - libs_sh/players.lua#L599
+	---@param amount number The ammo value
+	---@param ammoType number|string Ammo type id or name
+	function _G.Player:setAmmo(amount, ammoType) end
+	--- resetGesture - client - libs_sh/players.lua#L910
+	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
+	function _G.Player:resetGesture(slot) end
+	--- getFrags - shared - libs_sh/players.lua#L262
+	---@return number undefined Amount of kills
+	function _G.Player:getFrags() end
 	--- setSlowWalkSpeed - server - libs_sh/players.lua#L769
 	---@param newslowwalkspeed number New Slow Walk speed.
 	function _G.Player:setSlowWalkSpeed(newslowwalkspeed) end
+	--- setDuckSpeed - server - libs_sh/players.lua#L719
+	---@param newduckspeed number New Duck speed, This is a multiplier from 0 to 1.
+	function _G.Player:setDuckSpeed(newduckspeed) end
+	--- playGesture - client - libs_sh/players.lua#L880
+	---@param animation string|number Sequence string or act number. https://wiki.facepunch.com/gmod/Enums/ACT
+	---@param loop boolean? Optional boolean (Default true), should the gesture loop
+	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
+	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
+	function _G.Player:playGesture(animation, loop, slot, weight) end
+	--- getWeapons - shared - libs_sh/players.lua#L446
+	---@return table undefined Table of weapons
+	function _G.Player:getWeapons() end
 	--- getAmmoCount - shared - libs_sh/players.lua#L487
 	---@param idOrName string|number The string ammo name or number id of the ammo
 	---@return number undefined The amount of ammo player has in reserve.
@@ -7395,62 +7609,139 @@ _G.Player = {}
 	---@param wep string Weapon class name
 	---@return Weapon undefined Weapon
 	function _G.Player:getWeapon(wep) end
+	--- setFriction - server - libs_sh/players.lua#L809
+	---@param newfriction number New Friction.
+	function _G.Player:setFriction(newfriction) end
+	--- voiceVolume - client - libs_sh/players.lua#L873
+	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number. Doesn't work on local player unless the voice_loopback convar is set to 1.
+	function _G.Player:voiceVolume() end
+	--- getUserGroup - shared - libs_sh/players.lua#L361
+	---@return string undefined Usergroup, "user" if player has no group
+	function _G.Player:getUserGroup() end
 	--- setViewEntity - server - libs_sh/players.lua#L543
 	---@param ent Entity Entity to set the player's view entity to, or nothing to reset it
 	function _G.Player:setViewEntity(ent) end
 	--- getName - shared - libs_sh/players.lua#L290
 	---@return string undefined Name
 	function _G.Player:getName() end
+	--- isSpeaking - client - libs_sh/players.lua#L866
+	---@return boolean undefined Whether they are speaking and able to be heard by LocalPlayer
+	function _G.Player:isSpeaking() end
+	--- getAimVector - shared - libs_sh/players.lua#L276
+	---@return Vector undefined Aim vector
+	function _G.Player:getAimVector() end
+	--- keyDown - shared - libs_sh/players.lua#L841
+	---@param key number Key to check. IN_KEY table values
+	---@return boolean undefined Whether they key is down
+	function _G.Player:keyDown(key) end
+	--- kill - server - libs_sh/players.lua#L819
+	function _G.Player:kill() end
+	--- setStepSize - server - libs_sh/players.lua#L799
+	---@param newstepsize number New Step Size.
+	function _G.Player:setStepSize(newstepsize) end
 	--- getUnDuckSpeed - shared - libs_sh/players.lua#L171
 	---@return number undefined UnDuck Speed value
 	function _G.Player:getUnDuckSpeed() end
 	--- getDeathRagdoll - shared - libs_sh/players.lua#L519
 	---@return Entity? undefined The entity or nil if it doesn't exist
 	function _G.Player:getDeathRagdoll() end
+	--- setJumpPower - server - libs_sh/players.lua#L789
+	---@param newjumppower number New Jump Power.
+	function _G.Player:setJumpPower(newjumppower) end
+	--- isWalking - shared - libs_sh/players.lua#L511
+	---@return boolean undefined Whether they are walking
+	function _G.Player:isWalking() end
+	--- getRunSpeed - shared - libs_sh/players.lua#L192
+	---@return number undefined Run Speed value
+	function _G.Player:getRunSpeed() end
 	--- getViewEntity - shared - libs_sh/players.lua#L425
 	---@return Entity undefined Player's current view entity
 	function _G.Player:getViewEntity() end
-	--- giveMoney - server - libs_sh/darkrp2.lua#L997
-	---@param amount number The amount of money to give.
-	function _G.Player:giveMoney(amount) end
+	--- setMaxArmor - server - libs_sh/players.lua#L699
+	---@param newmaxarmor number New max armor value.
+	function _G.Player:setMaxArmor(newmaxarmor) end
+	--- setAnimationLoop - client - libs_sh/players.lua#L1087
+	---@param loop boolean Should the animation loop?
+	function _G.Player:setAnimationLoop(loop) end
 	--- setArmor - server - libs_sh/players.lua#L689
 	---@param newarmor number New armor value.
 	function _G.Player:setArmor(newarmor) end
-	--- lastHitGroup - server - libs_sh/players.lua#L623
-	---@return number undefined Hitgroup, see https://wiki.facepunch.com/gmod/Enums/HITGROUP
-	function _G.Player:lastHitGroup() end
-	--- inVehicle - shared - libs_sh/players.lua#L311
-	---@return boolean undefined True if player in vehicle
-	function _G.Player:inVehicle() end
-	--- resetGesture - client - libs_sh/players.lua#L910
-	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
-	function _G.Player:resetGesture(slot) end
-	--- canAfford - shared - libs_sh/darkrp2.lua#L1024
-	---@param amount number The amount of money
-	---@return boolean undefined Whether the player can afford it
-	function _G.Player:canAfford(amount) end
 	--- getTimeoutSeconds - server - libs_sh/players.lua#L653
 	---@return number undefined Timeout seconds
 	function _G.Player:getTimeoutSeconds() end
+	--- getFriendStatus - client - libs_sh/players.lua#L851
+	---@return string undefined One of: "friend", "blocked", "none", "requested"
+	function _G.Player:getFriendStatus() end
+	--- lastHitGroup - server - libs_sh/players.lua#L623
+	---@return number undefined Hitgroup, see https://wiki.facepunch.com/gmod/Enums/HITGROUP
+	function _G.Player:lastHitGroup() end
+	--- getPacketLoss - server - libs_sh/players.lua#L639
+	---@return number undefined Packets lost
+	function _G.Player:getPacketLoss() end
+	--- inVehicle - shared - libs_sh/players.lua#L311
+	---@return boolean undefined True if player in vehicle
+	function _G.Player:inVehicle() end
+	--- isUserGroup - shared - libs_sh/players.lua#L353
+	---@param groupName string Group to check against
+	---@return boolean undefined True if player belongs to group
+	function _G.Player:isUserGroup(groupName) end
+	--- isAlive - shared - libs_sh/players.lua#L136
+	---@return boolean undefined True if player alive
+	function _G.Player:isAlive() end
+	--- isAdmin - shared - libs_sh/players.lua#L325
+	---@return boolean undefined True if player is admin
+	function _G.Player:isAdmin() end
+	--- setModelScale - server - libs_sh/players.lua#L526
+	---@param scale number The scale to apply, will be truncated to the first two decimal places (min 0.01, max 100)
+	function _G.Player:setModelScale(scale) end
+	--- getCrouchedWalkSpeed - shared - libs_sh/players.lua#L157
+	---@return number undefined Crouch Walk Speed value
+	function _G.Player:getCrouchedWalkSpeed() end
+	--- isBot - shared - libs_sh/players.lua#L332
+	---@return boolean undefined True if player is a bot
+	function _G.Player:isBot() end
+	--- getDeaths - shared - libs_sh/players.lua#L241
+	---@return number undefined Amount of deaths
+	function _G.Player:getDeaths() end
+	--- getDuckSpeed - shared - libs_sh/players.lua#L164
+	---@return number undefined Duck Speed value
+	function _G.Player:getDuckSpeed() end
 	--- getTimeConnected - server - libs_sh/players.lua#L646
 	---@return number undefined Time connected
 	function _G.Player:getTimeConnected() end
+	--- getEntityInUse - shared - libs_sh/players.lua#L297
+	---@return Entity undefined Entity
+	function _G.Player:getEntityInUse() end
+	--- isFrozen - shared - libs_sh/players.lua#L339
+	---@return boolean undefined True if player is frozen
+	function _G.Player:isFrozen() end
 	--- getPlayerColor - shared - libs_sh/players.lua#L471
 	---@return Vector undefined The color
 	function _G.Player:getPlayerColor() end
 	--- getFriction - shared - libs_sh/players.lua#L220
 	---@return number undefined Friction value
 	function _G.Player:getFriction() end
+	--- getShootPos - shared - libs_sh/players.lua#L304
+	---@return Vector undefined Shoot position
+	function _G.Player:getShootPos() end
 	--- getArmor - shared - libs_sh/players.lua#L143
 	---@return number undefined Armor
 	function _G.Player:getArmor() end
-	--- canKeysUnlock - shared - libs_sh/darkrp2.lua#L1039
-	---@param door Entity The door
-	---@return boolean? undefined Whether the player is allowed to unlock the door. May be nil instead of false.
-	function _G.Player:canKeysUnlock(door) end
+	--- getFOV - shared - libs_sh/players.lua#L283
+	---@return number undefined Field of view as a float
+	function _G.Player:getFOV() end
+	--- getTeam - shared - libs_sh/players.lua#L397
+	---@return number undefined Team Index, from TEAM enums or custom teams
+	function _G.Player:getTeam() end
+	--- getUserID - shared - libs_sh/players.lua#L411
+	---@return number undefined UserID
+	function _G.Player:getUserID() end
 	--- setCrouchedWalkSpeed - server - libs_sh/players.lua#L709
 	---@param newcwalkspeed number New Crouch Walk speed, This is a multiplier from 0 to 1.
 	function _G.Player:setCrouchedWalkSpeed(newcwalkspeed) end
+	--- isSprinting - shared - libs_sh/players.lua#L504
+	---@return boolean undefined Whether they are sprinting
+	function _G.Player:isSprinting() end
 	--- getActiveWeapon - shared - libs_sh/players.lua#L269
 	---@return Weapon undefined The weapon
 	function _G.Player:getActiveWeapon() end
@@ -7458,234 +7749,6 @@ _G.Player = {}
 	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
 	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
 	function _G.Player:setGestureWeight(slot, weight) end
-	--- getVehicle - shared - libs_sh/players.lua#L318
-	---@return Vehicle undefined Vehicle if player in vehicle or nil
-	function _G.Player:getVehicle() end
-	--- isNoclipped - shared - libs_sh/players.lua#L255
-	---@return boolean undefined True if the player is noclipped
-	function _G.Player:isNoclipped() end
-	--- getSteamID - shared - libs_sh/players.lua#L375
-	---@return string undefined SteamID
-	function _G.Player:getSteamID() end
-	--- isPlayingAnimation - client - libs_sh/players.lua#L1121
-	---@return boolean undefined If an animation is playing
-	function _G.Player:isPlayingAnimation() end
-	--- getAnimationProgress - client - libs_sh/players.lua#L1129
-	---@return number undefined Progress ranging 0-1
-	function _G.Player:getAnimationProgress() end
-	--- getJobTable - shared - libs_sh/darkrp2.lua#L1058
-	---@return table undefined Table with the job information.
-	function _G.Player:getJobTable() end
-	--- getWeaponColor - shared - libs_sh/players.lua#L462
-	---@return Vector undefined The color
-	function _G.Player:getWeaponColor() end
-	--- hasGodMode - server - libs_sh/players.lua#L554
-	---@return boolean undefined True if the player has godmode
-	function _G.Player:hasGodMode() end
-	--- isMayor - shared - libs_sh/darkrp2.lua#L1113
-	---@return boolean? undefined Whether this player is the Mayor. May be nil instead of false.
-	function _G.Player:isMayor() end
-	--- getUserID - shared - libs_sh/players.lua#L411
-	---@return number undefined UserID
-	function _G.Player:getUserID() end
-	--- isConnected - server - libs_sh/players.lua#L667
-	---@return boolean undefined True if player is connected
-	function _G.Player:isConnected() end
-	--- isUserGroup - shared - libs_sh/players.lua#L353
-	---@param groupName string Group to check against
-	---@return boolean undefined True if player belongs to group
-	function _G.Player:isUserGroup(groupName) end
-	--- getDarkRPVar - shared - libs_sh/darkrp2.lua#L1046
-	---@param var string The name of the variable.
-	---@return any undefined The value of the DarkRP var.
-	function _G.Player:getDarkRPVar(var) end
-	--- getTeamName - shared - libs_sh/players.lua#L404
-	---@return string undefined Team Name
-	function _G.Player:getTeamName() end
-	--- isChief - shared - libs_sh/darkrp2.lua#L1089
-	---@return boolean? undefined Whether this player is a Chief. May be nil instead of false.
-	function _G.Player:isChief() end
-	--- getEyeTrace - shared - libs_sh/players.lua#L418
-	---@return table undefined Trace data https://wiki.facepunch.com/gmod/Structures/TraceResult
-	function _G.Player:getEyeTrace() end
-	--- setAnimationActivity - client - libs_sh/players.lua#L993
-	---@param activity number|string|nil Activity, nil to use the current animation sequence
-	function _G.Player:setAnimationActivity(activity) end
-	--- getGroundEntity - shared - libs_sh/players.lua#L480
-	---@return Entity undefined Ground entity
-	function _G.Player:getGroundEntity() end
-	--- setAnimationProgress - client - libs_sh/players.lua#L1012
-	---@param progress number The progress of the animation. Ranging from 0-1
-	function _G.Player:setAnimationProgress(progress) end
-	--- getAimVector - shared - libs_sh/players.lua#L276
-	---@return Vector undefined Aim vector
-	function _G.Player:getAimVector() end
-	--- getSlowWalkSpeed - shared - libs_sh/players.lua#L199
-	---@return number undefined Slow Walk Speed value
-	function _G.Player:getSlowWalkSpeed() end
-	--- setMaxSpeed - server - libs_sh/players.lua#L749
-	---@param newmaxspeed number New Max speed.
-	function _G.Player:setMaxSpeed(newmaxspeed) end
-	--- teamBanTimeLeft - server - libs_sh/darkrp2.lua#L971
-	---@param team number? The number of the job (e.g. TEAM_MEDIC). Uses the player's team if nil.
-	---@return number? undefined The time left on the team ban in seconds, or nil if not banned.
-	function _G.Player:teamBanTimeLeft(team) end
-	--- kill - server - libs_sh/players.lua#L819
-	function _G.Player:kill() end
-	--- setAnimationBounce - client - libs_sh/players.lua#L1072
-	---@param bounce boolean Should the animation bounce instead of loop?
-	function _G.Player:setAnimationBounce(bounce) end
-	--- getJumpPower - shared - libs_sh/players.lua#L213
-	---@return number undefined Jump Power value
-	function _G.Player:getJumpPower() end
-	--- isInRoom - client - libs_sh/darkrp2.lua#L1014
-	---@return boolean undefined Whether this player is in the same room.
-	function _G.Player:isInRoom() end
-	--- isTyping - shared - libs_sh/players.lua#L497
-	---@return boolean undefined Whether they are typing in the chat
-	function _G.Player:isTyping() end
-	--- setAmmo - server - libs_sh/players.lua#L599
-	---@param amount number The ammo value
-	---@param ammoType number|string Ammo type id or name
-	function _G.Player:setAmmo(amount, ammoType) end
-	--- getFrags - shared - libs_sh/players.lua#L262
-	---@return number undefined Amount of kills
-	function _G.Player:getFrags() end
-	--- setDuckSpeed - server - libs_sh/players.lua#L719
-	---@param newduckspeed number New Duck speed, This is a multiplier from 0 to 1.
-	function _G.Player:setDuckSpeed(newduckspeed) end
-	--- getWeapons - shared - libs_sh/players.lua#L446
-	---@return table undefined Table of weapons
-	function _G.Player:getWeapons() end
-	--- setFriction - server - libs_sh/players.lua#L809
-	---@param newfriction number New Friction.
-	function _G.Player:setFriction(newfriction) end
-	--- getUserGroup - shared - libs_sh/players.lua#L361
-	---@return string undefined Usergroup, "user" if player has no group
-	function _G.Player:getUserGroup() end
-	--- isAdmin - shared - libs_sh/players.lua#L325
-	---@return boolean undefined True if player is admin
-	function _G.Player:isAdmin() end
-	--- getLadderClimbSpeed - shared - libs_sh/players.lua#L178
-	---@return number undefined Ladder Climb Speed value
-	function _G.Player:getLadderClimbSpeed() end
-	--- getFOV - shared - libs_sh/players.lua#L283
-	---@return number undefined Field of view as a float
-	function _G.Player:getFOV() end
-	--- setMaxArmor - server - libs_sh/players.lua#L699
-	---@param newmaxarmor number New max armor value.
-	function _G.Player:setMaxArmor(newmaxarmor) end
-	--- setEyeAngles - server - libs_sh/players.lua#L630
-	---@param ang Angle New angles
-	function _G.Player:setEyeAngles(ang) end
-	--- canKeysLock - shared - libs_sh/darkrp2.lua#L1032
-	---@param door Entity The door
-	---@return boolean? undefined Whether the player is allowed to lock the door. May be nil instead of false.
-	function _G.Player:canKeysLock(door) end
-	--- getRunSpeed - shared - libs_sh/players.lua#L192
-	---@return number undefined Run Speed value
-	function _G.Player:getRunSpeed() end
-	--- getDeaths - shared - libs_sh/players.lua#L241
-	---@return number undefined Amount of deaths
-	function _G.Player:getDeaths() end
-	--- isWanted - shared - libs_sh/darkrp2.lua#L1125
-	---@return boolean? undefined Whether this player is wanted. May be nil instead of false.
-	function _G.Player:isWanted() end
-	--- setAnimationLoop - client - libs_sh/players.lua#L1087
-	---@param loop boolean Should the animation loop?
-	function _G.Player:setAnimationLoop(loop) end
-	--- getWantedReason - shared - libs_sh/darkrp2.lua#L1070
-	---@return string? undefined The reason, or nil if not wanted
-	function _G.Player:getWantedReason() end
-	--- setModelScale - server - libs_sh/players.lua#L526
-	---@param scale number The scale to apply, will be truncated to the first two decimal places (min 0.01, max 100)
-	function _G.Player:setModelScale(scale) end
-	--- getFriendStatus - client - libs_sh/players.lua#L851
-	---@return string undefined One of: "friend", "blocked", "none", "requested"
-	function _G.Player:getFriendStatus() end
-	--- hasDarkRPPrivilege - shared - libs_sh/darkrp2.lua#L1076
-	---@return boolean undefined Whether the player has the privilege.
-	function _G.Player:hasDarkRPPrivilege() end
-	--- isAlive - shared - libs_sh/players.lua#L136
-	---@return boolean undefined True if player alive
-	function _G.Player:isAlive() end
-	--- getCrouchedWalkSpeed - shared - libs_sh/players.lua#L157
-	---@return number undefined Crouch Walk Speed value
-	function _G.Player:getCrouchedWalkSpeed() end
-	--- isArrested - shared - libs_sh/darkrp2.lua#L1083
-	---@return boolean? undefined Whether this player is arrested. May be nil instead of false.
-	function _G.Player:isArrested() end
-	--- getSteamID64 - shared - libs_sh/players.lua#L382
-	---@param owner boolean? Return the actual game owner account id
-	---@return string undefined SteamID64 aka Community ID
-	function _G.Player:getSteamID64(owner) end
-	--- isSprinting - shared - libs_sh/players.lua#L504
-	---@return boolean undefined Whether they are sprinting
-	function _G.Player:isSprinting() end
-	--- playGesture - client - libs_sh/players.lua#L880
-	---@param animation string|number Sequence string or act number. https://wiki.facepunch.com/gmod/Enums/ACT
-	---@param loop boolean? Optional boolean (Default true), should the gesture loop
-	---@param slot number? Optional int (Default GESTURE_SLOT.CUSTOM), the gesture slot to use. GESTURE_SLOT table values
-	---@param weight number? Optional float (Default 1), the weight of the gesture. Ranging from 0-1
-	function _G.Player:playGesture(animation, loop, slot, weight) end
-	--- stripAmmo - server - libs_sh/players.lua#L615
-	function _G.Player:stripAmmo() end
-	--- isBot - shared - libs_sh/players.lua#L332
-	---@return boolean undefined True if player is a bot
-	function _G.Player:isBot() end
-	--- say - server - libs_sh/players.lua#L674
-	---@param text string The text to force the player to say
-	---@param teamOnly boolean? Team chat only?, Defaults to false.
-	function _G.Player:say(text, teamOnly) end
-	--- getDuckSpeed - shared - libs_sh/players.lua#L164
-	---@return number undefined Duck Speed value
-	function _G.Player:getDuckSpeed() end
-	--- keysUnOwnAll - server - libs_sh/darkrp2.lua#L962
-	function _G.Player:keysUnOwnAll() end
-	--- getEntityInUse - shared - libs_sh/players.lua#L297
-	---@return Entity undefined Entity
-	function _G.Player:getEntityInUse() end
-	--- setUnDuckSpeed - server - libs_sh/players.lua#L729
-	---@param newunduckspeed number New UnDuck speed, This is a multiplier from 0 to 1.
-	function _G.Player:setUnDuckSpeed(newunduckspeed) end
-	--- enterVehicle - server - libs_sh/players.lua#L830
-	---@param vehicle Vehicle 
-	function _G.Player:enterVehicle(vehicle) end
-	--- setJumpPower - server - libs_sh/players.lua#L789
-	---@param newjumppower number New Jump Power.
-	function _G.Player:setJumpPower(newjumppower) end
-	--- setStepSize - server - libs_sh/players.lua#L799
-	---@param newstepsize number New Step Size.
-	function _G.Player:setStepSize(newstepsize) end
-	--- getPocketItems - shared - libs_sh/darkrp2.lua#L1064
-	---@return table undefined A table containing information about the items in the pocket.
-	function _G.Player:getPocketItems() end
-	--- requestMoney - server - libs_sh/darkrp2.lua#L984
-	---@param message string? An optional custom message that will be shown in the money request prompt. May not exceed 60 bytes in length.
-	---@param amount number The amount of money to ask for.
-	---@param callbackSuccess function? Optional function to call if request succeeds.
-	---@param callbackFailure function? Optional function to call if request fails.
-	---@param receiver Player? The player who may or may not receive the money, or the owner of the chip if not specified. Superuser only.
-	function _G.Player:requestMoney(message, amount, callbackSuccess, callbackFailure, receiver) end
-	--- isMedic - shared - libs_sh/darkrp2.lua#L1119
-	---@return boolean? undefined Whether this player is a medic. May be nil instead of false.
-	function _G.Player:isMedic() end
-	--- getShootPos - shared - libs_sh/players.lua#L304
-	---@return Vector undefined Shoot position
-	function _G.Player:getShootPos() end
-	--- isSpeaking - client - libs_sh/players.lua#L866
-	---@return boolean undefined Whether they are speaking and able to be heard by LocalPlayer
-	function _G.Player:isSpeaking() end
-	--- isCook - shared - libs_sh/darkrp2.lua#L1095
-	---@return boolean? undefined Whether this player is a cook. May be nil instead of false.
-	function _G.Player:isCook() end
-	--- keyDown - shared - libs_sh/players.lua#L841
-	---@param key number Key to check. IN_KEY table values
-	---@return boolean undefined Whether they key is down
-	function _G.Player:keyDown(key) end
-	--- getMoney - shared - libs_sh/darkrp2.lua#L1131
-	---@return number? undefined The amount of money, or nil if not accessible.
-	function _G.Player:getMoney() end
 ---  Vehicle type
 ---@class Vehicle
 _G.Vehicle = {}
@@ -9190,17 +9253,6 @@ _G.Entity = {}
 	--- setVelocity - server - libs_sv/entities.lua#L601
 	---@param vel Vector New velocity
 	function _G.Entity:setVelocity(vel) end
-	--- getNetworkVars - shared - libs_sh/entities.lua#L2009
-	---@return table? undefined The networked variables table of the entity or nil if it doesn't have one.
-	function _G.Entity:getNetworkVars() end
-	--- getDTString - shared - libs_sh/entities.lua#L1919
-	---@param key number The number key. Valid keys are 0 - 31
-	---@return string? undefined The string or nil if it doesn't exist
-	function _G.Entity:getDTString(key) end
-	--- getDTBool - shared - libs_sh/entities.lua#L1879
-	---@param key number The number key. Valid keys are 0 - 31
-	---@return boolean? undefined The boolean or nil if it doesn't exist
-	function _G.Entity:getDTBool(key) end
 	--- obbMins - shared - libs_sh/entities.lua#L1252
 	---@return Vector undefined The min bounding box vector
 	function _G.Entity:obbMins() end
@@ -9213,10 +9265,6 @@ _G.Entity = {}
 	--- getCreationTime - shared - libs_sh/entities.lua#L1735
 	---@return number undefined Seconds relative to server map start
 	function _G.Entity:getCreationTime() end
-	--- getSaveTable - shared - libs_sh/entities.lua#L1983
-	---@param showAll boolean If set, shows all variables, not just the ones for save.
-	---@return table undefined A table containing all save values in key/value format. The value may be a sequential table (starting to 1) if the field in question is an array in engine.
-	function _G.Entity:getSaveTable(showAll) end
 	--- getTable - server - libs_sv/entities.lua#L1107
 	---@return table undefined The entity's table.
 	function _G.Entity:getTable() end
@@ -9229,13 +9277,6 @@ _G.Entity = {}
 	---@param attachmentID number? Optional attachmentid the trail should attach to
 	---@param additive boolean? If the trail's rendering is additive
 	function _G.Entity:setTrails(startSize, endSize, length, material, color, attachmentID, additive) end
-	--- getNearestPoint - shared - libs_sh/entities.lua#L1974
-	---@param The Vector vector to start the intersection from.
-	---@return Vector undefined The nearest hit point of the entity's bounding box in world coordinates, or Vector(0, 0, 0) for some entities such as worldspawn.
-	function _G.Entity:getNearestPoint(The) end
-	--- isDormant - shared - libs_sh/entities.lua#L1965
-	---@return boolean undefined Whether entity is dormant or not.
-	function _G.Entity:isDormant() end
 	--- getHitBoxBounds - shared - libs_sh/entities.lua#L1776
 	---@param hitbox number The number of the hitbox.
 	---@param group number The number of the hitbox group, 0 in most cases.
@@ -9249,40 +9290,27 @@ _G.Entity = {}
 	---@param func function The callback function with argument, table collsiondata, http://wiki.facepunch.com/gmod/Structures/CollisionData
 	---@param name string? Optional name to distinguish multiple collision listeners and remove them individually later. (default: "")
 	function _G.Entity:addCollisionListener(func, name) end
-	--- isKeysOwned - shared - libs_sh/darkrp2.lua#L905
-	---@return boolean undefined Whether it's owned.
-	function _G.Entity:isKeysOwned() end
-	--- getBoundingRadius - shared - libs_sh/entities.lua#L1958
-	---@return number undefined The radius of the bounding box, or 0 for some entities such as worldspawn
-	function _G.Entity:getBoundingRadius() end
 	--- getLinkedComponents - shared - libs_sh/entities.lua#L375
 	---@return table undefined A list of components linked to the entity
 	function _G.Entity:getLinkedComponents() end
 	--- getVelocity - shared - libs_sh/entities.lua#L1326
 	---@return Vector undefined The velocity vector
 	function _G.Entity:getVelocity() end
-	--- getNWVarTable - shared - libs_sh/entities.lua#L1951
-	---@return table undefined The table of networked objects
-	function _G.Entity:getNWVarTable() end
 	--- setPhysMaterial - server - libs_sv/entities.lua#L751
 	---@param materialName string Material to use
 	function _G.Entity:setPhysMaterial(materialName) end
 	--- getModelContents - shared - libs_sh/entities.lua#L1632
 	---@return number undefined Contents of the entity's model. https://wiki.facepunch.com/gmod/Enums/CONTENTS
 	function _G.Entity:getModelContents() end
-	--- setPhysicsUpdateListener - server - libs_sv/entities.lua#L1082
-	---@param func function|nil The callback function. Use nil to remove an existing callback.
-	function _G.Entity:setPhysicsUpdateListener(func) end
+	--- getQuotaUsed - shared - libs_sh/entities.lua#L971
+	---@return number undefined Current quota used this Think
+	function _G.Entity:getQuotaUsed() end
 	--- getMaterials - shared - libs_sh/entities.lua#L1706
 	---@return table undefined Material
 	function _G.Entity:getMaterials() end
 	--- enableGravity - server - libs_sv/entities.lua#L795
 	---@param grav boolean Should the entity respect gravity?
 	function _G.Entity:enableGravity(grav) end
-	--- getNWVar - shared - libs_sh/entities.lua#L1939
-	---@param key string The string key to get
-	---@return any undefined The object associated with that key or nil if it's not set
-	function _G.Entity:getNWVar(key) end
 	--- setMesh - client - libs_sh/entities.lua#L190
 	---@param mesh Mesh? The mesh to set it to or nil to set back to normal
 	function _G.Entity:setMesh(mesh) end
@@ -9300,10 +9328,6 @@ _G.Entity = {}
 	--- setDrawShadow - server - libs_sv/entities.lua#L560
 	---@param draw boolean Whether the shadow should draw
 	function _G.Entity:setDrawShadow(draw) end
-	--- getDTVector - shared - libs_sh/entities.lua#L1929
-	---@param key number The number key. Valid keys are 0 - 31
-	---@return Vector? undefined The vector or nil if it doesn't exist
-	function _G.Entity:getDTVector(key) end
 	--- getBonePosition - shared - libs_sh/entities.lua#L1181
 	---@param bone number? Bone index. (def 0)
 	---@return Vector undefined Position of the bone
@@ -9312,23 +9336,18 @@ _G.Entity = {}
 	--- mapCreationID - shared - libs_sh/entities.lua#L2002
 	---@return number undefined The map creation ID or -1 if the entity is not compiled into the map.
 	function _G.Entity:mapCreationID() end
-	--- setMass - server - libs_sv/entities.lua#L717
-	---@param mass number Mass to set to
-	function _G.Entity:setMass(mass) end
-	--- getEyeAngles - shared - libs_sh/entities.lua#L1667
-	---@return Angle undefined Angles of the entity's eyes
-	function _G.Entity:getEyeAngles() end
+	--- extinguish - server - libs_sv/entities.lua#L666
+	function _G.Entity:extinguish() end
 	--- getPersistent - shared - libs_sh/entities.lua#L1761
 	---@return boolean undefined True if the entity is persistent
 	function _G.Entity:getPersistent() end
-	--- getDTFloat - shared - libs_sh/entities.lua#L1899
-	---@param key number The number key. Valid keys are 0 - 31
-	---@return number? undefined The float or nil if it doesn't exist
-	function _G.Entity:getDTFloat(key) end
-	--- getDTEntity - shared - libs_sh/entities.lua#L1889
-	---@param key number The number key. Valid keys are 0 - 31
-	---@return Entity? undefined The entity or nil if it doesn't exist
-	function _G.Entity:getDTEntity(key) end
+	--- getNetworkVars - shared - libs_sh/entities.lua#L2009
+	---@return table? undefined The networked variables table of the entity or nil if it doesn't have one.
+	function _G.Entity:getNetworkVars() end
+	--- isEffectActive - shared - libs_sh/entities.lua#L1742
+	---@param effect number The effect to check. EF table values
+	---@return boolean undefined True or false
+	function _G.Entity:isEffectActive(effect) end
 	--- addVelocity - server - libs_sv/entities.lua#L614
 	---@param vel Vector The world velocity vector to apply
 	function _G.Entity:addVelocity(vel) end
@@ -9342,25 +9361,22 @@ _G.Entity = {}
 	---@param variableName string Name of the internal save table variable.
 	---@return any undefined The internal variable associated with the name.
 	function _G.Entity:getInternalVariable(variableName) end
-	--- doorIndex - server - libs_sh/darkrp2.lua#L870
-	---@return number? undefined The door index, or nil if not a door.
-	function _G.Entity:doorIndex() end
-	--- isPlayerHolding - server - libs_sv/entities.lua#L781
-	---@return boolean undefined If the entity is being held or not
-	function _G.Entity:isPlayerHolding() end
-	--- getDTAngle - shared - libs_sh/entities.lua#L1869
-	---@param key number The number key. Valid keys are 0 - 31
-	---@return Angle? undefined The angle or nil if it doesn't exist
-	function _G.Entity:getDTAngle(key) end
-	--- getBrushPlaneCount - shared - libs_sh/entities.lua#L1862
-	---@return number undefined The amount of brush planes
-	function _G.Entity:getBrushPlaneCount() end
-	--- getBrushPlane - shared - libs_sh/entities.lua#L1850
-	---@param id number Plane index. Starts from 0
-	---@return Vector undefined The origin of the plane
-	---@return Vector undefined The normal of the plane
-	---@return number undefined The distance to the plane
-	function _G.Entity:getBrushPlane(id) end
+	--- getNearestPoint - shared - libs_sh/entities.lua#L1974
+	---@param The Vector vector to start the intersection from.
+	---@return Vector undefined The nearest hit point of the entity's bounding box in world coordinates, or Vector(0, 0, 0) for some entities such as worldspawn.
+	function _G.Entity:getNearestPoint(The) end
+	--- getAllConstrained - server - libs_sv/entities.lua#L935
+	---@param filter table? Optional constraint type filter table where keys are the type name and values are 'true'. "Wire" and "Parent" are used for wires and parents.
+	function _G.Entity:getAllConstrained(filter) end
+	--- isDormant - shared - libs_sh/entities.lua#L1965
+	---@return boolean undefined Whether entity is dormant or not.
+	function _G.Entity:isDormant() end
+	--- getBoundingRadius - shared - libs_sh/entities.lua#L1958
+	---@return number undefined The radius of the bounding box, or 0 for some entities such as worldspawn
+	function _G.Entity:getBoundingRadius() end
+	--- getNWVarTable - shared - libs_sh/entities.lua#L1951
+	---@return table undefined The table of networked objects
+	function _G.Entity:getNWVarTable() end
 	--- getElasticity - shared - libs_sh/entities.lua#L818
 	---@return number undefined Elasticity
 	function _G.Entity:getElasticity() end
@@ -9368,9 +9384,10 @@ _G.Entity = {}
 	---@return Vector undefined The minimum vector of the bounds
 	---@return Vector undefined The maximum vector of the bounds
 	function _G.Entity:getRenderBounds() end
-	--- getBrushSurfaces - shared - libs_sh/entities.lua#L1837
-	---@return table undefined Table of SurfaceInfos if the entity has a brush model, or no value otherwise.
-	function _G.Entity:getBrushSurfaces() end
+	--- getNWVar - shared - libs_sh/entities.lua#L1939
+	---@param key string The string key to get
+	---@return any undefined The object associated with that key or nil if it's not set
+	function _G.Entity:getNWVar(key) end
 	--- getSequenceCount - shared - libs_sh/entities.lua#L1449
 	---@return number undefined Count of entity's animations
 	function _G.Entity:getSequenceCount() end
@@ -9383,47 +9400,47 @@ _G.Entity = {}
 	--- getRenderMode - shared - libs_sh/entities.lua#L672
 	---@return number undefined rendermode https://wiki.facepunch.com/gmod/Enums/RENDERMODE
 	function _G.Entity:getRenderMode() end
-	--- getHitBoxHitGroup - shared - libs_sh/entities.lua#L1826
-	---@param hitbox number The number of the hit box.
-	---@param hitboxset number The number of the hit box set. This should be 0 in most cases.
-	---@return number undefined The hitbox group of given hitbox. See https://wiki.facepunch.com/gmod/Enums/HITGROUP
-	function _G.Entity:getHitBoxHitGroup(hitbox, hitboxset) end
-	--- getHitBoxSetCount - shared - libs_sh/entities.lua#L1819
-	---@return number undefined Number of hitbox sets.
-	function _G.Entity:getHitBoxSetCount() end
+	--- getDTVector - shared - libs_sh/entities.lua#L1929
+	---@param key number The number key. Valid keys are 0 - 31
+	---@return Vector? undefined The vector or nil if it doesn't exist
+	function _G.Entity:getDTVector(key) end
+	--- getDTString - shared - libs_sh/entities.lua#L1919
+	---@param key number The number key. Valid keys are 0 - 31
+	---@return string? undefined The string or nil if it doesn't exist
+	function _G.Entity:getDTString(key) end
 	--- getHitBoxCount - shared - libs_sh/entities.lua#L1791
 	---@param group number The number of the hitbox group.
 	---@return number undefined Number of hitboxes
 	function _G.Entity:getHitBoxCount(group) end
-	--- getHitBoxSet - shared - libs_sh/entities.lua#L1811
-	---@return number? undefined Hitbox set number, nil if entity has no hitboxes.
-	---@return string? undefined Hitbox set name, nil if entity has no hitboxes.
-	function _G.Entity:getHitBoxSet() end
-	--- getHitBoxBone - shared - libs_sh/entities.lua#L1800
-	---@param hitbox number The number of the hitbox.
-	---@param group number The number of the hitbox group, 0 in most cases.
-	---@return number undefined Bone ID
-	function _G.Entity:getHitBoxBone(hitbox, group) end
+	--- getBrushPlaneCount - shared - libs_sh/entities.lua#L1862
+	---@return number undefined The amount of brush planes
+	function _G.Entity:getBrushPlaneCount() end
+	--- getDTFloat - shared - libs_sh/entities.lua#L1899
+	---@param key number The number key. Valid keys are 0 - 31
+	---@return number? undefined The float or nil if it doesn't exist
+	function _G.Entity:getDTFloat(key) end
 	--- getManipulateBonePosition - shared - libs_sh/entities.lua#L1211
 	---@param bone number Bone index. (def 0)
 	---@return Vector undefined Manipulate position of the bone
 	function _G.Entity:getManipulateBonePosition(bone) end
-	--- entOwner - shared - libs_sh/entities.lua#L1768
-	---@return Entity undefined Owner
-	function _G.Entity:entOwner() end
+	--- getDTEntity - shared - libs_sh/entities.lua#L1889
+	---@param key number The number key. Valid keys are 0 - 31
+	---@return Entity? undefined The entity or nil if it doesn't exist
+	function _G.Entity:getDTEntity(key) end
 	--- getOwner - shared - libs_sh/entities.lua#L96
 	---@return Entity? undefined Owner or nil if no owner
 	function _G.Entity:getOwner() end
 	--- setNocollideAll - server - libs_sv/entities.lua#L707
 	---@param nocollide boolean Whether to collide with nothing except world or not.
 	function _G.Entity:setNocollideAll(nocollide) end
-	--- setPersistent - shared - libs_sh/entities.lua#L1751
-	---@param persist boolean True to make persistent
-	function _G.Entity:setPersistent(persist) end
-	--- isEffectActive - shared - libs_sh/entities.lua#L1742
-	---@param effect number The effect to check. EF table values
-	---@return boolean undefined True or false
-	function _G.Entity:isEffectActive(effect) end
+	--- getDTBool - shared - libs_sh/entities.lua#L1879
+	---@param key number The number key. Valid keys are 0 - 31
+	---@return boolean? undefined The boolean or nil if it doesn't exist
+	function _G.Entity:getDTBool(key) end
+	--- getDTAngle - shared - libs_sh/entities.lua#L1869
+	---@param key number The number key. Valid keys are 0 - 31
+	---@return Angle? undefined The angle or nil if it doesn't exist
+	function _G.Entity:getDTAngle(key) end
 	--- getSequenceInfo - shared - libs_sh/entities.lua#L1430
 	---@param id number The ID of the animation
 	---@return table undefined Animation info
@@ -9438,8 +9455,12 @@ _G.Entity = {}
 	--- isOnGround - shared - libs_sh/entities.lua#L935
 	---@return boolean undefined If it's flag is set or not
 	function _G.Entity:isOnGround() end
-	--- breakEnt - server - libs_sv/entities.lua#L637
-	function _G.Entity:breakEnt() end
+	--- getBrushPlane - shared - libs_sh/entities.lua#L1850
+	---@param id number Plane index. Starts from 0
+	---@return Vector undefined The origin of the plane
+	---@return Vector undefined The normal of the plane
+	---@return number undefined The distance to the plane
+	function _G.Entity:getBrushPlane(id) end
 	--- getCreationID - server - libs_sv/entities.lua#L1071
 	---@return number undefined The creation ID
 	function _G.Entity:getCreationID() end
@@ -9463,25 +9484,27 @@ _G.Entity = {}
 	--- setContents - server - libs_sv/entities.lua#L822
 	---@param contents number The CONTENTS enum
 	function _G.Entity:setContents(contents) end
-	--- isNPC - shared - libs_sh/entities.lua#L928
-	---@return boolean undefined True if npc, false if not
-	function _G.Entity:isNPC() end
-	--- getEyePos - shared - libs_sh/entities.lua#L1674
-	---@return Vector undefined Eye position of the entity
-	---@return Vector? undefined In case of a ragdoll, the position of the second eye
-	function _G.Entity:getEyePos() end
+	--- getBrushSurfaces - shared - libs_sh/entities.lua#L1837
+	---@return table undefined Table of SurfaceInfos if the entity has a brush model, or no value otherwise.
+	function _G.Entity:getBrushSurfaces() end
+	--- getHitBoxHitGroup - shared - libs_sh/entities.lua#L1826
+	---@param hitbox number The number of the hit box.
+	---@param hitboxset number The number of the hit box set. This should be 0 in most cases.
+	---@return number undefined The hitbox group of given hitbox. See https://wiki.facepunch.com/gmod/Enums/HITGROUP
+	function _G.Entity:getHitBoxHitGroup(hitbox, hitboxset) end
 	--- getRight - shared - libs_sh/entities.lua#L1721
 	---@return Vector undefined Vector right
 	function _G.Entity:getRight() end
 	--- getErroredPlayers - server - libs_sh/entities.lua#L1032
 	---@return table undefined A table containing the errored players.
 	function _G.Entity:getErroredPlayers() end
-	--- getHealth - shared - libs_sh/entities.lua#L1660
-	---@return number undefined Health of the entity
-	function _G.Entity:getHealth() end
-	--- getMaxHealth - shared - libs_sh/entities.lua#L1653
-	---@return number undefined Max Health of the entity
-	function _G.Entity:getMaxHealth() end
+	--- getHitBoxSetCount - shared - libs_sh/entities.lua#L1819
+	---@return number undefined Number of hitbox sets.
+	function _G.Entity:getHitBoxSetCount() end
+	--- getHitBoxSet - shared - libs_sh/entities.lua#L1811
+	---@return number? undefined Hitbox set number, nil if entity has no hitboxes.
+	---@return string? undefined Hitbox set name, nil if entity has no hitboxes.
+	function _G.Entity:getHitBoxSet() end
 	--- setFlexScale - shared - libs_sh/entities.lua#L1600
 	---@param scale number The scale of the flexes to set
 	function _G.Entity:setFlexScale(scale) end
@@ -9495,9 +9518,10 @@ _G.Entity = {}
 	--- setLocalAngles - server - libs_sv/entities.lua#L593
 	---@param ang Angle New angles
 	function _G.Entity:setLocalAngles(ang) end
-	--- getSolid - shared - libs_sh/entities.lua#L758
-	---@return number undefined The solid enum of the entity. https://wiki.facepunch.com/gmod/Enums/SOLID
-	function _G.Entity:getSolid() end
+	--- getVar - server - libs_sv/entities.lua#L1115
+	---@param key string The variable's key.
+	---@return any undefined The variable.
+	function _G.Entity:getVar(key) end
 	--- isConstraint - server - libs_sv/entities.lua#L788
 	---@return boolean undefined If the entity is a constraint
 	function _G.Entity:isConstraint() end
@@ -9505,22 +9529,23 @@ _G.Entity = {}
 	---@param bodygroup number The ID of the bodygroup you're setting.
 	---@param value number The value you're setting the bodygroup to.
 	function _G.Entity:setBodygroup(bodygroup, value) end
-	--- getModelRadius - shared - libs_sh/entities.lua#L1639
-	---@return number undefined Radius of the model
-	function _G.Entity:getModelRadius() end
+	--- getHitBoxBone - shared - libs_sh/entities.lua#L1800
+	---@param hitbox number The number of the hitbox.
+	---@param group number The number of the hitbox group, 0 in most cases.
+	---@return number undefined Bone ID
+	function _G.Entity:getHitBoxBone(hitbox, group) end
 	--- getModelScale - shared - libs_sh/entities.lua#L1646
 	---@return number undefined Scale of the model
 	function _G.Entity:getModelScale() end
-	--- isLocked - server - libs_sh/darkrp2.lua#L877
-	---@return boolean undefined Whether it's locked.
-	function _G.Entity:isLocked() end
-	--- getModelBounds - shared - libs_sh/entities.lua#L1622
-	---@return Vector undefined Minimum vector of the bounds
-	---@return Vector undefined Maximum vector of the bounds
-	function _G.Entity:getModelBounds() end
-	--- getModel - shared - libs_sh/entities.lua#L1615
-	---@return string undefined Model of the entity
-	function _G.Entity:getModel() end
+	--- getLocalVelocity - shared - libs_sh/entities.lua#L1333
+	---@return Vector undefined Vector velocity of the physics object local to itself
+	function _G.Entity:getLocalVelocity() end
+	--- entOwner - shared - libs_sh/entities.lua#L1768
+	---@return Entity undefined Owner
+	function _G.Entity:entOwner() end
+	--- setPersistent - shared - libs_sh/entities.lua#L1751
+	---@param persist boolean True to make persistent
+	function _G.Entity:setPersistent(persist) end
 	--- getColor4Part - shared - libs_sh/entities.lua#L831
 	---@return number undefined Red
 	---@return number undefined Green
@@ -9537,9 +9562,10 @@ _G.Entity = {}
 	--- linkComponent - server - libs_sv/entities.lua#L238
 	---@param e Entity? Entity to link the component to, a vehicle or starfall for huds, or a starfall for screens. nil to clear links.
 	function _G.Entity:linkComponent(e) end
-	--- isMoneyBag - shared - libs_sh/darkrp2.lua#L919
-	---@return boolean undefined Whether this entity is a money bag.
-	function _G.Entity:isMoneyBag() end
+	--- getSaveTable - shared - libs_sh/entities.lua#L1983
+	---@param showAll boolean If set, shows all variables, not just the ones for save.
+	---@return table undefined A table containing all save values in key/value format. The value may be a sequential table (starting to 1) if the field in question is an array in engine.
+	function _G.Entity:getSaveTable(showAll) end
 	--- getBoneCount - shared - libs_sh/entities.lua#L1156
 	---@return number undefined Number of bones
 	function _G.Entity:getBoneCount() end
@@ -9559,59 +9585,58 @@ _G.Entity = {}
 	--- getSequence - shared - libs_sh/entities.lua#L1416
 	---@return number undefined The sequence number
 	function _G.Entity:getSequence() end
+	--- getManipulateBoneJiggle - shared - libs_sh/entities.lua#L1202
+	---@param bone number? Bone index. (def 0)
+	---@return number undefined Manipulate jiggle of the bone
+	function _G.Entity:getManipulateBoneJiggle(bone) end
+	--- getEyePos - shared - libs_sh/entities.lua#L1674
+	---@return Vector undefined Eye position of the entity
+	---@return Vector? undefined In case of a ragdoll, the position of the second eye
+	function _G.Entity:getEyePos() end
+	--- getSolidFlags - shared - libs_sh/entities.lua#L764
+	---@return number undefined The solid flag enum of the entity. https://wiki.facepunch.com/gmod/Enums/FSOLID
+	function _G.Entity:getSolidFlags() end
+	--- getEyeAngles - shared - libs_sh/entities.lua#L1667
+	---@return Angle undefined Angles of the entity's eyes
+	function _G.Entity:getEyeAngles() end
+	--- getHealth - shared - libs_sh/entities.lua#L1660
+	---@return number undefined Health of the entity
+	function _G.Entity:getHealth() end
+	--- getMaxHealth - shared - libs_sh/entities.lua#L1653
+	---@return number undefined Max Health of the entity
+	function _G.Entity:getMaxHealth() end
+	--- getFriction - server - libs_sv/entities.lua#L422
+	---@return number undefined friction
+	function _G.Entity:getFriction() end
+	--- getModelRadius - shared - libs_sh/entities.lua#L1639
+	---@return number undefined Radius of the model
+	function _G.Entity:getModelRadius() end
+	--- getModelBounds - shared - libs_sh/entities.lua#L1622
+	---@return Vector undefined Minimum vector of the bounds
+	---@return Vector undefined Maximum vector of the bounds
+	function _G.Entity:getModelBounds() end
+	--- getModel - shared - libs_sh/entities.lua#L1615
+	---@return string undefined Model of the entity
+	function _G.Entity:getModel() end
+	--- remove - server - libs_sv/entities.lua#L629
+	function _G.Entity:remove() end
+	--- setRenderBounds - client - libs_sh/entities.lua#L250
+	---@param mins Vector The lower bounding corner coordinate local to the hologram
+	---@param maxs Vector The upper bounding corner coordinate local to the hologram
+	function _G.Entity:setRenderBounds(mins, maxs) end
 	--- getFlexWeight - shared - libs_sh/entities.lua#L1555
 	---@param flexid number The id of the flex
 	---@return number undefined The weight of the flex
 	function _G.Entity:getFlexWeight(flexid) end
-	--- hasFlexManipulations - shared - libs_sh/entities.lua#L1549
-	---@return boolean undefined True if the entity has flex manipulations, false otherwise.
-	function _G.Entity:hasFlexManipulations() end
-	--- getSolidFlags - shared - libs_sh/entities.lua#L764
-	---@return number undefined The solid flag enum of the entity. https://wiki.facepunch.com/gmod/Enums/FSOLID
-	function _G.Entity:getSolidFlags() end
-	--- getFlexName - shared - libs_sh/entities.lua#L1541
-	---@param flexid number The flex id to look up name of.
-	---@return string undefined The flex name
-	function _G.Entity:getFlexName(flexid) end
-	--- getFlexByName - shared - libs_sh/entities.lua#L1533
-	---@param flexname string The name of the flex to get the ID of. Case sensitive.
-	---@return number undefined The ID of the flex based on given name.
-	function _G.Entity:getFlexByName(flexname) end
-	--- getFlexes - shared - libs_sh/entities.lua#L1522
-	---@return table undefined Table of flexes
-	function _G.Entity:getFlexes() end
-	--- setCustomPropShadowForce - server - libs_sv/entities.lua#L343
-	---@param table any |false data Shadow physics data, excluding 'deltatime'. 'teleportdistance' higher than 0 requires 'entities.setPos'. Pass a falsy value to disable custom physics entirely
-	function _G.Entity:setCustomPropShadowForce(table) end
-	--- getWaterLevel - shared - libs_sh/entities.lua#L1109
-	---@return number undefined The water level. 0 none, 1 slightly, 2 at least halfway, 3 all the way
-	function _G.Entity:getWaterLevel() end
-	--- getPoseIndex - shared - libs_sh/entities.lua#L1500
-	---@param pose string Pose name
-	---@return number undefined Pose index or -1 if not found
-	function _G.Entity:getPoseIndex(pose) end
-	--- getSequenceList - shared - libs_sh/entities.lua#L1443
-	---@return table undefined List of animations, starts at index 0 where value is the animation's name
-	function _G.Entity:getSequenceList() end
-	--- getPose - shared - libs_sh/entities.lua#L1487
-	---@param pose string Pose parameter name
-	---@return number undefined Value of the pose parameter
-	function _G.Entity:getPose(pose) end
-	--- setPose - shared - libs_sh/entities.lua#L1477
-	---@param pose string Name of the pose parameter
-	---@param value number Value to set it to.
-	function _G.Entity:setPose(pose, value) end
 	--- getRenderFX - shared - libs_sh/entities.lua#L698
 	---@return number undefined Renderfx, https://wiki.facepunch.com/gmod/Enums/kRenderFx
 	function _G.Entity:getRenderFX() end
-	--- getBodygroupCount - shared - libs_sh/entities.lua#L614
-	---@param id number The ID of the bodygroup to get the count for.
-	---@return number undefined Number of values of specified bodygroup, or 0 if there are none.
-	function _G.Entity:getBodygroupCount(id) end
-	--- sequenceDuration - shared - libs_sh/entities.lua#L1467
-	---@param id number? (Optional) The id of the sequence, or will default to the currently playing sequence
-	---@return number undefined Length of the animation in seconds
-	function _G.Entity:sequenceDuration(id) end
+	--- isWeapon - shared - libs_sh/entities.lua#L914
+	---@return boolean undefined True if weapon, false if not
+	function _G.Entity:isWeapon() end
+	--- hasFlexManipulations - shared - libs_sh/entities.lua#L1549
+	---@return boolean undefined True if the entity has flex manipulations, false otherwise.
+	function _G.Entity:hasFlexManipulations() end
 	--- lookupAttachment - shared - libs_sh/entities.lua#L727
 	---@param name string of the attachment to lookup
 	---@return number undefined Number of the attachment index, or 0 if it doesn't exist
@@ -9622,12 +9647,14 @@ _G.Entity = {}
 	--- removeCollisionListener - server - libs_sv/entities.lua#L549
 	---@param name string? The name of the collision listener to remove. (default: "")
 	function _G.Entity:removeCollisionListener(name) end
-	--- isPlayer - shared - libs_sh/entities.lua#L907
-	---@return boolean undefined True if player, false if not
-	function _G.Entity:isPlayer() end
-	--- isNextBot - shared - libs_sh/entities.lua#L1455
-	---@return boolean undefined Whether it is a nextbot
-	function _G.Entity:isNextBot() end
+	--- getFlexName - shared - libs_sh/entities.lua#L1541
+	---@param flexid number The flex id to look up name of.
+	---@return string undefined The flex name
+	function _G.Entity:getFlexName(flexid) end
+	--- getFlexByName - shared - libs_sh/entities.lua#L1533
+	---@param flexname string The name of the flex to get the ID of. Case sensitive.
+	---@return number undefined The ID of the flex based on given name.
+	function _G.Entity:getFlexByName(flexname) end
 	--- getPhysMaterial - server - libs_sv/entities.lua#L765
 	---@return string undefined The physical material
 	function _G.Entity:getPhysMaterial() end
@@ -9650,35 +9677,33 @@ _G.Entity = {}
 	--- getPoseCount - shared - libs_sh/entities.lua#L1494
 	---@return number undefined Amount of poses
 	function _G.Entity:getPoseCount() end
-	--- getSequenceName - shared - libs_sh/entities.lua#L1422
-	---@param id number The id of the animation
-	---@return string undefined The sequence name
-	function _G.Entity:getSequenceName(id) end
-	--- lookupSequence - shared - libs_sh/entities.lua#L1408
-	---@param animation string Name of the animation
-	---@return number undefined Animation index or -1 if invalid
-	function _G.Entity:lookupSequence(animation) end
-	--- getManipulateBoneAngles - shared - libs_sh/entities.lua#L1193
-	---@param bone number Bone index. (def 0)
-	---@return Angle undefined Manipulate angle of the bone
-	function _G.Entity:getManipulateBoneAngles(bone) end
+	--- getFlexes - shared - libs_sh/entities.lua#L1522
+	---@return table undefined Table of flexes
+	function _G.Entity:getFlexes() end
+	--- isPlayerHolding - server - libs_sv/entities.lua#L781
+	---@return boolean undefined If the entity is being held or not
+	function _G.Entity:isPlayerHolding() end
+	--- getPoseIndex - shared - libs_sh/entities.lua#L1500
+	---@param pose string Pose name
+	---@return number undefined Pose index or -1 if not found
+	function _G.Entity:getPoseIndex(pose) end
 	--- canDraw - client - libs_sh/entities.lua#L289
 	---@return boolean undefined Whether the entity can be drawn
 	function _G.Entity:canDraw() end
-	--- getSkin - shared - libs_sh/entities.lua#L640
-	---@return number undefined Skin number
-	function _G.Entity:getSkin() end
-	--- worldToLocalVector - shared - libs_sh/entities.lua#L1392
-	---@param data Vector World space direction vector
-	---@return Vector undefined data as local space direction vector
-	function _G.Entity:worldToLocalVector(data) end
-	--- getLocalVelocity - shared - libs_sh/entities.lua#L1333
-	---@return Vector undefined Vector velocity of the physics object local to itself
-	function _G.Entity:getLocalVelocity() end
-	--- localToWorldAngles - shared - libs_sh/entities.lua#L1376
-	---@param data Angle Local space angle
-	---@return Angle undefined data as world space angle
-	function _G.Entity:localToWorldAngles(data) end
+	--- breakEnt - server - libs_sv/entities.lua#L637
+	function _G.Entity:breakEnt() end
+	--- getPose - shared - libs_sh/entities.lua#L1487
+	---@param pose string Pose parameter name
+	---@return number undefined Value of the pose parameter
+	function _G.Entity:getPose(pose) end
+	--- setPose - shared - libs_sh/entities.lua#L1477
+	---@param pose string Name of the pose parameter
+	---@param value number Value to set it to.
+	function _G.Entity:setPose(pose, value) end
+	--- sequenceDuration - shared - libs_sh/entities.lua#L1467
+	---@param id number? (Optional) The id of the sequence, or will default to the currently playing sequence
+	---@return number undefined Length of the animation in seconds
+	function _G.Entity:sequenceDuration(id) end
 	--- setSubMaterial - shared - libs_sh/entities.lua#L522
 	---@param index number Submaterial index.
 	---@param material string New material name.
@@ -9686,19 +9711,18 @@ _G.Entity = {}
 	--- getClipping - shared - libs_sh/entities.lua#L841
 	---@return table undefined Table containing the clipdata
 	function _G.Entity:getClipping() end
-	--- setAngles - server - libs_sv/entities.lua#L577
-	---@param ang Angle New angles
-	function _G.Entity:setAngles(ang) end
-	--- getAngleVelocityAngle - shared - libs_sh/entities.lua#L1350
-	---@return Angle undefined The angular velocity as an angle
-	function _G.Entity:getAngleVelocityAngle() end
+	--- setAngleVelocity - server - libs_sv/entities.lua#L391
+	---@param angvel Vector The local angvel vector to set
+	function _G.Entity:setAngleVelocity(angvel) end
+	--- isNextBot - shared - libs_sh/entities.lua#L1455
+	---@return boolean undefined Whether it is a nextbot
+	function _G.Entity:isNextBot() end
 	--- getMoveType - shared - libs_sh/entities.lua#L776
 	---@return number undefined The movetype enum of the entity. https://wiki.facepunch.com/gmod/Enums/MOVETYPE
 	function _G.Entity:getMoveType() end
-	--- setRenderBounds - client - libs_sh/entities.lua#L250
-	---@param mins Vector The lower bounding corner coordinate local to the hologram
-	---@param maxs Vector The upper bounding corner coordinate local to the hologram
-	function _G.Entity:setRenderBounds(mins, maxs) end
+	--- getSequenceList - shared - libs_sh/entities.lua#L1443
+	---@return table undefined List of animations, starts at index 0 where value is the animation's name
+	function _G.Entity:getSequenceList() end
 	--- worldToLocal - shared - libs_sh/entities.lua#L1384
 	---@param data Vector World space vector
 	---@return Vector undefined data as local space vector
@@ -9707,12 +9731,14 @@ _G.Entity = {}
 	---@param bone number? Bone index. (def 0)
 	---@return VMatrix undefined The matrix
 	function _G.Entity:getBoneMatrix(bone) end
-	--- getMass - shared - libs_sh/entities.lua#L1308
-	---@return number undefined The numerical mass
-	function _G.Entity:getMass() end
-	--- getLocalAngles - shared - libs_sh/entities.lua#L1301
-	---@return Angle undefined The angle
-	function _G.Entity:getLocalAngles() end
+	--- getSequenceName - shared - libs_sh/entities.lua#L1422
+	---@param id number The id of the animation
+	---@return string undefined The sequence name
+	function _G.Entity:getSequenceName(id) end
+	--- lookupSequence - shared - libs_sh/entities.lua#L1408
+	---@param animation string Name of the animation
+	---@return number undefined Animation index or -1 if invalid
+	function _G.Entity:lookupSequence(animation) end
 	--- getMassCenter - shared - libs_sh/entities.lua#L1275
 	---@return Vector undefined The position vector of the mass center
 	function _G.Entity:getMassCenter() end
@@ -9723,19 +9749,22 @@ _G.Entity = {}
 	---@param bone number The bone ID
 	---@param vec Vector The position it should be manipulated to
 	function _G.Entity:manipulateBonePosition(bone, vec) end
-	--- remove - server - libs_sv/entities.lua#L629
-	function _G.Entity:remove() end
-	--- obbMaxs - shared - libs_sh/entities.lua#L1259
-	---@return Vector undefined The max bounding box vector
-	function _G.Entity:obbMaxs() end
-	--- obbCenterW - shared - libs_sh/entities.lua#L1244
-	---@return Vector undefined The position vector of the outer bounding box center
-	function _G.Entity:obbCenterW() end
+	--- worldToLocalVector - shared - libs_sh/entities.lua#L1392
+	---@param data Vector World space direction vector
+	---@return Vector undefined data as local space direction vector
+	function _G.Entity:worldToLocalVector(data) end
+	--- localToWorldAngles - shared - libs_sh/entities.lua#L1376
+	---@param data Angle Local space angle
+	---@return Angle undefined data as world space angle
+	function _G.Entity:localToWorldAngles(data) end
+	--- getMass - shared - libs_sh/entities.lua#L1308
+	---@return number undefined The numerical mass
+	function _G.Entity:getMass() end
 	--- removeTrails - server - libs_sv/entities.lua#L1023
 	function _G.Entity:removeTrails() end
-	--- obbCenter - shared - libs_sh/entities.lua#L1237
-	---@return Vector undefined The position vector of the outer bounding box center
-	function _G.Entity:obbCenter() end
+	--- getAngleVelocityAngle - shared - libs_sh/entities.lua#L1350
+	---@return Angle undefined The angular velocity as an angle
+	function _G.Entity:getAngleVelocityAngle() end
 	--- setMaterial - shared - libs_sh/entities.lua#L504
 	---@param material string New material name.
 	function _G.Entity:setMaterial(material) end
@@ -9747,12 +9776,10 @@ _G.Entity = {}
 	---@param other Entity|Vector Entity or Vector to test
 	---@return boolean undefined If the Entity/Vector is within the PVS
 	function _G.Entity:testPVS(other) end
-	--- setColor4Part - shared - libs_sh/entities.lua#L466
-	---@param r number Red 0 - 255
-	---@param g number Green 0 - 255
-	---@param b number Blue 0 - 255
-	---@param a number Alpha 0 - 255
-	function _G.Entity:setColor4Part(r, g, b, a) end
+	--- getBodygroup - shared - libs_sh/entities.lua#L578
+	---@param id number The bodygroup's number index
+	---@return number undefined The bodygroup value
+	function _G.Entity:getBodygroup(id) end
 	--- draw - client - libs_sh/entities.lua#L298
 	function _G.Entity:draw() end
 	--- localToWorldVector - shared - libs_sh/entities.lua#L1368
@@ -9762,41 +9789,42 @@ _G.Entity = {}
 	--- getRenderGroup - client - libs_sh/entities.lua#L311
 	---@return number undefined Render group
 	function _G.Entity:getRenderGroup() end
-	--- getBodygroups - shared - libs_sh/entities.lua#L588
-	---@return table undefined Bodygroups as a table of BodyGroupDatas. https://wiki.facepunch.com/gmod/Structures/BodyGroupData
-	function _G.Entity:getBodygroups() end
+	--- isNPC - shared - libs_sh/entities.lua#L928
+	---@return boolean undefined True if npc, false if not
+	function _G.Entity:isNPC() end
 	--- setMaxHealth - server - libs_sh/entities.lua#L1061
 	---@param newmaxhealth number New max health value.
 	function _G.Entity:setMaxHealth(newmaxhealth) end
-	--- getManipulateBoneJiggle - shared - libs_sh/entities.lua#L1202
-	---@param bone number? Bone index. (def 0)
-	---@return number undefined Manipulate jiggle of the bone
-	function _G.Entity:getManipulateBoneJiggle(bone) end
+	--- getLocalAngles - shared - libs_sh/entities.lua#L1301
+	---@return Angle undefined The angle
+	function _G.Entity:getLocalAngles() end
 	--- worldToLocalAngles - shared - libs_sh/entities.lua#L1400
 	---@param data Angle World space angle
 	---@return Angle undefined data as local space angle
 	function _G.Entity:worldToLocalAngles(data) end
-	--- getBoneParent - shared - libs_sh/entities.lua#L1172
-	---@param bone number? Bone index. (def 0)
-	---@return number undefined Parent index of the bone. Returns -1 on error
-	function _G.Entity:getBoneParent(bone) end
-	--- getShipmentContents - shared - libs_sh/darkrp2.lua#L950
-	---@return table? undefined Contents, or nil if not a shipment
-	function _G.Entity:getShipmentContents() end
+	--- emitSound - shared - libs_sh/entities.lua#L340
+	---@param snd string Sound path
+	---@param soundLevel number Default 75
+	---@param pitchPercent number Default 100
+	---@param volume number Default 1
+	---@param channel number Default CHAN_AUTO or CHAN_WEAPON for weapons
+	function _G.Entity:emitSound(snd, soundLevel, pitchPercent, volume, channel) end
+	--- setInertia - server - libs_sv/entities.lua#L733
+	---@param vec Vector Inertia tensor
+	function _G.Entity:setInertia(vec) end
 	--- manipulateBoneJiggle - client - libs_sh/entities.lua#L173
 	---@param bone number The bone ID
 	---@param enabled boolean Whether to make the bone jiggly or not
 	function _G.Entity:manipulateBoneJiggle(bone, enabled) end
-	--- getBoneName - shared - libs_sh/entities.lua#L1163
-	---@param bone number? Bone index. (def 0)
-	---@return string undefined Name of the bone
-	function _G.Entity:getBoneName(bone) end
-	--- getMatrix - shared - libs_sh/entities.lua#L1149
-	---@return VMatrix undefined The matrix
-	function _G.Entity:getMatrix() end
-	--- getAllConstrained - server - libs_sv/entities.lua#L935
-	---@param filter table? Optional constraint type filter table where keys are the type name and values are 'true'. "Wire" and "Parent" are used for wires and parents.
-	function _G.Entity:getAllConstrained(filter) end
+	--- obbMaxs - shared - libs_sh/entities.lua#L1259
+	---@return Vector undefined The max bounding box vector
+	function _G.Entity:obbMaxs() end
+	--- obbCenterW - shared - libs_sh/entities.lua#L1244
+	---@return Vector undefined The position vector of the outer bounding box center
+	function _G.Entity:obbCenterW() end
+	--- obbCenter - shared - libs_sh/entities.lua#L1237
+	---@return Vector undefined The position vector of the outer bounding box center
+	function _G.Entity:obbCenter() end
 	--- setCollisionGroup - server - libs_sv/entities.lua#L695
 	---@param group number The COLLISION_GROUP value to set it to
 	function _G.Entity:setCollisionGroup(group) end
@@ -9804,41 +9832,45 @@ _G.Entity = {}
 	---@param id number Pose index (starting from 0)
 	---@return string undefined Pose name or empty string if not found
 	function _G.Entity:getPoseName(id) end
-	--- getLocalPos - shared - libs_sh/entities.lua#L1102
-	---@return Vector undefined The position vector
-	function _G.Entity:getLocalPos() end
+	--- getWirelink - server - libs_sv/wire.lua#L710
+	---@return Wirelink undefined Wirelink of the entity
+	function _G.Entity:getWirelink() end
 	--- getMaterial - shared - libs_sh/entities.lua#L1686
 	---@return string undefined String material
 	function _G.Entity:getMaterial() end
 	--- getChipAuthor - shared - libs_sh/entities.lua#L961
 	---@return string undefined The author of the starfall chip.
 	function _G.Entity:getChipAuthor() end
-	--- getClass - shared - libs_sh/entities.lua#L1088
-	---@return string undefined The string class name
-	function _G.Entity:getClass() end
-	--- applyForceCenter - server - libs_sv/entities.lua#L446
-	---@param vec Vector The force vector
-	function _G.Entity:applyForceCenter(vec) end
-	--- doNotDuplicate - server - libs_sh/entities.lua#L1071
-	function _G.Entity:doNotDuplicate() end
-	--- setHealth - server - libs_sh/entities.lua#L1051
-	---@param newhealth number New health value.
-	function _G.Entity:setHealth(newhealth) end
-	--- setRenderMode - shared - libs_sh/entities.lua#L654
-	---@param rendermode number Rendermode to use. http://wiki.facepunch.com/gmod/Enums/RENDERMODE
-	function _G.Entity:setRenderMode(rendermode) end
-	--- isWeldedTo - server - libs_sv/entities.lua#L918
-	---@return Entity undefined The first welded/parent entity
-	function _G.Entity:isWeldedTo() end
-	--- getQuotaUsed - shared - libs_sh/entities.lua#L971
-	---@return number undefined Current quota used this Think
-	function _G.Entity:getQuotaUsed() end
+	--- getManipulateBoneAngles - shared - libs_sh/entities.lua#L1193
+	---@param bone number Bone index. (def 0)
+	---@return Angle undefined Manipulate angle of the bone
+	function _G.Entity:getManipulateBoneAngles(bone) end
+	--- getBoneParent - shared - libs_sh/entities.lua#L1172
+	---@param bone number? Bone index. (def 0)
+	---@return number undefined Parent index of the bone. Returns -1 on error
+	function _G.Entity:getBoneParent(bone) end
+	--- getBoneName - shared - libs_sh/entities.lua#L1163
+	---@param bone number? Bone index. (def 0)
+	---@return string undefined Name of the bone
+	function _G.Entity:getBoneName(bone) end
+	--- getMatrix - shared - libs_sh/entities.lua#L1149
+	---@return VMatrix undefined The matrix
+	function _G.Entity:getMatrix() end
+	--- setLocalPos - server - libs_sv/entities.lua#L585
+	---@param vec Vector New position
+	function _G.Entity:setLocalPos(vec) end
+	--- getWaterLevel - shared - libs_sh/entities.lua#L1109
+	---@return number undefined The water level. 0 none, 1 slightly, 2 at least halfway, 3 all the way
+	function _G.Entity:getWaterLevel() end
+	--- getLocalPos - shared - libs_sh/entities.lua#L1102
+	---@return Vector undefined The position vector
+	function _G.Entity:getLocalPos() end
 	--- setFrozen - server - libs_sv/entities.lua#L851
 	---@param freeze boolean Should the entity be frozen?
 	function _G.Entity:setFrozen(freeze) end
-	--- isWeapon - shared - libs_sh/entities.lua#L914
-	---@return boolean undefined True if weapon, false if not
-	function _G.Entity:isWeapon() end
+	--- getClass - shared - libs_sh/entities.lua#L1088
+	---@return string undefined The string class name
+	function _G.Entity:getClass() end
 	--- getQuaternion - shared - libs_sh/quaternion.lua#L845
 	---@return Quaternion undefined Constructed quaternion
 	function _G.Entity:getQuaternion() end
@@ -9854,12 +9886,11 @@ _G.Entity = {}
 	--- isSequenceFinished - shared - libs_sh/entities.lua#L1461
 	---@return boolean undefined True if the animation is currently playing, False otherwise
 	function _G.Entity:isSequenceFinished() end
-	--- isValid - shared - libs_sh/entities.lua#L900
-	---@return boolean undefined True if valid, false if not
-	function _G.Entity:isValid() end
-	--- isFrozen - server - libs_sv/entities.lua#L857
-	---@return boolean undefined True if entity is frozen
-	function _G.Entity:isFrozen() end
+	--- doNotDuplicate - server - libs_sh/entities.lua#L1071
+	function _G.Entity:doNotDuplicate() end
+	--- setHealth - server - libs_sh/entities.lua#L1051
+	---@param newhealth number New health value.
+	function _G.Entity:setHealth(newhealth) end
 	--- enableMotion - server - libs_sv/entities.lua#L837
 	---@param move boolean Should the entity move?
 	function _G.Entity:enableMotion(move) end
@@ -9876,108 +9907,30 @@ _G.Entity = {}
 	--- setMeshMaterial - client - libs_sh/entities.lua#L208
 	---@param material Material? The material to set it to or nil to set back to default
 	function _G.Entity:setMeshMaterial(material) end
-	--- getShipmentCount - shared - libs_sh/darkrp2.lua#L933
-	---@return number? undefined Number of items remaining, or nil if not a shipment
-	function _G.Entity:getShipmentCount() end
+	--- getSolid - shared - libs_sh/entities.lua#L758
+	---@return number undefined The solid enum of the entity. https://wiki.facepunch.com/gmod/Enums/SOLID
+	function _G.Entity:getSolid() end
 	--- use - server - libs_sv/entities.lua#L674
 	---@param usetype number? The USE_ enum use type. (Default: USE_ON)
 	---@param value number? The use value (Default: 0)
 	function _G.Entity:use(usetype, value) end
-	--- isKeysOwnedBy - shared - libs_sh/darkrp2.lua#L911
-	---@param ply Player The player to query.
-	---@return boolean undefined Whether this door is (co-)owned by the player.
-	function _G.Entity:isKeysOwnedBy(ply) end
-	--- setInertia - server - libs_sv/entities.lua#L733
-	---@param vec Vector Inertia tensor
-	function _G.Entity:setInertia(vec) end
+	--- setFriction - server - libs_sv/entities.lua#L428
+	---@param friction number 
+	function _G.Entity:setFriction(friction) end
+	--- getBodygroupCount - shared - libs_sh/entities.lua#L614
+	---@param id number The ID of the bodygroup to get the count for.
+	---@return number undefined Number of values of specified bodygroup, or 0 if there are none.
+	function _G.Entity:getBodygroupCount(id) end
 	--- applyTorque - server - libs_sv/entities.lua#L520
 	---@param torque Vector The torque vector
 	function _G.Entity:applyTorque(torque) end
-	--- setRenderFX - shared - libs_sh/entities.lua#L680
-	---@param renderfx number Renderfx to use. http://wiki.facepunch.com/gmod/Enums/kRenderFx
-	function _G.Entity:setRenderFX(renderfx) end
+	--- isFrozen - server - libs_sv/entities.lua#L857
+	---@return boolean undefined True if entity is frozen
+	function _G.Entity:isFrozen() end
 	--- worldSpaceAABB - shared - libs_sh/entities.lua#L1266
 	---@return Vector undefined The min bounding box vector
 	---@return Vector undefined The max bounding box vector
 	function _G.Entity:worldSpaceAABB() end
-	--- stopSound - shared - libs_sh/entities.lua#L360
-	---@param snd string string Soundscript path. See http://wiki.facepunch.com/gmod/Entity:StopSound
-	function _G.Entity:stopSound(snd) end
-	--- extinguish - server - libs_sv/entities.lua#L666
-	function _G.Entity:extinguish() end
-	--- getFriction - server - libs_sv/entities.lua#L422
-	---@return number undefined friction
-	function _G.Entity:getFriction() end
-	--- obbSize - shared - libs_sh/entities.lua#L1229
-	---@return Vector undefined The outer bounding box size
-	function _G.Entity:obbSize() end
-	--- setLocalPos - server - libs_sv/entities.lua#L585
-	---@param vec Vector New position
-	function _G.Entity:setLocalPos(vec) end
-	--- emitSound - shared - libs_sh/entities.lua#L340
-	---@param snd string Sound path
-	---@param soundLevel number Default 75
-	---@param pitchPercent number Default 100
-	---@param volume number Default 1
-	---@param channel number Default CHAN_AUTO or CHAN_WEAPON for weapons
-	function _G.Entity:emitSound(snd, soundLevel, pitchPercent, volume, channel) end
-	--- getParent - shared - libs_sh/entities.lua#L706
-	---@return Entity? undefined Entity's parent or nil if not parented
-	function _G.Entity:getParent() end
-	--- getManipulateBoneScale - shared - libs_sh/entities.lua#L1220
-	---@param bone number Bone index. (def 0)
-	---@return Vector undefined Manipulate scale of the bone
-	function _G.Entity:getManipulateBoneScale(bone) end
-	--- getKeysTitle - shared - libs_sh/darkrp2.lua#L892
-	---@return string? undefined The title of the door or vehicle, or nil if none is set.
-	function _G.Entity:getKeysTitle() end
-	--- addAngleVelocity - server - libs_sv/entities.lua#L407
-	---@param angvel Vector The local angvel vector to apply
-	function _G.Entity:addAngleVelocity(angvel) end
-	--- getWirelink - server - libs_sv/wire.lua#L710
-	---@return Wirelink undefined Wirelink of the entity
-	function _G.Entity:getWirelink() end
-	--- getChildren - shared - libs_sh/entities.lua#L713
-	---@return table undefined Table of parented children
-	function _G.Entity:getChildren() end
-	--- applyForceOffset - server - libs_sv/entities.lua#L461
-	---@param force Vector The force vector in world coordinates
-	---@param position Vector The force position in world coordinates
-	function _G.Entity:applyForceOffset(force, position) end
-	--- setAngleVelocity - server - libs_sv/entities.lua#L391
-	---@param angvel Vector The local angvel vector to set
-	function _G.Entity:setAngleVelocity(angvel) end
-	--- entIndex - shared - libs_sh/entities.lua#L1081
-	---@return number undefined The numerical index of the entity
-	function _G.Entity:entIndex() end
-	--- setFlexWeight - shared - libs_sh/entities.lua#L1571
-	---@param flexid number The id of the flex
-	---@param weight number The weight of the flex
-	function _G.Entity:setFlexWeight(flexid, weight) end
-	--- setCustomPropForces - server - libs_sv/entities.lua#L314
-	---@param ang Vector Angular Force (Torque)
-	---@param lin Vector Linear Force
-	---@param mode number The physics mode to use. 0 = Off (disables custom physics entirely), 1 = Local acceleration, 2 = Local force, 3 = Global Acceleration, 4 = Global force
-	function _G.Entity:setCustomPropForces(ang, lin, mode) end
-	--- getAttachments - shared - libs_sh/entities.lua#L745
-	---@return table? undefined Table of attachment id and attachment name or nil
-	function _G.Entity:getAttachments() end
-	--- setNoDraw - shared - libs_sh/entities.lua#L487
-	---@param draw boolean Whether to draw the entity or not.
-	function _G.Entity:setNoDraw(draw) end
-	--- getPhysicsObjectCount - shared - libs_sh/entities.lua#L796
-	---@return number undefined The number of physics objects on the entity
-	function _G.Entity:getPhysicsObjectCount() end
-	--- setFriction - server - libs_sv/entities.lua#L428
-	---@param friction number 
-	function _G.Entity:setFriction(friction) end
-	--- getVar - server - libs_sv/entities.lua#L1115
-	---@param key string The variable's key.
-	---@return any undefined The variable.
-	function _G.Entity:getVar(key) end
-	--- getNoDraw - shared - libs_sh/entities.lua#L497
-	---@return boolean undefined True if should draw, False otherwise
-	function _G.Entity:getNoDraw() end
 	--- applyDamage - server - libs_sv/entities.lua#L280
 	---@param amt number Damage amount
 	---@param attacker Entity? Damage attacker. Defaults to chip owner
@@ -9985,38 +9938,113 @@ _G.Entity = {}
 	---@param dmgtype number? The damage type number enum
 	---@param pos Vector? The position of the damage
 	function _G.Entity:applyDamage(amt, attacker, inflictor, dmgtype, pos) end
+	--- applyForceCenter - server - libs_sv/entities.lua#L446
+	---@param vec Vector The force vector
+	function _G.Entity:applyForceCenter(vec) end
+	--- obbSize - shared - libs_sh/entities.lua#L1229
+	---@return Vector undefined The outer bounding box size
+	function _G.Entity:obbSize() end
+	--- setMass - server - libs_sv/entities.lua#L717
+	---@param mass number Mass to set to
+	function _G.Entity:setMass(mass) end
+	--- setCustomPropShadowForce - server - libs_sv/entities.lua#L343
+	---@param table any |false data Shadow physics data, excluding 'deltatime'. 'teleportdistance' higher than 0 requires 'entities.setPos'. Pass a falsy value to disable custom physics entirely
+	function _G.Entity:setCustomPropShadowForce(table) end
+	--- getParent - shared - libs_sh/entities.lua#L706
+	---@return Entity? undefined Entity's parent or nil if not parented
+	function _G.Entity:getParent() end
+	--- getManipulateBoneScale - shared - libs_sh/entities.lua#L1220
+	---@param bone number Bone index. (def 0)
+	---@return Vector undefined Manipulate scale of the bone
+	function _G.Entity:getManipulateBoneScale(bone) end
+	--- getSkinCount - shared - libs_sh/entities.lua#L647
+	---@return number undefined The amount of skins
+	function _G.Entity:getSkinCount() end
+	--- addAngleVelocity - server - libs_sv/entities.lua#L407
+	---@param angvel Vector The local angvel vector to apply
+	function _G.Entity:addAngleVelocity(angvel) end
+	--- getSkin - shared - libs_sh/entities.lua#L640
+	---@return number undefined Skin number
+	function _G.Entity:getSkin() end
+	--- getChildren - shared - libs_sh/entities.lua#L713
+	---@return table undefined Table of parented children
+	function _G.Entity:getChildren() end
+	--- applyForceOffset - server - libs_sv/entities.lua#L461
+	---@param force Vector The force vector in world coordinates
+	---@param position Vector The force position in world coordinates
+	function _G.Entity:applyForceOffset(force, position) end
+	--- setSkin - shared - libs_sh/entities.lua#L624
+	---@param skinIndex number Index of the skin to use.
+	function _G.Entity:setSkin(skinIndex) end
+	--- entIndex - shared - libs_sh/entities.lua#L1081
+	---@return number undefined The numerical index of the entity
+	function _G.Entity:entIndex() end
+	--- setFlexWeight - shared - libs_sh/entities.lua#L1571
+	---@param flexid number The id of the flex
+	---@param weight number The weight of the flex
+	function _G.Entity:setFlexWeight(flexid, weight) end
+	--- getAttachments - shared - libs_sh/entities.lua#L745
+	---@return table? undefined Table of attachment id and attachment name or nil
+	function _G.Entity:getAttachments() end
+	--- getPhysicsObjectCount - shared - libs_sh/entities.lua#L796
+	---@return number undefined The number of physics objects on the entity
+	function _G.Entity:getPhysicsObjectCount() end
+	--- setNoDraw - shared - libs_sh/entities.lua#L487
+	---@param draw boolean Whether to draw the entity or not.
+	function _G.Entity:setNoDraw(draw) end
+	--- setCustomPropForces - server - libs_sv/entities.lua#L314
+	---@param ang Vector Angular Force (Torque)
+	---@param lin Vector Linear Force
+	---@param mode number The physics mode to use. 0 = Off (disables custom physics entirely), 1 = Local acceleration, 2 = Local force, 3 = Global Acceleration, 4 = Global force
+	function _G.Entity:setCustomPropForces(ang, lin, mode) end
 	--- manipulateBoneAngles - client - libs_sh/entities.lua#L152
 	---@param bone number The bone ID
 	---@param ang Angle The angle it should be manipulated to
 	function _G.Entity:manipulateBoneAngles(bone, ang) end
+	--- stopSound - shared - libs_sh/entities.lua#L360
+	---@param snd string string Soundscript path. See http://wiki.facepunch.com/gmod/Entity:StopSound
+	function _G.Entity:stopSound(snd) end
+	--- getNoDraw - shared - libs_sh/entities.lua#L497
+	---@return boolean undefined True if should draw, False otherwise
+	function _G.Entity:getNoDraw() end
+	--- setColor - shared - libs_sh/entities.lua#L448
+	---@param clr Color New color
+	function _G.Entity:setColor(clr) end
+	--- setColor4Part - shared - libs_sh/entities.lua#L466
+	---@param r number Red 0 - 255
+	---@param g number Green 0 - 255
+	---@param b number Blue 0 - 255
+	---@param a number Alpha 0 - 255
+	function _G.Entity:setColor4Part(r, g, b, a) end
 	--- getAngleVelocity - shared - libs_sh/entities.lua#L1341
 	---@return Vector undefined The angular velocity as a vector
 	function _G.Entity:getAngleVelocity() end
 	--- getQuotaAverage - shared - libs_sh/entities.lua#L983
 	---@return number undefined Average CPU Time of the buffer of the specified starfall or expression2.
 	function _G.Entity:getQuotaAverage() end
-	--- getMoneyAmount - shared - libs_sh/darkrp2.lua#L925
-	---@return number? undefined Amount of money or number of items
-	function _G.Entity:getMoneyAmount() end
+	--- setAngles - server - libs_sv/entities.lua#L577
+	---@param ang Angle New angles
+	function _G.Entity:setAngles(ang) end
 	--- isValidPhys - server - libs_sv/entities.lua#L775
 	---@return boolean undefined If entity has physics
 	function _G.Entity:isValidPhys() end
-	--- setColor - shared - libs_sh/entities.lua#L448
-	---@param clr Color New color
-	function _G.Entity:setColor(clr) end
-	--- isDoor - shared - libs_sh/darkrp2.lua#L899
-	---@return boolean undefined Whether it's a door.
-	function _G.Entity:isDoor() end
-	--- getBodygroup - shared - libs_sh/entities.lua#L578
-	---@param id number The bodygroup's number index
-	---@return number undefined The bodygroup value
-	function _G.Entity:getBodygroup(id) end
-	--- setSkin - shared - libs_sh/entities.lua#L624
-	---@param skinIndex number Index of the skin to use.
-	function _G.Entity:setSkin(skinIndex) end
-	--- getSkinCount - shared - libs_sh/entities.lua#L647
-	---@return number undefined The amount of skins
-	function _G.Entity:getSkinCount() end
+	--- setRenderMode - shared - libs_sh/entities.lua#L654
+	---@param rendermode number Rendermode to use. http://wiki.facepunch.com/gmod/Enums/RENDERMODE
+	function _G.Entity:setRenderMode(rendermode) end
+	--- setRenderFX - shared - libs_sh/entities.lua#L680
+	---@param renderfx number Renderfx to use. http://wiki.facepunch.com/gmod/Enums/kRenderFx
+	function _G.Entity:setRenderFX(renderfx) end
+	--- isWeldedTo - server - libs_sv/entities.lua#L918
+	---@return Entity undefined The first welded/parent entity
+	function _G.Entity:isWeldedTo() end
+	--- getBodygroups - shared - libs_sh/entities.lua#L588
+	---@return table undefined Bodygroups as a table of BodyGroupDatas. https://wiki.facepunch.com/gmod/Structures/BodyGroupData
+	function _G.Entity:getBodygroups() end
+	--- getAttachment - shared - libs_sh/entities.lua#L735
+	---@param index number The index of the attachment
+	---@return Vector? undefined Position, nil if the attachment doesn't exist
+	---@return Angle? undefined Orientation, nil if the attachment doesn't exist
+	function _G.Entity:getAttachment(index) end
 	--- getQuotaMax - shared - libs_sh/entities.lua#L998
 	---@return number undefined Max SysTime allowed to take for execution of the chip in a Think.
 	function _G.Entity:getQuotaMax() end
@@ -10027,17 +10055,15 @@ _G.Entity = {}
 	--- enableDrag - server - libs_sv/entities.lua#L809
 	---@param drag boolean Should the entity have air resistance?
 	function _G.Entity:enableDrag(drag) end
-	--- getDoorOwner - shared - libs_sh/darkrp2.lua#L885
-	---@return Player? undefined The owner of the door, or nil if the door is unowned.
-	function _G.Entity:getDoorOwner() end
-	--- getAttachment - shared - libs_sh/entities.lua#L735
-	---@param index number The index of the attachment
-	---@return Vector? undefined Position, nil if the attachment doesn't exist
-	---@return Angle? undefined Orientation, nil if the attachment doesn't exist
-	function _G.Entity:getAttachment(index) end
-	--- getShipmentContentsIndex - shared - libs_sh/darkrp2.lua#L941
-	---@return number? undefined Index of contents, or nil if not a shipment
-	function _G.Entity:getShipmentContentsIndex() end
+	--- isValid - shared - libs_sh/entities.lua#L900
+	---@return boolean undefined True if valid, false if not
+	function _G.Entity:isValid() end
+	--- setPhysicsUpdateListener - server - libs_sv/entities.lua#L1082
+	---@param func function|nil The callback function. Use nil to remove an existing callback.
+	function _G.Entity:setPhysicsUpdateListener(func) end
+	--- isPlayer - shared - libs_sh/entities.lua#L907
+	---@return boolean undefined True if player, false if not
+	function _G.Entity:isPlayer() end
 	--- getSubMaterial - shared - libs_sh/entities.lua#L1694
 	---@param index number Number index of the sub material
 	---@return string undefined String material

@@ -1194,7 +1194,7 @@ _G.input = {}
 --- nextbot
 ---  Library for spawning NextBots.
 _G.nextbot = {}
-	--- canSpawn - server - libs_sv/nextbot.lua#L120
+	--- canSpawn - server - libs_sv/nextbot.lua#L124
 	---@return boolean undefined True if user can spawn nextbots, False if not.
 	function _G.nextbot.canSpawn() end
 	--- create - server - libs_sv/nextbot.lua#L86
@@ -1202,7 +1202,7 @@ _G.nextbot = {}
 	---@param model string The model the nextbot will use.
 	---@return NextBot undefined The nextbot.
 	function _G.nextbot.create(spawnpos, model) end
-	--- remove - server - libs_sv/nextbot.lua#L113
+	--- remove - server - libs_sv/nextbot.lua#L117
 	function _G.nextbot.remove() end
 --- particleEffect
 ---  ParticleEffect library.
@@ -7222,189 +7222,189 @@ _G.NavArea = {}
 ---  NextBot type
 ---@class NextBot
 _G.NextBot = {}
-	--- removeApproachPos - server - libs_sv/nextbot.lua#L143
+	--- removeApproachPos - server - libs_sv/nextbot.lua#L147
 	function _G.NextBot:removeApproachPos() end
-	--- setRunAct - server - libs_sv/nextbot.lua#L217
+	--- setRunAct - server - libs_sv/nextbot.lua#L221
 	---@param runact number The activity the nextbot will use.
 	function _G.NextBot:setRunAct(runact) end
-	--- setVelocity - server - libs_sv/nextbot.lua#L257
+	--- setVelocity - server - libs_sv/nextbot.lua#L261
 	---@param newvel Vector Velocity.
 	function _G.NextBot:setVelocity(newvel) end
-	--- setJumpGapsAllowed - server - libs_sv/nextbot.lua#L660
+	--- setJumpGapsAllowed - server - libs_sv/nextbot.lua#L664
 	---@param jumpgapsallowed boolean Whether this bot should be allowed to jump gaps.
 	function _G.NextBot:setJumpGapsAllowed(jumpgapsallowed) end
-	--- getRunAct - server - libs_sv/nextbot.lua#L229
+	--- getRunAct - server - libs_sv/nextbot.lua#L233
 	---@return number undefined The run activity.
 	function _G.NextBot:getRunAct() end
-	--- setStepHeight - server - libs_sv/nextbot.lua#L579
+	--- setStepHeight - server - libs_sv/nextbot.lua#L583
 	---@param stepheight number Height (default is 18)
 	function _G.NextBot:setStepHeight(stepheight) end
-	--- removeGotoPos - server - libs_sv/nextbot.lua#L173
+	--- removeGotoPos - server - libs_sv/nextbot.lua#L177
 	function _G.NextBot:removeGotoPos() end
-	--- getMaxYawRate - server - libs_sv/nextbot.lua#L525
+	--- getMaxYawRate - server - libs_sv/nextbot.lua#L529
 	---@param The number NextBot's max yaw rate.
 	function _G.NextBot:getMaxYawRate(The) end
-	--- getDeathDropHeight - server - libs_sv/nextbot.lua#L571
+	--- getDeathDropHeight - server - libs_sv/nextbot.lua#L575
 	---@return number undefined Height nextbot is afraid of.
 	function _G.NextBot:getDeathDropHeight() end
-	--- playSequence - server - libs_sv/nextbot.lua#L189
+	--- playSequence - server - libs_sv/nextbot.lua#L193
 	---@param seqtoplay string The name of the sequence to play.
 	function _G.NextBot:playSequence(seqtoplay) end
-	--- removeDeathCallback - server - libs_sv/nextbot.lua#L318
+	--- removeDeathCallback - server - libs_sv/nextbot.lua#L322
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeDeathCallback(callbackid) end
-	--- setGravity - server - libs_sv/nextbot.lua#L551
+	--- setGravity - server - libs_sv/nextbot.lua#L555
 	---@param newgravity number NB's new gravity. Default is 1000
 	function _G.NextBot:setGravity(newgravity) end
-	--- addLeaveGroundCallback - server - libs_sv/nextbot.lua#L372
+	--- addLeaveGroundCallback - server - libs_sv/nextbot.lua#L376
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB leaves the ground. The arguments are: (The entity the NB "jumped" from.)
 	function _G.NextBot:addLeaveGroundCallback(callbackid, callback) end
-	--- addInjuredCallback - server - libs_sv/nextbot.lua#L328
+	--- addInjuredCallback - server - libs_sv/nextbot.lua#L332
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB gets injured. The arguments are: (Damage, Attacker, Inflictor, Damage Pos, Damage Force, Damage Type)
 	function _G.NextBot:addInjuredCallback(callbackid, callback) end
-	--- removeNavChangeCallback - server - libs_sv/nextbot.lua#L428
+	--- removeNavChangeCallback - server - libs_sv/nextbot.lua#L432
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeNavChangeCallback(callbackid) end
-	--- jumpAcrossGap - server - libs_sv/nextbot.lua#L696
+	--- jumpAcrossGap - server - libs_sv/nextbot.lua#L700
 	---@param landGoal Vector The goal the nextbot should aim for.
 	---@param landForward Vector Presumably the direction vector the entity should be aiming in when landing.
 	function _G.NextBot:jumpAcrossGap(landGoal, landForward) end
-	--- addDeathCallback - server - libs_sv/nextbot.lua#L306
+	--- addDeathCallback - server - libs_sv/nextbot.lua#L310
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB dies. The arguments are: (Damage, Attacker, Inflictor, Damage Pos, Damage Force, Damage Type)
 	function _G.NextBot:addDeathCallback(callbackid, callback) end
-	--- setGotoPos - server - libs_sv/nextbot.lua#L159
+	--- setGotoPos - server - libs_sv/nextbot.lua#L163
 	---@param gotopos Vector The position the nextbot will continuosly try to go to.
 	function _G.NextBot:setGotoPos(gotopos) end
-	--- getVelocity - server - libs_sv/nextbot.lua#L266
+	--- getVelocity - server - libs_sv/nextbot.lua#L270
 	---@return Vector undefined NB's velocity.
 	function _G.NextBot:getVelocity() end
-	--- getAvoidAllowed - server - libs_sv/nextbot.lua#L634
+	--- getAvoidAllowed - server - libs_sv/nextbot.lua#L638
 	---@return boolean undefined Whether this bot is allowed to try to avoid obstacles.
 	function _G.NextBot:getAvoidAllowed() end
-	--- isAreaTraversable - server - libs_sv/nextbot.lua#L613
+	--- isAreaTraversable - server - libs_sv/nextbot.lua#L617
 	---@param NavArea NavArea to check.
 	---@return boolean undefined Whether this nextbot can traverse given NavArea.
 	function _G.NextBot:isAreaTraversable(NavArea) end
-	--- getJumpGapsAllowed - server - libs_sv/nextbot.lua#L670
+	--- getJumpGapsAllowed - server - libs_sv/nextbot.lua#L674
 	---@return boolean undefined Whether this bot is allowed to jump gaps.
 	function _G.NextBot:getJumpGapsAllowed() end
-	--- getGravity - server - libs_sv/nextbot.lua#L543
+	--- getGravity - server - libs_sv/nextbot.lua#L547
 	---@return number undefined The nextbot's current gravity value.
 	function _G.NextBot:getGravity() end
-	--- getClimbAllowed - server - libs_sv/nextbot.lua#L652
+	--- getClimbAllowed - server - libs_sv/nextbot.lua#L656
 	---@return boolean undefined Whether this bot is allowed to climb.
 	function _G.NextBot:getClimbAllowed() end
-	--- setClimbAllowed - server - libs_sv/nextbot.lua#L642
+	--- setClimbAllowed - server - libs_sv/nextbot.lua#L646
 	---@param climballowed boolean Whether this bot should be allowed to climb.
 	function _G.NextBot:setClimbAllowed(climballowed) end
-	--- setAvoidAllowed - server - libs_sv/nextbot.lua#L624
+	--- setAvoidAllowed - server - libs_sv/nextbot.lua#L628
 	---@param avoidallowed boolean Whether this bot should be allowed to try to avoid obstacles.
 	function _G.NextBot:setAvoidAllowed(avoidallowed) end
-	--- addLandCallback - server - libs_sv/nextbot.lua#L350
+	--- addLandCallback - server - libs_sv/nextbot.lua#L354
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB lands on the ground. The arguments are: (The entity the NB landed on.)
 	function _G.NextBot:addLandCallback(callbackid, callback) end
-	--- setJumpHeight - server - libs_sv/nextbot.lua#L678
+	--- setJumpHeight - server - libs_sv/nextbot.lua#L682
 	---@param jumpheight number Height (default is 58)
 	function _G.NextBot:setJumpHeight(jumpheight) end
-	--- isOnGround - server - libs_sv/nextbot.lua#L605
+	--- isOnGround - server - libs_sv/nextbot.lua#L609
 	---@return boolean undefined Whether the nextbot is on ground or not.
 	function _G.NextBot:isOnGround() end
-	--- addNavChangeCallback - server - libs_sv/nextbot.lua#L416
+	--- addNavChangeCallback - server - libs_sv/nextbot.lua#L420
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB enters a new nav area. The arguments are: (Old Nav Area, New Nav Area)
 	function _G.NextBot:addNavChangeCallback(callbackid, callback) end
-	--- getGroundMotionVector - server - libs_sv/nextbot.lua#L597
+	--- getGroundMotionVector - server - libs_sv/nextbot.lua#L601
 	---@return Vector undefined A vector representing the X and Y movement.
 	function _G.NextBot:getGroundMotionVector() end
-	--- getJumpHeight - server - libs_sv/nextbot.lua#L688
+	--- getJumpHeight - server - libs_sv/nextbot.lua#L692
 	---@return number undefined Jump height
 	function _G.NextBot:getJumpHeight() end
-	--- setDeathDropHeight - server - libs_sv/nextbot.lua#L561
+	--- setDeathDropHeight - server - libs_sv/nextbot.lua#L565
 	---@param newdeathdropheight number New height nextbot is afraid of. Default is 200.
 	function _G.NextBot:setDeathDropHeight(newdeathdropheight) end
-	--- addIgniteCallback - server - libs_sv/nextbot.lua#L394
+	--- addIgniteCallback - server - libs_sv/nextbot.lua#L398
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB gets ignited.
 	function _G.NextBot:addIgniteCallback(callbackid, callback) end
-	--- setMaxYawRate - server - libs_sv/nextbot.lua#L533
+	--- setMaxYawRate - server - libs_sv/nextbot.lua#L537
 	---@param newmaxyawrate number Desired new maximum yaw rate
 	function _G.NextBot:setMaxYawRate(newmaxyawrate) end
-	--- getDeceleration - server - libs_sv/nextbot.lua#L517
+	--- getDeceleration - server - libs_sv/nextbot.lua#L521
 	---@return number undefined NB's deceleration value.
 	function _G.NextBot:getDeceleration() end
-	--- ragdollOnDeath - server - libs_sv/nextbot.lua#L460
+	--- ragdollOnDeath - server - libs_sv/nextbot.lua#L464
 	---@param ragdollondeath boolean Whether the nextbot should ragdoll on death.
 	function _G.NextBot:ragdollOnDeath(ragdollondeath) end
-	--- setDeceleration - server - libs_sv/nextbot.lua#L507
+	--- setDeceleration - server - libs_sv/nextbot.lua#L511
 	---@param newaccel number NB's new deceleration. Default is 400
 	function _G.NextBot:setDeceleration(newaccel) end
-	--- removeInjuredCallback - server - libs_sv/nextbot.lua#L340
+	--- removeInjuredCallback - server - libs_sv/nextbot.lua#L344
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeInjuredCallback(callbackid) end
-	--- getMoveSpeed - server - libs_sv/nextbot.lua#L481
+	--- getMoveSpeed - server - libs_sv/nextbot.lua#L485
 	---@return number undefined NB's move speed.
 	function _G.NextBot:getMoveSpeed() end
-	--- setMoveSpeed - server - libs_sv/nextbot.lua#L470
+	--- setMoveSpeed - server - libs_sv/nextbot.lua#L474
 	---@param newmovespeed number NB's new move speed. Default is 200.
 	function _G.NextBot:setMoveSpeed(newmovespeed) end
-	--- getAcceleration - server - libs_sv/nextbot.lua#L499
+	--- getAcceleration - server - libs_sv/nextbot.lua#L503
 	---@return number undefined NB's acceleration value.
 	function _G.NextBot:getAcceleration() end
-	--- faceTowards - server - libs_sv/nextbot.lua#L208
+	--- faceTowards - server - libs_sv/nextbot.lua#L212
 	---@param facepos Vector Position to face towards.
 	function _G.NextBot:faceTowards(facepos) end
-	--- removeIgniteCallback - server - libs_sv/nextbot.lua#L406
+	--- removeIgniteCallback - server - libs_sv/nextbot.lua#L410
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeIgniteCallback(callbackid) end
-	--- jump - server - libs_sv/nextbot.lua#L274
+	--- jump - server - libs_sv/nextbot.lua#L278
 	---@param jumpAct number? The activity ID of the anim to play when jumping.
 	function _G.NextBot:jump(jumpAct) end
-	--- setAcceleration - server - libs_sv/nextbot.lua#L489
+	--- setAcceleration - server - libs_sv/nextbot.lua#L493
 	---@param newaccel number NB's new acceleration. Default is 400
 	function _G.NextBot:setAcceleration(newaccel) end
-	--- setApproachPos - server - libs_sv/nextbot.lua#L128
+	--- setApproachPos - server - libs_sv/nextbot.lua#L132
 	---@param pos Vector The vector we want to get to.
 	function _G.NextBot:setApproachPos(pos) end
-	--- getApproachPos - server - libs_sv/nextbot.lua#L151
+	--- getApproachPos - server - libs_sv/nextbot.lua#L155
 	---@return Vector? undefined Where the nextbot is trying to go to if it exists, else returns nil.
 	function _G.NextBot:getApproachPos() end
-	--- addContactCallback - server - libs_sv/nextbot.lua#L438
+	--- addContactCallback - server - libs_sv/nextbot.lua#L442
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback fun(ent: Entity) The function to run when the NB touches another entity. The arguments are: (The entity the NB touched.)
 	function _G.NextBot:addContactCallback(callbackid, callback) end
-	--- removeContactCallback - server - libs_sv/nextbot.lua#L450
+	--- removeContactCallback - server - libs_sv/nextbot.lua#L454
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeContactCallback(callbackid) end
-	--- removeReachCallback - server - libs_sv/nextbot.lua#L296
+	--- removeReachCallback - server - libs_sv/nextbot.lua#L300
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeReachCallback(callbackid) end
-	--- startActivity - server - libs_sv/nextbot.lua#L199
+	--- startActivity - server - libs_sv/nextbot.lua#L203
 	---@param act number The ACT enum to play.
 	function _G.NextBot:startActivity(act) end
-	--- removeLandCallback - server - libs_sv/nextbot.lua#L362
+	--- removeLandCallback - server - libs_sv/nextbot.lua#L366
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeLandCallback(callbackid) end
-	--- addReachCallback - server - libs_sv/nextbot.lua#L284
+	--- addReachCallback - server - libs_sv/nextbot.lua#L288
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB reaches its destination.
 	function _G.NextBot:addReachCallback(callbackid, callback) end
-	--- getStepHeight - server - libs_sv/nextbot.lua#L589
+	--- getStepHeight - server - libs_sv/nextbot.lua#L593
 	---@return number undefined The max height the bot can step up.
 	function _G.NextBot:getStepHeight() end
-	--- removeLeaveGroundCallback - server - libs_sv/nextbot.lua#L384
+	--- removeLeaveGroundCallback - server - libs_sv/nextbot.lua#L388
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeLeaveGroundCallback(callbackid) end
-	--- getGotoPos - server - libs_sv/nextbot.lua#L181
+	--- getGotoPos - server - libs_sv/nextbot.lua#L185
 	---@return Vector? undefined Where the nextbot is trying to go to if it exists, else returns nil.
 	function _G.NextBot:getGotoPos() end
-	--- getIdleAct - server - libs_sv/nextbot.lua#L249
+	--- getIdleAct - server - libs_sv/nextbot.lua#L253
 	---@return number undefined The idle activity.
 	function _G.NextBot:getIdleAct() end
-	--- setIdleAct - server - libs_sv/nextbot.lua#L237
+	--- setIdleAct - server - libs_sv/nextbot.lua#L241
 	---@param runact number The activity the nextbot will use.
 	function _G.NextBot:setIdleAct(runact) end
 ---  Vector2 type for wire xv2

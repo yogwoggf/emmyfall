@@ -3055,20 +3055,22 @@ _G.mesh = {}
 	---@param inverted boolean? Optional bool, invert the normal
 	---@param smooth_limit number? Optional number, smooths the normal based on the limit in radians
 	function _G.mesh.generateNormals(vertices, inverted, smooth_limit) end
-	--- advanceVertex - client - libs_sh/mesh.lua#L1118
+	--- advanceVertex - client - libs_sh/mesh.lua#L1120
 	function _G.mesh.advanceVertex() end
-	--- writeQuadEasy - client - libs_sh/mesh.lua#L1108
+	--- writeQuadEasy - client - libs_sh/mesh.lua#L1109
 	---@param position Vector 
 	---@param normal Vector 
 	---@param w number 
 	---@param h number 
-	function _G.mesh.writeQuadEasy(position, normal, w, h) end
+	---@param col Color The color for the vertices.
+	function _G.mesh.writeQuadEasy(position, normal, w, h, col) end
 	--- writeQuad - client - libs_sh/mesh.lua#L1098
 	---@param v1 Vector Vertex1 position
 	---@param v2 Vector Vertex2 position
 	---@param v3 Vector Vertex3 position
 	---@param v4 Vector Vertex4 position
-	function _G.mesh.writeQuad(v1, v2, v3, v4) end
+	---@param col Color The color for the vertices.
+	function _G.mesh.writeQuad(v1, v2, v3, v4, col) end
 	--- generateTangents - shared - libs_sh/mesh.lua#L747
 	---@param vertices table The table of vertices
 	function _G.mesh.generateTangents(vertices) end
@@ -9731,9 +9733,9 @@ _G.Entity = {}
 ---  Mesh type
 ---@class Mesh
 _G.Mesh = {}
-	--- destroy - client - libs_sh/mesh.lua#L1135
+	--- destroy - client - libs_sh/mesh.lua#L1137
 	function _G.Mesh:destroy() end
-	--- draw - client - libs_sh/mesh.lua#L1124
+	--- draw - client - libs_sh/mesh.lua#L1126
 	function _G.Mesh:draw() end
 ---  Player type
 ---@class Player

@@ -10176,39 +10176,45 @@ _G.Material = {}
 ---  Npc type
 ---@class Npc
 _G.Npc = {}
-	--- stop - server - libs_sh/npc.lua#L127
-	function _G.Npc:stop() end
-	--- goRun - server - libs_sh/npc.lua#L161
+	--- setEnemy - server - libs_sh/npc.lua#L142
+	---@param ent Entity Target entity
+	function _G.Npc:setEnemy(ent) end
+	--- goRun - server - libs_sh/npc.lua#L192
 	---@param vec Vector The position of the destination
 	function _G.Npc:goRun(vec) end
-	--- getEnemy - server - libs_sh/npc.lua#L120
+	--- getEnemy - server - libs_sh/npc.lua#L151
 	---@return Entity undefined Entity the npc is fighting
 	function _G.Npc:getEnemy() end
-	--- addRelationship - server - libs_sh/npc.lua#L50
+	--- addRelationship - server - libs_sh/npc.lua#L81
 	---@param str string The relationship string. http://wiki.facepunch.com/gmod/NPC:AddRelationship
 	function _G.Npc:addRelationship(str) end
-	--- giveWeapon - server - libs_sh/npc.lua#L93
-	---@param wep string The classname of the weapon
-	function _G.Npc:giveWeapon(wep) end
-	--- attackMelee - server - libs_sh/npc.lua#L135
-	function _G.Npc:attackMelee() end
-	--- goWalk - server - libs_sh/npc.lua#L151
+	--- goWalk - server - libs_sh/npc.lua#L182
 	---@param vec Vector The position of the destination
 	function _G.Npc:goWalk(vec) end
-	--- attackRange - server - libs_sh/npc.lua#L143
+	--- isLagCompensated - server - libs_sh/npc.lua#L74
+	---@return boolean undefined Whether the npc is lag compensated
+	function _G.Npc:isLagCompensated() end
+	--- attackMelee - server - libs_sh/npc.lua#L166
+	function _G.Npc:attackMelee() end
+	--- attackRange - server - libs_sh/npc.lua#L174
 	function _G.Npc:attackRange() end
-	--- getRelationship - server - libs_sh/npc.lua#L85
+	--- setLagCompensated - server - libs_sh/npc.lua#L58
+	---@param compensate boolean Whether to make an npc's hitboxes compensate lag
+	function _G.Npc:setLagCompensated(compensate) end
+	--- stop - server - libs_sh/npc.lua#L158
+	function _G.Npc:stop() end
+	--- getRelationship - server - libs_sh/npc.lua#L116
 	---@param ent Entity Target entity
 	---@return string undefined Relationship of the npc with the target
 	function _G.Npc:getRelationship(ent) end
-	--- addEntityRelationship - server - libs_sh/npc.lua#L71
+	--- addEntityRelationship - server - libs_sh/npc.lua#L102
 	---@param ent Entity The target entity
 	---@param disp string String of the relationship. ("hate", "fear", "like", "neutral")
 	---@param priority number How strong the relationship is. Higher number is stronger
 	function _G.Npc:addEntityRelationship(ent, disp, priority) end
-	--- setEnemy - server - libs_sh/npc.lua#L111
-	---@param ent Entity Target entity
-	function _G.Npc:setEnemy(ent) end
+	--- giveWeapon - server - libs_sh/npc.lua#L124
+	---@param wep string The classname of the weapon
+	function _G.Npc:giveWeapon(wep) end
 ---  Color type
 ---@class Color
 ---@operator mul(number|Color):Color

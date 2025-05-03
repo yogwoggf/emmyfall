@@ -2465,63 +2465,63 @@ _G.convar = {}
 --- input
 ---  Input library.
 _G.input = {}
-	--- getAnalogValue - client - libs_sh/input.lua#L401
+	--- getAnalogValue - client - libs_sh/input.lua#L402
 	---@param axis number The analog axis to poll. See https://wiki.facepunch.com/gmod/Enums/ANALOG
 	---@return number undefined The digital value.
 	function _G.input.getAnalogValue(axis) end
-	--- lookupKeyBinding - client - libs_sh/input.lua#L237
+	--- lookupKeyBinding - client - libs_sh/input.lua#L238
 	---@param key number The key id, see input
 	---@return string undefined The command bound to the key
 	function _G.input.lookupKeyBinding(key) end
-	--- lockControls - client - libs_sh/input.lua#L358
+	--- lockControls - client - libs_sh/input.lua#L359
 	---@param enabled boolean Whether to lock or unlock the controls
 	function _G.input.lockControls(enabled) end
-	--- getKeyName - client - libs_sh/input.lua#L272
+	--- getKeyName - client - libs_sh/input.lua#L273
 	---@param key number The key id, see input
 	---@return string undefined The name of the key
 	function _G.input.getKeyName(key) end
-	--- getCursorVisible - client - libs_sh/input.lua#L312
+	--- getCursorVisible - client - libs_sh/input.lua#L313
 	---@return boolean undefined The cursor's visibility
 	function _G.input.getCursorVisible() end
-	--- selectWeapon - client - libs_sh/input.lua#L348
+	--- selectWeapon - client - libs_sh/input.lua#L349
 	---@param weapon Weapon The weapon entity to select
 	function _G.input.selectWeapon(weapon) end
-	--- isControlDown - client - libs_sh/input.lua#L293
+	--- isControlDown - client - libs_sh/input.lua#L294
 	---@return boolean undefined True if the control key is down
 	function _G.input.isControlDown() end
-	--- isControlLocked - client - libs_sh/input.lua#L380
+	--- isControlLocked - client - libs_sh/input.lua#L381
 	---@return boolean undefined Whether the player's control is locked
 	function _G.input.isControlLocked() end
-	--- isKeyDown - client - libs_sh/input.lua#L247
+	--- isKeyDown - client - libs_sh/input.lua#L248
 	---@param key number The key id, see input
 	---@return boolean undefined True if the key is down
 	function _G.input.isKeyDown(key) end
-	--- enableCursor - client - libs_sh/input.lua#L333
+	--- enableCursor - client - libs_sh/input.lua#L334
 	---@param enabled boolean Whether or not the cursor should be enabled
 	function _G.input.enableCursor(enabled) end
-	--- isGameUIVisible - client - libs_sh/input.lua#L394
+	--- isGameUIVisible - client - libs_sh/input.lua#L395
 	---@return boolean undefined Whether the game menu overlay ( main menu ) is open or not
 	function _G.input.isGameUIVisible() end
-	--- screenToVector - client - libs_sh/input.lua#L321
+	--- screenToVector - client - libs_sh/input.lua#L322
 	---@param x number X coordinate on the screen
 	---@param y number Y coordinate on the screen
 	---@return Vector undefined Aim vector
 	function _G.input.screenToVector(x, y) end
-	--- getCursorPos - client - libs_sh/input.lua#L302
+	--- getCursorPos - client - libs_sh/input.lua#L303
 	---@return number undefined The x position of the mouse
 	---@return number undefined The y position of the mouse
 	function _G.input.getCursorPos() end
-	--- isShiftDown - client - libs_sh/input.lua#L284
+	--- isShiftDown - client - libs_sh/input.lua#L285
 	---@return boolean undefined True if the shift key is down
 	function _G.input.isShiftDown() end
-	--- canLockControls - client - libs_sh/input.lua#L387
+	--- canLockControls - client - libs_sh/input.lua#L388
 	---@return boolean undefined Whether the player's control can be locked
 	function _G.input.canLockControls() end
-	--- isMouseDown - client - libs_sh/input.lua#L260
+	--- isMouseDown - client - libs_sh/input.lua#L261
 	---@param key number The mouse button id, see input
 	---@return boolean undefined True if the key is down
 	function _G.input.isMouseDown(key) end
-	--- lookupBinding - client - libs_sh/input.lua#L219
+	--- lookupBinding - client - libs_sh/input.lua#L220
 	---@param binding string The name of the bind
 	---@return number undefined The id of the first key bound
 	---@return string undefined The name of the first key bound

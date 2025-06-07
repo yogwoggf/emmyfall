@@ -1789,6 +1789,14 @@ _G.prop = {}
 --- 
 ---  
 --- 
+---  > gmod_wire_plug
+--- 
+---  boolean ArrayInput = false
+--- 
+---  string Model = "models/props_lab/tpplugholder_single.mdl"
+--- 
+---  
+--- 
 ---  > gmod_wire_pod
 --- 
 ---  string Model = "models/jaanus/wiretool/wiretool_siren.mdl"
@@ -2283,10 +2291,10 @@ _G.prop = {}
 --- 
 ---  
 _G.prop.SENT_Data_Structures = {
-}	--- spawnRate - server - libs_sv/prop.lua#L695
+}	--- spawnRate - server - libs_sv/prop.lua#L696
 	---@return number undefined Number of props per second the user can spawn
 	function _G.prop.spawnRate() end
-	--- setPropUndo - server - libs_sv/prop.lua#L724
+	--- setPropUndo - server - libs_sv/prop.lua#L725
 	---@param on boolean Whether the props should be undo-able
 	function _G.prop.setPropUndo(on) end
 	--- create - server - libs_sv/prop.lua#L54
@@ -2296,7 +2304,7 @@ _G.prop.SENT_Data_Structures = {
 	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@return Entity undefined The prop object
 	function _G.prop.create(pos, ang, model, frozen) end
-	--- getPropClean - server - libs_sv/prop.lua#L702
+	--- getPropClean - server - libs_sv/prop.lua#L703
 	---@return boolean undefined Determines whether props will be cleaned
 	function _G.prop.getPropClean() end
 	--- createSeat - server - libs_sv/prop.lua#L355
@@ -2306,7 +2314,7 @@ _G.prop.SENT_Data_Structures = {
 	---@param frozen boolean? True to spawn the entity in a frozen state. Default = False
 	---@return Entity undefined The seat object
 	function _G.prop.createSeat(pos, ang, model, frozen) end
-	--- propsLeft - server - libs_sv/prop.lua#L687
+	--- propsLeft - server - libs_sv/prop.lua#L688
 	---@return number undefined Number of props able to be spawned
 	function _G.prop.propsLeft() end
 	--- createCustom - server - libs_sv/prop.lua#L158
@@ -2324,7 +2332,7 @@ _G.prop.SENT_Data_Structures = {
 	--- manipulateBonesLeft - server - libs_sh/entities.lua#L383
 	---@return number undefined Amount of manipulate bones calls remaining
 	function _G.prop.manipulateBonesLeft() end
-	--- createSent - server - libs_sv/prop.lua#L413
+	--- createSent - server - libs_sv/prop.lua#L419
 	---@param pos Vector Position of created sent
 	---@param ang Angle Angle of created sent
 	---@param class string Class of created sent
@@ -2346,17 +2354,17 @@ _G.prop.SENT_Data_Structures = {
 	--- manipulateBonesRate - server - libs_sh/entities.lua#L390
 	---@return number undefined Number of props per second the user can spawn
 	function _G.prop.manipulateBonesRate() end
-	--- setPropClean - server - libs_sv/prop.lua#L716
+	--- setPropClean - server - libs_sv/prop.lua#L717
 	---@param on boolean Whether the props should be cleaned or not
 	function _G.prop.setPropClean(on) end
-	--- canSpawn - server - libs_sv/prop.lua#L679
+	--- canSpawn - server - libs_sv/prop.lua#L680
 	---@return boolean undefined True if user can spawn props, False if not.
 	function _G.prop.canSpawn() end
 	--- getSpawnableSents - server - libs_sv/prop.lua#L324
 	---@param categorized boolean? True to get an categorized list
 	---@return table undefined The table
 	function _G.prop.getSpawnableSents(categorized) end
-	--- getPropUndo - server - libs_sv/prop.lua#L709
+	--- getPropUndo - server - libs_sv/prop.lua#L710
 	---@return boolean undefined Determines whether props are undo-able
 	function _G.prop.getPropUndo() end
 --- von
@@ -2374,7 +2382,7 @@ _G.von = {}
 --- nextbot
 ---  Library for spawning NextBots.
 _G.nextbot = {}
-	--- canSpawn - server - libs_sv/nextbot.lua#L124
+	--- canSpawn - server - libs_sv/nextbot.lua#L131
 	---@return boolean undefined True if user can spawn nextbots, False if not.
 	function _G.nextbot.canSpawn() end
 	--- create - server - libs_sv/nextbot.lua#L86
@@ -2382,7 +2390,7 @@ _G.nextbot = {}
 	---@param model string The model the nextbot will use.
 	---@return NextBot undefined The nextbot.
 	function _G.nextbot.create(spawnpos, model) end
-	--- remove - server - libs_sv/nextbot.lua#L117
+	--- remove - server - libs_sv/nextbot.lua#L124
 	function _G.nextbot.remove() end
 --- net
 ---  Net message library. Used for sending data from the server to the client and back
@@ -4647,9 +4655,9 @@ _G.effect = {}
 --- hologram
 ---  Library for creating and manipulating physics-less models AKA "Holograms".
 _G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L559
+	--- removeAll - shared - libs_sh/hologram.lua#L564
 	function _G.hologram.removeAll() end
-	--- canSpawn - shared - libs_sh/hologram.lua#L148
+	--- canSpawn - shared - libs_sh/hologram.lua#L153
 	---@return boolean undefined True if user can spawn holograms, False if not.
 	function _G.hologram.canSpawn() end
 	--- create - shared - libs_sh/hologram.lua#L102
@@ -4659,7 +4667,7 @@ _G.hologram = {}
 	---@param scale Vector? (Optional) The scale to give the hologram
 	---@return Hologram? undefined The hologram object or nil if it failed to create
 	function _G.hologram.create(pos, ang, model, scale) end
-	--- hologramsLeft - shared - libs_sh/hologram.lua#L155
+	--- hologramsLeft - shared - libs_sh/hologram.lua#L160
 	---@return number undefined Number of holograms able to be spawned
 	function _G.hologram.hologramsLeft() end
 --- navmesh
@@ -7281,189 +7289,189 @@ _G.NavArea = {}
 ---  NextBot type
 ---@class NextBot
 _G.NextBot = {}
-	--- removeApproachPos - server - libs_sv/nextbot.lua#L147
+	--- removeApproachPos - server - libs_sv/nextbot.lua#L154
 	function _G.NextBot:removeApproachPos() end
-	--- setRunAct - server - libs_sv/nextbot.lua#L221
+	--- setRunAct - server - libs_sv/nextbot.lua#L228
 	---@param runact number The activity the nextbot will use.
 	function _G.NextBot:setRunAct(runact) end
-	--- setVelocity - server - libs_sv/nextbot.lua#L261
+	--- setVelocity - server - libs_sv/nextbot.lua#L268
 	---@param newvel Vector Velocity.
 	function _G.NextBot:setVelocity(newvel) end
-	--- setJumpGapsAllowed - server - libs_sv/nextbot.lua#L664
+	--- setJumpGapsAllowed - server - libs_sv/nextbot.lua#L671
 	---@param jumpgapsallowed boolean Whether this bot should be allowed to jump gaps.
 	function _G.NextBot:setJumpGapsAllowed(jumpgapsallowed) end
-	--- getRunAct - server - libs_sv/nextbot.lua#L233
+	--- getRunAct - server - libs_sv/nextbot.lua#L240
 	---@return number undefined The run activity.
 	function _G.NextBot:getRunAct() end
-	--- setStepHeight - server - libs_sv/nextbot.lua#L583
+	--- setStepHeight - server - libs_sv/nextbot.lua#L590
 	---@param stepheight number Height (default is 18)
 	function _G.NextBot:setStepHeight(stepheight) end
-	--- removeGotoPos - server - libs_sv/nextbot.lua#L177
+	--- removeGotoPos - server - libs_sv/nextbot.lua#L184
 	function _G.NextBot:removeGotoPos() end
-	--- getMaxYawRate - server - libs_sv/nextbot.lua#L529
+	--- getMaxYawRate - server - libs_sv/nextbot.lua#L536
 	---@param The number NextBot's max yaw rate.
 	function _G.NextBot:getMaxYawRate(The) end
-	--- getDeathDropHeight - server - libs_sv/nextbot.lua#L575
+	--- getDeathDropHeight - server - libs_sv/nextbot.lua#L582
 	---@return number undefined Height nextbot is afraid of.
 	function _G.NextBot:getDeathDropHeight() end
-	--- playSequence - server - libs_sv/nextbot.lua#L193
+	--- playSequence - server - libs_sv/nextbot.lua#L200
 	---@param seqtoplay string The name of the sequence to play.
 	function _G.NextBot:playSequence(seqtoplay) end
-	--- removeDeathCallback - server - libs_sv/nextbot.lua#L322
+	--- removeDeathCallback - server - libs_sv/nextbot.lua#L329
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeDeathCallback(callbackid) end
-	--- setGravity - server - libs_sv/nextbot.lua#L555
+	--- setGravity - server - libs_sv/nextbot.lua#L562
 	---@param newgravity number NB's new gravity. Default is 1000
 	function _G.NextBot:setGravity(newgravity) end
-	--- addLeaveGroundCallback - server - libs_sv/nextbot.lua#L376
+	--- addLeaveGroundCallback - server - libs_sv/nextbot.lua#L383
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB leaves the ground. The arguments are: (The entity the NB "jumped" from.)
 	function _G.NextBot:addLeaveGroundCallback(callbackid, callback) end
-	--- addInjuredCallback - server - libs_sv/nextbot.lua#L332
+	--- addInjuredCallback - server - libs_sv/nextbot.lua#L339
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB gets injured. The arguments are: (Damage, Attacker, Inflictor, Damage Pos, Damage Force, Damage Type)
 	function _G.NextBot:addInjuredCallback(callbackid, callback) end
-	--- removeNavChangeCallback - server - libs_sv/nextbot.lua#L432
+	--- removeNavChangeCallback - server - libs_sv/nextbot.lua#L439
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeNavChangeCallback(callbackid) end
-	--- jumpAcrossGap - server - libs_sv/nextbot.lua#L700
+	--- jumpAcrossGap - server - libs_sv/nextbot.lua#L707
 	---@param landGoal Vector The goal the nextbot should aim for.
 	---@param landForward Vector Presumably the direction vector the entity should be aiming in when landing.
 	function _G.NextBot:jumpAcrossGap(landGoal, landForward) end
-	--- addDeathCallback - server - libs_sv/nextbot.lua#L310
+	--- addDeathCallback - server - libs_sv/nextbot.lua#L317
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB dies. The arguments are: (Damage, Attacker, Inflictor, Damage Pos, Damage Force, Damage Type)
 	function _G.NextBot:addDeathCallback(callbackid, callback) end
-	--- setGotoPos - server - libs_sv/nextbot.lua#L163
+	--- setGotoPos - server - libs_sv/nextbot.lua#L170
 	---@param gotopos Vector The position the nextbot will continuosly try to go to.
 	function _G.NextBot:setGotoPos(gotopos) end
-	--- getVelocity - server - libs_sv/nextbot.lua#L270
+	--- getVelocity - server - libs_sv/nextbot.lua#L277
 	---@return Vector undefined NB's velocity.
 	function _G.NextBot:getVelocity() end
-	--- getAvoidAllowed - server - libs_sv/nextbot.lua#L638
+	--- getAvoidAllowed - server - libs_sv/nextbot.lua#L645
 	---@return boolean undefined Whether this bot is allowed to try to avoid obstacles.
 	function _G.NextBot:getAvoidAllowed() end
-	--- isAreaTraversable - server - libs_sv/nextbot.lua#L617
+	--- isAreaTraversable - server - libs_sv/nextbot.lua#L624
 	---@param NavArea NavArea to check.
 	---@return boolean undefined Whether this nextbot can traverse given NavArea.
 	function _G.NextBot:isAreaTraversable(NavArea) end
-	--- getJumpGapsAllowed - server - libs_sv/nextbot.lua#L674
+	--- getJumpGapsAllowed - server - libs_sv/nextbot.lua#L681
 	---@return boolean undefined Whether this bot is allowed to jump gaps.
 	function _G.NextBot:getJumpGapsAllowed() end
-	--- getGravity - server - libs_sv/nextbot.lua#L547
+	--- getGravity - server - libs_sv/nextbot.lua#L554
 	---@return number undefined The nextbot's current gravity value.
 	function _G.NextBot:getGravity() end
-	--- getClimbAllowed - server - libs_sv/nextbot.lua#L656
+	--- getClimbAllowed - server - libs_sv/nextbot.lua#L663
 	---@return boolean undefined Whether this bot is allowed to climb.
 	function _G.NextBot:getClimbAllowed() end
-	--- setClimbAllowed - server - libs_sv/nextbot.lua#L646
+	--- setClimbAllowed - server - libs_sv/nextbot.lua#L653
 	---@param climballowed boolean Whether this bot should be allowed to climb.
 	function _G.NextBot:setClimbAllowed(climballowed) end
-	--- setAvoidAllowed - server - libs_sv/nextbot.lua#L628
+	--- setAvoidAllowed - server - libs_sv/nextbot.lua#L635
 	---@param avoidallowed boolean Whether this bot should be allowed to try to avoid obstacles.
 	function _G.NextBot:setAvoidAllowed(avoidallowed) end
-	--- addLandCallback - server - libs_sv/nextbot.lua#L354
+	--- addLandCallback - server - libs_sv/nextbot.lua#L361
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB lands on the ground. The arguments are: (The entity the NB landed on.)
 	function _G.NextBot:addLandCallback(callbackid, callback) end
-	--- setJumpHeight - server - libs_sv/nextbot.lua#L682
+	--- setJumpHeight - server - libs_sv/nextbot.lua#L689
 	---@param jumpheight number Height (default is 58)
 	function _G.NextBot:setJumpHeight(jumpheight) end
-	--- isOnGround - server - libs_sv/nextbot.lua#L609
+	--- isOnGround - server - libs_sv/nextbot.lua#L616
 	---@return boolean undefined Whether the nextbot is on ground or not.
 	function _G.NextBot:isOnGround() end
-	--- addNavChangeCallback - server - libs_sv/nextbot.lua#L420
+	--- addNavChangeCallback - server - libs_sv/nextbot.lua#L427
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB enters a new nav area. The arguments are: (Old Nav Area, New Nav Area)
 	function _G.NextBot:addNavChangeCallback(callbackid, callback) end
-	--- getGroundMotionVector - server - libs_sv/nextbot.lua#L601
+	--- getGroundMotionVector - server - libs_sv/nextbot.lua#L608
 	---@return Vector undefined A vector representing the X and Y movement.
 	function _G.NextBot:getGroundMotionVector() end
-	--- getJumpHeight - server - libs_sv/nextbot.lua#L692
+	--- getJumpHeight - server - libs_sv/nextbot.lua#L699
 	---@return number undefined Jump height
 	function _G.NextBot:getJumpHeight() end
-	--- setDeathDropHeight - server - libs_sv/nextbot.lua#L565
+	--- setDeathDropHeight - server - libs_sv/nextbot.lua#L572
 	---@param newdeathdropheight number New height nextbot is afraid of. Default is 200.
 	function _G.NextBot:setDeathDropHeight(newdeathdropheight) end
-	--- addIgniteCallback - server - libs_sv/nextbot.lua#L398
+	--- addIgniteCallback - server - libs_sv/nextbot.lua#L405
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB gets ignited.
 	function _G.NextBot:addIgniteCallback(callbackid, callback) end
-	--- setMaxYawRate - server - libs_sv/nextbot.lua#L537
+	--- setMaxYawRate - server - libs_sv/nextbot.lua#L544
 	---@param newmaxyawrate number Desired new maximum yaw rate
 	function _G.NextBot:setMaxYawRate(newmaxyawrate) end
-	--- getDeceleration - server - libs_sv/nextbot.lua#L521
+	--- getDeceleration - server - libs_sv/nextbot.lua#L528
 	---@return number undefined NB's deceleration value.
 	function _G.NextBot:getDeceleration() end
-	--- ragdollOnDeath - server - libs_sv/nextbot.lua#L464
+	--- ragdollOnDeath - server - libs_sv/nextbot.lua#L471
 	---@param ragdollondeath boolean Whether the nextbot should ragdoll on death.
 	function _G.NextBot:ragdollOnDeath(ragdollondeath) end
-	--- setDeceleration - server - libs_sv/nextbot.lua#L511
+	--- setDeceleration - server - libs_sv/nextbot.lua#L518
 	---@param newaccel number NB's new deceleration. Default is 400
 	function _G.NextBot:setDeceleration(newaccel) end
-	--- removeInjuredCallback - server - libs_sv/nextbot.lua#L344
+	--- removeInjuredCallback - server - libs_sv/nextbot.lua#L351
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeInjuredCallback(callbackid) end
-	--- getMoveSpeed - server - libs_sv/nextbot.lua#L485
+	--- getMoveSpeed - server - libs_sv/nextbot.lua#L492
 	---@return number undefined NB's move speed.
 	function _G.NextBot:getMoveSpeed() end
-	--- setMoveSpeed - server - libs_sv/nextbot.lua#L474
+	--- setMoveSpeed - server - libs_sv/nextbot.lua#L481
 	---@param newmovespeed number NB's new move speed. Default is 200.
 	function _G.NextBot:setMoveSpeed(newmovespeed) end
-	--- getAcceleration - server - libs_sv/nextbot.lua#L503
+	--- getAcceleration - server - libs_sv/nextbot.lua#L510
 	---@return number undefined NB's acceleration value.
 	function _G.NextBot:getAcceleration() end
-	--- faceTowards - server - libs_sv/nextbot.lua#L212
+	--- faceTowards - server - libs_sv/nextbot.lua#L219
 	---@param facepos Vector Position to face towards.
 	function _G.NextBot:faceTowards(facepos) end
-	--- removeIgniteCallback - server - libs_sv/nextbot.lua#L410
+	--- removeIgniteCallback - server - libs_sv/nextbot.lua#L417
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeIgniteCallback(callbackid) end
-	--- jump - server - libs_sv/nextbot.lua#L278
+	--- jump - server - libs_sv/nextbot.lua#L285
 	---@param jumpAct number? The activity ID of the anim to play when jumping.
 	function _G.NextBot:jump(jumpAct) end
-	--- setAcceleration - server - libs_sv/nextbot.lua#L493
+	--- setAcceleration - server - libs_sv/nextbot.lua#L500
 	---@param newaccel number NB's new acceleration. Default is 400
 	function _G.NextBot:setAcceleration(newaccel) end
-	--- setApproachPos - server - libs_sv/nextbot.lua#L132
+	--- setApproachPos - server - libs_sv/nextbot.lua#L139
 	---@param pos Vector The vector we want to get to.
 	function _G.NextBot:setApproachPos(pos) end
-	--- getApproachPos - server - libs_sv/nextbot.lua#L155
+	--- getApproachPos - server - libs_sv/nextbot.lua#L162
 	---@return Vector? undefined Where the nextbot is trying to go to if it exists, else returns nil.
 	function _G.NextBot:getApproachPos() end
-	--- addContactCallback - server - libs_sv/nextbot.lua#L442
+	--- addContactCallback - server - libs_sv/nextbot.lua#L449
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback fun(ent: Entity) The function to run when the NB touches another entity. The arguments are: (The entity the NB touched.)
 	function _G.NextBot:addContactCallback(callbackid, callback) end
-	--- removeContactCallback - server - libs_sv/nextbot.lua#L454
+	--- removeContactCallback - server - libs_sv/nextbot.lua#L461
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeContactCallback(callbackid) end
-	--- removeReachCallback - server - libs_sv/nextbot.lua#L300
+	--- removeReachCallback - server - libs_sv/nextbot.lua#L307
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeReachCallback(callbackid) end
-	--- startActivity - server - libs_sv/nextbot.lua#L203
+	--- startActivity - server - libs_sv/nextbot.lua#L210
 	---@param act number The ACT enum to play.
 	function _G.NextBot:startActivity(act) end
-	--- removeLandCallback - server - libs_sv/nextbot.lua#L366
+	--- removeLandCallback - server - libs_sv/nextbot.lua#L373
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeLandCallback(callbackid) end
-	--- addReachCallback - server - libs_sv/nextbot.lua#L288
+	--- addReachCallback - server - libs_sv/nextbot.lua#L295
 	---@param callbackid string The unique ID this callback will use.
 	---@param callback function The function to run when the NB reaches its destination.
 	function _G.NextBot:addReachCallback(callbackid, callback) end
-	--- getStepHeight - server - libs_sv/nextbot.lua#L593
+	--- getStepHeight - server - libs_sv/nextbot.lua#L600
 	---@return number undefined The max height the bot can step up.
 	function _G.NextBot:getStepHeight() end
-	--- removeLeaveGroundCallback - server - libs_sv/nextbot.lua#L388
+	--- removeLeaveGroundCallback - server - libs_sv/nextbot.lua#L395
 	---@param callbackid string The unique ID of the callback to remove.
 	function _G.NextBot:removeLeaveGroundCallback(callbackid) end
-	--- getGotoPos - server - libs_sv/nextbot.lua#L185
+	--- getGotoPos - server - libs_sv/nextbot.lua#L192
 	---@return Vector? undefined Where the nextbot is trying to go to if it exists, else returns nil.
 	function _G.NextBot:getGotoPos() end
-	--- getIdleAct - server - libs_sv/nextbot.lua#L253
+	--- getIdleAct - server - libs_sv/nextbot.lua#L260
 	---@return number undefined The idle activity.
 	function _G.NextBot:getIdleAct() end
-	--- setIdleAct - server - libs_sv/nextbot.lua#L241
+	--- setIdleAct - server - libs_sv/nextbot.lua#L248
 	---@param runact number The activity the nextbot will use.
 	function _G.NextBot:setIdleAct(runact) end
 ---  Vector2 type for wire xv2
@@ -8192,87 +8200,87 @@ _G.Sound = {}
 ---  Hologram type
 ---@class Hologram
 _G.Hologram = {}
-	--- setCullMode - shared - libs_sh/hologram.lua#L499
+	--- setCullMode - shared - libs_sh/hologram.lua#L504
 	---@param mode number Cull mode. 0 for counter clock wise, 1 for clock wise
 	function _G.Hologram:setCullMode(mode) end
-	--- setLocalPos - shared - libs_sh/hologram.lua#L232
+	--- setLocalPos - shared - libs_sh/hologram.lua#L237
 	---@param vec Vector New position
 	function _G.Hologram:setLocalPos(vec) end
-	--- setAnimation - shared - libs_sh/hologram.lua#L468
+	--- setAnimation - shared - libs_sh/hologram.lua#L473
 	---@param animation number|string Animation number or string name.
 	---@param frame number? Optional int (Default 0) The starting frame number. Does nothing if nil
 	---@param rate number? Optional float (Default 1) Frame speed. Does nothing if nil
 	function _G.Hologram:setAnimation(animation, frame, rate) end
-	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L436
+	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L441
 	---@param suppress boolean Boolean to represent if shading should be set or not.
 	function _G.Hologram:suppressEngineLighting(suppress) end
-	--- setScale - shared - libs_sh/hologram.lua#L406
+	--- setScale - shared - libs_sh/hologram.lua#L411
 	---@param scale Vector Vector new scale
 	function _G.Hologram:setScale(scale) end
-	--- setRenderGroup - shared - libs_sh/hologram.lua#L511
+	--- setRenderGroup - shared - libs_sh/hologram.lua#L516
 	---@param group number|nil Render group. If unset, the engine will decide the render group based on the entity's materials. Can be RENDERGROUP.OPAQUE RENDERGROUP.TRANSLUCENT RENDERGROUP.BOTH RENDERGROUP.VIEWMODEL RENDERGROUP.VIEWMODEL.TRANSLUCENT RENDERGROUP.OPAQUE.BRUSH
 	function _G.Hologram:setRenderGroup(group) end
-	--- getScale - shared - libs_sh/hologram.lua#L428
+	--- getScale - shared - libs_sh/hologram.lua#L433
 	---@return Vector undefined Vector scale
 	function _G.Hologram:getScale() end
-	--- setSize - shared - libs_sh/hologram.lua#L415
+	--- setSize - shared - libs_sh/hologram.lua#L420
 	---@param size Vector Vector new size in game units
 	function _G.Hologram:setSize(size) end
-	--- setFilterMag - client - libs_sh/hologram.lua#L258
+	--- setFilterMag - client - libs_sh/hologram.lua#L263
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMag(val) end
-	--- addEffects - shared - libs_sh/hologram.lua#L527
+	--- addEffects - shared - libs_sh/hologram.lua#L532
 	---@param effect number The effects to add. See EF Enums
 	function _G.Hologram:addEffects(effect) end
-	--- setRenderMatrix - client - libs_sh/hologram.lua#L292
+	--- setRenderMatrix - client - libs_sh/hologram.lua#L297
 	---@param mat VMatrix Starfall matrix to use
 	function _G.Hologram:setRenderMatrix(mat) end
-	--- setPos - shared - libs_sh/hologram.lua#L206
+	--- setPos - shared - libs_sh/hologram.lua#L211
 	---@param vec Vector New position
 	function _G.Hologram:setPos(vec) end
-	--- setLocalAngularVelocity - server - libs_sh/hologram.lua#L178
+	--- setLocalAngularVelocity - server - libs_sh/hologram.lua#L183
 	---@param angvel Angle *Vector* local angular velocity.
 	function _G.Hologram:setLocalAngularVelocity(angvel) end
-	--- setAngles - shared - libs_sh/hologram.lua#L219
+	--- setAngles - shared - libs_sh/hologram.lua#L224
 	---@param ang Angle New angles
 	function _G.Hologram:setAngles(ang) end
-	--- setMoveType - server - libs_sh/hologram.lua#L193
+	--- setMoveType - server - libs_sh/hologram.lua#L198
 	---@param Movetype number to set, either MOVETYPE.NOCLIP (default) or MOVETYPE.NONE
 	function _G.Hologram:setMoveType(Movetype) end
-	--- setModel - shared - libs_sh/hologram.lua#L454
+	--- setModel - shared - libs_sh/hologram.lua#L459
 	---@param model string string model path
 	function _G.Hologram:setModel(model) end
-	--- getPlayerColor - shared - libs_sh/hologram.lua#L357
+	--- getPlayerColor - shared - libs_sh/hologram.lua#L362
 	---@return Vector? undefined color The player color to use, or nil if disabled
 	function _G.Hologram:getPlayerColor() end
-	--- setLocalVelocity - server - libs_sh/hologram.lua#L163
+	--- setLocalVelocity - server - libs_sh/hologram.lua#L168
 	---@param vel Vector New local velocity
 	function _G.Hologram:setLocalVelocity(vel) end
-	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L446
+	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L451
 	---@return boolean undefined Whether engine lighting is suppressed
 	function _G.Hologram:getSuppressEngineLighting() end
-	--- removeEffects - shared - libs_sh/hologram.lua#L538
+	--- removeEffects - shared - libs_sh/hologram.lua#L543
 	---@param effect number The effects to remove. See EF Enums
 	function _G.Hologram:removeEffects(effect) end
-	--- remove - shared - libs_sh/hologram.lua#L549
+	--- remove - shared - libs_sh/hologram.lua#L554
 	function _G.Hologram:remove() end
-	--- setClip - shared - libs_sh/hologram.lua#L369
+	--- setClip - shared - libs_sh/hologram.lua#L374
 	---@param index number Whatever number you want the clip to be
 	---@param enabled boolean Whether the clip is enabled
 	---@param origin Vector? The center of the clip plane in world coordinates, or local to entity if it is specified. Only used if enabled.
 	---@param normal Vector? The the direction of the clip plane in world coordinates, or local to entity if it is specified. Only used if enabled.
 	---@param entity Entity? (Optional) The entity to make coordinates local to, otherwise the world is used. Only used if enabled.
 	function _G.Hologram:setClip(index, enabled, origin, normal, entity) end
-	--- setLocalAngles - shared - libs_sh/hologram.lua#L245
+	--- setLocalAngles - shared - libs_sh/hologram.lua#L250
 	---@param ang Angle New angles
 	function _G.Hologram:setLocalAngles(ang) end
-	--- setPlayerColor - shared - libs_sh/hologram.lua#L345
+	--- setPlayerColor - shared - libs_sh/hologram.lua#L350
 	---@param color Vector? The player color to use, or nil to disable
 	function _G.Hologram:setPlayerColor(color) end
-	--- draw - client - libs_sh/hologram.lua#L318
+	--- draw - client - libs_sh/hologram.lua#L323
 	---@param noTint boolean? If true, renders the hologram without its color and opacity. The default is for holograms to render with color or opacity, so use this argument if you need that behavior.
 	function _G.Hologram:draw(noTint) end
-	--- setFilterMin - client - libs_sh/hologram.lua#L275
+	--- setFilterMin - client - libs_sh/hologram.lua#L280
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMin(val) end
 ---  Light type

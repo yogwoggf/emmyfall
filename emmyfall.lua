@@ -279,34 +279,34 @@ _G.wire = {}
 --- 
 ---  of the same name. Writes will write to the wire output of the same name.
 _G.wire.ports = {
-}	--- readCell - server - libs_sv/wire.lua#L703
+}	--- readCell - server - libs_sv/wire.lua#L709
 	---@param ent Entity Entity with wire memory
 	---@param index number The cell address
 	---@return number undefined The value at the address
 	function _G.wire.readCell(ent, index) end
-	--- self - server - libs_sv/wire.lua#L483
+	--- self - server - libs_sv/wire.lua#L485
 	---@return Wirelink undefined Wirelink representing this entity
 	function _G.wire.self() end
-	--- getWirelink - server - libs_sv/wire.lua#L597
+	--- getWirelink - server - libs_sv/wire.lua#L599
 	---@param ent Entity Wire entity
 	---@return Wirelink undefined Wirelink of the entity
 	function _G.wire.getWirelink(ent) end
-	--- adjustInputs - server - libs_sv/wire.lua#L330
+	--- adjustInputs - server - libs_sv/wire.lua#L332
 	---@param names table An array of input names. May be modified by the function.
 	---@param types table An array of input types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of input descriptions. 
 	function _G.wire.adjustInputs(names, types, descriptions) end
-	--- readOutput - server - libs_sv/wire.lua#L694
+	--- readOutput - server - libs_sv/wire.lua#L698
 	---@param ent Entity Entity with output
 	---@param outputname string Output name
 	---@return any undefined value The value to set the output to (must match the output type)
 	function _G.wire.readOutput(ent, outputname) end
-	--- triggerOutput - server - libs_sv/wire.lua#L666
+	--- triggerOutput - server - libs_sv/wire.lua#L664
 	---@param ent Entity Entity with output
 	---@param outputname string Output name
 	---@param value any The value to set the output to (must match the output type)
 	function _G.wire.triggerOutput(ent, outputname, value) end
-	--- create - server - libs_sv/wire.lua#L498
+	--- create - server - libs_sv/wire.lua#L500
 	---@param entI Entity Entity with input
 	---@param entO Entity Entity with output
 	---@param inputname string Input to be wired
@@ -315,19 +315,19 @@ _G.wire.ports = {
 	---@param color Color? Color of the wire(optional)
 	---@param materialName string? Material of the wire(optional), Valid materials are cable/rope, cable/cable2, cable/xbeam, cable/redlaser, cable/blue_elec, cable/physbeam, cable/hydra, arrowire/arrowire, arrowire/arrowire2
 	function _G.wire.create(entI, entO, inputname, outputname, width, color, materialName) end
-	--- serverUUID - server - libs_sv/wire.lua#L491
+	--- serverUUID - server - libs_sv/wire.lua#L493
 	---@return string undefined Server UUID
 	function _G.wire.serverUUID() end
-	--- delete - server - libs_sv/wire.lua#L545
+	--- delete - server - libs_sv/wire.lua#L547
 	---@param entI Entity Entity with input
 	---@param inputname string Input to be un-wired
 	function _G.wire.delete(entI, inputname) end
-	--- getOutputs - server - libs_sv/wire.lua#L589
+	--- getOutputs - server - libs_sv/wire.lua#L591
 	---@param entO Entity Entity with output(s)
 	---@return table undefined Table of entity's output names
 	---@return table undefined Table of entity's output types
 	function _G.wire.getOutputs(entO) end
-	--- readInput - server - libs_sv/wire.lua#L685
+	--- readInput - server - libs_sv/wire.lua#L687
 	---@param ent Entity Entity with input
 	---@param inputname string Input name
 	---@return any undefined value The value to set the input to (must match the input type)
@@ -337,21 +337,21 @@ _G.wire.ports = {
 	---@param index number The cell address
 	---@param value number The value to set the cell
 	function _G.wire.triggerCell(ent, index, value) end
-	--- adjustPorts - server - libs_sv/wire.lua#L427
+	--- adjustPorts - server - libs_sv/wire.lua#L429
 	---@param inputs table? (Optional) A key-value table with input port names as keys and types as values. e.g. {MyInput="number"} or {MyInput={type="number"}}. If nil, input ports won't be changed. If you use the latter syntax for defining ports, you can also specify description alongside the type, ex. {MyInput={type="number", description="Description for this input."}}
 	---@param outputs table? (Optional) A key-value table with output port names as keys and types as values. The above behavior for inputs also applies for outputs.
 	function _G.wire.adjustPorts(inputs, outputs) end
-	--- getInputs - server - libs_sv/wire.lua#L581
+	--- getInputs - server - libs_sv/wire.lua#L583
 	---@param entI Entity Entity with input(s)
 	---@return table undefined Table of entity's input names
 	---@return table undefined Table of entity's input types
 	function _G.wire.getInputs(entI) end
-	--- adjustOutputs - server - libs_sv/wire.lua#L374
+	--- adjustOutputs - server - libs_sv/wire.lua#L376
 	---@param names table An array of output names. May be modified by the function.
 	---@param types table An array of output types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of output descriptions. 
 	function _G.wire.adjustOutputs(names, types, descriptions) end
-	--- triggerInput - server - libs_sv/wire.lua#L657
+	--- triggerInput - server - libs_sv/wire.lua#L653
 	---@param ent Entity Entity with input
 	---@param inputname string Input name
 	---@param value any The value to set the input to (must match the input type)
@@ -857,17 +857,17 @@ _G.vr.VR = {
 --- trace
 ---  Provides functions for doing line/AABB traces
 _G.trace = {}
-	--- isBoxIntersectingSphere - shared - libs_sh/trace.lua#L131
+	--- isBoxIntersectingSphere - shared - libs_sh/trace.lua#L135
 	---@param boxMins Vector The minimum extents of the World Axis-Aligned box.
 	---@param boxMaxs Vector The maximum extents of the World Axis-Aligned box.
 	---@param spherePos Vector Position of the sphere.
 	---@param sphereRadius number The radius of the sphere.
 	---@return boolean undefined true if there is an intersection, false otherwise.
 	function _G.trace.isBoxIntersectingSphere(boxMins, boxMaxs, spherePos, sphereRadius) end
-	--- canCreateDecal - shared - libs_sh/trace.lua#L178
+	--- canCreateDecal - shared - libs_sh/trace.lua#L182
 	---@return boolean undefined Whether the decal trace can be used
 	function _G.trace.canCreateDecal() end
-	--- intersectRayWithOBB - shared - libs_sh/trace.lua#L109
+	--- intersectRayWithOBB - shared - libs_sh/trace.lua#L113
 	---@param rayStart Vector The origin of the ray
 	---@param rayDelta Vector The direction and length of the ray
 	---@param boxOrigin Vector The origin of the box
@@ -878,7 +878,7 @@ _G.trace = {}
 	---@return Vector? undefined Hit normal or nil if not hit
 	---@return number? undefined Hit fraction or nil if not hit
 	function _G.trace.intersectRayWithOBB(rayStart, rayDelta, boxOrigin, boxAngles, boxMins, boxMaxs) end
-	--- hull - shared - libs_sh/trace.lua#L81
+	--- hull - shared - libs_sh/trace.lua#L83
 	---@param start Vector Start position
 	---@param endpos Vector End position
 	---@param minbox Vector Lower box corner
@@ -887,9 +887,10 @@ _G.trace = {}
 	---@param mask number? Trace mask
 	---@param colgroup number? The collision group of the trace
 	---@param ignworld boolean? Whether the trace should ignore world
+	---@param whitelist boolean? Make 'filter' param array act as a hit whitelist instead of blacklist
 	---@return table undefined Result of the trace https://wiki.facepunch.com/gmod/Structures/TraceResult
-	function _G.trace.hull(start, endpos, minbox, maxbox, filter, mask, colgroup, ignworld) end
-	--- decal - shared - libs_sh/trace.lua#L160
+	function _G.trace.hull(start, endpos, minbox, maxbox, filter, mask, colgroup, ignworld, whitelist) end
+	--- decal - shared - libs_sh/trace.lua#L164
 	---@param name string The decal name, see https://wiki.facepunch.com/gmod/util.Decal
 	---@param start Vector Start position
 	---@param endpos Vector End position
@@ -902,12 +903,13 @@ _G.trace = {}
 	---@param mask number? Trace mask
 	---@param colgroup number? The collision group of the trace
 	---@param ignworld boolean? Whether the trace should ignore world
+	---@param whitelist boolean? Make 'filter' param array act as a hit whitelist instead of blacklist
 	---@return table undefined Result of the trace https://wiki.facepunch.com/gmod/Structures/TraceResult
-	function _G.trace.line(start, endpos, filter, mask, colgroup, ignworld) end
-	--- decalsLeft - shared - libs_sh/trace.lua#L184
+	function _G.trace.line(start, endpos, filter, mask, colgroup, ignworld, whitelist) end
+	--- decalsLeft - shared - libs_sh/trace.lua#L188
 	---@return number undefined The number of decals left
 	function _G.trace.decalsLeft() end
-	--- aimVector - shared - libs_sh/trace.lua#L198
+	--- aimVector - shared - libs_sh/trace.lua#L202
 	---@param viewAngles Angle View angles
 	---@param viewFOV number View field of view
 	---@param x number X position on the screen
@@ -916,11 +918,11 @@ _G.trace = {}
 	---@param screenHeight number Screen height
 	---@return Vector undefined The aim vector
 	function _G.trace.aimVector(viewAngles, viewFOV, x, y, screenWidth, screenHeight) end
-	--- pointContents - shared - libs_sh/trace.lua#L190
+	--- pointContents - shared - libs_sh/trace.lua#L194
 	---@param position Vector The position to get the CONTENTS of
 	---@return number undefined Contents bitflag, see the CONTENTS enums
 	function _G.trace.pointContents(position) end
-	--- intersectRayWithPlane - shared - libs_sh/trace.lua#L144
+	--- intersectRayWithPlane - shared - libs_sh/trace.lua#L148
 	---@param rayStart Vector The origin of the ray
 	---@param rayDelta Vector The direction and length of the ray
 	---@param planeOrigin Vector The origin of the plane
@@ -2982,98 +2984,98 @@ _G.hologram = {}
 --- mesh
 ---  Mesh library.
 _G.mesh = {}
-	--- generate - client - libs_sh/mesh.lua#L1005
+	--- generate - client - libs_sh/mesh.lua#L1006
 	---@param mesh_obj Mesh? Optional Mesh object, mesh to build. (default: nil)
 	---@param prim_type number Int, primitive type, see MATERIAL
 	---@param prim_count number Int, the amount of primitives
 	---@param func function The function provided that will generate the mesh vertices
 	function _G.mesh.generate(mesh_obj, prim_type, prim_count, func) end
-	--- parseObj - shared - libs_sh/mesh.lua#L707
+	--- parseObj - shared - libs_sh/mesh.lua#L708
 	---@param obj string The obj data
 	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
 	---@param triangulate boolean? Whether to triangulate the faces
 	---@return table undefined Table of Mesh tables. The keys correspond to the objs object names, and the values are tables of vertices that can be passed to mesh.createFromTable
 	---@return table undefined Table of Mesh data. {positions = positionData, normals = normalData, texturecoords = texturecoordData, faces = faceData}
 	function _G.mesh.parseObj(obj, threaded, triangulate) end
-	--- writeNormal - client - libs_sh/mesh.lua#L1065
+	--- writeNormal - client - libs_sh/mesh.lua#L1066
 	---@param normal Vector Normal
 	function _G.mesh.writeNormal(normal) end
-	--- writeUV - client - libs_sh/mesh.lua#L1079
+	--- writeUV - client - libs_sh/mesh.lua#L1080
 	---@param stage number Stage of the texture coordinate
 	---@param u number U coordinate
 	---@param v number V coordinate
 	function _G.mesh.writeUV(stage, u, v) end
-	--- getModelMeshes - client - libs_sh/mesh.lua#L943
+	--- getModelMeshes - client - libs_sh/mesh.lua#L944
 	---@param model string The full path to a model to get the visual meshes of.
 	---@param lod number? The lod of the model to use. Default 0.
 	---@param bodygroupMask number? The bodygroupMask of the model to use. Default 0.
 	---@return table undefined A table of tables with the following format:  string material - The material of the specific mesh table triangles - A table of MeshVertex structures ready to be fed into IMesh:BuildFromTriangles table verticies - A table of MeshVertex structures representing all the vertexes of the mesh. This table is used internally to generate the "triangles" table. Each MeshVertex structure returned also has an extra table of tables field called "weights" with the following data:  number boneID - The bone this vertex is attached to number weight - How "strong" this vertex is attached to the bone. A vertex can be attached to multiple bones at once.
 	---@return table undefined A table of tables with bone id keys with the following format:  number parent - The parent bone id Matrix matrix - pretransformed bone matrix
 	function _G.mesh.getModelMeshes(model, lod, bodygroupMask) end
-	--- trianglesLeft - client - libs_sh/mesh.lua#L979
+	--- trianglesLeft - client - libs_sh/mesh.lua#L980
 	---@return number undefined Number of triangles that can be created
 	function _G.mesh.trianglesLeft() end
-	--- writeColor - client - libs_sh/mesh.lua#L1055
+	--- writeColor - client - libs_sh/mesh.lua#L1056
 	---@param r number Number, red value
 	---@param g number Number, green value
 	---@param b number Number, blue value
 	---@param a number Number, alpha value
 	function _G.mesh.writeColor(r, g, b, a) end
-	--- writePosition - client - libs_sh/mesh.lua#L1072
+	--- writePosition - client - libs_sh/mesh.lua#L1073
 	---@param position Vector Position
 	function _G.mesh.writePosition(position) end
-	--- trianglesLeftRender - client - libs_sh/mesh.lua#L986
+	--- trianglesLeftRender - client - libs_sh/mesh.lua#L987
 	---@return number undefined Number of triangles that can be rendered
 	function _G.mesh.trianglesLeftRender() end
-	--- createFromObj - client - libs_sh/mesh.lua#L887
+	--- createFromObj - client - libs_sh/mesh.lua#L888
 	---@param obj string The obj file data
 	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
 	---@param triangulate boolean? Whether to triangulate faces. (Consumes more CPU)
 	---@return table undefined Table of Mesh objects. The keys correspond to the objs object names
 	function _G.mesh.createFromObj(obj, threaded, triangulate) end
-	--- generateNormals - shared - libs_sh/mesh.lua#L721
+	--- generateNormals - shared - libs_sh/mesh.lua#L722
 	---@param vertices table The table of vertices
 	---@param inverted boolean? Optional bool, invert the normal
 	---@param smooth_limit number? Optional number, smooths the normal based on the limit in radians
 	function _G.mesh.generateNormals(vertices, inverted, smooth_limit) end
-	--- advanceVertex - client - libs_sh/mesh.lua#L1120
+	--- advanceVertex - client - libs_sh/mesh.lua#L1121
 	function _G.mesh.advanceVertex() end
-	--- writeQuadEasy - client - libs_sh/mesh.lua#L1109
+	--- writeQuadEasy - client - libs_sh/mesh.lua#L1110
 	---@param position Vector 
 	---@param normal Vector 
 	---@param w number 
 	---@param h number 
 	---@param col Color The color for the vertices.
 	function _G.mesh.writeQuadEasy(position, normal, w, h, col) end
-	--- writeQuad - client - libs_sh/mesh.lua#L1098
+	--- writeQuad - client - libs_sh/mesh.lua#L1099
 	---@param v1 Vector Vertex1 position
 	---@param v2 Vector Vertex2 position
 	---@param v3 Vector Vertex3 position
 	---@param v4 Vector Vertex4 position
 	---@param col Color The color for the vertices.
 	function _G.mesh.writeQuad(v1, v2, v3, v4, col) end
-	--- generateTangents - shared - libs_sh/mesh.lua#L747
+	--- generateTangents - shared - libs_sh/mesh.lua#L748
 	---@param vertices table The table of vertices
 	function _G.mesh.generateTangents(vertices) end
-	--- generateUV - shared - libs_sh/mesh.lua#L735
+	--- generateUV - shared - libs_sh/mesh.lua#L736
 	---@param vertices table The table of vertices
 	---@param scale number The scale of the uvs
 	function _G.mesh.generateUV(vertices, scale) end
-	--- createEmpty - client - libs_sh/mesh.lua#L916
+	--- createEmpty - client - libs_sh/mesh.lua#L917
 	---@return Mesh undefined Mesh object
 	function _G.mesh.createEmpty() end
-	--- createFromTable - client - libs_sh/mesh.lua#L846
+	--- createFromTable - client - libs_sh/mesh.lua#L847
 	---@param vertices table Table containing vertex data. http://wiki.facepunch.com/gmod/Structures/MeshVertex
 	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit. The thread will yield with number of vertices remaining to be processed. After 0 is yielded, the final expensive phase starts.
 	---@return Mesh undefined Mesh object
 	function _G.mesh.createFromTable(vertices, threaded) end
-	--- findConvexHull - shared - libs_sh/mesh.lua#L757
+	--- findConvexHull - shared - libs_sh/mesh.lua#L758
 	---@param vertices table The table of vertices (vectors) or vertex data (http://wiki.facepunch.com/gmod/Structures/MeshVertex)
 	---@param threaded boolean? Optional bool, use threading object that can be used to run algorithm over time to prevent hitting quota limit
 	---@return table undefined The mesh table which can be passed to mesh.createFromTable
 	---@return table undefined The table of vertices which can be passed to prop.createCustom
 	function _G.mesh.findConvexHull(vertices, threaded) end
-	--- writeUserData - client - libs_sh/mesh.lua#L1088
+	--- writeUserData - client - libs_sh/mesh.lua#L1089
 	---@param x number x
 	---@param y number y
 	---@param z number z
@@ -4633,18 +4635,18 @@ _G.string = {}
 --- debug
 ---  Lua debug library https://wiki.garrysmod.com/page/Category:debug
 _G.debug = {}
-	--- traceback - shared - libs_sh/builtins.lua#L978
+	--- traceback - shared - libs_sh/builtins.lua#L1008
 	---@param A thread? thread to get the stack trace of. If nil, this argument will be used as the message and the current thread becomes the target.
 	---@param message string? A message to be included at the beginning of the stack trace. Default: ""
 	---@param stacklevel number? Which position in the execution stack to start the traceback at. Default: 1
 	---@return string undefined A dump of the execution stack.
 	function _G.debug.traceback(A, message, stacklevel) end
-	--- getlocal - shared - libs_sh/builtins.lua#L1021
+	--- getlocal - shared - libs_sh/builtins.lua#L1051
 	---@param funcOrStackLevel function|number Function or stack level to get info about. Defaults to stack level 0.
 	---@param index number The index of the local to get
 	---@return string undefined The name of the local
 	function _G.debug.getlocal(funcOrStackLevel, index) end
-	--- getinfo - shared - libs_sh/builtins.lua#L1005
+	--- getinfo - shared - libs_sh/builtins.lua#L1035
 	---@param funcOrStackLevel function|number Function or stack level to get info about. Defaults to stack level 0.
 	---@param fields string? A string that specifies the information to be retrieved. Defaults to all (flnSu).
 	---@return table undefined DebugInfo table
@@ -6726,7 +6728,7 @@ _G["SERVER"] = nil
 ---  Constant that denotes whether the code is executed on the client
 ---@type any
 _G["CLIENT"] = nil
-	--- localToWorld - shared - libs_sh/builtins.lua#L1178
+	--- localToWorld - shared - libs_sh/builtins.lua#L1208
 	---@param localPos Vector The position vector that should be translated to world coordinates
 	---@param localAng Angle The angle that should be converted to a world angle
 	---@param originPos Vector The origin point of the source coordinate system, in world coordinates
@@ -6737,7 +6739,7 @@ _G["CLIENT"] = nil
 	--- version - shared - libs_sh/builtins.lua#L269
 	---@return string undefined Starfall version
 	function _G.version() end
-	--- assert - shared - libs_sh/builtins.lua#L1139
+	--- assert - shared - libs_sh/builtins.lua#L1169
 	---@param expression any Anything that will be evaluated to be true or false
 	---@param msg string? Error message. Default "assertion failed!"
 	---@param args ... Any arguments to return if the assertion is successful
@@ -6754,7 +6756,7 @@ _G["CLIENT"] = nil
 	---@param obj any Object to turn into a number
 	---@return number? undefined The object as a number or nil if it couldn't be converted
 	function _G.tonumber(obj) end
-	--- throw - shared - libs_sh/builtins.lua#L1122
+	--- throw - shared - libs_sh/builtins.lua#L1152
 	---@param msg string Message string
 	---@param level number? Which level in the stacktrace to blame. Defaults to 1
 	---@param uncatchable boolean? Makes this exception uncatchable
@@ -6774,9 +6776,10 @@ _G["CLIENT"] = nil
 	---@param k number? K component
 	---@return Quaternion undefined Quaternion object
 	function _G.Quaternion(r, i, j, k) end
-	--- isFirstTimePredicted - shared - libs_sh/builtins.lua#L231
-	---@return boolean undefined Whether this is the first time this hook was predicted
-	function _G.isFirstTimePredicted() end
+	--- printMessage - client - libs_sh/builtins.lua#L687
+	---@param mtype number How the message should be displayed. See http://wiki.facepunch.com/gmod/Enums/HUD
+	---@param text string The message text.
+	function _G.printMessage(mtype, text) end
 	--- ipairs - shared - libs_sh/builtins.lua#L116
 	---@param tbl table Table to iterate over
 	---@return function undefined Iterator function
@@ -6789,22 +6792,22 @@ _G["CLIENT"] = nil
 	--- print - shared - libs_sh/builtins.lua#L547
 	---@param printArgs ... Values to print. Colors before text will set the text color
 	function _G.print(printArgs) end
-	--- pcall - shared - libs_sh/builtins.lua#L1044
+	--- pcall - shared - libs_sh/builtins.lua#L1074
 	---@param func function Function to be executed and of which the errors should be caught of
 	---@param arguments ... Arguments to call the function with.
 	---@return boolean undefined If the function had no errors occur within it.
 	---@return ... undefined If an error occurred, this will be a string containing the error message. Otherwise, this will be the return values of the function passed in.
 	function _G.pcall(func, arguments) end
-	--- getScript - shared - libs_sh/builtins.lua#L733
+	--- getScript - shared - libs_sh/builtins.lua#L763
 	---@param path string Path of file. Can be absolute or relative to calling file. Must be '--@include'-ed.
 	---@return string? undefined Source code, or nil if could not be found
 	---@return function? undefined Compiled function, or nil if could not be found
 	function _G.getScript(path) end
-	--- isValid - shared - libs_sh/builtins.lua#L1147
+	--- isValid - shared - libs_sh/builtins.lua#L1177
 	---@param object any Table to check
 	---@return boolean undefined If it is valid
 	function _G.isValid(object) end
-	--- getScripts - shared - libs_sh/builtins.lua#L744
+	--- getScripts - shared - libs_sh/builtins.lua#L774
 	---@param ent Entity? Optional target entity. Default: chip()
 	---@return table undefined Table where keys are paths and values are strings
 	---@return table? undefined Table where keys are paths and values are functions, or nil if another chip was specified
@@ -6820,16 +6823,16 @@ _G["CLIENT"] = nil
 	---@param z number? Z value
 	---@return Vector undefined Vector
 	function _G.Vector(x, y, z) end
-	--- setUserdata - server - libs_sh/builtins.lua#L607
+	--- setUserdata - server - libs_sh/builtins.lua#L637
 	---@param str string String data
 	function _G.setUserdata(str) end
-	--- setClipboardText - client - libs_sh/builtins.lua#L648
+	--- setClipboardText - client - libs_sh/builtins.lua#L678
 	---@param txt string Text to set to the clipboard
 	function _G.setClipboardText(txt) end
 	--- cpuAverage - shared - libs_sh/builtins.lua#L245
 	---@return number undefined Average CPU Time of the buffer.
 	function _G.cpuAverage() end
-	--- setAuthor - client - libs_sh/builtins.lua#L637
+	--- setAuthor - client - libs_sh/builtins.lua#L667
 	---@param author string Author to set the chip's author to
 	function _G.setAuthor(author) end
 	--- next - shared - libs_sh/builtins.lua#L143
@@ -6838,23 +6841,28 @@ _G["CLIENT"] = nil
 	---@return any undefined Key or nil
 	---@return any undefined Value or nil
 	function _G.next(tbl, k) end
-	--- requiredir - shared - libs_sh/builtins.lua#L789
-	---@param path string The directory to include. Make sure to --@includedir it
-	---@param loadpriority table Table of files that should be loaded before any others in the directory
-	---@return table undefined Table of return values of the scripts
-	function _G.requiredir(path, loadpriority) end
-	--- sendPermissionRequest - client - libs_sh/builtins.lua#L372
-	function _G.sendPermissionRequest() end
-	--- setName - client - libs_sh/builtins.lua#L626
+	--- hasPermission - shared - libs_sh/builtins.lua#L313
+	---@param perm string The permission id to check
+	---@param obj any Optional object to pass to the permission system.
+	---@return boolean undefined Whether the client has granted the specified permission.
+	---@return string undefined The reason the permission check failed
+	function _G.hasPermission(perm, obj) end
+	--- printRate - server - libs_sh/builtins.lua#L604
+	---@return number undefined Number of bytes per second the print burst limit refills
+	function _G.printRate() end
+	--- setName - client - libs_sh/builtins.lua#L656
 	---@param name string Name to set the chip's name to
 	function _G.setName(name) end
 	--- type - shared - libs_sh/builtins.lua#L134
 	---@param obj any Object to get type of
 	---@return string undefined The name of the object's type.
 	function _G.type(obj) end
-	--- eyePos - client - libs_sh/builtins.lua#L718
+	--- eyePos - client - libs_sh/builtins.lua#L748
 	---@return Vector undefined The local player's camera position
 	function _G.eyePos() end
+	--- printSizeLeft - server - libs_sh/builtins.lua#L596
+	---@return number undefined Size of the remaining print burst in bytes
+	function _G.printSizeLeft() end
 	--- isnumber - shared - libs_sh/builtins.lua#L169
 	---@param x any Input to check
 	---@return boolean undefined If the object is a number or not
@@ -6867,26 +6875,19 @@ _G["CLIENT"] = nil
 	--- permissionRequestSatisfied - client - libs_sh/builtins.lua#L364
 	---@return boolean undefined Whether the client gave all permissions specified in last request or not.
 	function _G.permissionRequestSatisfied() end
-	--- shareScripts - shared - libs_sh/builtins.lua#L768
+	--- shareScripts - shared - libs_sh/builtins.lua#L798
 	---@param enable boolean If true, allow sharing scripts
 	function _G.shareScripts(enable) end
 	--- ramAverage - shared - libs_sh/builtins.lua#L257
 	---@return number undefined The ram used in kilobytes
 	function _G.ramAverage() end
-	--- xpcall - shared - libs_sh/builtins.lua#L1073
+	--- xpcall - shared - libs_sh/builtins.lua#L1103
 	---@param func function The function to call initially.
 	---@param callback function The function to be called if execution of the first fails; the error message and stack trace are passed.
 	---@param passArgs ... Varargs to pass to the initial function.
 	---@return boolean undefined Status of the execution; true for success, false for failure.
 	---@return ... undefined The returns of the first function if execution succeeded, otherwise the return values of the error callback.
 	function _G.xpcall(func, callback, passArgs) end
-	--- isbool - shared - libs_sh/builtins.lua#L190
-	---@param x any Input to check
-	---@return boolean undefined If the object is a boolean or not
-	function _G.isbool(x) end
-	--- restart - shared - libs_sh/builtins.lua#L1217
-	---@param chip Entity? The chip to restart. If nil, it will restart the current chip.
-	function _G.restart(chip) end
 	--- WebSocket - client - libs_cl/websocket.lua#L112
 	---@param domain string Domain of the websocket server.
 	---@param port number? Port of the websocket server. (Default 443)
@@ -6894,18 +6895,22 @@ _G["CLIENT"] = nil
 	---@param path string? Optional path of the websocket.
 	---@return WebSocket undefined The websocket object. Use WebSocket:connect() to connect.
 	function _G.WebSocket(domain, port, secure, path) end
-	--- class - shared - libs_sh/builtins.lua#L1241
+	--- class - shared - libs_sh/builtins.lua#L1271
 	---@param name string The string name of the class
 	---@param super table? The (optional) parent class to inherit from
 	function _G.class(name, super) end
-	--- enableHud - shared - libs_sh/builtins.lua#L1197
+	--- isbool - shared - libs_sh/builtins.lua#L190
+	---@param x any Input to check
+	---@return boolean undefined If the object is a boolean or not
+	function _G.isbool(x) end
+	--- restart - shared - libs_sh/builtins.lua#L1247
+	---@param chip Entity? The chip to restart. If nil, it will restart the current chip.
+	function _G.restart(chip) end
+	--- enableHud - shared - libs_sh/builtins.lua#L1227
 	---@param ply Player The player to enable the hud on. If CLIENT, will be forced to player()
 	---@param active boolean Whether hud hooks should be active. true to force on, false to force off.
 	function _G.enableHud(ply, active) end
-	--- chip - shared - libs_sh/builtins.lua#L59
-	---@return Entity undefined Starfall chip entity
-	function _G.chip() end
-	--- worldToLocal - shared - libs_sh/builtins.lua#L1159
+	--- worldToLocal - shared - libs_sh/builtins.lua#L1189
 	---@param pos Vector The position that should be translated from the current to the new system
 	---@param ang Angle The angles that should be translated from the current to the new system
 	---@param newSystemOrigin Vector The origin of the system to translate to
@@ -6913,19 +6918,35 @@ _G["CLIENT"] = nil
 	---@return Vector undefined localPos
 	---@return Angle undefined localAngles
 	function _G.worldToLocal(pos, ang, newSystemOrigin, newSystemAngles) end
-	--- dodir - shared - libs_sh/builtins.lua#L845
+	--- error - shared - libs_sh/builtins.lua#L1160
+	---@param msg string Message string
+	---@param level number? Which level in the stacktrace to blame. Defaults to 1. 0 for no stacktrace.
+	function _G.error(msg, level) end
+	--- try - shared - libs_sh/builtins.lua#L1131
+	---@param func function Function to execute
+	---@param catch function? Optional function to execute in case func fails
+	function _G.try(func, catch) end
+	--- chip - shared - libs_sh/builtins.lua#L59
+	---@return Entity undefined Starfall chip entity
+	function _G.chip() end
+	--- getMethods - shared - libs_sh/builtins.lua#L994
+	---@param sfType string Name of SF type
+	---@return table undefined Table of the type's methods which can be edited or iterated
+	function _G.getMethods(sfType) end
+	--- dodir - shared - libs_sh/builtins.lua#L875
 	---@param path string The directory to include. Make sure to --@includedir it
 	---@param loadpriority table Table of files that should be loaded before any others in the directory
 	---@return table undefined Table of return values of the scripts
 	function _G.dodir(path, loadpriority) end
-	--- error - shared - libs_sh/builtins.lua#L1130
-	---@param msg string Message string
-	---@param level number? Which level in the stacktrace to blame. Defaults to 1. 0 for no stacktrace.
-	function _G.error(msg, level) end
-	--- try - shared - libs_sh/builtins.lua#L1101
-	---@param func function Function to execute
-	---@param catch function? Optional function to execute in case func fails
-	function _G.try(func, catch) end
+	--- getfenv - shared - libs_sh/builtins.lua#L975
+	---@param funcOrStackLevel function|number Function or stack level to get the environment of
+	---@return table? undefined Environment table (or nil, if restricted)
+	function _G.getfenv(funcOrStackLevel) end
+	--- setfenv - shared - libs_sh/builtins.lua#L954
+	---@param funcOrStackLevel function|number Function or stack level to set the environment of
+	---@param tbl table New environment
+	---@return function undefined Function with environment set to tbl
+	function _G.setfenv(funcOrStackLevel, tbl) end
 	--- Color - shared - libs_sh/color.lua#L74
 	---@param r number|string|nil Red component or string hexadecimal color. Defaults to 255.
 	---@param g number? Green component. Defaults to 255.
@@ -6933,38 +6954,41 @@ _G["CLIENT"] = nil
 	---@param a number? Alpha component. Defaults to 255.
 	---@return Color undefined New color
 	function _G.Color(r, g, b, a) end
-	--- loadstring - shared - libs_sh/builtins.lua#L892
+	--- loadstring - shared - libs_sh/builtins.lua#L922
 	---@param code string String to compile
 	---@param identifier string? Name of compiled function
 	---@param env table? Environment of compiled function
 	---@return function? undefined Compiled function, or nil if failed to compile
 	---@return string? undefined Error string, or nil if successfully compiled
 	function _G.loadstring(code, identifier, env) end
-	--- getMethods - shared - libs_sh/builtins.lua#L964
-	---@param sfType string Name of SF type
-	---@return table undefined Table of the type's methods which can be edited or iterated
-	function _G.getMethods(sfType) end
+	--- unpack - shared - libs_sh/builtins.lua#L152
+	---@param tbl table Table to get elements out of
+	---@param startIndex number? Which index to start from (default 1)
+	---@param endIndex number? Which index to end at (default #tbl)
+	---@return ... undefined Elements of tbl
+	function _G.unpack(tbl, startIndex, endIndex) end
 	--- Angle - shared - libs_sh/angles.lua#L50
 	---@param p number? Pitch
 	---@param y number? Yaw
 	---@param r number? Roll
 	---@return Angle undefined Angle struct
 	function _G.Angle(p, y, r) end
-	--- concmd - shared - libs_sh/builtins.lua#L596
+	--- concmd - shared - libs_sh/builtins.lua#L611
 	---@param cmd string Command to execute
 	function _G.concmd(cmd) end
-	--- getfenv - shared - libs_sh/builtins.lua#L945
-	---@param funcOrStackLevel function|number Function or stack level to get the environment of
-	---@return table? undefined Environment table (or nil, if restricted)
-	function _G.getfenv(funcOrStackLevel) end
-	--- eyeVector - client - libs_sh/builtins.lua#L725
+	--- requiredir - shared - libs_sh/builtins.lua#L819
+	---@param path string The directory to include. Make sure to --@includedir it
+	---@param loadpriority table Table of files that should be loaded before any others in the directory
+	---@return table undefined Table of return values of the scripts
+	function _G.requiredir(path, loadpriority) end
+	--- eyeVector - client - libs_sh/builtins.lua#L755
 	---@return Vector undefined The local player's camera forward vector
 	function _G.eyeVector() end
-	--- setfenv - shared - libs_sh/builtins.lua#L924
-	---@param funcOrStackLevel function|number Function or stack level to set the environment of
-	---@param tbl table New environment
-	---@return function undefined Function with environment set to tbl
-	function _G.setfenv(funcOrStackLevel, tbl) end
+	--- require - shared - libs_sh/builtins.lua#L805
+	---@param path string The file path to include. Make sure to --@include it
+	---@param args ... Optional arguments to provide to the script (access them using vararg ...)
+	---@return any undefined Return value of the script
+	function _G.require(path, args) end
 	--- pairs - shared - libs_sh/builtins.lua#L125
 	---@param tbl table Table to iterate over
 	---@return function undefined Iterator function
@@ -6986,45 +7010,40 @@ _G["CLIENT"] = nil
 	---@param num number? UserID to get the player with.
 	---@return Player undefined Returns player with given UserID or if none specified then returns either the owner (server) or the local player (client)
 	function _G.player(num) end
-	--- printMessage - client - libs_sh/builtins.lua#L657
-	---@param mtype number How the message should be displayed. See http://wiki.facepunch.com/gmod/Enums/HUD
-	---@param text string The message text.
-	function _G.printMessage(mtype, text) end
-	--- cpuMax - shared - libs_sh/builtins.lua#L299
-	---@return number undefined Max SysTime allowed to take for execution of the chip in a Think.
-	function _G.cpuMax() end
-	--- dofile - shared - libs_sh/builtins.lua#L831
-	---@param path string The file path to include. Make sure to --@include it
-	---@param args ... Optional arguments to provide to the script (access them using vararg ...)
-	---@return ... undefined Return value(s) of the script
-	function _G.dofile(path, args) end
 	--- getmetatable - shared - libs_sh/builtins.lua#L204
 	---@param tbl any Table to get metatable of
 	---@return table? undefined The metatable of tbl
 	function _G.getmetatable(tbl) end
+	--- cpuMax - shared - libs_sh/builtins.lua#L299
+	---@return number undefined Max SysTime allowed to take for execution of the chip in a Think.
+	function _G.cpuMax() end
+	--- dofile - shared - libs_sh/builtins.lua#L861
+	---@param path string The file path to include. Make sure to --@include it
+	---@param args ... Optional arguments to provide to the script (access them using vararg ...)
+	---@return ... undefined Return value(s) of the script
+	function _G.dofile(path, args) end
+	--- concmdRate - server - libs_sh/builtins.lua#L630
+	---@return number undefined Number of concmds per second the user can run serverside
+	function _G.concmdRate() end
 	--- printTable - shared - libs_sh/builtins.lua#L589
 	---@param tbl table Table to print
 	function _G.printTable(tbl) end
-	--- unpack - shared - libs_sh/builtins.lua#L152
-	---@param tbl table Table to get elements out of
-	---@param startIndex number? Which index to start from (default 1)
-	---@param endIndex number? Which index to end at (default #tbl)
-	---@return ... undefined Elements of tbl
-	function _G.unpack(tbl, startIndex, endIndex) end
-	--- ramMax - shared - libs_sh/builtins.lua#L263
-	---@return number undefined The max ram usage in kilobytes
-	function _G.ramMax() end
 	--- printConsole - shared - libs_sh/builtins.lua#L560
 	---@param printArgs ... Values to print. Colors before text will set the text color
 	function _G.printConsole(printArgs) end
-	--- Vector2 - server - libs_sv/wire.lua#L160
+	--- ramMax - shared - libs_sh/builtins.lua#L263
+	---@return number undefined The max ram usage in kilobytes
+	function _G.ramMax() end
+	--- owner - shared - libs_sh/builtins.lua#L65
+	---@return Player undefined Owner of the chip
+	function _G.owner() end
+	--- Vector2 - server - libs_sv/wire.lua#L162
 	---@param x number? X value
 	---@param y number? Y value
 	---@return Vector2 undefined Vector2
 	function _G.Vector2(x, y) end
-	--- owner - shared - libs_sh/builtins.lua#L65
-	---@return Player undefined Owner of the chip
-	function _G.owner() end
+	--- sendPermissionRequest - client - libs_sh/builtins.lua#L372
+	function _G.sendPermissionRequest() end
 	--- setupPermissionRequest - client - libs_sh/builtins.lua#L331
 	---@param perms table Table of overridable permissions' names.
 	---@param desc string Description attached to request.
@@ -7034,19 +7053,17 @@ _G["CLIENT"] = nil
 	---@param num number Entity index
 	---@return Entity undefined Entity at the index
 	function _G.entity(num) end
-	--- hasPermission - shared - libs_sh/builtins.lua#L313
-	---@param perm string The permission id to check
-	---@param obj any Optional object to pass to the permission system.
-	---@return boolean undefined Whether the client has granted the specified permission.
-	---@return string undefined The reason the permission check failed
-	function _G.hasPermission(perm, obj) end
-	--- cpuTotalAverage - shared - libs_sh/builtins.lua#L289
-	---@return number undefined Total average CPU Time of all your chips.
-	function _G.cpuTotalAverage() end
 	--- istable - shared - libs_sh/builtins.lua#L183
 	---@param x any Input to check
 	---@return boolean undefined If the object is a table or not
 	function _G.istable(x) end
+	--- cpuTotalAverage - shared - libs_sh/builtins.lua#L289
+	---@return number undefined Total average CPU Time of all your chips.
+	function _G.cpuTotalAverage() end
+	--- isfunction - shared - libs_sh/builtins.lua#L197
+	---@param x any Input to check
+	---@return boolean undefined If the object is a function or not
+	function _G.isfunction(x) end
 	--- cpuTotalUsed - shared - libs_sh/builtins.lua#L279
 	---@return number undefined Total used CPU time of all your chips.
 	function _G.cpuTotalUsed() end
@@ -7063,21 +7080,18 @@ _G["CLIENT"] = nil
 	--- setSoftQuota - shared - libs_sh/builtins.lua#L306
 	---@param quota number The threshold where the soft error will be thrown. Ratio of current cpu to the max cpu usage. 0.5 is 50%
 	function _G.setSoftQuota(quota) end
-	--- getUserdata - server - libs_sh/builtins.lua#L619
+	--- getUserdata - server - libs_sh/builtins.lua#L649
 	---@return string undefined String data
 	function _G.getUserdata() end
-	--- require - shared - libs_sh/builtins.lua#L775
-	---@param path string The file path to include. Make sure to --@include it
-	---@param args ... Optional arguments to provide to the script (access them using vararg ...)
-	---@return any undefined Return value of the script
-	function _G.require(path, args) end
-	--- eyeAngles - client - libs_sh/builtins.lua#L711
+	--- concmdLeft - server - libs_sh/builtins.lua#L622
+	---@return number undefined Number of concmds able to be ran serverside
+	function _G.concmdLeft() end
+	--- eyeAngles - client - libs_sh/builtins.lua#L741
 	---@return Angle undefined The local player's camera angles
 	function _G.eyeAngles() end
-	--- isfunction - shared - libs_sh/builtins.lua#L197
-	---@param x any Input to check
-	---@return boolean undefined If the object is a function or not
-	function _G.isfunction(x) end
+	--- isFirstTimePredicted - shared - libs_sh/builtins.lua#L231
+	---@return boolean undefined Whether this is the first time this hook was predicted
+	function _G.isFirstTimePredicted() end
 ---  NavArea type, returned by navmesh library functions
 ---@class NavArea
 _G.NavArea = {}
@@ -9108,9 +9122,9 @@ _G.Player = {}
 ---  Mesh type
 ---@class Mesh
 _G.Mesh = {}
-	--- destroy - client - libs_sh/mesh.lua#L1137
+	--- destroy - client - libs_sh/mesh.lua#L1138
 	function _G.Mesh:destroy() end
-	--- draw - client - libs_sh/mesh.lua#L1126
+	--- draw - client - libs_sh/mesh.lua#L1127
 	function _G.Mesh:draw() end
 ---  Entity type
 ---@class Entity
@@ -9837,7 +9851,7 @@ _G.Entity = {}
 	---@return Vector undefined The minimum vector of the bounds
 	---@return Vector undefined The maximum vector of the bounds
 	function _G.Entity:getModelRenderBounds() end
-	--- getWirelink - server - libs_sv/wire.lua#L712
+	--- getWirelink - server - libs_sv/wire.lua#L720
 	---@return Wirelink undefined Wirelink of the entity
 	function _G.Entity:getWirelink() end
 	--- getParent - shared - libs_sh/entities.lua#L757
@@ -10368,40 +10382,40 @@ _G.SurfaceInfo = {}
 ---@class Wirelink
 ---@operator index(string|number):any
 _G.Wirelink = {}
-	--- inputValue - server - libs_sv/wire.lua#L755
+	--- inputValue - server - libs_sv/wire.lua#L764
 	---@param name string Input name
 	---@return any undefined Input value
 	function _G.Wirelink:inputValue(name) end
-	--- entity - server - libs_sv/wire.lua#L787
+	--- entity - server - libs_sv/wire.lua#L796
 	---@return Entity undefined Entity the wirelink represents
 	function _G.Wirelink:entity() end
-	--- getWiredToName - server - libs_sv/wire.lua#L855
+	--- getWiredToName - server - libs_sv/wire.lua#L864
 	---@param name string Name of the input of the wirelink.
 	---@return string undefined String name of the output that the input is wired to.
 	function _G.Wirelink:getWiredToName(name) end
-	--- inputs - server - libs_sv/wire.lua#L793
+	--- inputs - server - libs_sv/wire.lua#L802
 	---@return table undefined All of the wirelink's inputs
 	function _G.Wirelink:inputs() end
-	--- inputType - server - libs_sv/wire.lua#L763
+	--- inputType - server - libs_sv/wire.lua#L772
 	---@param name string Input name to search for
 	---@return string undefined Type of input
 	function _G.Wirelink:inputType(name) end
-	--- getWiredTo - server - libs_sv/wire.lua#L843
+	--- getWiredTo - server - libs_sv/wire.lua#L852
 	---@param name string Name of the input
 	---@return Entity undefined The entity the wirelink is wired to
 	function _G.Wirelink:getWiredTo(name) end
-	--- outputType - server - libs_sv/wire.lua#L775
+	--- outputType - server - libs_sv/wire.lua#L784
 	---@param name string Output name to search for
 	---@return string undefined Type of output
 	function _G.Wirelink:outputType(name) end
-	--- isWired - server - libs_sv/wire.lua#L833
+	--- isWired - server - libs_sv/wire.lua#L842
 	---@param name string Name of the input to check
 	---@return boolean undefined Whether it is wired
 	function _G.Wirelink:isWired(name) end
-	--- outputs - server - libs_sv/wire.lua#L813
+	--- outputs - server - libs_sv/wire.lua#L822
 	---@return table undefined All of the wirelink's outputs
 	function _G.Wirelink:outputs() end
-	--- isValid - server - libs_sv/wire.lua#L749
+	--- isValid - server - libs_sv/wire.lua#L758
 	---@return boolean undefined Whether the wirelink is valid
 	function _G.Wirelink:isValid() end
 ---  For playing music there is `Bass` type. You can pause and set current playback time in it. If you're looking to apply DSP effects on present game sounds, use `Sound` instead.

@@ -3110,14 +3110,20 @@ _G.game = {}
 	--- bulletsLeft - server - libs_sh/game.lua#L234
 	---@return number undefined Number of bullets left to fire
 	function _G.game.bulletsLeft() end
+	--- getMaxPlayers - shared - libs_sh/game.lua#L64
+	---@return number undefined The max players allowed by the server
+	function _G.game.getMaxPlayers() end
 	--- serverFrameTime - client - libs_sh/game.lua#L274
 	---@return number undefined Server frametime
 	---@return number undefined Server frametime standard deviation
 	function _G.game.serverFrameTime() end
-	--- isTimingOut - client - libs_sh/game.lua#L282
+	--- isTimingOut - client - libs_sh/game.lua#L289
 	---@return boolean undefined If currently timing out
 	---@return number undefined Time since the connection started to timeout
 	function _G.game.isTimingOut() end
+	--- realFrameTime - client - libs_sh/game.lua#L282
+	---@return number undefined Frametime
+	function _G.game.realFrameTime() end
 	--- blastDamage - server - libs_sh/game.lua#L158
 	---@param damageOrigin Vector The center of the explosion
 	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
@@ -3193,9 +3199,9 @@ _G.game = {}
 	--- getMap - shared - libs_sh/game.lua#L34
 	---@return string undefined The name of the current map
 	function _G.game.getMap() end
-	--- getMaxPlayers - shared - libs_sh/game.lua#L64
-	---@return number undefined The max players allowed by the server
-	function _G.game.getMaxPlayers() end
+	--- physicsFrameTime - shared - libs_sh/game.lua#L299
+	---@return number undefined The physics frame time length
+	function _G.game.physicsFrameTime() end
 	--- isMounted - shared - libs_sh/game.lua#L70
 	---@param str string String identifier of the game, eg. 'cstrike'
 	---@return boolean undefined True if the game is mounted

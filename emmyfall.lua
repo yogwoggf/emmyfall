@@ -6242,36 +6242,36 @@ _G.navmesh.NAV_TRAVERSE_TYPE = {
 --- joystick
 ---  Joystick library.
 _G.joystick = {}
-	--- numJoysticks - client - libs_cl/joystick.lua#L60
+	--- numJoysticks - client - libs_cl/joystick.lua#L59
 	---@return number undefined Number of joysticks
 	function _G.joystick.numJoysticks() end
-	--- numButtons - client - libs_cl/joystick.lua#L82
-	---@param enum number Joystick number. Starts at 0
-	---@return number undefined Number of buttons
-	function _G.joystick.numButtons(enum) end
-	--- numPovs - client - libs_cl/joystick.lua#L74
+	--- numPovs - client - libs_cl/joystick.lua#L81
 	---@param enum number Joystick number. Starts at 0
 	---@return number undefined Number of povs
 	function _G.joystick.numPovs(enum) end
-	--- numAxes - client - libs_cl/joystick.lua#L66
+	--- numButtons - client - libs_cl/joystick.lua#L73
+	---@param enum number Joystick number. Starts at 0
+	---@return number undefined Number of buttons
+	function _G.joystick.numButtons(enum) end
+	--- numAxes - client - libs_cl/joystick.lua#L65
 	---@param enum number Joystick number. Starts at 0
 	---@return number undefined Number of axes
 	function _G.joystick.numAxes(enum) end
-	--- getAxis - client - libs_cl/joystick.lua#L25
+	--- getAxis - client - libs_cl/joystick.lua#L24
 	---@param enum number Joystick number. Starts at 0
 	---@param axis number Joystick axis number. Ranges from 0 to 7.
 	---@return number undefined 0 - 65535 where 32767 is the middle.
 	function _G.joystick.getAxis(enum, axis) end
-	--- getButton - client - libs_cl/joystick.lua#L43
+	--- getButton - client - libs_cl/joystick.lua#L42
 	---@param enum number Joystick number. Starts at 0
 	---@param button number Joystick button number. Starts at 0
 	---@return number undefined 0 or 1
 	function _G.joystick.getButton(enum, button) end
-	--- getName - client - libs_cl/joystick.lua#L52
+	--- getName - client - libs_cl/joystick.lua#L51
 	---@param enum number Joystick number. Starts at 0
 	---@return string undefined Name of the device
 	function _G.joystick.getName(enum) end
-	--- getPov - client - libs_cl/joystick.lua#L34
+	--- getPov - client - libs_cl/joystick.lua#L33
 	---@param enum number Joystick number. Starts at 0
 	---@param pov number Joystick pov number. Ranges from 0 to 7.
 	---@return number undefined 0 - 65535 where 32767 is the middle.

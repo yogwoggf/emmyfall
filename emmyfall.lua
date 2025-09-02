@@ -499,7 +499,7 @@ _G.file = {}
 --- constraint
 ---  Library for creating and manipulating constraints.
 _G.constraint = {}
-	--- rope - server - libs_sv/constraint.lua#L327
+	--- rope - server - libs_sv/constraint.lua#L333
 	---@param index number Index of the rope constraint
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
@@ -516,13 +516,13 @@ _G.constraint = {}
 	---@param color Color? The color of the rope. Default white
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.rope(index, e1, e2, bone1, bone2, v1, v2, length, addlength, force_lim, width, materialName, rigid, color) end
-	--- setElasticLength - server - libs_sv/constraint.lua#L481
+	--- setElasticLength - server - libs_sv/constraint.lua#L487
 	---@param index number Index of the elastic constraint
 	---@param e Entity Entity that has the constraint
 	---@param length number New length of the constraint
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.setElasticLength(index, e, length) end
-	--- slider - server - libs_sv/constraint.lua#L386
+	--- slider - server - libs_sv/constraint.lua#L392
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -532,10 +532,10 @@ _G.constraint = {}
 	---@param width number? Width of the slider. Default 0
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.slider(e1, e2, bone1, bone2, v1, v2, width) end
-	--- setConstraintClean - server - libs_sv/constraint.lua#L579
+	--- setConstraintClean - server - libs_sv/constraint.lua#L591
 	---@param on boolean Whether the constraints should be cleaned or not
 	function _G.constraint.setConstraintClean(on) end
-	--- ballsocketadv - server - libs_sv/constraint.lua#L223
+	--- ballsocketadv - server - libs_sv/constraint.lua#L229
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -551,29 +551,29 @@ _G.constraint = {}
 	---@param nocollide boolean? Bool whether or not to nocollide the two entities. Default false
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.ballsocketadv(e1, e2, bone1, bone2, v1, v2, force_lim, torque_lim, minv, maxv, frictionv, rotateonly, nocollide) end
-	--- breakType - server - libs_sv/constraint.lua#L557
+	--- breakType - server - libs_sv/constraint.lua#L563
 	---@param e Entity Entity to be affected
 	---@param typename string Name of the constraint type, ie. Weld, Elastic, NoCollide, etc.
 	function _G.constraint.breakType(e, typename) end
-	--- keepupright - server - libs_sv/constraint.lua#L453
+	--- keepupright - server - libs_sv/constraint.lua#L459
 	---@param e Entity The entity
 	---@param ang Angle The upright angle
 	---@param bone number Number bone of the entity. Default 0
 	---@param lim number The strength of the constraint. Default 5000
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.keepupright(e, ang, bone, lim) end
-	--- nocollide - server - libs_sv/constraint.lua#L423
+	--- nocollide - server - libs_sv/constraint.lua#L429
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
 	---@param bone2 number? Number bone of the second entity. Default 0
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.nocollide(e1, e2, bone1, bone2) end
-	--- getTable - server - libs_sv/constraint.lua#L572
+	--- getTable - server - libs_sv/constraint.lua#L578
 	---@param ent Entity The entity
 	---@return table undefined Table of tables containing constraint information
 	function _G.constraint.getTable(ent) end
-	--- ballsocket - server - libs_sv/constraint.lua#L184
+	--- ballsocket - server - libs_sv/constraint.lua#L190
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -584,21 +584,21 @@ _G.constraint = {}
 	---@param nocollide boolean? Bool whether or not to nocollide the two entities. Default false
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.ballsocket(e1, e2, bone1, bone2, pos, force_lim, torque_lim, nocollide) end
-	--- removeAll - server - libs_sv/constraint.lua#L79
+	--- removeAll - server - libs_sv/constraint.lua#L85
 	function _G.constraint.removeAll() end
-	--- constraintsLeft - server - libs_sv/constraint.lua#L585
+	--- constraintsLeft - server - libs_sv/constraint.lua#L597
 	---@return number undefined Number of constraints able to be spawned
 	function _G.constraint.constraintsLeft() end
-	--- setElasticDamping - server - libs_sv/constraint.lua#L503
+	--- setElasticDamping - server - libs_sv/constraint.lua#L509
 	---@param index number Index of the elastic constraint
 	---@param e Entity Entity that has the elastic
 	---@param damping number New Damping value of the elastic
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.setElasticDamping(index, e, damping) end
-	--- breakAll - server - libs_sv/constraint.lua#L547
+	--- breakAll - server - libs_sv/constraint.lua#L553
 	---@param e Entity Entity to remove the constraints from
 	function _G.constraint.breakAll(e) end
-	--- axis - server - libs_sv/constraint.lua#L138
+	--- axis - server - libs_sv/constraint.lua#L144
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -612,7 +612,7 @@ _G.constraint = {}
 	---@param laxis Vector? Optional second position of the constraint, same as v2 but local to e1
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.axis(e1, e2, bone1, bone2, v1, v2, force_lim, torque_lim, friction, nocollide, laxis) end
-	--- weld - server - libs_sv/constraint.lua#L104
+	--- weld - server - libs_sv/constraint.lua#L110
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
 	---@param bone1 number? Number bone of the first entity. Default 0
@@ -621,13 +621,13 @@ _G.constraint = {}
 	---@param nocollide boolean? Bool whether or not to nocollide the two entities. Default false
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.weld(e1, e2, bone1, bone2, force_lim, nocollide) end
-	--- setElasticConstant - server - libs_sv/constraint.lua#L525
+	--- setElasticConstant - server - libs_sv/constraint.lua#L531
 	---@param index number Index of the elastic constraint
 	---@param e Entity Entity that has the elastic
 	---@param constant number New constant value of the elastic
 	---@return Constraint undefined The constraint entity
 	function _G.constraint.setElasticConstant(index, e, constant) end
-	--- elastic - server - libs_sv/constraint.lua#L272
+	--- elastic - server - libs_sv/constraint.lua#L278
 	---@param index number Index of the elastic constraint
 	---@param e1 Entity The first entity
 	---@param e2 Entity The second entity
@@ -10018,7 +10018,9 @@ _G.WebSocket = {}
 _G.Constraint = {}
 	--- remove - server - libs_sv/constraint.lua#L71
 	function _G.Constraint:remove() end
-	--- isValid - server - libs_sv/constraint.lua#L85
+	--- isConstraint - server - libs_sv/constraint.lua#L79
+	function _G.Constraint:isConstraint() end
+	--- isValid - server - libs_sv/constraint.lua#L91
 	---@return boolean undefined True if valid, false if not
 	function _G.Constraint:isValid() end
 ---  Projected Texture type

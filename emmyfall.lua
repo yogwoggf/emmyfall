@@ -8852,14 +8852,14 @@ _G.PhysObj = {}
 	---@param vec Vector The vector to transform
 	---@return Vector undefined The transformed vector
 	function _G.PhysObj:localToWorld(vec) end
-	--- setDamping - shared - libs_sh/physobj.lua#L474
+	--- setDamping - shared - libs_sh/physobj.lua#L483
 	---@param linear number Number of the linear damping
 	---@param angular number Number of the angular damping
 	function _G.PhysObj:setDamping(linear, angular) end
 	--- getMatrix - shared - libs_sh/physobj.lua#L54
 	---@return VMatrix undefined The matrix
 	function _G.PhysObj:getMatrix() end
-	--- setAngleVelocity - server - libs_sh/physobj.lua#L307
+	--- setAngleVelocity - server - libs_sh/physobj.lua#L316
 	---@param angvel Vector The local angvel vector to set
 	function _G.PhysObj:setAngleVelocity(angvel) end
 	--- getPos - shared - libs_sh/physobj.lua#L47
@@ -8868,34 +8868,34 @@ _G.PhysObj = {}
 	--- getAngles - shared - libs_sh/physobj.lua#L61
 	---@return Angle undefined Angle angles of the physics object
 	function _G.PhysObj:getAngles() end
-	--- addGameFlags - shared - libs_sh/physobj.lua#L378
+	--- addGameFlags - shared - libs_sh/physobj.lua#L387
 	---@param flags number The flags to add. FVPHYSICS enum.
 	function _G.PhysObj:addGameFlags(flags) end
-	--- enableMotion - shared - libs_sh/physobj.lua#L487
+	--- enableMotion - shared - libs_sh/physobj.lua#L496
 	---@param move boolean Should the bone move?
 	function _G.PhysObj:enableMotion(move) end
-	--- calculateVelocityOffset - server - libs_sh/physobj.lua#L575
+	--- calculateVelocityOffset - server - libs_sh/physobj.lua#L584
 	---@param impulse Vector The impulse acting on the object in world coordinates (kg*source_unit/s)
 	---@param position Vector The location of the impulse in world coordinates
 	---@return Vector undefined The calculated linear velocity from the impulse on the physics object's center of mass in source_unit/s. (World frame)
 	---@return Vector undefined The calculated angular velocity from the impulse on the physics object's center of mass in degrees/s. (Local frame)
 	function _G.PhysObj:calculateVelocityOffset(impulse, position) end
-	--- setPos - server - libs_sh/physobj.lua#L210
+	--- setPos - server - libs_sh/physobj.lua#L219
 	---@param pos Vector The position vector to set it to
 	function _G.PhysObj:setPos(pos) end
-	--- isDragEnabled - shared - libs_sh/physobj.lua#L443
+	--- isDragEnabled - shared - libs_sh/physobj.lua#L452
 	---@return boolean undefined If bone is affected by drag
 	function _G.PhysObj:isDragEnabled() end
-	--- setAngleDragCoefficient - shared - libs_sh/physobj.lua#L458
+	--- setAngleDragCoefficient - shared - libs_sh/physobj.lua#L467
 	---@param coeff number How much drag affects the bone when rotating
 	function _G.PhysObj:setAngleDragCoefficient(coeff) end
-	--- setContents - server - libs_sh/physobj.lua#L270
+	--- setContents - server - libs_sh/physobj.lua#L279
 	---@param contents number The CONTENTS enum
 	function _G.PhysObj:setContents(contents) end
-	--- applyTorque - server - libs_sh/physobj.lua#L333
+	--- applyTorque - server - libs_sh/physobj.lua#L342
 	---@param torque Vector The world torque vector to apply
 	function _G.PhysObj:applyTorque(torque) end
-	--- calculateForceOffset - server - libs_sh/physobj.lua#L553
+	--- calculateForceOffset - server - libs_sh/physobj.lua#L562
 	---@param impulse Vector The impulse acting on the object in world coordinates (kg*source_unit/s)
 	---@param position Vector The location of the impulse in world coordinates
 	---@return Vector undefined The calculated linear impulse on the physics object's center of mass in kg*source_unit/s. (World frame)
@@ -8904,7 +8904,7 @@ _G.PhysObj = {}
 	--- getVelocity - shared - libs_sh/physobj.lua#L68
 	---@return Vector undefined Vector velocity of the physics object
 	function _G.PhysObj:getVelocity() end
-	--- getStress - server - libs_sh/physobj.lua#L545
+	--- getStress - server - libs_sh/physobj.lua#L554
 	---@return number undefined External stress. Usually about the mass of the object if on the ground, usually 0 if in freefall.
 	---@return number undefined Internal stress. Usually about the mass of every object resting on top of it combined.
 	function _G.PhysObj:getStress() end
@@ -8912,43 +8912,43 @@ _G.PhysObj = {}
 	---@param vec Vector The vector to transform
 	---@return Vector undefined The transformed vector
 	function _G.PhysObj:worldToLocal(vec) end
-	--- sleep - server - libs_sh/physobj.lua#L503
+	--- sleep - server - libs_sh/physobj.lua#L512
 	function _G.PhysObj:sleep() end
-	--- getFrictionSnapshot - server - libs_sh/physobj.lua#L519
+	--- getFrictionSnapshot - server - libs_sh/physobj.lua#L528
 	---@return table undefined Table of tables of data. Each table will contain:
 	function _G.PhysObj:getFrictionSnapshot() end
-	--- setDragCoefficient - shared - libs_sh/physobj.lua#L449
+	--- setDragCoefficient - shared - libs_sh/physobj.lua#L458
 	---@param coeff number How much drag affects the bone
 	function _G.PhysObj:setDragCoefficient(coeff) end
 	--- getMassCenter - shared - libs_sh/physobj.lua#L115
 	---@return Vector undefined Center of mass vector in the physobject's local reference frame.
 	function _G.PhysObj:getMassCenter() end
-	--- getVolume - shared - libs_sh/physobj.lua#L538
+	--- getVolume - shared - libs_sh/physobj.lua#L547
 	---@return number? undefined The volume or nil if the PhysObj is a generated sphere or box.
 	function _G.PhysObj:getVolume() end
 	--- getMesh - shared - libs_sh/physobj.lua#L164
 	---@return table undefined Table of MeshVertex structures
 	function _G.PhysObj:getMesh() end
-	--- addAngleVelocity - server - libs_sh/physobj.lua#L320
+	--- addAngleVelocity - server - libs_sh/physobj.lua#L329
 	---@param angvel Vector The local angvel vector to apply
 	function _G.PhysObj:addAngleVelocity(angvel) end
-	--- isAsleep - server - libs_sh/physobj.lua#L496
+	--- isAsleep - server - libs_sh/physobj.lua#L505
 	---@return boolean undefined If the physobj is asleep
 	function _G.PhysObj:isAsleep() end
 	--- getLocalVelocity - shared - libs_sh/physobj.lua#L75
 	---@return Vector undefined Vector velocity of the physics object local to itself
 	function _G.PhysObj:getLocalVelocity() end
-	--- applyForceOffset - server - libs_sh/physobj.lua#L292
+	--- applyForceOffset - server - libs_sh/physobj.lua#L301
 	---@param force Vector The force vector in world coordinates
 	---@param position Vector The force position in world coordinates
 	function _G.PhysObj:applyForceOffset(force, position) end
-	--- setBuoyancyRatio - server - libs_sh/physobj.lua#L258
+	--- setBuoyancyRatio - server - libs_sh/physobj.lua#L267
 	---@param ratio number The buoyancy ratio to use
 	function _G.PhysObj:setBuoyancyRatio(ratio) end
 	--- setMaterial - shared - libs_sh/physobj.lua#L176
 	---@param materialName string The physical material to set it to
 	function _G.PhysObj:setMaterial(materialName) end
-	--- isMoveable - shared - libs_sh/physobj.lua#L195
+	--- isMoveable - shared - libs_sh/physobj.lua#L204
 	---@return boolean undefined Whether the object is moveable
 	function _G.PhysObj:isMoveable() end
 	--- getMass - shared - libs_sh/physobj.lua#L108
@@ -8957,54 +8957,54 @@ _G.PhysObj = {}
 	--- isValid - shared - libs_sh/physobj.lua#L33
 	---@return boolean undefined If the physics object is valid
 	function _G.PhysObj:isValid() end
-	--- wake - server - libs_sh/physobj.lua#L511
+	--- wake - server - libs_sh/physobj.lua#L520
 	function _G.PhysObj:wake() end
 	--- localToWorldVector - shared - libs_sh/physobj.lua#L157
 	---@param vec Vector The normal vector to transform
 	---@return Vector undefined The transformed vector
 	function _G.PhysObj:localToWorldVector(vec) end
-	--- enableDrag - shared - libs_sh/physobj.lua#L435
+	--- enableDrag - shared - libs_sh/physobj.lua#L444
 	---@param drag boolean Should the bone have air resistance?
 	function _G.PhysObj:enableDrag(drag) end
-	--- addVelocity - server - libs_sh/physobj.lua#L246
+	--- addVelocity - server - libs_sh/physobj.lua#L255
 	---@param vel Vector The world velocity vector to apply
 	function _G.PhysObj:addVelocity(vel) end
-	--- applyForceCenter - server - libs_sh/physobj.lua#L280
+	--- applyForceCenter - server - libs_sh/physobj.lua#L289
 	---@param force Vector The force vector to apply
 	function _G.PhysObj:applyForceCenter(force) end
 	--- getVelocityAtPoint - shared - libs_sh/physobj.lua#L92
 	---@param vec Vector The point to get velocity of in local reference frame
 	---@return Vector undefined Vector Local velocity of the physics object at the point
 	function _G.PhysObj:getVelocityAtPoint(vec) end
-	--- isGravityEnabled - shared - libs_sh/physobj.lua#L202
+	--- isGravityEnabled - shared - libs_sh/physobj.lua#L211
 	---@return boolean undefined Whether the object is affect gravity
 	function _G.PhysObj:isGravityEnabled() end
 	--- getAngleVelocity - shared - libs_sh/physobj.lua#L101
 	---@return Vector undefined Vector angular velocity of the physics object
 	function _G.PhysObj:getAngleVelocity() end
-	--- setInertia - server - libs_sh/physobj.lua#L359
+	--- setInertia - server - libs_sh/physobj.lua#L368
 	---@param inertia Vector The inertia vector to set it to
 	function _G.PhysObj:setInertia(inertia) end
-	--- setAngles - server - libs_sh/physobj.lua#L222
+	--- setAngles - server - libs_sh/physobj.lua#L231
 	---@param ang Angle The angle to set it to
 	function _G.PhysObj:setAngles(ang) end
 	--- getEntity - shared - libs_sh/physobj.lua#L40
 	---@return Entity undefined The entity attached to the physics object
 	function _G.PhysObj:getEntity() end
-	--- enableGravity - shared - libs_sh/physobj.lua#L426
+	--- enableGravity - shared - libs_sh/physobj.lua#L435
 	---@param grav boolean Should the bone respect gravity?
 	function _G.PhysObj:enableGravity(grav) end
-	--- getDamping - shared - libs_sh/physobj.lua#L467
+	--- getDamping - shared - libs_sh/physobj.lua#L476
 	---@return number undefined Linear damping
 	---@return number undefined Angular damping
 	function _G.PhysObj:getDamping() end
-	--- clearGameFlags - shared - libs_sh/physobj.lua#L398
+	--- clearGameFlags - shared - libs_sh/physobj.lua#L407
 	---@param flags number The flags to clear. FVPHYSICS enum.
 	function _G.PhysObj:clearGameFlags(flags) end
-	--- setMass - server - libs_sh/physobj.lua#L346
+	--- setMass - server - libs_sh/physobj.lua#L355
 	---@param mass number The mass to set it to
 	function _G.PhysObj:setMass(mass) end
-	--- hasGameFlags - shared - libs_sh/physobj.lua#L418
+	--- hasGameFlags - shared - libs_sh/physobj.lua#L427
 	---@param flags number The flags to test. FVPHYSICS enum.
 	---@return boolean undefined If the flags are set
 	function _G.PhysObj:hasGameFlags(flags) end
@@ -9015,7 +9015,7 @@ _G.PhysObj = {}
 	---@param vec Vector The normal vector to transform
 	---@return Vector undefined The transformed vector
 	function _G.PhysObj:worldToLocalVector(vec) end
-	--- getSurfaceArea - shared - libs_sh/physobj.lua#L189
+	--- getSurfaceArea - shared - libs_sh/physobj.lua#L198
 	---@return number? undefined Surface area, or nil if a generated sphere or box
 	function _G.PhysObj:getSurfaceArea() end
 	--- getAABB - shared - libs_sh/physobj.lua#L83
@@ -9028,7 +9028,7 @@ _G.PhysObj = {}
 	--- getInertia - shared - libs_sh/physobj.lua#L122
 	---@return Vector undefined Vector Inertia of the physics object
 	function _G.PhysObj:getInertia() end
-	--- setVelocity - server - libs_sh/physobj.lua#L234
+	--- setVelocity - server - libs_sh/physobj.lua#L243
 	---@param vel Vector The velocity vector to set it to
 	function _G.PhysObj:setVelocity(vel) end
 ---  VMatrix type

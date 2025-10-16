@@ -4911,87 +4911,102 @@ _G.particleEffect = {}
 --- game
 ---  Game functions
 _G.game = {}
-	--- getWorld - shared - libs_sh/game.lua#L139
-	---@return Entity undefined Worldspawn
-	function _G.game.getWorld() end
-	--- getAmmoData - shared - libs_sh/game.lua#L125
-	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
-	---@return table undefined AmmoData, see https://wiki.facepunch.com/gmod/Structures/AmmoData
-	function _G.game.getAmmoData(id) end
 	--- getTickInterval - shared - libs_sh/game.lua#L83
 	---@return number undefined Time interval in seconds
 	function _G.game.getTickInterval() end
-	--- steamIDTo64 - shared - libs_sh/game.lua#L163
-	---@param id string The STEAM_0 style id
-	---@return string undefined 64bit Steam ID
-	function _G.game.steamIDTo64(id) end
-	--- bulletsLeft - server - libs_sh/game.lua#L248
-	---@return number undefined Number of bullets left to fire
-	function _G.game.bulletsLeft() end
-	--- getAmmoID - shared - libs_sh/game.lua#L111
+	--- getAmmoID - shared - libs_sh/game.lua#L117
 	---@param name string The ammo name
 	---@return number undefined The id or -1 if not found
 	function _G.game.getAmmoID(name) end
-	--- isTimingOut - client - libs_sh/game.lua#L303
-	---@return boolean undefined If currently timing out
-	---@return number undefined Time since the connection started to timeout
-	function _G.game.isTimingOut() end
-	--- serverFrameTime - client - libs_sh/game.lua#L288
-	---@return number undefined Server frametime
-	---@return number undefined Server frametime standard deviation
-	function _G.game.serverFrameTime() end
-	--- realFrameTime - client - libs_sh/game.lua#L296
-	---@return number undefined Frametime
-	function _G.game.realFrameTime() end
-	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L280
-	---@param position Vector The position to check the skybox visibility from
-	---@return boolean undefined Whether the skybox is visible from the position
-	function _G.game.isSkyboxVisibleFromPoint(position) end
-	--- getAmmoName - shared - libs_sh/game.lua#L118
-	---@param id number The ammo id
-	---@return string undefined The ammo name
-	function _G.game.getAmmoName(id) end
-	--- getSunInfo - client - libs_sh/game.lua#L271
+	--- getSunInfo - client - libs_sh/game.lua#L277
 	---@return Vector undefined The direction of the sun
 	---@return number undefined How obstructed the sun is 0 to 1.
 	function _G.game.getSunInfo() end
 	--- getHostname - shared - libs_sh/game.lua#L40
 	---@return string undefined The hostname of the server
 	function _G.game.getHostname() end
-	--- getMaxPlayers - shared - libs_sh/game.lua#L64
-	---@return number undefined The max players allowed by the server
-	function _G.game.getMaxPlayers() end
-	--- getAmmoMax - shared - libs_sh/game.lua#L132
+	--- getPlayerModels - shared - libs_sh/game.lua#L151
+	---@return table undefined List of valid playermodels
+	function _G.game.getPlayerModels() end
+	--- getAmmoMax - shared - libs_sh/game.lua#L138
 	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
 	---@return number undefined The maximum amount of reserve ammo a player can hold of this ammo type
 	function _G.game.getAmmoMax(id) end
-	--- getMap - shared - libs_sh/game.lua#L34
-	---@return string undefined The name of the current map
-	function _G.game.getMap() end
-	--- isDedicated - shared - libs_sh/game.lua#L58
-	---@return boolean undefined True if the game is a dedicated server
-	function _G.game.isDedicated() end
-	--- isLan - shared - libs_sh/game.lua#L46
-	---@return boolean undefined True if the game is a lan game
-	function _G.game.isLan() end
+	--- getWorld - shared - libs_sh/game.lua#L145
+	---@return Entity undefined Worldspawn
+	function _G.game.getWorld() end
 	--- getTimeScale - shared - libs_sh/game.lua#L77
 	---@return number undefined Time scale
 	function _G.game.getTimeScale() end
-	--- hasFocus - client - libs_sh/game.lua#L264
-	---@return boolean undefined True if the game is focused
-	function _G.game.hasFocus() end
 	--- getRealTickInterval - shared - libs_sh/game.lua#L89
 	---@return number undefined Time interval in seconds
 	function _G.game.getRealTickInterval() end
-	--- isSinglePlayer - shared - libs_sh/game.lua#L52
-	---@return boolean undefined True if the game is singleplayer
-	function _G.game.isSinglePlayer() end
-	--- canFireBullets - server - libs_sh/game.lua#L237
-	---@param damage number The damage dealt by the bullet. (1-100)
-	---@param num number The amount of bullets to fire. (1-5)
-	---@return boolean undefined true if the given bullets can be fired or else false
-	function _G.game.canFireBullets(damage, num) end
-	--- bulletDamage - server - libs_sh/game.lua#L182
+	--- modelExists - shared - libs_sh/game.lua#L107
+	---@param path string Filepath in game folder
+	---@return boolean? undefined True if exists, false if not, nil if error
+	function _G.game.modelExists(path) end
+	--- isMounted - shared - libs_sh/game.lua#L70
+	---@param str string String identifier of the game, eg. 'cstrike'
+	---@return boolean undefined True if the game is mounted
+	function _G.game.isMounted(str) end
+	--- getAmmoData - shared - libs_sh/game.lua#L131
+	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
+	---@return table undefined AmmoData, see https://wiki.facepunch.com/gmod/Structures/AmmoData
+	function _G.game.getAmmoData(id) end
+	--- steamIDTo64 - shared - libs_sh/game.lua#L169
+	---@param id string The STEAM_0 style id
+	---@return string undefined 64bit Steam ID
+	function _G.game.steamIDTo64(id) end
+	--- bulletsLeft - server - libs_sh/game.lua#L254
+	---@return number undefined Number of bullets left to fire
+	function _G.game.bulletsLeft() end
+	--- serverFrameTime - client - libs_sh/game.lua#L294
+	---@return number undefined Server frametime
+	---@return number undefined Server frametime standard deviation
+	function _G.game.serverFrameTime() end
+	--- blastDamage - server - libs_sh/game.lua#L178
+	---@param damageOrigin Vector The center of the explosion
+	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
+	---@param damage number The amount of damage to be applied
+	function _G.game.blastDamage(damageOrigin, damageRadius, damage) end
+	--- isTimingOut - client - libs_sh/game.lua#L309
+	---@return boolean undefined If currently timing out
+	---@return number undefined Time since the connection started to timeout
+	function _G.game.isTimingOut() end
+	--- getMaxPlayers - shared - libs_sh/game.lua#L64
+	---@return number undefined The max players allowed by the server
+	function _G.game.getMaxPlayers() end
+	--- getMap - shared - libs_sh/game.lua#L34
+	---@return string undefined The name of the current map
+	function _G.game.getMap() end
+	--- realFrameTime - client - libs_sh/game.lua#L302
+	---@return number undefined Frametime
+	function _G.game.realFrameTime() end
+	--- isLan - shared - libs_sh/game.lua#L46
+	---@return boolean undefined True if the game is a lan game
+	function _G.game.isLan() end
+	--- isDedicated - shared - libs_sh/game.lua#L58
+	---@return boolean undefined True if the game is a dedicated server
+	function _G.game.isDedicated() end
+	--- bulletsDPSLeft - server - libs_sh/game.lua#L261
+	---@return number undefined Damage left bullets can deal
+	function _G.game.bulletsDPSLeft() end
+	--- getAmmoName - shared - libs_sh/game.lua#L124
+	---@param id number The ammo id
+	---@return string undefined The ammo name
+	function _G.game.getAmmoName(id) end
+	--- steamIDFrom64 - shared - libs_sh/game.lua#L162
+	---@param id string The 64 bit Steam ID
+	---@return string undefined STEAM_0 style Steam ID
+	function _G.game.steamIDFrom64(id) end
+	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L286
+	---@param position Vector The position to check the skybox visibility from
+	---@return boolean undefined Whether the skybox is visible from the position
+	function _G.game.isSkyboxVisibleFromPoint(position) end
+	--- getTickCount - shared - libs_sh/game.lua#L95
+	---@return number undefined Ticks
+	function _G.game.getTickCount() end
+	--- bulletDamage - server - libs_sh/game.lua#L188
 	---@param src Vector The position to fire the bullets from.
 	---@param Dir Vector The fire direction.
 	---@param damage number? The damage dealt by the bullet. Default: (1-100)
@@ -5003,35 +5018,23 @@ _G.game = {}
 	---@param ignoreEntity Entity? The entity that the bullet will ignore when it will be shot.
 	---@param callback function? Function to be called with attacker, traceResult after the bullet was fired but before the damage is applied (the callback is called even if no damage is applied).
 	function _G.game.bulletDamage(src, Dir, damage, num, force, distance, Spread, hullSize, ignoreEntity, callback) end
-	--- getTickCount - shared - libs_sh/game.lua#L95
-	---@return number undefined Ticks
-	function _G.game.getTickCount() end
-	--- blastDamage - server - libs_sh/game.lua#L172
-	---@param damageOrigin Vector The center of the explosion
-	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
-	---@param damage number The amount of damage to be applied
-	function _G.game.blastDamage(damageOrigin, damageRadius, damage) end
-	--- steamIDFrom64 - shared - libs_sh/game.lua#L156
-	---@param id string The 64 bit Steam ID
-	---@return string undefined STEAM_0 style Steam ID
-	function _G.game.steamIDFrom64(id) end
-	--- modelExists - shared - libs_sh/game.lua#L101
-	---@param path string Filepath in game folder
-	---@return boolean? undefined True if exists, false if not, nil if error
-	function _G.game.modelExists(path) end
-	--- getPlayerModels - shared - libs_sh/game.lua#L145
-	---@return table undefined List of valid playermodels
-	function _G.game.getPlayerModels() end
-	--- physicsFrameTime - shared - libs_sh/game.lua#L313
+	--- canFireBullets - server - libs_sh/game.lua#L243
+	---@param damage number The damage dealt by the bullet. (1-100)
+	---@param num number The amount of bullets to fire. (1-5)
+	---@return boolean undefined true if the given bullets can be fired or else false
+	function _G.game.canFireBullets(damage, num) end
+	--- isSinglePlayer - shared - libs_sh/game.lua#L52
+	---@return boolean undefined True if the game is singleplayer
+	function _G.game.isSinglePlayer() end
+	--- physicsFrameTime - shared - libs_sh/game.lua#L319
 	---@return number undefined The physics frame time length
 	function _G.game.physicsFrameTime() end
-	--- isMounted - shared - libs_sh/game.lua#L70
-	---@param str string String identifier of the game, eg. 'cstrike'
-	---@return boolean undefined True if the game is mounted
-	function _G.game.isMounted(str) end
-	--- bulletsDPSLeft - server - libs_sh/game.lua#L255
-	---@return number undefined Damage left bullets can deal
-	function _G.game.bulletsDPSLeft() end
+	--- getIPAddress - shared - libs_sh/game.lua#L101
+	---@return string undefined The IP address and port in the format "x.x.x.x:x"
+	function _G.game.getIPAddress() end
+	--- hasFocus - client - libs_sh/game.lua#L270
+	---@return boolean undefined True if the game is focused
+	function _G.game.hasFocus() end
 --- hologram
 ---  Library for creating and manipulating physics-less models AKA "Holograms".
 _G.hologram = {}

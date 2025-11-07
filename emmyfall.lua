@@ -971,94 +971,94 @@ _G.nextbot = {}
 --- bit
 ---  Bit library http://wiki.facepunch.com/gmod/Category:bit
 _G.bit = {}
-	--- rol - shared - libs_sh/bit.lua#L613
+	--- rol - shared - libs_sh/bit.lua#L614
 	---@param value number The value to be manipulated.
 	---@param shiftCount number Amounts of bits to rotate left by.
 	---@return number undefined Left rotated value
 	function _G.bit.rol(value, shiftCount) end
-	--- arshift - shared - libs_sh/bit.lua#L566
+	--- arshift - shared - libs_sh/bit.lua#L567
 	---@param value number The value to be manipulated.
 	---@param shiftCount number Amount of bits to shift
 	---@return number undefined shiftedValue
 	function _G.bit.arshift(value, shiftCount) end
-	--- compress - shared - libs_sh/bit.lua#L682
+	--- compress - shared - libs_sh/bit.lua#L683
 	---@param s string String to compress
 	---@return string? undefined Compressed string, or nil if compression failed
 	function _G.bit.compress(s) end
-	--- bnot - shared - libs_sh/bit.lua#L580
+	--- bnot - shared - libs_sh/bit.lua#L581
 	---@param value number The value to be inverted.
 	---@return number undefined Return value of bitwise not operation
 	function _G.bit.bnot(value) end
-	--- lshift - shared - libs_sh/bit.lua#L606
+	--- lshift - shared - libs_sh/bit.lua#L607
 	---@param value number The value to be manipulated.
 	---@param shiftCount number Amounts of bits to shift left by.
 	---@return number undefined Return of bitwise lshift operation
 	function _G.bit.lshift(value, shiftCount) end
-	--- stringstream - shared - libs_sh/bit.lua#L648
+	--- stringstream - shared - libs_sh/bit.lua#L649
 	---@param stream string? String to set the initial buffer to (default "")
 	---@param i number? The initial buffer pointer (default 1)
 	---@param endian string? The endianness of number types. "big" or "little" (default "little")
 	---@return StringStream undefined StringStream object
 	function _G.bit.stringstream(stream, i, endian) end
-	--- sha256 - shared - libs_sh/bit.lua#L729
+	--- sha256 - shared - libs_sh/bit.lua#L730
 	---@param s string The string to calculate the checksum of.
 	---@return string undefined The SHA-256 hex string of the checksum.
 	function _G.bit.sha256(s) end
-	--- stringToTable - shared - libs_sh/bit.lua#L674
+	--- stringToTable - shared - libs_sh/bit.lua#L675
 	---@param s string The serialized string data
 	---@return table undefined The deserialized table
 	function _G.bit.stringToTable(s) end
-	--- sha1 - shared - libs_sh/bit.lua#L740
+	--- sha1 - shared - libs_sh/bit.lua#L741
 	---@param s string The string to calculate the checksum of.
 	---@return string undefined The SHA-1 hex string of the checksum.
 	function _G.bit.sha1(s) end
-	--- bor - shared - libs_sh/bit.lua#L586
+	--- bor - shared - libs_sh/bit.lua#L587
 	---@param value1 number The first value.
 	---@param Extra ...number values to be evaluated. (must all be numbers)
 	---@return number undefined The bitwise OR result between all numbers.
 	function _G.bit.bor(value1, Extra) end
-	--- md5 - shared - libs_sh/bit.lua#L718
+	--- md5 - shared - libs_sh/bit.lua#L719
 	---@param s string The string to calculate the checksum of.
 	---@return string undefined The MD5 hex string of the checksum.
 	function _G.bit.md5(s) end
-	--- bswap - shared - libs_sh/bit.lua#L593
+	--- bswap - shared - libs_sh/bit.lua#L594
 	---@param value number The value to be byte swapped.
 	---@return number undefined Bit swapped value
 	function _G.bit.bswap(value) end
-	--- tableToString - shared - libs_sh/bit.lua#L666
+	--- tableToString - shared - libs_sh/bit.lua#L667
 	---@param t table The table to serialize
 	---@return string undefined Serialized data
 	function _G.bit.tableToString(t) end
-	--- ror - shared - libs_sh/bit.lua#L620
+	--- ror - shared - libs_sh/bit.lua#L621
 	---@param value number The value to be manipulated.
 	---@param shiftCount number Amounts of bits to rotate right by.
 	---@return number undefined Right rotated value
 	function _G.bit.ror(value, shiftCount) end
-	--- rshift - shared - libs_sh/bit.lua#L627
+	--- rshift - shared - libs_sh/bit.lua#L628
 	---@param value number The value to be manipulated.
 	---@param shiftCount number Amounts of bits to shift right by.
 	---@return number undefined Right shifted value
 	function _G.bit.rshift(value, shiftCount) end
-	--- bxor - shared - libs_sh/bit.lua#L599
+	--- bxor - shared - libs_sh/bit.lua#L600
 	---@param value number The value to be manipulated.
 	---@param otherValues ...number Values to bit xor with. Optional.
 	---@return number undefined Return value of bitwiseXOr operation
 	function _G.bit.bxor(value, otherValues) end
-	--- tobit - shared - libs_sh/bit.lua#L634
+	--- tobit - shared - libs_sh/bit.lua#L635
 	---@param value number The value to be normalized.
 	---@return number undefined Bit swapped value
 	function _G.bit.tobit(value) end
-	--- tohex - shared - libs_sh/bit.lua#L640
+	--- tohex - shared - libs_sh/bit.lua#L641
 	---@param value number The value to be normalized.
 	---@param digits number? The number of digits. Optional. (default 8)
 	---@return string undefined Hex string.
 	function _G.bit.tohex(value, digits) end
-	--- decompress - shared - libs_sh/bit.lua#L693
+	--- decompress - shared - libs_sh/bit.lua#L694
 	---@param s string String to decompress
 	---@param maxSize number? Maximum allowed size of decompressed data
 	---@return string? undefined Decompressed string, or nil if decompression failed
 	function _G.bit.decompress(s, maxSize) end
-	--- band - shared - libs_sh/bit.lua#L573
+	--- band - shared - libs_sh/bit.lua#L574
 	---@param value number The value to be manipulated.
 	---@param otherValues ...number Values bit to perform bitwise "and" with. Optional.
 	---@return number undefined Result of bitwise "and" operation.
@@ -5131,7 +5131,7 @@ _G.net = {}
 	--- readDouble - shared - libs_sh/net.lua#L473
 	---@return number undefined The double that was read
 	function _G.net.readDouble() end
-	--- getBitsLeft - shared - libs_sh/net.lua#L611
+	--- getBitsLeft - shared - libs_sh/net.lua#L612
 	---@return number undefined Number of bits that can be sent
 	function _G.net.getBitsLeft() end
 	--- writeString - shared - libs_sh/net.lua#L274
@@ -5150,16 +5150,16 @@ _G.net = {}
 	--- writeFloat - shared - libs_sh/net.lua#L480
 	---@param t number The float to be written
 	function _G.net.writeFloat(t) end
-	--- canWriteStream - shared - libs_sh/net.lua#L630
+	--- canWriteStream - shared - libs_sh/net.lua#L631
 	---@return boolean undefined Whether a writeStream can be initiated
 	---@return number undefined The number of active write streams
 	function _G.net.canWriteStream() end
-	--- canReadStream - shared - libs_sh/net.lua#L624
+	--- canReadStream - shared - libs_sh/net.lua#L625
 	---@return boolean undefined Whether a readStream can be initiated
 	function _G.net.canReadStream() end
 	--- cancelStream - shared - libs_sh/net.lua#L347
 	function _G.net.cancelStream() end
-	--- getBytesLeft - shared - libs_sh/net.lua#L605
+	--- getBytesLeft - shared - libs_sh/net.lua#L606
 	---@return number undefined Number of bytes that can be sent
 	function _G.net.getBytesLeft() end
 	--- writeVector - shared - libs_sh/net.lua#L515
@@ -5174,7 +5174,7 @@ _G.net = {}
 	--- readAngle - shared - libs_sh/net.lua#L508
 	---@return Angle undefined The angle that was read
 	function _G.net.readAngle() end
-	--- receive - shared - libs_sh/net.lua#L595
+	--- receive - shared - libs_sh/net.lua#L596
 	---@param name string The name of the net message
 	---@param func function The callback or nil to remove callback. (len - length of the net message, ply - player that sent it or nil if clientside)
 	function _G.net.receive(name, func) end
@@ -5187,7 +5187,7 @@ _G.net = {}
 	function _G.net.readFloat() end
 	--- readEntity - shared - libs_sh/net.lua#L577
 	---@param callback function? (Client only) optional callback to be ran whenever the entity becomes valid; returns nothing if this is used. The callback passes the entity if it succeeds or nil if it fails.
-	---@return Entity undefined The entity that was read
+	---@return Entity? undefined The entity that was read or nil if callback used
 	function _G.net.readEntity(callback) end
 	--- writeEntity - shared - libs_sh/net.lua#L567
 	---@param t Entity The entity to be written
@@ -5214,7 +5214,7 @@ _G.net = {}
 	--- writeBit - shared - libs_sh/net.lua#L426
 	---@param t number The bit to be written. (0 for false, 1 (or anything) for true)
 	function _G.net.writeBit(t) end
-	--- isStreaming - shared - libs_sh/net.lua#L617
+	--- isStreaming - shared - libs_sh/net.lua#L618
 	---@return boolean undefined Whether we're currently reading data from a stream
 	---@return boolean undefined Whether we're currently writing data to a stream
 	function _G.net.isStreaming() end
@@ -7578,7 +7578,7 @@ _G.StringStream = {}
 	--- seek - shared - libs_sh/bit.lua#L254
 	---@param pos number Position to seek to
 	function _G.StringStream:seek(pos) end
-	--- getString - shared - libs_sh/bit.lua#L549
+	--- getString - shared - libs_sh/bit.lua#L550
 	---@return string undefined The buffer as a string
 	function _G.StringStream:getString() end
 	--- readEntity - shared - libs_sh/bit.lua#L530

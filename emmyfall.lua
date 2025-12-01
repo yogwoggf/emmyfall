@@ -8296,28 +8296,57 @@ _G.Light = {}
 ---  Vehicle type
 ---@class Vehicle
 _G.Vehicle = {}
-	--- getDriver - shared - libs_sh/vehicles.lua#L87
-	---@return Player undefined Driver of vehicle
-	function _G.Vehicle:getDriver() end
-	--- getPassenger - shared - libs_sh/vehicles.lua#L93
+	--- getSpeed - server - libs_sh/vehicles.lua#L241
+	---@return number undefined Speed
+	function _G.Vehicle:getSpeed() end
+	--- getPassenger - shared - libs_sh/vehicles.lua#L99
 	---@param n number The index of the passenger to get
 	---@return Player undefined The passenger or NULL if empty
 	function _G.Vehicle:getPassenger(n) end
-	--- ejectDriver - server - libs_sh/vehicles.lua#L102
-	function _G.Vehicle:ejectDriver() end
-	--- unlock - server - libs_sh/vehicles.lua#L150
+	--- killDriver - server - libs_sh/vehicles.lua#L168
+	function _G.Vehicle:killDriver() end
+	--- getThirdPersonMode - shared - libs_sh/vehicles.lua#L119
+	---@return boolean undefined true if third person mode is enabled, false if not
+	function _G.Vehicle:getThirdPersonMode() end
+	--- setCameraDistance - shared - libs_sh/vehicles.lua#L125
+	---@param distance number 
+	function _G.Vehicle:setCameraDistance(distance) end
+	--- getHLSpeed - server - libs_sh/vehicles.lua#L248
+	---@return number undefined Speed
+	function _G.Vehicle:getHLSpeed() end
+	--- getCameraDistance - shared - libs_sh/vehicles.lua#L136
+	---@return number undefined distance
+	function _G.Vehicle:getCameraDistance() end
+	--- stripDriver - server - libs_sh/vehicles.lua#L179
+	---@param class string? Optional weapon class to strip. Otherwise all are stripped.
+	function _G.Vehicle:stripDriver(class) end
+	--- getDriver - shared - libs_sh/vehicles.lua#L93
+	---@return Player undefined Driver of vehicle
+	function _G.Vehicle:getDriver() end
+	--- unlock - server - libs_sh/vehicles.lua#L207
 	function _G.Vehicle:unlock() end
-	--- useEnable - shared - libs_sh/vehicles.lua#L159
+	--- ejectDriver - server - libs_sh/vehicles.lua#L159
+	function _G.Vehicle:ejectDriver() end
+	--- lock - server - libs_sh/vehicles.lua#L196
+	function _G.Vehicle:lock() end
+	--- useEnable - shared - libs_sh/vehicles.lua#L216
 	---@param enabled boolean Whether to enable the ability to use by clicking
 	---@param key number? Optional IN_KEY alternate control for using (default IN_KEY.ATTACK)
 	function _G.Vehicle:useEnable(enabled, key) end
-	--- lock - server - libs_sh/vehicles.lua#L139
-	function _G.Vehicle:lock() end
-	--- killDriver - server - libs_sh/vehicles.lua#L111
-	function _G.Vehicle:killDriver() end
-	--- stripDriver - server - libs_sh/vehicles.lua#L122
-	---@param class string? Optional weapon class to strip. Otherwise all are stripped.
-	function _G.Vehicle:stripDriver(class) end
+	--- getVehicleViewPosition - shared - libs_sh/vehicles.lua#L142
+	---@param role number? 0 is the driver.
+	---@return Vector undefined The view position
+	---@return Angle undefined The view angles
+	---@return number undefined The passengers FOV
+	function _G.Vehicle:getVehicleViewPosition(role) end
+	--- checkExitPoint - server - libs_sh/vehicles.lua#L228
+	---@param yaw number 
+	---@param distance number 
+	---@return Vector undefined The exit position, or nil if unable to exit in that direction
+	function _G.Vehicle:checkExitPoint(yaw, distance) end
+	--- setThirdPersonMode - shared - libs_sh/vehicles.lua#L108
+	---@param thirdPerson boolean 
+	function _G.Vehicle:setThirdPersonMode(thirdPerson) end
 --- 
 ---  The `Material` type is used to control shaders in rendering.
 --- 

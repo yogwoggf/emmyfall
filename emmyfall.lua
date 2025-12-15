@@ -7659,7 +7659,9 @@ _G.Player = {}
 	--- getVehicle - shared - libs_sh/players.lua#L292
 	---@return Vehicle undefined Vehicle if player in vehicle or nil
 	function _G.Player:getVehicle() end
-	--- setWalkSpeed - server - libs_sv/players.lua#L377
+	--- exitVehicle - server - libs_sv/players.lua#L461
+	function _G.Player:exitVehicle() end
+	--- setWalkSpeed - server - libs_sv/players.lua#L378
 	---@param newwalkspeed number New Walk speed.
 	function _G.Player:setWalkSpeed(newwalkspeed) end
 	--- isNoclipped - shared - libs_sh/players.lua#L229
@@ -7681,13 +7683,13 @@ _G.Player = {}
 	---@param min number Min. Ranging from 0-1
 	---@param max number Max. Ranging from 0-1
 	function _G.Player:setAnimationRange(min, max) end
-	--- stripWeapon - server - libs_sv/players.lua#L200
+	--- stripWeapon - server - libs_sv/players.lua#L201
 	---@param weapon string The weapon class name of the weapon to strip
 	function _G.Player:stripWeapon(weapon) end
 	--- getWalkSpeed - shared - libs_sh/players.lua#L180
 	---@return number undefined Walk Speed value
 	function _G.Player:getWalkSpeed() end
-	--- setUnDuckSpeed - server - libs_sv/players.lua#L332
+	--- setUnDuckSpeed - server - libs_sv/players.lua#L333
 	---@param newunduckspeed number New UnDuck speed, This is a multiplier from 0 to 1.
 	function _G.Player:setUnDuckSpeed(newunduckspeed) end
 	--- getWeaponColor - shared - libs_sh/players.lua#L436
@@ -7699,7 +7701,7 @@ _G.Player = {}
 	--- getViewPunchAngles - shared - libs_sh/players.lua#L414
 	---@return Angle undefined The angle of the view offset
 	function _G.Player:getViewPunchAngles() end
-	--- isHUDActive - server - libs_sv/players.lua#L159
+	--- isHUDActive - server - libs_sv/players.lua#L160
 	---@return boolean undefined If a HUD component is connected and active for the player
 	function _G.Player:isHUDActive() end
 	--- isWalking - shared - libs_sh/players.lua#L485
@@ -7712,7 +7714,7 @@ _G.Player = {}
 	---@param owner boolean? Return the actual game owner account id
 	---@return string undefined SteamID64 aka Community ID
 	function _G.Player:getSteamID64(owner) end
-	--- isConnected - server - libs_sv/players.lua#L276
+	--- isConnected - server - libs_sv/players.lua#L277
 	---@return boolean undefined True if player is connected
 	function _G.Player:isConnected() end
 	--- isUserGroup - shared - libs_sh/players.lua#L327
@@ -7728,7 +7730,7 @@ _G.Player = {}
 	--- isSpeaking - client - libs_sh/players.lua#L524
 	---@return boolean undefined Whether they are speaking and able to be heard by LocalPlayer
 	function _G.Player:isSpeaking() end
-	--- isTimingOut - server - libs_sv/players.lua#L270
+	--- isTimingOut - server - libs_sv/players.lua#L271
 	---@return boolean undefined isTimingOut
 	function _G.Player:isTimingOut() end
 	--- getEyeTrace - shared - libs_sh/players.lua#L392
@@ -7752,31 +7754,31 @@ _G.Player = {}
 	--- getCrouchedWalkSpeed - shared - libs_sh/players.lua#L131
 	---@return number undefined Crouch Walk Speed value
 	function _G.Player:getCrouchedWalkSpeed() end
-	--- setPVSPoint - server - libs_sv/players.lua#L441
+	--- setPVSPoint - server - libs_sv/players.lua#L442
 	---@param ID number ID to set position of, clamped between 1 and the PVS Points limit.
 	---@param position Vector? position to set the override point to, nil to delete this point if it exists.
 	function _G.Player:setPVSPoint(ID, position) end
-	--- setMaxSpeed - server - libs_sv/players.lua#L350
+	--- setMaxSpeed - server - libs_sv/players.lua#L351
 	---@param newmaxspeed number New Max speed.
 	function _G.Player:setMaxSpeed(newmaxspeed) end
-	--- enterVehicle - server - libs_sv/players.lua#L432
+	--- enterVehicle - server - libs_sv/players.lua#L433
 	---@param vehicle Vehicle 
 	function _G.Player:enterVehicle(vehicle) end
-	--- kill - server - libs_sv/players.lua#L422
+	--- kill - server - libs_sv/players.lua#L423
 	function _G.Player:kill() end
-	--- setJumpPower - server - libs_sv/players.lua#L386
+	--- setJumpPower - server - libs_sv/players.lua#L387
 	---@param newjumppower number New Jump Power.
 	function _G.Player:setJumpPower(newjumppower) end
 	--- getMaxSpeed - shared - libs_sh/players.lua#L159
 	---@return number undefined Max Speed value
 	function _G.Player:getMaxSpeed() end
-	--- getPacketLoss - server - libs_sv/players.lua#L252
+	--- getPacketLoss - server - libs_sv/players.lua#L253
 	---@return number undefined Packets lost
 	function _G.Player:getPacketLoss() end
-	--- setStepSize - server - libs_sv/players.lua#L395
+	--- setStepSize - server - libs_sv/players.lua#L396
 	---@param newstepsize number New Step Size.
 	function _G.Player:setStepSize(newstepsize) end
-	--- setWeaponColor - server - libs_sv/players.lua#L413
+	--- setWeaponColor - server - libs_sv/players.lua#L414
 	---@param vector any col The new color with values 0-1 in each vector component
 	function _G.Player:setWeaponColor(vector) end
 	--- resetAnimation - client - libs_sh/players.lua#L642
@@ -7784,34 +7786,34 @@ _G.Player = {}
 	--- getPing - shared - libs_sh/players.lua#L342
 	---@return number undefined The player's ping
 	function _G.Player:getPing() end
-	--- clearPVSPoints - server - libs_sv/players.lua#L455
+	--- clearPVSPoints - server - libs_sv/players.lua#L456
 	function _G.Player:clearPVSPoints() end
 	--- getStepSize - shared - libs_sh/players.lua#L201
 	---@return number undefined Step Size Value
 	function _G.Player:getStepSize() end
-	--- setLadderClimbSpeed - server - libs_sv/players.lua#L341
+	--- setLadderClimbSpeed - server - libs_sv/players.lua#L342
 	---@param newladderclimbspeed number New Ladder Climb speed.
 	function _G.Player:setLadderClimbSpeed(newladderclimbspeed) end
-	--- stripWeapons - server - libs_sv/players.lua#L209
+	--- stripWeapons - server - libs_sv/players.lua#L210
 	function _G.Player:stripWeapons() end
-	--- getTimeoutSeconds - server - libs_sv/players.lua#L264
+	--- getTimeoutSeconds - server - libs_sv/players.lua#L265
 	---@return number undefined Timeout seconds
 	function _G.Player:getTimeoutSeconds() end
 	--- getJumpPower - shared - libs_sh/players.lua#L187
 	---@return number undefined Jump Power value
 	function _G.Player:getJumpPower() end
-	--- dropWeapon - server - libs_sv/players.lua#L181
+	--- dropWeapon - server - libs_sv/players.lua#L182
 	---@param weapon Weapon|string The weapon instance or class name of the weapon to drop
 	---@param target Vector? If set, launches the weapon at the given position
 	---@param velocity Vector? If set and target is unset, launches the weapon with the given velocity
 	function _G.Player:dropWeapon(weapon, target, velocity) end
-	--- setRunSpeed - server - libs_sv/players.lua#L359
+	--- setRunSpeed - server - libs_sv/players.lua#L360
 	---@param newrunspeed number New Run speed.
 	function _G.Player:setRunSpeed(newrunspeed) end
 	--- isFlashlightOn - shared - libs_sh/players.lua#L222
 	---@return boolean undefined True if player has flashlight on
 	function _G.Player:isFlashlightOn() end
-	--- setMaxArmor - server - libs_sv/players.lua#L305
+	--- setMaxArmor - server - libs_sv/players.lua#L306
 	---@param newmaxarmor number New max armor value.
 	function _G.Player:setMaxArmor(newmaxarmor) end
 	--- setAnimationTime - client - libs_sh/players.lua#L685
@@ -7820,21 +7822,21 @@ _G.Player = {}
 	--- isTyping - shared - libs_sh/players.lua#L471
 	---@return boolean undefined Whether they are typing in the chat
 	function _G.Player:isTyping() end
-	--- setAmmo - server - libs_sv/players.lua#L216
+	--- setAmmo - server - libs_sv/players.lua#L217
 	---@param amount number The ammo value
 	---@param ammoType number|string Ammo type id or name
 	function _G.Player:setAmmo(amount, ammoType) end
-	--- say - server - libs_sv/players.lua#L282
+	--- say - server - libs_sv/players.lua#L283
 	---@param text string The text to force the player to say
 	---@param teamOnly boolean? Team chat only?, Defaults to false.
 	function _G.Player:say(text, teamOnly) end
 	--- getFrags - shared - libs_sh/players.lua#L236
 	---@return number undefined Amount of kills
 	function _G.Player:getFrags() end
-	--- setSlowWalkSpeed - server - libs_sv/players.lua#L368
+	--- setSlowWalkSpeed - server - libs_sv/players.lua#L369
 	---@param newslowwalkspeed number New Slow Walk speed.
 	function _G.Player:setSlowWalkSpeed(newslowwalkspeed) end
-	--- setDuckSpeed - server - libs_sv/players.lua#L323
+	--- setDuckSpeed - server - libs_sv/players.lua#L324
 	---@param newduckspeed number New Duck speed, This is a multiplier from 0 to 1.
 	function _G.Player:setDuckSpeed(newduckspeed) end
 	--- getShootPos - shared - libs_sh/players.lua#L278
@@ -7851,10 +7853,10 @@ _G.Player = {}
 	---@param wep string Weapon class name
 	---@return Weapon undefined Weapon
 	function _G.Player:getWeapon(wep) end
-	--- setFriction - server - libs_sv/players.lua#L404
+	--- setFriction - server - libs_sv/players.lua#L405
 	---@param newfriction number New Friction.
 	function _G.Player:setFriction(newfriction) end
-	--- setEyeAngles - server - libs_sv/players.lua#L244
+	--- setEyeAngles - server - libs_sv/players.lua#L245
 	---@param ang Angle New angles
 	function _G.Player:setEyeAngles(ang) end
 	--- getUserGroup - shared - libs_sh/players.lua#L335
@@ -7870,15 +7872,15 @@ _G.Player = {}
 	---@param key number Key to check. IN_KEY table values
 	---@return boolean undefined Whether they key is down
 	function _G.Player:keyDown(key) end
-	--- stripAmmo - server - libs_sv/players.lua#L231
+	--- stripAmmo - server - libs_sv/players.lua#L232
 	function _G.Player:stripAmmo() end
-	--- hasGodMode - server - libs_sv/players.lua#L175
+	--- hasGodMode - server - libs_sv/players.lua#L176
 	---@return boolean undefined True if the player has godmode
 	function _G.Player:hasGodMode() end
-	--- setViewEntity - server - libs_sv/players.lua#L165
+	--- setViewEntity - server - libs_sv/players.lua#L166
 	---@param ent Entity? Entity to set the player's view entity to, or nothing to reset it
 	function _G.Player:setViewEntity(ent) end
-	--- setModelScale - server - libs_sv/players.lua#L150
+	--- setModelScale - server - libs_sv/players.lua#L151
 	---@param scale number The scale to apply, will be truncated to the first two decimal places (min 0.01, max 100)
 	function _G.Player:setModelScale(scale) end
 	--- getUnDuckSpeed - shared - libs_sh/players.lua#L145
@@ -7905,7 +7907,7 @@ _G.Player = {}
 	--- setAnimationLoop - client - libs_sh/players.lua#L745
 	---@param loop boolean Should the animation loop?
 	function _G.Player:setAnimationLoop(loop) end
-	--- setArmor - server - libs_sv/players.lua#L296
+	--- setArmor - server - libs_sv/players.lua#L297
 	---@param newarmor number New armor value.
 	function _G.Player:setArmor(newarmor) end
 	--- setAnimation - client - libs_sh/players.lua#L594
@@ -7919,7 +7921,7 @@ _G.Player = {}
 	--- getFriendStatus - client - libs_sh/players.lua#L509
 	---@return string undefined One of: "friend", "blocked", "none", "requested"
 	function _G.Player:getFriendStatus() end
-	--- lastHitGroup - server - libs_sv/players.lua#L238
+	--- lastHitGroup - server - libs_sv/players.lua#L239
 	---@return number undefined Hitgroup, see https://wiki.facepunch.com/gmod/Enums/HITGROUP
 	function _G.Player:lastHitGroup() end
 	--- getAimVector - shared - libs_sh/players.lua#L250
@@ -7955,7 +7957,7 @@ _G.Player = {}
 	--- getDuckSpeed - shared - libs_sh/players.lua#L138
 	---@return number undefined Duck Speed value
 	function _G.Player:getDuckSpeed() end
-	--- getTimeConnected - server - libs_sv/players.lua#L258
+	--- getTimeConnected - server - libs_sv/players.lua#L259
 	---@return number undefined Time connected
 	function _G.Player:getTimeConnected() end
 	--- getEntityInUse - shared - libs_sh/players.lua#L271
@@ -7985,7 +7987,7 @@ _G.Player = {}
 	--- getLadderClimbSpeed - shared - libs_sh/players.lua#L152
 	---@return number undefined Ladder Climb Speed value
 	function _G.Player:getLadderClimbSpeed() end
-	--- setCrouchedWalkSpeed - server - libs_sv/players.lua#L314
+	--- setCrouchedWalkSpeed - server - libs_sv/players.lua#L315
 	---@param newcwalkspeed number New Crouch Walk speed, This is a multiplier from 0 to 1.
 	function _G.Player:setCrouchedWalkSpeed(newcwalkspeed) end
 	--- isSprinting - shared - libs_sh/players.lua#L478

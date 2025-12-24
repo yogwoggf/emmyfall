@@ -7779,8 +7779,8 @@ _G.Player = {}
 	---@param newstepsize number New Step Size.
 	function _G.Player:setStepSize(newstepsize) end
 	--- setWeaponColor - server - libs_sv/players.lua#L414
-	---@param vector any col The new color with values 0-1 in each vector component
-	function _G.Player:setWeaponColor(vector) end
+	---@param col Vector The new color with values 0-1 in each vector component
+	function _G.Player:setWeaponColor(col) end
 	--- resetAnimation - client - libs_sh/players.lua#L642
 	function _G.Player:resetAnimation() end
 	--- getPing - shared - libs_sh/players.lua#L342

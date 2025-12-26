@@ -6262,7 +6262,7 @@ _G.wire = {}
 --- 
 ---  of the same name. Writes will write to the wire output of the same name.
 _G.wire.ports = {
-}	--- readCell - server - libs_sv/wire.lua#L709
+}	--- readCell - server - libs_sv/wire.lua#L712
 	---@param ent Entity Entity with wire memory
 	---@param index number The cell address
 	---@return number undefined The value at the address
@@ -6270,7 +6270,7 @@ _G.wire.ports = {
 	--- self - server - libs_sv/wire.lua#L485
 	---@return Wirelink undefined Wirelink representing this entity
 	function _G.wire.self() end
-	--- getWirelink - server - libs_sv/wire.lua#L599
+	--- getWirelink - server - libs_sv/wire.lua#L602
 	---@param ent Entity Wire entity
 	---@return Wirelink undefined Wirelink of the entity
 	function _G.wire.getWirelink(ent) end
@@ -6279,12 +6279,12 @@ _G.wire.ports = {
 	---@param types table An array of input types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of input descriptions. 
 	function _G.wire.adjustInputs(names, types, descriptions) end
-	--- readOutput - server - libs_sv/wire.lua#L698
+	--- readOutput - server - libs_sv/wire.lua#L701
 	---@param ent Entity Entity with output
 	---@param outputname string Output name
 	---@return any undefined value The value to set the output to (must match the output type)
 	function _G.wire.readOutput(ent, outputname) end
-	--- triggerOutput - server - libs_sv/wire.lua#L664
+	--- triggerOutput - server - libs_sv/wire.lua#L667
 	---@param ent Entity Entity with output
 	---@param outputname string Output name
 	---@param value any The value to set the output to (must match the output type)
@@ -6305,17 +6305,17 @@ _G.wire.ports = {
 	---@param entI Entity Entity with input
 	---@param inputname string Input to be un-wired
 	function _G.wire.delete(entI, inputname) end
-	--- getOutputs - server - libs_sv/wire.lua#L591
+	--- getOutputs - server - libs_sv/wire.lua#L594
 	---@param entO Entity Entity with output(s)
 	---@return table undefined Table of entity's output names
 	---@return table undefined Table of entity's output types
 	function _G.wire.getOutputs(entO) end
-	--- readInput - server - libs_sv/wire.lua#L687
+	--- readInput - server - libs_sv/wire.lua#L690
 	---@param ent Entity Entity with input
 	---@param inputname string Input name
 	---@return any undefined value The value to set the input to (must match the input type)
 	function _G.wire.readInput(ent, inputname) end
-	--- triggerCell - server - libs_sv/wire.lua#L675
+	--- triggerCell - server - libs_sv/wire.lua#L678
 	---@param ent Entity Entity with wire memory
 	---@param index number The cell address
 	---@param value number The value to set the cell
@@ -6324,7 +6324,7 @@ _G.wire.ports = {
 	---@param inputs table? (Optional) A key-value table with input port names as keys and types as values. e.g. {MyInput="number"} or {MyInput={type="number"}}. If nil, input ports won't be changed. If you use the latter syntax for defining ports, you can also specify description alongside the type, ex. {MyInput={type="number", description="Description for this input."}}
 	---@param outputs table? (Optional) A key-value table with output port names as keys and types as values. The above behavior for inputs also applies for outputs.
 	function _G.wire.adjustPorts(inputs, outputs) end
-	--- getInputs - server - libs_sv/wire.lua#L583
+	--- getInputs - server - libs_sv/wire.lua#L586
 	---@param entI Entity Entity with input(s)
 	---@return table undefined Table of entity's input names
 	---@return table undefined Table of entity's input types
@@ -6334,7 +6334,7 @@ _G.wire.ports = {
 	---@param types table An array of output types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of output descriptions. 
 	function _G.wire.adjustOutputs(names, types, descriptions) end
-	--- triggerInput - server - libs_sv/wire.lua#L653
+	--- triggerInput - server - libs_sv/wire.lua#L656
 	---@param ent Entity Entity with input
 	---@param inputname string Input name
 	---@param value any The value to set the input to (must match the input type)
@@ -10036,7 +10036,7 @@ _G.Entity = {}
 	--- getQuotaAverage - shared - libs_sh/entities.lua#L1092
 	---@return number undefined Average CPU Time of the buffer of the specified starfall or expression2.
 	function _G.Entity:getQuotaAverage() end
-	--- getWirelink - server - libs_sv/wire.lua#L720
+	--- getWirelink - server - libs_sv/wire.lua#L723
 	---@return Wirelink undefined Wirelink of the entity
 	function _G.Entity:getWirelink() end
 	--- isValidPhys - server - libs_sv/entities.lua#L806
@@ -10503,40 +10503,40 @@ _G.SurfaceInfo = {}
 ---@class Wirelink
 ---@operator index(string|number):any
 _G.Wirelink = {}
-	--- inputValue - server - libs_sv/wire.lua#L764
+	--- inputValue - server - libs_sv/wire.lua#L767
 	---@param name string Input name
 	---@return any undefined Input value
 	function _G.Wirelink:inputValue(name) end
-	--- entity - server - libs_sv/wire.lua#L796
+	--- entity - server - libs_sv/wire.lua#L799
 	---@return Entity undefined Entity the wirelink represents
 	function _G.Wirelink:entity() end
-	--- getWiredToName - server - libs_sv/wire.lua#L864
+	--- getWiredToName - server - libs_sv/wire.lua#L867
 	---@param name string Name of the input of the wirelink.
 	---@return string undefined String name of the output that the input is wired to.
 	function _G.Wirelink:getWiredToName(name) end
-	--- inputs - server - libs_sv/wire.lua#L802
+	--- inputs - server - libs_sv/wire.lua#L805
 	---@return table undefined All of the wirelink's inputs
 	function _G.Wirelink:inputs() end
-	--- inputType - server - libs_sv/wire.lua#L772
+	--- inputType - server - libs_sv/wire.lua#L775
 	---@param name string Input name to search for
 	---@return string undefined Type of input
 	function _G.Wirelink:inputType(name) end
-	--- getWiredTo - server - libs_sv/wire.lua#L852
+	--- getWiredTo - server - libs_sv/wire.lua#L855
 	---@param name string Name of the input
 	---@return Entity undefined The entity the wirelink is wired to
 	function _G.Wirelink:getWiredTo(name) end
-	--- outputType - server - libs_sv/wire.lua#L784
+	--- outputType - server - libs_sv/wire.lua#L787
 	---@param name string Output name to search for
 	---@return string undefined Type of output
 	function _G.Wirelink:outputType(name) end
-	--- isWired - server - libs_sv/wire.lua#L842
+	--- isWired - server - libs_sv/wire.lua#L845
 	---@param name string Name of the input to check
 	---@return boolean undefined Whether it is wired
 	function _G.Wirelink:isWired(name) end
-	--- outputs - server - libs_sv/wire.lua#L822
+	--- outputs - server - libs_sv/wire.lua#L825
 	---@return table undefined All of the wirelink's outputs
 	function _G.Wirelink:outputs() end
-	--- isValid - server - libs_sv/wire.lua#L758
+	--- isValid - server - libs_sv/wire.lua#L761
 	---@return boolean undefined Whether the wirelink is valid
 	function _G.Wirelink:isValid() end
 ---  For playing music there is `Bass` type. You can pause and set current playback time in it. If you're looking to apply DSP effects on present game sounds, use `Sound` instead.

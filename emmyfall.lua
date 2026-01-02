@@ -5327,6 +5327,10 @@ _G.math = {}
 	---@return number undefined Multiplier between 0.5 and 1
 	---@return number undefined Exponent integer
 	function _G.math.frexp(x) end
+	--- mean - shared - libs_sh/math.lua#L610
+	---@param numbers table Any amount of number values
+	---@return number undefined Number average of all values
+	function _G.math.mean(numbers) end
 	--- easeInOutExpo - shared - libs_sh/math.lua#L508
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value

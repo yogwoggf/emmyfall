@@ -318,22 +318,22 @@ _G.team = {}
 --- http
 ---  Http library. Requests content from urls.
 _G.http = {}
-	--- base64Decode - shared - libs_sh/http.lua#L153
+	--- base64Decode - shared - libs_sh/http.lua#L154
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.base64Decode(data) end
 	--- getMaximumRequests - shared - libs_sh/http.lua#L44
 	---@return number undefined Maximum amount of concurrent active HTTP get/post requests 
 	function _G.http.getMaximumRequests() end
-	--- urlDecode - shared - libs_sh/http.lua#L172
+	--- urlDecode - shared - libs_sh/http.lua#L173
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.urlDecode(data) end
-	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L186
+	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L187
 	---@param url string The url to convert
 	---@return string undefined The converted url
 	function _G.http.urlGoogleDriveToRaw(url) end
-	--- urlGithubToRaw - shared - libs_sh/http.lua#L206
+	--- urlGithubToRaw - shared - libs_sh/http.lua#L207
 	---@param url string The url to convert
 	---@return string undefined The converted url
 	function _G.http.urlGithubToRaw(url) end
@@ -347,15 +347,15 @@ _G.http = {}
 	---@param callbackFail function? Optional function to be called on request fail, taking the failing reason as an argument
 	---@param headers table? Optional POST headers to be sent
 	function _G.http.post(url, payload, callbackSuccess, callbackFail, headers) end
-	--- urlDropboxToRaw - shared - libs_sh/http.lua#L196
+	--- urlDropboxToRaw - shared - libs_sh/http.lua#L197
 	---@param url string The url to convert
 	---@return string undefined The converted url
 	function _G.http.urlDropboxToRaw(url) end
-	--- urlEncode - shared - libs_sh/http.lua#L160
+	--- urlEncode - shared - libs_sh/http.lua#L161
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.urlEncode(data) end
-	--- base64Encode - shared - libs_sh/http.lua#L140
+	--- base64Encode - shared - libs_sh/http.lua#L141
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.base64Encode(data) end

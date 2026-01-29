@@ -7384,8 +7384,8 @@ _G.NextBot = {}
 	--- removeGotoPos - server - libs_sv/nextbot.lua#L184
 	function _G.NextBot:removeGotoPos() end
 	--- getMaxYawRate - server - libs_sv/nextbot.lua#L536
-	---@param The number NextBot's max yaw rate.
-	function _G.NextBot:getMaxYawRate(The) end
+	---@return number undefined The nextbot's current maximum yaw rate.
+	function _G.NextBot:getMaxYawRate() end
 	--- getDeathDropHeight - server - libs_sv/nextbot.lua#L582
 	---@return number undefined Height nextbot is afraid of.
 	function _G.NextBot:getDeathDropHeight() end

@@ -7747,7 +7747,7 @@ _G.Player = {}
 	---@return boolean undefined True if player belongs to group
 	function _G.Player:isUserGroup(groupName) end
 	--- voiceVolume - client - libs_sh/players.lua#L537
-	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number. Doesn't work on local player unless the voice_loopback convar is set to 1.
+	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number.
 	function _G.Player:voiceVolume() end
 	--- addVelocity - server - libs_sv/players.lua#L518
 	---@param vel Vector Add velocity

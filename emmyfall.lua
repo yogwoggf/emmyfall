@@ -1731,6 +1731,22 @@ _G.TEXT_ALIGN = {
 	--- Align the text on the bottom
 	["BOTTOM"] = nil,
 }
+--- PATTACH - shared
+---  PATTACH enum for particle library
+_G.PATTACH = {
+	---@type any
+	["ABSORIGIN"] = nil,
+	---@type any
+	["ABSORIGIN_FOLLOW"] = nil,
+	---@type any
+	["CUSTOMORIGIN"] = nil,
+	---@type any
+	["POINT"] = nil,
+	---@type any
+	["POINT_FOLLOW"] = nil,
+	---@type any
+	["WORLDORIGIN"] = nil,
+}
 --- FSOLID - shared
 ---  ENUMs of solid flags for use with entity:getSolidFlags
 _G.FSOLID = {
@@ -1921,21 +1937,45 @@ _G.DAMAGE = {
 	---@type any
 	["MISSILEDEFENSE"] = nil,
 }
---- PATTACH - shared
----  PATTACH enum for particle library
-_G.PATTACH = {
+--- UNIT - shared
+---  ENUMs used by math.unitConversion. They represent conversion factors from gmod natural units (gmod length (3/4 inches), pounds, seconds)
+_G.UNIT = {
 	---@type any
-	["ABSORIGIN"] = nil,
+	["GMOD_LENGTH"] = nil,
 	---@type any
-	["ABSORIGIN_FOLLOW"] = nil,
+	["INCH"] = nil,
 	---@type any
-	["CUSTOMORIGIN"] = nil,
+	["FEET"] = nil,
 	---@type any
-	["POINT"] = nil,
+	["YARD"] = nil,
 	---@type any
-	["POINT_FOLLOW"] = nil,
+	["MILE"] = nil,
 	---@type any
-	["WORLDORIGIN"] = nil,
+	["NAUTICAL_MILE"] = nil,
+	---@type any
+	["METER"] = nil,
+	---@type any
+	["MACH"] = nil,
+	---@type any
+	["GMOD_MASS"] = nil,
+	---@type any
+	["POUND"] = nil,
+	---@type any
+	["OUNCE"] = nil,
+	---@type any
+	["KILOGRAM"] = nil,
+	---@type any
+	["GRAM"] = nil,
+	---@type any
+	["TON"] = nil,
+	---@type any
+	["GMOD_TIME"] = nil,
+	---@type any
+	["SECOND"] = nil,
+	---@type any
+	["MINUTE"] = nil,
+	---@type any
+	["HOUR"] = nil,
 }
 --- COLLISION_GROUP - shared
 ---  ENUMs of collision groups for use with entity:setCollisionGroup

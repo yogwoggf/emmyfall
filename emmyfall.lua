@@ -413,12 +413,12 @@ _G.http = {}
 --- particle
 ---  Particles library.
 _G.particle = {}
-	--- create - client - libs_cl/particle.lua#L58
+	--- create - client - libs_cl/particle.lua#L69
 	---@param position Vector The particle emitter's position
 	---@param use3D boolean Create the emitter in 3D mode
-	---@return ParticleEmitter undefined ParticleEmitter Object
+	---@return ParticleEmitter? undefined ParticleEmitter Object or nil if the engine max of 4097 was hit
 	function _G.particle.create(position, use3D) end
-	--- particleEmittersLeft - client - libs_cl/particle.lua#L71
+	--- particleEmittersLeft - client - libs_cl/particle.lua#L86
 	---@return number undefined Number of particle emitters left
 	function _G.particle.particleEmittersLeft() end
 --- file
@@ -7666,36 +7666,36 @@ _G.SurfaceInfo = {}
 ---  ParticleEmitter type
 ---@class ParticleEmitter
 _G.ParticleEmitter = {}
-	--- setBBox - client - libs_cl/particle.lua#L161
+	--- setBBox - client - libs_cl/particle.lua#L175
 	---@param mins Vector Min vector
 	---@param maxs Vector Max vector
 	function _G.ParticleEmitter:setBBox(mins, maxs) end
-	--- is3D - client - libs_cl/particle.lua#L149
+	--- is3D - client - libs_cl/particle.lua#L163
 	---@return boolean undefined If it's 3D
 	function _G.ParticleEmitter:is3D() end
-	--- getPos - client - libs_cl/particle.lua#L143
+	--- getPos - client - libs_cl/particle.lua#L157
 	---@return Vector undefined Position of the Emitter
 	function _G.ParticleEmitter:getPos() end
-	--- setPos - client - libs_cl/particle.lua#L193
+	--- setPos - client - libs_cl/particle.lua#L207
 	---@param position Vector The position
 	function _G.ParticleEmitter:setPos(position) end
-	--- getParticlesLeft - client - libs_cl/particle.lua#L137
+	--- getParticlesLeft - client - libs_cl/particle.lua#L151
 	---@return number undefined Number of particles left
 	function _G.ParticleEmitter:getParticlesLeft() end
-	--- setParticleCullRadius - client - libs_cl/particle.lua#L184
+	--- setParticleCullRadius - client - libs_cl/particle.lua#L198
 	---@param radius number Particle radius
 	function _G.ParticleEmitter:setParticleCullRadius(radius) end
-	--- draw - client - libs_cl/particle.lua#L117
+	--- draw - client - libs_cl/particle.lua#L134
 	function _G.ParticleEmitter:draw() end
-	--- setNoDraw - client - libs_cl/particle.lua#L177
+	--- setNoDraw - client - libs_cl/particle.lua#L191
 	---@param noDraw boolean Whether not to draw
 	function _G.ParticleEmitter:setNoDraw(noDraw) end
-	--- destroy - client - libs_cl/particle.lua#L123
+	--- destroy - client - libs_cl/particle.lua#L140
 	function _G.ParticleEmitter:destroy() end
-	--- getNumActiveParticles - client - libs_cl/particle.lua#L131
+	--- getNumActiveParticles - client - libs_cl/particle.lua#L145
 	---@return number undefined Number of active particles
 	function _G.ParticleEmitter:getNumActiveParticles() end
-	--- add - client - libs_cl/particle.lua#L77
+	--- add - client - libs_cl/particle.lua#L92
 	---@param material Material The material object to set the particle
 	---@param position Vector The position to create the particle
 	---@param startSize number Sets the initial size value of the particle.
@@ -7707,11 +7707,11 @@ _G.ParticleEmitter = {}
 	---@param dieTime number Sets the time where the particle will be removed. (0-60)
 	---@return Particle undefined A Particle object
 	function _G.ParticleEmitter:add(material, position, startSize, endSize, startLength, endLength, startAlpha, endAlpha, dieTime) end
-	--- setNearClip - client - libs_cl/particle.lua#L168
+	--- setNearClip - client - libs_cl/particle.lua#L182
 	---@param distanceMin number 
 	---@param distanceMax number 
 	function _G.ParticleEmitter:setNearClip(distanceMin, distanceMax) end
-	--- isValid - client - libs_cl/particle.lua#L155
+	--- isValid - client - libs_cl/particle.lua#L169
 	---@return boolean undefined If it's valid
 	function _G.ParticleEmitter:isValid() end
 ---  Vector type
@@ -8628,64 +8628,64 @@ _G.Weapon = {}
 ---  Particle type
 ---@class Particle
 _G.Particle = {}
-	--- setVelocity - client - libs_cl/particle.lua#L302
+	--- setVelocity - client - libs_cl/particle.lua#L316
 	---@param vel Vector Velocity to set to
 	function _G.Particle:setVelocity(vel) end
-	--- setAngleVelocity - client - libs_cl/particle.lua#L242
+	--- setAngleVelocity - client - libs_cl/particle.lua#L256
 	---@param angVel Angle Angular velocity to set the particle's to
 	function _G.Particle:setAngleVelocity(angVel) end
-	--- getPos - client - libs_cl/particle.lua#L218
+	--- getPos - client - libs_cl/particle.lua#L232
 	---@return Vector undefined Position of the particle
 	function _G.Particle:getPos() end
-	--- getAngles - client - libs_cl/particle.lua#L200
+	--- getAngles - client - libs_cl/particle.lua#L214
 	---@return Angle undefined Angles of the particle
 	function _G.Particle:getAngles() end
-	--- setBounce - client - libs_cl/particle.lua#L248
+	--- setBounce - client - libs_cl/particle.lua#L262
 	---@param bounce number Bounciness to set to
 	function _G.Particle:setBounce(bounce) end
-	--- setPos - client - libs_cl/particle.lua#L282
+	--- setPos - client - libs_cl/particle.lua#L296
 	---@param pos Vector Vector position to set to
 	function _G.Particle:setPos(pos) end
-	--- getRoll - client - libs_cl/particle.lua#L224
+	--- getRoll - client - libs_cl/particle.lua#L238
 	---@return number undefined Roll
 	function _G.Particle:getRoll() end
-	--- setRoll - client - libs_cl/particle.lua#L288
+	--- setRoll - client - libs_cl/particle.lua#L302
 	---@param roll number Roll
 	function _G.Particle:setRoll(roll) end
-	--- getAngleVelocity - client - libs_cl/particle.lua#L206
+	--- getAngleVelocity - client - libs_cl/particle.lua#L220
 	---@return Angle undefined Angular velocity of the particle
 	function _G.Particle:getAngleVelocity() end
-	--- setAngles - client - libs_cl/particle.lua#L236
+	--- setAngles - client - libs_cl/particle.lua#L250
 	---@param ang Angle Angles to set the particle's angles to
 	function _G.Particle:setAngles(ang) end
-	--- setVelocityScale - client - libs_cl/particle.lua#L321
+	--- setVelocityScale - client - libs_cl/particle.lua#L335
 	---@param doScale boolean Whether it should scale
 	function _G.Particle:setVelocityScale(doScale) end
-	--- getVelocity - client - libs_cl/particle.lua#L230
+	--- getVelocity - client - libs_cl/particle.lua#L244
 	---@return Vector undefined Velocity
 	function _G.Particle:getVelocity() end
-	--- setRollDelta - client - libs_cl/particle.lua#L295
+	--- setRollDelta - client - libs_cl/particle.lua#L309
 	---@param rollDelta number Rolldelta
 	function _G.Particle:setRollDelta(rollDelta) end
-	--- setGravity - client - libs_cl/particle.lua#L315
+	--- setGravity - client - libs_cl/particle.lua#L329
 	---@param gravity Vector Directional gravity
 	function _G.Particle:setGravity(gravity) end
-	--- setAirResistance - client - libs_cl/particle.lua#L308
+	--- setAirResistance - client - libs_cl/particle.lua#L322
 	---@param airResistance number AirResistance to set to
 	function _G.Particle:setAirResistance(airResistance) end
-	--- setColor - client - libs_cl/particle.lua#L262
+	--- setColor - client - libs_cl/particle.lua#L276
 	---@param col Color Color to set to
 	function _G.Particle:setColor(col) end
-	--- setMaterial - client - libs_cl/particle.lua#L276
+	--- setMaterial - client - libs_cl/particle.lua#L290
 	---@param mat Material Material to set
 	function _G.Particle:setMaterial(mat) end
-	--- setCollide - client - libs_cl/particle.lua#L255
+	--- setCollide - client - libs_cl/particle.lua#L269
 	---@param shouldCollide boolean Whether it should collide
 	function _G.Particle:setCollide(shouldCollide) end
-	--- setLighting - client - libs_cl/particle.lua#L269
+	--- setLighting - client - libs_cl/particle.lua#L283
 	---@param useLighting boolean Whether the particle should be affected by lighting
 	function _G.Particle:setLighting(useLighting) end
-	--- getColor - client - libs_cl/particle.lua#L212
+	--- getColor - client - libs_cl/particle.lua#L226
 	---@return Color undefined Color of the particle
 	function _G.Particle:getColor() end
 --- 

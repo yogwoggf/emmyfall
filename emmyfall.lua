@@ -4713,154 +4713,154 @@ _G.debug = {}
 --- net
 ---  Net message library. Used for sending data from the server to the client and back
 _G.net = {}
-	--- readVector - shared - libs_sh/net.lua#L544
+	--- readVector - shared - libs_sh/net.lua#L543
 	---@return Vector undefined The vector that was read
 	function _G.net.readVector() end
-	--- writeUInt - shared - libs_sh/net.lua#L404
+	--- writeUInt - shared - libs_sh/net.lua#L403
 	---@param t number The integer to be written
 	---@param n number The amount of bits the integer consists of. Should not be greater than 32
 	function _G.net.writeUInt(t, n) end
-	--- send - shared - libs_sh/net.lua#L186
+	--- send - shared - libs_sh/net.lua#L189
 	---@param target Player|table|nil Optional target location to send the net message. Player or table of targets. If nil, sends to server on client
 	---@param unreliable boolean? Optional choose whether it's more important for the message to actually reach its destination (false) or reach it as fast as possible (true).
 	function _G.net.send(target, unreliable) end
-	--- readInt - shared - libs_sh/net.lua#L395
+	--- readInt - shared - libs_sh/net.lua#L394
 	---@param n number The amount of bits to read
 	---@return number undefined The integer that was read
 	function _G.net.readInt(n) end
-	--- cancelStream - shared - libs_sh/net.lua#L366
+	--- cancelStream - shared - libs_sh/net.lua#L365
 	function _G.net.cancelStream() end
-	--- readMatrix - shared - libs_sh/net.lua#L562
+	--- readMatrix - shared - libs_sh/net.lua#L561
 	---@return VMatrix undefined The matrix that was read
 	function _G.net.readMatrix() end
-	--- writeUInt64 - shared - libs_sh/net.lua#L427
+	--- writeUInt64 - shared - libs_sh/net.lua#L426
 	---@param t string The 64-bit integer written as a string because lua numbers can't hold 64-bit ints
 	function _G.net.writeUInt64(t) end
-	--- readTable - shared - libs_sh/net.lua#L275
+	--- readTable - shared - libs_sh/net.lua#L278
 	---@return table undefined The table
 	function _G.net.readTable() end
-	--- readBool - shared - libs_sh/net.lua#L474
+	--- readBool - shared - libs_sh/net.lua#L473
 	---@return boolean undefined The boolean that was read.
 	function _G.net.readBool() end
-	--- writeData - shared - libs_sh/net.lua#L301
+	--- writeData - shared - libs_sh/net.lua#L304
 	---@param t string The string to be written
 	---@param n number How much of the string to write
 	function _G.net.writeData(t, n) end
-	--- readUInt - shared - libs_sh/net.lua#L418
+	--- readUInt - shared - libs_sh/net.lua#L417
 	---@param n number The amount of bits to read
 	---@return number undefined The unsigned integer that was read
 	function _G.net.readUInt(n) end
-	--- readData - shared - libs_sh/net.lua#L315
+	--- readData - shared - libs_sh/net.lua#L318
 	---@param n number How many characters are in the data
 	---@return string undefined The string that was read
 	function _G.net.readData(n) end
-	--- writeTable - shared - libs_sh/net.lua#L263
+	--- writeTable - shared - libs_sh/net.lua#L266
 	---@param v table The table to write
 	function _G.net.writeTable(v) end
-	--- getStreamProgress - shared - libs_sh/net.lua#L373
+	--- getStreamProgress - shared - libs_sh/net.lua#L372
 	---@return number undefined The progress ratio 0-1
 	function _G.net.getStreamProgress() end
-	--- readDouble - shared - libs_sh/net.lua#L492
+	--- readDouble - shared - libs_sh/net.lua#L491
 	---@return number undefined The double that was read
 	function _G.net.readDouble() end
-	--- getBitsLeft - shared - libs_sh/net.lua#L631
+	--- getBitsLeft - shared - libs_sh/net.lua#L630
 	---@return number undefined Number of bits that can be sent
 	function _G.net.getBitsLeft() end
-	--- writeString - shared - libs_sh/net.lua#L283
+	--- writeString - shared - libs_sh/net.lua#L286
 	---@param t string The string to be written
 	function _G.net.writeString(t) end
-	--- readBit - shared - libs_sh/net.lua#L456
+	--- readBit - shared - libs_sh/net.lua#L455
 	---@return number undefined The bit that was read. (0 for false, 1 for true)
 	function _G.net.readBit() end
-	--- readUInt64 - shared - libs_sh/net.lua#L438
+	--- readUInt64 - shared - libs_sh/net.lua#L437
 	---@return string undefined The unsigned integer that was read, as a string
 	function _G.net.readUInt64() end
-	--- readStream - shared - libs_sh/net.lua#L343
+	--- readStream - shared - libs_sh/net.lua#L342
 	---@param cb function Callback to run when the stream is finished. The first parameter in the callback is the data. Will be nil if transfer fails or is cancelled
 	function _G.net.readStream(cb) end
-	--- writeFloat - shared - libs_sh/net.lua#L499
+	--- writeFloat - shared - libs_sh/net.lua#L498
 	---@param t number The float to be written
 	function _G.net.writeFloat(t) end
-	--- canWriteStream - shared - libs_sh/net.lua#L650
+	--- canWriteStream - shared - libs_sh/net.lua#L649
 	---@return boolean undefined Whether a writeStream can be initiated
 	---@return number undefined The number of active write streams
 	function _G.net.canWriteStream() end
-	--- canReadStream - shared - libs_sh/net.lua#L644
+	--- canReadStream - shared - libs_sh/net.lua#L643
 	---@return boolean undefined Whether a readStream can be initiated
 	function _G.net.canReadStream() end
-	--- writeInt - shared - libs_sh/net.lua#L381
+	--- writeInt - shared - libs_sh/net.lua#L380
 	---@param t number The integer to be written
 	---@param n number The amount of bits the integer consists of
 	function _G.net.writeInt(t, n) end
-	--- getBytesLeft - shared - libs_sh/net.lua#L625
+	--- getBytesLeft - shared - libs_sh/net.lua#L624
 	---@return number undefined Number of bytes that can be sent
 	function _G.net.getBytesLeft() end
-	--- receive - shared - libs_sh/net.lua#L615
+	--- receive - shared - libs_sh/net.lua#L614
 	---@param name string The name of the net message
 	---@param func function The callback or nil to remove callback. (len - length of the net message, ply - player that sent it or nil if clientside)
 	function _G.net.receive(name, func) end
-	--- writeVector - shared - libs_sh/net.lua#L534
+	--- writeVector - shared - libs_sh/net.lua#L533
 	---@param t Vector The vector to be written
 	function _G.net.writeVector(t) end
-	--- readType - shared - libs_sh/net.lua#L255
+	--- readType - shared - libs_sh/net.lua#L258
 	---@return any undefined The object
 	function _G.net.readType() end
-	--- start - shared - libs_sh/net.lua#L171
+	--- start - shared - libs_sh/net.lua#L174
 	---@param name string The message name
 	function _G.net.start(name) end
-	--- readAngle - shared - libs_sh/net.lua#L527
+	--- readAngle - shared - libs_sh/net.lua#L526
 	---@return Angle undefined The angle that was read
 	function _G.net.readAngle() end
-	--- readEntity - shared - libs_sh/net.lua#L596
+	--- readEntity - shared - libs_sh/net.lua#L595
 	---@param callback function? (Client only) optional callback to be ran whenever the entity becomes valid; returns nothing if this is used. The callback passes the entity if it succeeds or nil if it fails.
 	---@return Entity? undefined The entity that was read or nil if callback used
 	function _G.net.readEntity(callback) end
-	--- sendPVS - server - libs_sh/net.lua#L224
+	--- sendPVS - server - libs_sh/net.lua#L227
 	---@param pos Vector A vector within the PVS area to send a message
 	---@param unreliable boolean? Optional choose whether it's more important for the message to actually reach its destination (false) or reach it as fast as possible (true).
 	function _G.net.sendPVS(pos, unreliable) end
-	--- readFloat - shared - libs_sh/net.lua#L510
+	--- readFloat - shared - libs_sh/net.lua#L509
 	---@return number undefined The float that was read
 	function _G.net.readFloat() end
-	--- writeEntity - shared - libs_sh/net.lua#L586
+	--- writeEntity - shared - libs_sh/net.lua#L585
 	---@param t Entity The entity to be written
 	function _G.net.writeEntity(t) end
-	--- readColor - shared - libs_sh/net.lua#L579
+	--- readColor - shared - libs_sh/net.lua#L578
 	---@return Color undefined The color that was read
 	function _G.net.readColor() end
-	--- writeColor - shared - libs_sh/net.lua#L571
+	--- writeColor - shared - libs_sh/net.lua#L570
 	---@param t Color The color to be written
 	function _G.net.writeColor(t) end
-	--- writeMatrix - shared - libs_sh/net.lua#L551
+	--- writeMatrix - shared - libs_sh/net.lua#L550
 	---@param t VMatrix The matrix to be written
 	function _G.net.writeMatrix(t) end
-	--- writeAngle - shared - libs_sh/net.lua#L517
+	--- writeAngle - shared - libs_sh/net.lua#L516
 	---@param t Angle The angle to be written
 	function _G.net.writeAngle(t) end
-	--- writeStream - shared - libs_sh/net.lua#L325
+	--- writeStream - shared - libs_sh/net.lua#L328
 	---@param str string The string to be written
 	---@param compress boolean? Compress the data. True by default
 	function _G.net.writeStream(str, compress) end
-	--- readString - shared - libs_sh/net.lua#L294
+	--- readString - shared - libs_sh/net.lua#L297
 	---@return string undefined The string that was read
 	function _G.net.readString() end
-	--- writeBool - shared - libs_sh/net.lua#L463
+	--- writeBool - shared - libs_sh/net.lua#L462
 	---@param t boolean The bit to be written.
 	function _G.net.writeBool(t) end
-	--- writeBit - shared - libs_sh/net.lua#L445
+	--- writeBit - shared - libs_sh/net.lua#L444
 	---@param t number The bit to be written. (0 for false, 1 (or anything) for true)
 	function _G.net.writeBit(t) end
-	--- isStreaming - shared - libs_sh/net.lua#L637
+	--- isStreaming - shared - libs_sh/net.lua#L636
 	---@return boolean undefined Whether we're currently reading data from a stream
 	---@return boolean undefined Whether we're currently writing data to a stream
 	function _G.net.isStreaming() end
-	--- writeType - shared - libs_sh/net.lua#L244
+	--- writeType - shared - libs_sh/net.lua#L247
 	---@param v any The object to write
 	function _G.net.writeType(v) end
-	--- writeDouble - shared - libs_sh/net.lua#L481
+	--- writeDouble - shared - libs_sh/net.lua#L480
 	---@param t number The double to be written
 	function _G.net.writeDouble(t) end
-	--- abort - shared - libs_sh/net.lua#L239
+	--- abort - shared - libs_sh/net.lua#L242
 	function _G.net.abort() end
 --- render
 --- 

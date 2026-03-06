@@ -360,51 +360,62 @@ _G.wire.ports = {
 --- http
 ---  Http library. Requests content from urls.
 _G.http = {}
-	--- base64Decode - shared - libs_sh/http.lua#L154
+	--- base64Decode - shared - libs_sh/http.lua#L248
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.base64Decode(data) end
-	--- getMaximumRequests - shared - libs_sh/http.lua#L44
+	--- getMaximumRequests - shared - libs_sh/http.lua#L45
 	---@return number undefined Maximum amount of concurrent active HTTP get/post requests 
 	function _G.http.getMaximumRequests() end
-	--- urlDecode - shared - libs_sh/http.lua#L173
-	---@param data string The data to convert
-	---@return string undefined The converted data
-	function _G.http.urlDecode(data) end
-	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L187
-	---@param url string The url to convert
-	---@return string undefined The converted url
-	function _G.http.urlGoogleDriveToRaw(url) end
-	--- urlGithubToRaw - shared - libs_sh/http.lua#L207
+	--- urlGithubToRaw - shared - libs_sh/http.lua#L301
 	---@param url string The url to convert
 	---@return string undefined The converted url
 	function _G.http.urlGithubToRaw(url) end
-	--- getActiveRequests - shared - libs_sh/http.lua#L38
+	--- urlDecode - shared - libs_sh/http.lua#L267
+	---@param data string The data to convert
+	---@return string undefined The converted data
+	function _G.http.urlDecode(data) end
+	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L281
+	---@param url string The url to convert
+	---@return string undefined The converted url
+	function _G.http.urlGoogleDriveToRaw(url) end
+	--- urlDropboxToRaw - shared - libs_sh/http.lua#L291
+	---@param url string The url to convert
+	---@return string undefined The converted url
+	function _G.http.urlDropboxToRaw(url) end
+	--- getActiveRequests - shared - libs_sh/http.lua#L39
 	---@return number undefined The current amount of active HTTP get/post requests
 	function _G.http.getActiveRequests() end
-	--- post - shared - libs_sh/http.lua#L76
+	--- post - shared - libs_sh/http.lua#L77
 	---@param url string Http target url
 	---@param payload table? Optional POST payload to be sent, can be both table and string. When table is used, the request body is encoded as application/x-www-form-urlencoded
 	---@param callbackSuccess function? Optional function to be called on request success, taking the arguments body (string), length (number), headers (table) and code (number)
 	---@param callbackFail function? Optional function to be called on request fail, taking the failing reason as an argument
 	---@param headers table? Optional POST headers to be sent
 	function _G.http.post(url, payload, callbackSuccess, callbackFail, headers) end
-	--- urlDropboxToRaw - shared - libs_sh/http.lua#L197
-	---@param url string The url to convert
-	---@return string undefined The converted url
-	function _G.http.urlDropboxToRaw(url) end
-	--- urlEncode - shared - libs_sh/http.lua#L161
+	--- urlEncode - shared - libs_sh/http.lua#L255
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.urlEncode(data) end
-	--- base64Encode - shared - libs_sh/http.lua#L141
+	--- base64Encode - shared - libs_sh/http.lua#L235
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.base64Encode(data) end
-	--- canRequest - shared - libs_sh/http.lua#L32
+	--- request - shared - libs_sh/http.lua#L152
+	---@param url string The target url
+	---@param method string Request method, case insensitive. Possible values are: GET, POST, HEAD, PUT, DELETE, PATCH, OPTIONS
+	---@param success function? Function to be called on success, taking arguments code (number), body (string), and headers (table)
+	---@param failed function? Function to be called on failure, taking argument reason (string)
+	---@param body string? Body string for POST data. If set, will override parameters
+	---@param parameters table? KeyValue table for URL parameters. This is only applicable to the following request methods: GET, POST (sent in body, so if body is set, parameters are ignored), and HEAD
+	---@param type string? Content type for body. (Default: "text/plain; charset=utf-8")
+	---@param headers table? KeyValue table for headers
+	---@param timeout number? The timeout for the connection. Clamped between [0.1, 300]. (Default: 60)
+	function _G.http.request(url, method, success, failed, body, parameters, type, headers, timeout) end
+	--- canRequest - shared - libs_sh/http.lua#L33
 	---@return boolean undefined If an HTTP get/post request can be made
 	function _G.http.canRequest() end
-	--- get - shared - libs_sh/http.lua#L50
+	--- get - shared - libs_sh/http.lua#L51
 	---@param url string Http target url
 	---@param callbackSuccess function The function to be called on request success, taking the arguments body (string), length (number), headers (table) and code (number)
 	---@param callbackFail function? The function to be called on request fail, taking the failing reason as an argument

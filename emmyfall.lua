@@ -280,7 +280,7 @@ _G.wire = {}
 --- 
 ---  of the same name. Writes will write to the wire output of the same name.
 _G.wire.ports = {
-}	--- readCell - server - libs_sv/wire.lua#L722
+}	--- readCell - server - libs_sv/wire.lua#L726
 	---@param ent Entity Entity with wire memory
 	---@param index number The cell address
 	---@return number undefined The value at the address
@@ -297,12 +297,12 @@ _G.wire.ports = {
 	---@param types table An array of input types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of input descriptions. 
 	function _G.wire.adjustInputs(names, types, descriptions) end
-	--- readOutput - server - libs_sv/wire.lua#L711
+	--- readOutput - server - libs_sv/wire.lua#L715
 	---@param ent Entity Entity with output
 	---@param outputname string Output name
 	---@return any undefined value The value to set the output to (must match the output type)
 	function _G.wire.readOutput(ent, outputname) end
-	--- triggerOutput - server - libs_sv/wire.lua#L677
+	--- triggerOutput - server - libs_sv/wire.lua#L681
 	---@param ent Entity Entity with output
 	---@param outputname string Output name
 	---@param value any The value to set the output to (must match the output type)
@@ -328,12 +328,12 @@ _G.wire.ports = {
 	---@return table undefined Table of entity's output names
 	---@return table undefined Table of entity's output types
 	function _G.wire.getOutputs(entO) end
-	--- readInput - server - libs_sv/wire.lua#L700
+	--- readInput - server - libs_sv/wire.lua#L704
 	---@param ent Entity Entity with input
 	---@param inputname string Input name
 	---@return any undefined value The value to set the input to (must match the input type)
 	function _G.wire.readInput(ent, inputname) end
-	--- triggerCell - server - libs_sv/wire.lua#L688
+	--- triggerCell - server - libs_sv/wire.lua#L692
 	---@param ent Entity Entity with wire memory
 	---@param index number The cell address
 	---@param value number The value to set the cell
@@ -352,7 +352,7 @@ _G.wire.ports = {
 	---@param types table An array of output types. Can be shortcuts. May be modified by the function.
 	---@param descriptions table? An optional array of output descriptions. 
 	function _G.wire.adjustOutputs(names, types, descriptions) end
-	--- triggerInput - server - libs_sv/wire.lua#L666
+	--- triggerInput - server - libs_sv/wire.lua#L670
 	---@param ent Entity Entity with input
 	---@param inputname string Input name
 	---@param value any The value to set the input to (must match the input type)
@@ -9140,9 +9140,9 @@ _G.Player = {}
 	--- getVehicle - shared - libs_sh/players.lua#L292
 	---@return Vehicle undefined Vehicle if player in vehicle or nil
 	function _G.Player:getVehicle() end
-	--- exitVehicle - server - libs_sv/players.lua#L497
+	--- exitVehicle - server - libs_sv/players.lua#L498
 	function _G.Player:exitVehicle() end
-	--- setWalkSpeed - server - libs_sv/players.lua#L414
+	--- setWalkSpeed - server - libs_sv/players.lua#L415
 	---@param newwalkspeed number New Walk speed.
 	function _G.Player:setWalkSpeed(newwalkspeed) end
 	--- isNoclipped - shared - libs_sh/players.lua#L229
@@ -9168,19 +9168,19 @@ _G.Player = {}
 	--- stripWeapon - server - libs_sv/players.lua#L215
 	---@param weapon string The weapon class name of the weapon to strip
 	function _G.Player:stripWeapon(weapon) end
-	--- extinguish - server - libs_sv/players.lua#L561
+	--- extinguish - server - libs_sv/players.lua#L562
 	function _G.Player:extinguish() end
 	--- getWalkSpeed - shared - libs_sh/players.lua#L180
 	---@return number undefined Walk Speed value
 	function _G.Player:getWalkSpeed() end
-	--- setUnDuckSpeed - server - libs_sv/players.lua#L369
+	--- setUnDuckSpeed - server - libs_sv/players.lua#L370
 	---@param newunduckspeed number New UnDuck speed, This is a multiplier from 0 to 1.
 	function _G.Player:setUnDuckSpeed(newunduckspeed) end
-	--- ignite - server - libs_sv/players.lua#L543
+	--- ignite - server - libs_sv/players.lua#L544
 	---@param length number How long the fire lasts
 	---@param radius number? (optional) How large the fire hitbox is (entity obb is the max)
 	function _G.Player:ignite(length, radius) end
-	--- setGravity - server - libs_sv/players.lua#L529
+	--- setGravity - server - libs_sv/players.lua#L530
 	---@param multiplier number By how much to multiply the gravity. 1 is normal gravity, 0.5 is half-gravity, etc.
 	function _G.Player:setGravity(multiplier) end
 	--- getWeaponColor - shared - libs_sh/players.lua#L436
@@ -9195,7 +9195,7 @@ _G.Player = {}
 	--- isHUDActive - server - libs_sv/players.lua#L174
 	---@return boolean undefined If a HUD component is connected and active for the player
 	function _G.Player:isHUDActive() end
-	--- addVelocity - server - libs_sv/players.lua#L518
+	--- addVelocity - server - libs_sv/players.lua#L519
 	---@param vel Vector Add velocity
 	function _G.Player:addVelocity(vel) end
 	--- isWalking - shared - libs_sh/players.lua#L485
@@ -9204,7 +9204,7 @@ _G.Player = {}
 	--- isSuperAdmin - shared - libs_sh/players.lua#L320
 	---@return boolean undefined True if player is super admin
 	function _G.Player:isSuperAdmin() end
-	--- setPos - server - libs_sv/players.lua#L504
+	--- setPos - server - libs_sv/players.lua#L505
 	---@param vec Vector New position
 	---@param revive boolean? Revive the player if they are dead
 	function _G.Player:setPos(vec, revive) end
@@ -9212,7 +9212,7 @@ _G.Player = {}
 	---@param owner boolean? Return the actual game owner account id
 	---@return string undefined SteamID64 aka Community ID
 	function _G.Player:getSteamID64(owner) end
-	--- setHealth - server - libs_sv/players.lua#L329
+	--- setHealth - server - libs_sv/players.lua#L330
 	---@param newhealth number New health value.
 	function _G.Player:setHealth(newhealth) end
 	--- isPlayingTaunt - shared - libs_sh/players.lua#L532
@@ -9224,14 +9224,14 @@ _G.Player = {}
 	--- voiceVolume - client - libs_sh/players.lua#L561
 	---@return number undefined Returns the players voice volume, how loud the player's voice communication currently is, as a normal number.
 	function _G.Player:voiceVolume() end
-	--- setPVSPoint - server - libs_sv/players.lua#L478
+	--- setPVSPoint - server - libs_sv/players.lua#L479
 	---@param ID number ID to set position of, clamped between 1 and the PVS Points limit.
 	---@param position Vector? position to set the override point to, nil to delete this point if it exists.
 	function _G.Player:setPVSPoint(ID, position) end
-	--- enterVehicle - server - libs_sv/players.lua#L469
+	--- enterVehicle - server - libs_sv/players.lua#L470
 	---@param vehicle Vehicle 
 	function _G.Player:enterVehicle(vehicle) end
-	--- kill - server - libs_sv/players.lua#L459
+	--- kill - server - libs_sv/players.lua#L460
 	function _G.Player:kill() end
 	--- setAnimationRate - client - libs_sh/players.lua#L730
 	---@param rate number The playback rate of the animation. Float
@@ -9239,12 +9239,12 @@ _G.Player = {}
 	--- isSpeaking - client - libs_sh/players.lua#L554
 	---@return boolean undefined Whether they are speaking and able to be heard by LocalPlayer
 	function _G.Player:isSpeaking() end
-	--- setMaxHealth - server - libs_sv/players.lua#L340
+	--- setMaxHealth - server - libs_sv/players.lua#L341
 	---@param newmaxhealth number New max health value.
 	function _G.Player:setMaxHealth(newmaxhealth) end
 	--- stripAmmo - server - libs_sv/players.lua#L246
 	function _G.Player:stripAmmo() end
-	--- setStepSize - server - libs_sv/players.lua#L432
+	--- setStepSize - server - libs_sv/players.lua#L433
 	---@param newstepsize number New Step Size.
 	function _G.Player:setStepSize(newstepsize) end
 	--- getEyeTrace - shared - libs_sh/players.lua#L392
@@ -9268,10 +9268,10 @@ _G.Player = {}
 	--- getSlowWalkSpeed - shared - libs_sh/players.lua#L173
 	---@return number undefined Slow Walk Speed value
 	function _G.Player:getSlowWalkSpeed() end
-	--- setJumpPower - server - libs_sv/players.lua#L423
+	--- setJumpPower - server - libs_sv/players.lua#L424
 	---@param newjumppower number New Jump Power.
 	function _G.Player:setJumpPower(newjumppower) end
-	--- setMaxSpeed - server - libs_sv/players.lua#L387
+	--- setMaxSpeed - server - libs_sv/players.lua#L388
 	---@param newmaxspeed number New Max speed.
 	function _G.Player:setMaxSpeed(newmaxspeed) end
 	--- getPacketLoss - server - libs_sv/players.lua#L267
@@ -9280,7 +9280,7 @@ _G.Player = {}
 	--- isConnected - server - libs_sv/players.lua#L291
 	---@return boolean undefined True if player is connected
 	function _G.Player:isConnected() end
-	--- setLadderClimbSpeed - server - libs_sv/players.lua#L378
+	--- setLadderClimbSpeed - server - libs_sv/players.lua#L379
 	---@param newladderclimbspeed number New Ladder Climb speed.
 	function _G.Player:setLadderClimbSpeed(newladderclimbspeed) end
 	--- getMaxSpeed - shared - libs_sh/players.lua#L159
@@ -9292,7 +9292,7 @@ _G.Player = {}
 	--- getLadderClimbSpeed - shared - libs_sh/players.lua#L152
 	---@return number undefined Ladder Climb Speed value
 	function _G.Player:getLadderClimbSpeed() end
-	--- setWeaponColor - server - libs_sv/players.lua#L450
+	--- setWeaponColor - server - libs_sv/players.lua#L451
 	---@param col Vector The new color with values 0-1 in each vector component
 	function _G.Player:setWeaponColor(col) end
 	--- resetAnimation - client - libs_sh/players.lua#L672
@@ -9300,9 +9300,9 @@ _G.Player = {}
 	--- getPing - shared - libs_sh/players.lua#L342
 	---@return number undefined The player's ping
 	function _G.Player:getPing() end
-	--- clearPVSPoints - server - libs_sv/players.lua#L492
+	--- clearPVSPoints - server - libs_sv/players.lua#L493
 	function _G.Player:clearPVSPoints() end
-	--- setMaxArmor - server - libs_sv/players.lua#L320
+	--- setMaxArmor - server - libs_sv/players.lua#L321
 	---@param newmaxarmor number New max armor value.
 	function _G.Player:setMaxArmor(newmaxarmor) end
 	--- isUserGroup - shared - libs_sh/players.lua#L327
@@ -9323,7 +9323,7 @@ _G.Player = {}
 	---@param target Vector? If set, launches the weapon at the given position
 	---@param velocity Vector? If set and target is unset, launches the weapon with the given velocity
 	function _G.Player:dropWeapon(weapon, target, velocity) end
-	--- setRunSpeed - server - libs_sv/players.lua#L396
+	--- setRunSpeed - server - libs_sv/players.lua#L397
 	---@param newrunspeed number New Run speed.
 	function _G.Player:setRunSpeed(newrunspeed) end
 	--- isFlashlightOn - shared - libs_sh/players.lua#L222
@@ -9348,10 +9348,10 @@ _G.Player = {}
 	--- getFrags - shared - libs_sh/players.lua#L236
 	---@return number undefined Amount of kills
 	function _G.Player:getFrags() end
-	--- setSlowWalkSpeed - server - libs_sv/players.lua#L405
+	--- setSlowWalkSpeed - server - libs_sv/players.lua#L406
 	---@param newslowwalkspeed number New Slow Walk speed.
 	function _G.Player:setSlowWalkSpeed(newslowwalkspeed) end
-	--- setDuckSpeed - server - libs_sv/players.lua#L360
+	--- setDuckSpeed - server - libs_sv/players.lua#L361
 	---@param newduckspeed number New Duck speed, This is a multiplier from 0 to 1.
 	function _G.Player:setDuckSpeed(newduckspeed) end
 	--- getCrouchedWalkSpeed - shared - libs_sh/players.lua#L131
@@ -9368,7 +9368,7 @@ _G.Player = {}
 	---@param wep string Weapon class name
 	---@return Weapon undefined Weapon
 	function _G.Player:getWeapon(wep) end
-	--- setFriction - server - libs_sv/players.lua#L441
+	--- setFriction - server - libs_sv/players.lua#L442
 	---@param newfriction number New Friction.
 	function _G.Player:setFriction(newfriction) end
 	--- hasGodMode - server - libs_sv/players.lua#L190
@@ -9427,7 +9427,7 @@ _G.Player = {}
 	--- setAnimationLoop - client - libs_sh/players.lua#L775
 	---@param loop boolean Should the animation loop?
 	function _G.Player:setAnimationLoop(loop) end
-	--- setArmor - server - libs_sv/players.lua#L311
+	--- setArmor - server - libs_sv/players.lua#L312
 	---@param newarmor number New armor value.
 	function _G.Player:setArmor(newarmor) end
 	--- keyDownLast - shared - libs_sh/players.lua#L507
@@ -9505,7 +9505,7 @@ _G.Player = {}
 	--- getTeamName - shared - libs_sh/players.lua#L378
 	---@return string undefined Team Name
 	function _G.Player:getTeamName() end
-	--- setCrouchedWalkSpeed - server - libs_sv/players.lua#L351
+	--- setCrouchedWalkSpeed - server - libs_sv/players.lua#L352
 	---@param newcwalkspeed number New Crouch Walk speed, This is a multiplier from 0 to 1.
 	function _G.Player:setCrouchedWalkSpeed(newcwalkspeed) end
 	--- isSprinting - shared - libs_sh/players.lua#L478
@@ -10346,7 +10346,7 @@ _G.Entity = {}
 	--- getQuotaAverage - shared - libs_sh/entities.lua#L1107
 	---@return number undefined Average CPU Time of the buffer of the specified starfall or expression2.
 	function _G.Entity:getQuotaAverage() end
-	--- getWirelink - server - libs_sv/wire.lua#L733
+	--- getWirelink - server - libs_sv/wire.lua#L737
 	---@return Wirelink undefined Wirelink of the entity
 	function _G.Entity:getWirelink() end
 	--- isValidPhys - server - libs_sv/entities.lua#L805
@@ -10634,40 +10634,40 @@ _G.VMatrix = {}
 ---@class Wirelink
 ---@operator index(string|number):any
 _G.Wirelink = {}
-	--- inputValue - server - libs_sv/wire.lua#L777
+	--- inputValue - server - libs_sv/wire.lua#L781
 	---@param name string Input name
 	---@return any undefined Input value
 	function _G.Wirelink:inputValue(name) end
-	--- entity - server - libs_sv/wire.lua#L809
+	--- entity - server - libs_sv/wire.lua#L813
 	---@return Entity undefined Entity the wirelink represents
 	function _G.Wirelink:entity() end
-	--- getWiredToName - server - libs_sv/wire.lua#L877
+	--- getWiredToName - server - libs_sv/wire.lua#L881
 	---@param name string Name of the input of the wirelink.
 	---@return string undefined String name of the output that the input is wired to.
 	function _G.Wirelink:getWiredToName(name) end
-	--- inputs - server - libs_sv/wire.lua#L815
+	--- inputs - server - libs_sv/wire.lua#L819
 	---@return table undefined All of the wirelink's inputs
 	function _G.Wirelink:inputs() end
-	--- inputType - server - libs_sv/wire.lua#L785
+	--- inputType - server - libs_sv/wire.lua#L789
 	---@param name string Input name to search for
 	---@return string undefined Type of input
 	function _G.Wirelink:inputType(name) end
-	--- getWiredTo - server - libs_sv/wire.lua#L865
+	--- getWiredTo - server - libs_sv/wire.lua#L869
 	---@param name string Name of the input
 	---@return Entity undefined The entity the wirelink is wired to
 	function _G.Wirelink:getWiredTo(name) end
-	--- outputType - server - libs_sv/wire.lua#L797
+	--- outputType - server - libs_sv/wire.lua#L801
 	---@param name string Output name to search for
 	---@return string undefined Type of output
 	function _G.Wirelink:outputType(name) end
-	--- isWired - server - libs_sv/wire.lua#L855
+	--- isWired - server - libs_sv/wire.lua#L859
 	---@param name string Name of the input to check
 	---@return boolean undefined Whether it is wired
 	function _G.Wirelink:isWired(name) end
-	--- outputs - server - libs_sv/wire.lua#L835
+	--- outputs - server - libs_sv/wire.lua#L839
 	---@return table undefined All of the wirelink's outputs
 	function _G.Wirelink:outputs() end
-	--- isValid - server - libs_sv/wire.lua#L771
+	--- isValid - server - libs_sv/wire.lua#L775
 	---@return boolean undefined Whether the wirelink is valid
 	function _G.Wirelink:isValid() end
 ---  For playing music there is `Bass` type. You can pause and set current playback time in it. If you're looking to apply DSP effects on present game sounds, use `Sound` instead.

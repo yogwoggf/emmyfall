@@ -880,7 +880,12 @@ _G.trace = {}
 	---@param sphereRadius number The radius of the sphere.
 	---@return boolean undefined true if there is an intersection, false otherwise.
 	function _G.trace.isBoxIntersectingSphere(boxMins, boxMaxs, spherePos, sphereRadius) end
-	--- canCreateDecal - shared - libs_sh/trace.lua#L184
+	--- removeDecalsAt - client - libs_sh/trace.lua#L209
+	---@param pos Vector The position at which to remove decals.
+	---@param distance number Radius of the sphere to remove decals in.
+	---@param limit number? If set to above 0, only remove this many decals.
+	function _G.trace.removeDecalsAt(pos, distance, limit) end
+	--- canCreateDecal - shared - libs_sh/trace.lua#L224
 	---@return boolean undefined Whether the decal trace can be used
 	function _G.trace.canCreateDecal() end
 	--- intersectRayWithOBB - shared - libs_sh/trace.lua#L115
@@ -922,10 +927,16 @@ _G.trace = {}
 	---@param whitelist boolean? Make 'filter' param array act as a hit whitelist instead of blacklist
 	---@return table undefined Result of the trace https://wiki.facepunch.com/gmod/Structures/TraceResult
 	function _G.trace.line(start, endpos, filter, mask, colgroup, ignworld, whitelist) end
-	--- decalsLeft - shared - libs_sh/trace.lua#L190
-	---@return number undefined The number of decals left
-	function _G.trace.decalsLeft() end
-	--- aimVector - shared - libs_sh/trace.lua#L204
+	--- decalEx - client - libs_sh/trace.lua#L188
+	---@param material Material The material to paint.
+	---@param ent Entity The entity to apply the decal to
+	---@param position Vector The position of the decal.
+	---@param normal Vector The direction of the decal.
+	---@param color Color The color of the decal. This only works when used on a brush model and only if the decal material has set $vertexcolor to 1.
+	---@param w number The width scale of the decal.
+	---@param h number The height scale of the decal.
+	function _G.trace.decalEx(material, ent, position, normal, color, w, h) end
+	--- aimVector - shared - libs_sh/trace.lua#L244
 	---@param viewAngles Angle View angles
 	---@param viewFOV number View field of view
 	---@param x number X position on the screen
@@ -934,10 +945,13 @@ _G.trace = {}
 	---@param screenHeight number Screen height
 	---@return Vector undefined The aim vector
 	function _G.trace.aimVector(viewAngles, viewFOV, x, y, screenWidth, screenHeight) end
-	--- pointContents - shared - libs_sh/trace.lua#L196
+	--- pointContents - shared - libs_sh/trace.lua#L236
 	---@param position Vector The position to get the CONTENTS of
 	---@return number undefined Contents bitflag, see the CONTENTS enums
 	function _G.trace.pointContents(position) end
+	--- decalsLeft - shared - libs_sh/trace.lua#L230
+	---@return number undefined The number of decals left
+	function _G.trace.decalsLeft() end
 	--- intersectRayWithPlane - shared - libs_sh/trace.lua#L150
 	---@param rayStart Vector The origin of the ray
 	---@param rayDelta Vector The direction and length of the ray

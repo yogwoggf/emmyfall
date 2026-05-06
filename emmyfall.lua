@@ -360,48 +360,48 @@ _G.wire.ports = {
 --- http
 ---  Http library. Requests content from urls.
 _G.http = {}
-	--- base64Decode - shared - libs_sh/http.lua#L248
+	--- base64Decode - shared - libs_sh/http.lua#L272
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.base64Decode(data) end
-	--- getMaximumRequests - shared - libs_sh/http.lua#L45
+	--- getMaximumRequests - shared - libs_sh/http.lua#L56
 	---@return number undefined Maximum amount of concurrent active HTTP get/post requests 
 	function _G.http.getMaximumRequests() end
-	--- urlGithubToRaw - shared - libs_sh/http.lua#L301
+	--- urlGithubToRaw - shared - libs_sh/http.lua#L325
 	---@param url string The url to convert
 	---@return string undefined The converted url
 	function _G.http.urlGithubToRaw(url) end
-	--- urlDecode - shared - libs_sh/http.lua#L267
+	--- urlDecode - shared - libs_sh/http.lua#L291
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.urlDecode(data) end
-	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L281
+	--- urlGoogleDriveToRaw - shared - libs_sh/http.lua#L305
 	---@param url string The url to convert
 	---@return string undefined The converted url
 	function _G.http.urlGoogleDriveToRaw(url) end
-	--- urlDropboxToRaw - shared - libs_sh/http.lua#L291
+	--- urlDropboxToRaw - shared - libs_sh/http.lua#L315
 	---@param url string The url to convert
 	---@return string undefined The converted url
 	function _G.http.urlDropboxToRaw(url) end
-	--- getActiveRequests - shared - libs_sh/http.lua#L39
+	--- getActiveRequests - shared - libs_sh/http.lua#L50
 	---@return number undefined The current amount of active HTTP get/post requests
 	function _G.http.getActiveRequests() end
-	--- post - shared - libs_sh/http.lua#L77
+	--- post - shared - libs_sh/http.lua#L91
 	---@param url string Http target url
 	---@param payload table? Optional POST payload to be sent, can be both table and string. When table is used, the request body is encoded as application/x-www-form-urlencoded
 	---@param callbackSuccess function? Optional function to be called on request success, taking the arguments body (string), length (number), headers (table) and code (number)
 	---@param callbackFail function? Optional function to be called on request fail, taking the failing reason as an argument
 	---@param headers table? Optional POST headers to be sent
 	function _G.http.post(url, payload, callbackSuccess, callbackFail, headers) end
-	--- urlEncode - shared - libs_sh/http.lua#L255
+	--- urlEncode - shared - libs_sh/http.lua#L279
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.urlEncode(data) end
-	--- base64Encode - shared - libs_sh/http.lua#L235
+	--- base64Encode - shared - libs_sh/http.lua#L259
 	---@param data string The data to convert
 	---@return string undefined The converted data
 	function _G.http.base64Encode(data) end
-	--- request - shared - libs_sh/http.lua#L152
+	--- request - shared - libs_sh/http.lua#L171
 	---@param url string The target url
 	---@param method string Request method, case insensitive. Possible values are: GET, POST, HEAD, PUT, DELETE, PATCH, OPTIONS
 	---@param success function? Function to be called on success, taking arguments code (number), body (string), and headers (table)
@@ -412,10 +412,10 @@ _G.http = {}
 	---@param headers table? KeyValue table for headers
 	---@param timeout number? The timeout for the connection. Clamped between [0.1, 300]. (Default: 60)
 	function _G.http.request(url, method, success, failed, body, parameters, type, headers, timeout) end
-	--- canRequest - shared - libs_sh/http.lua#L33
+	--- canRequest - shared - libs_sh/http.lua#L44
 	---@return boolean undefined If an HTTP get/post request can be made
 	function _G.http.canRequest() end
-	--- get - shared - libs_sh/http.lua#L51
+	--- get - shared - libs_sh/http.lua#L62
 	---@param url string Http target url
 	---@param callbackSuccess function The function to be called on request success, taking the arguments body (string), length (number), headers (table) and code (number)
 	---@param callbackFail function? The function to be called on request fail, taking the failing reason as an argument

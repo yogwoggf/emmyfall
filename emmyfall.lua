@@ -4579,7 +4579,7 @@ _G.mesh = {}
 	--- writeBoneData - shared - libs_sh/mesh.lua#L1130
 	---@param index number The slot index for the vertex, either 0 or 1.
 	---@param matrixId number The matrix index for the vertex, in the range of 1 -> 53.
-	---@param weight number How much influence that matrix will have on this vertex, in the range of 0 -> 1
+	---@param weight number How much influence that matrix will have on this vertex, in the range of 0 -> 1. Both weights on each vertex should sum to 1. 
 	function _G.mesh.writeBoneData(index, matrixId, weight) end
 	--- advanceVertex - client - libs_sh/mesh.lua#L1138
 	function _G.mesh.advanceVertex() end

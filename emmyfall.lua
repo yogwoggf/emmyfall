@@ -4935,19 +4935,19 @@ _G.team = {}
 --- hologram
 ---  Library for creating and manipulating physics-less models AKA "Holograms".
 _G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L564
+	--- removeAll - shared - libs_sh/hologram.lua#L576
 	function _G.hologram.removeAll() end
-	--- canSpawn - shared - libs_sh/hologram.lua#L153
+	--- canSpawn - shared - libs_sh/hologram.lua#L164
 	---@return boolean undefined True if user can spawn holograms, False if not.
 	function _G.hologram.canSpawn() end
-	--- create - shared - libs_sh/hologram.lua#L102
+	--- create - shared - libs_sh/hologram.lua#L113
 	---@param pos Vector The position to create the hologram
 	---@param ang Angle The angle to create the hologram
 	---@param model string The model to give the hologram
 	---@param scale Vector? (Optional) The scale to give the hologram
 	---@return Hologram? undefined The hologram object or nil if it failed to create
 	function _G.hologram.create(pos, ang, model, scale) end
-	--- hologramsLeft - shared - libs_sh/hologram.lua#L160
+	--- hologramsLeft - shared - libs_sh/hologram.lua#L171
 	---@return number undefined Number of holograms able to be spawned
 	function _G.hologram.hologramsLeft() end
 --- navmesh
@@ -7985,87 +7985,87 @@ _G.Sound = {}
 ---  Hologram type
 ---@class Hologram
 _G.Hologram = {}
-	--- setCullMode - shared - libs_sh/hologram.lua#L504
+	--- setCullMode - shared - libs_sh/hologram.lua#L516
 	---@param mode number Cull mode. 0 for counter clock wise, 1 for clock wise
 	function _G.Hologram:setCullMode(mode) end
-	--- setLocalPos - shared - libs_sh/hologram.lua#L237
+	--- setLocalPos - shared - libs_sh/hologram.lua#L248
 	---@param vec Vector New position
 	function _G.Hologram:setLocalPos(vec) end
-	--- setAnimation - shared - libs_sh/hologram.lua#L473
+	--- setAnimation - shared - libs_sh/hologram.lua#L485
 	---@param animation number|string Animation number or string name.
 	---@param frame number? Optional int (Default 0) The starting frame number. Does nothing if nil
 	---@param rate number? Optional float (Default 1) Frame speed. Does nothing if nil
 	function _G.Hologram:setAnimation(animation, frame, rate) end
-	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L441
+	--- suppressEngineLighting - shared - libs_sh/hologram.lua#L453
 	---@param suppress boolean Boolean to represent if shading should be set or not.
 	function _G.Hologram:suppressEngineLighting(suppress) end
-	--- setScale - shared - libs_sh/hologram.lua#L411
+	--- setScale - shared - libs_sh/hologram.lua#L423
 	---@param scale Vector Vector new scale
 	function _G.Hologram:setScale(scale) end
-	--- setRenderGroup - shared - libs_sh/hologram.lua#L516
+	--- setRenderGroup - shared - libs_sh/hologram.lua#L528
 	---@param group number|nil Render group. If unset, the engine will decide the render group based on the entity's materials. Can be RENDERGROUP.OPAQUE RENDERGROUP.TRANSLUCENT RENDERGROUP.BOTH RENDERGROUP.VIEWMODEL RENDERGROUP.VIEWMODEL.TRANSLUCENT RENDERGROUP.OPAQUE.BRUSH
 	function _G.Hologram:setRenderGroup(group) end
-	--- getScale - shared - libs_sh/hologram.lua#L433
+	--- getScale - shared - libs_sh/hologram.lua#L445
 	---@return Vector undefined Vector scale
 	function _G.Hologram:getScale() end
-	--- setSize - shared - libs_sh/hologram.lua#L420
+	--- setSize - shared - libs_sh/hologram.lua#L432
 	---@param size Vector Vector new size in game units
 	function _G.Hologram:setSize(size) end
-	--- setFilterMag - client - libs_sh/hologram.lua#L263
+	--- setFilterMag - client - libs_sh/hologram.lua#L274
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMag(val) end
-	--- addEffects - shared - libs_sh/hologram.lua#L532
+	--- addEffects - shared - libs_sh/hologram.lua#L544
 	---@param effect number The effects to add. See EF Enums
 	function _G.Hologram:addEffects(effect) end
-	--- setRenderMatrix - client - libs_sh/hologram.lua#L297
+	--- setRenderMatrix - client - libs_sh/hologram.lua#L308
 	---@param mat VMatrix Starfall matrix to use
 	function _G.Hologram:setRenderMatrix(mat) end
-	--- setPos - shared - libs_sh/hologram.lua#L211
+	--- setPos - shared - libs_sh/hologram.lua#L222
 	---@param vec Vector New position
 	function _G.Hologram:setPos(vec) end
-	--- setLocalAngularVelocity - server - libs_sh/hologram.lua#L183
+	--- setLocalAngularVelocity - server - libs_sh/hologram.lua#L194
 	---@param angvel Angle *Vector* local angular velocity.
 	function _G.Hologram:setLocalAngularVelocity(angvel) end
-	--- setAngles - shared - libs_sh/hologram.lua#L224
+	--- setAngles - shared - libs_sh/hologram.lua#L235
 	---@param ang Angle New angles
 	function _G.Hologram:setAngles(ang) end
-	--- setMoveType - server - libs_sh/hologram.lua#L198
+	--- setMoveType - server - libs_sh/hologram.lua#L209
 	---@param Movetype number to set, either MOVETYPE.NOCLIP (default) or MOVETYPE.NONE
 	function _G.Hologram:setMoveType(Movetype) end
-	--- setModel - shared - libs_sh/hologram.lua#L459
+	--- setModel - shared - libs_sh/hologram.lua#L471
 	---@param model string string model path
 	function _G.Hologram:setModel(model) end
-	--- getPlayerColor - shared - libs_sh/hologram.lua#L362
+	--- getPlayerColor - shared - libs_sh/hologram.lua#L374
 	---@return Vector? undefined color The player color to use, or nil if disabled
 	function _G.Hologram:getPlayerColor() end
-	--- setLocalVelocity - server - libs_sh/hologram.lua#L168
+	--- setLocalVelocity - server - libs_sh/hologram.lua#L179
 	---@param vel Vector New local velocity
 	function _G.Hologram:setLocalVelocity(vel) end
-	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L451
+	--- getSuppressEngineLighting - shared - libs_sh/hologram.lua#L463
 	---@return boolean undefined Whether engine lighting is suppressed
 	function _G.Hologram:getSuppressEngineLighting() end
-	--- removeEffects - shared - libs_sh/hologram.lua#L543
+	--- removeEffects - shared - libs_sh/hologram.lua#L555
 	---@param effect number The effects to remove. See EF Enums
 	function _G.Hologram:removeEffects(effect) end
-	--- remove - shared - libs_sh/hologram.lua#L554
+	--- remove - shared - libs_sh/hologram.lua#L566
 	function _G.Hologram:remove() end
-	--- setClip - shared - libs_sh/hologram.lua#L374
+	--- setClip - shared - libs_sh/hologram.lua#L386
 	---@param index number Whatever number you want the clip to be
 	---@param enabled boolean Whether the clip is enabled
 	---@param origin Vector? The center of the clip plane in world coordinates, or local to entity if it is specified. Only used if enabled.
 	---@param normal Vector? The the direction of the clip plane in world coordinates, or local to entity if it is specified. Only used if enabled.
 	---@param entity Entity? (Optional) The entity to make coordinates local to, otherwise the world is used. Only used if enabled.
 	function _G.Hologram:setClip(index, enabled, origin, normal, entity) end
-	--- setLocalAngles - shared - libs_sh/hologram.lua#L250
+	--- setLocalAngles - shared - libs_sh/hologram.lua#L261
 	---@param ang Angle New angles
 	function _G.Hologram:setLocalAngles(ang) end
-	--- setPlayerColor - shared - libs_sh/hologram.lua#L350
+	--- setPlayerColor - shared - libs_sh/hologram.lua#L362
 	---@param color Vector? The player color to use, or nil to disable
 	function _G.Hologram:setPlayerColor(color) end
-	--- draw - client - libs_sh/hologram.lua#L323
+	--- draw - client - libs_sh/hologram.lua#L334
 	---@param noTint boolean? If true, renders the hologram without its color and opacity. The default is for holograms to render with color or opacity, so use this argument if you need that behavior.
 	function _G.Hologram:draw(noTint) end
-	--- setFilterMin - client - libs_sh/hologram.lua#L280
+	--- setFilterMin - client - libs_sh/hologram.lua#L291
 	---@param val number The filter function to use http://wiki.facepunch.com/gmod/Enums/TEXFILTER
 	function _G.Hologram:setFilterMin(val) end
 ---  Light type
@@ -9408,7 +9408,7 @@ _G.Entity = {}
 	--- isVehicle - shared - libs_sh/entities.lua#L1044
 	---@return boolean undefined True if vehicle, false if not
 	function _G.Entity:isVehicle() end
-	--- toHologram - shared - libs_sh/hologram.lua#L92
+	--- toHologram - shared - libs_sh/hologram.lua#L103
 	---@return Hologram undefined Hologram instance
 	function _G.Entity:toHologram() end
 	--- setColor - shared - libs_sh/entities.lua#L574

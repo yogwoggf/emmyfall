@@ -7059,7 +7059,7 @@ _G.net = {}
 	function _G.net.readBool() end
 	--- writeData - shared - libs_sh/net.lua#L304
 	---@param t string The string to be written
-	---@param n number How much of the string to write
+	---@param n number How much of the string to write, can't exceed 64000 or the string's length
 	function _G.net.writeData(t, n) end
 	--- readUInt - shared - libs_sh/net.lua#L417
 	---@param n number The amount of bits to read

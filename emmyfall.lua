@@ -3879,7 +3879,7 @@ _G.game = {}
 	---@param name string The ammo name
 	---@return number undefined The id or -1 if not found
 	function _G.game.getAmmoID(name) end
-	--- getSunInfo - client - libs_sh/game.lua#L277
+	--- getSunInfo - client - libs_sh/game.lua#L278
 	---@return Vector undefined The direction of the sun
 	---@return number undefined How obstructed the sun is 0 to 1.
 	function _G.game.getSunInfo() end
@@ -3918,10 +3918,10 @@ _G.game = {}
 	---@param id string The STEAM_0 style id
 	---@return string undefined 64bit Steam ID
 	function _G.game.steamIDTo64(id) end
-	--- bulletsLeft - server - libs_sh/game.lua#L254
+	--- bulletsLeft - server - libs_sh/game.lua#L255
 	---@return number undefined Number of bullets left to fire
 	function _G.game.bulletsLeft() end
-	--- serverFrameTime - client - libs_sh/game.lua#L294
+	--- serverFrameTime - client - libs_sh/game.lua#L295
 	---@return number undefined Server frametime
 	---@return number undefined Server frametime standard deviation
 	function _G.game.serverFrameTime() end
@@ -3930,7 +3930,7 @@ _G.game = {}
 	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
 	---@param damage number The amount of damage to be applied
 	function _G.game.blastDamage(damageOrigin, damageRadius, damage) end
-	--- isTimingOut - client - libs_sh/game.lua#L309
+	--- isTimingOut - client - libs_sh/game.lua#L310
 	---@return boolean undefined If currently timing out
 	---@return number undefined Time since the connection started to timeout
 	function _G.game.isTimingOut() end
@@ -3940,7 +3940,7 @@ _G.game = {}
 	--- getMap - shared - libs_sh/game.lua#L34
 	---@return string undefined The name of the current map
 	function _G.game.getMap() end
-	--- realFrameTime - client - libs_sh/game.lua#L302
+	--- realFrameTime - client - libs_sh/game.lua#L303
 	---@return number undefined Frametime
 	function _G.game.realFrameTime() end
 	--- isLan - shared - libs_sh/game.lua#L46
@@ -3949,7 +3949,7 @@ _G.game = {}
 	--- isDedicated - shared - libs_sh/game.lua#L58
 	---@return boolean undefined True if the game is a dedicated server
 	function _G.game.isDedicated() end
-	--- bulletsDPSLeft - server - libs_sh/game.lua#L261
+	--- bulletsDPSLeft - server - libs_sh/game.lua#L262
 	---@return number undefined Damage left bullets can deal
 	function _G.game.bulletsDPSLeft() end
 	--- getAmmoName - shared - libs_sh/game.lua#L124
@@ -3960,14 +3960,14 @@ _G.game = {}
 	---@param id string The 64 bit Steam ID
 	---@return string undefined STEAM_0 style Steam ID
 	function _G.game.steamIDFrom64(id) end
-	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L286
+	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L287
 	---@param position Vector The position to check the skybox visibility from
 	---@return boolean undefined Whether the skybox is visible from the position
 	function _G.game.isSkyboxVisibleFromPoint(position) end
 	--- getTickCount - shared - libs_sh/game.lua#L95
 	---@return number undefined Ticks
 	function _G.game.getTickCount() end
-	--- bulletDamage - server - libs_sh/game.lua#L188
+	--- bulletDamage - server - libs_sh/game.lua#L189
 	---@param src Vector The position to fire the bullets from.
 	---@param Dir Vector The fire direction.
 	---@param damage number? The damage dealt by the bullet. Default: (1-100)
@@ -3979,7 +3979,7 @@ _G.game = {}
 	---@param ignoreEntity Entity? The entity that the bullet will ignore when it will be shot.
 	---@param callback function? Function to be called with attacker, traceResult after the bullet was fired but before the damage is applied (the callback is called even if no damage is applied).
 	function _G.game.bulletDamage(src, Dir, damage, num, force, distance, Spread, hullSize, ignoreEntity, callback) end
-	--- canFireBullets - server - libs_sh/game.lua#L243
+	--- canFireBullets - server - libs_sh/game.lua#L244
 	---@param damage number The damage dealt by the bullet. (1-100)
 	---@param num number The amount of bullets to fire. (1-5)
 	---@return boolean undefined true if the given bullets can be fired or else false
@@ -3987,13 +3987,13 @@ _G.game = {}
 	--- isSinglePlayer - shared - libs_sh/game.lua#L52
 	---@return boolean undefined True if the game is singleplayer
 	function _G.game.isSinglePlayer() end
-	--- physicsFrameTime - shared - libs_sh/game.lua#L319
+	--- physicsFrameTime - shared - libs_sh/game.lua#L320
 	---@return number undefined The physics frame time length
 	function _G.game.physicsFrameTime() end
 	--- getIPAddress - shared - libs_sh/game.lua#L101
 	---@return string undefined The IP address and port in the format "x.x.x.x:x"
 	function _G.game.getIPAddress() end
-	--- hasFocus - client - libs_sh/game.lua#L270
+	--- hasFocus - client - libs_sh/game.lua#L271
 	---@return boolean undefined True if the game is focused
 	function _G.game.hasFocus() end
 --- render

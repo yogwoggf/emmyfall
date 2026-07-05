@@ -3022,8 +3022,9 @@ _G.table = {}
 _G.json = {}
 	--- decode - shared - libs_sh/json.lua#L37
 	---@param s string String to decode
+	---@param ignoreConversions boolean? Optional. If true, ignore string to number conversions for table keys
 	---@return table undefined Table representing the JSON object
-	function _G.json.decode(s) end
+	function _G.json.decode(s, ignoreConversions) end
 	--- encode - shared - libs_sh/json.lua#L25
 	---@param tbl table Table to encode
 	---@param prettyPrint boolean? Optional. If true, formats and indents the resulting JSON

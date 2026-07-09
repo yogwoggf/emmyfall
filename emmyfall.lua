@@ -9748,7 +9748,7 @@ _G.Entity = {}
 	---@param friction number 
 	function _G.Entity:setFriction(friction) end
 	--- getParent - shared - libs_sh/entities.lua#L821
-	---@return Entity? undefined Entity's parent or nil if not parented
+	---@return Entity undefined Entity's parent or null entity if not parented
 	function _G.Entity:getParent() end
 	--- isNextBot - shared - libs_sh/entities.lua#L1627
 	---@return boolean undefined Whether it is a nextbot

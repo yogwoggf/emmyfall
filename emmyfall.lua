@@ -5094,78 +5094,78 @@ _G.navmesh.NAV_TRAVERSE_TYPE = {
 	--- 8
 	["GO_ELEVATOR_DOWN"] = nil,
 }
-	--- clearWalkableSeeds - server - libs_sv/navmesh.lua#L110
+	--- clearWalkableSeeds - server - libs_sv/navmesh.lua#L111
 	function _G.navmesh.clearWalkableSeeds() end
-	--- find - server - libs_sv/navmesh.lua#L181
+	--- find - server - libs_sv/navmesh.lua#L182
 	---@param pos Vector The position to search around
 	---@param radius number Radius to search within (max 100000)
 	---@param stepdown number Maximum fall distance allowed (max 50000)
 	---@param stepup number Maximum jump height allowed (max 50000)
 	---@return table undefined A table of immutable `NavArea`s
 	function _G.navmesh.find(pos, radius, stepdown, stepup) end
-	--- setMarkedArea - server - libs_sv/navmesh.lua#L129
+	--- setMarkedArea - server - libs_sv/navmesh.lua#L130
 	---@param area NavArea The CNavArea to set as the marked area.
 	function _G.navmesh.setMarkedArea(area) end
-	--- isLoaded - server - libs_sv/navmesh.lua#L74
+	--- isLoaded - server - libs_sv/navmesh.lua#L75
 	---@return boolean undefined Whether a navmesh has been loaded when loading the map.
 	function _G.navmesh.isLoaded() end
-	--- isGenerating - server - libs_sv/navmesh.lua#L68
+	--- isGenerating - server - libs_sv/navmesh.lua#L69
 	---@return boolean undefined Whether we're generating a nav mesh or not.
 	function _G.navmesh.isGenerating() end
-	--- getNavAreaCount - server - libs_sv/navmesh.lua#L203
+	--- getNavAreaCount - server - libs_sv/navmesh.lua#L204
 	---@return number undefined The highest ID of all nav areas on the map.
 	function _G.navmesh.getNavAreaCount() end
-	--- reset - server - libs_sv/navmesh.lua#L87
+	--- reset - server - libs_sv/navmesh.lua#L88
 	function _G.navmesh.reset() end
-	--- getGetEditCursorPosition - server - libs_sv/navmesh.lua#L239
+	--- getGetEditCursorPosition - server - libs_sv/navmesh.lua#L240
 	---@return Vector undefined The position of the edit cursor.
 	function _G.navmesh.getGetEditCursorPosition() end
-	--- getNearestNavArea - server - libs_sv/navmesh.lua#L227
+	--- getNearestNavArea - server - libs_sv/navmesh.lua#L228
 	---@param pos Vector The position to look from
 	---@param maxDist number Maximum distance from the given position that the function will look for a CNavArea (Default 10000)
 	---@param checkLOS boolean If this is set to true then the function will internally do a trace from the starting position to each potential CNavArea with a MASK_NPCSOLID_BRUSHONLY. If the trace fails then the CNavArea is ignored. If this is set to false then the function will find the closest CNavArea through anything, including the world. (Default false)
 	---@param checkGround boolean If checkGround is true then this function will internally call navmesh.getNavArea to check if there is a CNavArea directly below the position, and return it if so, before checking anywhere else. (Default true)
 	---@return NavArea undefined The closest NavArea found with the given parameters, or a NULL NavArea if one was not found.
 	function _G.navmesh.getNearestNavArea(pos, maxDist, checkLOS, checkGround) end
-	--- getPlayerSpawnName - server - libs_sv/navmesh.lua#L123
+	--- getPlayerSpawnName - server - libs_sv/navmesh.lua#L124
 	---@return string undefined The classname of the spawn point entity. By default returns "info_player_start"
 	function _G.navmesh.getPlayerSpawnName() end
-	--- beginGeneration - server - libs_sv/navmesh.lua#L62
+	--- beginGeneration - server - libs_sv/navmesh.lua#L63
 	function _G.navmesh.beginGeneration() end
-	--- save - server - libs_sv/navmesh.lua#L94
+	--- save - server - libs_sv/navmesh.lua#L95
 	function _G.navmesh.save() end
-	--- getMarkedArea - server - libs_sv/navmesh.lua#L117
+	--- getMarkedArea - server - libs_sv/navmesh.lua#L118
 	---@return NavArea undefined The currently marked NavArea.
 	function _G.navmesh.getMarkedArea() end
-	--- getNavAreaByID - server - libs_sv/navmesh.lua#L210
+	--- getNavAreaByID - server - libs_sv/navmesh.lua#L211
 	---@param id number ID of the NavArea to get. Starts with 1.
 	---@return NavArea undefined The NavArea with given ID.
 	function _G.navmesh.getNavAreaByID(id) end
-	--- load - server - libs_sv/navmesh.lua#L80
+	--- load - server - libs_sv/navmesh.lua#L81
 	function _G.navmesh.load() end
-	--- addWalkableSeed - server - libs_sv/navmesh.lua#L101
+	--- addWalkableSeed - server - libs_sv/navmesh.lua#L102
 	---@param pos Vector The terrain position.
 	---@param dir Vector The terrain normal.
 	function _G.navmesh.addWalkableSeed(pos, dir) end
-	--- getNavArea - server - libs_sv/navmesh.lua#L218
+	--- getNavArea - server - libs_sv/navmesh.lua#L219
 	---@param pos Vector The position to search for.
 	---@param limit number The elevation limit at which the NavArea will be searched.
 	---@return NavArea undefined The NavArea.
 	function _G.navmesh.getNavArea(pos, limit) end
-	--- getGroundHeight - server - libs_sv/navmesh.lua#L160
+	--- getGroundHeight - server - libs_sv/navmesh.lua#L161
 	---@param pos Vector The position to check
 	---@return number undefined height The height of the ground layer
 	---@return Vector undefined normal The surface normal of the ground layer
 	function _G.navmesh.getGroundHeight(pos) end
-	--- setPlayerSpawnName - server - libs_sv/navmesh.lua#L137
+	--- setPlayerSpawnName - server - libs_sv/navmesh.lua#L138
 	---@param spawnPointClass string The classname of what the player uses to spawn, automatically adds it to the walkable positions during map generation.
 	function _G.navmesh.setPlayerSpawnName(spawnPointClass) end
-	--- createNavArea - server - libs_sv/navmesh.lua#L145
+	--- createNavArea - server - libs_sv/navmesh.lua#L146
 	---@param corner Vector The first corner of the new NavArea
 	---@param opposite_corner Vector The opposite (diagonally) corner of the new NavArea
 	---@return NavArea? undefined The new NavArea or nil if we failed for some reason
 	function _G.navmesh.createNavArea(corner, opposite_corner) end
-	--- getAllNavAreas - server - libs_sv/navmesh.lua#L169
+	--- getAllNavAreas - server - libs_sv/navmesh.lua#L170
 	---@return table undefined A table of all the `NavArea`s on the current map
 	function _G.navmesh.getAllNavAreas() end
 --- darkrp
@@ -8268,216 +8268,217 @@ _G.Bass = {}
 	function _G.Bass:getFadeMultiplier() end
 ---  NavArea type, returned by navmesh library functions
 ---@class NavArea
+---@operator tostring:string
 _G.NavArea = {}
-	--- getCenter - server - libs_sv/navmesh.lua#L396
+	--- getCenter - server - libs_sv/navmesh.lua#L397
 	---@return Vector undefined The center vector.
 	function _G.NavArea:getCenter() end
-	--- getSizeX - server - libs_sv/navmesh.lua#L524
+	--- removeFromClosedList - server - libs_sv/navmesh.lua#L667
+	function _G.NavArea:removeFromClosedList() end
+	--- getSizeX - server - libs_sv/navmesh.lua#L525
 	---@return number undefined Width
 	function _G.NavArea:getSizeX() end
-	--- getAdjacentAreas - server - libs_sv/navmesh.lua#L343
+	--- getAdjacentAreas - server - libs_sv/navmesh.lua#L344
 	---@return table undefined A table of all CNavArea that have a ( one and two way ) connection from this CNavArea.
 	function _G.NavArea:getAdjacentAreas() end
-	--- isConnectedAtSide - server - libs_sv/navmesh.lua#L301
+	--- isConnectedAtSide - server - libs_sv/navmesh.lua#L302
 	---@param other NavArea The other NavArea to check for connection to.
 	---@param navDirType number The direction, in which to look for the connection. See NAV_DIR enums
 	---@return boolean undefined 
 	function _G.NavArea:isConnectedAtSide(other, navDirType) end
-	--- setParent - server - libs_sv/navmesh.lua#L693
-	---@param parent NavArea The new parent to set
-	---@param how number How we get from parent to us using NAV_TRAVERSE_TYPE
-	function _G.NavArea:setParent(parent, how) end
-	--- hasAttributes - server - libs_sv/navmesh.lua#L553
+	--- clearSearchLists - server - libs_sv/navmesh.lua#L756
+	function _G.NavArea:clearSearchLists() end
+	--- hasAttributes - server - libs_sv/navmesh.lua#L554
 	---@param attributes number Attribute mask to check for, see NAV_MESH enums
 	---@return boolean undefined True if the CNavArea matches the given mask. False otherwise.
 	function _G.NavArea:hasAttributes(attributes) end
-	--- getParentHow - server - libs_sv/navmesh.lua#L494
+	--- getParentHow - server - libs_sv/navmesh.lua#L495
 	---@return number undefined 
 	function _G.NavArea:getParentHow() end
-	--- getCorner - server - libs_sv/navmesh.lua#L411
+	--- getCorner - server - libs_sv/navmesh.lua#L412
 	---@param cornerId number The target corner to get the position of, takes NAV_CORNER.
 	---@return Vector undefined The vector position of the corner.
 	function _G.NavArea:getCorner(cornerId) end
-	--- computeGroundHeightChange - server - libs_sv/navmesh.lua#L327
+	--- computeGroundHeightChange - server - libs_sv/navmesh.lua#L328
 	---@param other NavArea The nav area to test against.
 	---@return number undefined 
 	function _G.NavArea:computeGroundHeightChange(other) end
-	--- clearSearchLists - server - libs_sv/navmesh.lua#L755
-	function _G.NavArea:clearSearchLists() end
-	--- isOpen - server - libs_sv/navmesh.lua#L245
+	--- addToOpenList - server - libs_sv/navmesh.lua#L749
+	function _G.NavArea:addToOpenList() end
+	--- isOpen - server - libs_sv/navmesh.lua#L246
 	---@return boolean undefined Whether this area is in the Open List.
 	function _G.NavArea:isOpen() end
-	--- addToOpenList - server - libs_sv/navmesh.lua#L748
-	function _G.NavArea:addToOpenList() end
-	--- addToClosedList - server - libs_sv/navmesh.lua#L743
+	--- addToClosedList - server - libs_sv/navmesh.lua#L744
 	function _G.NavArea:addToClosedList() end
-	--- getClosestPointOnArea - server - libs_sv/navmesh.lua#L403
-	---@param pos Vector The given position, can be outside of the NavArea bounds.
-	---@return Vector undefined The closest point on the NavArea.
-	function _G.NavArea:getClosestPointOnArea(pos) end
-	--- addHidingSpot - server - libs_sv/navmesh.lua#L728
+	--- addHidingSpot - server - libs_sv/navmesh.lua#L729
 	---@param pos Vector The position of the hiding spot on the nav area
 	---@param flags number Flags describing what kind of hiding spot this is.
 	function _G.NavArea:addHidingSpot(pos, flags) end
-	--- disconnect - server - libs_sv/navmesh.lua#L721
+	--- getClosestPointOnArea - server - libs_sv/navmesh.lua#L404
+	---@param pos Vector The given position, can be outside of the NavArea bounds.
+	---@return Vector undefined The closest point on the NavArea.
+	function _G.NavArea:getClosestPointOnArea(pos) end
+	--- disconnect - server - libs_sv/navmesh.lua#L722
 	---@param other NavArea The other NavArea to disconnect from.
 	function _G.NavArea:disconnect(other) end
-	--- updateOnOpenList - server - libs_sv/navmesh.lua#L716
+	--- updateOnOpenList - server - libs_sv/navmesh.lua#L717
 	function _G.NavArea:updateOnOpenList() end
-	--- getAttributes - server - libs_sv/navmesh.lua#L389
-	---@return number undefined Attribute mask for this CNavArea, see NAV_MESH for the specific flags.
-	function _G.NavArea:getAttributes() end
-	--- setTotalCost - server - libs_sv/navmesh.lua#L709
+	--- setTotalCost - server - libs_sv/navmesh.lua#L710
 	---@param cost number The total cost of the path to set. (>= 0)
 	function _G.NavArea:setTotalCost(cost) end
-	--- computeDirection - server - libs_sv/navmesh.lua#L319
-	---@param pos Vector The position to compute direction towards.
-	---@return number undefined The direction the vector is in relation to this NavArea. See NAV_DIR enums
-	function _G.NavArea:computeDirection(pos) end
-	--- getRandomPoint - server - libs_sv/navmesh.lua#L517
-	---@return Vector undefined The random point on the nav area.
-	function _G.NavArea:getRandomPoint() end
-	--- placeOnGround - server - libs_sv/navmesh.lua#L642
-	---@param corner number The corner(s) to drop, uses NAV_CORNER enums
-	function _G.NavArea:placeOnGround(corner) end
-	--- connectTo - server - libs_sv/navmesh.lua#L760
-	---@param other NavArea The CNavArea this area leads to.
-	function _G.NavArea:connectTo(other) end
-	--- setPlace - server - libs_sv/navmesh.lua#L701
-	---@param place string? Place to set. Leave as nil to remove place from NavArea
-	---@return boolean undefined True if operation succeeded, false otherwise.
-	function _G.NavArea:setPlace(place) end
-	--- setCorner - server - libs_sv/navmesh.lua#L678
+	--- getAttributes - server - libs_sv/navmesh.lua#L390
+	---@return number undefined Attribute mask for this CNavArea, see NAV_MESH for the specific flags.
+	function _G.NavArea:getAttributes() end
+	--- setCorner - server - libs_sv/navmesh.lua#L679
 	---@param corner number The corner to set, uses NAV_CORNER enums
 	---@param pos Vector The new position to set.
 	function _G.NavArea:setCorner(corner, pos) end
-	--- getIncomingConnections - server - libs_sv/navmesh.lua#L458
+	--- computeDirection - server - libs_sv/navmesh.lua#L320
+	---@param pos Vector The position to compute direction towards.
+	---@return number undefined The direction the vector is in relation to this NavArea. See NAV_DIR enums
+	function _G.NavArea:computeDirection(pos) end
+	--- getRandomPoint - server - libs_sv/navmesh.lua#L518
+	---@return Vector undefined The random point on the nav area.
+	function _G.NavArea:getRandomPoint() end
+	--- setParent - server - libs_sv/navmesh.lua#L694
+	---@param parent NavArea The new parent to set
+	---@param how number How we get from parent to us using NAV_TRAVERSE_TYPE
+	function _G.NavArea:setParent(parent, how) end
+	--- connectTo - server - libs_sv/navmesh.lua#L761
+	---@param other NavArea The CNavArea this area leads to.
+	function _G.NavArea:connectTo(other) end
+	--- setPlace - server - libs_sv/navmesh.lua#L702
+	---@param place string? Place to set. Leave as nil to remove place from NavArea
+	---@return boolean undefined True if operation succeeded, false otherwise.
+	function _G.NavArea:setPlace(place) end
+	--- isRoughlySquare - server - libs_sv/navmesh.lua#L626
+	---@return boolean undefined If we're a square or not.
+	function _G.NavArea:isRoughlySquare() end
+	--- getIncomingConnections - server - libs_sv/navmesh.lua#L459
 	---@return table undefined Table of all CNavAreas with one-way connection to this CNavArea.
 	function _G.NavArea:getIncomingConnections() end
-	--- isOpenListEmpty - server - libs_sv/navmesh.lua#L254
+	--- isOpenListEmpty - server - libs_sv/navmesh.lua#L255
 	---@return boolean undefined Whether the Open List is empty or not.
 	function _G.NavArea:isOpenListEmpty() end
-	--- getParent - server - libs_sv/navmesh.lua#L487
+	--- getParent - server - libs_sv/navmesh.lua#L488
 	---@return NavArea undefined The parent NavArea
 	function _G.NavArea:getParent() end
-	--- getIncomingConnectionsAtSide - server - libs_sv/navmesh.lua#L471
+	--- getIncomingConnectionsAtSide - server - libs_sv/navmesh.lua#L472
 	---@param navDir number The direction, from which to look for CNavAreas, see NAV_DIR enums.
 	---@return table undefined Table of all CNavAreas with one-way connection to this CNavArea from given direction.
 	function _G.NavArea:getIncomingConnectionsAtSide(navDir) end
-	--- isValid - server - libs_sv/navmesh.lua#L263
+	--- isValid - server - libs_sv/navmesh.lua#L264
 	---@return boolean undefined Whether this NavArea is valid or not
 	function _G.NavArea:isValid() end
-	--- isConnected - server - libs_sv/navmesh.lua#L292
+	--- isConnected - server - libs_sv/navmesh.lua#L293
 	---@param other NavArea The other NavArea to check for connection to.
 	---@return boolean undefined Whether this NavArea has an outgoing ( one or two way ) connection to given NavArea.
 	function _G.NavArea:isConnected(other) end
-	--- isFlat - server - libs_sv/navmesh.lua#L285
+	--- isFlat - server - libs_sv/navmesh.lua#L286
 	---@return boolean undefined Whether this NavArea is mostly flat.
 	function _G.NavArea:isFlat() end
-	--- setCostSoFar - server - libs_sv/navmesh.lua#L686
+	--- setCostSoFar - server - libs_sv/navmesh.lua#L687
 	---@param cost number The cost so far
 	function _G.NavArea:setCostSoFar(cost) end
-	--- removeFromClosedList - server - libs_sv/navmesh.lua#L666
-	function _G.NavArea:removeFromClosedList() end
-	--- remove - server - libs_sv/navmesh.lua#L658
+	--- remove - server - libs_sv/navmesh.lua#L659
 	function _G.NavArea:remove() end
-	--- isCompletelyVisible - server - libs_sv/navmesh.lua#L581
+	--- popOpenList - server - libs_sv/navmesh.lua#L650
+	---@return NavArea undefined The CNavArea from the Open List with the lowest cost to traverse to from the starting node.
+	function _G.NavArea:popOpenList() end
+	--- isCompletelyVisible - server - libs_sv/navmesh.lua#L582
 	---@param area NavArea The area to test visibility with.
 	---@return boolean undefined Whether this CNavArea can see the given CNavArea.
 	function _G.NavArea:isCompletelyVisible(area) end
-	--- getExtentInfo - server - libs_sv/navmesh.lua#L439
+	--- getExtentInfo - server - libs_sv/navmesh.lua#L440
 	---@return table undefined Struct containing the above keys
 	function _G.NavArea:getExtentInfo() end
-	--- popOpenList - server - libs_sv/navmesh.lua#L649
-	---@return NavArea undefined The CNavArea from the Open List with the lowest cost to traverse to from the starting node.
-	function _G.NavArea:popOpenList() end
-	--- isVisible - server - libs_sv/navmesh.lua#L632
+	--- placeOnGround - server - libs_sv/navmesh.lua#L643
+	---@param corner number The corner(s) to drop, uses NAV_CORNER enums
+	function _G.NavArea:placeOnGround(corner) end
+	--- isVisible - server - libs_sv/navmesh.lua#L633
 	---@param pos Vector The position to check.
 	---@return boolean undefined Whether we can be seen or not.
 	---@return Vector undefined If we can be seen, this is returned with either the center or one of the corners of the Nav Area.
 	function _G.NavArea:isVisible(pos) end
-	--- getID - server - libs_sv/navmesh.lua#L451
+	--- getID - server - libs_sv/navmesh.lua#L452
 	---@return number undefined The unique ID.
 	function _G.NavArea:getID() end
-	--- isBlocked - server - libs_sv/navmesh.lua#L562
+	--- isBlocked - server - libs_sv/navmesh.lua#L563
 	---@param teamID number? The team ID to test, -2 = any team. Only 2 actual teams are available, 0 and 1. (Default -2)
 	---@param ignoreNavBlockers boolean? Whether to ignore func_nav_blocker entities. (Default false)
 	---@return boolean undefined Whether the area is blocked or not
 	function _G.NavArea:isBlocked(teamID, ignoreNavBlockers) end
-	--- isUnderwater - server - libs_sv/navmesh.lua#L270
+	--- isUnderwater - server - libs_sv/navmesh.lua#L271
 	---@return boolean undefined Whether we're underwater or not.
 	function _G.NavArea:isUnderwater() end
-	--- isOverlappingArea - server - libs_sv/navmesh.lua#L600
+	--- isOverlappingArea - server - libs_sv/navmesh.lua#L601
 	---@param area NavArea The area to test.
 	---@return boolean undefined True if the given CNavArea overlaps this CNavArea at any point.
 	function _G.NavArea:isOverlappingArea(area) end
-	--- getExposedSpots - server - libs_sv/navmesh.lua#L427
+	--- getExposedSpots - server - libs_sv/navmesh.lua#L428
 	---@return table undefined A table of Vectors
 	function _G.NavArea:getExposedSpots() end
-	--- isPotentiallyVisible - server - libs_sv/navmesh.lua#L617
+	--- isPotentiallyVisible - server - libs_sv/navmesh.lua#L618
 	---@param area NavArea The area to test.
 	---@return boolean undefined Whether the given area is visible from this area
 	function _G.NavArea:isPotentiallyVisible(area) end
-	--- setAttributes - server - libs_sv/navmesh.lua#L671
+	--- setAttributes - server - libs_sv/navmesh.lua#L672
 	---@param attributes number The attribute bitflag. See NAV_MESH enums
 	function _G.NavArea:setAttributes(attributes) end
-	--- getRandomAdjacentAreaAtSide - server - libs_sv/navmesh.lua#L508
+	--- getRandomAdjacentAreaAtSide - server - libs_sv/navmesh.lua#L509
 	---@param navDir number The direction, from which to look for CNavAreas, see NAV_DIR enums.
 	---@return NavArea undefined The random CNavArea that has an outgoing ( one or two way ) connection from this CNavArea in given direction, if any.
 	function _G.NavArea:getRandomAdjacentAreaAtSide(navDir) end
-	--- isRoughlySquare - server - libs_sv/navmesh.lua#L625
-	---@return boolean undefined If we're a square or not.
-	function _G.NavArea:isRoughlySquare() end
-	--- contains - server - libs_sv/navmesh.lua#L277
-	---@param v Vector The position to check
-	---@return boolean undefined If the vector is inside the area
-	function _G.NavArea:contains(v) end
-	--- getZ - server - libs_sv/navmesh.lua#L545
-	---@param pos Vector The position to get the elevation from, the z value from this position is ignored and only the X and Y values are used to this task.
-	---@return number undefined Elevation
-	function _G.NavArea:getZ(pos) end
-	--- isCoplanar - server - libs_sv/navmesh.lua#L311
-	---@param other NavArea The other NavArea to check against
-	---@return boolean undefined Whether we're coplanar or not.
-	function _G.NavArea:isCoplanar(other) end
-	--- getAdjacentCount - server - libs_sv/navmesh.lua#L371
-	---@return number undefined The amount of CNavAreas that have a connection ( one and two way ) from this CNavArea.
-	function _G.NavArea:getAdjacentCount() end
-	--- computeAdjacentConnectionHeightChange - server - libs_sv/navmesh.lua#L335
-	---@param other NavArea The nav area to test against.
-	---@return number undefined The height change
-	function _G.NavArea:computeAdjacentConnectionHeightChange(other) end
-	--- isOverlapping - server - libs_sv/navmesh.lua#L589
-	---@param pos Vector The position to test.
-	---@param tolerance number? The tolerance of the overlapping, set to 0 for no tolerance. (Default 0)
-	---@return number undefined Whether the given position overlaps the NavArea or not.
-	function _G.NavArea:isOverlapping(pos, tolerance) end
-	--- isPartiallyVisible - server - libs_sv/navmesh.lua#L608
+	--- isPartiallyVisible - server - libs_sv/navmesh.lua#L609
 	---@param pos Vector The position to test.
 	---@param ignoreEnt Entity? If set, the given entity will be ignored when doing LOS tests (Default NULL)
 	---@return boolean undefined Whether the given position is visible from this area
 	function _G.NavArea:isPartiallyVisible(pos, ignoreEnt) end
-	--- getAdjacentAreasAtSide - server - libs_sv/navmesh.lua#L356
+	--- contains - server - libs_sv/navmesh.lua#L278
+	---@param v Vector The position to check
+	---@return boolean undefined If the vector is inside the area
+	function _G.NavArea:contains(v) end
+	--- getZ - server - libs_sv/navmesh.lua#L546
+	---@param pos Vector The position to get the elevation from, the z value from this position is ignored and only the X and Y values are used to this task.
+	---@return number undefined Elevation
+	function _G.NavArea:getZ(pos) end
+	--- isCoplanar - server - libs_sv/navmesh.lua#L312
+	---@param other NavArea The other NavArea to check against
+	---@return boolean undefined Whether we're coplanar or not.
+	function _G.NavArea:isCoplanar(other) end
+	--- getAdjacentCount - server - libs_sv/navmesh.lua#L372
+	---@return number undefined The amount of CNavAreas that have a connection ( one and two way ) from this CNavArea.
+	function _G.NavArea:getAdjacentCount() end
+	--- computeAdjacentConnectionHeightChange - server - libs_sv/navmesh.lua#L336
+	---@param other NavArea The nav area to test against.
+	---@return number undefined The height change
+	function _G.NavArea:computeAdjacentConnectionHeightChange(other) end
+	--- isOverlapping - server - libs_sv/navmesh.lua#L590
+	---@param pos Vector The position to test.
+	---@param tolerance number? The tolerance of the overlapping, set to 0 for no tolerance. (Default 0)
+	---@return number undefined Whether the given position overlaps the NavArea or not.
+	function _G.NavArea:isOverlapping(pos, tolerance) end
+	--- isClosed - server - libs_sv/navmesh.lua#L575
+	---@return boolean undefined Whether this node is in the Closed List.
+	function _G.NavArea:isClosed() end
+	--- getAdjacentAreasAtSide - server - libs_sv/navmesh.lua#L357
 	---@param navDir number The direction, in which to look for CNavAreas, see NAV_DIR enums
 	---@return table undefined A table of all CNavArea that have a ( one and two way ) connection from this CNavArea in given direction.
 	function _G.NavArea:getAdjacentAreasAtSide(navDir) end
-	--- getAdjacentCountAtSide - server - libs_sv/navmesh.lua#L379
+	--- getAdjacentCountAtSide - server - libs_sv/navmesh.lua#L380
 	---@param navDir number The direction, in which to look for CNavAreas, see NAV_DIR enums.
 	---@return number undefined The amount of CNavAreas that have a connection ( one or two way ) from this CNavArea in given direction.
 	function _G.NavArea:getAdjacentCountAtSide(navDir) end
-	--- isClosed - server - libs_sv/navmesh.lua#L574
-	---@return boolean undefined Whether this node is in the Closed List.
-	function _G.NavArea:isClosed() end
-	--- getTotalCost - server - libs_sv/navmesh.lua#L538
+	--- getTotalCost - server - libs_sv/navmesh.lua#L539
 	---@return number undefined The total cost
 	function _G.NavArea:getTotalCost() end
-	--- getPlace - server - libs_sv/navmesh.lua#L501
-	---@return string undefined The place of the nav area, or no value if it doesn't have a place set.
-	function _G.NavArea:getPlace() end
-	--- getSizeY - server - libs_sv/navmesh.lua#L531
+	--- getSizeY - server - libs_sv/navmesh.lua#L532
 	---@return number undefined Height
 	function _G.NavArea:getSizeY() end
-	--- getCostSoFar - server - libs_sv/navmesh.lua#L420
+	--- getPlace - server - libs_sv/navmesh.lua#L502
+	---@return string undefined The place of the nav area, or no value if it doesn't have a place set.
+	function _G.NavArea:getPlace() end
+	--- getCostSoFar - server - libs_sv/navmesh.lua#L421
 	---@return number undefined The cost so far.
 	function _G.NavArea:getCostSoFar() end
 ---  Vector2 type for wire xv2

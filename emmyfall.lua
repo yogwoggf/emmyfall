@@ -77,7 +77,7 @@
 ---| '"PlayerNoClip"' #  Called when a player toggles noclip
 ---| '"MoneyPrinterPrintMoney"' #  Called when a money printer is about to print money. DarkRP only.  Not guaranteed to work for non-vanilla money printers.  You should use moneyPrinterPrinted instead, as the printer is not guaranteed to print money even if this hook is called.  Only works if the owner of the chip also owns the money printer, or if the chip is running in superuser mode.
 ---| '"MouseMoved"' #  Called when the mouse is moved
----| '"MIDI"' #  Event hook for midi devices.  Everytime a midi device outputs a signal, the callback function on the hook is called.  Read up on the MIDI protocol to make better sense of everything -> https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html  Commands and their parameters:  0x80 NOTE_OFF              : param1 = key;                         param2 = velocity  0x90 NOTE_ON               : param1 = key;                         param2 = velocity  0xA0 AFTERTOUCH            : param1 = key;                         param2 = touch  0xB0 CONTINUOUS_CONTROLLER : param1 = button_number;               param2 = button_value  0xC0 PATCH_CHANGE          : param1 = patch number;  0xD0 CHANNEL_PRESSURE      : param1 = pressure;  0xE0 PITCH_BEND            : param1 = lsb(least signifigant bit);  param2 = msb(most signifigant bit)
+---| '"MIDI"' #  Event hook for midi devices.  Everytime a midi device outputs a signal, the callback function on the hook is called.  Read up on the MIDI protocol to make better sense of everything -> https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html
 ---| '"PreDrawViewModels"' #  Called before drawing the viewmodel rendergroup (3D Context)
 ---| '"XInputDisconnected"' #  Called when a controller has been disconnected. Client must have XInput Lua binary installed.
 ---| '"PostDrawHUD"' #  Called after drawing HUD (2D Context)
@@ -213,6 +213,13 @@ _G.material = {}
 	function _G.material.createFromImage(path, params) end
 	--- create - client - libs_cl/material.lua#L348
 	---@param shader string The shader of the material. Must be one of
+ UnlitGeneric
+ VertexLitGeneric
+ Refract_DX90
+ Water_DX90
+ Sky_DX9
+ gmodscreenspace
+ Modulate_DX9
 	---@return Material undefined The Material created.
 	function _G.material.create(shader) end
 	--- getMatrix - client - libs_cl/material.lua#L308
@@ -637,11 +644,18 @@ _G.game = {}
 	--- getTickInterval - shared - libs_sh/game.lua#L83
 	---@return number undefined Time interval in seconds
 	function _G.game.getTickInterval() end
+	--- getActiveGamemode - shared - libs_sh/game.lua#L183
+	---@return string undefined The name of the active gamemode
+	function _G.game.getActiveGamemode() end
+	--- getWindSpeed - shared - libs_sh/game.lua#L161
+	---@param pos Vector? Optional position to get wind speed at. If specified, wind controllers with windradius other than -1 will be taken into account, if the point is within their radius. If omitted, only the global wind controller will be used (if one exists). This argument will be ignored on client-side and will be treated as nil because the position of env_wind is not currently networked to clients
+	---@return Vector undefined The current wind velocity at a given position
+	function _G.game.getWindSpeed(pos) end
 	--- getAmmoID - shared - libs_sh/game.lua#L117
 	---@param name string The ammo name
 	---@return number undefined The id or -1 if not found
 	function _G.game.getAmmoID(name) end
-	--- getSunInfo - client - libs_sh/game.lua#L278
+	--- getSunInfo - client - libs_sh/game.lua#L291
 	---@return Vector undefined The direction of the sun
 	---@return number undefined How obstructed the sun is 0 to 1.
 	function _G.game.getSunInfo() end
@@ -676,23 +690,23 @@ _G.game = {}
 	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
 	---@return table undefined AmmoData, see https://wiki.facepunch.com/gmod/Structures/AmmoData
 	function _G.game.getAmmoData(id) end
-	--- steamIDTo64 - shared - libs_sh/game.lua#L169
+	--- steamIDTo64 - shared - libs_sh/game.lua#L176
 	---@param id string The STEAM_0 style id
 	---@return string undefined 64bit Steam ID
 	function _G.game.steamIDTo64(id) end
-	--- bulletsLeft - server - libs_sh/game.lua#L255
+	--- bulletsLeft - server - libs_sh/game.lua#L268
 	---@return number undefined Number of bullets left to fire
 	function _G.game.bulletsLeft() end
-	--- serverFrameTime - client - libs_sh/game.lua#L295
+	--- serverFrameTime - client - libs_sh/game.lua#L308
 	---@return number undefined Server frametime
 	---@return number undefined Server frametime standard deviation
 	function _G.game.serverFrameTime() end
-	--- blastDamage - server - libs_sh/game.lua#L178
+	--- blastDamage - server - libs_sh/game.lua#L191
 	---@param damageOrigin Vector The center of the explosion
 	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
 	---@param damage number The amount of damage to be applied
 	function _G.game.blastDamage(damageOrigin, damageRadius, damage) end
-	--- isTimingOut - client - libs_sh/game.lua#L310
+	--- isTimingOut - client - libs_sh/game.lua#L323
 	---@return boolean undefined If currently timing out
 	---@return number undefined Time since the connection started to timeout
 	function _G.game.isTimingOut() end
@@ -702,34 +716,43 @@ _G.game = {}
 	--- getMap - shared - libs_sh/game.lua#L34
 	---@return string undefined The name of the current map
 	function _G.game.getMap() end
-	--- realFrameTime - client - libs_sh/game.lua#L303
-	---@return number undefined Frametime
-	function _G.game.realFrameTime() end
-	--- isLan - shared - libs_sh/game.lua#L46
-	---@return boolean undefined True if the game is a lan game
-	function _G.game.isLan() end
 	--- isDedicated - shared - libs_sh/game.lua#L58
 	---@return boolean undefined True if the game is a dedicated server
 	function _G.game.isDedicated() end
-	--- bulletsDPSLeft - server - libs_sh/game.lua#L262
-	---@return number undefined Damage left bullets can deal
-	function _G.game.bulletsDPSLeft() end
+	--- isLan - shared - libs_sh/game.lua#L46
+	---@return boolean undefined True if the game is a lan game
+	function _G.game.isLan() end
 	--- getAmmoName - shared - libs_sh/game.lua#L124
 	---@param id number The ammo id
 	---@return string undefined The ammo name
 	function _G.game.getAmmoName(id) end
-	--- steamIDFrom64 - shared - libs_sh/game.lua#L162
-	---@param id string The 64 bit Steam ID
-	---@return string undefined STEAM_0 style Steam ID
-	function _G.game.steamIDFrom64(id) end
-	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L287
+	--- isPauseMenuVisible - client - libs_sh/game.lua#L338
+	---@return boolean undefined True if the game UI is visible
+	function _G.game.isPauseMenuVisible() end
+	--- isRecordingDemo - client - libs_sh/game.lua#L331
+	---@return boolean undefined True if recording a demo
+	function _G.game.isRecordingDemo() end
+	--- realFrameTime - client - libs_sh/game.lua#L316
+	---@return number undefined Frametime
+	function _G.game.realFrameTime() end
+	--- bulletsDPSLeft - server - libs_sh/game.lua#L275
+	---@return number undefined Damage left bullets can deal
+	function _G.game.bulletsDPSLeft() end
+	--- isSinglePlayer - shared - libs_sh/game.lua#L52
+	---@return boolean undefined True if the game is singleplayer
+	function _G.game.isSinglePlayer() end
+	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L300
 	---@param position Vector The position to check the skybox visibility from
 	---@return boolean undefined Whether the skybox is visible from the position
 	function _G.game.isSkyboxVisibleFromPoint(position) end
+	--- steamIDFrom64 - shared - libs_sh/game.lua#L169
+	---@param id string The 64 bit Steam ID
+	---@return string undefined STEAM_0 style Steam ID
+	function _G.game.steamIDFrom64(id) end
 	--- getTickCount - shared - libs_sh/game.lua#L95
 	---@return number undefined Ticks
 	function _G.game.getTickCount() end
-	--- bulletDamage - server - libs_sh/game.lua#L189
+	--- bulletDamage - server - libs_sh/game.lua#L202
 	---@param src Vector The position to fire the bullets from.
 	---@param dir Vector The fire direction.
 	---@param damage number? The damage dealt by the bullet. Default: (1-100)
@@ -741,21 +764,18 @@ _G.game = {}
 	---@param ignoreEntity Entity? The entity that the bullet will ignore when it will be shot.
 	---@param cb function? Function to be called with attacker, traceResult after the bullet was fired but before the damage is applied (the callback is called even if no damage is applied).
 	function _G.game.bulletDamage(src, dir, damage, num, force, distance, spread, hullSize, ignoreEntity, cb) end
-	--- canFireBullets - server - libs_sh/game.lua#L244
+	--- canFireBullets - server - libs_sh/game.lua#L257
 	---@param damage number The damage dealt by the bullet. (1-100)
 	---@param num number The amount of bullets to fire. (1-5)
 	---@return boolean undefined true if the given bullets can be fired or else false
 	function _G.game.canFireBullets(damage, num) end
-	--- isSinglePlayer - shared - libs_sh/game.lua#L52
-	---@return boolean undefined True if the game is singleplayer
-	function _G.game.isSinglePlayer() end
-	--- physicsFrameTime - shared - libs_sh/game.lua#L320
+	--- physicsFrameTime - shared - libs_sh/game.lua#L347
 	---@return number undefined The physics frame time length
 	function _G.game.physicsFrameTime() end
 	--- getIPAddress - shared - libs_sh/game.lua#L101
 	---@return string undefined The IP address and port in the format "x.x.x.x:x"
 	function _G.game.getIPAddress() end
-	--- hasFocus - client - libs_sh/game.lua#L271
+	--- hasFocus - client - libs_sh/game.lua#L284
 	---@return boolean undefined True if the game is focused
 	function _G.game.hasFocus() end
 --- xinput
@@ -3710,6 +3730,8 @@ _G.IN_KEY = {
 	---@type any
 	["ATTACK2"] = nil,
 	---@type any
+	["ATTACK3"] = nil,
+	---@type any
 	["BACK"] = nil,
 	---@type any
 	["DUCK"] = nil,
@@ -5244,6 +5266,11 @@ _G.notification = {}
 	--- addLegacy - client - libs_cl/notification.lua#L27
 	---@param text string The text to display
 	---@param type number Determines the notification method.
+NOTIFY.GENERIC
+NOTIFY.ERROR
+NOTIFY.UNDO
+NOTIFY.HINT
+NOTIFY.CLEANUP
 	---@param length number Time in seconds to display the notification (Max length of 30)
 	function _G.notification.addLegacy(text, type, length) end
 --- math
@@ -5657,7 +5684,7 @@ _G.math = {}
 ---  Instructions here -> https://github.com/FPtje/gmcl_midi/blob/master/Compiling.md
 _G.midi = {}
 --- MIDI - shared
----  Midi Command ENUMS
+---  MIDI command ENUMs
 _G.midi.MIDI = {
 	---@type any
 	["NOTE_OFF"] = nil,
@@ -6701,6 +6728,24 @@ _G.render.Vertex = {
 	---@param extended boolean? Allows the font to display glyphs outside of Latin-1 range. Unicode code points above 0xFFFF are not supported. Required to use FontAwesome
 	---@param scanlines number? Scanline interval. Must be greater than 1 to work. Shares uniqueness with blursize so you cannot create more than one scanline type of font with the same blursize. Default 0
 	---@return string undefined The font name that can be used with the rest of the font functions.
+ Base font can be one of (keep in mind that these may not exist on all clients if they are not shipped with starfall):
+ \- Akbar
+ \- Coolvetica
+ \- Roboto
+ \- Roboto Mono
+ \- FontAwesome
+ \- Courier New
+ \- Verdana
+ \- Arial
+ \- HalfLife2
+ \- hl2mp
+ \- csd
+ \- Tahoma
+ \- Trebuchet
+ \- Trebuchet MS
+ \- DejaVu Sans Mono
+ \- Lucida Console
+ \- Times New Roman
 	function _G.render.createFont(font, size, weight, antialias, additive, shadow, outline, blursize, extended, scanlines) end
 	--- isInRenderTarget - client - libs_cl/render.lua#L1214
 	---@return boolean undefined true when a render target is active (e.g., via render.selectRenderTarget); otherwise, false when rendering directly to the screen or the default backbuffer
@@ -6725,6 +6770,29 @@ _G.render.Vertex = {
 	function _G.render.getAngles() end
 	--- setFont - client - libs_cl/render.lua#L1860
 	---@param font string The font to use
+ Use a font created by render.createFont or use one of these already defined fonts:
+ \- DebugFixed
+ \- DebugFixedSmall
+ \- Default
+ \- Marlett
+ \- Trebuchet18
+ \- Trebuchet24
+ \- HudHintTextLarge
+ \- HudHintTextSmall
+ \- CenterPrintText
+ \- HudSelectionText
+ \- CloseCaption_Normal
+ \- CloseCaption_Bold
+ \- CloseCaption_BoldItalic
+ \- ChatFont
+ \- TargetID
+ \- TargetIDSmall
+ \- HL2MPTypeDeath
+ \- BudgetLabel
+ \- HudNumbers
+ \- DermaDefault
+ \- DermaDefaultBold
+ \- DermaLarge
 	function _G.render.setFont(font) end
 	--- drawRectRotatedFast - client - libs_cl/render.lua#L1431
 	---@param x number X coordinate of center of rect
@@ -10383,6 +10451,7 @@ _G.Bass = {}
 	function _G.Bass:getPos() end
 	--- getTagsID3 - client - libs_cl/bass.lua#L472
 	---@return table undefined A table containing the information, or nil if no information is available.
+ (The table will always have the following keys, filled out based on what is available: "album", "artist", "comment", "genre", "id", "title", "year")
 	function _G.Bass:getTagsID3() end
 	--- isLooping - client - libs_cl/bass.lua#L351
 	---@return boolean undefined Whether the sound loops.
@@ -10748,6 +10817,14 @@ _G.PhysObj = {}
 	function _G.PhysObj:getVelocity() end
 	--- getFrictionSnapshot - server - libs_sh/physobj.lua#L551
 	---@return table undefined Table of tables of data. Each table will contain:
+ PhysObj Other - The other physics object we came in contact with
+ number EnergyAbsorbed -
+ number FrictionCoefficient -
+ number NormalForce -
+ Vector Normal - Direction of the friction event
+ Vector ContactPoint - Contact point of the friction event
+ number Material - Surface Property ID of our physics obj
+ number MaterialOther - Surface Property ID of the physics obj we came in contact with
 	function _G.PhysObj:getFrictionSnapshot() end
 	--- worldToLocal - shared - libs_sh/physobj.lua#L135
 	---@param vec Vector The vector to transform

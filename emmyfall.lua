@@ -9227,7 +9227,7 @@ _G.Effect = {}
 	--- setAttachment - shared - libs_sh/effect.lua#L215
 	---@param attachment number The new attachment ID of the effect
 	function _G.Effect:setAttachment(attachment) end
-	--- setRadius - shared - libs_sh/effect.lua#L290
+	--- setRadius - shared - libs_sh/effect.lua#L291
 	---@param radius number The radius
 	function _G.Effect:setRadius(radius) end
 	--- getAttachment - shared - libs_sh/effect.lua#L119
@@ -9248,13 +9248,13 @@ _G.Effect = {}
 	--- setColor - shared - libs_sh/effect.lua#L222
 	---@param color number The color represented by a byte 0-255.
 	function _G.Effect:setColor(color) end
-	--- setOrigin - shared - libs_sh/effect.lua#L284
+	--- setOrigin - shared - libs_sh/effect.lua#L285
 	---@param origin Vector The vector origin
 	function _G.Effect:setOrigin(origin) end
-	--- setMaterialIndex - shared - libs_sh/effect.lua#L271
+	--- setMaterialIndex - shared - libs_sh/effect.lua#L272
 	---@param mat number The material index
 	function _G.Effect:setMaterialIndex(mat) end
-	--- setSurfaceProp - shared - libs_sh/effect.lua#L311
+	--- setSurfaceProp - shared - libs_sh/effect.lua#L314
 	---@param prop number The surface property index
 	function _G.Effect:setSurfaceProp(prop) end
 	--- getStart - shared - libs_sh/effect.lua#L197
@@ -9263,7 +9263,7 @@ _G.Effect = {}
 	--- setHitBox - shared - libs_sh/effect.lua#L257
 	---@param hitbox number The hitbox
 	function _G.Effect:setHitBox(hitbox) end
-	--- setNormal - shared - libs_sh/effect.lua#L278
+	--- setNormal - shared - libs_sh/effect.lua#L279
 	---@param normal Vector The vector normal
 	function _G.Effect:setNormal(normal) end
 	--- getColor - shared - libs_sh/effect.lua#L125
@@ -9275,7 +9275,7 @@ _G.Effect = {}
 	--- setEntIndex - shared - libs_sh/effect.lua#L237
 	---@param index number The entity index
 	function _G.Effect:setEntIndex(index) end
-	--- setStart - shared - libs_sh/effect.lua#L304
+	--- setStart - shared - libs_sh/effect.lua#L307
 	---@param start Vector The vector start
 	function _G.Effect:setStart(start) end
 	--- play - shared - libs_sh/effect.lua#L98
@@ -9320,7 +9320,7 @@ _G.Effect = {}
 	--- getEntIndex - shared - libs_sh/effect.lua#L137
 	---@return number undefined The effect's entindex
 	function _G.Effect:getEntIndex() end
-	--- setScale - shared - libs_sh/effect.lua#L297
+	--- setScale - shared - libs_sh/effect.lua#L299
 	---@param scale number The number scale
 	function _G.Effect:setScale(scale) end
 ---  Weapon type

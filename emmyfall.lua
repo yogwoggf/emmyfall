@@ -9254,7 +9254,7 @@ _G.Effect = {}
 	--- setMaterialIndex - shared - libs_sh/effect.lua#L272
 	---@param mat number The material index
 	function _G.Effect:setMaterialIndex(mat) end
-	--- setSurfaceProp - shared - libs_sh/effect.lua#L314
+	--- setSurfaceProp - shared - libs_sh/effect.lua#L313
 	---@param prop number The surface property index
 	function _G.Effect:setSurfaceProp(prop) end
 	--- getStart - shared - libs_sh/effect.lua#L197
@@ -9275,7 +9275,7 @@ _G.Effect = {}
 	--- setEntIndex - shared - libs_sh/effect.lua#L237
 	---@param index number The entity index
 	function _G.Effect:setEntIndex(index) end
-	--- setStart - shared - libs_sh/effect.lua#L307
+	--- setStart - shared - libs_sh/effect.lua#L306
 	---@param start Vector The vector start
 	function _G.Effect:setStart(start) end
 	--- play - shared - libs_sh/effect.lua#L98

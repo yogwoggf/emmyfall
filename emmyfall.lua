@@ -10707,32 +10707,32 @@ _G.Vehicle = {}
 ---  Npc type
 ---@class Npc
 _G.Npc = {}
-	--- setEnemy - server - libs_sh/npc.lua#L131
+	--- setEnemy - server - libs_sh/npc.lua#L137
 	---@param ent Entity Target entity
 	function _G.Npc:setEnemy(ent) end
-	--- goRun - server - libs_sh/npc.lua#L181
+	--- goRun - server - libs_sh/npc.lua#L187
 	---@param vec Vector The position of the destination
 	function _G.Npc:goRun(vec) end
-	--- getEnemy - server - libs_sh/npc.lua#L140
+	--- getEnemy - server - libs_sh/npc.lua#L146
 	---@return Entity undefined Entity the npc is fighting
 	function _G.Npc:getEnemy() end
 	--- addRelationship - server - libs_sh/npc.lua#L70
 	---@param str string The relationship string. http://wiki.facepunch.com/gmod/NPC:AddRelationship
 	function _G.Npc:addRelationship(str) end
-	--- goWalk - server - libs_sh/npc.lua#L171
+	--- goWalk - server - libs_sh/npc.lua#L177
 	---@param vec Vector The position of the destination
 	function _G.Npc:goWalk(vec) end
 	--- isLagCompensated - server - libs_sh/npc.lua#L63
 	---@return boolean undefined Whether the npc is lag compensated
 	function _G.Npc:isLagCompensated() end
-	--- attackMelee - server - libs_sh/npc.lua#L155
+	--- attackMelee - server - libs_sh/npc.lua#L161
 	function _G.Npc:attackMelee() end
-	--- attackRange - server - libs_sh/npc.lua#L163
+	--- attackRange - server - libs_sh/npc.lua#L169
 	function _G.Npc:attackRange() end
 	--- setLagCompensated - server - libs_sh/npc.lua#L47
 	---@param compensate boolean Whether to make an npc's hitboxes compensate lag
 	function _G.Npc:setLagCompensated(compensate) end
-	--- stop - server - libs_sh/npc.lua#L147
+	--- stop - server - libs_sh/npc.lua#L153
 	function _G.Npc:stop() end
 	--- getRelationship - server - libs_sh/npc.lua#L105
 	---@param ent Entity Target entity

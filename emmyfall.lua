@@ -4975,7 +4975,7 @@ _G["CLIENT"] = nil
 --- 
 ---  See also https://wiki.facepunch.com/gmod/Default_Effects
 _G.effect = {}
-	--- beamRingPoint - shared - libs_sh/effect.lua#L196
+	--- beamRingPoint - shared - libs_sh/effect.lua#L195
 	---@param pos Vector The origin position of the effect
 	---@param lifetime number How long the effect will be drawing for, in seconds (clamped: 0 to 25.6)
 	---@param startRad number Initial radius of the effect (clamped: -4096 to 4096)
@@ -4988,17 +4988,17 @@ _G.effect = {}
 	---@param framerate number? Texture framerate (clamped: 0 to 255)
 	---@param material string? The material to use instead of the default one
 	function _G.effect.beamRingPoint(pos, lifetime, startRad, endRad, width, amplitude, color, speed, flags, framerate, material) end
-	--- canCreate - shared - libs_sh/effect.lua#L190
+	--- canCreate - shared - libs_sh/effect.lua#L189
 	---@return boolean undefined True if a new effect may be created, false otherwise
 	function _G.effect.canCreate() end
-	--- create - shared - libs_sh/effect.lua#L115
+	--- create - shared - libs_sh/effect.lua#L114
 	---@param name string The effect type name to create
 	---@param data table The effect data table with keys:
  angles - Angle angle of the effect
  attachment - number Entity attachment id to attach to
- color - Color The color to set the effect
+ color - number The color to set the effect (This is an 8 bit color integer specific to the effect implementation)
  damagetype - number The damage type of the effect
- entindex - number The entity index to set the effect to
+ entindex - number The entity index to set the effect to (SERVER only)
  entity - Entity entity to set the effect to
  flags - number Flags to add to the effect
  hitbox - number The hitbox id of the effect
@@ -5011,7 +5011,7 @@ _G.effect = {}
  start - Vector the start vector of the effect
  surfaceprop - number The surfaceprop id of the effect
 	function _G.effect.create(name, data) end
-	--- effectsLeft - shared - libs_sh/effect.lua#L184
+	--- effectsLeft - shared - libs_sh/effect.lua#L183
 	---@return number undefined Number of remaining effects allowed by the burst quota
 	function _G.effect.effectsLeft() end
 --- debug

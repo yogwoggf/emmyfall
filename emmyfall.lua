@@ -8036,7 +8036,7 @@ _G.ProjectedTexture = {}
 	--- setPos - client - libs_cl/light.lua#L534
 	---@param pos Vector 
 	function _G.ProjectedTexture:setPos(pos) end
-	--- update - client - libs_cl/light.lua#L600
+	--- update - client - libs_cl/light.lua#L612
 	function _G.ProjectedTexture:update() end
 	--- setFarZ - client - libs_cl/light.lua#L470
 	---@param farZ number 
@@ -8076,6 +8076,9 @@ _G.ProjectedTexture = {}
 	--- getNearZ - client - libs_cl/light.lua#L350
 	---@return number undefined nearZ
 	function _G.ProjectedTexture:getNearZ() end
+	--- getTargetEntity - client - libs_cl/light.lua#L402
+	---@return Entity undefined target
+	function _G.ProjectedTexture:getTargetEntity() end
 	--- setShadowSlopeScaleDepthBias - client - libs_cl/light.lua#L563
 	---@param bias number 
 	function _G.ProjectedTexture:setShadowSlopeScaleDepthBias(bias) end
@@ -8085,12 +8088,12 @@ _G.ProjectedTexture = {}
 	--- setBrightness - client - libs_cl/light.lua#L441
 	---@param brightness number 
 	function _G.ProjectedTexture:setBrightness(brightness) end
-	--- getTargetEntity - client - libs_cl/light.lua#L402
-	---@return Entity undefined target
-	function _G.ProjectedTexture:getTargetEntity() end
-	--- setTextureFrame - client - libs_cl/light.lua#L585
+	--- setTextureFrame - client - libs_cl/light.lua#L597
 	---@param frame number 
 	function _G.ProjectedTexture:setTextureFrame(frame) end
+	--- getFarZ - client - libs_cl/light.lua#L320
+	---@return number undefined farZ
+	function _G.ProjectedTexture:getFarZ() end
 	--- setTexture - client - libs_cl/light.lua#L578
 	---@param texture string 
 	function _G.ProjectedTexture:setTexture(texture) end
@@ -8130,7 +8133,7 @@ _G.ProjectedTexture = {}
 	--- getEnableShadows - client - libs_cl/light.lua#L314
 	---@return boolean undefined enabled
 	function _G.ProjectedTexture:getEnableShadows() end
-	--- setVerticalFOV - client - libs_cl/light.lua#L592
+	--- setVerticalFOV - client - libs_cl/light.lua#L604
 	---@param fov number 
 	function _G.ProjectedTexture:setVerticalFOV(fov) end
 	--- getNoCull - client - libs_cl/light.lua#L356
@@ -8147,9 +8150,9 @@ _G.ProjectedTexture = {}
 	--- getQuadraticAttentuation - client - libs_cl/light.lua#L378
 	---@return number undefined Attenuation
 	function _G.ProjectedTexture:getQuadraticAttentuation() end
-	--- getFarZ - client - libs_cl/light.lua#L320
-	---@return number undefined farZ
-	function _G.ProjectedTexture:getFarZ() end
+	--- setTextureRenderTarget - client - libs_cl/light.lua#L585
+	---@param name string 
+	function _G.ProjectedTexture:setTextureRenderTarget(name) end
 	--- getLightWorld - client - libs_cl/light.lua#L332
 	---@return boolean undefined Lighting
 	function _G.ProjectedTexture:getLightWorld() end

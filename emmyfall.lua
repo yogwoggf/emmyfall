@@ -2851,11 +2851,15 @@ _G.math = {}
 	---@return number undefined Multiplier between 0.5 and 1
 	---@return number undefined Exponent integer
 	function _G.math.frexp(x) end
-	--- mean - shared - libs_sh/math.lua#L613
+	--- easeOutExpo - shared - libs_sh/math.lua#L595
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutExpo(fraction) end
+	--- mean - shared - libs_sh/math.lua#L625
 	---@param numbers table Any amount of number values
 	---@return number undefined Number average of all values
 	function _G.math.mean(numbers) end
-	--- unitConversion - shared - libs_sh/math.lua#L629
+	--- unitConversion - shared - libs_sh/math.lua#L641
 	---@param to number the UNIT to convert the number to
 	---@param from number? the UNIT to convert the number from (Default: 1, works if converting from gmod natural units)
 	---@return number undefined A conversion factor multipled by values to convert units
@@ -2938,6 +2942,10 @@ _G.math = {}
 	---@param easeOut number Fraction of how much easing to end with
 	---@return number undefined Eased value
 	function _G.math.easeInOut(progress, easeIn, easeOut) end
+	--- easeOutQuad - shared - libs_sh/math.lua#L601
+	---@param fraction number Fraction of the progress to ease, from 0 to 1
+	---@return number undefined "Eased" Value
+	function _G.math.easeOutQuad(fraction) end
 	--- factorial - shared - libs_sh/math.lua#L244
 	---@param value number The number value
 	---@return number undefined Factorial of value
@@ -2982,7 +2990,7 @@ _G.math = {}
 	---@param int number Number to be converted
 	---@return string undefined Binary number string. The length of this will always be a multiple of 3
 	function _G.math.intToBin(int) end
-	--- easeOutQuint - shared - libs_sh/math.lua#L601
+	--- easeOutQuint - shared - libs_sh/math.lua#L613
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutQuint(fraction) end
@@ -3011,7 +3019,7 @@ _G.math = {}
 	---@param t number Ratio, 0 = quat1; 1 = quat2
 	---@return Quaternion undefined Interpolated quaternion
 	function _G.math.slerpQuaternion(quat1, quat2, t) end
-	--- easeOutSine - shared - libs_sh/math.lua#L607
+	--- easeOutSine - shared - libs_sh/math.lua#L619
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutSine(fraction) end
@@ -3081,7 +3089,7 @@ _G.math = {}
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutQuart(fraction) end
-	--- easeOutQuart - shared - libs_sh/math.lua#L595
+	--- easeOutQuart - shared - libs_sh/math.lua#L607
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutQuart(fraction) end

@@ -2798,133 +2798,133 @@ _G.particleEffect = {}
 --- math
 ---  Lua math library https://wiki.garrysmod.com/page/Category:math
 _G.math = {}
-	--- ceil - shared - libs_sh/math.lua#L104
+	--- ceil - shared - libs_sh/math.lua#L102
 	---@param n number Number to be rounded
 	---@return number undefined Rounded number
 	function _G.math.ceil(n) end
-	--- tan - shared - libs_sh/math.lua#L307
+	--- tan - shared - libs_sh/math.lua#L305
 	---@param ang number Angle in radians
 	---@return number undefined The tangent of the given angle
 	function _G.math.tan(ang) end
-	--- lerp - shared - libs_sh/math.lua#L344
+	--- lerp - shared - libs_sh/math.lua#L342
 	---@param t number The fraction for finding the result. This number is clamped between 0 and 1
 	---@param from number The starting number. The result will be equal to this if value t is 0
 	---@param to number The ending number. The result will be equal to this if value t is 1
 	---@return number undefined The result of the linear interpolation, (1 - t) * from + t * to
 	function _G.math.lerp(t, from, to) end
-	--- sinh - shared - libs_sh/math.lua#L295
+	--- sinh - shared - libs_sh/math.lua#L293
 	---@param ang number Angle in radians
 	---@return number undefined The hyperbolic sine of the given angle
 	function _G.math.sinh(ang) end
-	--- approach - shared - libs_sh/math.lua#L54
+	--- approach - shared - libs_sh/math.lua#L52
 	---@param current number The value we're currently at
 	---@param target number The target value. This function will never overshoot this value
 	---@param change number The amount that the current value is allowed to change by to approach the target (positive or negative)
 	---@return number undefined New current value, closer to the target than it was previously
 	function _G.math.approach(current, target, change) end
-	--- distance - shared - libs_sh/math.lua#L136
+	--- distance - shared - libs_sh/math.lua#L134
 	---@param x1 number X position of first point
 	---@param y1 number Y position of first point
 	---@param x2 number X position of second point
 	---@param y2 number Y position of second point
 	---@return number undefined Distance between the two points
 	function _G.math.distance(x1, y1, x2, y2) end
-	--- truncate - shared - libs_sh/math.lua#L327
+	--- truncate - shared - libs_sh/math.lua#L325
 	---@param val number The number to truncate
 	---@param digits number? The amount of digits to keep after the point. Default 0
 	---@return number undefined Rounded number
 	function _G.math.truncate(val, digits) end
-	--- easeInOutBack - shared - libs_sh/math.lua#L481
+	--- easeInOutBack - shared - libs_sh/math.lua#L479
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutBack(fraction) end
-	--- easeInExpo - shared - libs_sh/math.lua#L475
+	--- easeInExpo - shared - libs_sh/math.lua#L473
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInExpo(fraction) end
-	--- min - shared - libs_sh/math.lua#L214
+	--- min - shared - libs_sh/math.lua#L212
 	---@param numbers ...number Any amount of number values
 	---@return number undefined The smallest number
 	function _G.math.min(numbers) end
-	--- frexp - shared - libs_sh/math.lua#L172
+	--- frexp - shared - libs_sh/math.lua#L170
 	---@param x number The value to get the normalized fraction and the exponent from
 	---@return number undefined Multiplier between 0.5 and 1
 	---@return number undefined Exponent integer
 	function _G.math.frexp(x) end
-	--- easeOutExpo - shared - libs_sh/math.lua#L595
+	--- easeOutExpo - shared - libs_sh/math.lua#L593
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutExpo(fraction) end
-	--- mean - shared - libs_sh/math.lua#L625
+	--- mean - shared - libs_sh/math.lua#L623
 	---@param numbers table Any amount of number values
 	---@return number undefined Number average of all values
 	function _G.math.mean(numbers) end
-	--- unitConversion - shared - libs_sh/math.lua#L641
+	--- unitConversion - shared - libs_sh/math.lua#L639
 	---@param to number the UNIT to convert the number to
 	---@param from number? the UNIT to convert the number from (Default: 1, works if converting from gmod natural units)
 	---@return number undefined A conversion factor multipled by values to convert units
 	function _G.math.unitConversion(to, from) end
-	--- rad - shared - libs_sh/math.lua#L250
+	--- rad - shared - libs_sh/math.lua#L248
 	---@param deg number Angle in degrees
 	---@return number undefined Angle in radians
 	function _G.math.rad(deg) end
-	--- easeInOutCubic - shared - libs_sh/math.lua#L499
+	--- easeInOutCubic - shared - libs_sh/math.lua#L497
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutCubic(fraction) end
-	--- sin - shared - libs_sh/math.lua#L289
+	--- sin - shared - libs_sh/math.lua#L287
 	---@param ang number Angle in radians
 	---@return number undefined Sine for given angle
 	function _G.math.sin(ang) end
-	--- easeInBack - shared - libs_sh/math.lua#L445
+	--- easeInBack - shared - libs_sh/math.lua#L443
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInBack(fraction) end
-	--- lerpVector - shared - libs_sh/math.lua#L368
+	--- lerpVector - shared - libs_sh/math.lua#L366
 	---@param ratio number Ratio of progress through values
 	---@param from Vector Vector to begin from
 	---@param to Vector Vector to end at
 	---@return Vector undefined The interpolated vector
 	function _G.math.lerpVector(ratio, from, to) end
-	--- easeInBounce - shared - libs_sh/math.lua#L451
+	--- easeInBounce - shared - libs_sh/math.lua#L449
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInBounce(fraction) end
-	--- bSplinePoint - shared - libs_sh/math.lua#L334
+	--- bSplinePoint - shared - libs_sh/math.lua#L332
 	---@param tDiff number From 0 to tMax, where alongside the spline the point will be
 	---@param tPoints table A table of Vectors. The amount cannot be less than 4
 	---@param tMax number Dictates maximum value for tDiff
 	---@return number undefined Point on Bezier curve, related to tDiff
 	function _G.math.bSplinePoint(tDiff, tPoints, tMax) end
-	--- easeInQuint - shared - libs_sh/math.lua#L553
+	--- easeInQuint - shared - libs_sh/math.lua#L551
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInQuint(fraction) end
-	--- easeInCirc - shared - libs_sh/math.lua#L457
+	--- easeInCirc - shared - libs_sh/math.lua#L455
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInCirc(fraction) end
-	--- tanh - shared - libs_sh/math.lua#L313
+	--- tanh - shared - libs_sh/math.lua#L311
 	---@param ang number Angle in radians
 	---@return number undefined The hyperbolic tangent of the given angle
 	function _G.math.tanh(ang) end
-	--- easeInQuart - shared - libs_sh/math.lua#L547
+	--- easeInQuart - shared - libs_sh/math.lua#L545
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInQuart(fraction) end
-	--- atan - shared - libs_sh/math.lua#L76
+	--- atan - shared - libs_sh/math.lua#L74
 	---@param tan number Tangent value
 	---@return number undefined Angle in radians
 	function _G.math.atan(tan) end
-	--- easeInOutSine - shared - libs_sh/math.lua#L535
+	--- easeInOutSine - shared - libs_sh/math.lua#L533
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutSine(fraction) end
-	--- acos - shared - libs_sh/math.lua#L41
+	--- acos - shared - libs_sh/math.lua#L39
 	---@param cos number Cosine value in range of -1 to 1
 	---@return number undefined Angle in radians or nothing if the argument is out of range
 	function _G.math.acos(cos) end
-	--- distanceToLine - shared - libs_sh/math.lua#L379
+	--- distanceToLine - shared - libs_sh/math.lua#L377
 	---@param lineStart Vector Start of the line
 	---@param lineEnd Vector End of the line
 	---@param pointPos Vector Position of the point
@@ -2932,25 +2932,25 @@ _G.math = {}
 	---@return Vector undefined Nearest point on line
 	---@return number undefined Distance along line from start
 	function _G.math.distanceToLine(lineStart, lineEnd, pointPos) end
-	--- normalizeAngle - shared - libs_sh/math.lua#L227
+	--- normalizeAngle - shared - libs_sh/math.lua#L225
 	---@param ang number The angle in degrees
 	---@return number undefined The normalized angle
 	function _G.math.normalizeAngle(ang) end
-	--- easeInOut - shared - libs_sh/math.lua#L145
+	--- easeInOut - shared - libs_sh/math.lua#L143
 	---@param progress number Fraction of the progress to ease
 	---@param easeIn number Fraction of how much easing to begin with
 	---@param easeOut number Fraction of how much easing to end with
 	---@return number undefined Eased value
 	function _G.math.easeInOut(progress, easeIn, easeOut) end
-	--- easeOutQuad - shared - libs_sh/math.lua#L601
+	--- easeOutQuad - shared - libs_sh/math.lua#L599
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutQuad(fraction) end
-	--- factorial - shared - libs_sh/math.lua#L244
+	--- factorial - shared - libs_sh/math.lua#L242
 	---@param value number The number value
 	---@return number undefined Factorial of value
 	function _G.math.factorial(value) end
-	--- lerpAngle - shared - libs_sh/math.lua#L357
+	--- lerpAngle - shared - libs_sh/math.lua#L355
 	---@param ratio number Ratio of progress through values
 	---@param from Angle Angle to begin from
 	---@param to Angle Angle to end at
@@ -2960,53 +2960,53 @@ _G.math = {}
 	---@param x number The number to get the sign of
 	---@return number undefined -1 if negative, 1 if positive, 0 if 0
 	function _G.math.sign(x) end
-	--- easeInOutCirc - shared - libs_sh/math.lua#L493
+	--- easeInOutCirc - shared - libs_sh/math.lua#L491
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutCirc(fraction) end
-	--- round - shared - libs_sh/math.lua#L282
+	--- round - shared - libs_sh/math.lua#L280
 	---@param value number The number to be rounded
 	---@param decimals number? Optional decimal places to round to. Defaults to 0
 	---@return number undefined The rounded value
 	function _G.math.round(value, decimals) end
-	--- easeInOutQuint - shared - libs_sh/math.lua#L529
+	--- easeInOutQuint - shared - libs_sh/math.lua#L527
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutQuint(fraction) end
-	--- ldexp - shared - libs_sh/math.lua#L187
+	--- ldexp - shared - libs_sh/math.lua#L185
 	---@param normalizedFraction number The value to get the normalized fraction and the exponent from
 	---@param exponent number The value to get the normalized fraction and the exponent from
 	---@return number undefined Floating point reperesentation
 	function _G.math.ldexp(normalizedFraction, exponent) end
-	--- deg - shared - libs_sh/math.lua#L130
+	--- deg - shared - libs_sh/math.lua#L128
 	---@param rad number Angle in radians to be converted
 	---@return number undefined Angle in degrees
 	function _G.math.deg(rad) end
-	--- sqrt - shared - libs_sh/math.lua#L301
+	--- sqrt - shared - libs_sh/math.lua#L299
 	---@param value number The value to get the square root of
 	---@return number undefined Square root of the provided value
 	function _G.math.sqrt(value) end
-	--- intToBin - shared - libs_sh/math.lua#L181
+	--- intToBin - shared - libs_sh/math.lua#L179
 	---@param int number Number to be converted
 	---@return string undefined Binary number string. The length of this will always be a multiple of 3
 	function _G.math.intToBin(int) end
-	--- easeOutQuint - shared - libs_sh/math.lua#L613
+	--- easeOutQuint - shared - libs_sh/math.lua#L611
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutQuint(fraction) end
-	--- cosh - shared - libs_sh/math.lua#L124
+	--- cosh - shared - libs_sh/math.lua#L122
 	---@param angle number Angle in radians
 	---@return number undefined The hyperbolic cosine of the angle
 	function _G.math.cosh(angle) end
-	--- easeInOutExpo - shared - libs_sh/math.lua#L511
+	--- easeInOutExpo - shared - libs_sh/math.lua#L509
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutExpo(fraction) end
-	--- easeOutElastic - shared - libs_sh/math.lua#L589
+	--- easeOutElastic - shared - libs_sh/math.lua#L587
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutElastic(fraction) end
-	--- calcBSplineN - shared - libs_sh/math.lua#L95
+	--- calcBSplineN - shared - libs_sh/math.lua#L93
 	---@param i number 
 	---@param k number 
 	---@param t number 
@@ -3019,24 +3019,24 @@ _G.math = {}
 	---@param t number Ratio, 0 = quat1; 1 = quat2
 	---@return Quaternion undefined Interpolated quaternion
 	function _G.math.slerpQuaternion(quat1, quat2, t) end
-	--- easeOutSine - shared - libs_sh/math.lua#L619
+	--- easeOutSine - shared - libs_sh/math.lua#L617
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutSine(fraction) end
-	--- exp - shared - libs_sh/math.lua#L153
+	--- exp - shared - libs_sh/math.lua#L151
 	---@param x number The exponent of the function
 	---@return number undefined e to the specific power
 	function _G.math.exp(x) end
-	--- random - shared - libs_sh/math.lua#L263
+	--- random - shared - libs_sh/math.lua#L261
 	---@param m number? Optional integer value. If n is not provided - upper limit; if n is provided - lower limit
 	---@param n number? Optional integer value. Upper value
 	---@return number undefined Random value
 	function _G.math.random(m, n) end
-	--- easeInOutElastic - shared - libs_sh/math.lua#L505
+	--- easeInOutElastic - shared - libs_sh/math.lua#L503
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutElastic(fraction) end
-	--- bezierVectorCubic - shared - libs_sh/math.lua#L409
+	--- bezierVectorCubic - shared - libs_sh/math.lua#L407
 	---@param r number Number representing how far along the curve, 0-1.
 	---@param v1 Vector The start position of the curve.
 	---@param v2 Vector First tangent
@@ -3044,102 +3044,102 @@ _G.math = {}
 	---@param v4 Vector The end position of the curve.
 	---@return Vector undefined Vector representing the point along the curve.
 	function _G.math.bezierVectorCubic(r, v1, v2, v3, v4) end
-	--- easeOutBounce - shared - libs_sh/math.lua#L571
+	--- easeOutBounce - shared - libs_sh/math.lua#L569
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutBounce(fraction) end
-	--- sharedRandom - shared - libs_sh/math.lua#L433
+	--- sharedRandom - shared - libs_sh/math.lua#L431
 	---@param uniqueName string The seed for the random value
 	---@param Min number The minimum value of the random range
 	---@param Max number The maximum value of the random range
 	---@param additionalSeed number? The additional seed. Default 0
 	---@return number undefined The random float value
 	function _G.math.sharedRandom(uniqueName, Min, Max, additionalSeed) end
-	--- easeOutBack - shared - libs_sh/math.lua#L565
+	--- easeOutBack - shared - libs_sh/math.lua#L563
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutBack(fraction) end
-	--- easeInSine - shared - libs_sh/math.lua#L559
+	--- easeInSine - shared - libs_sh/math.lua#L557
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInSine(fraction) end
-	--- easeInQuad - shared - libs_sh/math.lua#L541
+	--- easeInQuad - shared - libs_sh/math.lua#L539
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInQuad(fraction) end
-	--- rand - shared - libs_sh/math.lua#L256
+	--- rand - shared - libs_sh/math.lua#L254
 	---@param min number The minimum value
 	---@param max number The maximum value
 	---@return number undefined Random float between min and max
 	function _G.math.rand(min, max) end
-	--- angleDifference - shared - libs_sh/math.lua#L47
+	--- angleDifference - shared - libs_sh/math.lua#L45
 	---@param a number The first angle
 	---@param b number The second angle
 	---@return number undefined The difference between the angles between -180 and 180
 	function _G.math.angleDifference(a, b) end
-	--- cos - shared - libs_sh/math.lua#L118
+	--- cos - shared - libs_sh/math.lua#L116
 	---@param angle number Angle in radians
 	---@return number undefined Cosine of the angle
 	function _G.math.cos(angle) end
-	--- easeInCubic - shared - libs_sh/math.lua#L463
+	--- easeInCubic - shared - libs_sh/math.lua#L461
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInCubic(fraction) end
-	--- easeInOutQuart - shared - libs_sh/math.lua#L523
+	--- easeInOutQuart - shared - libs_sh/math.lua#L521
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutQuart(fraction) end
-	--- easeOutQuart - shared - libs_sh/math.lua#L607
+	--- easeOutQuart - shared - libs_sh/math.lua#L605
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutQuart(fraction) end
-	--- easeOutCirc - shared - libs_sh/math.lua#L577
+	--- easeOutCirc - shared - libs_sh/math.lua#L575
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutCirc(fraction) end
-	--- log10 - shared - libs_sh/math.lua#L202
+	--- log10 - shared - libs_sh/math.lua#L200
 	---@param x number The value to get the base from exponent from
 	---@return number undefined Logarithm of x to the base 10
 	function _G.math.log10(x) end
-	--- fmod - shared - libs_sh/math.lua#L165
+	--- fmod - shared - libs_sh/math.lua#L163
 	---@param base number The base value
 	---@param mod number The modulator
 	---@return number undefined The calculated modulus
 	function _G.math.fmod(base, mod) end
-	--- binToInt - shared - libs_sh/math.lua#L89
+	--- binToInt - shared - libs_sh/math.lua#L87
 	---@param str string Binary string to convert
 	---@return number undefined Base 10 number
 	function _G.math.binToInt(str) end
-	--- asin - shared - libs_sh/math.lua#L70
+	--- asin - shared - libs_sh/math.lua#L68
 	---@param sin number Sine value in the range of -1 to 1
 	---@return number undefined Angle in radians or nothing if the argument is out of range
 	function _G.math.asin(sin) end
-	--- atan2 - shared - libs_sh/math.lua#L82
+	--- atan2 - shared - libs_sh/math.lua#L80
 	---@param y number The Y coordinate
 	---@param x number The X coordinate
 	---@return number undefined Angle of the line from (0, 0) to (x, y) in radians, in the range -pi to pi
 	function _G.math.atan2(y, x) end
-	--- max - shared - libs_sh/math.lua#L208
+	--- max - shared - libs_sh/math.lua#L206
 	---@param numbers ...number Any amount of number values
 	---@return number undefined The largest number
 	function _G.math.max(numbers) end
-	--- modf - shared - libs_sh/math.lua#L220
+	--- modf - shared - libs_sh/math.lua#L218
 	---@param base number The base value
 	---@return number undefined The integral component
 	---@return number undefined The fractional component
 	function _G.math.modf(base) end
-	--- approachAngle - shared - libs_sh/math.lua#L62
+	--- approachAngle - shared - libs_sh/math.lua#L60
 	---@param currentAngle number The current angle to increase
 	---@param targetAngle number The angle to increase towards
 	---@param rate number The amount to approach the target angle by
 	---@return number undefined Modified angle
 	function _G.math.approachAngle(currentAngle, targetAngle, rate) end
-	--- pow - shared - libs_sh/math.lua#L237
+	--- pow - shared - libs_sh/math.lua#L235
 	---@param base number The Base number
 	---@param exp number The Exponent
 	---@return number undefined Exponent power of base
 	function _G.math.pow(base, exp) end
-	--- easeInOutQuad - shared - libs_sh/math.lua#L517
+	--- easeInOutQuad - shared - libs_sh/math.lua#L515
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutQuad(fraction) end
@@ -3147,27 +3147,27 @@ _G.math = {}
 	---@param x number The number to get the absolute value of
 	---@return number undefined Absolute value
 	function _G.math.abs(x) end
-	--- easeOutCubic - shared - libs_sh/math.lua#L583
+	--- easeOutCubic - shared - libs_sh/math.lua#L581
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeOutCubic(fraction) end
-	--- floor - shared - libs_sh/math.lua#L159
+	--- floor - shared - libs_sh/math.lua#L157
 	---@param n number Number to be rounded
 	---@return number undefined Rounded number
 	function _G.math.floor(n) end
-	--- timeFraction - shared - libs_sh/math.lua#L319
+	--- timeFraction - shared - libs_sh/math.lua#L317
 	---@param start number Start time in seconds
 	---@param _end number End time in seconds
 	---@param current number Current time in seconds
 	---@return number undefined The time fraction
 	function _G.math.timeFraction(start, _end, current) end
-	--- clamp - shared - libs_sh/math.lua#L110
+	--- clamp - shared - libs_sh/math.lua#L108
 	---@param current number Input number
 	---@param min number Minimum value
 	---@param max number Maximum value
 	---@return number undefined Clamped number
 	function _G.math.clamp(current, min, max) end
-	--- log - shared - libs_sh/math.lua#L194
+	--- log - shared - libs_sh/math.lua#L192
 	---@param x number The value to get the base from exponent from
 	---@param base number? Optional logarithmic base. Default 'e'
 	---@return number undefined Logarithm of x to the given base
@@ -3178,18 +3178,18 @@ _G.math = {}
 	---@param t number Ratio, 0 = quat1; 1 = quat2
 	---@return Quaternion undefined Interpolated quaternion
 	function _G.math.nlerpQuaternion(quat1, quat2, t) end
-	--- easeInOutBounce - shared - libs_sh/math.lua#L487
+	--- easeInOutBounce - shared - libs_sh/math.lua#L485
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInOutBounce(fraction) end
-	--- bezierVector - shared - libs_sh/math.lua#L391
+	--- bezierVector - shared - libs_sh/math.lua#L389
 	---@param r number Number representing how far along the curve, 0-1.
 	---@param v1 Vector The start position of the curve.
 	---@param v2 Vector The middle position of the curve.
 	---@param v3 Vector The end position of the curve.
 	---@return Vector undefined Vector representing the point along the curve.
 	function _G.math.bezierVector(r, v1, v2, v3) end
-	--- remap - shared - libs_sh/math.lua#L272
+	--- remap - shared - libs_sh/math.lua#L270
 	---@param value number The number value
 	---@param inMin number The minimum of the initial range
 	---@param inMax number The maximum of the initial range
@@ -3197,7 +3197,7 @@ _G.math = {}
 	---@param outMax number The maximum of new range
 	---@return number undefined The number in the new range
 	function _G.math.remap(value, inMin, inMax, outMin, outMax) end
-	--- easeInElastic - shared - libs_sh/math.lua#L469
+	--- easeInElastic - shared - libs_sh/math.lua#L467
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInElastic(fraction) end

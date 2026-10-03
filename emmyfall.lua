@@ -8924,6 +8924,12 @@ _G.Material = {}
 	---@param key string The key name to set
 	---@param v number The value to set it to
 	function _G.Material:setFloat(key, v) end
+	--- setTextureURL - client - libs_cl/material.lua#L578
+	---@param key string The key name to set. $basetexture is the key name for most purposes.
+	---@param url string The URL or base64 data
+	---@param cb function? An optional callback called when image is loaded. Passes nil if it fails or Passes the material, url, width, height, and layout function which can be called with x, y, w, h, pixelated to reposition the image in the texture. Setting the optional 'pixelated' argument to True tells the image to use nearest-neighbor interpolation
+	---@param done function? An optional callback called when the image is done loading. Passes the material, url
+	function _G.Material:setTextureURL(key, url, cb, done) end
 	--- setTexture - client - libs_cl/material.lua#L568
 	---@param key string The key name to set. $basetexture is the key name for most purposes.
 	---@param v string The texture name to set it to.
@@ -8939,12 +8945,9 @@ _G.Material = {}
 	---@param key string The key to get the vector from
 	---@return Vector? undefined The vector value or nil if it doesn't exist
 	function _G.Material:getVectorLinear(key) end
-	--- setTextureURL - client - libs_cl/material.lua#L578
-	---@param key string The key name to set. $basetexture is the key name for most purposes.
-	---@param url string The URL or base64 data
-	---@param cb function? An optional callback called when image is loaded. Passes nil if it fails or Passes the material, url, width, height, and layout function which can be called with x, y, w, h, pixelated to reposition the image in the texture. Setting the optional 'pixelated' argument to True tells the image to use nearest-neighbor interpolation
-	---@param done function? An optional callback called when the image is done loading. Passes the material, url
-	function _G.Material:setTextureURL(key, url, cb, done) end
+	--- downloadTexture - client - libs_cl/material.lua#L666
+	---@param key string The material key name that has the texture. $basetexture is the key name for most purposes.
+	function _G.Material:downloadTexture(key) end
 	--- getKeyValues - client - libs_cl/material.lua#L475
 	---@return table undefined The table of keyvalues
 	function _G.Material:getKeyValues() end

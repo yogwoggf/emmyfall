@@ -2787,7 +2787,7 @@ _G.convar = {}
 --- particleEffect
 ---  ParticleEffect library.
 _G.particleEffect = {}
-	--- attach - client - libs_cl/particle_effect.lua#L204
+	--- attach - client - libs_cl/particle_effect.lua#L67
 	---@param entity Entity The entity to attach the particle effect to (can be world)
 	---@param name string The name of the effect to create (e.g. "generic_smoke")
 	---@param pattach number See PATTACH enum
@@ -8026,45 +8026,45 @@ _G.WebSocket = {}
 ---  ParticleEffect type
 ---@class ParticleEffect
 _G.ParticleEffect = {}
-	--- setSortOrigin - client - libs_cl/particle_effect.lua#L309
+	--- setSortOrigin - client - libs_cl/particle_effect.lua#L169
 	---@param origin Vector Sort origin
 	function _G.ParticleEffect:setSortOrigin(origin) end
-	--- restart - client - libs_cl/particle_effect.lua#L297
+	--- restart - client - libs_cl/particle_effect.lua#L157
 	function _G.ParticleEffect:restart() end
-	--- stopEmission - client - libs_cl/particle_effect.lua#L279
+	--- stopEmission - client - libs_cl/particle_effect.lua#L139
 	function _G.ParticleEffect:stopEmission() end
-	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L324
+	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L184
 	---@param id number Child control point index (from 0 to 63)
 	---@param entity Entity Entity parent
 	function _G.ParticleEffect:setControlPointEntity(id, entity) end
-	--- isFinished - client - libs_cl/particle_effect.lua#L302
+	--- isFinished - client - libs_cl/particle_effect.lua#L162
 	---@return boolean undefined True if the particle effect is finished
 	function _G.ParticleEffect:isFinished() end
-	--- setControlPointParent - client - libs_cl/particle_effect.lua#L356
+	--- setControlPointParent - client - libs_cl/particle_effect.lua#L216
 	---@param id number Child control point index (from 0 to 63)
 	---@param parentid number Parent control point index (from 0 to 63)
 	function _G.ParticleEffect:setControlPointParent(id, parentid) end
-	--- setControlPoint - client - libs_cl/particle_effect.lua#L316
+	--- setControlPoint - client - libs_cl/particle_effect.lua#L176
 	---@param id number Control point index (from 0 to 63)
 	---@param value Vector Value
 	function _G.ParticleEffect:setControlPoint(id, value) end
-	--- setUpVector - client - libs_cl/particle_effect.lua#L348
+	--- setUpVector - client - libs_cl/particle_effect.lua#L208
 	---@param id number Control point index (from 0 to 63)
 	---@param value Vector Up vector
 	function _G.ParticleEffect:setUpVector(id, value) end
-	--- destroy - client - libs_cl/particle_effect.lua#L284
+	--- destroy - client - libs_cl/particle_effect.lua#L144
 	function _G.ParticleEffect:destroy() end
-	--- setForwardVector - client - libs_cl/particle_effect.lua#L332
+	--- setForwardVector - client - libs_cl/particle_effect.lua#L192
 	---@param id number Control point index (from 0 to 63)
 	---@param value Vector Forward vector
 	function _G.ParticleEffect:setForwardVector(id, value) end
-	--- startEmission - client - libs_cl/particle_effect.lua#L274
+	--- startEmission - client - libs_cl/particle_effect.lua#L134
 	function _G.ParticleEffect:startEmission() end
-	--- setRightVector - client - libs_cl/particle_effect.lua#L340
+	--- setRightVector - client - libs_cl/particle_effect.lua#L200
 	---@param id number Control point index (from 0 to 63)
 	---@param value Vector Right vector
 	function _G.ParticleEffect:setRightVector(id, value) end
-	--- isValid - client - libs_cl/particle_effect.lua#L268
+	--- isValid - client - libs_cl/particle_effect.lua#L128
 	---@return boolean undefined Is valid or not
 	function _G.ParticleEffect:isValid() end
 ---  Projected Texture type

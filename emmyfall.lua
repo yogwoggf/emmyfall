@@ -1552,7 +1552,10 @@ _G.table = {}
 --- particleEffect
 ---  ParticleEffect library.
 _G.particleEffect = {}
-	--- attach - client - libs_cl/particle_effect.lua#L67
+	--- getList - client - libs_cl/particle_effect.lua#L264
+	---@return table undefined List of particle system names
+	function _G.particleEffect.getList() end
+	--- attach - client - libs_cl/particle_effect.lua#L200
 	---@param entity Entity The entity to attach the particle effect to (can be world)
 	---@param name string The name of the effect to create (e.g. "generic_smoke")
 	---@param pattach number See PATTACH enum
@@ -10732,7 +10735,7 @@ _G.StringStream = {}
 	--- writeInt8 - shared - libs_sh/bit.lua#L441
 	---@param x number Int8 to write
 	function _G.StringStream:writeInt8(x) end
-	--- readString - shared - libs_sh/bit.lua#L434
+	--- readString - shared - libs_sh/bit.lua#L435
 	---@return string undefined The string of bytes read
 	function _G.StringStream:readString() end
 	--- size - shared - libs_sh/bit.lua#L319
@@ -10752,8 +10755,9 @@ _G.StringStream = {}
 	function _G.StringStream:writeString(str) end
 	--- readUntil - shared - libs_sh/bit.lua#L404
 	---@param byte number The byte to read until (in number form)
+	---@param trim boolean Return without the 'read to' byte
 	---@return string undefined The string of bytes read
-	function _G.StringStream:readUntil(byte) end
+	function _G.StringStream:readUntil(byte, trim) end
 	--- write - shared - libs_sh/bit.lua#L191
 	---@param data string A string of data to write
 	function _G.StringStream:write(data) end
@@ -11059,44 +11063,44 @@ _G.Mesh = {}
 ---  ParticleEffect type
 ---@class ParticleEffect
 _G.ParticleEffect = {}
-	--- setSortOrigin - client - libs_cl/particle_effect.lua#L169
+	--- setSortOrigin - client - libs_cl/particle_effect.lua#L317
 	---@param origin Vector Sort origin
 	function _G.ParticleEffect:setSortOrigin(origin) end
-	--- restart - client - libs_cl/particle_effect.lua#L157
+	--- restart - client - libs_cl/particle_effect.lua#L305
 	function _G.ParticleEffect:restart() end
-	--- stopEmission - client - libs_cl/particle_effect.lua#L139
+	--- stopEmission - client - libs_cl/particle_effect.lua#L287
 	function _G.ParticleEffect:stopEmission() end
-	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L184
+	--- setControlPointEntity - client - libs_cl/particle_effect.lua#L332
 	---@param id number Child control point index (from 0 to 63)
 	---@param entity Entity Entity parent
 	function _G.ParticleEffect:setControlPointEntity(id, entity) end
-	--- isFinished - client - libs_cl/particle_effect.lua#L162
+	--- isFinished - client - libs_cl/particle_effect.lua#L310
 	---@return boolean undefined True if the particle effect is finished
 	function _G.ParticleEffect:isFinished() end
-	--- setControlPointParent - client - libs_cl/particle_effect.lua#L216
+	--- setControlPointParent - client - libs_cl/particle_effect.lua#L364
 	---@param id number Child control point index (from 0 to 63)
 	---@param parentid number Parent control point index (from 0 to 63)
 	function _G.ParticleEffect:setControlPointParent(id, parentid) end
-	--- setControlPoint - client - libs_cl/particle_effect.lua#L176
+	--- setControlPoint - client - libs_cl/particle_effect.lua#L324
 	---@param id number Control point index (from 0 to 63)
 	---@param value Vector Value
 	function _G.ParticleEffect:setControlPoint(id, value) end
-	--- setUpVector - client - libs_cl/particle_effect.lua#L208
+	--- setUpVector - client - libs_cl/particle_effect.lua#L356
 	---@param id number Control point index (from 0 to 63)
 	---@param value Vector Up vector
 	function _G.ParticleEffect:setUpVector(id, value) end
-	--- destroy - client - libs_cl/particle_effect.lua#L144
+	--- destroy - client - libs_cl/particle_effect.lua#L292
 	function _G.ParticleEffect:destroy() end
-	--- setForwardVector - client - libs_cl/particle_effect.lua#L192
+	--- setForwardVector - client - libs_cl/particle_effect.lua#L340
 	---@param id number Control point index (from 0 to 63)
 	---@param value Vector Forward vector
 	function _G.ParticleEffect:setForwardVector(id, value) end
-	--- startEmission - client - libs_cl/particle_effect.lua#L134
+	--- startEmission - client - libs_cl/particle_effect.lua#L282
 	function _G.ParticleEffect:startEmission() end
-	--- setRightVector - client - libs_cl/particle_effect.lua#L200
+	--- setRightVector - client - libs_cl/particle_effect.lua#L348
 	---@param id number Control point index (from 0 to 63)
 	---@param value Vector Right vector
 	function _G.ParticleEffect:setRightVector(id, value) end
-	--- isValid - client - libs_cl/particle_effect.lua#L128
+	--- isValid - client - libs_cl/particle_effect.lua#L276
 	---@return boolean undefined Is valid or not
 	function _G.ParticleEffect:isValid() end

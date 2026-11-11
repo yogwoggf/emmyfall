@@ -6625,7 +6625,7 @@ _G.render.Vertex = {
 	--- V coordinate (optional, default is 0)
 	["v"] = nil,
 }
-	--- setFogEnd - client - libs_cl/render.lua#L2776
+	--- setFogEnd - client - libs_cl/render.lua#L2753
 	---@param distance number End distance
 	function _G.render.setFogEnd(distance) end
 	--- setRGBA - client - libs_cl/render.lua#L994
@@ -6647,7 +6647,7 @@ _G.render.Vertex = {
 	---@param a number Value of the alpha channel to clear the current rt with.
 	---@param Clear boolean the depth buffer.
 	function _G.render.clearBuffersObeyStencil(r, g, b, a, Clear) end
-	--- getFogDistances - client - libs_cl/render.lua#L2806
+	--- getFogDistances - client - libs_cl/render.lua#L2783
 	---@return number undefined The start distance of the Fog.
 	---@return number undefined The end distance of the Fog.
 	---@return number undefined The height of the Fog.
@@ -6663,7 +6663,7 @@ _G.render.Vertex = {
 	---@param destBlendAlpha number? 
 	---@param blendFuncAlpha number? http://wiki.facepunch.com/gmod/Enums/BLENDFUNC
 	function _G.render.overrideBlend(on, srcBlend, destBlend, blendFunc, srcBlendAlpha, destBlendAlpha, blendFuncAlpha) end
-	--- setFogHeight - client - libs_cl/render.lua#L2785
+	--- setFogHeight - client - libs_cl/render.lua#L2762
 	---@param height number The fog height
 	function _G.render.setFogHeight(height) end
 	--- drawPixelsRGB - client - libs_cl/render.lua#L1779
@@ -6699,7 +6699,7 @@ _G.render.Vertex = {
 	---@param dataB table Blue channel data.
 	---@param dataA table Alpha channel data.
 	function _G.render.drawPixelsRGBA(w, h, dataR, dataG, dataB, dataA) end
-	--- popCustomClipPlane - client - libs_cl/render.lua#L2696
+	--- popCustomClipPlane - client - libs_cl/render.lua#L2673
 	function _G.render.popCustomClipPlane() end
 	--- drawRoundedBox - client - libs_cl/render.lua#L1451
 	---@param r number The corner radius
@@ -6708,7 +6708,7 @@ _G.render.Vertex = {
 	---@param w number Width
 	---@param h number Height
 	function _G.render.drawRoundedBox(r, x, y, w, h) end
-	--- enableClipping - client - libs_cl/render.lua#L2665
+	--- enableClipping - client - libs_cl/render.lua#L2642
 	---@param state boolean New clipping state.
 	---@return boolean undefined Previous clipping state.
 	function _G.render.enableClipping(state) end
@@ -6725,7 +6725,7 @@ _G.render.Vertex = {
 	---@param height number The height of the quad.
 	---@param rot number? The rotation of the quad counter-clockwise in degrees around the normal axis. In other words, the quad will always face the same way but this will rotate its corners.
 	function _G.render.draw3DQuadEasy(pos, norm, width, height, rot) end
-	--- getFogMode - client - libs_cl/render.lua#L2793
+	--- getFogMode - client - libs_cl/render.lua#L2770
 	---@return number undefined Returns the current fog mode.
 	function _G.render.getFogMode() end
 	--- add3DBeam - client - libs_cl/render.lua#L2206
@@ -6753,7 +6753,7 @@ _G.render.Vertex = {
 	---@return number undefined the X size of the current render context
 	---@return number undefined the Y size of the current render context
 	function _G.render.getResolution() end
-	--- getHDREnabled - client - libs_cl/render.lua#L2823
+	--- getHDREnabled - client - libs_cl/render.lua#L2800
 	---@return boolean undefined True if available.
 	function _G.render.getHDREnabled() end
 	--- traceSurfaceColor - client - libs_cl/render.lua#L2491
@@ -6812,7 +6812,7 @@ _G.render.Vertex = {
 	---@param w number Width
 	---@param h number Height
 	function _G.render.drawRectFast(x, y, w, h) end
-	--- setScreenDimensions - client - libs_cl/render.lua#L2840
+	--- setScreenDimensions - client - libs_cl/render.lua#L2817
 	---@param screen Entity The custom screen to be resized
 	---@param x number The x offset of the screen
 	---@param y number The y offset of the screen
@@ -6822,14 +6822,14 @@ _G.render.Vertex = {
 	--- setColor - client - libs_cl/render.lua#L959
 	---@param clr Color Color type
 	function _G.render.setColor(clr) end
-	--- setChipOverlay - client - libs_cl/render.lua#L2828
+	--- setChipOverlay - client - libs_cl/render.lua#L2805
 	---@param name string? The name of the RT to use or nil to set it back to normal
 	function _G.render.setChipOverlay(name) end
 	--- setBackgroundColor - client - libs_cl/render.lua#L926
 	---@param col Color Color of background
 	---@param screen Entity? (Optional) entity of screen
 	function _G.render.setBackgroundColor(col, screen) end
-	--- pushCustomClipPlane - client - libs_cl/render.lua#L2680
+	--- pushCustomClipPlane - client - libs_cl/render.lua#L2657
 	---@param normal Vector The normal of the clipping plane.
 	---@param distance number The normal of the clipping plane.
 	function _G.render.pushCustomClipPlane(normal, distance) end
@@ -6845,7 +6845,7 @@ _G.render.Vertex = {
 	---@param transform VMatrix The matrix
 	---@param absolute boolean? (default false) Should the transformation be absolute with respect to world or multipled with existing stack?
 	function _G.render.pushMatrix(transform, absolute) end
-	--- depthRange - client - libs_cl/render.lua#L2877
+	--- depthRange - client - libs_cl/render.lua#L2854
 	---@param min number The minimum depth of the upcoming render. 0.0 = render normally; 1.0 = render nothing.
 	---@param max number The maximum depth of the upcoming render. 0.0 = render everything (through walls); 1.0 = render normally.
 	function _G.render.depthRange(min, max) end
@@ -6878,7 +6878,7 @@ _G.render.Vertex = {
 	---@param levelb number Multiplier for all blue pixels. 1 = unchanged
 	---@param colormul number Multiplier for all three colors. 1 = unchanged
 	function _G.render.setMaterialEffectBloom(mat, levelr, levelg, levelb, colormul) end
-	--- setFogMode - client - libs_cl/render.lua#L2740
+	--- setFogMode - client - libs_cl/render.lua#L2717
 	---@param mode number Fog mode
 	function _G.render.setFogMode(mode) end
 	--- clearStencil - client - libs_cl/render.lua#L675
@@ -6977,10 +6977,10 @@ _G.render.Vertex = {
 	--- getEyePos - client - libs_cl/render.lua#L645
 	---@return Vector undefined The origin of the current render context as calculated by calcview.
 	function _G.render.getEyePos() end
-	--- renderViewsLeft - client - libs_cl/render.lua#L2659
+	--- renderViewsLeft - client - libs_cl/render.lua#L2636
 	---@return number undefined How many render.renderView calls are left
 	function _G.render.renderViewsLeft() end
-	--- isInRenderView - client - libs_cl/render.lua#L2653
+	--- isInRenderView - client - libs_cl/render.lua#L2630
 	---@return boolean undefined Whether render.renderView is being executed
 	function _G.render.isInRenderView() end
 	--- setLightingMode - client - libs_cl/render.lua#L951
@@ -7002,7 +7002,7 @@ _G.render.Vertex = {
 	--- getBlend - client - libs_cl/render.lua#L2097
 	---@return number undefined Blending in the range 0 to 1
 	function _G.render.getBlend() end
-	--- getFogColor - client - libs_cl/render.lua#L2799
+	--- getFogColor - client - libs_cl/render.lua#L2776
 	---@return number undefined The red channel value.
 	---@return number undefined The green channel value.
 	---@return number undefined The blue channel value.
@@ -7016,10 +7016,10 @@ _G.render.Vertex = {
 	--- setBlend - client - libs_cl/render.lua#L2104
 	---@param alpha number Blending in the range 0 to 1
 	function _G.render.setBlend(alpha) end
-	--- renderView - client - libs_cl/render.lua#L2508
+	--- renderView - client - libs_cl/render.lua#L2549
 	---@param tbl table view The view data to be used in the rendering. See http://wiki.facepunch.com/gmod/Structures/ViewData. There's an additional key drawviewer used to tell the engine whether the local player model should be rendered.
 	function _G.render.renderView(tbl) end
-	--- setFogColor - client - libs_cl/render.lua#L2749
+	--- setFogColor - client - libs_cl/render.lua#L2726
 	---@param color Color Color (alpha won't have any effect)
 	function _G.render.setFogColor(color) end
 	--- drawSimpleText - client - libs_cl/render.lua#L1993
@@ -7047,7 +7047,7 @@ _G.render.Vertex = {
 	---@param bl boolean? Bottom left corner. Default false
 	---@param br boolean? Bottom right corner. Default false
 	function _G.render.drawRoundedBoxEx(r, x, y, w, h, tl, tr, bl, br) end
-	--- supportsHDR - client - libs_cl/render.lua#L2818
+	--- supportsHDR - client - libs_cl/render.lua#L2795
 	---@return boolean undefined True if supported.
 	function _G.render.supportsHDR() end
 	--- drawTriangle - client - libs_cl/render.lua#L1615
@@ -7101,28 +7101,28 @@ _G.render.Vertex = {
 	---@param clearDepth boolean? Boolean if should clear depth. Default false
 	---@param clearStencil boolean? Boolean if should clear stencil. Default false
 	function _G.render.clear(clr, clearDepth, clearStencil) end
-	--- updateScreenEffectTexture - client - libs_cl/render.lua#L2899
+	--- updateScreenEffectTexture - client - libs_cl/render.lua#L2876
 	---@param textureIndex number ? Texture index to update. (optional, default is 0)
 	function _G.render.updateScreenEffectTexture(textureIndex) end
-	--- getScreenEffectTexture - client - libs_cl/render.lua#L2915
+	--- getScreenEffectTexture - client - libs_cl/render.lua#L2892
 	---@param textureIndex number ? Texture index to update. (optional, default is 0)
 	---@return string undefined Requested texture
 	function _G.render.getScreenEffectTexture(textureIndex) end
-	--- pixelVisible - client - libs_cl/render.lua#L2885
+	--- pixelVisible - client - libs_cl/render.lua#L2862
 	---@param position Vector 
 	---@param radius number 
 	---@return number undefined Percentage visible, from 0-1
 	function _G.render.pixelVisible(position, radius) end
-	--- getLightColor - client - libs_cl/render.lua#L2726
+	--- getLightColor - client - libs_cl/render.lua#L2703
 	---@param pos Vector Vector position to sample from
 	---@return Vector undefined Vector representing color of the light
 	function _G.render.getLightColor(pos) end
-	--- screenShake - client - libs_cl/render.lua#L2868
+	--- screenShake - client - libs_cl/render.lua#L2845
 	---@param amplitude number The strength of the effect
 	---@param frequency number The frequency of the effect in hertz
 	---@param duration number The duration of the effect in seconds, max 10.
 	function _G.render.screenShake(amplitude, frequency, duration) end
-	--- getFogDensity - client - libs_cl/render.lua#L2813
+	--- getFogDensity - client - libs_cl/render.lua#L2790
 	---@return number undefined The maximum density of the Fog (0-1).
 	function _G.render.getFogDensity() end
 	--- setMaterialEffectTexturize - client - libs_cl/render.lua#L1168
@@ -7131,10 +7131,10 @@ _G.render.Vertex = {
 	---@param scalex number The size of the texturing on the x axis
 	---@param scaley number The size of the texturing on the y axis
 	function _G.render.setMaterialEffectTexturize(mat, patern, scalex, scaley) end
-	--- setFogStart - client - libs_cl/render.lua#L2767
+	--- setFogStart - client - libs_cl/render.lua#L2744
 	---@param distance number Start distance
 	function _G.render.setFogStart(distance) end
-	--- setFogDensity - client - libs_cl/render.lua#L2758
+	--- setFogDensity - client - libs_cl/render.lua#L2735
 	---@param density number Density between 0 and 1
 	function _G.render.setFogDensity(density) end
 	--- resetStencil - client - libs_cl/render.lua#L795
@@ -7145,7 +7145,7 @@ _G.render.Vertex = {
 	---@param w number Width
 	---@param h number Height
 	function _G.render.drawTexturedRect(x, y, w, h) end
-	--- getAmbientLightColor - client - libs_cl/render.lua#L2734
+	--- getAmbientLightColor - client - libs_cl/render.lua#L2711
 	---@return Vector undefined Vector representing color of the light
 	function _G.render.getAmbientLightColor() end
 	--- getGameResolution - client - libs_cl/render.lua#L2481
@@ -7155,7 +7155,7 @@ _G.render.Vertex = {
 	--- setTint - client - libs_cl/render.lua#L1030
 	---@param c Color A color
 	function _G.render.setTint(c) end
-	--- computeLighting - client - libs_cl/render.lua#L2706
+	--- computeLighting - client - libs_cl/render.lua#L2683
 	---@param pos Vector Vector position to sample from
 	---@param normal Vector Normal vector of the surface
 	---@return Vector undefined Vector representing color of the light
@@ -7325,7 +7325,7 @@ _G.render.Vertex = {
 	function _G.render.drawTexturedRectFast(x, y, w, h) end
 	--- popMatrix - client - libs_cl/render.lua#L844
 	function _G.render.popMatrix() end
-	--- computeDynamicLighting - client - libs_cl/render.lua#L2716
+	--- computeDynamicLighting - client - libs_cl/render.lua#L2693
 	---@param pos Vector Vector position to sample from
 	---@param normal Vector Normal vector of the surface
 	---@return Vector undefined Vector representing color of the light

@@ -27,10 +27,10 @@
 ---| '"PlayerWalletChanged"' #  Called when a player receives money. DarkRP only.  Will only be called if the recipient is the owner of the chip, or if the chip is running in superuser mode.
 ---| '"OnPlayerPhysicsDrop"' #  Called when an entity is being dropped or thrown by +use
 ---| '"ResetLaws"' #  Called when laws are reset. DarkRP only. Usually the only hook called when /resetlaws is used.
----| '"XInputReleased"' #  Called when a controller button has been released. Client must have XInput Lua binary installed.
+---| '"OnEntityWaterLevelChanged"' #  Called when the Entity:getWaterLevel of an entity is changed.
 ---| '"StartEntityDriving"' #  Called when a player starts driving an entity
 ---| '"NetworkEntityCreated"' #  Called when a clientside entity gets created or re-created via lag/PVS
----| '"ComponentUnlinked"' #  Called when a component is unlinked to the starfall
+---| '"MouseWheeled"' #  Called when the mouse wheel is rotated
 ---| '"LockdownEnded"' #  Called when a lockdown has ended. DarkRP only.
 ---| '"Render"' #  Called when a frame is requested to be drawn on screen. (2D/3D Context)
 ---| '"NotifyShouldTransmit"' #  Called when a clientside entity transmit state is changed. Usually when changing PVS  If you want clientside render changes to persist on an entity you have to re-apply them  each time it begins transmitting again
@@ -50,7 +50,7 @@
 ---| '"ChatTextChanged"' #  Called when the player's chat box text changes.  Requires the 'input' permission.
 ---| '"StartCommand"' #  This is basically a shared version of createMove.
 ---| '"EndEntityDriving"' #  Called when a player stops driving an entity
----| '"XInputTrigger"' #  Called when a trigger on the controller has moved. Client must have XInput Lua binary installed.
+---| '"OnLockpickCompleted"' #  Called when a player has finished picking a lock, successfully or otherwise. DarkRP only.  Will only be called if the lockpicker is the owner of the chip, or if the chip is running in superuser mode.
 ---| '"OnNPCKilled"' #  Called whenever an NPC is killed.
 ---| '"ClientInitialized"' #  Called after a client's starfall has initialized. Use this to know when it's safe to send net messages to the client.
 ---| '"GravGunOnDropped"' #  Called when an entity is being dropped by a gravity gun
@@ -60,7 +60,7 @@
 ---| '"EntityRemoved"' #  Called when an entity is removed
 ---| '"FinishMove"' #  Called each UserCmd for each player after their move has been processed.
 ---| '"HUDConnected"' #  Called when the player connects to a HUD component linked to the Starfall Chip
----| '"Removed"' #  Called when the starfall chip is removed
+---| '"PermissionRequest"' #  Called when local client changed instance permissions
 ---| '"PostDrawOpaqueRenderables"' #  Called after opaque entities are drawn. (Only works with HUD) (3D context)
 ---| '"CreateMove"' #  Called whenever a CUserCmd is made for the local player. This runs twice per frame, one for movement one for camera. You can use cmd:getCommandNumber to check which one it is if you want to only run on one of them. Camera will have a 0 command number.
 ---| '"VRExit"' #  Called when a player exits VR
@@ -83,55 +83,55 @@
 ---| '"XInputDisconnected"' #  Called when a controller has been disconnected. Client must have XInput Lua binary installed.
 ---| '"PostDrawHUD"' #  Called after drawing HUD (2D Context)
 ---| '"PlayerInitialSpawn"' #  Called when a player spawns for the first time
----| '"MouseWheeled"' #  Called when the mouse wheel is rotated
+---| '"XInputTrigger"' #  Called when a trigger on the controller has moved. Client must have XInput Lua binary installed.
 ---| '"XInputConnected"' #  Called when a controller has been connected. Client must have XInput Lua binary installed.
----| '"XInputPressed"' #  Called when a controller button has been pressed. Client must have XInput Lua binary installed.
+---| '"XInputReleased"' #  Called when a controller button has been released. Client must have XInput Lua binary installed.
+---| '"InputReleased"' #  Called when a button is released
 ---| '"PostDrawSkyBox"' #  Called after the 3D skybox is drawn. This will not be called if PreDrawSkyBox has prevented rendering of the skybox
 ---| '"OnPlayerHitGround"' #  Called when a player makes contact with the ground after a jump or a fall.
----| '"OnContextMenuOpen"' #  Called when the player opens the context menu
 ---| '"DrawHUD"' #  Called when a frame is requested to be drawn on hud. (2D Context)
 ---| '"SetupWorldFog"' #  Called when world fog is drawn.
 ---| '"WriteCell"' #  Called when a high speed device writes to a wired SF chip
+---| '"OnContextMenuOpen"' #  Called when the player opens the context menu
 ---| '"PlayerSay"' #  Called when a player sends a chat message
----| '"PlayerSwitchFlashlight"' #  Called when a players turns their flashlight on or off
 ---| '"PlayerConnect"' #  Called when a player connects to the server. (Game Event)
----| '"Tick"' #  Tick hook. Called each game tick on both the server and client.
+---| '"PlayerSwitchFlashlight"' #  Called when a players turns their flashlight on or off
 ---| '"DoAnimationEvent"' #  Called when a player animation event occurs
----| '"PreDrawTranslucentRenderables"' #  Called before translucent entities are drawn. (Only works with HUD) (3D context)
+---| '"Tick"' #  Tick hook. Called each game tick on both the server and client.
 ---| '"SetupMove"' #  Called each UserCmd for each player to transfer information from the UserCmd to the CMoveData before the move is processed.
+---| '"ComponentUnlinked"' #  Called when a component is unlinked to the starfall
 ---| '"PlayerChangedTeam"' #  Called when a player has changed team using Player:SetTeam
 ---| '"OnEntityCreated"' #  Called the next frame after an entity is created
 ---| '"PlayerDisconnected"' #  Called when a player disconnects
----| '"PlayerCanPickupWeapon"' #  Called when a wants to pick up a weapon
 ---| '"VRPreRender"' #  Called before rendering the game. Any code that you want to run once per frame should be put here. HUD is required.
 ---| '"EntityTakeDamage"' #  Called when an entity is damaged
+---| '"PlayerCanPickupWeapon"' #  Called when a wants to pick up a weapon
 ---| '"PlayerUnfrozeObject"' #  Called when a player unfreezes an object
 ---| '"PlayerSpawn"' #  Called when a player spawns
 ---| '"OnContextMenuClose"' #  Called when the player closes the context menu
 ---| '"PostEntityFireBullets"' #  Called after a bullet is fired and it's trace has been calculated
----| '"EntityEmitSound"' #  Called whenever a sound has been played. This will not be called clientside if the server played the sound without the client also calling Entity:EmitSound.
 ---| '"PreDrawSkyBox"' #  Called before the 3D skybox is drawn. This will not be called for maps with no 3D skybox, or when the 3d skybox is disabled
+---| '"EntityEmitSound"' #  Called whenever a sound has been played. This will not be called clientside if the server played the sound without the client also calling Entity:EmitSound.
 ---| '"PlayerChangename"' #  Called when a player changes their Steam name. (Game Event)
 ---| '"Think"' #  Think hook. Called each frame on the client and each game tick on the server.
 ---| '"ComponentLinked"' #  Called when a component is linked to the starfall
 ---| '"PropBreak"' #  Called when an entity is broken
 ---| '"RenderScene"' #  Called when a scene is requested to be drawn. This is used for the render.renderview function.
----| '"HUDDisconnected"' #  Called when the player disconnects from a HUD component linked to the Starfall Chip
 ---| '"CalcView"' #  Called when the engine wants to calculate the player's view (only works if connected to Starfall HUD)
+---| '"HUDDisconnected"' #  Called when the player disconnects from a HUD component linked to the Starfall Chip
 ---| '"PhysgunDrop"' #  Called when an entity being held by a physgun gets dropped
----| '"PermissionRequest"' #  Called when local client changed instance permissions
----| '"OnLockpickCompleted"' #  Called when a player has finished picking a lock, successfully or otherwise. DarkRP only.  Will only be called if the lockpicker is the owner of the chip, or if the chip is running in superuser mode.
 ---| '"Net"' #  Called when a net message arrives
 ---| '"RenderOffscreen"' #  Called when a frame is requested to be drawn. Doesn't require a screen or HUD but only works on rendertargets. (2D Context)
+---| '"ReadCell"' #  Called when a high speed device reads from a wired SF chip
 ---| '"PostDraw2DSkyBox"' #  Called right after the 2D skybox has been drawn - allowing you to draw over it.
 ---| '"LockpickStarted"' #  Called when a player is about to pick a lock. DarkRP only.  Will only be called if the lockpicker is the owner of the chip, or if the chip is running in superuser mode.
----| '"OnEntityWaterLevelChanged"' #  Called when the Entity:getWaterLevel of an entity is changed.
 ---| '"ShouldDrawPlayer"' #  Return false to prevent rendering a player
 ---| '"PostDrawPlayer"' #  Called after drawing the player. (Only works with HUD) (3D Context)
+---| '"PreDrawTranslucentRenderables"' #  Called before translucent entities are drawn. (Only works with HUD) (3D context)
 ---| '"SetupSkyboxFog"' #  Called when skybox fog is drawn.
 ---| '"PlayerUse"' #  Called when a player holds their use key and looks at an entity.  Will continuously run.
----| '"InputReleased"' #  Called when a button is released
----| '"ReadCell"' #  Called when a high speed device reads from a wired SF chip
+---| '"XInputPressed"' #  Called when a controller button has been pressed. Client must have XInput Lua binary installed.
+---| '"Removed"' #  Called when the starfall chip is removed
 --- coroutine
 ---  Coroutine library
 _G.coroutine = {}
@@ -178,160 +178,28 @@ _G.bass = {}
 	--- soundsLeft - client - libs_cl/bass.lua#L232
 	---@return number undefined The number of sounds left.
 	function _G.bass.soundsLeft() end
---- net
----  Net message library. Used for sending data from the server to the client and back
-_G.net = {}
-	--- readVector - shared - libs_sh/net.lua#L586
-	---@return Vector undefined The vector that was read
-	function _G.net.readVector() end
-	--- writeUInt - shared - libs_sh/net.lua#L455
-	---@param t number The integer to be written
-	---@param n number The amount of bits the integer consists of. Should not be greater than 32
-	function _G.net.writeUInt(t, n) end
-	--- send - shared - libs_sh/net.lua#L227
-	---@param target Player|table|nil On server-side: Optional target location to send the net message to, can be a player or table of players, or nil to broadcast to all players; On client-side: This argument is ignored, it will send to the server.
-	---@param unreliable boolean? Optional. Whether it's more important for the message to actually reach its destination (false), or reach it as fast as possible (true). Default is false.
-	function _G.net.send(target, unreliable) end
-	--- readInt - shared - libs_sh/net.lua#L444
-	---@param n number The amount of bits to read
-	---@return number undefined The integer that was read
-	function _G.net.readInt(n) end
-	--- cancelStream - shared - libs_sh/net.lua#L416
-	function _G.net.cancelStream() end
-	--- readMatrix - shared - libs_sh/net.lua#L604
-	---@return VMatrix undefined The matrix that was read
-	function _G.net.readMatrix() end
-	--- writeUInt64 - shared - libs_sh/net.lua#L479
-	---@param t string The 64-bit integer written as a string because lua numbers can't hold 64-bit ints
-	function _G.net.writeUInt64(t) end
-	--- readTable - shared - libs_sh/net.lua#L332
-	---@return table undefined The table
-	function _G.net.readTable() end
-	--- readBool - shared - libs_sh/net.lua#L520
-	---@return boolean undefined The boolean that was read.
-	function _G.net.readBool() end
-	--- writeData - shared - libs_sh/net.lua#L356
-	---@param t string The string to be written
-	---@param n number How much of the string to write, can't exceed 64000 or the string's length
-	function _G.net.writeData(t, n) end
-	--- readUInt - shared - libs_sh/net.lua#L468
-	---@param n number The amount of bits to read
-	---@return number undefined The unsigned integer that was read
-	function _G.net.readUInt(n) end
-	--- readData - shared - libs_sh/net.lua#L369
-	---@param n number How many characters are in the data
-	---@return string undefined The string that was read
-	function _G.net.readData(n) end
-	--- writeTable - shared - libs_sh/net.lua#L318
-	---@param t table The table to write
-	---@return any undefined Returns the size of the data in bytes
-	function _G.net.writeTable(t) end
-	--- getStreamProgress - shared - libs_sh/net.lua#L423
-	---@return number undefined The progress ratio 0-1
-	function _G.net.getStreamProgress() end
-	--- readDouble - shared - libs_sh/net.lua#L536
-	---@return number undefined The double that was read
-	function _G.net.readDouble() end
-	--- getBitsLeft - shared - libs_sh/net.lua#L675
-	---@return number undefined Number of bits that can be sent
-	function _G.net.getBitsLeft() end
-	--- writeString - shared - libs_sh/net.lua#L340
-	---@param t string The string to be written
-	function _G.net.writeString(t) end
-	--- readBit - shared - libs_sh/net.lua#L504
-	---@return number undefined The bit that was read. (0 for false, 1 for true)
-	function _G.net.readBit() end
-	--- readUInt64 - shared - libs_sh/net.lua#L488
-	---@return string undefined The unsigned integer that was read, as a string
-	function _G.net.readUInt64() end
-	--- readStream - shared - libs_sh/net.lua#L393
-	---@param cb function Callback to run when the stream is finished. The first parameter in the callback is the data. Will be nil if transfer fails or is cancelled
-	function _G.net.readStream(cb) end
-	--- writeFloat - shared - libs_sh/net.lua#L543
-	---@param t number The float to be written
-	function _G.net.writeFloat(t) end
-	--- canWriteStream - shared - libs_sh/net.lua#L694
-	---@return boolean undefined Whether a writeStream can be initiated
-	---@return number undefined The number of active write streams
-	function _G.net.canWriteStream() end
-	--- canReadStream - shared - libs_sh/net.lua#L688
-	---@return boolean undefined Whether a readStream can be initiated
-	function _G.net.canReadStream() end
-	--- writeInt - shared - libs_sh/net.lua#L431
-	---@param t number The integer to be written
-	---@param n number The amount of bits the integer consists of
-	function _G.net.writeInt(t, n) end
-	--- getBytesLeft - shared - libs_sh/net.lua#L669
-	---@return number undefined Number of bytes that can be sent
-	function _G.net.getBytesLeft() end
-	--- receive - shared - libs_sh/net.lua#L659
-	---@param name string The name of the net message
-	---@param func function The callback or nil to remove callback. (len - length of the net message, ply - player that sent it or nil if clientside)
-	function _G.net.receive(name, func) end
-	--- writeVector - shared - libs_sh/net.lua#L576
-	---@param t Vector The vector to be written
-	function _G.net.writeVector(t) end
-	--- readType - shared - libs_sh/net.lua#L310
-	---@return any undefined The object
-	function _G.net.readType() end
-	--- start - shared - libs_sh/net.lua#L212
-	---@param name string The message name
-	function _G.net.start(name) end
-	--- readAngle - shared - libs_sh/net.lua#L569
-	---@return Angle undefined The angle that was read
-	function _G.net.readAngle() end
-	--- readEntity - shared - libs_sh/net.lua#L640
-	---@param callback function? (Client only) optional callback to be ran whenever the entity becomes valid; returns nothing if this is used. The callback passes the entity if it succeeds or nil if it fails.
-	---@return Entity? undefined The entity that was read or nil if callback used
-	function _G.net.readEntity(callback) end
-	--- sendPVS - server - libs_sh/net.lua#L270
-	---@param pos Vector A vector within the PVS area to send a message
-	---@param unreliable boolean? Optional. Whether it's more important for the message to actually reach its destination (false), or reach it as fast as possible (true). Default is false.
-	function _G.net.sendPVS(pos, unreliable) end
-	--- readFloat - shared - libs_sh/net.lua#L552
-	---@return number undefined The float that was read
-	function _G.net.readFloat() end
-	--- writeEntity - shared - libs_sh/net.lua#L630
-	---@param t Entity The entity to be written
-	function _G.net.writeEntity(t) end
-	--- readColor - shared - libs_sh/net.lua#L623
-	---@return Color undefined The color that was read
-	function _G.net.readColor() end
-	--- writeColor - shared - libs_sh/net.lua#L613
-	---@param t Color The color to be written
-	function _G.net.writeColor(t) end
-	--- writeMatrix - shared - libs_sh/net.lua#L593
-	---@param t VMatrix The matrix to be written
-	function _G.net.writeMatrix(t) end
-	--- writeAngle - shared - libs_sh/net.lua#L559
-	---@param t Angle The angle to be written
-	function _G.net.writeAngle(t) end
-	--- writeStream - shared - libs_sh/net.lua#L379
-	---@param str string The string to be written
-	---@param compress boolean? Compress the data. True by default
-	function _G.net.writeStream(str, compress) end
-	--- readString - shared - libs_sh/net.lua#L349
-	---@return string undefined The string that was read
-	function _G.net.readString() end
-	--- writeBool - shared - libs_sh/net.lua#L511
-	---@param t boolean The bit to be written.
-	function _G.net.writeBool(t) end
-	--- writeBit - shared - libs_sh/net.lua#L495
-	---@param t number The bit to be written. (0 for false, 1 (or anything) for true)
-	function _G.net.writeBit(t) end
-	--- isStreaming - shared - libs_sh/net.lua#L681
-	---@return boolean undefined Whether we're currently reading data from a stream
-	---@return boolean undefined Whether we're currently writing data to a stream
-	function _G.net.isStreaming() end
-	--- writeType - shared - libs_sh/net.lua#L297
-	---@param v any The object to write
-	---@return any undefined Returns the size of the data in bytes
-	function _G.net.writeType(v) end
-	--- writeDouble - shared - libs_sh/net.lua#L527
-	---@param t number The double to be written
-	function _G.net.writeDouble(t) end
-	--- abort - shared - libs_sh/net.lua#L292
-	function _G.net.abort() end
+--- hook
+---  Deals with hooks
+_G.hook = {}
+	--- run - shared - libs_sh/hook.lua#L732
+	---@param hookname string The hook name
+	---@param arguments ... Arguments to pass to the hook
+	---@return ... undefined returns Return result(s) of the hook ran
+	function _G.hook.run(hookname, arguments) end
+	--- add - shared - libs_sh/hook.lua#L712
+	---@param hookname hooks Name of the event
+	---@param name string Unique identifier
+	---@param func function Function to run
+	function _G.hook.add(hookname, name, func) end
+	--- remove - shared - libs_sh/hook.lua#L809
+	---@param hookname string The hook name
+	---@param name string The unique name for this hook
+	function _G.hook.remove(hookname, name) end
+	--- runRemote - shared - libs_sh/hook.lua#L764
+	---@param recipient Entity? Starfall entity to call the hook on. Nil to run on every starfall entity
+	---@param payload ... Parameters that will be passed when calling hook functions
+	---@return table undefined A list of the resultset of each called hook
+	function _G.hook.runRemote(recipient, payload) end
 --- material
 ---  `material` library is allows creating material objects which are used for controlling shaders in rendering.
 _G.material = {}
@@ -1148,1128 +1016,6 @@ _G.trace = {}
 	---@param planeNormal Vector The normal of the plane
 	---@return Vector? undefined Hit position or nil if not hit
 	function _G.trace.intersectRayWithPlane(rayStart, rayDelta, planeOrigin, planeNormal) end
---- navmesh
----  Library for navmesh navigation with the NavArea type
-_G.navmesh = {}
---- NAV_MESH - shared
----  ENUMs used by NavArea:getAttributes and NavArea:hasAttributes
-_G.navmesh.NAV_MESH = {
-	---@type any
-	--- The nav area is invalid.
-	["INVALID"] = nil,
-	---@type any
-	--- Must crouch to use this node/area
-	["CROUCH"] = nil,
-	---@type any
-	--- Must jump to traverse this area (only used during generation)
-	["JUMP"] = nil,
-	---@type any
-	--- Do not adjust for obstacles, just move along area
-	["PRECISE"] = nil,
-	---@type any
-	--- Inhibit discontinuity jumping
-	["NO_JUMP"] = nil,
-	---@type any
-	--- Must stop when entering this area
-	["STOP"] = nil,
-	---@type any
-	--- Must run to traverse this area
-	["RUN"] = nil,
-	---@type any
-	--- Must walk to traverse this area
-	["WALK"] = nil,
-	---@type any
-	--- Avoid this area unless alternatives are too dangerous
-	["AVOID"] = nil,
-	---@type any
-	--- Area may become blocked, and should be periodically checked
-	["TRANSIENT"] = nil,
-	---@type any
-	--- Area should not be considered for hiding spot generation
-	["DONT_HIDE"] = nil,
-	---@type any
-	--- Bots hiding in this area should stand
-	["STAND"] = nil,
-	---@type any
-	--- Hostages shouldn't use this area
-	["NO_HOSTAGES"] = nil,
-	---@type any
-	--- This area represents stairs, do not attempt to climb or jump them - just walk up
-	["STAIRS"] = nil,
-	---@type any
-	--- Don't merge this area with adjacent areas
-	["NO_MERGE"] = nil,
-	---@type any
-	--- This nav area is the climb point on the tip of an obstacle
-	["OBSTACLE_TOP"] = nil,
-	---@type any
-	--- This nav area is adjacent to a drop of at least CliffHeight
-	["CLIFF"] = nil,
-	---@type any
-	--- Area has designer specified cost controlled by func_nav_cost entities
-	["FUNC_COST"] = nil,
-	---@type any
-	--- Area is in an elevator's path
-	["HAS_ELEVATOR"] = nil,
-	---@type any
-	--- -2147483648
-	["NAV_BLOCKER"] = nil,
-}
---- NAV_CORNER - shared
----  ENUMs used by NavArea methods. These Enums correspond to each corner of a CNavArea
-_G.navmesh.NAV_CORNER = {
-	---@type any
-	--- 0
-	["NORTH_WEST"] = nil,
-	---@type any
-	--- 1
-	["NORTH_EAST"] = nil,
-	---@type any
-	--- 2
-	["SOUTH_EAST"] = nil,
-	---@type any
-	--- 3
-	["SOUTH_WEST"] = nil,
-	---@type any
-	--- Represents all corners, only applicable to certain functions, such as NavArea:placeOnGround.
-	["NUM_CORNERS"] = nil,
-}
---- NAV_DIR - shared
----  NavArea direction ENUMs
-_G.navmesh.NAV_DIR = {
-	---@type any
-	--- 0
-	["NORTH"] = nil,
-	---@type any
-	--- 1
-	["SOUTH"] = nil,
-	---@type any
-	--- 2
-	["EAST"] = nil,
-	---@type any
-	--- 3
-	["WEST"] = nil,
-}
---- NAV_TRAVERSE_TYPE - shared
----  ENUMs used by NavArea:getParentHow.
-_G.navmesh.NAV_TRAVERSE_TYPE = {
-	---@type any
-	--- 0
-	["GO_NORTH"] = nil,
-	---@type any
-	--- 1
-	["GO_EAST"] = nil,
-	---@type any
-	--- 2
-	["GO_SOUTH"] = nil,
-	---@type any
-	--- 3
-	["GO_WEST"] = nil,
-	---@type any
-	--- 4
-	["GO_LADDER_UP"] = nil,
-	---@type any
-	--- 5
-	["GO_LADDER_DOWN"] = nil,
-	---@type any
-	--- 6
-	["GO_JUMP"] = nil,
-	---@type any
-	--- 7
-	["GO_ELEVATOR_UP"] = nil,
-	---@type any
-	--- 8
-	["GO_ELEVATOR_DOWN"] = nil,
-}
-	--- clearWalkableSeeds - server - libs_sv/navmesh.lua#L111
-	function _G.navmesh.clearWalkableSeeds() end
-	--- find - server - libs_sv/navmesh.lua#L182
-	---@param pos Vector The position to search around
-	---@param radius number Radius to search within (max 100000)
-	---@param stepdown number Maximum fall distance allowed (max 50000)
-	---@param stepup number Maximum jump height allowed (max 50000)
-	---@return table undefined A table of immutable `NavArea`s
-	function _G.navmesh.find(pos, radius, stepdown, stepup) end
-	--- setMarkedArea - server - libs_sv/navmesh.lua#L130
-	---@param area NavArea The CNavArea to set as the marked area.
-	function _G.navmesh.setMarkedArea(area) end
-	--- isLoaded - server - libs_sv/navmesh.lua#L75
-	---@return boolean undefined Whether a navmesh has been loaded when loading the map.
-	function _G.navmesh.isLoaded() end
-	--- isGenerating - server - libs_sv/navmesh.lua#L69
-	---@return boolean undefined Whether we're generating a nav mesh or not.
-	function _G.navmesh.isGenerating() end
-	--- getNavAreaCount - server - libs_sv/navmesh.lua#L204
-	---@return number undefined The highest ID of all nav areas on the map.
-	function _G.navmesh.getNavAreaCount() end
-	--- reset - server - libs_sv/navmesh.lua#L88
-	function _G.navmesh.reset() end
-	--- getGetEditCursorPosition - server - libs_sv/navmesh.lua#L240
-	---@return Vector undefined The position of the edit cursor.
-	function _G.navmesh.getGetEditCursorPosition() end
-	--- getNearestNavArea - server - libs_sv/navmesh.lua#L228
-	---@param pos Vector The position to look from
-	---@param maxDist number Maximum distance from the given position that the function will look for a CNavArea (Default 10000)
-	---@param checkLOS boolean If this is set to true then the function will internally do a trace from the starting position to each potential CNavArea with a MASK_NPCSOLID_BRUSHONLY. If the trace fails then the CNavArea is ignored. If this is set to false then the function will find the closest CNavArea through anything, including the world. (Default false)
-	---@param checkGround boolean If checkGround is true then this function will internally call navmesh.getNavArea to check if there is a CNavArea directly below the position, and return it if so, before checking anywhere else. (Default true)
-	---@return NavArea undefined The closest NavArea found with the given parameters, or a NULL NavArea if one was not found.
-	function _G.navmesh.getNearestNavArea(pos, maxDist, checkLOS, checkGround) end
-	--- getPlayerSpawnName - server - libs_sv/navmesh.lua#L124
-	---@return string undefined The classname of the spawn point entity. By default returns "info_player_start"
-	function _G.navmesh.getPlayerSpawnName() end
-	--- beginGeneration - server - libs_sv/navmesh.lua#L63
-	function _G.navmesh.beginGeneration() end
-	--- save - server - libs_sv/navmesh.lua#L95
-	function _G.navmesh.save() end
-	--- getMarkedArea - server - libs_sv/navmesh.lua#L118
-	---@return NavArea undefined The currently marked NavArea.
-	function _G.navmesh.getMarkedArea() end
-	--- getNavAreaByID - server - libs_sv/navmesh.lua#L211
-	---@param id number ID of the NavArea to get. Starts with 1.
-	---@return NavArea undefined The NavArea with given ID.
-	function _G.navmesh.getNavAreaByID(id) end
-	--- load - server - libs_sv/navmesh.lua#L81
-	function _G.navmesh.load() end
-	--- addWalkableSeed - server - libs_sv/navmesh.lua#L102
-	---@param pos Vector The terrain position.
-	---@param dir Vector The terrain normal.
-	function _G.navmesh.addWalkableSeed(pos, dir) end
-	--- getNavArea - server - libs_sv/navmesh.lua#L219
-	---@param pos Vector The position to search for.
-	---@param limit number The elevation limit at which the NavArea will be searched.
-	---@return NavArea undefined The NavArea.
-	function _G.navmesh.getNavArea(pos, limit) end
-	--- getGroundHeight - server - libs_sv/navmesh.lua#L161
-	---@param pos Vector The position to check
-	---@return number undefined height The height of the ground layer
-	---@return Vector undefined normal The surface normal of the ground layer
-	function _G.navmesh.getGroundHeight(pos) end
-	--- setPlayerSpawnName - server - libs_sv/navmesh.lua#L138
-	---@param spawnPointClass string The classname of what the player uses to spawn, automatically adds it to the walkable positions during map generation.
-	function _G.navmesh.setPlayerSpawnName(spawnPointClass) end
-	--- createNavArea - server - libs_sv/navmesh.lua#L146
-	---@param corner Vector The first corner of the new NavArea
-	---@param opposite_corner Vector The opposite (diagonally) corner of the new NavArea
-	---@return NavArea? undefined The new NavArea or nil if we failed for some reason
-	function _G.navmesh.createNavArea(corner, opposite_corner) end
-	--- getAllNavAreas - server - libs_sv/navmesh.lua#L170
-	---@return table undefined A table of all the `NavArea`s on the current map
-	function _G.navmesh.getAllNavAreas() end
---- von
----  vON Library
-_G.von = {}
-	--- serialize - shared - libs_sh/von.lua#L817
-	---@param tbl table Table to serialize
-	---@param checkRecursive boolean? Enable checking for table recursion (default: false)
-	---@return string undefined String encoded from the table
-	function _G.von.serialize(tbl, checkRecursive) end
-	--- deserialize - shared - libs_sh/von.lua#L808
-	---@param str string String to deserialize
-	---@return table undefined Table
-	function _G.von.deserialize(str) end
---- nextbot
----  Library for spawning NextBots.
-_G.nextbot = {}
-	--- ragdollsLeft - server - libs_sv/nextbot.lua#L151
-	---@return number undefined Amount of nextbot ragdolls that can be spawned
-	function _G.nextbot.ragdollsLeft() end
-	--- nextbotsLeft - server - libs_sv/nextbot.lua#L135
-	---@return number undefined Number of nextbots able to be spawned
-	function _G.nextbot.nextbotsLeft() end
-	--- canSpawnRagdoll - server - libs_sv/nextbot.lua#L143
-	---@return boolean undefined Returns true if you can spawn nextbot ragdolls, false if not
-	function _G.nextbot.canSpawnRagdoll() end
-	--- create - server - libs_sv/nextbot.lua#L88
-	---@param pos Vector The position the nextbot will be spawned at.
-	---@param mdl string The model the nextbot will use.
-	---@return NextBot undefined The nextbot.
-	function _G.nextbot.create(pos, mdl) end
-	--- canSpawn - server - libs_sv/nextbot.lua#L127
-	---@return boolean undefined Returns true if you can spawn nextbots, false if not
-	function _G.nextbot.canSpawn() end
---- input
----  Input library.
-_G.input = {}
-	--- getAnalogValue - client - libs_sh/input.lua#L414
-	---@param axis number The analog axis to poll. See https://wiki.facepunch.com/gmod/Enums/ANALOG
-	---@return number undefined The digital value.
-	function _G.input.getAnalogValue(axis) end
-	--- lookupKeyBinding - client - libs_sh/input.lua#L241
-	---@param key number The key id, see input
-	---@return string undefined The command bound to the key
-	function _G.input.lookupKeyBinding(key) end
-	--- lockControls - client - libs_sh/input.lua#L375
-	---@param enabled boolean Whether to lock or unlock the controls
-	function _G.input.lockControls(enabled) end
-	--- getKeyName - client - libs_sh/input.lua#L276
-	---@param key number The key id, see input
-	---@return string undefined The name of the key
-	function _G.input.getKeyName(key) end
-	--- getCursorVisible - client - libs_sh/input.lua#L316
-	---@return boolean undefined The cursor's visibility
-	function _G.input.getCursorVisible() end
-	--- selectWeapon - client - libs_sh/input.lua#L348
-	---@param weapon Weapon The weapon entity to select
-	function _G.input.selectWeapon(weapon) end
-	--- isControlDown - client - libs_sh/input.lua#L297
-	---@return boolean undefined True if the control key is down
-	function _G.input.isControlDown() end
-	--- isControlLocked - client - libs_sh/input.lua#L393
-	---@return boolean undefined Whether the player's control is locked
-	function _G.input.isControlLocked() end
-	--- isKeyDown - client - libs_sh/input.lua#L251
-	---@param key number The key id, see input
-	---@return boolean undefined True if the key is down
-	function _G.input.isKeyDown(key) end
-	--- enableCursor - client - libs_sh/input.lua#L337
-	---@param enabled boolean Whether or not the cursor should be enabled
-	function _G.input.enableCursor(enabled) end
-	--- isGameUIVisible - client - libs_sh/input.lua#L407
-	---@return boolean undefined Whether the game menu overlay ( main menu ) is open or not
-	function _G.input.isGameUIVisible() end
-	--- screenToVector - client - libs_sh/input.lua#L325
-	---@param x number X coordinate on the screen
-	---@param y number Y coordinate on the screen
-	---@return Vector undefined Aim vector
-	function _G.input.screenToVector(x, y) end
-	--- getCursorPos - client - libs_sh/input.lua#L306
-	---@return number undefined The x position of the mouse
-	---@return number undefined The y position of the mouse
-	function _G.input.getCursorPos() end
-	--- isShiftDown - client - libs_sh/input.lua#L288
-	---@return boolean undefined True if the shift key is down
-	function _G.input.isShiftDown() end
-	--- canLockControls - client - libs_sh/input.lua#L400
-	---@return boolean undefined Whether the player's control can be locked
-	function _G.input.canLockControls() end
-	--- setCursorPos - client - libs_sh/input.lua#L358
-	---@param x number 
-	---@param y number 
-	function _G.input.setCursorPos(x, y) end
-	--- isMouseDown - client - libs_sh/input.lua#L264
-	---@param key number The mouse button id, see input
-	---@return boolean undefined True if the key is down
-	function _G.input.isMouseDown(key) end
-	--- lookupBinding - client - libs_sh/input.lua#L223
-	---@param binding string The name of the bind
-	---@return number undefined The id of the first key bound
-	---@return string undefined The name of the first key bound
-	function _G.input.lookupBinding(binding) end
---- convar
----  ConVar library https://wiki.facepunch.com/gmod/ConVar
-_G.convar = {}
-	--- exists - client - libs_sh/convar.lua#L34
-	---@param name string Name of the ConVar
-	---@return boolean undefined True if exists
-	function _G.convar.exists(name) end
-	--- hasFlag - client - libs_sh/convar.lua#L111
-	---@param name string Name of the ConVar
-	---@param flag number Convar Flag, see https://wiki.facepunch.com/gmod/Enums/FCVAR
-	---@return boolean undefined Whether the flag is set
-	function _G.convar.hasFlag(name, flag) end
-	--- getInt - client - libs_sh/convar.lua#L77
-	---@param name string Name of the ConVar
-	---@return number undefined The integer value or 0 if converting fails
-	function _G.convar.getInt(name) end
-	--- getMax - client - libs_sh/convar.lua#L60
-	---@param name string Name of the ConVar
-	---@return number? undefined The maximum value or nil if not specified
-	function _G.convar.getMax(name) end
-	--- getUserInfo - shared - libs_sh/convar.lua#L123
-	---@param name string The name of userinfo variable.
-	---@return string undefined Returns the value of the given client-side userinfo ConVar (truncated to 31 bytes).
-	function _G.convar.getUserInfo(name) end
-	--- getString - client - libs_sh/convar.lua#L94
-	---@param name string Name of the ConVar
-	---@return string undefined Value as a string
-	function _G.convar.getString(name) end
-	--- getFlags - client - libs_sh/convar.lua#L102
-	---@param name string Name of the ConVar
-	---@return number undefined Number consisting of flag values
-	function _G.convar.getFlags(name) end
-	--- getMin - client - libs_sh/convar.lua#L52
-	---@param name string Name of the ConVar
-	---@return number undefined The minimum value or nil if not specified
-	function _G.convar.getMin(name) end
-	--- getDefault - client - libs_sh/convar.lua#L44
-	---@param name string Name of the ConVar
-	---@return string undefined Default value as a string
-	function _G.convar.getDefault(name) end
-	--- getFloat - client - libs_sh/convar.lua#L86
-	---@param name string Name of the ConVar
-	---@return number undefined The float value or 0 if converting fails
-	function _G.convar.getFloat(name) end
-	--- getBool - client - libs_sh/convar.lua#L68
-	---@param name string Name of the ConVar
-	---@return boolean undefined The boolean value
-	function _G.convar.getBool(name) end
---- find
----  Find library. Finds entities in various shapes.
-_G.find = {}
-	--- all - shared - libs_sh/find.lua#L181
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.all(filter) end
-	--- closest - shared - libs_sh/find.lua#L190
-	---@param ents table The array of entities
-	---@param pos Vector The position
-	---@return Entity undefined The closest entity
-	function _G.find.closest(ents, pos) end
-	--- byName - shared - libs_sh/find.lua#L138
-	---@param name string The targetname
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.byName(name, filter) end
-	--- inSphere - shared - libs_sh/find.lua#L79
-	---@param center Vector Center of the sphere
-	---@param radius number Sphere radius
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inSphere(center, radius, filter) end
-	--- inRay - shared - libs_sh/find.lua#L106
-	---@param startpos Vector The ray start
-	---@param endpos Vector The ray end
-	---@param mins Vector? If not nil, will define a lower bound of the ray's hull
-	---@param maxs Vector? If not nil, will define an upper bound of the ray's hull
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inRay(startpos, endpos, mins, maxs, filter) end
-	--- allPlayers - shared - libs_sh/find.lua#L172
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.allPlayers(filter) end
-	--- inCone - shared - libs_sh/find.lua#L91
-	---@param pos Vector The cone vertex position
-	---@param dir Vector The direction to project the cone
-	---@param distance number The length to project the cone
-	---@param radius number The cosine of angle of the cone. 1 makes a 0° cone, 0.707 makes approximately 90°, 0 makes 180°, and so on.
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inCone(pos, dir, distance, radius, filter) end
-	--- inPVS - server - libs_sh/find.lua#L161
-	---@param pos Vector Vector view point
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inPVS(pos, filter) end
-	--- inBox - shared - libs_sh/find.lua#L68
-	---@param min Vector Bottom corner
-	---@param max Vector Top corner
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.inBox(min, max, filter) end
-	--- sortByClosest - shared - libs_sh/find.lua#L209
-	---@param ents table The array of entities
-	---@param pos Vector The position
-	---@param furthest boolean? Whether to have the further entities first
-	---@return table undefined A table of the closest entities
-	function _G.find.sortByClosest(ents, pos, furthest) end
-	--- playerBySteamID64 - shared - libs_sh/find.lua#L278
-	---@param steamid string 64-bit steam id to search for
-	---@return Player? undefined The player with matching steamid
-	function _G.find.playerBySteamID64(steamid) end
-	--- getMapCreatedEntity - shared - libs_sh/find.lua#L286
-	---@param num number Entity's creation id
-	---@return Entity? undefined The found entity or nil if not found
-	function _G.find.getMapCreatedEntity(num) end
-	--- byClass - shared - libs_sh/find.lua#L127
-	---@param class string The class name
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.byClass(class, filter) end
-	--- byModel - shared - libs_sh/find.lua#L149
-	---@param model string The model file
-	---@param filter function? Optional function to filter results
-	---@return table undefined An array of found entities
-	function _G.find.byModel(model, filter) end
-	--- playerBySteamID - shared - libs_sh/find.lua#L270
-	---@param steamid string Steam Id to search for
-	---@return Player? undefined The player with matching steamid
-	function _G.find.playerBySteamID(steamid) end
-	--- playersByName - shared - libs_sh/find.lua#L233
-	---@param name string Name to search for
-	---@param casesensitive boolean? Boolean should the match be case sensitive?
-	---@param exact boolean? Boolean should the name match exactly
-	---@return table undefined Table of found players
-	function _G.find.playersByName(name, casesensitive, exact) end
---- bit
----  Bit library http://wiki.facepunch.com/gmod/Category:bit
-_G.bit = {}
-	--- rol - shared - libs_sh/bit.lua#L614
-	---@param value number The value to be manipulated.
-	---@param shiftCount number Amounts of bits to rotate left by.
-	---@return number undefined Left rotated value
-	function _G.bit.rol(value, shiftCount) end
-	--- arshift - shared - libs_sh/bit.lua#L567
-	---@param value number The value to be manipulated.
-	---@param shiftCount number Amount of bits to shift
-	---@return number undefined shiftedValue
-	function _G.bit.arshift(value, shiftCount) end
-	--- compress - shared - libs_sh/bit.lua#L683
-	---@param s string String to compress
-	---@return string? undefined Compressed string, or nil if compression failed
-	function _G.bit.compress(s) end
-	--- bnot - shared - libs_sh/bit.lua#L581
-	---@param value number The value to be inverted.
-	---@return number undefined Return value of bitwise not operation
-	function _G.bit.bnot(value) end
-	--- lshift - shared - libs_sh/bit.lua#L607
-	---@param value number The value to be manipulated.
-	---@param shiftCount number Amounts of bits to shift left by.
-	---@return number undefined Return of bitwise lshift operation
-	function _G.bit.lshift(value, shiftCount) end
-	--- stringstream - shared - libs_sh/bit.lua#L649
-	---@param stream string? String to set the initial buffer to (default "")
-	---@param i number? The initial buffer pointer (default 1)
-	---@param endian string? The endianness of number types. "big" or "little" (default "little")
-	---@return StringStream undefined StringStream object
-	function _G.bit.stringstream(stream, i, endian) end
-	--- sha256 - shared - libs_sh/bit.lua#L730
-	---@param s string The string to calculate the checksum of.
-	---@return string undefined The SHA-256 hex string of the checksum.
-	function _G.bit.sha256(s) end
-	--- stringToTable - shared - libs_sh/bit.lua#L675
-	---@param s string The serialized string data
-	---@return table undefined The deserialized table
-	function _G.bit.stringToTable(s) end
-	--- sha1 - shared - libs_sh/bit.lua#L741
-	---@param s string The string to calculate the checksum of.
-	---@return string undefined The SHA-1 hex string of the checksum.
-	function _G.bit.sha1(s) end
-	--- bor - shared - libs_sh/bit.lua#L587
-	---@param value1 number The first value.
-	---@param Extra ...number values to be evaluated. (must all be numbers)
-	---@return number undefined The bitwise OR result between all numbers.
-	function _G.bit.bor(value1, Extra) end
-	--- md5 - shared - libs_sh/bit.lua#L719
-	---@param s string The string to calculate the checksum of.
-	---@return string undefined The MD5 hex string of the checksum.
-	function _G.bit.md5(s) end
-	--- bswap - shared - libs_sh/bit.lua#L594
-	---@param value number The value to be byte swapped.
-	---@return number undefined Bit swapped value
-	function _G.bit.bswap(value) end
-	--- tableToString - shared - libs_sh/bit.lua#L667
-	---@param t table The table to serialize
-	---@return string undefined Serialized data
-	function _G.bit.tableToString(t) end
-	--- ror - shared - libs_sh/bit.lua#L621
-	---@param value number The value to be manipulated.
-	---@param shiftCount number Amounts of bits to rotate right by.
-	---@return number undefined Right rotated value
-	function _G.bit.ror(value, shiftCount) end
-	--- rshift - shared - libs_sh/bit.lua#L628
-	---@param value number The value to be manipulated.
-	---@param shiftCount number Amounts of bits to shift right by.
-	---@return number undefined Right shifted value
-	function _G.bit.rshift(value, shiftCount) end
-	--- bxor - shared - libs_sh/bit.lua#L600
-	---@param value number The value to be manipulated.
-	---@param otherValues ...number Values to bit xor with. Optional.
-	---@return number undefined Return value of bitwiseXOr operation
-	function _G.bit.bxor(value, otherValues) end
-	--- tobit - shared - libs_sh/bit.lua#L635
-	---@param value number The value to be normalized.
-	---@return number undefined Bit swapped value
-	function _G.bit.tobit(value) end
-	--- tohex - shared - libs_sh/bit.lua#L641
-	---@param value number The value to be normalized.
-	---@param digits number? The number of digits. Optional. (default 8)
-	---@return string undefined Hex string.
-	function _G.bit.tohex(value, digits) end
-	--- decompress - shared - libs_sh/bit.lua#L694
-	---@param s string String to decompress
-	---@param maxSize number? Maximum allowed size of decompressed data
-	---@return string? undefined Decompressed string, or nil if decompression failed
-	function _G.bit.decompress(s, maxSize) end
-	--- band - shared - libs_sh/bit.lua#L574
-	---@param value number The value to be manipulated.
-	---@param otherValues ...number Values bit to perform bitwise "and" with. Optional.
-	---@return number undefined Result of bitwise "and" operation.
-	function _G.bit.band(value, otherValues) end
---- table
----  Lua table library https://wiki.garrysmod.com/page/Category:table
-_G.table = {}
-	--- maxn - shared - libs_sh/table.lua#L141
-	---@param tbl table The table to search
-	---@return number undefined The highest numerical key
-	function _G.table.maxn(tbl) end
-	--- hasValue - shared - libs_sh/table.lua#L87
-	---@param tbl table Table to check
-	---@param val any Value to search for
-	---@return boolean undefined Returns true if the table has that value, false otherwise
-	function _G.table.hasValue(tbl, val) end
-	--- collapseKeyValue - shared - libs_sh/table.lua#L36
-	---@param tbl table The input table
-	---@return table undefined Output table
-	function _G.table.collapseKeyValue(tbl) end
-	--- merge - shared - libs_sh/table.lua#L243
-	---@param dest table The table you want the source table to merge with
-	---@param source table The table you want to merge with the destination table
-	---@return table undefined Destination table
-	function _G.table.merge(dest, source) end
-	--- reverse - shared - libs_sh/table.lua#L168
-	---@param tbl table Table to reverse
-	---@return table undefined A reversed copy of the table
-	function _G.table.reverse(tbl) end
-	--- isSequential - shared - libs_sh/table.lua#L115
-	---@param tbl table Table to check
-	---@return boolean undefined True if sequential
-	function _G.table.isSequential(tbl) end
-	--- inherit - shared - libs_sh/table.lua#L100
-	---@param target table Table to copy data to
-	---@param base table Table to copy data from
-	---@return table undefined The target table
-	function _G.table.inherit(target, base) end
-	--- toString - shared - libs_sh/table.lua#L207
-	---@param tbl table The table to iterate over
-	---@param displayName string? Optional name for the table
-	---@param niceFormatting boolean? Optional, adds new lines and tabs to the string. Defaults to false
-	---@return string undefined The table formatted as a string
-	function _G.table.toString(tbl, displayName, niceFormatting) end
-	--- sortDesc - shared - libs_sh/table.lua#L201
-	---@param tbl table The table to sort in descending order
-	---@return table undefined Sorted table
-	function _G.table.sortDesc(tbl) end
-	--- getWinningKey - shared - libs_sh/table.lua#L81
-	---@param tbl table The table to search in
-	---@return any undefined Winning key
-	function _G.table.getWinningKey(tbl) end
-	--- sortByKey - shared - libs_sh/table.lua#L188
-	---@param tbl table Table to sort. All values of this table must be of same type
-	---@param descending boolean? Optional, should the order be descending? Defaults to false
-	function _G.table.sortByKey(tbl, descending) end
-	--- copyFromTo - shared - libs_sh/table.lua#L51
-	---@param source table The table to copy from
-	---@param target table The table to write to
-	function _G.table.copyFromTo(source, target) end
-	--- getKeys - shared - libs_sh/table.lua#L75
-	---@param tbl table The table to get keys of
-	---@return table undefined Table of keys
-	function _G.table.getKeys(tbl) end
-	--- add - shared - libs_sh/table.lua#L14
-	---@param target table The table to insert the new values into
-	---@param source table The table to retrieve the values from
-	---@return table undefined The target table
-	function _G.table.add(target, source) end
-	--- sort - shared - libs_sh/table.lua#L179
-	---@param tbl table The table to sort
-	---@param sorter function? If specified, the function will be called with 2 parameters each. Return true in this function if you want the first parameter to come first in the sorted array
-	function _G.table.sort(tbl, sorter) end
-	--- insert - shared - libs_sh/table.lua#L107
-	---@param tbl table The table to insert the variable into
-	---@param pos any The position in the table to insert the variable. If the third argument is not provided, this argument becomes the value to insert at the end of given table
-	---@param val any The variable to insert into the table
-	---@return number undefined The index the variable was placed at.
-	function _G.table.insert(tbl, pos, val) end
-	--- keysFromValue - shared - libs_sh/table.lua#L128
-	---@param tbl table Table to search
-	---@param val any Value to search for
-	---@return table undefined Table of keys
-	function _G.table.keysFromValue(tbl, val) end
-	--- sortByMember - shared - libs_sh/table.lua#L194
-	---@param tbl table Table to sort
-	---@param member any The key used to identify the member
-	---@param ascending boolean? Optional, should be ascending? Defaults to false
-	function _G.table.sortByMember(tbl, member, ascending) end
-	--- isEmpty - shared - libs_sh/table.lua#L94
-	---@param tbl table Table to check
-	---@return boolean undefined Returns true if the table contains any value, false otherwise
-	function _G.table.isEmpty(tbl) end
-	--- copy - shared - libs_sh/table.lua#L215
-	---@param tbl table The table to be copied
-	---@param lookup_table table? An optional lookup table for cyclic reference detection
-	---@return table undefined A deep copy of the original table
-	function _G.table.copy(tbl, lookup_table) end
-	--- forceInsert - shared - libs_sh/table.lua#L68
-	---@param tbl table Table to insert value in to. If not supplied, will create a table
-	---@param val any Value to insert
-	---@return table undefined The supplied or created table
-	function _G.table.forceInsert(tbl, val) end
-	--- removeByValue - shared - libs_sh/table.lua#L161
-	---@param tbl table The table that will be searched
-	---@param val any The value to find within the table
-	---@return any undefined The key at which the value was found, or false if the value was not found
-	function _G.table.removeByValue(tbl, val) end
-	--- shuffle - shared - libs_sh/table.lua#L174
-	---@param tbl table Table to shuffle
-	function _G.table.shuffle(tbl) end
-	--- empty - shared - libs_sh/table.lua#L63
-	---@param tbl table The table to empty
-	function _G.table.empty(tbl) end
-	--- address - shared - libs_sh/table.lua#L21
-	---@param target table The target to get the address of
-	---@return string undefined The table's string address
-	function _G.table.address(target) end
-	--- lowerKeyNames - shared - libs_sh/table.lua#L135
-	---@param tbl table Table to convert
-	---@return table undefined New converted table
-	function _G.table.lowerKeyNames(tbl) end
-	--- remove - shared - libs_sh/table.lua#L154
-	---@param tbl table The table to remove the value from
-	---@param index number? Optional index of the value to remove. Defaults to #tbl
-	---@return any undefined The value that was removed
-	function _G.table.remove(tbl, index) end
-	--- clearKeys - shared - libs_sh/table.lua#L29
-	---@param tbl table The original table to modify
-	---@param saveKeys boolean? Optional save the keys within each member table. This will insert a new field __key into each value, and should not be used if the table contains non-table values. Defaults to false
-	---@return table undefined Table with integer keys
-	function _G.table.clearKeys(tbl, saveKeys) end
-	--- random - shared - libs_sh/table.lua#L147
-	---@param tbl table The table to choose from
-	---@return any undefined A random value from the table
-	---@return any undefined The key associated with the random value
-	function _G.table.random(tbl) end
-	--- count - shared - libs_sh/table.lua#L57
-	---@param tbl table The table to count the keys of
-	---@return number undefined The number of keyvalue pairs
-	function _G.table.count(tbl) end
-	--- concat - shared - libs_sh/table.lua#L42
-	---@param tbl table The table to concatenate
-	---@param concatenator string? A seperator to insert between each string. Defaults to ""
-	---@param startPos number? Optional key to start at. Defaults to 1
-	---@param endPos number? Optional key to end at. Defaults to #tbl
-	---@return string undefined Concatenated string
-	function _G.table.concat(tbl, concatenator, startPos, endPos) end
-	--- keyFromValue - shared - libs_sh/table.lua#L121
-	---@param tbl table Table to search
-	---@param val any Value to search for
-	---@return any undefined Found key
-	function _G.table.keyFromValue(tbl, val) end
---- mesh
----  Mesh library.
-_G.mesh = {}
-	--- generate - client - libs_sh/mesh.lua#L1030
-	---@param mesh_obj Mesh? Optional Mesh object, mesh to build. (default: nil)
-	---@param prim_type number Int, primitive type, see MATERIAL
-	---@param prim_count number Int, the amount of primitives
-	---@param func function The function provided that will generate the mesh vertices
-	function _G.mesh.generate(mesh_obj, prim_type, prim_count, func) end
-	--- parseObj - shared - libs_sh/mesh.lua#L708
-	---@param obj string The obj data
-	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
-	---@param triangulate boolean? Whether to triangulate the faces
-	---@return table undefined Table of Mesh tables. The keys correspond to the objs object names, and the values are tables of vertices that can be passed to mesh.createFromTable
-	---@return table undefined Table of Mesh data. {positions = positionData, normals = normalData, texturecoords = texturecoordData, faces = faceData}
-	function _G.mesh.parseObj(obj, threaded, triangulate) end
-	--- writeNormal - client - libs_sh/mesh.lua#L1087
-	---@param normal Vector Normal
-	function _G.mesh.writeNormal(normal) end
-	--- generateUV - shared - libs_sh/mesh.lua#L736
-	---@param vertices table The table of vertices
-	---@param scale number The scale of the uvs
-	function _G.mesh.generateUV(vertices, scale) end
-	--- getModelMeshes - client - libs_sh/mesh.lua#L968
-	---@param model string The full path to a model to get the visual meshes of.
-	---@param lod number? The lod of the model to use. Default 0.
-	---@param bodygroupMask number? The bodygroupMask of the model to use. Default 0.
-	---@return table undefined A table of tables with the following format:  string material - The material of the specific mesh table triangles - A table of MeshVertex structures ready to be fed into IMesh:BuildFromTriangles table verticies - A table of MeshVertex structures representing all the vertexes of the mesh. This table is used internally to generate the "triangles" table. Each MeshVertex structure returned also has an extra table of tables field called "weights" with the following data:  number boneID - The bone this vertex is attached to number weight - How "strong" this vertex is attached to the bone. A vertex can be attached to multiple bones at once.
-	---@return table undefined A table of tables with bone id keys with the following format:  number parent - The parent bone id Matrix matrix - pretransformed bone matrix
-	function _G.mesh.getModelMeshes(model, lod, bodygroupMask) end
-	--- trianglesLeft - client - libs_sh/mesh.lua#L1004
-	---@return number undefined Number of triangles that can be created
-	function _G.mesh.trianglesLeft() end
-	--- writeColor - client - libs_sh/mesh.lua#L1077
-	---@param r number Number, red value
-	---@param g number Number, green value
-	---@param b number Number, blue value
-	---@param a number Number, alpha value
-	function _G.mesh.writeColor(r, g, b, a) end
-	--- writePosition - client - libs_sh/mesh.lua#L1094
-	---@param pos Vector Position
-	function _G.mesh.writePosition(pos) end
-	--- trianglesLeftRender - client - libs_sh/mesh.lua#L1011
-	---@return number undefined Number of triangles that can be rendered
-	function _G.mesh.trianglesLeftRender() end
-	--- createFromObj - client - libs_sh/mesh.lua#L908
-	---@param obj string The obj file data
-	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
-	---@param triangulate boolean? Whether to triangulate faces. (Consumes more CPU)
-	---@return table undefined Table of Mesh objects. The keys correspond to the objs object names
-	function _G.mesh.createFromObj(obj, threaded, triangulate) end
-	--- generateNormals - shared - libs_sh/mesh.lua#L722
-	---@param vertices table The table of vertices
-	---@param inverted boolean? Optional bool, invert the normal
-	---@param smooth_limit number? Optional number, smooths the normal based on the limit in radians
-	function _G.mesh.generateNormals(vertices, inverted, smooth_limit) end
-	--- createEmptySkinned - client - libs_sh/mesh.lua#L945
-	---@return Mesh undefined Mesh object
-	function _G.mesh.createEmptySkinned() end
-	--- writeBoneData - shared - libs_sh/mesh.lua#L1142
-	---@param index number The slot index for the vertex, either 0 or 1.
-	---@param matrixId number The matrix index for the vertex, in the range of 1 -> 53.
-	---@param weight number How much influence that matrix will have on this vertex, in the range of 0 -> 1. Both weights on each vertex should sum to 1. 
-	function _G.mesh.writeBoneData(index, matrixId, weight) end
-	--- advanceVertex - client - libs_sh/mesh.lua#L1150
-	function _G.mesh.advanceVertex() end
-	--- writeQuadEasy - client - libs_sh/mesh.lua#L1131
-	---@param position Vector 
-	---@param normal Vector 
-	---@param w number 
-	---@param h number 
-	---@param col Color The color for the vertices.
-	function _G.mesh.writeQuadEasy(position, normal, w, h, col) end
-	--- writeQuad - client - libs_sh/mesh.lua#L1120
-	---@param v1 Vector Vertex1 position
-	---@param v2 Vector Vertex2 position
-	---@param v3 Vector Vertex3 position
-	---@param v4 Vector Vertex4 position
-	---@param col Color The color for the vertices.
-	function _G.mesh.writeQuad(v1, v2, v3, v4, col) end
-	--- generateTangents - shared - libs_sh/mesh.lua#L748
-	---@param vertices table The table of vertices
-	function _G.mesh.generateTangents(vertices) end
-	--- findConvexHull - shared - libs_sh/mesh.lua#L758
-	---@param vertices table The table of vertices (vectors) or vertex data (http://wiki.facepunch.com/gmod/Structures/MeshVertex)
-	---@param threaded boolean? Optional bool, use threading object that can be used to run algorithm over time to prevent hitting quota limit
-	---@return table undefined The mesh table which can be passed to mesh.createFromTable
-	---@return table undefined The table of vertices which can be passed to prop.createCustom
-	function _G.mesh.findConvexHull(vertices, threaded) end
-	--- writeUV - client - libs_sh/mesh.lua#L1101
-	---@param stage number Stage of the texture coordinate
-	---@param u number U coordinate
-	---@param v number V coordinate
-	function _G.mesh.writeUV(stage, u, v) end
-	--- createEmpty - client - libs_sh/mesh.lua#L936
-	---@return Mesh undefined Mesh object
-	function _G.mesh.createEmpty() end
-	--- createFromTable - client - libs_sh/mesh.lua#L866
-	---@param vertices table Table containing vertex data. http://wiki.facepunch.com/gmod/Structures/MeshVertex
-	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit. The thread will yield with number of vertices remaining to be processed. After 0 is yielded, the final expensive phase starts.
-	---@return Mesh undefined Mesh object
-	function _G.mesh.createFromTable(vertices, threaded) end
-	--- writeUserData - client - libs_sh/mesh.lua#L1110
-	---@param x number x
-	---@param y number y
-	---@param z number z
-	---@param handedness number 
-	function _G.mesh.writeUserData(x, y, z, handedness) end
---- hologram
----  Library for creating and manipulating physics-less models (holograms).
-_G.hologram = {}
-	--- removeAll - shared - libs_sh/hologram.lua#L565
-	function _G.hologram.removeAll() end
-	--- canSpawn - shared - libs_sh/hologram.lua#L153
-	---@return boolean undefined Returns true if you can spawn holograms, false if not
-	function _G.hologram.canSpawn() end
-	--- create - shared - libs_sh/hologram.lua#L102
-	---@param pos Vector The position to create the hologram
-	---@param ang Angle The angle to create the hologram
-	---@param model string The model to give the hologram
-	---@param scale Vector? (Optional) The scale to give the hologram
-	---@return Hologram? undefined The hologram object or nil if it failed to create
-	function _G.hologram.create(pos, ang, model, scale) end
-	--- hologramsLeft - shared - libs_sh/hologram.lua#L160
-	---@return number undefined Number of holograms able to be spawned
-	function _G.hologram.hologramsLeft() end
---- particleEffect
----  ParticleEffect library.
-_G.particleEffect = {}
-	--- getList - client - libs_cl/particle_effect.lua#L264
-	---@return table undefined List of particle system names
-	function _G.particleEffect.getList() end
-	--- attach - client - libs_cl/particle_effect.lua#L200
-	---@param entity Entity The entity to attach the particle effect to (can be world)
-	---@param name string The name of the effect to create (e.g. "generic_smoke")
-	---@param pattach number See PATTACH enum
-	---@param options table? Optional table of tables (indexes 1 to 64) having the following structure:
- number attachtype - The particle attach type (see PATTACH enum, default: `PATTACH.ABSORIGIN`).
- Entity entity - The parent entity (default: NULL).
- Vector position - The offset position for the given control point (default: nil).
- This only affects the control points of the particle effects, and will do nothing if the effect doesn't use control points.
-	---@return ParticleEffect undefined ParticleEffect object.
-	function _G.particleEffect.attach(entity, name, pattach, options) end
---- game
----  Game functions
-_G.game = {}
-	--- getTickInterval - shared - libs_sh/game.lua#L83
-	---@return number undefined Time interval in seconds
-	function _G.game.getTickInterval() end
-	--- getActiveGamemode - shared - libs_sh/game.lua#L183
-	---@return string undefined The name of the active gamemode
-	function _G.game.getActiveGamemode() end
-	--- getWindSpeed - shared - libs_sh/game.lua#L161
-	---@param pos Vector? Optional position to get wind speed at. If specified, wind controllers with windradius other than -1 will be taken into account, if the point is within their radius. If omitted, only the global wind controller will be used (if one exists). This argument will be ignored on client-side and will be treated as nil because the position of env_wind is not currently networked to clients
-	---@return Vector undefined The current wind velocity at a given position
-	function _G.game.getWindSpeed(pos) end
-	--- getAmmoID - shared - libs_sh/game.lua#L117
-	---@param name string The ammo name
-	---@return number undefined The id or -1 if not found
-	function _G.game.getAmmoID(name) end
-	--- getSunInfo - client - libs_sh/game.lua#L291
-	---@return Vector undefined The direction of the sun
-	---@return number undefined How obstructed the sun is 0 to 1.
-	function _G.game.getSunInfo() end
-	--- getHostname - shared - libs_sh/game.lua#L40
-	---@return string undefined The hostname of the server
-	function _G.game.getHostname() end
-	--- getPlayerModels - shared - libs_sh/game.lua#L151
-	---@return table undefined List of valid playermodels
-	function _G.game.getPlayerModels() end
-	--- getAmmoMax - shared - libs_sh/game.lua#L138
-	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
-	---@return number undefined The maximum amount of reserve ammo a player can hold of this ammo type
-	function _G.game.getAmmoMax(id) end
-	--- getWorld - shared - libs_sh/game.lua#L145
-	---@return Entity undefined Worldspawn
-	function _G.game.getWorld() end
-	--- getTimeScale - shared - libs_sh/game.lua#L77
-	---@return number undefined Time scale
-	function _G.game.getTimeScale() end
-	--- getRealTickInterval - shared - libs_sh/game.lua#L89
-	---@return number undefined Time interval in seconds
-	function _G.game.getRealTickInterval() end
-	--- modelExists - shared - libs_sh/game.lua#L107
-	---@param path string Filepath in game folder
-	---@return boolean? undefined True if exists, false if not, nil if error
-	function _G.game.modelExists(path) end
-	--- isMounted - shared - libs_sh/game.lua#L70
-	---@param str string String identifier of the game, eg. 'cstrike'
-	---@return boolean undefined True if the game is mounted
-	function _G.game.isMounted(str) end
-	--- getAmmoData - shared - libs_sh/game.lua#L131
-	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
-	---@return table undefined AmmoData, see https://wiki.facepunch.com/gmod/Structures/AmmoData
-	function _G.game.getAmmoData(id) end
-	--- steamIDTo64 - shared - libs_sh/game.lua#L176
-	---@param id string The STEAM_0 style id
-	---@return string undefined 64bit Steam ID
-	function _G.game.steamIDTo64(id) end
-	--- bulletsLeft - server - libs_sh/game.lua#L268
-	---@return number undefined Number of bullets left to fire
-	function _G.game.bulletsLeft() end
-	--- serverFrameTime - client - libs_sh/game.lua#L308
-	---@return number undefined Server frametime
-	---@return number undefined Server frametime standard deviation
-	function _G.game.serverFrameTime() end
-	--- blastDamage - server - libs_sh/game.lua#L191
-	---@param damageOrigin Vector The center of the explosion
-	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
-	---@param damage number The amount of damage to be applied
-	function _G.game.blastDamage(damageOrigin, damageRadius, damage) end
-	--- isTimingOut - client - libs_sh/game.lua#L323
-	---@return boolean undefined If currently timing out
-	---@return number undefined Time since the connection started to timeout
-	function _G.game.isTimingOut() end
-	--- getMaxPlayers - shared - libs_sh/game.lua#L64
-	---@return number undefined The max players allowed by the server
-	function _G.game.getMaxPlayers() end
-	--- getMap - shared - libs_sh/game.lua#L34
-	---@return string undefined The name of the current map
-	function _G.game.getMap() end
-	--- isDedicated - shared - libs_sh/game.lua#L58
-	---@return boolean undefined True if the game is a dedicated server
-	function _G.game.isDedicated() end
-	--- isLan - shared - libs_sh/game.lua#L46
-	---@return boolean undefined True if the game is a lan game
-	function _G.game.isLan() end
-	--- getAmmoName - shared - libs_sh/game.lua#L124
-	---@param id number The ammo id
-	---@return string undefined The ammo name
-	function _G.game.getAmmoName(id) end
-	--- isPauseMenuVisible - client - libs_sh/game.lua#L338
-	---@return boolean undefined True if the game UI is visible
-	function _G.game.isPauseMenuVisible() end
-	--- isRecordingDemo - client - libs_sh/game.lua#L331
-	---@return boolean undefined True if recording a demo
-	function _G.game.isRecordingDemo() end
-	--- realFrameTime - client - libs_sh/game.lua#L316
-	---@return number undefined Frametime
-	function _G.game.realFrameTime() end
-	--- bulletsDPSLeft - server - libs_sh/game.lua#L275
-	---@return number undefined Damage left bullets can deal
-	function _G.game.bulletsDPSLeft() end
-	--- isSinglePlayer - shared - libs_sh/game.lua#L52
-	---@return boolean undefined True if the game is singleplayer
-	function _G.game.isSinglePlayer() end
-	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L300
-	---@param position Vector The position to check the skybox visibility from
-	---@return boolean undefined Whether the skybox is visible from the position
-	function _G.game.isSkyboxVisibleFromPoint(position) end
-	--- steamIDFrom64 - shared - libs_sh/game.lua#L169
-	---@param id string The 64 bit Steam ID
-	---@return string undefined STEAM_0 style Steam ID
-	function _G.game.steamIDFrom64(id) end
-	--- getTickCount - shared - libs_sh/game.lua#L95
-	---@return number undefined Ticks
-	function _G.game.getTickCount() end
-	--- bulletDamage - server - libs_sh/game.lua#L202
-	---@param src Vector The position to fire the bullets from.
-	---@param dir Vector The fire direction.
-	---@param damage number? The damage dealt by the bullet. Default: (1-100)
-	---@param num number? The amount of bullets to fire. Default: (1-40)
-	---@param force number? The force of the bullets. Default: (0-100)
-	---@param distance number? Maximum distance the bullet can travel.
-	---@param spread Vector? The spread, only x and y are needed.
-	---@param hullSize number? The hull size of the bullet. Default: (0-10)
-	---@param ignoreEntity Entity? The entity that the bullet will ignore when it will be shot.
-	---@param cb function? Function to be called with attacker, traceResult after the bullet was fired but before the damage is applied (the callback is called even if no damage is applied).
-	function _G.game.bulletDamage(src, dir, damage, num, force, distance, spread, hullSize, ignoreEntity, cb) end
-	--- canFireBullets - server - libs_sh/game.lua#L257
-	---@param damage number The damage dealt by the bullet. (1-100)
-	---@param num number The amount of bullets to fire. (1-5)
-	---@return boolean undefined true if the given bullets can be fired or else false
-	function _G.game.canFireBullets(damage, num) end
-	--- physicsFrameTime - shared - libs_sh/game.lua#L347
-	---@return number undefined The physics frame time length
-	function _G.game.physicsFrameTime() end
-	--- getIPAddress - shared - libs_sh/game.lua#L101
-	---@return string undefined The IP address and port in the format "x.x.x.x:x"
-	function _G.game.getIPAddress() end
-	--- hasFocus - client - libs_sh/game.lua#L284
-	---@return boolean undefined True if the game is focused
-	function _G.game.hasFocus() end
---- team
----  Library for retreiving information about teams
-_G.team = {}
-	--- getPlayers - shared - libs_sh/team.lua#L28
-	---@param ind number Index of the team
-	---@return table undefined Table of players
-	function _G.team.getPlayers(ind) end
-	--- getScore - shared - libs_sh/team.lua#L48
-	---@param ind number Index of the team
-	---@return number undefined Number score of the team
-	function _G.team.getScore(ind) end
-	--- getNumPlayers - shared - libs_sh/team.lua#L62
-	---@param ind number Index of the team
-	---@return number undefined Number of players on the team
-	function _G.team.getNumPlayers(ind) end
-	--- getName - shared - libs_sh/team.lua#L41
-	---@param ind number Index of the team
-	---@return string undefined String name of the team
-	function _G.team.getName(ind) end
-	--- getJoinable - shared - libs_sh/team.lua#L55
-	---@param ind number Index of the team
-	---@return boolean undefined Whether the team is joinable
-	function _G.team.getJoinable(ind) end
-	--- exists - shared - libs_sh/team.lua#L83
-	---@param ind number Index of the team
-	---@return boolean undefined Whether the team exists
-	function _G.team.exists(ind) end
-	--- getNumDeaths - shared - libs_sh/team.lua#L69
-	---@param ind number Index of the team
-	---@return number undefined Number of deaths
-	function _G.team.getNumDeaths(ind) end
-	--- getAllTeams - shared - libs_sh/team.lua#L15
-	---@return table undefined Table containing team information
-	function _G.team.getAllTeams() end
-	--- getNumFrags - shared - libs_sh/team.lua#L76
-	---@param ind number Index of the team
-	---@return number undefined Number of frags
-	function _G.team.getNumFrags(ind) end
-	--- bestAutoJoinTeam - shared - libs_sh/team.lua#L35
-	---@return number undefined Index of the best team to join
-	function _G.team.bestAutoJoinTeam() end
-	--- getColor - shared - libs_sh/team.lua#L21
-	---@param ind number Index of the team
-	---@return Color undefined Color of the team
-	function _G.team.getColor(ind) end
---- socket
---- 
----  Socket library. Only usable by owner of starfall.
---- 
----  See the WebSocket type for a version of this that doesn't require a DLL, and supports secure websockets (wss)
---- 
----  Beware "Blocking" functions; they will freeze the game. See http://w3.impa.br/~diego/software/luasocket/socket.html
---- 
----  Install the gmcl_socket.core_*.dll binary file to lua/bin and create a 'gm_socket_whitelist.txt' file in steamapps/common
---- 
----  Each line in the whitelist will allow luasocket to access the specified domain and port. They are formatted as 'domain:port' e.g. 'garrysmod.com:80', '*.com:80' '95.123.12.22:27015'
-_G.socket = {}
-	--- connect4 - client - libs_cl/socket.lua#L241
-	---@param addr number|string Address to connect to
-	---@param port number Port to connect to
-	---@param laddr number? Local address to bind to
-	---@param lport number? Local port to bind to
-	---@return table undefined client TCPClient object. Nil if error
-	---@return string? undefined error Error string if the previous return was nil, else nil
-	function _G.socket.connect4(addr, port, laddr, lport) end
-	--- tcp6 - client - libs_cl/socket.lua#L189
-	---@return table undefined New IPv6 TCP Master Object, or nil if error
-	---@return string? undefined The error message, or nil if no error
-	function _G.socket.tcp6() end
-	--- udp4 - client - libs_cl/socket.lua#L208
-	---@return table undefined New IPv4 UDP master object, or nil in case of error.
-	---@return string? undefined The error string if errored, else nil
-	function _G.socket.udp4() end
-	--- connect - client - libs_cl/socket.lua#L227
-	---@param addr number|string Address to connect to
-	---@param port number Port to connect to
-	---@param laddr number? Local address to bind to
-	---@param lport number? Local port to bind to
-	---@param family string? Socket family, either "inet" or "inet6".
-	---@return table undefined client TCPClient object. Nil if error
-	---@return string? undefined error Error string if the previous return was nil, else nil
-	function _G.socket.connect(addr, port, laddr, lport, family) end
-	--- udp - client - libs_cl/socket.lua#L199
-	---@return table undefined New IPv4 TCP master object, or nil in case of error.
-	---@return string? undefined The error string if errored, else nil
-	function _G.socket.udp() end
-	--- tcp4 - client - libs_cl/socket.lua#L180
-	---@return table undefined New IPv4 TCP Master Object, or nil if error
-	---@return string? undefined The error message, or nil if no error
-	function _G.socket.tcp4() end
-	--- tcp - client - libs_cl/socket.lua#L171
-	---@return table undefined New IPv4 TCP Master Object, or nil if error
-	---@return string? undefined The error message, or nil if no error
-	function _G.socket.tcp() end
-	--- udp6 - client - libs_cl/socket.lua#L217
-	---@return table undefined New IPv6 UDP master object, or nil in case of error.
-	---@return string? undefined The error string if errored, else nil
-	function _G.socket.udp6() end
-	--- connect6 - client - libs_cl/socket.lua#L253
-	---@param addr number|string Address to connect to
-	---@param port number Port to connect to
-	---@param laddr number? Local address to bind to
-	---@param lport number? Local port to bind to
-	---@return table undefined client TCPClient object. Nil if error
-	---@return string? undefined error Error string if the previous return was nil, else nil
-	function _G.socket.connect6(addr, port, laddr, lport) end
---- effect
---- 
----  Effects library.
---- 
----  See also https://wiki.facepunch.com/gmod/Default_Effects
-_G.effect = {}
-	--- beamRingPoint - shared - libs_sh/effect.lua#L197
-	---@param pos Vector The origin position of the effect
-	---@param lifetime number How long the effect will be drawing for, in seconds (clamped: 0 to 25.6)
-	---@param startRad number Initial radius of the effect (clamped: -4096 to 4096)
-	---@param endRad number Final radius of the effect (clamped: -4096 to 4096)
-	---@param width number How thick the beam should be (clamped: 0 to 128)
-	---@param amplitude number How noisy the beam should be (clamped: 0 to 64)
-	---@param color Color Color
-	---@param speed number? Causes the beam to start faded if set to any integer other than 0 (clamped: 0 to 255)
-	---@param flags number? Beam flags
-	---@param framerate number? Texture framerate (clamped: 0 to 255)
-	---@param material string? The material to use instead of the default one
-	function _G.effect.beamRingPoint(pos, lifetime, startRad, endRad, width, amplitude, color, speed, flags, framerate, material) end
-	--- canCreate - shared - libs_sh/effect.lua#L191
-	---@return boolean undefined True if a new effect may be created, false otherwise
-	function _G.effect.canCreate() end
-	--- create - shared - libs_sh/effect.lua#L114
-	---@param name string The effect type name to create
-	---@param data table The effect data table with keys:
- angles - Angle angle of the effect
- attachment - number Entity attachment id to attach to
- color - number The color to set the effect (This is an 8 bit color integer specific to the effect implementation)
- damagetype - number The damage type of the effect
- entindex - number The entity index to set the effect to (SERVER only)
- entity - Entity entity to set the effect to
- flags - number Flags to add to the effect
- hitbox - number The hitbox id of the effect
- magnitude - number A magnitude value of the effect
- materialindex - number The material index of the effect
- normal - Vector A normal vector of the effect
- origin - Vector The origin vector of the effect
- radius - number The radius value of the effect
- scale - number The scale value of the effect
- start - Vector the start vector of the effect
- surfaceprop - number The surfaceprop id of the effect
-	---@param nofilter boolean? (Optional) Make the effect play for everyone, even in predicted hooks. Only affects Server-side effects.
-	function _G.effect.create(name, data, nofilter) end
-	--- effectsLeft - shared - libs_sh/effect.lua#L185
-	---@return number undefined Number of remaining effects allowed by the burst quota
-	function _G.effect.effectsLeft() end
 --- prop
 ---  Library for creating and manipulating physical models (props).
 _G.prop = {}
@@ -3821,6 +2567,1338 @@ _G.prop.SENT_Data_Structures = {
 	--- getPropUndo - server - libs_sv/prop.lua#L694
 	---@return boolean undefined Determines whether props are undo-able
 	function _G.prop.getPropUndo() end
+--- input
+---  Input library.
+_G.input = {}
+	--- getAnalogValue - client - libs_sh/input.lua#L414
+	---@param axis number The analog axis to poll. See https://wiki.facepunch.com/gmod/Enums/ANALOG
+	---@return number undefined The digital value.
+	function _G.input.getAnalogValue(axis) end
+	--- lookupKeyBinding - client - libs_sh/input.lua#L241
+	---@param key number The key id, see input
+	---@return string undefined The command bound to the key
+	function _G.input.lookupKeyBinding(key) end
+	--- lockControls - client - libs_sh/input.lua#L375
+	---@param enabled boolean Whether to lock or unlock the controls
+	function _G.input.lockControls(enabled) end
+	--- getKeyName - client - libs_sh/input.lua#L276
+	---@param key number The key id, see input
+	---@return string undefined The name of the key
+	function _G.input.getKeyName(key) end
+	--- getCursorVisible - client - libs_sh/input.lua#L316
+	---@return boolean undefined The cursor's visibility
+	function _G.input.getCursorVisible() end
+	--- selectWeapon - client - libs_sh/input.lua#L348
+	---@param weapon Weapon The weapon entity to select
+	function _G.input.selectWeapon(weapon) end
+	--- isControlDown - client - libs_sh/input.lua#L297
+	---@return boolean undefined True if the control key is down
+	function _G.input.isControlDown() end
+	--- isControlLocked - client - libs_sh/input.lua#L393
+	---@return boolean undefined Whether the player's control is locked
+	function _G.input.isControlLocked() end
+	--- isKeyDown - client - libs_sh/input.lua#L251
+	---@param key number The key id, see input
+	---@return boolean undefined True if the key is down
+	function _G.input.isKeyDown(key) end
+	--- enableCursor - client - libs_sh/input.lua#L337
+	---@param enabled boolean Whether or not the cursor should be enabled
+	function _G.input.enableCursor(enabled) end
+	--- isGameUIVisible - client - libs_sh/input.lua#L407
+	---@return boolean undefined Whether the game menu overlay ( main menu ) is open or not
+	function _G.input.isGameUIVisible() end
+	--- screenToVector - client - libs_sh/input.lua#L325
+	---@param x number X coordinate on the screen
+	---@param y number Y coordinate on the screen
+	---@return Vector undefined Aim vector
+	function _G.input.screenToVector(x, y) end
+	--- getCursorPos - client - libs_sh/input.lua#L306
+	---@return number undefined The x position of the mouse
+	---@return number undefined The y position of the mouse
+	function _G.input.getCursorPos() end
+	--- isShiftDown - client - libs_sh/input.lua#L288
+	---@return boolean undefined True if the shift key is down
+	function _G.input.isShiftDown() end
+	--- canLockControls - client - libs_sh/input.lua#L400
+	---@return boolean undefined Whether the player's control can be locked
+	function _G.input.canLockControls() end
+	--- setCursorPos - client - libs_sh/input.lua#L358
+	---@param x number 
+	---@param y number 
+	function _G.input.setCursorPos(x, y) end
+	--- isMouseDown - client - libs_sh/input.lua#L264
+	---@param key number The mouse button id, see input
+	---@return boolean undefined True if the key is down
+	function _G.input.isMouseDown(key) end
+	--- lookupBinding - client - libs_sh/input.lua#L223
+	---@param binding string The name of the bind
+	---@return number undefined The id of the first key bound
+	---@return string undefined The name of the first key bound
+	function _G.input.lookupBinding(binding) end
+--- nextbot
+---  Library for spawning NextBots.
+_G.nextbot = {}
+	--- ragdollsLeft - server - libs_sv/nextbot.lua#L151
+	---@return number undefined Amount of nextbot ragdolls that can be spawned
+	function _G.nextbot.ragdollsLeft() end
+	--- nextbotsLeft - server - libs_sv/nextbot.lua#L135
+	---@return number undefined Number of nextbots able to be spawned
+	function _G.nextbot.nextbotsLeft() end
+	--- canSpawnRagdoll - server - libs_sv/nextbot.lua#L143
+	---@return boolean undefined Returns true if you can spawn nextbot ragdolls, false if not
+	function _G.nextbot.canSpawnRagdoll() end
+	--- create - server - libs_sv/nextbot.lua#L88
+	---@param pos Vector The position the nextbot will be spawned at.
+	---@param mdl string The model the nextbot will use.
+	---@return NextBot undefined The nextbot.
+	function _G.nextbot.create(pos, mdl) end
+	--- canSpawn - server - libs_sv/nextbot.lua#L127
+	---@return boolean undefined Returns true if you can spawn nextbots, false if not
+	function _G.nextbot.canSpawn() end
+--- darkrp
+---  Functions relating to DarkRP. These functions WILL NOT EXIST if DarkRP is not in use.
+_G.darkrp = {}
+	--- openF1Menu - client - libs_sh/darkrp2.lua#L768
+	function _G.darkrp.openF1Menu() end
+	--- doorIndexToEnt - server - libs_sh/darkrp2.lua#L655
+	---@param doorIndex number The door index
+	---@return Entity? undefined The door entity, or nil if the index is invalid or the door was removed.
+	function _G.darkrp.doorIndexToEnt(doorIndex) end
+	--- canMakeMoneyRequest - server - libs_sh/darkrp2.lua#L739
+	---@param sender Player? Player you intend to ask for money from later (if nil, will only check your money request rate)
+	---@return boolean undefined If you can make another money request
+	function _G.darkrp.canMakeMoneyRequest(sender) end
+	--- isInRoom - client - libs_sh/darkrp2.lua#L972
+	---@param ply Player The player
+	---@return boolean undefined Whether this player is in the same room.
+	function _G.darkrp.isInRoom(ply) end
+	--- canGiveMoney - server - libs_sh/darkrp2.lua#L761
+	---@return boolean undefined If you can give someone money
+	function _G.darkrp.canGiveMoney() end
+	--- closeF4Menu - client - libs_sh/darkrp2.lua#L792
+	function _G.darkrp.closeF4Menu() end
+	--- getFoodItems - shared - libs_sh/darkrp2.lua#L627
+	---@return table? undefined Table with food items, or nil if there are none.
+	function _G.darkrp.getFoodItems() end
+	--- keysUnOwnAll - server - libs_sh/darkrp2.lua#L932
+	---@param ply Player The player
+	function _G.darkrp.keysUnOwnAll(ply) end
+	--- getMoney - shared - libs_sh/darkrp2.lua#L1106
+	---@param ply Player The player
+	---@return number? undefined The amount of money, or nil if not accessible.
+	function _G.darkrp.getMoney(ply) end
+	--- isKeysOwnedBy - shared - libs_sh/darkrp2.lua#L875
+	---@param ent Entity The door
+	---@param ply Player The player to query.
+	---@return boolean undefined Whether this door is (co-)owned by the player.
+	function _G.darkrp.isKeysOwnedBy(ent, ply) end
+	--- payPlayer - server - libs_sh/darkrp2.lua#L674
+	---@param sender Player The player who gives the money.
+	---@param receiver Player The player who receives the money.
+	---@param amount number The amount of money.
+	function _G.darkrp.payPlayer(sender, receiver, amount) end
+	--- isKeysOwned - shared - libs_sh/darkrp2.lua#L868
+	---@param ent Entity The door
+	---@return boolean undefined Whether it's owned.
+	function _G.darkrp.isKeysOwned(ent) end
+	--- isDarkRPVarBlacklisted - shared - libs_sh/darkrp2.lua#L646
+	---@param var string The name of the variable
+	---@return boolean undefined If the variable is blacklisted
+	function _G.darkrp.isDarkRPVarBlacklisted(var) end
+	--- closeF1Menu - client - libs_sh/darkrp2.lua#L776
+	function _G.darkrp.closeF1Menu() end
+	--- isMedic - shared - libs_sh/darkrp2.lua#L1092
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is a medic. May be nil instead of false.
+	function _G.darkrp.isMedic(ply) end
+	--- openF4Menu - client - libs_sh/darkrp2.lua#L784
+	function _G.darkrp.openF4Menu() end
+	--- getLaws - shared - libs_sh/darkrp2.lua#L634
+	---@return table undefined A table of all current laws.
+	function _G.darkrp.getLaws() end
+	--- getAvailableVehicles - shared - libs_sh/darkrp2.lua#L615
+	---@return table undefined Names, models and classnames of all supported vehicles.
+	function _G.darkrp.getAvailableVehicles() end
+	--- isHitman - shared - libs_sh/darkrp2.lua#L1078
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is a hitman. May be nil instead of false.
+	function _G.darkrp.isHitman(ply) end
+	--- isMayor - shared - libs_sh/darkrp2.lua#L1085
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is the Mayor. May be nil instead of false.
+	function _G.darkrp.isMayor(ply) end
+	--- getCustomShipments - shared - libs_sh/darkrp2.lua#L640
+	---@return table? undefined A table with the contents of the GLua global "CustomShipments", or nil if it doesn't exist.
+	function _G.darkrp.getCustomShipments() end
+	--- isCP - shared - libs_sh/darkrp2.lua#L1071
+	---@param ply Player The player
+	---@return boolean undefined Whether this player is a part of the police force.
+	function _G.darkrp.isCP(ply) end
+	--- getKeysTitle - shared - libs_sh/darkrp2.lua#L853
+	---@param ent Entity The door
+	---@return string? undefined The title of the door or vehicle, or nil if none is set.
+	function _G.darkrp.getKeysTitle(ent) end
+	--- isChief - shared - libs_sh/darkrp2.lua#L1057
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is a Chief. May be nil instead of false.
+	function _G.darkrp.isChief(ply) end
+	--- isArrested - shared - libs_sh/darkrp2.lua#L1050
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is arrested. May be nil instead of false.
+	function _G.darkrp.isArrested(ply) end
+	--- isLocked - server - libs_sh/darkrp2.lua#L836
+	---@param ent Entity The door
+	---@return boolean undefined Whether it's locked.
+	function _G.darkrp.isLocked(ent) end
+	--- getShipmentCount - shared - libs_sh/darkrp2.lua#L900
+	---@param ent Entity The shipment
+	---@return number? undefined Number of items remaining, or nil if not a shipment
+	function _G.darkrp.getShipmentCount(ent) end
+	--- hasDarkRPPrivilege - shared - libs_sh/darkrp2.lua#L1042
+	---@param ply Player The player
+	---@return boolean undefined Whether the player has the privilege.
+	function _G.darkrp.hasDarkRPPrivilege(ply) end
+	--- getDarkRPVar - shared - libs_sh/darkrp2.lua#L1008
+	---@param ply Player The player
+	---@param var string The name of the variable.
+	---@return any undefined The value of the DarkRP var.
+	function _G.darkrp.getDarkRPVar(ply, var) end
+	--- getPocketItems - shared - libs_sh/darkrp2.lua#L1028
+	---@param ply Player The player
+	---@return table undefined A table containing information about the items in the pocket.
+	function _G.darkrp.getPocketItems(ply) end
+	--- getWantedReason - shared - libs_sh/darkrp2.lua#L1035
+	---@param ply Player The player
+	---@return string? undefined The reason, or nil if not wanted
+	function _G.darkrp.getWantedReason(ply) end
+	--- getJobTable - shared - libs_sh/darkrp2.lua#L1021
+	---@param ply Player The player
+	---@return table undefined Table with the job information.
+	function _G.darkrp.getJobTable(ply) end
+	--- isMoneyBag - shared - libs_sh/darkrp2.lua#L884
+	---@param ent Entity The entity
+	---@return boolean undefined Whether this entity is a money bag.
+	function _G.darkrp.isMoneyBag(ent) end
+	--- openPocketMenu - client - libs_sh/darkrp2.lua#L816
+	function _G.darkrp.openPocketMenu() end
+	--- getDoorOwner - shared - libs_sh/darkrp2.lua#L845
+	---@param ent Entity The door
+	---@return Player? undefined The owner of the door, or nil if the door is unowned.
+	function _G.darkrp.getDoorOwner(ent) end
+	--- canAfford - shared - libs_sh/darkrp2.lua#L983
+	---@param ply Player The player
+	---@param amount number The amount of money
+	---@return boolean undefined Whether the player can afford it
+	function _G.darkrp.canAfford(ply, amount) end
+	--- formatMoney - shared - libs_sh/darkrp2.lua#L607
+	---@param amount number The money to format, e.g. 100000.
+	---@return string undefined The money as a nice string, e.g. "$100,000".
+	function _G.darkrp.formatMoney(amount) end
+	--- canKeysUnlock - shared - libs_sh/darkrp2.lua#L1000
+	---@param ply Player The player
+	---@param door Entity The door
+	---@return boolean? undefined Whether the player is allowed to unlock the door. May be nil instead of false.
+	function _G.darkrp.canKeysUnlock(ply, door) end
+	--- canKeysLock - shared - libs_sh/darkrp2.lua#L992
+	---@param ply Player The player
+	---@param door Entity The door
+	---@return boolean? undefined Whether the player is allowed to lock the door. May be nil instead of false.
+	function _G.darkrp.canKeysLock(ply, door) end
+	--- doorIndex - server - libs_sh/darkrp2.lua#L828
+	---@param ent Entity The door
+	---@return number? undefined The door index, or nil if not a door.
+	function _G.darkrp.doorIndex(ent) end
+	--- moneyRequestsLeft - server - libs_sh/darkrp2.lua#L730
+	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
+	function _G.darkrp.moneyRequestsLeft() end
+	--- getMoneyAmount - shared - libs_sh/darkrp2.lua#L891
+	---@param ent Entity The money
+	---@return number? undefined Amount of money or number of items
+	function _G.darkrp.getMoneyAmount(ent) end
+	--- giveMoney - server - libs_sh/darkrp2.lua#L954
+	---@param ply Player The player
+	---@param amount number The amount of money to give.
+	function _G.darkrp.giveMoney(ply, amount) end
+	--- teamBanTimeLeft - server - libs_sh/darkrp2.lua#L941
+	---@param ply Player The player
+	---@param team number? The number of the job (e.g. TEAM_MEDIC). Uses the player's team if nil.
+	---@return number? undefined The time left on the team ban in seconds, or nil if not banned.
+	function _G.darkrp.teamBanTimeLeft(ply, team) end
+	--- isDoor - shared - libs_sh/darkrp2.lua#L861
+	---@param ent Entity The entity
+	---@return boolean undefined Whether it's a door.
+	function _G.darkrp.isDoor(ent) end
+	--- moneyGivingsLeft - server - libs_sh/darkrp2.lua#L752
+	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
+	function _G.darkrp.moneyGivingsLeft() end
+	--- getShipmentContents - shared - libs_sh/darkrp2.lua#L919
+	---@param ent Entity The shipment
+	---@return table? undefined Contents, or nil if not a shipment
+	function _G.darkrp.getShipmentContents(ent) end
+	--- getShipmentContentsIndex - shared - libs_sh/darkrp2.lua#L909
+	---@param ent Entity The shipment
+	---@return number? undefined Index of contents, or nil if not a shipment
+	function _G.darkrp.getShipmentContentsIndex(ent) end
+	--- jailPosCount - server - libs_sh/darkrp2.lua#L667
+	---@return number undefined The number of jail positions in the current map.
+	function _G.darkrp.jailPosCount() end
+	--- toggleF4Menu - client - libs_sh/darkrp2.lua#L800
+	function _G.darkrp.toggleF4Menu() end
+	--- getCategories - shared - libs_sh/darkrp2.lua#L621
+	---@return table undefined All categories.
+	function _G.darkrp.getCategories() end
+	--- isWanted - shared - libs_sh/darkrp2.lua#L1099
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is wanted. May be nil instead of false.
+	function _G.darkrp.isWanted(ply) end
+	--- isCook - shared - libs_sh/darkrp2.lua#L1064
+	---@param ply Player The player
+	---@return boolean? undefined Whether this player is a cook. May be nil instead of false.
+	function _G.darkrp.isCook(ply) end
+	--- openKeysMenu - client - libs_sh/darkrp2.lua#L808
+	function _G.darkrp.openKeysMenu() end
+	--- requestMoney - server - libs_sh/darkrp2.lua#L696
+	---@param sender Player The player who may or may not send the money.
+	---@param amount number The amount of money to ask for.
+	---@param message string? An optional custom message that will be shown in the money request prompt. May not exceed 60 bytes in length.
+	---@param callbackSuccess function? Optional function to call if request succeeds. Args (string: The request message, player: The money sender, number: The amount)
+	---@param callbackFailure function? Optional function to call if request fails. Args (string: why it failed)
+	---@param receiver Player? The player who may or may not receive the money, or the owner of the chip if not specified. Superuser only.
+	function _G.darkrp.requestMoney(sender, amount, message, callbackSuccess, callbackFailure, receiver) end
+--- convar
+---  ConVar library https://wiki.facepunch.com/gmod/ConVar
+_G.convar = {}
+	--- exists - client - libs_sh/convar.lua#L34
+	---@param name string Name of the ConVar
+	---@return boolean undefined True if exists
+	function _G.convar.exists(name) end
+	--- hasFlag - client - libs_sh/convar.lua#L111
+	---@param name string Name of the ConVar
+	---@param flag number Convar Flag, see https://wiki.facepunch.com/gmod/Enums/FCVAR
+	---@return boolean undefined Whether the flag is set
+	function _G.convar.hasFlag(name, flag) end
+	--- getInt - client - libs_sh/convar.lua#L77
+	---@param name string Name of the ConVar
+	---@return number undefined The integer value or 0 if converting fails
+	function _G.convar.getInt(name) end
+	--- getMax - client - libs_sh/convar.lua#L60
+	---@param name string Name of the ConVar
+	---@return number? undefined The maximum value or nil if not specified
+	function _G.convar.getMax(name) end
+	--- getUserInfo - shared - libs_sh/convar.lua#L123
+	---@param name string The name of userinfo variable.
+	---@return string undefined Returns the value of the given client-side userinfo ConVar (truncated to 31 bytes).
+	function _G.convar.getUserInfo(name) end
+	--- getString - client - libs_sh/convar.lua#L94
+	---@param name string Name of the ConVar
+	---@return string undefined Value as a string
+	function _G.convar.getString(name) end
+	--- getFlags - client - libs_sh/convar.lua#L102
+	---@param name string Name of the ConVar
+	---@return number undefined Number consisting of flag values
+	function _G.convar.getFlags(name) end
+	--- getMin - client - libs_sh/convar.lua#L52
+	---@param name string Name of the ConVar
+	---@return number undefined The minimum value or nil if not specified
+	function _G.convar.getMin(name) end
+	--- getDefault - client - libs_sh/convar.lua#L44
+	---@param name string Name of the ConVar
+	---@return string undefined Default value as a string
+	function _G.convar.getDefault(name) end
+	--- getFloat - client - libs_sh/convar.lua#L86
+	---@param name string Name of the ConVar
+	---@return number undefined The float value or 0 if converting fails
+	function _G.convar.getFloat(name) end
+	--- getBool - client - libs_sh/convar.lua#L68
+	---@param name string Name of the ConVar
+	---@return boolean undefined The boolean value
+	function _G.convar.getBool(name) end
+--- particleEffect
+---  ParticleEffect library.
+_G.particleEffect = {}
+	--- getList - client - libs_cl/particle_effect.lua#L264
+	---@return table undefined List of particle system names
+	function _G.particleEffect.getList() end
+	--- attach - client - libs_cl/particle_effect.lua#L200
+	---@param entity Entity The entity to attach the particle effect to (can be world)
+	---@param name string The name of the effect to create (e.g. "generic_smoke")
+	---@param pattach number See PATTACH enum
+	---@param options table? Optional table of tables (indexes 1 to 64) having the following structure:
+ number attachtype - The particle attach type (see PATTACH enum, default: `PATTACH.ABSORIGIN`).
+ Entity entity - The parent entity (default: NULL).
+ Vector position - The offset position for the given control point (default: nil).
+ This only affects the control points of the particle effects, and will do nothing if the effect doesn't use control points.
+	---@return ParticleEffect undefined ParticleEffect object.
+	function _G.particleEffect.attach(entity, name, pattach, options) end
+--- von
+---  vON Library
+_G.von = {}
+	--- serialize - shared - libs_sh/von.lua#L817
+	---@param tbl table Table to serialize
+	---@param checkRecursive boolean? Enable checking for table recursion (default: false)
+	---@return string undefined String encoded from the table
+	function _G.von.serialize(tbl, checkRecursive) end
+	--- deserialize - shared - libs_sh/von.lua#L808
+	---@param str string String to deserialize
+	---@return table undefined Table
+	function _G.von.deserialize(str) end
+--- table
+---  Lua table library https://wiki.garrysmod.com/page/Category:table
+_G.table = {}
+	--- maxn - shared - libs_sh/table.lua#L141
+	---@param tbl table The table to search
+	---@return number undefined The highest numerical key
+	function _G.table.maxn(tbl) end
+	--- hasValue - shared - libs_sh/table.lua#L87
+	---@param tbl table Table to check
+	---@param val any Value to search for
+	---@return boolean undefined Returns true if the table has that value, false otherwise
+	function _G.table.hasValue(tbl, val) end
+	--- collapseKeyValue - shared - libs_sh/table.lua#L36
+	---@param tbl table The input table
+	---@return table undefined Output table
+	function _G.table.collapseKeyValue(tbl) end
+	--- merge - shared - libs_sh/table.lua#L243
+	---@param dest table The table you want the source table to merge with
+	---@param source table The table you want to merge with the destination table
+	---@return table undefined Destination table
+	function _G.table.merge(dest, source) end
+	--- reverse - shared - libs_sh/table.lua#L168
+	---@param tbl table Table to reverse
+	---@return table undefined A reversed copy of the table
+	function _G.table.reverse(tbl) end
+	--- isSequential - shared - libs_sh/table.lua#L115
+	---@param tbl table Table to check
+	---@return boolean undefined True if sequential
+	function _G.table.isSequential(tbl) end
+	--- inherit - shared - libs_sh/table.lua#L100
+	---@param target table Table to copy data to
+	---@param base table Table to copy data from
+	---@return table undefined The target table
+	function _G.table.inherit(target, base) end
+	--- toString - shared - libs_sh/table.lua#L207
+	---@param tbl table The table to iterate over
+	---@param displayName string? Optional name for the table
+	---@param niceFormatting boolean? Optional, adds new lines and tabs to the string. Defaults to false
+	---@return string undefined The table formatted as a string
+	function _G.table.toString(tbl, displayName, niceFormatting) end
+	--- sortDesc - shared - libs_sh/table.lua#L201
+	---@param tbl table The table to sort in descending order
+	---@return table undefined Sorted table
+	function _G.table.sortDesc(tbl) end
+	--- getWinningKey - shared - libs_sh/table.lua#L81
+	---@param tbl table The table to search in
+	---@return any undefined Winning key
+	function _G.table.getWinningKey(tbl) end
+	--- sortByKey - shared - libs_sh/table.lua#L188
+	---@param tbl table Table to sort. All values of this table must be of same type
+	---@param descending boolean? Optional, should the order be descending? Defaults to false
+	function _G.table.sortByKey(tbl, descending) end
+	--- copyFromTo - shared - libs_sh/table.lua#L51
+	---@param source table The table to copy from
+	---@param target table The table to write to
+	function _G.table.copyFromTo(source, target) end
+	--- getKeys - shared - libs_sh/table.lua#L75
+	---@param tbl table The table to get keys of
+	---@return table undefined Table of keys
+	function _G.table.getKeys(tbl) end
+	--- add - shared - libs_sh/table.lua#L14
+	---@param target table The table to insert the new values into
+	---@param source table The table to retrieve the values from
+	---@return table undefined The target table
+	function _G.table.add(target, source) end
+	--- sort - shared - libs_sh/table.lua#L179
+	---@param tbl table The table to sort
+	---@param sorter function? If specified, the function will be called with 2 parameters each. Return true in this function if you want the first parameter to come first in the sorted array
+	function _G.table.sort(tbl, sorter) end
+	--- insert - shared - libs_sh/table.lua#L107
+	---@param tbl table The table to insert the variable into
+	---@param pos any The position in the table to insert the variable. If the third argument is not provided, this argument becomes the value to insert at the end of given table
+	---@param val any The variable to insert into the table
+	---@return number undefined The index the variable was placed at.
+	function _G.table.insert(tbl, pos, val) end
+	--- keysFromValue - shared - libs_sh/table.lua#L128
+	---@param tbl table Table to search
+	---@param val any Value to search for
+	---@return table undefined Table of keys
+	function _G.table.keysFromValue(tbl, val) end
+	--- sortByMember - shared - libs_sh/table.lua#L194
+	---@param tbl table Table to sort
+	---@param member any The key used to identify the member
+	---@param ascending boolean? Optional, should be ascending? Defaults to false
+	function _G.table.sortByMember(tbl, member, ascending) end
+	--- isEmpty - shared - libs_sh/table.lua#L94
+	---@param tbl table Table to check
+	---@return boolean undefined Returns true if the table contains any value, false otherwise
+	function _G.table.isEmpty(tbl) end
+	--- copy - shared - libs_sh/table.lua#L215
+	---@param tbl table The table to be copied
+	---@param lookup_table table? An optional lookup table for cyclic reference detection
+	---@return table undefined A deep copy of the original table
+	function _G.table.copy(tbl, lookup_table) end
+	--- forceInsert - shared - libs_sh/table.lua#L68
+	---@param tbl table Table to insert value in to. If not supplied, will create a table
+	---@param val any Value to insert
+	---@return table undefined The supplied or created table
+	function _G.table.forceInsert(tbl, val) end
+	--- removeByValue - shared - libs_sh/table.lua#L161
+	---@param tbl table The table that will be searched
+	---@param val any The value to find within the table
+	---@return any undefined The key at which the value was found, or false if the value was not found
+	function _G.table.removeByValue(tbl, val) end
+	--- shuffle - shared - libs_sh/table.lua#L174
+	---@param tbl table Table to shuffle
+	function _G.table.shuffle(tbl) end
+	--- empty - shared - libs_sh/table.lua#L63
+	---@param tbl table The table to empty
+	function _G.table.empty(tbl) end
+	--- address - shared - libs_sh/table.lua#L21
+	---@param target table The target to get the address of
+	---@return string undefined The table's string address
+	function _G.table.address(target) end
+	--- lowerKeyNames - shared - libs_sh/table.lua#L135
+	---@param tbl table Table to convert
+	---@return table undefined New converted table
+	function _G.table.lowerKeyNames(tbl) end
+	--- remove - shared - libs_sh/table.lua#L154
+	---@param tbl table The table to remove the value from
+	---@param index number? Optional index of the value to remove. Defaults to #tbl
+	---@return any undefined The value that was removed
+	function _G.table.remove(tbl, index) end
+	--- clearKeys - shared - libs_sh/table.lua#L29
+	---@param tbl table The original table to modify
+	---@param saveKeys boolean? Optional save the keys within each member table. This will insert a new field __key into each value, and should not be used if the table contains non-table values. Defaults to false
+	---@return table undefined Table with integer keys
+	function _G.table.clearKeys(tbl, saveKeys) end
+	--- random - shared - libs_sh/table.lua#L147
+	---@param tbl table The table to choose from
+	---@return any undefined A random value from the table
+	---@return any undefined The key associated with the random value
+	function _G.table.random(tbl) end
+	--- count - shared - libs_sh/table.lua#L57
+	---@param tbl table The table to count the keys of
+	---@return number undefined The number of keyvalue pairs
+	function _G.table.count(tbl) end
+	--- concat - shared - libs_sh/table.lua#L42
+	---@param tbl table The table to concatenate
+	---@param concatenator string? A seperator to insert between each string. Defaults to ""
+	---@param startPos number? Optional key to start at. Defaults to 1
+	---@param endPos number? Optional key to end at. Defaults to #tbl
+	---@return string undefined Concatenated string
+	function _G.table.concat(tbl, concatenator, startPos, endPos) end
+	--- keyFromValue - shared - libs_sh/table.lua#L121
+	---@param tbl table Table to search
+	---@param val any Value to search for
+	---@return any undefined Found key
+	function _G.table.keyFromValue(tbl, val) end
+--- find
+---  Find library. Finds entities in various shapes.
+_G.find = {}
+	--- all - shared - libs_sh/find.lua#L181
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.all(filter) end
+	--- closest - shared - libs_sh/find.lua#L190
+	---@param ents table The array of entities
+	---@param pos Vector The position
+	---@return Entity undefined The closest entity
+	function _G.find.closest(ents, pos) end
+	--- byName - shared - libs_sh/find.lua#L138
+	---@param name string The targetname
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.byName(name, filter) end
+	--- inSphere - shared - libs_sh/find.lua#L79
+	---@param center Vector Center of the sphere
+	---@param radius number Sphere radius
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inSphere(center, radius, filter) end
+	--- inRay - shared - libs_sh/find.lua#L106
+	---@param startpos Vector The ray start
+	---@param endpos Vector The ray end
+	---@param mins Vector? If not nil, will define a lower bound of the ray's hull
+	---@param maxs Vector? If not nil, will define an upper bound of the ray's hull
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inRay(startpos, endpos, mins, maxs, filter) end
+	--- allPlayers - shared - libs_sh/find.lua#L172
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.allPlayers(filter) end
+	--- inCone - shared - libs_sh/find.lua#L91
+	---@param pos Vector The cone vertex position
+	---@param dir Vector The direction to project the cone
+	---@param distance number The length to project the cone
+	---@param radius number The cosine of angle of the cone. 1 makes a 0° cone, 0.707 makes approximately 90°, 0 makes 180°, and so on.
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inCone(pos, dir, distance, radius, filter) end
+	--- inPVS - server - libs_sh/find.lua#L161
+	---@param pos Vector Vector view point
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inPVS(pos, filter) end
+	--- inBox - shared - libs_sh/find.lua#L68
+	---@param min Vector Bottom corner
+	---@param max Vector Top corner
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.inBox(min, max, filter) end
+	--- sortByClosest - shared - libs_sh/find.lua#L209
+	---@param ents table The array of entities
+	---@param pos Vector The position
+	---@param furthest boolean? Whether to have the further entities first
+	---@return table undefined A table of the closest entities
+	function _G.find.sortByClosest(ents, pos, furthest) end
+	--- playerBySteamID64 - shared - libs_sh/find.lua#L278
+	---@param steamid string 64-bit steam id to search for
+	---@return Player? undefined The player with matching steamid
+	function _G.find.playerBySteamID64(steamid) end
+	--- getMapCreatedEntity - shared - libs_sh/find.lua#L286
+	---@param num number Entity's creation id
+	---@return Entity? undefined The found entity or nil if not found
+	function _G.find.getMapCreatedEntity(num) end
+	--- byClass - shared - libs_sh/find.lua#L127
+	---@param class string The class name
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.byClass(class, filter) end
+	--- byModel - shared - libs_sh/find.lua#L149
+	---@param model string The model file
+	---@param filter function? Optional function to filter results
+	---@return table undefined An array of found entities
+	function _G.find.byModel(model, filter) end
+	--- playerBySteamID - shared - libs_sh/find.lua#L270
+	---@param steamid string Steam Id to search for
+	---@return Player? undefined The player with matching steamid
+	function _G.find.playerBySteamID(steamid) end
+	--- playersByName - shared - libs_sh/find.lua#L233
+	---@param name string Name to search for
+	---@param casesensitive boolean? Boolean should the match be case sensitive?
+	---@param exact boolean? Boolean should the name match exactly
+	---@return table undefined Table of found players
+	function _G.find.playersByName(name, casesensitive, exact) end
+--- hologram
+---  Library for creating and manipulating physics-less models (holograms).
+_G.hologram = {}
+	--- removeAll - shared - libs_sh/hologram.lua#L565
+	function _G.hologram.removeAll() end
+	--- canSpawn - shared - libs_sh/hologram.lua#L153
+	---@return boolean undefined Returns true if you can spawn holograms, false if not
+	function _G.hologram.canSpawn() end
+	--- create - shared - libs_sh/hologram.lua#L102
+	---@param pos Vector The position to create the hologram
+	---@param ang Angle The angle to create the hologram
+	---@param model string The model to give the hologram
+	---@param scale Vector? (Optional) The scale to give the hologram
+	---@return Hologram? undefined The hologram object or nil if it failed to create
+	function _G.hologram.create(pos, ang, model, scale) end
+	--- hologramsLeft - shared - libs_sh/hologram.lua#L160
+	---@return number undefined Number of holograms able to be spawned
+	function _G.hologram.hologramsLeft() end
+--- bit
+---  Bit library http://wiki.facepunch.com/gmod/Category:bit
+_G.bit = {}
+	--- rol - shared - libs_sh/bit.lua#L614
+	---@param value number The value to be manipulated.
+	---@param shiftCount number Amounts of bits to rotate left by.
+	---@return number undefined Left rotated value
+	function _G.bit.rol(value, shiftCount) end
+	--- arshift - shared - libs_sh/bit.lua#L567
+	---@param value number The value to be manipulated.
+	---@param shiftCount number Amount of bits to shift
+	---@return number undefined shiftedValue
+	function _G.bit.arshift(value, shiftCount) end
+	--- compress - shared - libs_sh/bit.lua#L683
+	---@param s string String to compress
+	---@return string? undefined Compressed string, or nil if compression failed
+	function _G.bit.compress(s) end
+	--- bnot - shared - libs_sh/bit.lua#L581
+	---@param value number The value to be inverted.
+	---@return number undefined Return value of bitwise not operation
+	function _G.bit.bnot(value) end
+	--- lshift - shared - libs_sh/bit.lua#L607
+	---@param value number The value to be manipulated.
+	---@param shiftCount number Amounts of bits to shift left by.
+	---@return number undefined Return of bitwise lshift operation
+	function _G.bit.lshift(value, shiftCount) end
+	--- stringstream - shared - libs_sh/bit.lua#L649
+	---@param stream string? String to set the initial buffer to (default "")
+	---@param i number? The initial buffer pointer (default 1)
+	---@param endian string? The endianness of number types. "big" or "little" (default "little")
+	---@return StringStream undefined StringStream object
+	function _G.bit.stringstream(stream, i, endian) end
+	--- sha256 - shared - libs_sh/bit.lua#L730
+	---@param s string The string to calculate the checksum of.
+	---@return string undefined The SHA-256 hex string of the checksum.
+	function _G.bit.sha256(s) end
+	--- stringToTable - shared - libs_sh/bit.lua#L675
+	---@param s string The serialized string data
+	---@return table undefined The deserialized table
+	function _G.bit.stringToTable(s) end
+	--- sha1 - shared - libs_sh/bit.lua#L741
+	---@param s string The string to calculate the checksum of.
+	---@return string undefined The SHA-1 hex string of the checksum.
+	function _G.bit.sha1(s) end
+	--- bor - shared - libs_sh/bit.lua#L587
+	---@param value1 number The first value.
+	---@param Extra ...number values to be evaluated. (must all be numbers)
+	---@return number undefined The bitwise OR result between all numbers.
+	function _G.bit.bor(value1, Extra) end
+	--- md5 - shared - libs_sh/bit.lua#L719
+	---@param s string The string to calculate the checksum of.
+	---@return string undefined The MD5 hex string of the checksum.
+	function _G.bit.md5(s) end
+	--- bswap - shared - libs_sh/bit.lua#L594
+	---@param value number The value to be byte swapped.
+	---@return number undefined Bit swapped value
+	function _G.bit.bswap(value) end
+	--- tableToString - shared - libs_sh/bit.lua#L667
+	---@param t table The table to serialize
+	---@return string undefined Serialized data
+	function _G.bit.tableToString(t) end
+	--- ror - shared - libs_sh/bit.lua#L621
+	---@param value number The value to be manipulated.
+	---@param shiftCount number Amounts of bits to rotate right by.
+	---@return number undefined Right rotated value
+	function _G.bit.ror(value, shiftCount) end
+	--- rshift - shared - libs_sh/bit.lua#L628
+	---@param value number The value to be manipulated.
+	---@param shiftCount number Amounts of bits to shift right by.
+	---@return number undefined Right shifted value
+	function _G.bit.rshift(value, shiftCount) end
+	--- bxor - shared - libs_sh/bit.lua#L600
+	---@param value number The value to be manipulated.
+	---@param otherValues ...number Values to bit xor with. Optional.
+	---@return number undefined Return value of bitwiseXOr operation
+	function _G.bit.bxor(value, otherValues) end
+	--- tobit - shared - libs_sh/bit.lua#L635
+	---@param value number The value to be normalized.
+	---@return number undefined Bit swapped value
+	function _G.bit.tobit(value) end
+	--- tohex - shared - libs_sh/bit.lua#L641
+	---@param value number The value to be normalized.
+	---@param digits number? The number of digits. Optional. (default 8)
+	---@return string undefined Hex string.
+	function _G.bit.tohex(value, digits) end
+	--- decompress - shared - libs_sh/bit.lua#L694
+	---@param s string String to decompress
+	---@param maxSize number? Maximum allowed size of decompressed data
+	---@return string? undefined Decompressed string, or nil if decompression failed
+	function _G.bit.decompress(s, maxSize) end
+	--- band - shared - libs_sh/bit.lua#L574
+	---@param value number The value to be manipulated.
+	---@param otherValues ...number Values bit to perform bitwise "and" with. Optional.
+	---@return number undefined Result of bitwise "and" operation.
+	function _G.bit.band(value, otherValues) end
+--- game
+---  Game functions
+_G.game = {}
+	--- getTickInterval - shared - libs_sh/game.lua#L83
+	---@return number undefined Time interval in seconds
+	function _G.game.getTickInterval() end
+	--- getActiveGamemode - shared - libs_sh/game.lua#L183
+	---@return string undefined The name of the active gamemode
+	function _G.game.getActiveGamemode() end
+	--- getWindSpeed - shared - libs_sh/game.lua#L161
+	---@param pos Vector? Optional position to get wind speed at. If specified, wind controllers with windradius other than -1 will be taken into account, if the point is within their radius. If omitted, only the global wind controller will be used (if one exists). This argument will be ignored on client-side and will be treated as nil because the position of env_wind is not currently networked to clients
+	---@return Vector undefined The current wind velocity at a given position
+	function _G.game.getWindSpeed(pos) end
+	--- getAmmoID - shared - libs_sh/game.lua#L117
+	---@param name string The ammo name
+	---@return number undefined The id or -1 if not found
+	function _G.game.getAmmoID(name) end
+	--- getSunInfo - client - libs_sh/game.lua#L291
+	---@return Vector undefined The direction of the sun
+	---@return number undefined How obstructed the sun is 0 to 1.
+	function _G.game.getSunInfo() end
+	--- getHostname - shared - libs_sh/game.lua#L40
+	---@return string undefined The hostname of the server
+	function _G.game.getHostname() end
+	--- getPlayerModels - shared - libs_sh/game.lua#L151
+	---@return table undefined List of valid playermodels
+	function _G.game.getPlayerModels() end
+	--- getAmmoMax - shared - libs_sh/game.lua#L138
+	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
+	---@return number undefined The maximum amount of reserve ammo a player can hold of this ammo type
+	function _G.game.getAmmoMax(id) end
+	--- getWorld - shared - libs_sh/game.lua#L145
+	---@return Entity undefined Worldspawn
+	function _G.game.getWorld() end
+	--- getTimeScale - shared - libs_sh/game.lua#L77
+	---@return number undefined Time scale
+	function _G.game.getTimeScale() end
+	--- getRealTickInterval - shared - libs_sh/game.lua#L89
+	---@return number undefined Time interval in seconds
+	function _G.game.getRealTickInterval() end
+	--- modelExists - shared - libs_sh/game.lua#L107
+	---@param path string Filepath in game folder
+	---@return boolean? undefined True if exists, false if not, nil if error
+	function _G.game.modelExists(path) end
+	--- isMounted - shared - libs_sh/game.lua#L70
+	---@param str string String identifier of the game, eg. 'cstrike'
+	---@return boolean undefined True if the game is mounted
+	function _G.game.isMounted(str) end
+	--- getAmmoData - shared - libs_sh/game.lua#L131
+	---@param id number See https://wiki.facepunch.com/gmod/Default_Ammo_Types
+	---@return table undefined AmmoData, see https://wiki.facepunch.com/gmod/Structures/AmmoData
+	function _G.game.getAmmoData(id) end
+	--- steamIDTo64 - shared - libs_sh/game.lua#L176
+	---@param id string The STEAM_0 style id
+	---@return string undefined 64bit Steam ID
+	function _G.game.steamIDTo64(id) end
+	--- bulletsLeft - server - libs_sh/game.lua#L268
+	---@return number undefined Number of bullets left to fire
+	function _G.game.bulletsLeft() end
+	--- serverFrameTime - client - libs_sh/game.lua#L308
+	---@return number undefined Server frametime
+	---@return number undefined Server frametime standard deviation
+	function _G.game.serverFrameTime() end
+	--- blastDamage - server - libs_sh/game.lua#L191
+	---@param damageOrigin Vector The center of the explosion
+	---@param damageRadius number The radius in which entities will be damaged (0 - 1500)
+	---@param damage number The amount of damage to be applied
+	function _G.game.blastDamage(damageOrigin, damageRadius, damage) end
+	--- isTimingOut - client - libs_sh/game.lua#L323
+	---@return boolean undefined If currently timing out
+	---@return number undefined Time since the connection started to timeout
+	function _G.game.isTimingOut() end
+	--- getMaxPlayers - shared - libs_sh/game.lua#L64
+	---@return number undefined The max players allowed by the server
+	function _G.game.getMaxPlayers() end
+	--- getMap - shared - libs_sh/game.lua#L34
+	---@return string undefined The name of the current map
+	function _G.game.getMap() end
+	--- isDedicated - shared - libs_sh/game.lua#L58
+	---@return boolean undefined True if the game is a dedicated server
+	function _G.game.isDedicated() end
+	--- isLan - shared - libs_sh/game.lua#L46
+	---@return boolean undefined True if the game is a lan game
+	function _G.game.isLan() end
+	--- getAmmoName - shared - libs_sh/game.lua#L124
+	---@param id number The ammo id
+	---@return string undefined The ammo name
+	function _G.game.getAmmoName(id) end
+	--- isPauseMenuVisible - client - libs_sh/game.lua#L338
+	---@return boolean undefined True if the game UI is visible
+	function _G.game.isPauseMenuVisible() end
+	--- isRecordingDemo - client - libs_sh/game.lua#L331
+	---@return boolean undefined True if recording a demo
+	function _G.game.isRecordingDemo() end
+	--- realFrameTime - client - libs_sh/game.lua#L316
+	---@return number undefined Frametime
+	function _G.game.realFrameTime() end
+	--- bulletsDPSLeft - server - libs_sh/game.lua#L275
+	---@return number undefined Damage left bullets can deal
+	function _G.game.bulletsDPSLeft() end
+	--- isSinglePlayer - shared - libs_sh/game.lua#L52
+	---@return boolean undefined True if the game is singleplayer
+	function _G.game.isSinglePlayer() end
+	--- isSkyboxVisibleFromPoint - client - libs_sh/game.lua#L300
+	---@param position Vector The position to check the skybox visibility from
+	---@return boolean undefined Whether the skybox is visible from the position
+	function _G.game.isSkyboxVisibleFromPoint(position) end
+	--- steamIDFrom64 - shared - libs_sh/game.lua#L169
+	---@param id string The 64 bit Steam ID
+	---@return string undefined STEAM_0 style Steam ID
+	function _G.game.steamIDFrom64(id) end
+	--- getTickCount - shared - libs_sh/game.lua#L95
+	---@return number undefined Ticks
+	function _G.game.getTickCount() end
+	--- bulletDamage - server - libs_sh/game.lua#L202
+	---@param src Vector The position to fire the bullets from.
+	---@param dir Vector The fire direction.
+	---@param damage number? The damage dealt by the bullet. Default: (1-100)
+	---@param num number? The amount of bullets to fire. Default: (1-40)
+	---@param force number? The force of the bullets. Default: (0-100)
+	---@param distance number? Maximum distance the bullet can travel.
+	---@param spread Vector? The spread, only x and y are needed.
+	---@param hullSize number? The hull size of the bullet. Default: (0-10)
+	---@param ignoreEntity Entity? The entity that the bullet will ignore when it will be shot.
+	---@param cb function? Function to be called with attacker, traceResult after the bullet was fired but before the damage is applied (the callback is called even if no damage is applied).
+	function _G.game.bulletDamage(src, dir, damage, num, force, distance, spread, hullSize, ignoreEntity, cb) end
+	--- canFireBullets - server - libs_sh/game.lua#L257
+	---@param damage number The damage dealt by the bullet. (1-100)
+	---@param num number The amount of bullets to fire. (1-5)
+	---@return boolean undefined true if the given bullets can be fired or else false
+	function _G.game.canFireBullets(damage, num) end
+	--- physicsFrameTime - shared - libs_sh/game.lua#L347
+	---@return number undefined The physics frame time length
+	function _G.game.physicsFrameTime() end
+	--- getIPAddress - shared - libs_sh/game.lua#L101
+	---@return string undefined The IP address and port in the format "x.x.x.x:x"
+	function _G.game.getIPAddress() end
+	--- hasFocus - client - libs_sh/game.lua#L284
+	---@return boolean undefined True if the game is focused
+	function _G.game.hasFocus() end
+--- team
+---  Library for retreiving information about teams
+_G.team = {}
+	--- getPlayers - shared - libs_sh/team.lua#L28
+	---@param ind number Index of the team
+	---@return table undefined Table of players
+	function _G.team.getPlayers(ind) end
+	--- getScore - shared - libs_sh/team.lua#L48
+	---@param ind number Index of the team
+	---@return number undefined Number score of the team
+	function _G.team.getScore(ind) end
+	--- getNumPlayers - shared - libs_sh/team.lua#L62
+	---@param ind number Index of the team
+	---@return number undefined Number of players on the team
+	function _G.team.getNumPlayers(ind) end
+	--- getName - shared - libs_sh/team.lua#L41
+	---@param ind number Index of the team
+	---@return string undefined String name of the team
+	function _G.team.getName(ind) end
+	--- getJoinable - shared - libs_sh/team.lua#L55
+	---@param ind number Index of the team
+	---@return boolean undefined Whether the team is joinable
+	function _G.team.getJoinable(ind) end
+	--- exists - shared - libs_sh/team.lua#L83
+	---@param ind number Index of the team
+	---@return boolean undefined Whether the team exists
+	function _G.team.exists(ind) end
+	--- getNumDeaths - shared - libs_sh/team.lua#L69
+	---@param ind number Index of the team
+	---@return number undefined Number of deaths
+	function _G.team.getNumDeaths(ind) end
+	--- getAllTeams - shared - libs_sh/team.lua#L15
+	---@return table undefined Table containing team information
+	function _G.team.getAllTeams() end
+	--- getNumFrags - shared - libs_sh/team.lua#L76
+	---@param ind number Index of the team
+	---@return number undefined Number of frags
+	function _G.team.getNumFrags(ind) end
+	--- bestAutoJoinTeam - shared - libs_sh/team.lua#L35
+	---@return number undefined Index of the best team to join
+	function _G.team.bestAutoJoinTeam() end
+	--- getColor - shared - libs_sh/team.lua#L21
+	---@param ind number Index of the team
+	---@return Color undefined Color of the team
+	function _G.team.getColor(ind) end
+--- mesh
+---  Mesh library.
+_G.mesh = {}
+	--- generate - client - libs_sh/mesh.lua#L1030
+	---@param mesh_obj Mesh? Optional Mesh object, mesh to build. (default: nil)
+	---@param prim_type number Int, primitive type, see MATERIAL
+	---@param prim_count number Int, the amount of primitives
+	---@param func function The function provided that will generate the mesh vertices
+	function _G.mesh.generate(mesh_obj, prim_type, prim_count, func) end
+	--- parseObj - shared - libs_sh/mesh.lua#L708
+	---@param obj string The obj data
+	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
+	---@param triangulate boolean? Whether to triangulate the faces
+	---@return table undefined Table of Mesh tables. The keys correspond to the objs object names, and the values are tables of vertices that can be passed to mesh.createFromTable
+	---@return table undefined Table of Mesh data. {positions = positionData, normals = normalData, texturecoords = texturecoordData, faces = faceData}
+	function _G.mesh.parseObj(obj, threaded, triangulate) end
+	--- writeNormal - client - libs_sh/mesh.lua#L1087
+	---@param normal Vector Normal
+	function _G.mesh.writeNormal(normal) end
+	--- generateUV - shared - libs_sh/mesh.lua#L736
+	---@param vertices table The table of vertices
+	---@param scale number The scale of the uvs
+	function _G.mesh.generateUV(vertices, scale) end
+	--- getModelMeshes - client - libs_sh/mesh.lua#L968
+	---@param model string The full path to a model to get the visual meshes of.
+	---@param lod number? The lod of the model to use. Default 0.
+	---@param bodygroupMask number? The bodygroupMask of the model to use. Default 0.
+	---@return table undefined A table of tables with the following format:  string material - The material of the specific mesh table triangles - A table of MeshVertex structures ready to be fed into IMesh:BuildFromTriangles table verticies - A table of MeshVertex structures representing all the vertexes of the mesh. This table is used internally to generate the "triangles" table. Each MeshVertex structure returned also has an extra table of tables field called "weights" with the following data:  number boneID - The bone this vertex is attached to number weight - How "strong" this vertex is attached to the bone. A vertex can be attached to multiple bones at once.
+	---@return table undefined A table of tables with bone id keys with the following format:  number parent - The parent bone id Matrix matrix - pretransformed bone matrix
+	function _G.mesh.getModelMeshes(model, lod, bodygroupMask) end
+	--- trianglesLeft - client - libs_sh/mesh.lua#L1004
+	---@return number undefined Number of triangles that can be created
+	function _G.mesh.trianglesLeft() end
+	--- writeColor - client - libs_sh/mesh.lua#L1077
+	---@param r number Number, red value
+	---@param g number Number, green value
+	---@param b number Number, blue value
+	---@param a number Number, alpha value
+	function _G.mesh.writeColor(r, g, b, a) end
+	--- writePosition - client - libs_sh/mesh.lua#L1094
+	---@param pos Vector Position
+	function _G.mesh.writePosition(pos) end
+	--- trianglesLeftRender - client - libs_sh/mesh.lua#L1011
+	---@return number undefined Number of triangles that can be rendered
+	function _G.mesh.trianglesLeftRender() end
+	--- createFromObj - client - libs_sh/mesh.lua#L908
+	---@param obj string The obj file data
+	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit
+	---@param triangulate boolean? Whether to triangulate faces. (Consumes more CPU)
+	---@return table undefined Table of Mesh objects. The keys correspond to the objs object names
+	function _G.mesh.createFromObj(obj, threaded, triangulate) end
+	--- generateNormals - shared - libs_sh/mesh.lua#L722
+	---@param vertices table The table of vertices
+	---@param inverted boolean? Optional bool, invert the normal
+	---@param smooth_limit number? Optional number, smooths the normal based on the limit in radians
+	function _G.mesh.generateNormals(vertices, inverted, smooth_limit) end
+	--- createEmptySkinned - client - libs_sh/mesh.lua#L945
+	---@return Mesh undefined Mesh object
+	function _G.mesh.createEmptySkinned() end
+	--- writeBoneData - shared - libs_sh/mesh.lua#L1142
+	---@param index number The slot index for the vertex, either 0 or 1.
+	---@param matrixId number The matrix index for the vertex, in the range of 1 -> 53.
+	---@param weight number How much influence that matrix will have on this vertex, in the range of 0 -> 1. Both weights on each vertex should sum to 1. 
+	function _G.mesh.writeBoneData(index, matrixId, weight) end
+	--- advanceVertex - client - libs_sh/mesh.lua#L1150
+	function _G.mesh.advanceVertex() end
+	--- writeQuadEasy - client - libs_sh/mesh.lua#L1131
+	---@param position Vector 
+	---@param normal Vector 
+	---@param w number 
+	---@param h number 
+	---@param col Color The color for the vertices.
+	function _G.mesh.writeQuadEasy(position, normal, w, h, col) end
+	--- writeQuad - client - libs_sh/mesh.lua#L1120
+	---@param v1 Vector Vertex1 position
+	---@param v2 Vector Vertex2 position
+	---@param v3 Vector Vertex3 position
+	---@param v4 Vector Vertex4 position
+	---@param col Color The color for the vertices.
+	function _G.mesh.writeQuad(v1, v2, v3, v4, col) end
+	--- generateTangents - shared - libs_sh/mesh.lua#L748
+	---@param vertices table The table of vertices
+	function _G.mesh.generateTangents(vertices) end
+	--- findConvexHull - shared - libs_sh/mesh.lua#L758
+	---@param vertices table The table of vertices (vectors) or vertex data (http://wiki.facepunch.com/gmod/Structures/MeshVertex)
+	---@param threaded boolean? Optional bool, use threading object that can be used to run algorithm over time to prevent hitting quota limit
+	---@return table undefined The mesh table which can be passed to mesh.createFromTable
+	---@return table undefined The table of vertices which can be passed to prop.createCustom
+	function _G.mesh.findConvexHull(vertices, threaded) end
+	--- writeUV - client - libs_sh/mesh.lua#L1101
+	---@param stage number Stage of the texture coordinate
+	---@param u number U coordinate
+	---@param v number V coordinate
+	function _G.mesh.writeUV(stage, u, v) end
+	--- createEmpty - client - libs_sh/mesh.lua#L936
+	---@return Mesh undefined Mesh object
+	function _G.mesh.createEmpty() end
+	--- createFromTable - client - libs_sh/mesh.lua#L866
+	---@param vertices table Table containing vertex data. http://wiki.facepunch.com/gmod/Structures/MeshVertex
+	---@param threaded boolean? Optional bool, use threading object that can be used to load the mesh over time to prevent hitting quota limit. The thread will yield with number of vertices remaining to be processed. After 0 is yielded, the final expensive phase starts.
+	---@return Mesh undefined Mesh object
+	function _G.mesh.createFromTable(vertices, threaded) end
+	--- writeUserData - client - libs_sh/mesh.lua#L1110
+	---@param x number x
+	---@param y number y
+	---@param z number z
+	---@param handedness number 
+	function _G.mesh.writeUserData(x, y, z, handedness) end
+--- effect
+--- 
+---  Effects library.
+--- 
+---  See also https://wiki.facepunch.com/gmod/Default_Effects
+_G.effect = {}
+	--- beamRingPoint - shared - libs_sh/effect.lua#L197
+	---@param pos Vector The origin position of the effect
+	---@param lifetime number How long the effect will be drawing for, in seconds (clamped: 0 to 25.6)
+	---@param startRad number Initial radius of the effect (clamped: -4096 to 4096)
+	---@param endRad number Final radius of the effect (clamped: -4096 to 4096)
+	---@param width number How thick the beam should be (clamped: 0 to 128)
+	---@param amplitude number How noisy the beam should be (clamped: 0 to 64)
+	---@param color Color Color
+	---@param speed number? Causes the beam to start faded if set to any integer other than 0 (clamped: 0 to 255)
+	---@param flags number? Beam flags
+	---@param framerate number? Texture framerate (clamped: 0 to 255)
+	---@param material string? The material to use instead of the default one
+	function _G.effect.beamRingPoint(pos, lifetime, startRad, endRad, width, amplitude, color, speed, flags, framerate, material) end
+	--- canCreate - shared - libs_sh/effect.lua#L191
+	---@return boolean undefined True if a new effect may be created, false otherwise
+	function _G.effect.canCreate() end
+	--- create - shared - libs_sh/effect.lua#L114
+	---@param name string The effect type name to create
+	---@param data table The effect data table with keys:
+ angles - Angle angle of the effect
+ attachment - number Entity attachment id to attach to
+ color - number The color to set the effect (This is an 8 bit color integer specific to the effect implementation)
+ damagetype - number The damage type of the effect
+ entindex - number The entity index to set the effect to (SERVER only)
+ entity - Entity entity to set the effect to
+ flags - number Flags to add to the effect
+ hitbox - number The hitbox id of the effect
+ magnitude - number A magnitude value of the effect
+ materialindex - number The material index of the effect
+ normal - Vector A normal vector of the effect
+ origin - Vector The origin vector of the effect
+ radius - number The radius value of the effect
+ scale - number The scale value of the effect
+ start - Vector the start vector of the effect
+ surfaceprop - number The surfaceprop id of the effect
+	---@param nofilter boolean? (Optional) Make the effect play for everyone, even in predicted hooks. Only affects Server-side effects.
+	function _G.effect.create(name, data, nofilter) end
+	--- effectsLeft - shared - libs_sh/effect.lua#L185
+	---@return number undefined Number of remaining effects allowed by the burst quota
+	function _G.effect.effectsLeft() end
+--- socket
+--- 
+---  Socket library. Only usable by owner of starfall.
+--- 
+---  See the WebSocket type for a version of this that doesn't require a DLL, and supports secure websockets (wss)
+--- 
+---  Beware "Blocking" functions; they will freeze the game. See http://w3.impa.br/~diego/software/luasocket/socket.html
+--- 
+---  Install the gmcl_socket.core_*.dll binary file to lua/bin and create a 'gm_socket_whitelist.txt' file in steamapps/common
+--- 
+---  Each line in the whitelist will allow luasocket to access the specified domain and port. They are formatted as 'domain:port' e.g. 'garrysmod.com:80', '*.com:80' '95.123.12.22:27015'
+_G.socket = {}
+	--- connect4 - client - libs_cl/socket.lua#L241
+	---@param addr number|string Address to connect to
+	---@param port number Port to connect to
+	---@param laddr number? Local address to bind to
+	---@param lport number? Local port to bind to
+	---@return table undefined client TCPClient object. Nil if error
+	---@return string? undefined error Error string if the previous return was nil, else nil
+	function _G.socket.connect4(addr, port, laddr, lport) end
+	--- tcp6 - client - libs_cl/socket.lua#L189
+	---@return table undefined New IPv6 TCP Master Object, or nil if error
+	---@return string? undefined The error message, or nil if no error
+	function _G.socket.tcp6() end
+	--- udp4 - client - libs_cl/socket.lua#L208
+	---@return table undefined New IPv4 UDP master object, or nil in case of error.
+	---@return string? undefined The error string if errored, else nil
+	function _G.socket.udp4() end
+	--- connect - client - libs_cl/socket.lua#L227
+	---@param addr number|string Address to connect to
+	---@param port number Port to connect to
+	---@param laddr number? Local address to bind to
+	---@param lport number? Local port to bind to
+	---@param family string? Socket family, either "inet" or "inet6".
+	---@return table undefined client TCPClient object. Nil if error
+	---@return string? undefined error Error string if the previous return was nil, else nil
+	function _G.socket.connect(addr, port, laddr, lport, family) end
+	--- udp - client - libs_cl/socket.lua#L199
+	---@return table undefined New IPv4 TCP master object, or nil in case of error.
+	---@return string? undefined The error string if errored, else nil
+	function _G.socket.udp() end
+	--- tcp4 - client - libs_cl/socket.lua#L180
+	---@return table undefined New IPv4 TCP Master Object, or nil if error
+	---@return string? undefined The error message, or nil if no error
+	function _G.socket.tcp4() end
+	--- tcp - client - libs_cl/socket.lua#L171
+	---@return table undefined New IPv4 TCP Master Object, or nil if error
+	---@return string? undefined The error message, or nil if no error
+	function _G.socket.tcp() end
+	--- udp6 - client - libs_cl/socket.lua#L217
+	---@return table undefined New IPv6 UDP master object, or nil in case of error.
+	---@return string? undefined The error string if errored, else nil
+	function _G.socket.udp6() end
+	--- connect6 - client - libs_cl/socket.lua#L253
+	---@param addr number|string Address to connect to
+	---@param port number Port to connect to
+	---@param laddr number? Local address to bind to
+	---@param lport number? Local port to bind to
+	---@return table undefined client TCPClient object. Nil if error
+	---@return string? undefined error Error string if the previous return was nil, else nil
+	function _G.socket.connect6(addr, port, laddr, lport) end
+--- navmesh
+---  Library for navmesh navigation with the NavArea type
+_G.navmesh = {}
+--- NAV_MESH - shared
+---  ENUMs used by NavArea:getAttributes and NavArea:hasAttributes
+_G.navmesh.NAV_MESH = {
+	---@type any
+	--- The nav area is invalid.
+	["INVALID"] = nil,
+	---@type any
+	--- Must crouch to use this node/area
+	["CROUCH"] = nil,
+	---@type any
+	--- Must jump to traverse this area (only used during generation)
+	["JUMP"] = nil,
+	---@type any
+	--- Do not adjust for obstacles, just move along area
+	["PRECISE"] = nil,
+	---@type any
+	--- Inhibit discontinuity jumping
+	["NO_JUMP"] = nil,
+	---@type any
+	--- Must stop when entering this area
+	["STOP"] = nil,
+	---@type any
+	--- Must run to traverse this area
+	["RUN"] = nil,
+	---@type any
+	--- Must walk to traverse this area
+	["WALK"] = nil,
+	---@type any
+	--- Avoid this area unless alternatives are too dangerous
+	["AVOID"] = nil,
+	---@type any
+	--- Area may become blocked, and should be periodically checked
+	["TRANSIENT"] = nil,
+	---@type any
+	--- Area should not be considered for hiding spot generation
+	["DONT_HIDE"] = nil,
+	---@type any
+	--- Bots hiding in this area should stand
+	["STAND"] = nil,
+	---@type any
+	--- Hostages shouldn't use this area
+	["NO_HOSTAGES"] = nil,
+	---@type any
+	--- This area represents stairs, do not attempt to climb or jump them - just walk up
+	["STAIRS"] = nil,
+	---@type any
+	--- Don't merge this area with adjacent areas
+	["NO_MERGE"] = nil,
+	---@type any
+	--- This nav area is the climb point on the tip of an obstacle
+	["OBSTACLE_TOP"] = nil,
+	---@type any
+	--- This nav area is adjacent to a drop of at least CliffHeight
+	["CLIFF"] = nil,
+	---@type any
+	--- Area has designer specified cost controlled by func_nav_cost entities
+	["FUNC_COST"] = nil,
+	---@type any
+	--- Area is in an elevator's path
+	["HAS_ELEVATOR"] = nil,
+	---@type any
+	--- -2147483648
+	["NAV_BLOCKER"] = nil,
+}
+--- NAV_CORNER - shared
+---  ENUMs used by NavArea methods. These Enums correspond to each corner of a CNavArea
+_G.navmesh.NAV_CORNER = {
+	---@type any
+	--- 0
+	["NORTH_WEST"] = nil,
+	---@type any
+	--- 1
+	["NORTH_EAST"] = nil,
+	---@type any
+	--- 2
+	["SOUTH_EAST"] = nil,
+	---@type any
+	--- 3
+	["SOUTH_WEST"] = nil,
+	---@type any
+	--- Represents all corners, only applicable to certain functions, such as NavArea:placeOnGround.
+	["NUM_CORNERS"] = nil,
+}
+--- NAV_DIR - shared
+---  NavArea direction ENUMs
+_G.navmesh.NAV_DIR = {
+	---@type any
+	--- 0
+	["NORTH"] = nil,
+	---@type any
+	--- 1
+	["SOUTH"] = nil,
+	---@type any
+	--- 2
+	["EAST"] = nil,
+	---@type any
+	--- 3
+	["WEST"] = nil,
+}
+--- NAV_TRAVERSE_TYPE - shared
+---  ENUMs used by NavArea:getParentHow.
+_G.navmesh.NAV_TRAVERSE_TYPE = {
+	---@type any
+	--- 0
+	["GO_NORTH"] = nil,
+	---@type any
+	--- 1
+	["GO_EAST"] = nil,
+	---@type any
+	--- 2
+	["GO_SOUTH"] = nil,
+	---@type any
+	--- 3
+	["GO_WEST"] = nil,
+	---@type any
+	--- 4
+	["GO_LADDER_UP"] = nil,
+	---@type any
+	--- 5
+	["GO_LADDER_DOWN"] = nil,
+	---@type any
+	--- 6
+	["GO_JUMP"] = nil,
+	---@type any
+	--- 7
+	["GO_ELEVATOR_UP"] = nil,
+	---@type any
+	--- 8
+	["GO_ELEVATOR_DOWN"] = nil,
+}
+	--- clearWalkableSeeds - server - libs_sv/navmesh.lua#L111
+	function _G.navmesh.clearWalkableSeeds() end
+	--- find - server - libs_sv/navmesh.lua#L182
+	---@param pos Vector The position to search around
+	---@param radius number Radius to search within (max 100000)
+	---@param stepdown number Maximum fall distance allowed (max 50000)
+	---@param stepup number Maximum jump height allowed (max 50000)
+	---@return table undefined A table of immutable `NavArea`s
+	function _G.navmesh.find(pos, radius, stepdown, stepup) end
+	--- setMarkedArea - server - libs_sv/navmesh.lua#L130
+	---@param area NavArea The CNavArea to set as the marked area.
+	function _G.navmesh.setMarkedArea(area) end
+	--- isLoaded - server - libs_sv/navmesh.lua#L75
+	---@return boolean undefined Whether a navmesh has been loaded when loading the map.
+	function _G.navmesh.isLoaded() end
+	--- isGenerating - server - libs_sv/navmesh.lua#L69
+	---@return boolean undefined Whether we're generating a nav mesh or not.
+	function _G.navmesh.isGenerating() end
+	--- getNavAreaCount - server - libs_sv/navmesh.lua#L204
+	---@return number undefined The highest ID of all nav areas on the map.
+	function _G.navmesh.getNavAreaCount() end
+	--- reset - server - libs_sv/navmesh.lua#L88
+	function _G.navmesh.reset() end
+	--- getGetEditCursorPosition - server - libs_sv/navmesh.lua#L240
+	---@return Vector undefined The position of the edit cursor.
+	function _G.navmesh.getGetEditCursorPosition() end
+	--- getNearestNavArea - server - libs_sv/navmesh.lua#L228
+	---@param pos Vector The position to look from
+	---@param maxDist number Maximum distance from the given position that the function will look for a CNavArea (Default 10000)
+	---@param checkLOS boolean If this is set to true then the function will internally do a trace from the starting position to each potential CNavArea with a MASK_NPCSOLID_BRUSHONLY. If the trace fails then the CNavArea is ignored. If this is set to false then the function will find the closest CNavArea through anything, including the world. (Default false)
+	---@param checkGround boolean If checkGround is true then this function will internally call navmesh.getNavArea to check if there is a CNavArea directly below the position, and return it if so, before checking anywhere else. (Default true)
+	---@return NavArea undefined The closest NavArea found with the given parameters, or a NULL NavArea if one was not found.
+	function _G.navmesh.getNearestNavArea(pos, maxDist, checkLOS, checkGround) end
+	--- getPlayerSpawnName - server - libs_sv/navmesh.lua#L124
+	---@return string undefined The classname of the spawn point entity. By default returns "info_player_start"
+	function _G.navmesh.getPlayerSpawnName() end
+	--- beginGeneration - server - libs_sv/navmesh.lua#L63
+	function _G.navmesh.beginGeneration() end
+	--- save - server - libs_sv/navmesh.lua#L95
+	function _G.navmesh.save() end
+	--- getMarkedArea - server - libs_sv/navmesh.lua#L118
+	---@return NavArea undefined The currently marked NavArea.
+	function _G.navmesh.getMarkedArea() end
+	--- getNavAreaByID - server - libs_sv/navmesh.lua#L211
+	---@param id number ID of the NavArea to get. Starts with 1.
+	---@return NavArea undefined The NavArea with given ID.
+	function _G.navmesh.getNavAreaByID(id) end
+	--- load - server - libs_sv/navmesh.lua#L81
+	function _G.navmesh.load() end
+	--- addWalkableSeed - server - libs_sv/navmesh.lua#L102
+	---@param pos Vector The terrain position.
+	---@param dir Vector The terrain normal.
+	function _G.navmesh.addWalkableSeed(pos, dir) end
+	--- getNavArea - server - libs_sv/navmesh.lua#L219
+	---@param pos Vector The position to search for.
+	---@param limit number The elevation limit at which the NavArea will be searched.
+	---@return NavArea undefined The NavArea.
+	function _G.navmesh.getNavArea(pos, limit) end
+	--- getGroundHeight - server - libs_sv/navmesh.lua#L161
+	---@param pos Vector The position to check
+	---@return number undefined height The height of the ground layer
+	---@return Vector undefined normal The surface normal of the ground layer
+	function _G.navmesh.getGroundHeight(pos) end
+	--- setPlayerSpawnName - server - libs_sv/navmesh.lua#L138
+	---@param spawnPointClass string The classname of what the player uses to spawn, automatically adds it to the walkable positions during map generation.
+	function _G.navmesh.setPlayerSpawnName(spawnPointClass) end
+	--- createNavArea - server - libs_sv/navmesh.lua#L146
+	---@param corner Vector The first corner of the new NavArea
+	---@param opposite_corner Vector The opposite (diagonally) corner of the new NavArea
+	---@return NavArea? undefined The new NavArea or nil if we failed for some reason
+	function _G.navmesh.createNavArea(corner, opposite_corner) end
+	--- getAllNavAreas - server - libs_sv/navmesh.lua#L170
+	---@return table undefined A table of all the `NavArea`s on the current map
+	function _G.navmesh.getAllNavAreas() end
 --- sound
 ---  Sound library.
 _G.sound = {}
@@ -3860,19 +3938,6 @@ _G.sound = {}
 	--- canCreate - shared - libs_sh/sound.lua#L95
 	---@return boolean undefined If it is possible to make a sound
 	function _G.sound.canCreate() end
---- light
----  Light library.
-_G.light = {}
-	--- create - client - libs_cl/light.lua#L143
-	---@param pos Vector The position of the light
-	---@param size number The size of the light. Must be lower than sf_light_maxsize
-	---@param brightness number The brightness of the light
-	---@param color Color The color of the light
-	---@return Light undefined Dynamic light
-	function _G.light.create(pos, size, brightness, color) end
-	--- createProjected - client - libs_cl/light.lua#L288
-	---@return ProjectedTexture undefined Projected Texture
-	function _G.light.createProjected() end
 --- sql
 ---  SQL library.
 _G.sql = {}
@@ -3893,18 +3958,19 @@ _G.sql = {}
 	---@param tabname string The table to remove.
 	---@return boolean undefined True if the table was successfully removed, false if not.
 	function _G.sql.tableRemove(tabname) end
---- physenv
----  Physenv functions
-_G.physenv = {}
-	--- getAirDensity - shared - libs_sh/physenv.lua#L15
-	---@return number undefined Air Density
-	function _G.physenv.getAirDensity() end
-	--- getPerformanceSettings - shared - libs_sh/physenv.lua#L27
-	---@return table undefined Performance Settings Table.
-	function _G.physenv.getPerformanceSettings() end
-	--- getGravity - shared - libs_sh/physenv.lua#L21
-	---@return Vector undefined Gravity Vector ( eg Vector(0,0,-600) )
-	function _G.physenv.getGravity() end
+--- light
+---  Light library.
+_G.light = {}
+	--- create - client - libs_cl/light.lua#L143
+	---@param pos Vector The position of the light
+	---@param size number The size of the light. Must be lower than sf_light_maxsize
+	---@param brightness number The brightness of the light
+	---@param color Color The color of the light
+	---@return Light undefined Dynamic light
+	function _G.light.create(pos, size, brightness, color) end
+	--- createProjected - client - libs_cl/light.lua#L288
+	---@return ProjectedTexture undefined Projected Texture
+	function _G.light.createProjected() end
 --- joystick
 ---  Joystick library.
 _G.joystick = {}
@@ -3963,164 +4029,6 @@ NOTIFY.HINT
 NOTIFY.CLEANUP
 	---@param length number Time in seconds to display the notification (Max length of 30)
 	function _G.notification.addLegacy(text, type, length) end
---- timer
----  Deals with time and timers.
-_G.timer = {}
-	--- exists - shared - libs_sh/timer.lua#L143
-	---@param name string The timer name
-	---@return boolean undefined if the timer exists
-	function _G.timer.exists(name) end
-	--- toggle - shared - libs_sh/timer.lua#L209
-	---@param name string The timer name
-	---@return boolean undefined Status of the timer.
-	function _G.timer.toggle(name) end
-	--- create - shared - libs_sh/timer.lua#L100
-	---@param name string The timer name
-	---@param delay number The time, in seconds, to set the timer to.
-	---@param reps number The repetitions of the timer. 0 = infinite
-	---@param func function The function to call when the timer is fired
-	function _G.timer.create(name, delay, reps, func) end
-	--- getTimersLeft - shared - libs_sh/timer.lua#L236
-	---@return number undefined Number of available timers
-	function _G.timer.getTimersLeft() end
-	--- start - shared - libs_sh/timer.lua#L159
-	---@param name string The timer name
-	---@return boolean undefined True if the timer exists, false if it doesn't.
-	function _G.timer.start(name) end
-	--- timeleft - shared - libs_sh/timer.lua#L218
-	---@param name string The timer name
-	---@return number undefined The amount of time left (in seconds). If the timer is paused, the amount will be negative. Nil if timer doesn't exist
-	function _G.timer.timeleft(name) end
-	--- frametime - shared - libs_sh/timer.lua#L54
-	---@return number undefined The time between frames / ticks depending on realm
-	function _G.timer.frametime() end
-	--- adjust - shared - libs_sh/timer.lua#L168
-	---@param name string The timer name
-	---@param delay number The time, in seconds, to set the timer to.
-	---@param reps number? (Optional) The repetitions of the timer. 0 = infinite, nil = 1
-	---@param func function? (Optional) The function to call when the timer is fired
-	---@return boolean undefined True if succeeded
-	function _G.timer.adjust(name, delay, reps, func) end
-	--- pause - shared - libs_sh/timer.lua#L191
-	---@param name string The timer name
-	---@return boolean undefined false if the timer didn't exist or was already paused, true otherwise.
-	function _G.timer.pause(name) end
-	--- systime - shared - libs_sh/timer.lua#L47
-	---@return number undefined The time in seconds since start up
-	function _G.timer.systime() end
-	--- repsleft - shared - libs_sh/timer.lua#L227
-	---@param name string The timer name
-	---@return number undefined The amount of executions left. Nil if timer doesn't exist
-	function _G.timer.repsleft(name) end
-	--- remove - shared - libs_sh/timer.lua#L130
-	---@param name string The timer name
-	function _G.timer.remove(name) end
-	--- realtime - shared - libs_sh/timer.lua#L39
-	---@return number undefined Realtime in seconds
-	function _G.timer.realtime() end
-	--- stop - shared - libs_sh/timer.lua#L151
-	---@param name string The timer name
-	---@return boolean undefined False if the timer didn't exist or was already stopped, true otherwise.
-	function _G.timer.stop(name) end
-	--- curtime - shared - libs_sh/timer.lua#L31
-	---@return number undefined Curtime in seconds
-	function _G.timer.curtime() end
-	--- simple - shared - libs_sh/timer.lua#L118
-	---@param delay number The time, in second, to set the timer to
-	---@param func function The function to call when the timer is fired
-	function _G.timer.simple(delay, func) end
-	--- unpause - shared - libs_sh/timer.lua#L200
-	---@param name string The timer name
-	---@return boolean undefined false if the timer didn't exist or was already running, true otherwise.
-	function _G.timer.unpause(name) end
---- midi
---- 
----  Midi Library
---- 
----  Polls midi event information from midi devices.
---- 
----  Requires a custom binary -> https://github.com/FPtje/gmcl_midi/releases/latest
---- 
----  GNU/Linux and MacOS users will have to compile their own binaries.
---- 
----  Instructions here -> https://github.com/FPtje/gmcl_midi/blob/master/Compiling.md
-_G.midi = {}
---- MIDI - shared
----  MIDI command ENUMs
-_G.midi.MIDI = {
-	---@type any
-	["NOTE_OFF"] = nil,
-	---@type any
-	["NOTE_ON"] = nil,
-	---@type any
-	["AFTERTOUCH"] = nil,
-	---@type any
-	["CONTINUOUS_CONTROLLER"] = nil,
-	---@type any
-	["PATCH_CHANGE"] = nil,
-	---@type any
-	["CHANNEL_PRESSURE"] = nil,
-	---@type any
-	["PITCH_BEND"] = nil,
-}
-	--- closePort - client - libs_cl/midi.lua#L81
-	---@param port number the midi port to close.
-	---@return string undefined the name of the midi device closed at the given port.
-	function _G.midi.closePort(port) end
-	--- getCode - client - libs_cl/midi.lua#L88
-	---@param command number the command
-	---@return number undefined the command code
-	function _G.midi.getCode(command) end
-	--- openPort - client - libs_cl/midi.lua#L48
-	---@param port number the midi port to open. Passing nothing defaults to 0.
-	---@return string undefined the name of the midi device opened at the given port.
-	function _G.midi.openPort(port) end
-	--- isPortOpen - client - libs_cl/midi.lua#L59
-	---@param port number The port number
-	---@return boolean undefined if the port is open
-	function _G.midi.isPortOpen(port) end
-	--- getPorts - client - libs_cl/midi.lua#L75
-	---@return table undefined the table of midi ports.  Starts at index 0
-	function _G.midi.getPorts() end
-	--- getChannel - client - libs_cl/midi.lua#L95
-	---@param command number the command
-	---@return number undefined the midi channel
-	function _G.midi.getChannel(command) end
-	--- getName - client - libs_cl/midi.lua#L102
-	---@param command number the command
-	---@return string undefined command name
-	function _G.midi.getName(command) end
-	--- closeAllPorts - client - libs_cl/midi.lua#L67
-	function _G.midi.closeAllPorts() end
---- os
----  Lua os library https://wiki.garrysmod.com/page/Category:os
-_G.os = {}
-	--- difftime - shared - libs_sh/builtins.lua#L438
-	---@param timeA number The first value
-	---@param timeB number The value to subtract
-	---@return number undefined Time difference
-	function _G.os.difftime(timeA, timeB) end
-	--- isOSX - shared - libs_sh/builtins.lua#L462
-	---@return boolean undefined If the os is OSX
-	function _G.os.isOSX() end
-	--- isLinux - shared - libs_sh/builtins.lua#L457
-	---@return boolean undefined If the os is Linux
-	function _G.os.isLinux() end
-	--- date - shared - libs_sh/builtins.lua#L425
-	---@param format string? The format string. If starts with an '!', it will use UTC timezone rather than the local timezone
-	---@param time number? Time to use for the format. Default os.time()
-	---@return string|table undefined If format is equal to '*t' or '!*t' then it will return a table with DateData structure, otherwise a string
-	function _G.os.date(format, time) end
-	--- time - shared - libs_sh/builtins.lua#L445
-	---@param dateData table? Optional table to generate the time from. This table's data is interpreted as being in the local timezone
-	---@return number undefined Seconds passed since Unix epoch
-	function _G.os.time(dateData) end
-	--- clock - shared - libs_sh/builtins.lua#L419
-	---@return number undefined The runtime
-	function _G.os.clock() end
-	--- isWindows - shared - libs_sh/builtins.lua#L452
-	---@return boolean undefined If the os is Windows
-	function _G.os.isWindows() end
 --- math
 ---  Lua math library https://wiki.garrysmod.com/page/Category:math
 _G.math = {}
@@ -4527,216 +4435,176 @@ _G.math = {}
 	---@param fraction number Fraction of the progress to ease, from 0 to 1
 	---@return number undefined "Eased" Value
 	function _G.math.easeInElastic(fraction) end
---- darkrp
----  Functions relating to DarkRP. These functions WILL NOT EXIST if DarkRP is not in use.
-_G.darkrp = {}
-	--- openF1Menu - client - libs_sh/darkrp2.lua#L768
-	function _G.darkrp.openF1Menu() end
-	--- doorIndexToEnt - server - libs_sh/darkrp2.lua#L655
-	---@param doorIndex number The door index
-	---@return Entity? undefined The door entity, or nil if the index is invalid or the door was removed.
-	function _G.darkrp.doorIndexToEnt(doorIndex) end
-	--- canMakeMoneyRequest - server - libs_sh/darkrp2.lua#L739
-	---@param sender Player? Player you intend to ask for money from later (if nil, will only check your money request rate)
-	---@return boolean undefined If you can make another money request
-	function _G.darkrp.canMakeMoneyRequest(sender) end
-	--- isInRoom - client - libs_sh/darkrp2.lua#L972
-	---@param ply Player The player
-	---@return boolean undefined Whether this player is in the same room.
-	function _G.darkrp.isInRoom(ply) end
-	--- canGiveMoney - server - libs_sh/darkrp2.lua#L761
-	---@return boolean undefined If you can give someone money
-	function _G.darkrp.canGiveMoney() end
-	--- closeF4Menu - client - libs_sh/darkrp2.lua#L792
-	function _G.darkrp.closeF4Menu() end
-	--- getFoodItems - shared - libs_sh/darkrp2.lua#L627
-	---@return table? undefined Table with food items, or nil if there are none.
-	function _G.darkrp.getFoodItems() end
-	--- keysUnOwnAll - server - libs_sh/darkrp2.lua#L932
-	---@param ply Player The player
-	function _G.darkrp.keysUnOwnAll(ply) end
-	--- getMoney - shared - libs_sh/darkrp2.lua#L1106
-	---@param ply Player The player
-	---@return number? undefined The amount of money, or nil if not accessible.
-	function _G.darkrp.getMoney(ply) end
-	--- isKeysOwnedBy - shared - libs_sh/darkrp2.lua#L875
-	---@param ent Entity The door
-	---@param ply Player The player to query.
-	---@return boolean undefined Whether this door is (co-)owned by the player.
-	function _G.darkrp.isKeysOwnedBy(ent, ply) end
-	--- payPlayer - server - libs_sh/darkrp2.lua#L674
-	---@param sender Player The player who gives the money.
-	---@param receiver Player The player who receives the money.
-	---@param amount number The amount of money.
-	function _G.darkrp.payPlayer(sender, receiver, amount) end
-	--- isKeysOwned - shared - libs_sh/darkrp2.lua#L868
-	---@param ent Entity The door
-	---@return boolean undefined Whether it's owned.
-	function _G.darkrp.isKeysOwned(ent) end
-	--- isDarkRPVarBlacklisted - shared - libs_sh/darkrp2.lua#L646
-	---@param var string The name of the variable
-	---@return boolean undefined If the variable is blacklisted
-	function _G.darkrp.isDarkRPVarBlacklisted(var) end
-	--- closeF1Menu - client - libs_sh/darkrp2.lua#L776
-	function _G.darkrp.closeF1Menu() end
-	--- isMedic - shared - libs_sh/darkrp2.lua#L1092
-	---@param ply Player The player
-	---@return boolean? undefined Whether this player is a medic. May be nil instead of false.
-	function _G.darkrp.isMedic(ply) end
-	--- openF4Menu - client - libs_sh/darkrp2.lua#L784
-	function _G.darkrp.openF4Menu() end
-	--- getLaws - shared - libs_sh/darkrp2.lua#L634
-	---@return table undefined A table of all current laws.
-	function _G.darkrp.getLaws() end
-	--- getAvailableVehicles - shared - libs_sh/darkrp2.lua#L615
-	---@return table undefined Names, models and classnames of all supported vehicles.
-	function _G.darkrp.getAvailableVehicles() end
-	--- isHitman - shared - libs_sh/darkrp2.lua#L1078
-	---@param ply Player The player
-	---@return boolean? undefined Whether this player is a hitman. May be nil instead of false.
-	function _G.darkrp.isHitman(ply) end
-	--- isMayor - shared - libs_sh/darkrp2.lua#L1085
-	---@param ply Player The player
-	---@return boolean? undefined Whether this player is the Mayor. May be nil instead of false.
-	function _G.darkrp.isMayor(ply) end
-	--- getCustomShipments - shared - libs_sh/darkrp2.lua#L640
-	---@return table? undefined A table with the contents of the GLua global "CustomShipments", or nil if it doesn't exist.
-	function _G.darkrp.getCustomShipments() end
-	--- isCP - shared - libs_sh/darkrp2.lua#L1071
-	---@param ply Player The player
-	---@return boolean undefined Whether this player is a part of the police force.
-	function _G.darkrp.isCP(ply) end
-	--- getKeysTitle - shared - libs_sh/darkrp2.lua#L853
-	---@param ent Entity The door
-	---@return string? undefined The title of the door or vehicle, or nil if none is set.
-	function _G.darkrp.getKeysTitle(ent) end
-	--- isChief - shared - libs_sh/darkrp2.lua#L1057
-	---@param ply Player The player
-	---@return boolean? undefined Whether this player is a Chief. May be nil instead of false.
-	function _G.darkrp.isChief(ply) end
-	--- isArrested - shared - libs_sh/darkrp2.lua#L1050
-	---@param ply Player The player
-	---@return boolean? undefined Whether this player is arrested. May be nil instead of false.
-	function _G.darkrp.isArrested(ply) end
-	--- isLocked - server - libs_sh/darkrp2.lua#L836
-	---@param ent Entity The door
-	---@return boolean undefined Whether it's locked.
-	function _G.darkrp.isLocked(ent) end
-	--- getShipmentCount - shared - libs_sh/darkrp2.lua#L900
-	---@param ent Entity The shipment
-	---@return number? undefined Number of items remaining, or nil if not a shipment
-	function _G.darkrp.getShipmentCount(ent) end
-	--- hasDarkRPPrivilege - shared - libs_sh/darkrp2.lua#L1042
-	---@param ply Player The player
-	---@return boolean undefined Whether the player has the privilege.
-	function _G.darkrp.hasDarkRPPrivilege(ply) end
-	--- getDarkRPVar - shared - libs_sh/darkrp2.lua#L1008
-	---@param ply Player The player
-	---@param var string The name of the variable.
-	---@return any undefined The value of the DarkRP var.
-	function _G.darkrp.getDarkRPVar(ply, var) end
-	--- getPocketItems - shared - libs_sh/darkrp2.lua#L1028
-	---@param ply Player The player
-	---@return table undefined A table containing information about the items in the pocket.
-	function _G.darkrp.getPocketItems(ply) end
-	--- getWantedReason - shared - libs_sh/darkrp2.lua#L1035
-	---@param ply Player The player
-	---@return string? undefined The reason, or nil if not wanted
-	function _G.darkrp.getWantedReason(ply) end
-	--- getJobTable - shared - libs_sh/darkrp2.lua#L1021
-	---@param ply Player The player
-	---@return table undefined Table with the job information.
-	function _G.darkrp.getJobTable(ply) end
-	--- isMoneyBag - shared - libs_sh/darkrp2.lua#L884
-	---@param ent Entity The entity
-	---@return boolean undefined Whether this entity is a money bag.
-	function _G.darkrp.isMoneyBag(ent) end
-	--- openPocketMenu - client - libs_sh/darkrp2.lua#L816
-	function _G.darkrp.openPocketMenu() end
-	--- getDoorOwner - shared - libs_sh/darkrp2.lua#L845
-	---@param ent Entity The door
-	---@return Player? undefined The owner of the door, or nil if the door is unowned.
-	function _G.darkrp.getDoorOwner(ent) end
-	--- canAfford - shared - libs_sh/darkrp2.lua#L983
-	---@param ply Player The player
-	---@param amount number The amount of money
-	---@return boolean undefined Whether the player can afford it
-	function _G.darkrp.canAfford(ply, amount) end
-	--- formatMoney - shared - libs_sh/darkrp2.lua#L607
-	---@param amount number The money to format, e.g. 100000.
-	---@return string undefined The money as a nice string, e.g. "$100,000".
-	function _G.darkrp.formatMoney(amount) end
-	--- canKeysUnlock - shared - libs_sh/darkrp2.lua#L1000
-	---@param ply Player The player
-	---@param door Entity The door
-	---@return boolean? undefined Whether the player is allowed to unlock the door. May be nil instead of false.
-	function _G.darkrp.canKeysUnlock(ply, door) end
-	--- canKeysLock - shared - libs_sh/darkrp2.lua#L992
-	---@param ply Player The player
-	---@param door Entity The door
-	---@return boolean? undefined Whether the player is allowed to lock the door. May be nil instead of false.
-	function _G.darkrp.canKeysLock(ply, door) end
-	--- doorIndex - server - libs_sh/darkrp2.lua#L828
-	---@param ent Entity The door
-	---@return number? undefined The door index, or nil if not a door.
-	function _G.darkrp.doorIndex(ent) end
-	--- moneyRequestsLeft - server - libs_sh/darkrp2.lua#L730
-	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
-	function _G.darkrp.moneyRequestsLeft() end
-	--- getMoneyAmount - shared - libs_sh/darkrp2.lua#L891
-	---@param ent Entity The money
-	---@return number? undefined Amount of money or number of items
-	function _G.darkrp.getMoneyAmount(ent) end
-	--- giveMoney - server - libs_sh/darkrp2.lua#L954
-	---@param ply Player The player
-	---@param amount number The amount of money to give.
-	function _G.darkrp.giveMoney(ply, amount) end
-	--- teamBanTimeLeft - server - libs_sh/darkrp2.lua#L941
-	---@param ply Player The player
-	---@param team number? The number of the job (e.g. TEAM_MEDIC). Uses the player's team if nil.
-	---@return number? undefined The time left on the team ban in seconds, or nil if not banned.
-	function _G.darkrp.teamBanTimeLeft(ply, team) end
-	--- isDoor - shared - libs_sh/darkrp2.lua#L861
-	---@param ent Entity The entity
-	---@return boolean undefined Whether it's a door.
-	function _G.darkrp.isDoor(ent) end
-	--- moneyGivingsLeft - server - libs_sh/darkrp2.lua#L752
-	---@return number undefined Number of money requests able to be created. This could be a decimal, so floor it first
-	function _G.darkrp.moneyGivingsLeft() end
-	--- getShipmentContents - shared - libs_sh/darkrp2.lua#L919
-	---@param ent Entity The shipment
-	---@return table? undefined Contents, or nil if not a shipment
-	function _G.darkrp.getShipmentContents(ent) end
-	--- getShipmentContentsIndex - shared - libs_sh/darkrp2.lua#L909
-	---@param ent Entity The shipment
-	---@return number? undefined Index of contents, or nil if not a shipment
-	function _G.darkrp.getShipmentContentsIndex(ent) end
-	--- jailPosCount - server - libs_sh/darkrp2.lua#L667
-	---@return number undefined The number of jail positions in the current map.
-	function _G.darkrp.jailPosCount() end
-	--- toggleF4Menu - client - libs_sh/darkrp2.lua#L800
-	function _G.darkrp.toggleF4Menu() end
-	--- getCategories - shared - libs_sh/darkrp2.lua#L621
-	---@return table undefined All categories.
-	function _G.darkrp.getCategories() end
-	--- isWanted - shared - libs_sh/darkrp2.lua#L1099
-	---@param ply Player The player
-	---@return boolean? undefined Whether this player is wanted. May be nil instead of false.
-	function _G.darkrp.isWanted(ply) end
-	--- isCook - shared - libs_sh/darkrp2.lua#L1064
-	---@param ply Player The player
-	---@return boolean? undefined Whether this player is a cook. May be nil instead of false.
-	function _G.darkrp.isCook(ply) end
-	--- openKeysMenu - client - libs_sh/darkrp2.lua#L808
-	function _G.darkrp.openKeysMenu() end
-	--- requestMoney - server - libs_sh/darkrp2.lua#L696
-	---@param sender Player The player who may or may not send the money.
-	---@param amount number The amount of money to ask for.
-	---@param message string? An optional custom message that will be shown in the money request prompt. May not exceed 60 bytes in length.
-	---@param callbackSuccess function? Optional function to call if request succeeds. Args (string: The request message, player: The money sender, number: The amount)
-	---@param callbackFailure function? Optional function to call if request fails. Args (string: why it failed)
-	---@param receiver Player? The player who may or may not receive the money, or the owner of the chip if not specified. Superuser only.
-	function _G.darkrp.requestMoney(sender, amount, message, callbackSuccess, callbackFailure, receiver) end
+--- midi
+--- 
+---  Midi Library
+--- 
+---  Polls midi event information from midi devices.
+--- 
+---  Requires a custom binary -> https://github.com/FPtje/gmcl_midi/releases/latest
+--- 
+---  GNU/Linux and MacOS users will have to compile their own binaries.
+--- 
+---  Instructions here -> https://github.com/FPtje/gmcl_midi/blob/master/Compiling.md
+_G.midi = {}
+--- MIDI - shared
+---  MIDI command ENUMs
+_G.midi.MIDI = {
+	---@type any
+	["NOTE_OFF"] = nil,
+	---@type any
+	["NOTE_ON"] = nil,
+	---@type any
+	["AFTERTOUCH"] = nil,
+	---@type any
+	["CONTINUOUS_CONTROLLER"] = nil,
+	---@type any
+	["PATCH_CHANGE"] = nil,
+	---@type any
+	["CHANNEL_PRESSURE"] = nil,
+	---@type any
+	["PITCH_BEND"] = nil,
+}
+	--- closePort - client - libs_cl/midi.lua#L81
+	---@param port number the midi port to close.
+	---@return string undefined the name of the midi device closed at the given port.
+	function _G.midi.closePort(port) end
+	--- getCode - client - libs_cl/midi.lua#L88
+	---@param command number the command
+	---@return number undefined the command code
+	function _G.midi.getCode(command) end
+	--- openPort - client - libs_cl/midi.lua#L48
+	---@param port number the midi port to open. Passing nothing defaults to 0.
+	---@return string undefined the name of the midi device opened at the given port.
+	function _G.midi.openPort(port) end
+	--- isPortOpen - client - libs_cl/midi.lua#L59
+	---@param port number The port number
+	---@return boolean undefined if the port is open
+	function _G.midi.isPortOpen(port) end
+	--- getPorts - client - libs_cl/midi.lua#L75
+	---@return table undefined the table of midi ports.  Starts at index 0
+	function _G.midi.getPorts() end
+	--- getChannel - client - libs_cl/midi.lua#L95
+	---@param command number the command
+	---@return number undefined the midi channel
+	function _G.midi.getChannel(command) end
+	--- getName - client - libs_cl/midi.lua#L102
+	---@param command number the command
+	---@return string undefined command name
+	function _G.midi.getName(command) end
+	--- closeAllPorts - client - libs_cl/midi.lua#L67
+	function _G.midi.closeAllPorts() end
+--- os
+---  Lua os library https://wiki.garrysmod.com/page/Category:os
+_G.os = {}
+	--- difftime - shared - libs_sh/builtins.lua#L438
+	---@param timeA number The first value
+	---@param timeB number The value to subtract
+	---@return number undefined Time difference
+	function _G.os.difftime(timeA, timeB) end
+	--- isOSX - shared - libs_sh/builtins.lua#L462
+	---@return boolean undefined If the os is OSX
+	function _G.os.isOSX() end
+	--- isLinux - shared - libs_sh/builtins.lua#L457
+	---@return boolean undefined If the os is Linux
+	function _G.os.isLinux() end
+	--- date - shared - libs_sh/builtins.lua#L425
+	---@param format string? The format string. If starts with an '!', it will use UTC timezone rather than the local timezone
+	---@param time number? Time to use for the format. Default os.time()
+	---@return string|table undefined If format is equal to '*t' or '!*t' then it will return a table with DateData structure, otherwise a string
+	function _G.os.date(format, time) end
+	--- time - shared - libs_sh/builtins.lua#L445
+	---@param dateData table? Optional table to generate the time from. This table's data is interpreted as being in the local timezone
+	---@return number undefined Seconds passed since Unix epoch
+	function _G.os.time(dateData) end
+	--- clock - shared - libs_sh/builtins.lua#L419
+	---@return number undefined The runtime
+	function _G.os.clock() end
+	--- isWindows - shared - libs_sh/builtins.lua#L452
+	---@return boolean undefined If the os is Windows
+	function _G.os.isWindows() end
+--- physenv
+---  Physenv functions
+_G.physenv = {}
+	--- getAirDensity - shared - libs_sh/physenv.lua#L15
+	---@return number undefined Air Density
+	function _G.physenv.getAirDensity() end
+	--- getPerformanceSettings - shared - libs_sh/physenv.lua#L27
+	---@return table undefined Performance Settings Table.
+	function _G.physenv.getPerformanceSettings() end
+	--- getGravity - shared - libs_sh/physenv.lua#L21
+	---@return Vector undefined Gravity Vector ( eg Vector(0,0,-600) )
+	function _G.physenv.getGravity() end
+--- timer
+---  Deals with time and timers.
+_G.timer = {}
+	--- exists - shared - libs_sh/timer.lua#L143
+	---@param name string The timer name
+	---@return boolean undefined if the timer exists
+	function _G.timer.exists(name) end
+	--- toggle - shared - libs_sh/timer.lua#L209
+	---@param name string The timer name
+	---@return boolean undefined Status of the timer.
+	function _G.timer.toggle(name) end
+	--- create - shared - libs_sh/timer.lua#L100
+	---@param name string The timer name
+	---@param delay number The time, in seconds, to set the timer to.
+	---@param reps number The repetitions of the timer. 0 = infinite
+	---@param func function The function to call when the timer is fired
+	function _G.timer.create(name, delay, reps, func) end
+	--- getTimersLeft - shared - libs_sh/timer.lua#L236
+	---@return number undefined Number of available timers
+	function _G.timer.getTimersLeft() end
+	--- start - shared - libs_sh/timer.lua#L159
+	---@param name string The timer name
+	---@return boolean undefined True if the timer exists, false if it doesn't.
+	function _G.timer.start(name) end
+	--- timeleft - shared - libs_sh/timer.lua#L218
+	---@param name string The timer name
+	---@return number undefined The amount of time left (in seconds). If the timer is paused, the amount will be negative. Nil if timer doesn't exist
+	function _G.timer.timeleft(name) end
+	--- frametime - shared - libs_sh/timer.lua#L54
+	---@return number undefined The time between frames / ticks depending on realm
+	function _G.timer.frametime() end
+	--- adjust - shared - libs_sh/timer.lua#L168
+	---@param name string The timer name
+	---@param delay number The time, in seconds, to set the timer to.
+	---@param reps number? (Optional) The repetitions of the timer. 0 = infinite, nil = 1
+	---@param func function? (Optional) The function to call when the timer is fired
+	---@return boolean undefined True if succeeded
+	function _G.timer.adjust(name, delay, reps, func) end
+	--- pause - shared - libs_sh/timer.lua#L191
+	---@param name string The timer name
+	---@return boolean undefined false if the timer didn't exist or was already paused, true otherwise.
+	function _G.timer.pause(name) end
+	--- systime - shared - libs_sh/timer.lua#L47
+	---@return number undefined The time in seconds since start up
+	function _G.timer.systime() end
+	--- repsleft - shared - libs_sh/timer.lua#L227
+	---@param name string The timer name
+	---@return number undefined The amount of executions left. Nil if timer doesn't exist
+	function _G.timer.repsleft(name) end
+	--- remove - shared - libs_sh/timer.lua#L130
+	---@param name string The timer name
+	function _G.timer.remove(name) end
+	--- realtime - shared - libs_sh/timer.lua#L39
+	---@return number undefined Realtime in seconds
+	function _G.timer.realtime() end
+	--- stop - shared - libs_sh/timer.lua#L151
+	---@param name string The timer name
+	---@return boolean undefined False if the timer didn't exist or was already stopped, true otherwise.
+	function _G.timer.stop(name) end
+	--- curtime - shared - libs_sh/timer.lua#L31
+	---@return number undefined Curtime in seconds
+	function _G.timer.curtime() end
+	--- simple - shared - libs_sh/timer.lua#L118
+	---@param delay number The time, in second, to set the timer to
+	---@param func function The function to call when the timer is fired
+	function _G.timer.simple(delay, func) end
+	--- unpause - shared - libs_sh/timer.lua#L200
+	---@param name string The timer name
+	---@return boolean undefined false if the timer didn't exist or was already running, true otherwise.
+	function _G.timer.unpause(name) end
 --- string
 ---  Lua string library https://wiki.garrysmod.com/page/Category:string
 _G.string = {}
@@ -5001,28 +4869,160 @@ _G.debug = {}
 	---@param fields string? A string that specifies the information to be retrieved. Defaults to all (flnSu).
 	---@return table undefined DebugInfo table
 	function _G.debug.getinfo(funcOrStackLevel, fields) end
---- hook
----  Deals with hooks
-_G.hook = {}
-	--- run - shared - libs_sh/hook.lua#L732
-	---@param hookname string The hook name
-	---@param arguments ... Arguments to pass to the hook
-	---@return ... undefined returns Return result(s) of the hook ran
-	function _G.hook.run(hookname, arguments) end
-	--- add - shared - libs_sh/hook.lua#L712
-	---@param hookname hooks Name of the event
-	---@param name string Unique identifier
-	---@param func function Function to run
-	function _G.hook.add(hookname, name, func) end
-	--- remove - shared - libs_sh/hook.lua#L809
-	---@param hookname string The hook name
-	---@param name string The unique name for this hook
-	function _G.hook.remove(hookname, name) end
-	--- runRemote - shared - libs_sh/hook.lua#L764
-	---@param recipient Entity? Starfall entity to call the hook on. Nil to run on every starfall entity
-	---@param payload ... Parameters that will be passed when calling hook functions
-	---@return table undefined A list of the resultset of each called hook
-	function _G.hook.runRemote(recipient, payload) end
+--- net
+---  Net message library. Used for sending data from the server to the client and back
+_G.net = {}
+	--- readVector - shared - libs_sh/net.lua#L586
+	---@return Vector undefined The vector that was read
+	function _G.net.readVector() end
+	--- writeUInt - shared - libs_sh/net.lua#L455
+	---@param t number The integer to be written
+	---@param n number The amount of bits the integer consists of. Should not be greater than 32
+	function _G.net.writeUInt(t, n) end
+	--- send - shared - libs_sh/net.lua#L227
+	---@param target Player|table|nil On server-side: Optional target location to send the net message to, can be a player or table of players, or nil to broadcast to all players; On client-side: This argument is ignored, it will send to the server.
+	---@param unreliable boolean? Optional. Whether it's more important for the message to actually reach its destination (false), or reach it as fast as possible (true). Default is false.
+	function _G.net.send(target, unreliable) end
+	--- readInt - shared - libs_sh/net.lua#L444
+	---@param n number The amount of bits to read
+	---@return number undefined The integer that was read
+	function _G.net.readInt(n) end
+	--- cancelStream - shared - libs_sh/net.lua#L416
+	function _G.net.cancelStream() end
+	--- readMatrix - shared - libs_sh/net.lua#L604
+	---@return VMatrix undefined The matrix that was read
+	function _G.net.readMatrix() end
+	--- writeUInt64 - shared - libs_sh/net.lua#L479
+	---@param t string The 64-bit integer written as a string because lua numbers can't hold 64-bit ints
+	function _G.net.writeUInt64(t) end
+	--- readTable - shared - libs_sh/net.lua#L332
+	---@return table undefined The table
+	function _G.net.readTable() end
+	--- readBool - shared - libs_sh/net.lua#L520
+	---@return boolean undefined The boolean that was read.
+	function _G.net.readBool() end
+	--- writeData - shared - libs_sh/net.lua#L356
+	---@param t string The string to be written
+	---@param n number How much of the string to write, can't exceed 64000 or the string's length
+	function _G.net.writeData(t, n) end
+	--- readUInt - shared - libs_sh/net.lua#L468
+	---@param n number The amount of bits to read
+	---@return number undefined The unsigned integer that was read
+	function _G.net.readUInt(n) end
+	--- readData - shared - libs_sh/net.lua#L369
+	---@param n number How many characters are in the data
+	---@return string undefined The string that was read
+	function _G.net.readData(n) end
+	--- writeTable - shared - libs_sh/net.lua#L318
+	---@param t table The table to write
+	---@return any undefined Returns the size of the data in bytes
+	function _G.net.writeTable(t) end
+	--- getStreamProgress - shared - libs_sh/net.lua#L423
+	---@return number undefined The progress ratio 0-1
+	function _G.net.getStreamProgress() end
+	--- readDouble - shared - libs_sh/net.lua#L536
+	---@return number undefined The double that was read
+	function _G.net.readDouble() end
+	--- getBitsLeft - shared - libs_sh/net.lua#L675
+	---@return number undefined Number of bits that can be sent
+	function _G.net.getBitsLeft() end
+	--- writeString - shared - libs_sh/net.lua#L340
+	---@param t string The string to be written
+	function _G.net.writeString(t) end
+	--- readBit - shared - libs_sh/net.lua#L504
+	---@return number undefined The bit that was read. (0 for false, 1 for true)
+	function _G.net.readBit() end
+	--- readUInt64 - shared - libs_sh/net.lua#L488
+	---@return string undefined The unsigned integer that was read, as a string
+	function _G.net.readUInt64() end
+	--- readStream - shared - libs_sh/net.lua#L393
+	---@param cb function Callback to run when the stream is finished. The first parameter in the callback is the data. Will be nil if transfer fails or is cancelled
+	function _G.net.readStream(cb) end
+	--- writeFloat - shared - libs_sh/net.lua#L543
+	---@param t number The float to be written
+	function _G.net.writeFloat(t) end
+	--- canWriteStream - shared - libs_sh/net.lua#L694
+	---@return boolean undefined Whether a writeStream can be initiated
+	---@return number undefined The number of active write streams
+	function _G.net.canWriteStream() end
+	--- canReadStream - shared - libs_sh/net.lua#L688
+	---@return boolean undefined Whether a readStream can be initiated
+	function _G.net.canReadStream() end
+	--- writeInt - shared - libs_sh/net.lua#L431
+	---@param t number The integer to be written
+	---@param n number The amount of bits the integer consists of
+	function _G.net.writeInt(t, n) end
+	--- getBytesLeft - shared - libs_sh/net.lua#L669
+	---@return number undefined Number of bytes that can be sent
+	function _G.net.getBytesLeft() end
+	--- receive - shared - libs_sh/net.lua#L659
+	---@param name string The name of the net message
+	---@param func function The callback or nil to remove callback. (len - length of the net message, ply - player that sent it or nil if clientside)
+	function _G.net.receive(name, func) end
+	--- writeVector - shared - libs_sh/net.lua#L576
+	---@param t Vector The vector to be written
+	function _G.net.writeVector(t) end
+	--- readType - shared - libs_sh/net.lua#L310
+	---@return any undefined The object
+	function _G.net.readType() end
+	--- start - shared - libs_sh/net.lua#L212
+	---@param name string The message name
+	function _G.net.start(name) end
+	--- readAngle - shared - libs_sh/net.lua#L569
+	---@return Angle undefined The angle that was read
+	function _G.net.readAngle() end
+	--- readEntity - shared - libs_sh/net.lua#L640
+	---@param callback function? (Client only) optional callback to be ran whenever the entity becomes valid; returns nothing if this is used. The callback passes the entity if it succeeds or nil if it fails.
+	---@return Entity? undefined The entity that was read or nil if callback used
+	function _G.net.readEntity(callback) end
+	--- sendPVS - server - libs_sh/net.lua#L270
+	---@param pos Vector A vector within the PVS area to send a message
+	---@param unreliable boolean? Optional. Whether it's more important for the message to actually reach its destination (false), or reach it as fast as possible (true). Default is false.
+	function _G.net.sendPVS(pos, unreliable) end
+	--- readFloat - shared - libs_sh/net.lua#L552
+	---@return number undefined The float that was read
+	function _G.net.readFloat() end
+	--- writeEntity - shared - libs_sh/net.lua#L630
+	---@param t Entity The entity to be written
+	function _G.net.writeEntity(t) end
+	--- readColor - shared - libs_sh/net.lua#L623
+	---@return Color undefined The color that was read
+	function _G.net.readColor() end
+	--- writeColor - shared - libs_sh/net.lua#L613
+	---@param t Color The color to be written
+	function _G.net.writeColor(t) end
+	--- writeMatrix - shared - libs_sh/net.lua#L593
+	---@param t VMatrix The matrix to be written
+	function _G.net.writeMatrix(t) end
+	--- writeAngle - shared - libs_sh/net.lua#L559
+	---@param t Angle The angle to be written
+	function _G.net.writeAngle(t) end
+	--- writeStream - shared - libs_sh/net.lua#L379
+	---@param str string The string to be written
+	---@param compress boolean? Compress the data. True by default
+	function _G.net.writeStream(str, compress) end
+	--- readString - shared - libs_sh/net.lua#L349
+	---@return string undefined The string that was read
+	function _G.net.readString() end
+	--- writeBool - shared - libs_sh/net.lua#L511
+	---@param t boolean The bit to be written.
+	function _G.net.writeBool(t) end
+	--- writeBit - shared - libs_sh/net.lua#L495
+	---@param t number The bit to be written. (0 for false, 1 (or anything) for true)
+	function _G.net.writeBit(t) end
+	--- isStreaming - shared - libs_sh/net.lua#L681
+	---@return boolean undefined Whether we're currently reading data from a stream
+	---@return boolean undefined Whether we're currently writing data to a stream
+	function _G.net.isStreaming() end
+	--- writeType - shared - libs_sh/net.lua#L297
+	---@param v any The object to write
+	---@return any undefined Returns the size of the data in bytes
+	function _G.net.writeType(v) end
+	--- writeDouble - shared - libs_sh/net.lua#L527
+	---@param t number The double to be written
+	function _G.net.writeDouble(t) end
+	--- abort - shared - libs_sh/net.lua#L292
+	function _G.net.abort() end
 --- render
 --- 
 ---  Render library. Screens are 512x512 units. Most functions require
@@ -7102,10 +7102,10 @@ _G["CLIENT"] = nil
 	---@param obj any Object to turn into a string
 	---@return string undefined Object as a string
 	function _G.tostring(obj) end
-	--- isfunction - shared - libs_sh/builtins.lua#L219
-	---@param x any Input to check
-	---@return boolean undefined If the object is a function or not
-	function _G.isfunction(x) end
+	--- crc - shared - libs_sh/builtins.lua#L236
+	---@param stringToHash string The string to calculate the checksum of
+	---@return string undefined The unsigned 32 bit checksum as a string
+	function _G.crc(stringToHash) end
 	--- tonumber - shared - libs_sh/builtins.lua#L112
 	---@param value any Either a string or a number to convert into a number.
 	---@param base number? The numerical base of the digits in the string. Must be between 2 and 36. Default is 10.
@@ -7131,9 +7131,10 @@ _G["CLIENT"] = nil
 	---@param k number? K component
 	---@return Quaternion undefined Quaternion object
 	function _G.Quaternion(r, i, j, k) end
-	--- isFirstTimePredicted - shared - libs_sh/builtins.lua#L258
-	---@return boolean undefined Whether this is the first time this hook was predicted
-	function _G.isFirstTimePredicted() end
+	--- printMessage - client - libs_sh/builtins.lua#L728
+	---@param mtype number How the message should be displayed. See http://wiki.facepunch.com/gmod/Enums/HUD
+	---@param text string The message text.
+	function _G.printMessage(mtype, text) end
 	--- ipairs - shared - libs_sh/builtins.lua#L120
 	---@param tbl table Table to iterate over
 	---@return function undefined Iterator function
@@ -7195,14 +7196,14 @@ _G["CLIENT"] = nil
 	---@return any undefined Key or nil
 	---@return any undefined Value or nil
 	function _G.next(tbl, k) end
-	--- requiredir - shared - libs_sh/builtins.lua#L861
-	---@param path string The directory to include. Make sure to --@includedir it
-	---@param loadpriority table? Table of files that should be loaded before any others in the directory
-	---@return table undefined Table of return values of the scripts
-	function _G.requiredir(path, loadpriority) end
-	--- owner - shared - libs_sh/builtins.lua#L69
-	---@return Player undefined Owner of the chip
-	function _G.owner() end
+	--- hasPermission - shared - libs_sh/builtins.lua#L340
+	---@param perm string The permission id to check
+	---@param obj any Optional object to pass to the permission system.
+	---@return boolean undefined Whether the client has granted the specified permission.
+	---@return string undefined The reason the permission check failed
+	function _G.hasPermission(perm, obj) end
+	--- sendPermissionRequest - client - libs_sh/builtins.lua#L399
+	function _G.sendPermissionRequest() end
 	--- setName - client - libs_sh/builtins.lua#L697
 	---@param name string Name to set the chip's name to
 	function _G.setName(name) end
@@ -7258,13 +7259,10 @@ _G["CLIENT"] = nil
 	--- restart - shared - libs_sh/builtins.lua#L1263
 	---@param chip Entity? The chip to restart. If nil, it will restart the current chip.
 	function _G.restart(chip) end
-	--- printConsole - shared - libs_sh/builtins.lua#L598
-	---@param printArgs ... Values to print. Colors before text will set the text color
-	function _G.printConsole(printArgs) end
-	--- try - shared - libs_sh/builtins.lua#L1147
-	---@param func function Function to execute
-	---@param catch function? Optional function to execute in case func fails
-	function _G.try(func, catch) end
+	--- getMethods - shared - libs_sh/builtins.lua#L1010
+	---@param sfType string Name of SF type
+	---@return table undefined Table of the type's methods which can be edited or iterated
+	function _G.getMethods(sfType) end
 	--- class - shared - libs_sh/builtins.lua#L1287
 	---@param name string The string name of the class
 	---@param super table? The (optional) parent class to inherit from
@@ -7273,9 +7271,6 @@ _G["CLIENT"] = nil
 	---@param ply Player The player to enable the hud on. If CLIENT, will be forced to player()
 	---@param active boolean Whether hud hooks should be active. true to force on, false to force off.
 	function _G.enableHud(ply, active) end
-	--- chip - shared - libs_sh/builtins.lua#L57
-	---@return Entity undefined Starfall chip entity
-	function _G.chip() end
 	--- worldToLocal - shared - libs_sh/builtins.lua#L1205
 	---@param pos Vector The position that should be translated from the current to the new system
 	---@param ang Angle The angles that should be translated from the current to the new system
@@ -7284,20 +7279,27 @@ _G["CLIENT"] = nil
 	---@return Vector undefined localPos
 	---@return Angle undefined localAngles
 	function _G.worldToLocal(pos, ang, newSystemOrigin, newSystemAngles) end
-	--- dodir - shared - libs_sh/builtins.lua#L917
-	---@param path string The directory to include. Make sure to --@includedir it
-	---@param loadpriority table Table of files that should be loaded before any others in the directory
-	---@return table undefined Table of return values of the scripts
-	function _G.dodir(path, loadpriority) end
+	--- chip - shared - libs_sh/builtins.lua#L57
+	---@return Entity undefined Starfall chip entity
+	function _G.chip() end
 	--- assert - shared - libs_sh/builtins.lua#L1185
 	---@param expression any Anything that will be evaluated to be true or false
 	---@param msg string? Error message. Default "assertion failed!"
 	---@param args ... Any arguments to return if the assertion is successful
 	function _G.assert(expression, msg, args) end
+	--- dodir - shared - libs_sh/builtins.lua#L917
+	---@param path string The directory to include. Make sure to --@includedir it
+	---@param loadpriority table Table of files that should be loaded before any others in the directory
+	---@return table undefined Table of return values of the scripts
+	function _G.dodir(path, loadpriority) end
 	--- error - shared - libs_sh/builtins.lua#L1176
 	---@param msg string Message string
 	---@param level number? Which level in the stacktrace to blame. Defaults to 1. 0 for no stacktrace.
 	function _G.error(msg, level) end
+	--- try - shared - libs_sh/builtins.lua#L1147
+	---@param func function Function to execute
+	---@param catch function? Optional function to execute in case func fails
+	function _G.try(func, catch) end
 	--- Color - shared - libs_sh/color.lua#L74
 	---@param r number|string|nil Red component or string hexadecimal color. Defaults to 255.
 	---@param g number? Green component. Defaults to 255.
@@ -7312,10 +7314,12 @@ _G["CLIENT"] = nil
 	---@return function? undefined Compiled function, or nil if failed to compile
 	---@return string? undefined Error string, or nil if successfully compiled
 	function _G.loadstring(code, identifier, env) end
-	--- getMethods - shared - libs_sh/builtins.lua#L1010
-	---@param sfType string Name of SF type
-	---@return table undefined Table of the type's methods which can be edited or iterated
-	function _G.getMethods(sfType) end
+	--- unpack - shared - libs_sh/builtins.lua#L174
+	---@param tbl table Table to get elements out of
+	---@param startIndex number? Which index to start from (default 1)
+	---@param endIndex number? Which index to end at (default #tbl)
+	---@return ... undefined Elements of tbl
+	function _G.unpack(tbl, startIndex, endIndex) end
 	--- Angle - shared - libs_sh/angles.lua#L50
 	---@param p number? Pitch
 	---@param y number? Yaw
@@ -7325,28 +7329,29 @@ _G["CLIENT"] = nil
 	--- concmd - shared - libs_sh/builtins.lua#L650
 	---@param cmd string Command to execute
 	function _G.concmd(cmd) end
-	--- getmetatable - shared - libs_sh/builtins.lua#L226
-	---@param tbl any Table to get metatable of
-	---@return table? undefined The metatable of tbl
-	function _G.getmetatable(tbl) end
+	--- requiredir - shared - libs_sh/builtins.lua#L861
+	---@param path string The directory to include. Make sure to --@includedir it
+	---@param loadpriority table? Table of files that should be loaded before any others in the directory
+	---@return table undefined Table of return values of the scripts
+	function _G.requiredir(path, loadpriority) end
 	--- eyeVector - client - libs_sh/builtins.lua#L797
 	---@return Vector undefined The local player's camera forward vector
 	function _G.eyeVector() end
-	--- unpack - shared - libs_sh/builtins.lua#L174
-	---@param tbl table Table to get elements out of
-	---@param startIndex number? Which index to start from (default 1)
-	---@param endIndex number? Which index to end at (default #tbl)
-	---@return ... undefined Elements of tbl
-	function _G.unpack(tbl, startIndex, endIndex) end
+	--- require - shared - libs_sh/builtins.lua#L847
+	---@param path string The file path to include. Make sure to --@include it
+	---@param args ... Optional arguments to provide to the script (access them using vararg ...)
+	---@return any undefined Return value of the script
+	function _G.require(path, args) end
 	--- pairs - shared - libs_sh/builtins.lua#L129
 	---@param tbl table Table to iterate over
 	---@return function undefined Iterator function
 	---@return table undefined Table being iterated over
 	---@return any undefined Nil as current index (for the constructor)
 	function _G.pairs(tbl) end
-	--- getLibraries - shared - libs_sh/builtins.lua#L470
-	---@return table undefined Table where each key is the library name and value is table of the library
-	function _G.getLibraries() end
+	--- istable - shared - libs_sh/builtins.lua#L205
+	---@param x any Input to check
+	---@return boolean undefined If the object is a table or not
+	function _G.istable(x) end
 	--- printHud - shared - libs_sh/builtins.lua#L607
 	---@param ply Player The target player. If in CLIENT, then ply is the client player and this param is omitted
 	---@param printArgs ... Values to print. Colors before text will set the text color
@@ -7359,9 +7364,10 @@ _G["CLIENT"] = nil
 	---@param num number? UserID to get the player with.
 	---@return Player undefined Returns player with given UserID or if none specified then returns either the owner (server) or the local player (client)
 	function _G.player(num) end
-	--- setSoftQuota - shared - libs_sh/builtins.lua#L333
-	---@param quota number The threshold where the soft error will be thrown. Ratio of current cpu to the max cpu usage. 0.5 is 50%
-	function _G.setSoftQuota(quota) end
+	--- getmetatable - shared - libs_sh/builtins.lua#L226
+	---@param tbl any Table to get metatable of
+	---@return table? undefined The metatable of tbl
+	function _G.getmetatable(tbl) end
 	--- cpuMax - shared - libs_sh/builtins.lua#L326
 	---@return number undefined Max SysTime allowed to take for execution of the chip in a Think.
 	function _G.cpuMax() end
@@ -7370,9 +7376,9 @@ _G["CLIENT"] = nil
 	---@param args ... Optional arguments to provide to the script (access them using vararg ...)
 	---@return ... undefined Return value(s) of the script
 	function _G.dofile(path, args) end
-	--- concmdRate - server - libs_sh/builtins.lua#L671
-	---@return number undefined Number of concmds per second the user can run on server-side
-	function _G.concmdRate() end
+	--- setSoftQuota - shared - libs_sh/builtins.lua#L333
+	---@param quota number The threshold where the soft error will be thrown. Ratio of current cpu to the max cpu usage. 0.5 is 50%
+	function _G.setSoftQuota(quota) end
 	--- printTable - shared - libs_sh/builtins.lua#L627
 	---@param tbl table Table to print
 	function _G.printTable(tbl) end
@@ -7382,38 +7388,36 @@ _G["CLIENT"] = nil
 	--- ramMax - shared - libs_sh/builtins.lua#L290
 	---@return number undefined The max ram usage in kilobytes
 	function _G.ramMax() end
-	--- istable - shared - libs_sh/builtins.lua#L205
-	---@param x any Input to check
-	---@return boolean undefined If the object is a table or not
-	function _G.istable(x) end
-	--- hasPermission - shared - libs_sh/builtins.lua#L340
-	---@param perm string The permission id to check
-	---@param obj any Optional object to pass to the permission system.
-	---@return boolean undefined Whether the client has granted the specified permission.
-	---@return string undefined The reason the permission check failed
-	function _G.hasPermission(perm, obj) end
-	--- setupPermissionRequest - client - libs_sh/builtins.lua#L358
-	---@param perms table Table of overridable permissions' names.
-	---@param desc string Description attached to request.
-	---@param showOnUse boolean Whether request will popup when player uses chip or linked screen.
-	function _G.setupPermissionRequest(perms, desc, showOnUse) end
-	--- sendPermissionRequest - client - libs_sh/builtins.lua#L399
-	function _G.sendPermissionRequest() end
-	--- entity - shared - libs_sh/builtins.lua#L88
-	---@param num number Entity index
-	---@return Entity undefined Entity at the index
-	function _G.entity(num) end
+	--- owner - shared - libs_sh/builtins.lua#L69
+	---@return Player undefined Owner of the chip
+	function _G.owner() end
 	--- Vector2 - server - libs_sv/wire.lua#L159
 	---@param x number? X value
 	---@param y number? Y value
 	---@return Vector2 undefined Vector2
 	function _G.Vector2(x, y) end
+	--- getLibraries - shared - libs_sh/builtins.lua#L470
+	---@return table undefined Table where each key is the library name and value is table of the library
+	function _G.getLibraries() end
+	--- setupPermissionRequest - client - libs_sh/builtins.lua#L358
+	---@param perms table Table of overridable permissions' names.
+	---@param desc string Description attached to request.
+	---@param showOnUse boolean Whether request will popup when player uses chip or linked screen.
+	function _G.setupPermissionRequest(perms, desc, showOnUse) end
+	--- entity - shared - libs_sh/builtins.lua#L88
+	---@param num number Entity index
+	---@return Entity undefined Entity at the index
+	function _G.entity(num) end
+	--- printConsole - shared - libs_sh/builtins.lua#L598
+	---@param printArgs ... Values to print. Colors before text will set the text color
+	function _G.printConsole(printArgs) end
 	--- cpuTotalAverage - shared - libs_sh/builtins.lua#L316
 	---@return number undefined Total average CPU Time of all your chips.
 	function _G.cpuTotalAverage() end
-	--- concmdLeft - server - libs_sh/builtins.lua#L663
-	---@return number undefined Number of concmds able to be ran serverside
-	function _G.concmdLeft() end
+	--- isfunction - shared - libs_sh/builtins.lua#L219
+	---@param x any Input to check
+	---@return boolean undefined If the object is a function or not
+	function _G.isfunction(x) end
 	--- cpuTotalUsed - shared - libs_sh/builtins.lua#L306
 	---@return number undefined Total used CPU time of all your chips.
 	function _G.cpuTotalUsed() end
@@ -7427,25 +7431,21 @@ _G["CLIENT"] = nil
 	---@param vararg ... Args to select from
 	---@return any undefined Returns a number or vararg, depending on the select method.
 	function _G.select(parameter, vararg) end
-	--- crc - shared - libs_sh/builtins.lua#L236
-	---@param stringToHash string The string to calculate the checksum of
-	---@return string undefined The unsigned 32 bit checksum as a string
-	function _G.crc(stringToHash) end
+	--- concmdRate - server - libs_sh/builtins.lua#L671
+	---@return number undefined Number of concmds per second the user can run on server-side
+	function _G.concmdRate() end
 	--- getUserdata - server - libs_sh/builtins.lua#L690
 	---@return string undefined String data
 	function _G.getUserdata() end
-	--- require - shared - libs_sh/builtins.lua#L847
-	---@param path string The file path to include. Make sure to --@include it
-	---@param args ... Optional arguments to provide to the script (access them using vararg ...)
-	---@return any undefined Return value of the script
-	function _G.require(path, args) end
+	--- concmdLeft - server - libs_sh/builtins.lua#L663
+	---@return number undefined Number of concmds able to be ran serverside
+	function _G.concmdLeft() end
 	--- eyeAngles - client - libs_sh/builtins.lua#L783
 	---@return Angle undefined The local player's camera angles
 	function _G.eyeAngles() end
-	--- printMessage - client - libs_sh/builtins.lua#L728
-	---@param mtype number How the message should be displayed. See http://wiki.facepunch.com/gmod/Enums/HUD
-	---@param text string The message text.
-	function _G.printMessage(mtype, text) end
+	--- isFirstTimePredicted - shared - libs_sh/builtins.lua#L258
+	---@return boolean undefined Whether this is the first time this hook was predicted
+	function _G.isFirstTimePredicted() end
 ---  NextBot type
 ---@class NextBot
 _G.NextBot = {}
@@ -7643,39 +7643,27 @@ _G.NextBot = {}
 	---@param id string The unique ID this callback will use.
 	---@param func function The function to run when the NB lands on the ground. The arguments are: (The entity the NB landed on.)
 	function _G.NextBot:addLandCallback(id, func) end
----  Sound type
----@class Sound
-_G.Sound = {}
-	--- stop - shared - libs_sh/sound.lua#L130
-	---@param fade number? Time in seconds to fade out, if nil or 0 the sound stops instantly.
-	function _G.Sound:stop(fade) end
-	--- setPitch - shared - libs_sh/sound.lua#L166
-	---@param pitch number Pitch to set to, between 0 and 255.
-	---@param fade number? Time in seconds to transition to this new pitch. Default 0
-	function _G.Sound:setPitch(pitch, fade) end
-	--- setDSP - shared - libs_sh/sound.lua#L202
-	---@param dsp number (0 - 133) DSP values. List can be found here https://developer.valvesoftware.com/wiki/Dsp_presets
-	function _G.Sound:setDSP(dsp) end
-	--- setSoundLevel - shared - libs_sh/sound.lua#L189
-	---@param level number dB level, for information on the value to use see https://developer.valvesoftware.com/wiki/Soundscripts#SoundLevel
-	function _G.Sound:setSoundLevel(level) end
-	--- isPlaying - shared - libs_sh/sound.lua#L183
-	---@return boolean undefined Whether the sound is playing or not
-	function _G.Sound:isPlaying() end
-	--- getSoundLevel - shared - libs_sh/sound.lua#L196
-	---@return number undefined Level in dB
-	function _G.Sound:getSoundLevel() end
-	--- getDSP - shared - libs_sh/sound.lua#L209
-	---@return number undefined (0 - 133) DSP value.
-	function _G.Sound:getDSP() end
-	--- play - shared - libs_sh/sound.lua#L125
-	function _G.Sound:play() end
-	--- destroy - shared - libs_sh/sound.lua#L141
-	function _G.Sound:destroy() end
-	--- setVolume - shared - libs_sh/sound.lua#L149
-	---@param vol number Volume to set to, between 0 and 1.
-	---@param fade number? Time in seconds to transition to this new volume. Default 0
-	function _G.Sound:setVolume(vol, fade) end
+---  The Markup type is used to easily format and draw text. Use render.parseMarkup(str, maxwidth) to create one.
+---@class Markup
+_G.Markup = {}
+	--- getSize - client - libs_cl/render.lua#L2064
+	---@return number undefined The width of the object
+	---@return number undefined The height of the object
+	function _G.Markup:getSize() end
+	--- draw - client - libs_cl/render.lua#L2040
+	---@param x number number The x offset
+	---@param y number number The x offset
+	---@param xAlign number? number The x TEXT_ALIGN. Default TEXT_ALIGN.LEFT
+	---@param yAlign number? number The y TEXT_ALIGN. Default TEXT_ALIGN.TOP
+	---@param alpha number? The alpha to draw it with. Default 255
+	---@param contentAlign number? The content alignment TEXT_ALIGN. Default TEXT_ALIGN.LEFT
+	function _G.Markup:draw(x, y, xAlign, yAlign, alpha, contentAlign) end
+	--- getWidth - client - libs_cl/render.lua#L2052
+	---@return number undefined The width of the object
+	function _G.Markup:getWidth() end
+	--- getHeight - client - libs_cl/render.lua#L2058
+	---@return number undefined The height of the object
+	function _G.Markup:getHeight() end
 ---  Hologram type
 ---@class Hologram
 _G.Hologram = {}
@@ -10616,17 +10604,18 @@ _G.Player = {}
 ---@operator mul(number|Angle):Angle
 ---@operator div(number|Angle):Angle
 ---@operator index(number|string):number|function|nil
----@operator tostring:string
 ---@operator unm:Angle
 ---@operator add(Angle):Angle
+---@operator tostring:string
 ---@operator sub(Angle):Angle
 ---@operator eq(Angle):boolean
 _G.Angle = {}
 	--- setZero - shared - libs_sh/angles.lua#L235
 	function _G.Angle:setZero() end
-	--- getQuaternion - shared - libs_sh/quaternion.lua#L838
-	---@return Quaternion undefined Constructed quaternion
-	function _G.Angle:getQuaternion() end
+	--- setY - shared - libs_sh/angles.lua#L251
+	---@param y number The yaw
+	---@return Angle undefined Angle after modification
+	function _G.Angle:setY(y) end
 	--- round - shared - libs_sh/angles.lua#L211
 	---@param idp number? (Default 0) The integer decimal place to round to.
 	function _G.Angle:round(idp) end
@@ -10636,13 +10625,12 @@ _G.Angle = {}
 	---@param rad number? Number of radians or nil if degrees.
 	---@return Angle undefined The modified angle
 	function _G.Angle:rotateAroundAxis(v, deg, rad) end
+	--- getQuaternion - shared - libs_sh/quaternion.lua#L838
+	---@return Quaternion undefined Constructed quaternion
+	function _G.Angle:getQuaternion() end
 	--- clone - shared - libs_sh/angles.lua#L220
 	---@return Angle undefined The copy of the angle
 	function _G.Angle:clone() end
-	--- setY - shared - libs_sh/angles.lua#L251
-	---@param y number The yaw
-	---@return Angle undefined Angle after modification
-	function _G.Angle:setY(y) end
 	--- getRight - shared - libs_sh/angles.lua#L180
 	---@return Vector undefined Right direction.
 	function _G.Angle:getRight() end
@@ -10685,60 +10673,39 @@ _G.SurfaceInfo = {}
 	--- isSky - shared - libs_sh/surfaceinfo.lua#L62
 	---@return boolean undefined If the surface is the sky.
 	function _G.SurfaceInfo:isSky() end
----  Vehicle type
----@class Vehicle
-_G.Vehicle = {}
-	--- getSpeed - server - libs_sh/vehicles.lua#L235
-	---@return number undefined Speed
-	function _G.Vehicle:getSpeed() end
-	--- getPassenger - shared - libs_sh/vehicles.lua#L90
-	---@param n number The index of the passenger to get
-	---@return Player undefined The passenger or NULL if empty
-	function _G.Vehicle:getPassenger(n) end
-	--- killDriver - server - libs_sh/vehicles.lua#L162
-	function _G.Vehicle:killDriver() end
-	--- getThirdPersonMode - shared - libs_sh/vehicles.lua#L110
-	---@return boolean undefined true if third person mode is enabled, false if not
-	function _G.Vehicle:getThirdPersonMode() end
-	--- setCameraDistance - shared - libs_sh/vehicles.lua#L116
-	---@param distance number 
-	function _G.Vehicle:setCameraDistance(distance) end
-	--- getHLSpeed - server - libs_sh/vehicles.lua#L242
-	---@return number undefined Speed
-	function _G.Vehicle:getHLSpeed() end
-	--- getCameraDistance - shared - libs_sh/vehicles.lua#L127
-	---@return number undefined distance
-	function _G.Vehicle:getCameraDistance() end
-	--- stripDriver - server - libs_sh/vehicles.lua#L173
-	---@param class string? Optional weapon class to strip. Otherwise all are stripped.
-	function _G.Vehicle:stripDriver(class) end
-	--- getDriver - shared - libs_sh/vehicles.lua#L84
-	---@return Player undefined Driver of vehicle
-	function _G.Vehicle:getDriver() end
-	--- unlock - server - libs_sh/vehicles.lua#L201
-	function _G.Vehicle:unlock() end
-	--- ejectDriver - server - libs_sh/vehicles.lua#L150
-	function _G.Vehicle:ejectDriver() end
-	--- lock - server - libs_sh/vehicles.lua#L190
-	function _G.Vehicle:lock() end
-	--- useEnable - shared - libs_sh/vehicles.lua#L210
-	---@param enabled boolean Whether to enable the ability to use by clicking
-	---@param key number? Optional IN_KEY alternate control for using (default IN_KEY.ATTACK)
-	function _G.Vehicle:useEnable(enabled, key) end
-	--- getVehicleViewPosition - shared - libs_sh/vehicles.lua#L133
-	---@param role number? 0 is the driver.
-	---@return Vector undefined The view position
-	---@return Angle undefined The view angles
-	---@return number undefined The passengers FOV
-	function _G.Vehicle:getVehicleViewPosition(role) end
-	--- checkExitPoint - server - libs_sh/vehicles.lua#L222
-	---@param yaw number Yaw/roll from vehicle angle to check for exit
-	---@param dist number Distance from origin to drop player
-	---@return Vector undefined The exit position, or nil if unable to exit in that direction
-	function _G.Vehicle:checkExitPoint(yaw, dist) end
-	--- setThirdPersonMode - shared - libs_sh/vehicles.lua#L99
-	---@param thirdPerson boolean 
-	function _G.Vehicle:setThirdPersonMode(thirdPerson) end
+---  Sound type
+---@class Sound
+_G.Sound = {}
+	--- stop - shared - libs_sh/sound.lua#L130
+	---@param fade number? Time in seconds to fade out, if nil or 0 the sound stops instantly.
+	function _G.Sound:stop(fade) end
+	--- setPitch - shared - libs_sh/sound.lua#L166
+	---@param pitch number Pitch to set to, between 0 and 255.
+	---@param fade number? Time in seconds to transition to this new pitch. Default 0
+	function _G.Sound:setPitch(pitch, fade) end
+	--- setDSP - shared - libs_sh/sound.lua#L202
+	---@param dsp number (0 - 133) DSP values. List can be found here https://developer.valvesoftware.com/wiki/Dsp_presets
+	function _G.Sound:setDSP(dsp) end
+	--- setSoundLevel - shared - libs_sh/sound.lua#L189
+	---@param level number dB level, for information on the value to use see https://developer.valvesoftware.com/wiki/Soundscripts#SoundLevel
+	function _G.Sound:setSoundLevel(level) end
+	--- isPlaying - shared - libs_sh/sound.lua#L183
+	---@return boolean undefined Whether the sound is playing or not
+	function _G.Sound:isPlaying() end
+	--- getSoundLevel - shared - libs_sh/sound.lua#L196
+	---@return number undefined Level in dB
+	function _G.Sound:getSoundLevel() end
+	--- getDSP - shared - libs_sh/sound.lua#L209
+	---@return number undefined (0 - 133) DSP value.
+	function _G.Sound:getDSP() end
+	--- play - shared - libs_sh/sound.lua#L125
+	function _G.Sound:play() end
+	--- destroy - shared - libs_sh/sound.lua#L141
+	function _G.Sound:destroy() end
+	--- setVolume - shared - libs_sh/sound.lua#L149
+	---@param vol number Volume to set to, between 0 and 1.
+	---@param fade number? Time in seconds to transition to this new volume. Default 0
+	function _G.Sound:setVolume(vol, fade) end
 ---  Npc type
 ---@class Npc
 _G.Npc = {}
@@ -10833,27 +10800,17 @@ _G.CMoveData = {}
 	---@param buttons number The button(s) to check, see https://wiki.facepunch.com/gmod/Enums/IN for the button enums
 	---@return boolean undefined true if the button(s) is down, false if not
 	function _G.CMoveData:keyDownLast(buttons) end
----  The Markup type is used to easily format and draw text. Use render.parseMarkup(str, maxwidth) to create one.
----@class Markup
-_G.Markup = {}
-	--- getSize - client - libs_cl/render.lua#L2064
-	---@return number undefined The width of the object
-	---@return number undefined The height of the object
-	function _G.Markup:getSize() end
-	--- draw - client - libs_cl/render.lua#L2040
-	---@param x number number The x offset
-	---@param y number number The x offset
-	---@param xAlign number? number The x TEXT_ALIGN. Default TEXT_ALIGN.LEFT
-	---@param yAlign number? number The y TEXT_ALIGN. Default TEXT_ALIGN.TOP
-	---@param alpha number? The alpha to draw it with. Default 255
-	---@param contentAlign number? The content alignment TEXT_ALIGN. Default TEXT_ALIGN.LEFT
-	function _G.Markup:draw(x, y, xAlign, yAlign, alpha, contentAlign) end
-	--- getWidth - client - libs_cl/render.lua#L2052
-	---@return number undefined The width of the object
-	function _G.Markup:getWidth() end
-	--- getHeight - client - libs_cl/render.lua#L2058
-	---@return number undefined The height of the object
-	function _G.Markup:getHeight() end
+---  Mesh type
+---@class Mesh
+_G.Mesh = {}
+	--- draw - client - libs_sh/mesh.lua#L1156
+	function _G.Mesh:draw() end
+	--- setupBoneMatrices - client - libs_sh/mesh.lua#L1169
+	---@param count number The number of bone matrices to use in range 1 -> 53
+	---@return table undefined Table of reference VMatrix to each bone. Modifying them will modify the bone matrix
+	function _G.Mesh:setupBoneMatrices(count) end
+	--- destroy - client - libs_sh/mesh.lua#L1192
+	function _G.Mesh:destroy() end
 ---  PhysObj Type
 ---@class PhysObj
 _G.PhysObj = {}
@@ -11054,17 +11011,60 @@ _G.PhysObj = {}
 	--- setVelocity - server - libs_sh/physobj.lua#L242
 	---@param vel Vector The velocity vector to set it to
 	function _G.PhysObj:setVelocity(vel) end
----  Mesh type
----@class Mesh
-_G.Mesh = {}
-	--- draw - client - libs_sh/mesh.lua#L1156
-	function _G.Mesh:draw() end
-	--- setupBoneMatrices - client - libs_sh/mesh.lua#L1169
-	---@param count number The number of bone matrices to use in range 1 -> 53
-	---@return table undefined Table of reference VMatrix to each bone. Modifying them will modify the bone matrix
-	function _G.Mesh:setupBoneMatrices(count) end
-	--- destroy - client - libs_sh/mesh.lua#L1192
-	function _G.Mesh:destroy() end
+---  Vehicle type
+---@class Vehicle
+_G.Vehicle = {}
+	--- getSpeed - server - libs_sh/vehicles.lua#L235
+	---@return number undefined Speed
+	function _G.Vehicle:getSpeed() end
+	--- getPassenger - shared - libs_sh/vehicles.lua#L90
+	---@param n number The index of the passenger to get
+	---@return Player undefined The passenger or NULL if empty
+	function _G.Vehicle:getPassenger(n) end
+	--- killDriver - server - libs_sh/vehicles.lua#L162
+	function _G.Vehicle:killDriver() end
+	--- getThirdPersonMode - shared - libs_sh/vehicles.lua#L110
+	---@return boolean undefined true if third person mode is enabled, false if not
+	function _G.Vehicle:getThirdPersonMode() end
+	--- setCameraDistance - shared - libs_sh/vehicles.lua#L116
+	---@param distance number 
+	function _G.Vehicle:setCameraDistance(distance) end
+	--- getHLSpeed - server - libs_sh/vehicles.lua#L242
+	---@return number undefined Speed
+	function _G.Vehicle:getHLSpeed() end
+	--- getCameraDistance - shared - libs_sh/vehicles.lua#L127
+	---@return number undefined distance
+	function _G.Vehicle:getCameraDistance() end
+	--- stripDriver - server - libs_sh/vehicles.lua#L173
+	---@param class string? Optional weapon class to strip. Otherwise all are stripped.
+	function _G.Vehicle:stripDriver(class) end
+	--- getDriver - shared - libs_sh/vehicles.lua#L84
+	---@return Player undefined Driver of vehicle
+	function _G.Vehicle:getDriver() end
+	--- unlock - server - libs_sh/vehicles.lua#L201
+	function _G.Vehicle:unlock() end
+	--- ejectDriver - server - libs_sh/vehicles.lua#L150
+	function _G.Vehicle:ejectDriver() end
+	--- lock - server - libs_sh/vehicles.lua#L190
+	function _G.Vehicle:lock() end
+	--- useEnable - shared - libs_sh/vehicles.lua#L210
+	---@param enabled boolean Whether to enable the ability to use by clicking
+	---@param key number? Optional IN_KEY alternate control for using (default IN_KEY.ATTACK)
+	function _G.Vehicle:useEnable(enabled, key) end
+	--- getVehicleViewPosition - shared - libs_sh/vehicles.lua#L133
+	---@param role number? 0 is the driver.
+	---@return Vector undefined The view position
+	---@return Angle undefined The view angles
+	---@return number undefined The passengers FOV
+	function _G.Vehicle:getVehicleViewPosition(role) end
+	--- checkExitPoint - server - libs_sh/vehicles.lua#L222
+	---@param yaw number Yaw/roll from vehicle angle to check for exit
+	---@param dist number Distance from origin to drop player
+	---@return Vector undefined The exit position, or nil if unable to exit in that direction
+	function _G.Vehicle:checkExitPoint(yaw, dist) end
+	--- setThirdPersonMode - shared - libs_sh/vehicles.lua#L99
+	---@param thirdPerson boolean 
+	function _G.Vehicle:setThirdPersonMode(thirdPerson) end
 ---  CUserCmd, only valid in the hooks that provide it, you can't store them.
 ---@class CUserCmd
 _G.CUserCmd = {}
